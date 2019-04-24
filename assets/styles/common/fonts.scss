@@ -1,0 +1,195 @@
+@font-face {
+    font-family: 'Harmonia Sans Pro Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../../../static/fonts/HarmoniaSansProCyr-regular.woff');
+    // src: url('../../../static/fonts/HarmoniaSansProCyr-regular.eot?#iefix') format('embedded-opentype'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-regular.woff2') format('woff2'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-regular.woff') format('woff'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-regular.ttf') format('truetype'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-regular.svg#fontawesome') format('svg');
+}
+
+@font-face {
+    font-family: 'Harmonia Sans Pro Regular';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../../../static/fonts/HarmoniaSansProCyr-regular.woff');
+    // src: url('../../../static/fonts/HarmoniaSansProCyr-regular.eot?#iefix') format('embedded-opentype'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-regular.woff2') format('woff2'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-regular.woff') format('woff'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-regular.ttf') format('truetype'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-regular.svg#fontawesome') format('svg');
+}
+
+@font-face {
+    font-family: 'Harmonia Sans Pro light';
+    font-style: normal;
+    font-weight: 300;
+    src: url('../../../static/fonts/HarmoniaSansProCyr-Light.woff');
+    // src: url('../../../static/fonts/HarmoniaSansProCyr-Light.eot?#iefix') format('embedded-opentype'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-Light.woff2') format('woff2'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-Light.woff') format('woff'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-Light.ttf') format('truetype'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-Light.svg#fontawesome') format('svg');
+}
+
+@font-face {
+    font-family: 'Harmonia Sans Pro SemiBd';
+    font-style: normal;
+    font-weight: 500;
+    src: url('../../../static/fonts/HarmoniaSansProCyr-SemiBd.woff');
+    // src: url('../../../static/fonts/HarmoniaSansProCyr-SemiBd.eot?#iefix') format('embedded-opentype'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-SemiBd.woff2') format('woff2'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-SemiBd.woff') format('woff'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-SemiBd.ttf') format('truetype'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-SemiBd.svg#fontawesome') format('svg');
+}
+
+@font-face {
+    font-family: 'Harmonia Sans Pro Bold';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../../../static/fonts/HarmoniaSansProCyr-Bold.woff');
+    // src: url('../../../static/fonts/HarmoniaSansProCyr-Bold.eot?#iefix') format('embedded-opentype'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-Bold.woff2') format('woff2'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-Bold.woff') format('woff'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-Bold.ttf') format('truetype'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-Bold.svg#fontawesome') format('svg');
+}
+
+@font-face {
+    font-family: 'Harmonia Sans Pro Black';
+    font-style: normal;
+    font-weight: 900;
+    src: url('../../../static/fonts/HarmoniaSansProCyr-Black.woff');
+    // src: url('../../../static/fonts/HarmoniaSansProCyr-Black.eot?#iefix') format('embedded-opentype'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-Black.woff2') format('woff2'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-Black.woff') format('woff'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-Black.ttf') format('truetype'),
+    //     url('../../../static/fonts/HarmoniaSansProCyr-Black.svg#fontawesome') format('svg');
+}
+
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../../../static/fonts/icomoon.eot?mxzaem');
+  src:  url('../../../static/fonts/icomoon.eot?mxzaem#iefix') format('embedded-opentype'),
+    url('../../../static/fonts/icomoon.ttf?mxzaem') format('truetype'),
+    url('../../../static/fonts/icomoon.woff?mxzaem') format('woff'),
+    url('../../../static/fonts/icomoon.svg?mxzaem#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-Art-ico:before {
+  content: "\e900";
+}
+.icon-Categories-ico:before {
+  content: "\e901";
+}
+.icon-Coametics-ico:before {
+  content: "\e902";
+}
+.icon-Elecronics-ico:before {
+  content: "\e903";
+}
+.icon-Fashion-ico:before {
+  content: "\e904";
+}
+.icon-Groceries-ico:before {
+  content: "\e905";
+}
+.icon-KITCHENWARE-ICO:before {
+  content: "\e906";
+}
+.icon-LITTERATURE-ICO:before {
+  content: "\e907";
+}
+.icon-Path-53:before {
+  content: "\e908";
+}
+.icon-Path-54:before {
+  content: "\e909";
+}
+.icon-Path-55:before {
+  content: "\e90a";
+}
+.icon-Path-56:before {
+  content: "\e90b";
+}
+.icon-Path-57:before {
+  content: "\e90c";
+}
+.icon-Path-58:before {
+  content: "\e90d";
+}
+.icon-Path-59:before {
+  content: "\e90e";
+}
+.icon-Path-60:before {
+  content: "\e90f";
+}
+.icon-Path-61:before {
+  content: "\e910";
+}
+.icon-Path-62:before {
+  content: "\e911";
+}
+.icon-Path-63:before {
+  content: "\e912";
+}
+.icon-Path-64:before {
+  content: "\e913";
+}
+.icon-Path-65:before {
+  content: "\e914";
+}
+.icon-Path-66:before {
+  content: "\e915";
+}
+.icon-Path-67:before {
+  content: "\e916";
+}
+.icon-Path-68:before {
+  content: "\e917";
+}
+.icon-Path-69:before {
+  content: "\e918";
+}
+.icon-Path-70:before {
+  content: "\e919";
+}
+.icon-Path-71:before {
+  content: "\e91a";
+}
+.icon-Path-72:before {
+  content: "\e91b";
+}
+.icon-Path-73:before {
+  content: "\e91c";
+}
+.icon-Path-74:before {
+  content: "\e91d";
+}
+.icon-Path-75:before {
+  content: "\e91e";
+}
+.icon-toys-ico:before {
+  content: "\e91f";
+}

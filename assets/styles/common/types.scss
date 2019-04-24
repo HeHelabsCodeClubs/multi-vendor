@@ -1,0 +1,62 @@
+// landing page
+
+.landing-title {
+    font-size: 1.78rem;
+    font-family: 'Harmonia Sans Pro Bold';
+}
+.landing-content {
+    font-size: 1rem;
+    font-family: 'Harmonia Sans Pro Regular';
+}
+.landing-footer {
+    font-size: 1.3rem;
+    font-family: 'Harmonia Sans Pro Regular';
+}
+.landing-label {
+    font-size: 1.14rem;
+    font-family: 'Harmonia Sans Pro Regular';
+}
+.selector {
+    select {
+        font-family: 'Harmonia Sans Pro Regular';
+    }
+}
+.continue-button {
+    button {
+        font-family: 'Harmonia Sans Pro Regular';
+        font-size: 1.28rem;
+    }
+}
+
+// Header
+
+.top-content {
+    font-size: 1rem;
+    font-family: 'Harmonia Sans Pro SemiBd';
+}
+.location-dropdown {
+    select {
+        font-family: 'Harmonia Sans Pro SemiBd';
+        font-size: 1.28rem;
+    }
+}
+.main-search {
+    input {
+        font-family: 'Harmonia Sans Pro Regular';
+        font-size: 1.28rem;
+    }
+    select {
+        font-family: 'Harmonia Sans Pro SemiBd';
+        font-size: 1.28rem;
+    }
+    button {
+        .icon-Path-64:before {
+            font-size: 1.2rem;
+        }
+    }
+}
+.header-content {
+    font-family: 'Harmonia Sans Pro Regular';
+    font-size: 1rem;
+}
+

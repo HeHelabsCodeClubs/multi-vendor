@@ -31,11 +31,18 @@
 	align-items: $property;
 }
 
-@mixin flexdirection($property){
+@mixin flexdirection($property) {
 	-webkit-flex-direction: $property;
 	-moz-flex-direction: $property;
 	-ms-flex-direction: $property;
 	flex-direction: $property;
+}
+
+@mixin backdropfilter($property) {
+	-webkit-backdrop-filter: $property;
+	-moz-backdrop-filter: $property;
+	-ms-backdrop-filter: $property;
+	backdrop-filter: $property;
 }
 
 

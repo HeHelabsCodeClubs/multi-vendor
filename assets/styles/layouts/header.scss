@@ -1,0 +1,97 @@
+@import "../main";
+
+.top-panel {
+    background: $black-color-2;
+    padding: 0.5rem 0;
+
+    .top-panel-left {
+        text-align: left;
+    }
+    .top-panel-right {
+        text-align: right;
+    }
+    .top-content {
+        line-height: 1.37;
+        letter-spacing: 0.05rem;
+        text-align: left;
+        color: $green-color-1;
+        padding: 0 1rem;
+    }
+}
+.header {
+    padding: 1rem 0;
+    box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.05);
+    
+    .site-logo {
+        img {
+            height: 3rem;
+            margin: 0 1rem;
+        }
+    }
+    .location-dropdown {
+        display: inline-block;
+        height: 3rem;
+        margin: 0 2rem;
+
+        select {
+            height: 3rem;
+            border: none;
+        }
+    }
+    .main-search {
+        background: $gray-color-2;
+        width: 100%;
+        display: block;
+        height: 3rem;
+        border-radius: 0.35rem;
+
+        input {
+            width: 65%;
+            height: 3rem;
+            background: $gray-color-2;
+            border-right: 1px solid $white-color !important;
+            border: none;
+            border-radius: 0.35rem 0 0 0.35rem;
+            padding: 0 1rem;
+        }
+        select {
+            width: 28%;
+            height: 3rem;
+            background: $gray-color-2;
+            border-right: 1px solid $white-color !important;
+            border: none;
+            padding: 0 1rem;
+        }
+        button {
+            width: 7%;
+            height: 3rem;
+            background: $gray-color-2;
+            border: none;
+            border-radius: 0 0.35rem 0.35rem 0;
+        }
+    }
+    .icon-Path-62 {
+        @include flexbox;
+        @include flexalignitems(center);
+        @include flexjustifycontent(center);
+        height: 3rem;
+
+        &:before {
+            font-size: 2.3rem;
+        }
+    }
+    .cart-grid {
+        @include flexbox;
+        @include flexalignitems(center);
+        @include flexjustifycontent(flex-start);
+        height: 3rem;
+        
+        .icon-Path-63 {
+            &:before {
+                font-size: 2rem;
+                padding: 0 1rem 0 0;
+                color: $green-color-2;
+            }
+        }
+    }
+}
