@@ -3,4 +3,12 @@
 html {
     font-size: 14px !important;
     font-family: 'Harmonia Sans Pro Black' !important;
+
+    @media screen and (max-width: 1024px) {
+        font-size: 12px !important;
+    }   
+}
+.maximum-width {
+    max-width: 1920px;
+    margin: 0 auto !important;
 }

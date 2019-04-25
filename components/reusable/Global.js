@@ -2,7 +2,7 @@ import Header from './Header'
 import '../../assets/styles/layouts/header.scss';
 
 const Global = props => (
-    <div>
+    <div className='site-wrapper'>
         <Header />
         {props.children}
     </div>

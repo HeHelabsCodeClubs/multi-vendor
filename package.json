@@ -19,7 +19,11 @@
 		"next": "^8.1.0",
 		"node-sass": "^4.11.0",
 		"react": "^16.8.6",
+		"react-bootstrap-carousel": "^3.4.1",
 		"react-dom": "^16.8.6",
+		"react-items-carousel": "^2.3.5",
+		"react-slick": "^0.24.0",
+		"slick-carousel": "^1.8.1",
 		"url-loader": "^1.1.2"
 	},
 	"devDependencies": {
