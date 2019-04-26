@@ -1,29 +1,46 @@
+
+
+h4 {
+    font-size: 1.28rem !important;
+    font-family: $font-regular;
+}
+
 // landing page
 
 .landing-title {
     font-size: 1.78rem;
-    font-family: 'Harmonia Sans Pro Bold';
+    font-family: $font-bold;
 }
 .landing-content {
     font-size: 1rem;
-    font-family: 'Harmonia Sans Pro Regular';
+    font-family: $font-regular;
 }
 .landing-footer {
     font-size: 1.3rem;
-    font-family: 'Harmonia Sans Pro Regular';
+    font-family: $font-regular;
 }
 .landing-label {
     font-size: 1.14rem;
-    font-family: 'Harmonia Sans Pro Regular';
+    font-family: $font-regular;
 }
 .selector {
-    select {
-        font-family: 'Harmonia Sans Pro Regular';
+    .select2-container--default .select2-selection--single .select2-selection__placeholder {
+        font-family: $font-regular;
+        font-size: 1rem;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        font-family: $font-regular;
+        font-size: 1rem;
+    }
+    .select2-selection__arrow:before {
+        font-family: 'icomoon';
+        content: "\e91c";
+        font-size: 0.5rem !important;
     }
 }
 .continue-button {
     button {
-        font-family: 'Harmonia Sans Pro Regular';
+        font-family: $font-regular;
         font-size: 1.28rem;
     }
 }
@@ -32,22 +49,40 @@
 
 .top-content {
     font-size: 1rem;
-    font-family: 'Harmonia Sans Pro SemiBd';
+    font-family: $font-semi-bold;
 }
 .location-dropdown {
-    select {
-        font-family: 'Harmonia Sans Pro SemiBd';
+    .select2-container--default .select2-selection--single .select2-selection__placeholder {
+        font-family: $font-semi-bold;
         font-size: 1.28rem;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        font-family: $font-semi-bold;
+        font-size: 1.28rem;
+    }
+    .select2-selection__arrow:before {
+        font-family: 'icomoon';
+        content: "\e91c";
+        font-size: 0.5rem !important;
     }
 }
 .main-search {
     input {
-        font-family: 'Harmonia Sans Pro Regular';
+        font-family: $font-regular;
         font-size: 1.28rem;
     }
-    select {
-        font-family: 'Harmonia Sans Pro SemiBd';
+    .select2-container--default .select2-selection--single .select2-selection__placeholder {
+        font-family: $font-semi-bold;
         font-size: 1.28rem;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        font-family: $font-semi-bold;
+        font-size: 1.28rem;
+    }
+    .select2-selection__arrow:before {
+        font-family: 'icomoon';
+        content: "\e91c";
+        font-size: 0.5rem !important;
     }
     button {
         .icon-Path-64:before {
@@ -55,8 +90,23 @@
         }
     }
 }
+.icon-Path-62 {
+    &:before {
+        font-size: 2.3rem;
+    }
+}
+.icon-Path-63 {
+    &:before {
+        font-size: 2rem;
+    }
+}
+.icon-Path-73{
+    &:before {
+        font-size: 0.4rem;
+    }
+}
 .header-content {
-    font-family: 'Harmonia Sans Pro Regular';
+    font-family: $font-regular;
     font-size: 1rem;
 }
 
@@ -72,10 +122,30 @@
 }
 .cat-name {
     font-size: 1.28rem;
-    font-family: 'Harmonia Sans Pro SemiBd';
+    font-family: $font-semi-bold;
 
     @media screen and (max-width: 768px) {
         font-size: 1rem;
+    }
+}
+.slick-next {
+    &:before {
+        font-family: 'icomoon' !important;
+    }
+}
+.slick-prev {
+    &:before {
+        font-family: 'icomoon' !important;
+    }
+}
+.top-stores-title, .special-offers-title {
+    font-size: 2.14rem;
+    font-family: $font-bold;
+}
+.view-more-btn {
+    button {
+        font-size: 1.28rem;
+        font-family: $font-bold;
     }
 }
 

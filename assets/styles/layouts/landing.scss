@@ -51,7 +51,7 @@
 	
 	.landing-wrapper {
 		@include backdropfilter(blur(30px));
-		box-shadow: 0 3px 36px 0 rgba(0, 0, 0, 0.1);
+		@include boxshadow(0 3px 36px 0 rgba(0, 0, 0, 0.1));
 		background-color: $white-color;
 		border-radius: 0.5rem;
 
@@ -91,12 +91,38 @@
 					color: $gray-color-1;
 					margin: 0;
 				}
-				select {
-					width: 100%;
+				.select2-container {
+					width: 100% !important;
+					&.select2-container--focus {
+						outline: none;
+					}
+				}
+				.select2-container--default .select2-selection--single {
 					height: 3rem;
 					border-radius: 0.3rem;
 					background-color: $gray-color-2;
-					outline: none;
+		
+					.select2-selection__rendered {
+						line-height: unset !important;
+						height: 100%;
+						@include flexbox;
+						@include flexalignitems(center);
+						outline: none;
+					}  
+					.select2-selection__arrow {
+						height: 3rem;
+						color: $black-color-4;
+						height: 3rem;
+						@include flexbox;
+						@include flexalignitems(center);
+		
+						b {
+							display: none;
+						}
+					}
+					.select2-selection__placeholder {
+						color: $black-color-4;
+					}
 				}
 			}
 			.continue-button {

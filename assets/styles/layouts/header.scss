@@ -20,7 +20,7 @@
 }
 .header {
     padding: 1rem 0;
-    box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.05);
+    @include boxshadow(0 3px 16px 0 rgba(0, 0, 0, 0.05));
 
     .header-left {
         padding-right: 0 !important;
@@ -33,15 +33,37 @@
         }
         .location-dropdown {
             display: inline-block;
-            height: 3rem;
             margin: 0 0 0 1rem;
-            width: 47%;
-    
-            select {
+            min-width: 40%;
+            .select2-container {
+                width: 100% !important;
+            }
+            .select2-container--default .select2-selection--single {
                 height: 3rem;
-                border: none;
-                outline: none;
-                width: 100%;
+                border-radius: 0 !important;
+                border: none !important;  
+
+                .select2-selection__rendered {
+                    line-height: unset !important;
+                    height: 100%;
+                    @include flexbox;
+                    @include flexalignitems(center);
+                    outline: none;
+                }  
+                .select2-selection__arrow {
+                    height: 3rem;
+                    color: $black-color-4;
+                    height: 3rem;
+                    @include flexbox;
+                    @include flexalignitems(center);
+
+                    b {
+                        display: none;
+                    }
+                }
+                .select2-selection__placeholder {
+                    color: $black-color-4;
+                }
             }
         }
     }
@@ -62,22 +84,62 @@
             padding: 0 1rem;
             outline: none;
         }
-        select {
-            width: 28%;
-            height: 3rem;
-            background: $gray-color-2;
-            border-right: 1px solid $white-color !important;
-            border: none;
-            padding: 0 1rem;
-            outline: none;
+        .categories-dropdown {
+            display: inline-block;
+            position: absolute;
+            min-width: 26%;
+
+            .select2-container {
+                width: 100% !important;
+                &.select2-container--focus {
+                    outline: none;
+                }
+            }
+            .select2-container--default .select2-selection--single {
+                height: 3rem;
+                border-radius: 0 !important;
+                border: none !important;  
+                background: transparent;
+    
+                .select2-selection__rendered {
+                    line-height: unset !important;
+                    height: 100%;
+                    @include flexbox;
+                    @include flexalignitems(center);
+                    outline: none;
+                }  
+                .select2-selection__arrow {
+                    height: 3rem;
+                    color: $black-color-4;
+                    height: 3rem;
+                    @include flexbox;
+                    @include flexalignitems(center);
+    
+                    b {
+                        display: none;
+                    }
+                }
+                .select2-selection__placeholder {
+                    color: $black-color-4;
+                }
+            }
         }
         button {
             width: 7%;
             height: 3rem;
+            float: right;
             background: $gray-color-2;
             border: none;
             border-radius: 0 0.35rem 0.35rem 0;
             outline: none;
+            border-left: 1px solid $white-color !important;
+            @include flexbox;
+            @include flexalignitems(center);
+            @include flexjustifycontent(center);
+
+            .icon-Path-64:before {
+                color: $gray-color-3;
+            }
         }
     }
     .icon-Path-62 {
@@ -87,7 +149,7 @@
         height: 3rem;
 
         &:before {
-            font-size: 2.3rem;
+            color: $gray-color-4;
         }
     }
     .cart-grid {
@@ -98,7 +160,6 @@
         
         .icon-Path-63 {
             &:before {
-                font-size: 2rem;
                 padding: 0 1rem 0 0;
                 color: $green-color-2;
             }
@@ -117,8 +178,8 @@
 
     .nav-container {
         height: 3rem;
-        display: flex;
-        justify-content: center;
+        @include flexbox;
+        @include flexjustifycontent(center);
 
         ul {
             list-style: none;
@@ -131,14 +192,11 @@
                 position: relative;
 
                 .icon-Path-73{
-                    display: flex;
+                    @include flexbox;
+                    @include flexalignitems(center);
+                    @include flexjustifycontent(flex-end);
                     height: 3rem;
-                    align-items: center;
                     width: 1.5rem;
-                    justify-content: flex-end;
-                    &:before {
-                        font-size: 0.4rem;
-                    }
                 }
                 span{
                     &:before {
@@ -155,9 +213,9 @@
                 .main-menu__item-a {
                     cursor: pointer;
                     color: $black-color-2;
-                    display: flex;
+                    @include flexbox;
+                    @include flexalignitems(center);
                     height: 3rem;
-                    align-items: center;
                     padding: 0 1rem;
                 }
             }
@@ -170,15 +228,15 @@
         width: 100%;
         height: 1rem;
         z-index: 99999999999 !important;
-        box-shadow: -1px 8px 20px #cccccc;
+        @include boxshadow(-1px 8px 20px $gray-color-5);
         translate: 0.3s;
         width: 15rem;
         .nav__submenu-item {
             cursor: pointer;
             color: $black-color-2;
-            display: flex;
-            align-items: left;
-            justify-content: flex-start;
+            @include flexbox;
+            @include flexalignitems(left);
+            @include flexjustifycontent(flex-start);
             padding: 0.5rem 1rem;
             &:hover {
                 background: $gray-color-2;

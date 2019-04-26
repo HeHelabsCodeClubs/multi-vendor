@@ -1,4 +1,5 @@
 import Link from 'next/link'; 
+import Select2 from 'react-select2-wrapper';
 
 class Header extends React.Component {
     constructor(props) {
@@ -40,12 +41,15 @@ class Header extends React.Component {
                                 <img src='https://res.cloudinary.com/hehe/image/upload/v1556120378/multi-vendor/HeHe_Logo_Original_landscape.svg' />
                             </span>
                             <span className='location-dropdown'>
-                                <select>
-                                    <option>Kigali, Kacyiru KCB</option>
-                                    <option>Kigali Height</option>
-                                    <option>Kigali, Kimironko Market</option>
-                                    <option>Kigali, Town</option>
-                                </select>
+                                <Select2
+                                    defaultValue={2}
+                                    data={[
+                                        { text: 'Kigali, Kacyiru', id: 1 },
+                                        { text: 'Kigali, Kimironko', id: 2 },
+                                        { text: 'Kigali, Kanombe', id: 3},
+                                        { text: 'Kigali, Town', id: 4 }
+                                    ]}
+                                />
                             </span>
                             <span className="main-menu">
                                 <nav className="nav nav-container">
@@ -62,10 +66,19 @@ class Header extends React.Component {
                                             { this.state.showCustomerMenu && 
                                                 <ul className="nav__submenu">
                                                     <li className="nav__submenu-item ">
-                                                        <Link to="/customers" className={this.props.view === 'customers' ? 'sub-menu__item-a active' : 'sub-menu__item-a'}>All customers</Link>
+                                                        <Link href="/" className='sub-menu__item-a'><a>All categories</a></Link>
                                                     </li>
                                                     <li className="nav__submenu-item ">
-                                                        <Link to="/customers/create/details" className={this.props.view === 'customercreate' ? 'sub-menu__item-a active' : 'sub-menu__item-a'}>Add Customer</Link>
+                                                        <Link href="/" className='sub-menu__item-a'><a>Groceries</a></Link>
+                                                    </li>
+                                                    <li className="nav__submenu-item ">
+                                                        <Link href="/" className='sub-menu__item-a'><a>Electronics</a></Link>
+                                                    </li>
+                                                    <li className="nav__submenu-item ">
+                                                        <Link href="/" className='sub-menu__item-a'><a>Fashion</a></Link>
+                                                    </li>
+                                                    <li className="nav__submenu-item ">
+                                                        <Link href="/" className='sub-menu__item-a'><a>Babies</a></Link>
                                                     </li>
                                                 </ul>
                                             }
@@ -77,12 +90,17 @@ class Header extends React.Component {
                         <div className='col-lg-5 col-md-5 col-sm-12 col-12'>
                             <span className='main-search'>
                                 <input type="text" placeholder="Search store or product" />
-                                <select>
-                                    <option>Shoes</option>
-                                    <option>Groceries</option>
-                                    <option>Clothes</option>
-                                    <option>Electronics</option>
-                                </select>
+                                <span className='categories-dropdown'>
+                                    <Select2
+                                        defaultValue={2}
+                                        data={[
+                                            { text: 'Shoes', id: 1 },
+                                            { text: 'Groceries', id: 2 },
+                                            { text: 'Clothes', id: 3},
+                                            { text: 'Electronics', id: 4 }
+                                        ]}
+                                    />
+                                </span>
                                 <button type="submit"><span className="icon-Path-64"></span></button>
                             </span>
                         </div>

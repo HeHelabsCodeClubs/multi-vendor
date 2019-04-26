@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Select2 from 'react-select2-wrapper';
 import '../assets/styles/layouts/landing.scss';
 
 export default function Index() {
@@ -18,12 +19,15 @@ export default function Index() {
                     <div className='middle-part'>
                         <div className='selector'>
                             <label className='landing-label'>Select Location</label>
-                            <select>
-                                <option>Kigali, Kacyiru KCB</option>
-                                <option>Kigali Height</option>
-                                <option>Kigali, Kimironko Market</option>
-                                <option>Kigali, Town</option>
-                            </select>
+                            <Select2
+                                defaultValue={2}
+                                data={[
+                                    { text: 'Kigali, Kacyiru', id: 1 },
+                                    { text: 'Kigali, Kimironko', id: 2 },
+                                    { text: 'Kigali, Kanombe', id: 3},
+                                    { text: 'Kigali, Town', id: 4 }
+                                ]}
+                            />
                         </div>
                         <div className='continue-button'>
                             <button>Continue</button>

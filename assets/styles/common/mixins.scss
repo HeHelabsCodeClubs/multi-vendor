@@ -45,5 +45,12 @@
 	backdrop-filter: $property;
 }
 
+@mixin boxshadow($property) {
+	-webkit-box-shadow: $property;
+	-moz-box-shadow: $property;
+	-ms-box-shadow: $property;
+	box-shadow: $property;
+}
+
 
 
