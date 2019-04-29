@@ -87,12 +87,14 @@ class Cart extends React.Component {
                                         </div>
                                     </div>
                                     <div className='col-lg-5 col-md-5 col-sm-5 col-5 col-reset'>
-                                        <div><span className='discount'>10% OFF</span></div>
-                                        <div>
+                                        <div className='cart-bk'>
+                                            <span className='discount'>10% OFF</span>
+                                        </div>
+                                        <div className='cart-bk'>
                                             <div><span className='icon-Path-68'></span>Edit</div>
                                             <div>Rwf 1000</div>
                                         </div>
-                                        <div>
+                                        <div className='cart-bk'>
                                             <div><span className='icon-Path-60'></span>Remove</div>
                                             <div>Rwf 900</div>
                                         </div>
