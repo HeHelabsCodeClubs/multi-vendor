@@ -186,10 +186,200 @@
             .special-wrapper {
                 width: 90%;
                 margin: 0 auto;
-
-                img.product-img {
-                    width: 100%;
+                .slick-slider {
+                    .slick-arrow {
+                        width: 3.14rem;
+                        background: $white-color;
+                        height: 10rem;
+                        width: 2.2rem;
+                        z-index: 9;
+                    }
+                    .slick-next {
+                        border-radius: 0 1rem 1rem 0;
+                        @include boxshadow(-8px 0 6px 0 rgba(0, 0, 0, 0.05));
+                        &:before {
+                            content: '\e919';
+                            color: $black-color-2;
+                        }
+                    }
+                    .slick-prev {
+                        border-radius: 1rem 0 0 1rem;
+                        @include boxshadow(8px 0 6px 0 rgba(0, 0, 0, 0.05));
+                        &:before {
+                            content: '\e91a';
+                            color: $black-color-2;
+                        }
+                    }
                 }
+            }
+        }
+    }
+}
+.single-product {
+    border-radius: 0.35rem;
+    box-shadow: -2px -1px 9px 0px rgba(0, 0, 0, 0.05);;
+    background-color: $white-color;
+    width: 96%;
+    margin: 1rem 2%;
+    position: relative;
+
+    img.product-img {
+        width: 100%;      
+    }
+    .top-icons {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+
+        .hot {
+            background: $orange-color-3;
+            color: $orange-color-2;
+            margin: 0 1rem 0 0;
+            border-radius: 2rem;
+            padding: 0.2rem 1rem;
+            span {
+                margin: 0 0.5rem 0 0;
+            }
+        }
+        .discount {
+            background: $red-color-2;
+            color: $red-color-1;
+            margin: 0 1rem 0 0;
+            border-radius: 2rem;
+            padding: 0.2rem 1rem;
+        }
+    }
+    .product-description {
+        background: $white-color;
+        position: relative;
+
+        &:before {
+            content: "\e920";
+            color: $white-color;
+            top: -6.6rem;
+            left: -2rem;
+            position: absolute;
+        }
+        .store-logo {
+            height: 3rem;
+            .store-img {
+                position: absolute;
+                top: -1.3rem;
+                left: 2.24rem;
+                height: 3rem;
+                width: 3rem;
+                background: $green-color-1;
+                border-radius: 50%;
+            }
+            .store-name {
+                color: $gray-color-6;
+                left: 5.6rem;
+                top: 0.3rem;
+                position: absolute;
+                line-height: 1.35;
+            }
+        }
+        .product-name {
+            line-height: 1.33;
+            letter-spacing: 0.06rem;
+            text-align: left;
+            color: $black-color-2;
+            margin: 0.5rem 1rem;
+        }
+        .price-cart {
+            border-top: 2px solid $gray-color-2;
+            padding: 0.5rem 1rem;
+            @include flexbox;
+            @include flexalignitems(center);
+            @include flexjustifycontent(space-between);
+            
+            .price {
+                line-height: 0.8;
+                text-align: left;
+                color: $black-color-2;
+            }
+            .initial-price {
+                line-height: 1;
+                text-align: left;
+                color: $gray-color-6;
+                border-bottom: 1px solid $gray-color-6;
+                line-height: 0.1rem !important;
+                position: absolute;
+                bottom: 1.7rem;
+                padding: 0 0.5rem;
+                margin: 0 0.5rem;
+            }
+            .add-to-cart {
+                float: right;
+                button {
+                    border: none;
+                    border-radius: 50%;
+                    background: $green-color-1;
+                    padding: 0.5rem;
+                    @include flexbox;
+                    @include flexalignitems(center);
+                    @include flexjustifycontent(center);
+                    @include transition(0.5s);
+
+                    .icon-Path-63:before {
+                        color: $green-color-2;
+                        @include transition(0.5s);
+                    }
+                }
+                &:hover {
+                    button {
+                        border-radius: 2rem;
+                        .icon-Path-63:before {
+                            content: 'Add to cart'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.made-in-rwanda {
+    background: $gray-color-2;
+    padding: 1rem 0 3rem 0;
+    .made-in-rwanda-wrapper {
+        .made-in-rwanda-title {
+            text-align: center;
+            padding: 0 0 2rem 0;
+            color: $black-color-4;
+        }
+        .stores-logos {
+            padding: 1rem 0;
+            background: $white-color;
+            margin: 1rem 0 2rem 0;
+
+            .slick-list {
+                width: 90%;
+                margin: 0 5%;
+            }
+            .slick-slide img {
+                height: 6rem;
+                object-fit: contain;
+                width: 100%;
+            }
+            .slick-next {
+                right: 1rem;
+                &:before {
+                    content: '\e919';
+                    color: $black-color-2;
+                }
+            }
+            .slick-prev {
+                left: 1rem;
+                &:before {
+                    content: '\e91a';
+                    color: $black-color-2;
+                }
+            }
+        }
+        .made-in-rwanda-content {
+            .rwanda-wrapper {
+                width: 90%;
+                margin: 0 auto;
             }
         }
     }

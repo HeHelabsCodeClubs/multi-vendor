@@ -97,6 +97,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-icon-bg:before {
+  content: "\e920";
+  color: #fff;
+}
 .icon-Art-ico:before {
   content: "\e900";
 }

@@ -142,10 +142,93 @@ h4 {
     font-size: 2.14rem;
     font-family: $font-bold;
 }
+.made-in-rwanda-title {
+    font-size: 2.14rem;
+    font-family: $font-bold;
+    span {
+        font-family: $font-regular;
+    }
+}
 .view-more-btn {
     button {
         font-size: 1.28rem;
         font-family: $font-bold;
+    }
+}
+.product-description {
+    &:before {
+        font-family: 'icomoon';
+        font-size: 8rem;
+    }
+    .store-logo {
+        .store-name {
+            font-size: 1.2rem;
+            font-family: $font-regular;
+        }
+    }
+    .product-name {
+        font-size: 1.28rem;
+        font-family: $font-regular;
+    }
+    .price-cart {
+        .price {
+            font-size: 1.42rem;
+            font-family: $font-bold;
+        }
+        .initial-price {
+            font-size: 1.14rem;
+            font-family: $font-semi-bold;
+        }
+        .add-to-cart {
+            button {
+                .icon-Path-63:before {
+                    font-size: 1.5rem;
+                }
+            }
+            &:hover {
+                .icon-Path-63:before {
+                    font-family: $font-semi-bold;
+                }
+            }
+        }
+    }
+}
+.special-wrapper {
+    .slick-slider {
+        .slick-next {
+            &:before {
+                font-family: 'icomoon' !important;
+            }
+        }
+        .slick-prev {
+            &:before {
+                font-family: 'icomoon' !important;
+            }
+        }
+    }
+}
+.top-icons {
+    .hot {
+        font-size: 1rem;
+        font-family: $font-regular;
+    }
+    .discount {
+        font-size: 1rem;
+        font-family: $font-regular;
+    }
+}
+.made-in-rwanda-wrapper {
+    .slick-slider {
+        .slick-next {
+            &:before {
+                font-family: 'icomoon' !important;
+            }
+        }
+        .slick-prev {
+            &:before {
+                font-family: 'icomoon' !important;
+            }
+        }
     }
 }
 

@@ -4,6 +4,7 @@ import Global from '../components/reusable/Global';
 import '../assets/styles/layouts/homepage.scss';
 import TopStores from '../components/views/homepage/TopStores';
 import SpecialOffers from "../components/views/homepage/SpecialOffers";
+import MadeInRwanda from "../components/views/homepage/MadeInRwanda";
 
 class Homepage extends React.Component {
 	render() {
@@ -78,6 +79,9 @@ class Homepage extends React.Component {
 				</div>
 				<div className='special-offers'>
 					<SpecialOffers />
+				</div>
+				<div className='made-in-rwanda'>
+					<MadeInRwanda />
 				</div>
 			</Global>
 		);

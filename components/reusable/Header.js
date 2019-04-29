@@ -1,5 +1,6 @@
 import Link from 'next/link'; 
 import Select2 from 'react-select2-wrapper';
+import Cart from './Cart';
 
 class Header extends React.Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class Header extends React.Component {
     customerHandleLeave = () => {
         this.setState({ showCustomerMenu: false });
     };
+
     render() {
         return (
             <div>
@@ -105,24 +107,21 @@ class Header extends React.Component {
                             </span>
                         </div>
                         <div className='col-lg-3 col-md-3 col-sm-12 col-12'>
-                        <div className='row'>
-                            <div className='col-lg-6 col-md-6 col-sm-6 col-6 account-grid'>
-                                <div className='row'>
-                                    <div className='col-lg-3 col-md-3 col-sm-3 col-3 col-reset'>
-                                        <span className='icon-Path-62'></span>
-                                    </div>
-                                    <div className='col-lg-9 col-md-9 col-sm-9 col-9 col-reset'>
-                                        <div className='header-content'>My account</div>
-                                        <div className='header-content'>Sign in / Register</div>
+                            <div className='row'>
+                                <div className='col-lg-6 col-md-6 col-sm-6 col-6 account-grid'>
+                                    <div className='row'>
+                                        <div className='col-lg-3 col-md-3 col-sm-3 col-3 col-reset'>
+                                            <span className='icon-Path-62'></span>
+                                        </div>
+                                        <div className='col-lg-9 col-md-9 col-sm-9 col-9 col-reset'>
+                                            <div className='header-content'>My account</div>
+                                            <div className='header-content'>Sign in / Register</div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className='col-lg-6 col-md-6 col-sm-6 col-6 cart-grid'>
-                                <span className='icon-Path-63'></span>
-                                <span className='header-content'>Cart</span>
+                                <Cart />
                             </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>
