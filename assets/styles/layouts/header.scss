@@ -296,16 +296,227 @@
 }
 .cart-sidebar {
     .main-title {
+        background: $green-color-2;
+        @include flexbox;
+        @include flexalignitems(center);
+        @include flexjustifycontent(space-between);
+        padding: 0.5rem 1rem;
 
+        .sidebar-title {
+            @include flexbox;
+            @include flexalignitems(center);
+            @include flexjustifycontent(flex-start);
+            .icon-Path-63:before {
+                color: $white-color;
+            }
+            .title {
+                color: $white-color;
+                padding: 0 1rem;
+            }
+            .item-nbr {
+                color: $white-color;
+                padding: 0 1rem;
+            }
+        }
+        .sidebar-close {
+            @include flexbox;
+            @include flexalignitems(center);
+            @include flexjustifycontent(flex-end);
+            .close-cart {
+                color: $white-color;
+                padding: 0 0.5rem;
+            }
+            .icon-Path-58:before {
+                color: $white-color;
+            }
+        }
     }
     .cart-content {
-        .cart-product-img {
-            width: 80%;
+        background: $gray-color-2;
+        overflow: auto;
+        position: relative;
+        height: calc(100vh - 3.3rem);
+        .cart-store-content {
+            position: relative;
+            margin: 2rem 1rem 0 1rem;
+            background: $white-color;
+            &:before {
+                content: "\e920";
+                color: $white-color;
+                top: -5rem;
+                left: -1rem;
+                position: absolute;
+            }
+            .store-logo {
+                height: 3rem;
+                .store-img {
+                    position: absolute;
+                    top: -1rem;
+                    left: 1.95rem;
+                    height: 2.8rem;
+                    width: 2.8rem;
+                    background: $green-color-1;
+                    border-radius: 50%;
+                }
+                .store-name {
+                    color: $gray-color-6;
+                    left: 5.6rem;
+                    top: 0.3rem;
+                    position: absolute;
+                    line-height: 1.35;
+                }
+            }
+            .cart-item {
+                border-top: 2px solid $gray-color-2;
+                padding: 0.5rem 0;
+    
+                .product-cart-image {
+                    .cart-product-img {
+                        width: 80%;
+                    }
+                }
+                .name-incremenet {
+                    position: relative;
+                    .product-name {
+    
+                    }
+                    .qty-measurement {
+                        color: $gray-color-6;
+                    }
+                    .qty-increment {
+                        position: absolute;
+                        bottom: 0;
+                        @include flexbox;
+    
+                        .decrement, .increment {
+                            border-radius: 5rem;
+                            color: $green-color-2;
+                            background: $green-color-1;
+                            @include flexbox;
+                            @include flexalignitems(center);
+                            @include flexjustifycontent(center);
+                            height: 2rem;
+                            width: 2rem;
+                            margin: 0 0.5rem 0 0;
+                        }
+                        .number {
+                            @include flexbox;
+                            @include flexalignitems(center);
+                            @include flexjustifycontent(center);
+                            height: 2rem;
+                            width: 2rem;
+                            margin: 0 0.5rem 0 0;
+                        }
+                    }
+                }
+                .prices-discounts {
+                    @include flexbox;
+                    .cart-bk {
+                        margin: 0 0.5rem 0 0;
+                        display: inline-block;
+                        position: relative;
+                        height: 100%;
+                        width: 33%;
+                        text-align: right;
+    
+                        .discount {
+                            padding: 0.2rem 0.5rem;
+                            border-radius: 2rem;                    
+                            color: $red-color-1;
+                            background: $red-color-2;
+                            position: absolute;
+                            bottom: 0;
+                            right: 0;
+                        }
+                        .edit {
+                            color: $gray-color-6;
+                            .icon-Path-68:before {
+                                color: $green-color-2;
+                            }
+                        }
+                        .initial-price {
+                            color: $gray-color-6;
+                            position: absolute;
+                            bottom: 0;
+                            right: 0;
+                        }
+                        .remove {
+                            color: $gray-color-6;
+                            .icon-Path-60:before {
+                                color: $green-color-2;
+                            }
+                        }
+                        .price {
+                            color: $black-color-2;
+                            position: absolute;
+                            bottom: 0;
+                            right: 0;
+                        }
+                    }
+                }
+            }
         }
-        .cart-bk {
-            margin: 0 0.5rem 0 0;
-            display: inline-block;
-            height: 100%;
+        .total-price {
+            border-top: 2px solid $gray-color-2;
+            background: $white-color;
+            margin: 0 1rem;
+
+            .subtotal {
+                text-align: right;
+                font-size: 1.28rem;
+                padding: 0.5rem 0.5rem 0.5rem 0;
+                color: $black-color-5;
+            }
+            .shipping-grid {
+                background: $green-color-1;
+                width: 83%;
+                margin: 0 0 0 17%;
+                padding: 0.2rem 0.5rem;
+                @include flexbox;
+                @include flexalignitems(center);
+                @include flexjustifycontent(space-between);
+                .shipping-title {
+                    color: $black-color-5;
+                }
+                .shipping-dropdown {
+
+                }
+                .shipping {
+                    color: $black-color-5;
+                }
+            }
+            .total-grid {
+                padding: 1rem 0.5rem;
+                text-align: right;
+                .total {
+                    color: $orange-color-1;
+                    background: $orange-color-3;
+                    padding: 0.5rem;
+                    border-radius: 0.5rem;
+                }
+            }
+        }
+        .go-to-checkout {
+            background: $white-color;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            @include flexbox;
+            @include flexalignitems(center);
+            @include flexjustifycontent(space-between);
+        
+            .grand-total {
+                color: $orange-color-1;
+                padding: 0 2rem;
+            }
+            .proceed-button {
+                button {
+                    background: $orange-color-1;
+                    color: $white-color;
+                    border: none;
+                    padding: 1rem;
+                }
+            }
         }
     }
 }

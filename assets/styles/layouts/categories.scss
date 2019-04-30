@@ -1,0 +1,48 @@
+@import "../main";
+
+.multi-vendor-categories {
+    background: $white-color;
+    border-top: 2px solid $gray-color-2;
+
+    .multi-vendor-categories-wrapper {
+        width: 90%;
+        margin: 0 5%;
+        .single-category {
+            border: 1px solid $gray-color-5;
+            border-radius: 0.5rem;
+            padding: 1rem 1rem;
+            line-height: 1;
+            margin: 1rem;
+            min-height: 5.2rem;
+            @include flexbox;
+            @include flexalignitems(center);
+            color: $black-color-3;
+            font-family: $font-bold;
+            @include transition;
+    
+            .cat-icon:before {
+                margin: 0 1rem 0 0;
+            }
+            &:hover {
+                background: $green-color-1;
+                color: $green-color-2;
+                cursor: pointer;
+                border: 1px solid $green-color-2;
+            }
+        }
+        .slick-next {
+            right: -1rem;
+            &:before {
+                content: '\e919';
+                color: $black-color-2;
+            }
+        }
+        .slick-prev {
+            left: -1rem;
+            &:before {
+                content: '\e91a';
+                color: $black-color-2;
+            }
+        }
+    }
+}

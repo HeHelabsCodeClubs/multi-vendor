@@ -1,5 +1,4 @@
 
-
 h4 {
     font-size: 1.28rem !important;
     font-family: $font-regular;
@@ -228,6 +227,136 @@ h4 {
             &:before {
                 font-family: 'icomoon' !important;
             }
+        }
+    }
+}
+.cart-sidebar {
+    .main-title {
+        .sidebar-title {
+            .icon-Path-63:before {
+                font-size: 2rem;
+            }
+            .title {
+                font-size: 1.5rem;
+                font-family: $font-bold;
+            }
+            .item-nbr {
+                font-size: 1.28rem;
+                font-family: $font-bold;
+            }
+        }
+        .sidebar-close {
+            .close-cart {
+                font-size: 1.28rem;
+                font-family: $font-bold;
+            }
+            .icon-Path-58:before {
+                font-size: 1.28rem;
+            }
+        }
+    }
+    .cart-content {
+        .cart-store-content {
+            &:before {
+                font-family: 'icomoon';
+                font-size: 6rem;
+            }
+            .cart-item {
+                .name-incremenet {
+                    .product-name {
+                        font-size: 1.28rem;
+                        font-family: $font-regular;
+                    }
+                    .qty-measurement {
+                        font-size: 1rem;
+                        font-family: $font-regular;
+                    }
+                    .qty-increment {
+                        position: absolute;
+                        bottom: 0;
+                        .number {
+                            font-family: $font-bold;
+                        }
+                    }
+                }
+                .prices-discounts {
+                    .cart-bk {
+                        
+                        .discount {
+                            font-size: 0.9rem;
+                        }
+                        .edit {
+                            font-size: 1rem;
+                            font-family: $font-regular;
+                            .icon-Path-68:before {
+                                margin: 0 0.5rem 0 0;
+                            }
+                        }
+                        .initial-price {
+                            font-size: 1rem;
+                        }
+                        .remove {
+                            font-size: 1rem;
+                            font-family: $font-regular;
+                            .icon-Path-60:before {
+                                margin: 0 0.5rem 0 0;
+                            }
+                        }
+                        .price {
+                            font-size: 1.1rem;
+                        }
+                    }
+                }
+            }
+        }
+        .total-price {
+            .subtotal {
+                font-size: 1.28rem;
+                font-family: $font-regular;
+            }
+            .shipping-grid {
+                .shipping-title {
+                    font-size: 1.28rem;
+                    font-family: $font-regular;
+                }
+                .shipping-dropdown {
+
+                }
+                .shipping {
+                    font-size: 1.28rem;
+                    font-family: $font-regular;
+                }
+            }
+            .total-grid {
+                .total {
+                    font-size: 1.28rem;
+                    font-family: $font-regular;
+                }
+            }
+        }
+        .go-to-checkout {
+            .grand-total {
+                font-size: 1.4rem;
+                font-family: $font-regular;
+            }
+            .proceed-button {
+                button {
+                    font-size: 1.4rem;
+                    font-family: $font-bold;
+                }
+            }
+        }
+    }
+}
+
+// Categories
+
+.multi-vendor-categories {
+    .single-category {
+        font-size: 1.28rem;
+
+        .cat-icon:before {
+            font-size: 2rem !important;
         }
     }
 }
