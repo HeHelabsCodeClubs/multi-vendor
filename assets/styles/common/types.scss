@@ -1,404 +1,410 @@
 
-h4 {
-    font-size: 1.28rem !important;
-    font-family: $font-regular;
-}
-
-// landing page
-
-.landing-title {
-    font-size: 1.78rem;
-    font-family: $font-bold;
-}
-.landing-content {
-    font-size: 1rem;
-    font-family: $font-regular;
-}
-.landing-footer {
-    font-size: 1.3rem;
-    font-family: $font-regular;
-}
-.landing-label {
-    font-size: 1.14rem;
-    font-family: $font-regular;
-}
-.selector {
-    .select2-container--default .select2-selection--single .select2-selection__placeholder {
-        font-family: $font-regular;
-        font-size: 1rem;
-    }
-    .select2-container--default .select2-selection--single .select2-selection__rendered {
-        font-family: $font-regular;
-        font-size: 1rem;
-    }
-    .select2-selection__arrow:before {
-        font-family: 'icomoon';
-        content: "\e91c";
-        font-size: 0.5rem !important;
-    }
-}
-.continue-button {
-    button {
-        font-family: $font-regular;
-        font-size: 1.28rem;
-    }
-}
-
-// Header
-
-.top-content {
-    font-size: 1rem;
-    font-family: $font-semi-bold;
-}
-.location-dropdown {
-    .select2-container--default .select2-selection--single .select2-selection__placeholder {
-        font-family: $font-semi-bold;
-        font-size: 1.28rem;
-    }
-    .select2-container--default .select2-selection--single .select2-selection__rendered {
-        font-family: $font-semi-bold;
-        font-size: 1.28rem;
-    }
-    .select2-selection__arrow:before {
-        font-family: 'icomoon';
-        content: "\e91c";
-        font-size: 0.5rem !important;
-    }
-}
-.main-search {
-    input {
-        font-family: $font-regular;
-        font-size: 1.28rem;
-    }
-    .select2-container--default .select2-selection--single .select2-selection__placeholder {
-        font-family: $font-semi-bold;
-        font-size: 1.28rem;
-    }
-    .select2-container--default .select2-selection--single .select2-selection__rendered {
-        font-family: $font-semi-bold;
-        font-size: 1.28rem;
-    }
-    .select2-selection__arrow:before {
-        font-family: 'icomoon';
-        content: "\e91c";
-        font-size: 0.5rem !important;
-    }
-    button {
-        .icon-Path-64:before {
-            font-size: 1.2rem;
-        }
-    }
-}
-.icon-Path-62 {
-    &:before {
-        font-size: 2.3rem;
-    }
-}
-.icon-Path-63 {
-    &:before {
-        font-size: 2rem;
-    }
-}
-.icon-Path-73{
-    &:before {
-        font-size: 0.4rem;
-    }
-}
-.header-content {
-    font-family: $font-regular;
-    font-size: 1rem;
-}
-
-// Homepage
-
-.cat-icon {
-    &:before {
-        font-size: 2.5rem;
-        @media screen and (max-width: 768px) {
-            font-size: 1.5rem;
-        }
-    }
-}
-.cat-name {
-    font-size: 1.28rem;
-    font-family: $font-semi-bold;
-
-    @media screen and (max-width: 768px) {
-        font-size: 1rem;
-    }
-}
-.slick-next {
-    &:before {
-        font-family: 'icomoon' !important;
-    }
-}
-.slick-prev {
-    &:before {
-        font-family: 'icomoon' !important;
-    }
-}
-.top-stores-title, .special-offers-title {
-    font-size: 2.14rem;
-    font-family: $font-bold;
-}
-.made-in-rwanda-title {
-    font-size: 2.14rem;
-    font-family: $font-bold;
-    span {
+html {
+    h4 {
+        font-size: 1.28rem !important;
         font-family: $font-regular;
     }
-}
-.view-more-btn {
-    button {
-        font-size: 1.28rem;
+
+    // landing page
+
+    .landing-title {
+        font-size: 1.78rem;
         font-family: $font-bold;
     }
-}
-.product-description {
-    &:before {
-        font-family: 'icomoon';
-        font-size: 8rem;
+    .landing-content {
+        font-size: 1rem;
+        font-family: $font-regular;
     }
-    .store-logo {
-        .store-name {
-            font-size: 1.2rem;
+    .landing-footer {
+        font-size: 1.3rem;
+        font-family: $font-regular;
+    }
+    .landing-label {
+        font-size: 1.14rem;
+        font-family: $font-regular;
+    }
+    .selector {
+        .select2-container--default .select2-selection--single .select2-selection__placeholder {
+            font-family: $font-regular;
+            font-size: 1rem;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            font-family: $font-regular;
+            font-size: 1rem;
+        }
+        .select2-selection__arrow:before {
+            font-family: 'icomoon';
+            content: "\e91c";
+            font-size: 0.5rem !important;
+        }
+    }
+    .continue-button {
+        button {
+            font-family: $font-regular;
+            font-size: 1.28rem;
+        }
+    }
+
+    // Header
+
+    .top-content {
+        font-size: 1rem;
+        font-family: $font-semi-bold;
+    }
+    .location-dropdown {
+        .select2-container--default .select2-selection--single .select2-selection__placeholder {
+            font-family: $font-semi-bold;
+            font-size: 1.28rem;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            font-family: $font-semi-bold;
+            font-size: 1.28rem;
+        }
+        .select2-selection__arrow:before {
+            font-family: 'icomoon';
+            content: "\e91c";
+            font-size: 0.5rem !important;
+        }
+    }
+    .main-search {
+        input {
+            font-family: $font-regular;
+            font-size: 1.28rem;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__placeholder {
+            font-family: $font-semi-bold;
+            font-size: 1.28rem;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            font-family: $font-semi-bold;
+            font-size: 1.28rem;
+        }
+        .select2-selection__arrow:before {
+            font-family: 'icomoon';
+            content: "\e91c";
+            font-size: 0.5rem !important;
+        }
+        button {
+            .icon-Path-64:before {
+                font-size: 1.2rem;
+            }
+        }
+    }
+    .icon-Path-62 {
+        &:before {
+            font-size: 2.3rem;
+        }
+    }
+    .icon-Path-63 {
+        &:before {
+            font-size: 2rem;
+        }
+    }
+    .icon-Path-73{
+        &:before {
+            font-size: 0.4rem;
+        }
+    }
+    .header-content {
+        font-family: $font-regular;
+        font-size: 1rem;
+    }
+
+    // Homepage
+
+    .cat-icon {
+        &:before {
+            font-size: 2.5rem;
+            @media screen and (max-width: 768px) {
+                font-size: 1.5rem;
+            }
+        }
+    }
+    .cat-name {
+        font-size: 1.28rem;
+        font-family: $font-semi-bold;
+
+        @media screen and (max-width: 768px) {
+            font-size: 1rem;
+        }
+    }
+    .slick-next {
+        &:before {
+            font-family: 'icomoon' !important;
+        }
+    }
+    .slick-prev {
+        &:before {
+            font-family: 'icomoon' !important;
+        }
+    }
+    .top-stores-title, .special-offers-title {
+        font-size: 2.14rem;
+        font-family: $font-bold;
+    }
+    .made-in-rwanda-title {
+        font-size: 2.14rem;
+        font-family: $font-bold;
+        span {
             font-family: $font-regular;
         }
     }
-    .product-name {
-        font-size: 1.28rem;
-        font-family: $font-regular;
-    }
-    .price-cart {
-        .price {
-            font-size: 1.42rem;
+    .view-more-btn {
+        button {
+            font-size: 1.28rem;
             font-family: $font-bold;
         }
-        .initial-price {
-            font-size: 1.14rem;
-            font-family: $font-semi-bold;
-        }
-        .add-to-cart {
-            button {
-                .icon-Path-63:before {
-                    font-size: 1.5rem;
-                }
-            }
-            &:hover {
-                .icon-Path-63:before {
-                    font-family: $font-semi-bold;
-                }
-            }
-        }
     }
-}
-.special-wrapper {
-    .slick-slider {
-        .slick-next {
-            &:before {
-                font-family: 'icomoon' !important;
-            }
+    .product-description {
+        &:before {
+            font-family: 'icomoon';
+            font-size: 8rem;
         }
-        .slick-prev {
-            &:before {
-                font-family: 'icomoon' !important;
-            }
-        }
-    }
-}
-.top-icons {
-    .hot {
-        font-size: 1rem;
-        font-family: $font-regular;
-    }
-    .discount {
-        font-size: 1rem;
-        font-family: $font-regular;
-    }
-}
-.made-in-rwanda-wrapper {
-    .slick-slider {
-        .slick-next {
-            &:before {
-                font-family: 'icomoon' !important;
-            }
-        }
-        .slick-prev {
-            &:before {
-                font-family: 'icomoon' !important;
-            }
-        }
-    }
-}
-.cart-sidebar {
-    .main-title {
-        .sidebar-title {
-            .icon-Path-63:before {
-                font-size: 2rem;
-            }
-            .title {
-                font-size: 1.5rem;
-                font-family: $font-bold;
-            }
-            .item-nbr {
-                font-size: 1.28rem;
-                font-family: $font-bold;
-            }
-        }
-        .sidebar-close {
-            .close-cart {
-                font-size: 1.28rem;
-                font-family: $font-bold;
-            }
-            .icon-Path-58:before {
-                font-size: 1.28rem;
-            }
-        }
-    }
-    .cart-content {
-        .cart-store-content {
-            &:before {
-                font-family: 'icomoon';
-                font-size: 6rem;
-            }
-            .cart-item {
-                .name-incremenet {
-                    .product-name {
-                        font-size: 1.28rem;
-                        font-family: $font-regular;
-                    }
-                    .qty-measurement {
-                        font-size: 1rem;
-                        font-family: $font-regular;
-                    }
-                    .qty-increment {
-                        position: absolute;
-                        bottom: 0;
-                        .number {
-                            font-family: $font-bold;
-                        }
-                    }
-                }
-                .prices-discounts {
-                    .cart-bk {
-                        
-                        .discount {
-                            font-size: 0.9rem;
-                        }
-                        .edit {
-                            font-size: 1rem;
-                            font-family: $font-regular;
-                            .icon-Path-68:before {
-                                margin: 0 0.5rem 0 0;
-                            }
-                        }
-                        .initial-price {
-                            font-size: 1rem;
-                        }
-                        .remove {
-                            font-size: 1rem;
-                            font-family: $font-regular;
-                            .icon-Path-60:before {
-                                margin: 0 0.5rem 0 0;
-                            }
-                        }
-                        .price {
-                            font-size: 1.1rem;
-                        }
-                    }
-                }
-            }
-        }
-        .total-price {
-            .subtotal {
-                font-size: 1.28rem;
+        .store-logo {
+            .store-name {
+                font-size: 1.2rem;
                 font-family: $font-regular;
             }
-            .shipping-grid {
-                .shipping-title {
-                    font-size: 1.28rem;
-                    font-family: $font-regular;
-                }
-                .shipping-dropdown {
-
-                }
-                .shipping {
-                    font-size: 1.28rem;
-                    font-family: $font-regular;
-                }
-            }
-            .total-grid {
-                .total {
-                    font-size: 1.28rem;
-                    font-family: $font-regular;
-                }
-            }
         }
-        .go-to-checkout {
-            .grand-total {
-                font-size: 1.4rem;
-                font-family: $font-regular;
+        .product-name {
+            font-size: 1.28rem;
+            font-family: $font-regular;
+        }
+        .price-cart {
+            .price {
+                font-size: 1.42rem;
+                font-family: $font-bold;
             }
-            .proceed-button {
+            .initial-price {
+                font-size: 1.14rem;
+                font-family: $font-semi-bold;
+            }
+            .add-to-cart {
                 button {
-                    font-size: 1.4rem;
+                    .icon-Path-63:before {
+                        font-size: 1.5rem;
+                    }
+                }
+                &:hover {
+                    .icon-Path-63:before {
+                        font-family: $font-semi-bold;
+                    }
+                }
+            }
+        }
+    }
+    .special-wrapper {
+        .slick-slider {
+            .slick-next {
+                &:before {
+                    font-family: 'icomoon' !important;
+                }
+            }
+            .slick-prev {
+                &:before {
+                    font-family: 'icomoon' !important;
+                }
+            }
+        }
+    }
+    .top-icons {
+        .hot {
+            font-size: 1rem;
+            font-family: $font-regular;
+        }
+        .discount {
+            font-size: 1rem;
+            font-family: $font-regular;
+        }
+    }
+    .made-in-rwanda-wrapper {
+        .slick-slider {
+            .slick-next {
+                &:before {
+                    font-family: 'icomoon' !important;
+                }
+            }
+            .slick-prev {
+                &:before {
+                    font-family: 'icomoon' !important;
+                }
+            }
+        }
+    }
+    .cart-sidebar {
+        .main-title {
+            .sidebar-title {
+                .icon-Path-63:before {
+                    font-size: 2rem;
+                }
+                .title {
+                    font-size: 1.5rem;
+                    font-family: $font-bold;
+                }
+                .item-nbr {
+                    font-size: 1.28rem;
                     font-family: $font-bold;
                 }
             }
+            .sidebar-close {
+                .close-cart {
+                    font-size: 1.28rem;
+                    font-family: $font-bold;
+                }
+                .icon-Path-58:before {
+                    font-size: 1.28rem;
+                }
+            }
+        }
+        .cart-content {
+            .cart-store-content {
+                &:before {
+                    font-family: 'icomoon';
+                    font-size: 6rem;
+                }
+                .cart-item {
+                    .name-incremenet {
+                        .product-name {
+                            font-size: 1.28rem;
+                            font-family: $font-regular;
+                        }
+                        .qty-measurement {
+                            font-size: 1rem;
+                            font-family: $font-regular;
+                        }
+                        .qty-increment {
+                            position: absolute;
+                            bottom: 0;
+                            .number {
+                                font-family: $font-bold;
+                            }
+                        }
+                    }
+                    .prices-discounts {
+                        .cart-bk {
+                            
+                            .discount {
+                                font-size: 0.9rem;
+                            }
+                            .edit {
+                                font-size: 1rem;
+                                font-family: $font-regular;
+                                .icon-Path-68:before {
+                                    margin: 0 0.5rem 0 0;
+                                }
+                            }
+                            .initial-price {
+                                font-size: 1rem;
+                            }
+                            .remove {
+                                font-size: 1rem;
+                                font-family: $font-regular;
+                                .icon-Path-60:before {
+                                    margin: 0 0.5rem 0 0;
+                                }
+                            }
+                            .price {
+                                font-size: 1.1rem;
+                            }
+                        }
+                    }
+                }
+            }
+            .total-price {
+                .subtotal {
+                    font-size: 1.28rem;
+                    font-family: $font-regular;
+                }
+                .shipping-grid {
+                    .shipping-title {
+                        font-size: 1.28rem;
+                        font-family: $font-regular;
+                    }
+                    .shipping-dropdown {
+
+                    }
+                    .shipping {
+                        font-size: 1.28rem;
+                        font-family: $font-regular;
+                    }
+                }
+                .total-grid {
+                    .total {
+                        font-size: 1.28rem;
+                        font-family: $font-regular;
+                    }
+                }
+            }
+            .go-to-checkout {
+                .grand-total {
+                    font-size: 1.4rem;
+                    font-family: $font-regular;
+                }
+                .proceed-button {
+                    button {
+                        font-size: 1.4rem;
+                        font-family: $font-bold;
+                    }
+                }
+            }
         }
     }
-}
 
-// Categories
+    // Categories
 
-.multi-vendor-categories {
-    .single-category {
-        font-size: 1.28rem;
-
-        .cat-icon:before {
-            font-size: 2rem !important;
+    .multi-vendor-categories {
+        .single-category {
+            font-size: 1.28rem;
+            font-family: $font-bold;
+            .cat-icon:before {
+                font-size: 2rem !important;
+            }
         }
     }
-}
-.categories-content {
-    .Side-menu-default {
-        .item-level-1 {
-            .item-label {
-                font-size: 1.28rem;
+    .categories-content {
+        .Side-menu-default {
+            .divider {
+                font-size: 1.7rem;
+                font-family: $font-semi-bold;
+                padding: 1rem;
+                height: auto;
+                text-transform: capitalize;
+            }
+            .item-level-1 {
+                .item-label {
+                    font-size: 1.28rem;
+                    font-family: $font-bold;
+                }
+            }
+            .item-level-2 {
+                .item-label {
+                    font-size: 1.28rem;
+                    font-family: $font-regular;
+                }
+            }
+
+            i.fa.fa-chevron-down:before {
+                font-size: 2.28rem;
                 font-family: $font-bold;
+                font-style: normal;
             }
-            &:hover {
-                border: none !important;
-                .item-title {
-                    background: transparent !important;
-                    color: $green-color-2;
-                }
-            }
-            &.active {
-                border: none !important;
-                .item-title {
-                    background: transparent !important;
-                    color: $green-color-2;
-                }
+            i.fa.fa-chevron-left:before {
+                font-size: 2.28rem;
+                font-family: $font-bold;
+                font-style: normal;
             }
         }
-        .item-level-2 {
-            .item-label {
+        .multi-vendor-stores-wrapper {
+            .stores-title {
                 font-size: 1.28rem;
                 font-family: $font-regular;
             }
-        }
-
-        i.fa.fa-chevron-down:before {
-            font-size: 2.28rem;
-            font-family: $font-bold;
-            font-style: normal;
-        }
-        i.fa.fa-chevron-left:before {
-            font-size: 2.28rem;
-            font-family: $font-bold;
-            font-style: normal;
+            .line-display {
+                .more-link a {
+                    font-size: 1.3rem;
+                    font-family: $font-regular;
+                }
+            }
         }
     }
 }
-

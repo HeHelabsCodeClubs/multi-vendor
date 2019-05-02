@@ -17,7 +17,7 @@ class Categories extends React.Component {
                             <div className='col-lg-3 col-md-3 col-sm-3 col-12'>
                                 <SidemenuCategories />
                             </div>
-                            <div className='col-lg-9 col-md-9 col-sm-9 col-12'>
+                            <div className='col-lg-9 col-md-9 col-sm-9 col-12 col-reset main-content-wrapper'>
                                 <MainContent />
                             </div>
                         </div>

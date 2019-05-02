@@ -5,8 +5,8 @@
     border-top: 2px solid $gray-color-2;
 
     .multi-vendor-categories-wrapper {
-        width: 90%;
-        margin: 0 5%;
+        width: 96%;
+        margin: 0 2%;
         .single-category {
             border: 1px solid $gray-color-5;
             border-radius: 0.5rem;
@@ -17,7 +17,6 @@
             @include flexbox;
             @include flexalignitems(center);
             color: $black-color-3;
-            font-family: $font-bold;
             @include transition;
     
             .cat-icon:before {
@@ -31,14 +30,20 @@
             }
         }
         .slick-next {
-            right: -1rem;
+            right: -2%;
+            width: 2%;
+            height: 100%;
+            opacity: 0.92;
+            box-shadow: -3px 0 6px 0 rgba(0, 0, 0, 0.16);
+            background-color: $white-color;
+
             &:before {
                 content: '\e919';
                 color: $black-color-2;
             }
         }
         .slick-prev {
-            left: -1rem;
+            left: -1.5rem;
             &:before {
                 content: '\e91a';
                 color: $black-color-2;
@@ -51,14 +56,53 @@
     .Side-menu-default {
         background-color: $gray-color-2;
         color: $black-color-3;
+        padding: 0 0 0 2rem;
 
-        .item-level-1 .item-label {
-            font-size: 1.28rem;
-            font-family: $font-bold;
+        .divider {
+            background-color: transparent;
+            color: $black-color-3;
         }
-        .item-level-2 .item-label {
-            font-size: 1.28rem;
-            font-family: $font-regular;
+        .item-level-1 {
+            .item-title {
+                padding: 1rem;
+                height: auto !important;
+                border-top: 1px solid $gray-color-1;
+            }
+            &:hover {
+                border: none !important;
+                .item-title {
+                    background: transparent !important;
+                    color: $green-color-2;
+                }
+            }
+            &.active {
+                border: none !important;
+                .item-title {
+                    background: transparent !important;
+                    color: $green-color-2;
+                }
+            }
+        }
+        .item-level-2 {
+            .item-title {
+                padding: 0.5rem 1rem;
+                height: auto !important;
+                border-top: none !important;
+            }
+            &:hover {
+                border: none !important;
+                .item-title {
+                    background: $green-color-1 !important;
+                    color: $green-color-2;
+                }
+            }
+            &.active {
+                border: none !important;
+                .item-title {
+                    background: $green-color-1 !important;
+                    color: $green-color-2;
+                }
+            }
         }
 
         i.fa.fa-chevron-down:before {
@@ -70,6 +114,39 @@
             content: '+';
             line-height: 0.7;
             color: $green-color-2;
+        }
+    }
+    .main-content-wrapper {
+        border-left: 1px solid $gray-color-6;
+        .multi-vendor-stores-wrapper {
+            border-bottom: 1px solid $gray-color-6;
+            padding: 0 1rem;
+            @include flexbox;
+            @include flexalignitems(center);
+        
+            .line-display {
+                display: inline-block;
+
+                .more-link a{
+                    color: $orange-color-4 !important;
+                }
+            }
+            .single-store {
+                border: 1px solid $gray-color-6;
+                margin: 1rem;
+                padding: 0.5rem;
+                border-radius: 0.5rem;
+    
+                img {
+                    height: 3rem;
+                }
+            }
+            .stores-title {
+                color: $black-color-3;
+            }
+        }
+        .main-content {
+            margin: 0 3rem 2rem 2rem !important;
         }
     }
 }

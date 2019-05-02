@@ -20,7 +20,8 @@ const items = [
             { label: 'Closed shoes', value: 'close' }
         ]
     },
-    { label: 'Bags', value: 'bags' }
+    { label: 'Bags', value: 'bags' },
+    { label: 'Jewelry & Accessories', value: 'accessories' }
 ];
 
 class SidemenuCategories extends React.Component {
