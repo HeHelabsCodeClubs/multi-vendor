@@ -2,7 +2,7 @@
     font-family: 'Harmonia Sans Pro Regular';
     font-style: normal;
     font-weight: normal;
-    src: url('../../../static/fonts/HarmoniaSansProCyr-regular.woff');
+    src: url('https://res.cloudinary.com/hehe/raw/upload/v1556820955/multi-vendor/fonts/HarmoniaSansProCyr-Regular.woff');
     // src: url('../../../static/fonts/HarmoniaSansProCyr-regular.eot?#iefix') format('embedded-opentype'),
     //     url('../../../static/fonts/HarmoniaSansProCyr-regular.woff2') format('woff2'),
     //     url('../../../static/fonts/HarmoniaSansProCyr-regular.woff') format('woff'),
@@ -10,23 +10,23 @@
     //     url('../../../static/fonts/HarmoniaSansProCyr-regular.svg#fontawesome') format('svg');
 }
 
-@font-face {
-    font-family: 'Harmonia Sans Pro Regular';
-    font-style: normal;
-    font-weight: 400;
-    src: url('../../../static/fonts/HarmoniaSansProCyr-regular.woff');
-    // src: url('../../../static/fonts/HarmoniaSansProCyr-regular.eot?#iefix') format('embedded-opentype'),
-    //     url('../../../static/fonts/HarmoniaSansProCyr-regular.woff2') format('woff2'),
-    //     url('../../../static/fonts/HarmoniaSansProCyr-regular.woff') format('woff'),
-    //     url('../../../static/fonts/HarmoniaSansProCyr-regular.ttf') format('truetype'),
-    //     url('../../../static/fonts/HarmoniaSansProCyr-regular.svg#fontawesome') format('svg');
-}
+// @font-face {
+//     font-family: 'Harmonia Sans Pro Regular';
+//     font-style: normal;
+//     font-weight: 400;
+//     src: url('../../../static/fonts/HarmoniaSansProCyr-regular.woff');
+//     // src: url('../../../static/fonts/HarmoniaSansProCyr-regular.eot?#iefix') format('embedded-opentype'),
+//     //     url('../../../static/fonts/HarmoniaSansProCyr-regular.woff2') format('woff2'),
+//     //     url('../../../static/fonts/HarmoniaSansProCyr-regular.woff') format('woff'),
+//     //     url('../../../static/fonts/HarmoniaSansProCyr-regular.ttf') format('truetype'),
+//     //     url('../../../static/fonts/HarmoniaSansProCyr-regular.svg#fontawesome') format('svg');
+// }
 
 @font-face {
     font-family: 'Harmonia Sans Pro light';
     font-style: normal;
     font-weight: 300;
-    src: url('../../../static/fonts/HarmoniaSansProCyr-Light.woff');
+    src: url('https://res.cloudinary.com/hehe/raw/upload/v1556820954/multi-vendor/fonts/HarmoniaSansProCyr-Light.woff');
     // src: url('../../../static/fonts/HarmoniaSansProCyr-Light.eot?#iefix') format('embedded-opentype'),
     //     url('../../../static/fonts/HarmoniaSansProCyr-Light.woff2') format('woff2'),
     //     url('../../../static/fonts/HarmoniaSansProCyr-Light.woff') format('woff'),
@@ -38,7 +38,7 @@
     font-family: 'Harmonia Sans Pro SemiBd';
     font-style: normal;
     font-weight: 500;
-    src: url('../../../static/fonts/HarmoniaSansProCyr-SemiBd.woff');
+    src: url('https://res.cloudinary.com/hehe/raw/upload/v1556820956/multi-vendor/fonts/HarmoniaSansProCyr-SemiBd.woff');
     // src: url('../../../static/fonts/HarmoniaSansProCyr-SemiBd.eot?#iefix') format('embedded-opentype'),
     //     url('../../../static/fonts/HarmoniaSansProCyr-SemiBd.woff2') format('woff2'),
     //     url('../../../static/fonts/HarmoniaSansProCyr-SemiBd.woff') format('woff'),
@@ -50,7 +50,7 @@
     font-family: 'Harmonia Sans Pro Bold';
     font-style: normal;
     font-weight: 700;
-    src: url('../../../static/fonts/HarmoniaSansProCyr-Bold.woff');
+    src: url('https://res.cloudinary.com/hehe/raw/upload/v1556820953/multi-vendor/fonts/HarmoniaSansProCyr-Bold.woff');
     // src: url('../../../static/fonts/HarmoniaSansProCyr-Bold.eot?#iefix') format('embedded-opentype'),
     //     url('../../../static/fonts/HarmoniaSansProCyr-Bold.woff2') format('woff2'),
     //     url('../../../static/fonts/HarmoniaSansProCyr-Bold.woff') format('woff'),
@@ -62,7 +62,7 @@
     font-family: 'Harmonia Sans Pro Black';
     font-style: normal;
     font-weight: 900;
-    src: url('../../../static/fonts/HarmoniaSansProCyr-Black.woff');
+    src: url('https://res.cloudinary.com/hehe/raw/upload/v1556820952/multi-vendor/fonts/HarmoniaSansProCyr-Black.woff');
     // src: url('../../../static/fonts/HarmoniaSansProCyr-Black.eot?#iefix') format('embedded-opentype'),
     //     url('../../../static/fonts/HarmoniaSansProCyr-Black.woff2') format('woff2'),
     //     url('../../../static/fonts/HarmoniaSansProCyr-Black.woff') format('woff'),
@@ -73,11 +73,11 @@
 
 @font-face {
   font-family: 'icomoon';
-  src:  url('../../../static/fonts/icomoon.eot?mxzaem');
-  src:  url('../../../static/fonts/icomoon.eot?mxzaem#iefix') format('embedded-opentype'),
-    url('../../../static/fonts/icomoon.ttf?mxzaem') format('truetype'),
-    url('../../../static/fonts/icomoon.woff?mxzaem') format('woff'),
-    url('../../../static/fonts/icomoon.svg?mxzaem#icomoon') format('svg');
+  src:  url('https://res.cloudinary.com/hehe/raw/upload/v1556820956/multi-vendor/fonts/icomoon.eot?mxzaem');
+  src:  url('https://res.cloudinary.com/hehe/raw/upload/v1556820956/multi-vendor/fonts/icomoon.eot?mxzaem#iefix') format('embedded-opentype'),
+    url('https://res.cloudinary.com/hehe/raw/upload/v1556820956/multi-vendor/fonts/icomoon.ttf?mxzaem') format('truetype'),
+    url('https://res.cloudinary.com/hehe/raw/upload/v1556820956/multi-vendor/fonts/icomoon.woff?mxzaem') format('woff');
+    //url('../../../static/fonts/icomoon.svg?mxzaem#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
