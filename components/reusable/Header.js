@@ -40,7 +40,7 @@ class Header extends React.Component {
                     <div className='row maximum-width'>
                         <div className='col-lg-4 col-md-4 col-sm-12 col-12 header-left'>
                             <span className='site-logo'>
-                                <img src='https://res.cloudinary.com/hehe/image/upload/v1556120378/multi-vendor/HeHe_Logo_Original_landscape.svg' />
+                                <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556120378/multi-vendor/HeHe_Logo_Original_landscape.svg' />
                             </span>
                             <span className='location-dropdown'>
                                 <Select2

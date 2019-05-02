@@ -40,19 +40,19 @@ class MadeInRwanda extends React.Component {
                 <div className='stores-logos'>
                     <Slider {...settings}>
                         <div>
-                            <img src='https://res.cloudinary.com/hehe/image/upload/v1556532890/multi-vendor/NoPath_-_Copy.png' />
+                            <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556532890/multi-vendor/NoPath_-_Copy.png' />
                         </div>
                         <div>
-                            <img src='https://res.cloudinary.com/hehe/image/upload/v1556532890/multi-vendor/LOGO_copy_2.png' />
+                            <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556532890/multi-vendor/LOGO_copy_2.png' />
                         </div>
                         <div>
-                            <img src='https://res.cloudinary.com/hehe/image/upload/v1556532890/multi-vendor/NoPath.png' />
+                            <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556532890/multi-vendor/NoPath.png' />
                         </div>
                         <div>
-                            <img src='https://res.cloudinary.com/hehe/image/upload/v1556532890/multi-vendor/Group_7.png' />
+                            <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556532890/multi-vendor/Group_7.png' />
                         </div>
                         <div>
-                            <img src='https://res.cloudinary.com/hehe/image/upload/v1556532890/multi-vendor/NoPath_-_Copy_5.png' />
+                            <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556532890/multi-vendor/NoPath_-_Copy_5.png' />
                         </div>
                     </Slider>
                 </div>
