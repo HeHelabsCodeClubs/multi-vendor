@@ -360,4 +360,45 @@ h4 {
         }
     }
 }
+.categories-content {
+    .Side-menu-default {
+        .item-level-1 {
+            .item-label {
+                font-size: 1.28rem;
+                font-family: $font-bold;
+            }
+            &:hover {
+                border: none !important;
+                .item-title {
+                    background: transparent !important;
+                    color: $green-color-2;
+                }
+            }
+            &.active {
+                border: none !important;
+                .item-title {
+                    background: transparent !important;
+                    color: $green-color-2;
+                }
+            }
+        }
+        .item-level-2 {
+            .item-label {
+                font-size: 1.28rem;
+                font-family: $font-regular;
+            }
+        }
+
+        i.fa.fa-chevron-down:before {
+            font-size: 2.28rem;
+            font-family: $font-bold;
+            font-style: normal;
+        }
+        i.fa.fa-chevron-left:before {
+            font-size: 2.28rem;
+            font-family: $font-bold;
+            font-style: normal;
+        }
+    }
+}
 

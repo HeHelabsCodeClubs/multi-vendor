@@ -46,3 +46,30 @@
         }
     }
 }
+.categories-content {
+    background: $gray-color-2;
+    .Side-menu-default {
+        background-color: $gray-color-2;
+        color: $black-color-3;
+
+        .item-level-1 .item-label {
+            font-size: 1.28rem;
+            font-family: $font-bold;
+        }
+        .item-level-2 .item-label {
+            font-size: 1.28rem;
+            font-family: $font-regular;
+        }
+
+        i.fa.fa-chevron-down:before {
+            content: '-';
+            line-height: 0.7;
+            color: $green-color-2;
+        }
+        i.fa.fa-chevron-left:before {
+            content: '+';
+            line-height: 0.7;
+            color: $green-color-2;
+        }
+    }
+}
