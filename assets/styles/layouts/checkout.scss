@@ -16,9 +16,157 @@
             border-radius: 50%;
             margin: -0.5rem 0 0 0;
         }
+        .process-name {
+            color: $gray-color-6;
+        }
     }
 }
 .account-info-wrapper {
     width: 80%;
     margin: 0 10% 0 10%;
+    .singin-block {
+        border-right: 1px solid $gray-color-6;
+    }
+    .account-info-title {
+        color: $black-color-4;
+    }
+    .signin-form {
+        .input-field {
+            input {
+                width: 100%;
+                margin: 0.5rem 0;
+                background: $gray-color-2;
+                border: none !important;
+                padding: 0.2rem 0.5rem;
+                border-radius: 0.3rem;
+            }
+        }
+        .input-checkbox {
+            @include flexbox;
+            @include flexalignitems(center);
+            @include flexjustifycontent(space-between);
+            
+            .remember {
+                @include flexbox;
+                @include flexalignitems(center);
+                color: $gray-color-4;
+            }
+        }
+    }
+    .signin-content {
+        border-bottom: 1px solid $gray-color-6;
+        padding: 0 0 1rem 0;
+        margin: 0 0 1rem 0;
+    }
+    .register-content {
+        margin: 0 0 1rem 0;
+    }
+    .content {
+        color: $gray-color-4;
+        a {
+            color: $gray-color-4 !important;
+        }
+    }
+    button.auth-button {
+        background: $orange-color-5;
+        color: $white-color;
+        border: none;
+        padding: 0.2rem 2rem;
+        border-radius: 0.3rem;
+    }
+}
+.order-summary-grid {
+    background: $gray-color-2;
+    .order-summary-wrapper {
+        margin: 3rem 1rem;
+        .order-summary-title {
+            color: $gray-color-6;
+            text-align: center;
+            margin: 1rem;
+        }
+        .white-background {
+            background: $white-color;
+            padding: 0.5rem;
+            margin: 1rem 0 0 0;
+            img.store-logo {
+                height: 3rem;
+                width: 3rem;
+                background: $green-color-1;
+                border-radius: 50%;
+            }
+            .line {
+                @include flexbox;
+                @include flexjustifycontent(space-between);
+
+                .title {
+                    color: $black-color-2;
+                    letter-spacing: 0.06rem;
+                }
+                .s-price {
+                    color: $black-color-2;
+                }
+                .u-price {
+                    color: $black-color-5;
+                }
+                .t-price {
+                    color: $black-color-2;
+                }
+            }
+            .product-att {
+                color: $gray-color-6;
+            }
+            .checkout-cart-header {
+                padding: 0 0 0.5rem 0;
+                margin: 0 0 0.5rem 0;
+                @include flexbox;
+                @include flexjustifycontent(space-between);
+                @include flexalignitems(flex-end);
+                border-bottom: 1px solid $gray-color-6;
+
+                .store-cart-content {
+                    @include flexbox;
+                    @include flexalignitems(flex-end);
+                }
+            }
+            .cart-product {
+                border-bottom: 1px solid $gray-color-6;
+                padding: 0.5rem 0;
+                margin: 0 0 0 1rem;
+            }
+            .gift-block {
+                margin: 1rem 0 1rem 1rem;
+                input {
+                    width: 80%;
+                    background: $gray-color-2;
+                    border: none;
+                    padding: 0.3rem 1rem;
+                    border-radius: 0.3rem 0 0 0.3rem;
+                }
+                button {
+                    background: $white-color;
+                    width: 20%;
+                    border: 1px solid $gray-color-2;
+                    padding: 0.24rem 1rem;
+                }
+            }
+            .subtotal {
+                color: $black-color-2;
+                text-align: right;
+            }
+            .shipping {
+                color: $black-color-2;
+                text-align: right;
+            }
+            .total {
+                text-align: right;
+                margin: 0.5rem 0;
+                .total-t {
+                    background: $orange-color-3;
+                    color: $orange-color-1;
+                    padding: 0.2rem 1rem;
+                    border-radius: 0.3rem;
+                }
+            }
+        }
+    }     
 }

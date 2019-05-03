@@ -4,6 +4,9 @@ html {
         font-size: 1.28rem !important;
         font-family: $font-regular;
     }
+    .light-title {
+        font-family: $font-regular !important;
+    }
 
     // landing page
 
@@ -403,6 +406,117 @@ html {
                 .more-link a {
                     font-size: 1.3rem;
                     font-family: $font-regular;
+                }
+            }
+        }
+    }
+
+    // Checkout
+
+    .checkout-process {
+        .single-process {
+            .process-point {
+                
+            }
+            .process-name {
+                font-size: 1.28rem;
+                font-family: $font-bold;
+            }
+        }
+    }
+    .account-info-wrapper {
+        .account-info-title {
+            font-family: $font-bold;
+            font-size: 1.28rem;
+        }
+        .signin-form {
+            .input-field {
+                input {
+                    font-size: 1rem;
+                    font-family: $font-regular;
+                }
+            }
+            .input-checkbox {
+                .remember {
+                    font-size: 1rem;
+                    font-family: $font-regular;
+                }
+            }
+        }
+        .content {
+            font-size: 1rem;
+            font-family: $font-regular;
+        }
+        button.auth-button {
+            font-size: 1rem;
+            font-family: $font-regular;
+        }
+    }
+    .order-summary-grid {
+        background: $gray-color-2;
+        .order-summary-wrapper {
+            margin: 3rem 1rem;
+            .order-summary-title {
+                font-size: 1.28rem;
+                font-family: $font-bold;
+            }
+            .white-background {
+                .title {
+                    font-size: 1.28rem;
+                    font-family: $font-regular;
+                }
+                .s-price {
+                    font-size: 1.4rem;
+                    font-family: $font-semi-bold;
+                }
+                .u-price {
+                    font-size: 1.28rem;
+                    font-family: $font-semi-bold;
+                }
+                .t-price {
+                    font-size: 1.4rem;
+                    font-family: $font-bold;
+                }
+                .product-att {
+                    font-size: 1rem;
+                    font-family: $font-regular;
+                }
+                .checkout-cart-header {
+                    .store-cart-content {
+                        .store-name {
+                            font-size: 1rem;
+                            font-family: $font-regular;
+                        }
+                    }
+                    .store-items {
+                        font-size: 1rem;
+                        font-family: $font-regular;
+                    }
+                }
+                .gift-block {
+                    margin: 1rem 0 1rem 1rem;
+                    input {
+                        font-family: $font-regular;
+                        font-size: 1rem;
+                    }
+                    button {
+                        font-family: $font-regular;
+                        font-size: 1rem;
+                    }
+                }
+                .subtotal {
+                    font-size: 1.28rem;
+                    font-family: $font-semi-bold;
+                }
+                .shipping {
+                    font-size: 1.28rem;
+                    font-family: $font-semi-bold;
+                }
+                .total {
+                    .total-t {
+                        font-size: 1.28rem;
+                        font-family: $font-semi-bold;
+                    }
                 }
             }
         }

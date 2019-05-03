@@ -167,6 +167,12 @@
                         border-radius: 0.3rem;
                         color: $green-color-2;
                         outline: none;
+                        @include transition(0.5s);
+
+                        &:hover {
+                            background: $green-color-2;
+                            color: $white-color;
+                        }
                     }
                 }
             }
@@ -260,4 +266,8 @@
             }
         }
     }
+}
+h4 {
+    color: $black-color-3 !important;
+    margin: 0.5rem 0 0 0 !important;
 }
