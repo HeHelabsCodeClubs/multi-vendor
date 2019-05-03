@@ -29,10 +29,10 @@ class Index extends React.Component {
 				<div className='main-banners'>
 					<Slider {...settings}>
 						<div>
-							<img src='https://res.cloudinary.com/hehe/image/upload/v1556198500/multi-vendor/Banner-1_2x.png' />
+							<img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556198500/multi-vendor/Banner-1_2x.png' />
 						</div>
 						<div>
-							<img src='https://res.cloudinary.com/hehe/image/upload/v1556198500/multi-vendor/Banner_2x.png' />
+							<img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556198500/multi-vendor/Banner_2x.png' />
 						</div>
 					</Slider>
 				</div>

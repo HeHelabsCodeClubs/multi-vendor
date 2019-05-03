@@ -22,14 +22,14 @@ class Product extends React.Component {
 			<div className='single-product' onClick={this.onOpenModal}>
                 <Link href=''>
                     <a>
-                        <img className='product-img' src='https://res.cloudinary.com/hehe/image/upload/v1556288624/multi-vendor/prod_3_2x.png' />
+                        <img className='product-img' src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288624/multi-vendor/prod_3_2x.png' />
                         <div className='top-icons'>
                             <span className='hot'><span className='icon-Path-54'></span>hot</span>
                             <span className='discount'>50% OFF</span>
                         </div>
                         <div className='product-description'>
                             <div className='store-logo'>
-                                <img className='store-img' src='https://res.cloudinary.com/hehe/image/upload/v1556288678/multi-vendor/shop-icon-4_2x.png' />
+                                <img className='store-img' src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288678/multi-vendor/shop-icon-4_2x.png' />
                                 <span className='store-name'>Mart</span>
                             </div>
                             <div className='product-name'>Full detailed Product title - and info about it... for home use only</div>
