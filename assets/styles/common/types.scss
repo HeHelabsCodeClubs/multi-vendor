@@ -521,4 +521,80 @@ html {
             }
         }
     }
+
+    // Product details
+
+    .popup-wrapper {
+        .description-wrapper {
+            .product-name {
+                font-size: 2.85rem;
+                font-family: $font-bold;
+            }
+            .product-detail {
+                .details-title {
+                    font-size: 1.28rem;
+                    font-family: $font-regular;
+                }
+                .initial-price {
+                    font-size: 1.28rem;
+                    font-family: $font-regular;
+                }
+                .price {
+                    font-size: 1.7rem;
+                    font-family: $font-bold;
+                }
+                .select-dropdown {
+                    .select2-selection.select2-selection--single {
+                        .select2-selection__rendered {
+                            .select2-selection__placeholder {
+                                font-size: 1.7rem;
+                                font-family: $font-semi-bold;
+                            }
+                        }
+                    }
+                }
+                .orange-btn {
+                    button {
+                        font-size: 1.7rem;
+                        font-family: $font-semi-bold;
+                    }
+                }
+                .white-btn {
+                    button {
+                        font-size: 1.7rem;
+                        font-family: $font-semi-bold;
+                    }
+                }
+                .product-store {
+                    .store-content {
+                        .content {
+                            font-size: 1rem;
+                            font-family: $font-regular;
+                            .black {
+                                font-family: $font-semi-bold;
+                            }
+                            .orange {
+                                font-family: $font-semi-bold;
+                            }
+                        }
+                    }
+                }
+            }
+            .description-details {
+                .desc-title {
+                    font-size: 1.7rem;
+                    font-family: $font-bold;
+                }
+                .desc-content {
+                    font-size: 1.28rem;
+                    font-family: $font-regular;
+                }
+            }
+        }
+
+    }
+    .products-title {
+        font-size: 1.7rem;
+        font-family: $font-bold;
+    }
 }
