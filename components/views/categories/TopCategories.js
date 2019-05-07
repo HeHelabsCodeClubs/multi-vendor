@@ -23,7 +23,7 @@ class TopCategories extends React.Component {
                         </Link>
                         <Link href=''>
                             <a>
-                                <div className='single-categ2ory'>
+                                <div className='single-category'>
                                     <span className='cat-icon icon-Elecronics-ico'></span>
                                     Electronics
                                 </div>
