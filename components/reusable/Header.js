@@ -19,7 +19,7 @@ class Header extends React.Component {
         this.setState({
             customers: data.data
         })
-        console.log(`Show data fetched. Count: ${JSON.stringify(data.data)}`)
+        //console.log(`Show data fetched. Count: ${JSON.stringify(data.data)}`)
     }
 
     customerHandleHover = () => {

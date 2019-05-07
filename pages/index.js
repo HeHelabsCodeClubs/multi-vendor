@@ -1,77 +1,42 @@
 import React from "react";
-import Slider from "react-slick";
 import Global from '../components/reusable/Global';
 import '../assets/styles/layouts/homepage.scss';
 import TopStores from '../components/views/homepage/TopStores';
 import SpecialOffers from "../components/views/homepage/SpecialOffers";
 import MadeInRwanda from "../components/views/homepage/MadeInRwanda";
+import Add from "../components/views/homepage/Add";
+import HomepageCategory from "../components/views/homepage/HomepageCategory";
+import fetch from 'isomorphic-unfetch';
+import { API_URL } from '../config';
 
 class Index extends React.Component {
-	render() {
-		var settings = {
-			infinite: true,
-			speed: 300,
-			autoplay: true,
-			autoplaySpeed: 5000,
-			pauseOnHover: true,
-			// fade: true,
-			cssEase: 'linear'
-		};
-
-		var catSettings = {
-			infinite: true,
-			speed: 500,
-			slidesToShow: 6,
-  			slidesToScroll: 5
+	constructor(props) {
+		super(props);
+		this.state = {
+			promoAdds: [],
+			categories: []
 		}
+	}
+	async componentDidMount() {
+        const res = await fetch(`${API_URL}/pages/homepage`)
+        const data = await res.json()
+
+        this.setState({
+		   promoAdds: data.data.adds.promo,
+		   categories: data.data.categories
+        });
+        //console.log(`Show data fetched. Count: ${JSON.stringify(data.data.adds.promo)}`)
+    }
+	render() {
+		const { promoAdds, categories } = this.state;
 		return (
 			<Global>
 				<div className='main-banners'>
-					<Slider {...settings}>
-						<div>
-							<img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556198500/multi-vendor/Banner-1_2x.png' />
-						</div>
-						<div>
-							<img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556198500/multi-vendor/Banner_2x.png' />
-						</div>
-					</Slider>
+					<Add type='slider' data={promoAdds}/>
 				</div>
 				<div className='categories-scroller'>
 					<div className='maximum-width'>
-						<Slider {...catSettings}>
-							<div>
-								<div className='cat-icon icon-Art-ico'></div>
-								<div className='cat-name'>All categories</div>
-							</div>
-							<div>
-								<div className='cat-icon icon-Elecronics-ico'></div>
-								<div className='cat-name'>Electronics</div>
-							</div>
-							<div>
-								<div className='cat-icon icon-Groceries-ico'></div>
-								<div className='cat-name'>Groceries</div>
-							</div>
-							<div>
-								<div className='cat-icon icon-KITCHENWARE-ICO'></div>
-								<div className='cat-name'>Home appliences</div>
-							</div>
-							<div>
-								<div className='cat-icon icon-Coametics-ico'></div>
-								<div className='cat-name'>Cosmetics & Beauty</div>
-							</div>
-							<div>
-								<div className='cat-icon icon-LITTERATURE-ICO'></div>
-								<div className='cat-name'>Kids & Babies</div>
-							</div>
-							<div>
-								<div className='cat-icon icon-LITTERATURE-ICO'></div>
-								<div className='cat-name'>Literature</div>
-							</div>
-							<div>
-								<div className='cat-icon icon-Fashion-ico'></div>
-								<div className='cat-name'>Clothing & Fashion</div>
-							</div>
-						</Slider>
+						<HomepageCategory categories={categories} />
 					</div>
 				</div>
 				<div className='top-stores'>
