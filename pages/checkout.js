@@ -13,7 +13,10 @@ class Checkout extends React.Component {
             activeContent: 'accountInfo'
         };
         this.renderContent = this.renderContent.bind(this);
-        this.changeActiveContent = this.changeActiveContent.bind(this);
+        this.renderAccountView = this.renderAccountView.bind(this);
+        this.renderBillingView = this.renderBillingView.bind(this);
+        this.renderDeliveryView = this.renderDeliveryView.bind(this);
+        this.renderPaymentView = this.renderPaymentView.bind(this);
     }
 
     renderContent() {
@@ -29,24 +32,26 @@ class Checkout extends React.Component {
             return <Payment />
         }
     }
+    renderAccountView() {
+        this.setState({
+            activeContent: 'accountInfo'
+        })
+    }
 
-    changeActiveContent() {
-        const { activeContent } = this.state;
-        if (activeContent === 'accountInfo') {
-            this.setState({
-                activeContent: 'billing'
-            })
-        }
-        if (activeContent === 'billing') {
-            this.setState({
-                activeContent: 'delivery'
-            })
-        }
-        if (activeContent === 'delivery') {
-            this.setState({
-                activeContent: 'payment'
-            })
-        }
+    renderBillingView() {
+        this.setState({
+            activeContent: 'billing'
+        })
+    }
+    renderDeliveryView() {
+        this.setState({
+            activeContent: 'delivery'
+        })
+    }
+    renderPaymentView() {
+        this.setState({
+            activeContent: 'payment'
+        })
     }
 	render() {
 		return (
@@ -55,19 +60,19 @@ class Checkout extends React.Component {
                     <div className='row reset-row'>
                         <div className='col-lg-8 col-md-8 col-sm-8 col-12'>
                             <div className='checkout-process'>
-                                <div className='single-process' onClick={this.changeActiveContent}>
-                                    <div className='process-point'></div>
+                                <div className='single-process'>
+                                    <div className='process-point' onClick={this.renderAccountView}></div>
                                     <div className='process-name'>1. Account info</div>
                                 </div>
-                                <div className='single-process' onClick={this.changeActiveContent}>
+                                <div className='single-process' onClick={this.renderBillingView}>
                                     <div className='process-point'></div>
                                     <div className='process-name'>2. Billing and shipping address</div>
                                 </div>
-                                <div className='single-process'>
+                                <div className='single-process' onClick={this.renderDeliveryView}>
                                     <div className='process-point'></div>
                                     <div className='process-name'>3. Delivery</div>
                                 </div>
-                                <div className='single-process'>
+                                <div className='single-process' onClick={this.renderPaymentView}>
                                     <div className='process-point'></div>
                                     <div className='process-name'>4. Payment</div>
                                 </div>

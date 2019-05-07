@@ -13,7 +13,7 @@ class TopCategories extends React.Component {
 			<div className='maximum-width'>
                 <div className='multi-vendor-categories-wrapper'>
                     <Slider {...settings}>
-                        <Link>
+                        <Link href=''>
                             <a>
                                 <div className='single-category'>
                                     <span className='cat-icon icon-Categories-ico'></span>
@@ -21,15 +21,15 @@ class TopCategories extends React.Component {
                                 </div>
                             </a>
                         </Link>
-                        <Link>
+                        <Link href=''>
                             <a>
-                                <div className='single-category'>
+                                <div className='single-categ2ory'>
                                     <span className='cat-icon icon-Elecronics-ico'></span>
                                     Electronics
                                 </div>
                             </a>
                         </Link>
-                        <Link>
+                        <Link href=''>
                             <a>
                                 <div className='single-category'>
                                     <span className='cat-icon icon-Groceries-ico'></span>
@@ -37,7 +37,7 @@ class TopCategories extends React.Component {
                                 </div>
                             </a>
                         </Link>
-                        <Link>
+                        <Link href=''>
                             <a>
                                 <div className='single-category'>
                                     <span className='cat-icon icon-LITTERATURE-ICO'></span>
@@ -45,7 +45,7 @@ class TopCategories extends React.Component {
                                 </div>
                             </a>
                         </Link>
-                        <Link>
+                        <Link href=''>
                             <a>
                                 <div className='single-category'>
                                     <span className='cat-icon icon-Coametics-ico'></span>
@@ -53,7 +53,7 @@ class TopCategories extends React.Component {
                                 </div>
                             </a>
                         </Link>
-                        <Link>
+                        <Link href=''>
                             <a>
                                 <div className='single-category'>
                                     <span className='cat-icon icon-Categories-ico'></span>
@@ -61,7 +61,7 @@ class TopCategories extends React.Component {
                                 </div>
                             </a>
                         </Link>
-                        <Link>
+                        <Link href=''>
                             <a>
                                 <div className='single-category'>
                                     <span className='cat-icon icon-Fashion-ico'></span>

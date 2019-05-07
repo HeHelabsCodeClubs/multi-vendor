@@ -1,14 +1,27 @@
 import Link from 'next/link'; 
 import Select2 from 'react-select2-wrapper';
 import Cart from './Cart';
+import fetch from 'isomorphic-unfetch';
 
 class Header extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showCustomerMenu: false
+            showCustomerMenu: false,
+            customers: []
         };
     };
+
+    async componentDidMount() {
+        const res = await fetch('https://heherw.com/api/clients/umuti/services/business_sign_in/users')
+        const data = await res.json()
+
+        this.setState({
+            customers: data.data
+        })
+        console.log(`Show data fetched. Count: ${JSON.stringify(data.data)}`)
+    }
+
     customerHandleHover = () => {
         this.setState({ showCustomerMenu: true });
     };
@@ -65,12 +78,14 @@ class Header extends React.Component {
                                             <span className='icon-Path-73'></span>
                                             <span className={this.state.showCustomerMenu ? 'icon-icon_up-arrow-small' : 'icon-icon_down-arrow-small'}></span>
                                             </div>
-                                            { this.state.showCustomerMenu && 
+                                            {this.state.showCustomerMenu && 
                                                 <ul className="nav__submenu">
-                                                    <li className="nav__submenu-item ">
-                                                        <Link href="/categories" className='sub-menu__item-a'><a>All categories</a></Link>
-                                                    </li>
-                                                    <li className="nav__submenu-item ">
+                                                    {this.state.customers.map(customer => (
+                                                        <li className="nav__submenu-item " key={customer.id}>
+                                                            <a href="/categories" className='sub-menu__item-a'>{customer.customer}</a>
+                                                        </li>
+                                                    ))}
+                                                    {/* <li className="nav__submenu-item ">
                                                         <Link href="/categories" className='sub-menu__item-a'><a>Groceries</a></Link>
                                                     </li>
                                                     <li className="nav__submenu-item ">
@@ -81,7 +96,7 @@ class Header extends React.Component {
                                                     </li>
                                                     <li className="nav__submenu-item ">
                                                         <Link href="/categories" className='sub-menu__item-a'><a>Babies</a></Link>
-                                                    </li>
+                                                    </li> */}
                                                 </ul>
                                             }
                                         </li>
