@@ -24,9 +24,21 @@ class Payment extends React.Component {
 						</TabPanel>
 						<TabPanel>
 							<div>
-								<div><input type='radio' name='card' />Credit card</div>
+								<span><input type='radio' name='card' />Credit card</span>
+								<span></span>
 							</div>
-							
+							<div>
+								<div>
+									<input type='text' name='number' placeholder='Card Number' />
+								</div>
+								<div>
+									<input type='text' name='name' placeholder='Card Name' />
+								</div>
+								<div>
+									<input type='date' name='date' placeholder='Expiry Date' />
+									<input type='text' name='cvv' placeholder='Cvv' />
+								</div>
+							</div>
 						</TabPanel>
 					</Tabs>
 				</div>

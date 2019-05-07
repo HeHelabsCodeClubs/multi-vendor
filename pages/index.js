@@ -14,6 +14,7 @@ class Index extends React.Component {
 		super(props);
 		this.state = {
 			promoAdds: [],
+			type: null,
 			categories: []
 		}
 	}
@@ -22,17 +23,18 @@ class Index extends React.Component {
         const data = await res.json()
 
         this.setState({
-		   promoAdds: data.data.adds.promo,
+		   promoAdds: data.data.adds.promo.data,
+		   type: data.data.adds.promo.type,
 		   categories: data.data.categories
         });
         //console.log(`Show data fetched. Count: ${JSON.stringify(data.data.adds.promo)}`)
     }
 	render() {
-		const { promoAdds, categories } = this.state;
+		const { promoAdds, type, categories } = this.state;
 		return (
 			<Global>
 				<div className='main-banners'>
-					<Add type='slider' data={promoAdds}/>
+					<Add type={type} data={promoAdds}/>
 				</div>
 				<div className='categories-scroller'>
 					<div className='maximum-width'>

@@ -17,9 +17,9 @@ class HomepageCategory extends Component {
     render() {
         const catSettings = {
 			infinite: true,
-			speed: 500,
+			speed: 1000,
 			slidesToShow: 6,
-  			slidesToScroll: 5
+  			slidesToScroll: 2
 		};
         return  (
             <Slider {...catSettings}>

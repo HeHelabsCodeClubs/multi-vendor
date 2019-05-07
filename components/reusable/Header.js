@@ -2,24 +2,24 @@ import Link from 'next/link';
 import Select2 from 'react-select2-wrapper';
 import Cart from './Cart';
 import fetch from 'isomorphic-unfetch';
+import { API_URL } from '../../config';
 
 class Header extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             showCustomerMenu: false,
-            customers: []
+            categories: []
         };
     };
 
     async componentDidMount() {
-        const res = await fetch('https://heherw.com/api/clients/umuti/services/business_sign_in/users')
+        const res = await fetch(`${API_URL}/categories`)
         const data = await res.json()
 
         this.setState({
-            customers: data.data
-        })
-        //console.log(`Show data fetched. Count: ${JSON.stringify(data.data)}`)
+		   categories: data.data
+        });
     }
 
     customerHandleHover = () => {

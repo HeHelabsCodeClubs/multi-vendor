@@ -5,9 +5,9 @@ class TopCategories extends React.Component {
 	render() {
         var settings = {
 			infinite: true,
-            speed: 500,
+            speed: 1000,
 			slidesToShow: 6,
-  			slidesToScroll: 7
+  			slidesToScroll: 2
 		};
 		return (
 			<div className='maximum-width'>
