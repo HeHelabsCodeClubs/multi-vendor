@@ -80,23 +80,11 @@ class Header extends React.Component {
                                             </div>
                                             {this.state.showCustomerMenu && 
                                                 <ul className="nav__submenu">
-                                                    {this.state.customers.map(customer => (
-                                                        <li className="nav__submenu-item " key={customer.id}>
-                                                            <a href="/categories" className='sub-menu__item-a'>{customer.customer}</a>
+                                                    {this.state.categories.map(category => (
+                                                        <li className="nav__submenu-item " key={category.id}>
+                                                            <a href="/categories" className='sub-menu__item-a'>{category.name}</a>
                                                         </li>
                                                     ))}
-                                                    {/* <li className="nav__submenu-item ">
-                                                        <Link href="/categories" className='sub-menu__item-a'><a>Groceries</a></Link>
-                                                    </li>
-                                                    <li className="nav__submenu-item ">
-                                                        <Link href="/categories" className='sub-menu__item-a'><a>Electronics</a></Link>
-                                                    </li>
-                                                    <li className="nav__submenu-item ">
-                                                        <Link href="/categories" className='sub-menu__item-a'><a>Fashion</a></Link>
-                                                    </li>
-                                                    <li className="nav__submenu-item ">
-                                                        <Link href="/categories" className='sub-menu__item-a'><a>Babies</a></Link>
-                                                    </li> */}
                                                 </ul>
                                             }
                                         </li>
