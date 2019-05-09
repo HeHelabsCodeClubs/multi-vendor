@@ -15,7 +15,8 @@ class Index extends React.Component {
 		this.state = {
 			promoAdds: [],
 			type: null,
-			categories: []
+			categories: [],
+			stores: []
 		}
 	}
 	async componentDidMount() {
@@ -25,12 +26,13 @@ class Index extends React.Component {
         this.setState({
 		   promoAdds: data.data.adds.promo.data,
 		   type: data.data.adds.promo.type,
-		   categories: data.data.categories
+		   categories: data.data.categories,
+		   stores: data.data.made_in_rwanda_brands
         });
         //console.log(`Show data fetched. Count: ${JSON.stringify(data.data.adds.promo)}`)
     }
 	render() {
-		const { promoAdds, type, categories } = this.state;
+		const { promoAdds, type, categories, stores } = this.state;
 		return (
 			<Global>
 				<div className='main-banners'>
@@ -48,7 +50,7 @@ class Index extends React.Component {
 					<SpecialOffers />
 				</div>
 				<div className='made-in-rwanda'>
-					<MadeInRwanda />
+					<MadeInRwanda stores={stores} />
 				</div>
 			</Global>
 		);

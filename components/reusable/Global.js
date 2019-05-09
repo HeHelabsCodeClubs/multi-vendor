@@ -1,4 +1,4 @@
-import Header from './Header'
+import Header from './header/Header'
 import '../../assets/styles/layouts/header.scss';
 
 const Global = props => (

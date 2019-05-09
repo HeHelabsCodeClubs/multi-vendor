@@ -451,6 +451,49 @@ html {
             font-size: 1rem;
             font-family: $font-regular;
         }
+        .payment-section {
+            .wallet-title {
+                font-size: 1.28rem;
+                font-family: $font-bold;
+            }
+            .wallet-content {
+                font-size: 1.28rem;
+                font-family: $font-regular;
+            }
+            .react-tabs__tab-list {
+                border-bottom: none !important;
+                .react-tabs__tab {
+                    font-size: 1.28rem;
+                    font-family: $font-semi-bold;
+                }
+                .react-tabs__tab--selected {
+                    font-size: 1.28rem;
+                    font-family: $font-semi-bold;
+                }
+            }
+            .single-payment {
+                .single-payment-title {
+                    .title-left {
+                        font-size: 1.28rem;
+                        font-family: $font-regular;
+                    }
+                }
+                .card-payment {
+                    .payment-input {
+                        input {
+                            font-size: 1.28rem;
+                            font-family: $font-regular;
+                        }
+                    }
+                }
+                .payment-comment {
+                    .comment-title {
+                        font-size: 1.1rem;
+                        font-family: $font-regular;
+                    }
+                }
+            }
+        }
     }
     .order-summary-grid {
         background: $gray-color-2;

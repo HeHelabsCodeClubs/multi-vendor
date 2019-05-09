@@ -2,8 +2,22 @@ import Slider from "react-slick";
 import Product from '../../reusable/Product';
 
 class MadeInRwanda extends React.Component {
+
+	renderStores(stores) {
+		const storesLayout = stores.map((store) => {
+			return (
+				<a target='_blank' href={store.store_url}>
+					<div>
+						<img src={store.logo} />
+					</div>
+				</a>
+			)
+		});
+		return storesLayout;
+	}
+
 	render() {
-        var settings = {
+        const settings = {
 			infinite: true,
 			speed: 500,
 			slidesToShow: 4,
@@ -34,26 +48,13 @@ class MadeInRwanda extends React.Component {
 				}
 			]
 		}
+
 		return (
 			<div className='made-in-rwanda-wrapper'>
 				<div className='made-in-rwanda-title maximum-width'>Made In Rwanda <span>Brands</span></div>
                 <div className='stores-logos'>
                     <Slider {...settings}>
-                        <div>
-                            <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556532890/multi-vendor/NoPath_-_Copy.png' />
-                        </div>
-                        <div>
-                            <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556532890/multi-vendor/LOGO_copy_2.png' />
-                        </div>
-                        <div>
-                            <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556532890/multi-vendor/NoPath.png' />
-                        </div>
-                        <div>
-                            <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556532890/multi-vendor/Group_7.png' />
-                        </div>
-                        <div>
-                            <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556532890/multi-vendor/NoPath_-_Copy_5.png' />
-                        </div>
+						{this.renderStores(this.props.stores)}
                     </Slider>
                 </div>
 				<div className='made-in-rwanda-content maximum-width'>
