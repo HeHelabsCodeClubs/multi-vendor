@@ -1,19 +1,23 @@
+import _ from 'lodash';
+import React, { Component } from 'react';
 import Slider from "react-slick";
 import Product from '../../reusable/Product';
 
-class MadeInRwanda extends React.Component {
+class MadeInRwanda extends Component {
 
 	renderStores(stores) {
-		const storesLayout = stores.map((store) => {
-			return (
-				<a target='_blank' href={store.store_url}>
-					<div>
-						<img src={store.logo} />
-					</div>
-				</a>
-			)
-		});
-		return storesLayout;
+		if (!_.isEmpty(stores)) {
+			const storesLayout = stores.map((store) => {
+				return (
+					<a target='_blank' href={store.store_url} key={store.store_url}>
+						<div>
+							<img src={store.logo} />
+						</div>
+					</a>
+				)
+			});
+			return storesLayout;
+		}
 	}
 
 	render() {

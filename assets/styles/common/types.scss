@@ -349,6 +349,17 @@ html {
             }
         }
     }
+    .featured-wrapper {
+        .margin-reset {
+            .store-category {
+                font-size: 0.9rem;
+            }
+        }
+        .seller-link {
+            font-family: $font-bold;
+            font-size: 0.9rem;
+        }
+    }
 
     // Categories
 

@@ -1,6 +1,7 @@
 import React from "react";
 import Global from '../components/reusable/Global';
 import '../assets/styles/layouts/homepage.scss';
+import '../assets/styles/layouts/seller.scss';
 import TopStores from '../components/views/homepage/TopStores';
 import SpecialOffers from "../components/views/homepage/SpecialOffers";
 import MadeInRwanda from "../components/views/homepage/MadeInRwanda";
@@ -8,6 +9,7 @@ import Ad from "../components/views/homepage/Ad";
 import HomepageCategory from "../components/views/homepage/HomepageCategory";
 import fetch from 'isomorphic-unfetch';
 import { API_URL } from '../config';
+import FeaturedSellers from "../components/views/homepage/FeaturedSellers";
 
 class Index extends React.Component {
 	constructor(props) {
@@ -16,7 +18,9 @@ class Index extends React.Component {
 			promoAds: [],
 			type: null,
 			categories: [],
-			stores: []
+			stores: [],
+			topStores: [],
+			sellers: []
 		}
 	}
 	async componentDidMount() {
@@ -27,12 +31,13 @@ class Index extends React.Component {
 		   promoAds: data.data.adds.promo.data,
 		   type: data.data.adds.promo.type,
 		   categories: data.data.categories,
-		   stores: data.data.made_in_rwanda_brands
+		   stores: data.data.made_in_rwanda_brands,
+		   topStores: data.data.top_stores,
+		   sellers: data.data.featured_sellers
         });
-        //console.log(`Show data fetched. Count: ${JSON.stringify(data.data.adds.promo)}`)
     }
 	render() {
-		const { promoAds, type, categories, stores } = this.state;
+		const { promoAds, type, categories, stores, topStores, sellers } = this.state;
 		return (
 			<Global>
 				<div className='main-banners'>
@@ -43,8 +48,11 @@ class Index extends React.Component {
 						<HomepageCategory categories={categories} />
 					</div>
 				</div>
+				<div className='special-offers'>
+					<FeaturedSellers sellers={sellers} />
+				</div>
 				<div className='top-stores'>
-					<TopStores />
+					<TopStores topStores={topStores} />
 				</div>
 				<div className='special-offers'>
 					<SpecialOffers />
