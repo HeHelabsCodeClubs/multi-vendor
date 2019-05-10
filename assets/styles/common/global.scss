@@ -31,3 +31,41 @@ a {
 .light-title {
     font-family: $font-regular !important;
 }
+
+.total-price {
+    border-top: 2px solid $gray-color-2;
+    background: $white-color;
+    margin: 0 1rem;
+
+    .subtotal {
+        text-align: right;
+        font-size: 1.28rem;
+        padding: 0.5rem 0.5rem 0.5rem 0;
+        color: $black-color-5;
+    }
+    .shipping-grid {
+        background: $green-color-3;
+        width: 83%;
+        margin: 0 0 0 17%;
+        padding: 0.2rem 0.5rem;
+        @include flexbox;
+        @include flexalignitems(center);
+        @include flexjustifycontent(space-between);
+        .shipping-title {
+            color: $black-color-5;
+        }
+        .shipping {
+            color: $black-color-5;
+        }
+    }
+    .total-grid {
+        padding: 1rem 0.5rem;
+        text-align: right;
+        .total {
+            color: $orange-color-1;
+            background: $orange-color-3;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+        }
+    }
+}

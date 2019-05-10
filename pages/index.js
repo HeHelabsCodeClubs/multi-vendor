@@ -4,7 +4,7 @@ import '../assets/styles/layouts/homepage.scss';
 import TopStores from '../components/views/homepage/TopStores';
 import SpecialOffers from "../components/views/homepage/SpecialOffers";
 import MadeInRwanda from "../components/views/homepage/MadeInRwanda";
-import Add from "../components/views/homepage/Add";
+import Ad from "../components/views/homepage/Ad";
 import HomepageCategory from "../components/views/homepage/HomepageCategory";
 import fetch from 'isomorphic-unfetch';
 import { API_URL } from '../config';
@@ -13,7 +13,7 @@ class Index extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			promoAdds: [],
+			promoAds: [],
 			type: null,
 			categories: [],
 			stores: []
@@ -24,7 +24,7 @@ class Index extends React.Component {
         const data = await res.json()
 
         this.setState({
-		   promoAdds: data.data.adds.promo.data,
+		   promoAds: data.data.adds.promo.data,
 		   type: data.data.adds.promo.type,
 		   categories: data.data.categories,
 		   stores: data.data.made_in_rwanda_brands
@@ -32,11 +32,11 @@ class Index extends React.Component {
         //console.log(`Show data fetched. Count: ${JSON.stringify(data.data.adds.promo)}`)
     }
 	render() {
-		const { promoAdds, type, categories, stores } = this.state;
+		const { promoAds, type, categories, stores } = this.state;
 		return (
 			<Global>
 				<div className='main-banners'>
-					<Add type={type} data={promoAdds}/>
+					<Ad type={type} data={promoAds}/>
 				</div>
 				<div className='categories-scroller'>
 					<div className='maximum-width'>

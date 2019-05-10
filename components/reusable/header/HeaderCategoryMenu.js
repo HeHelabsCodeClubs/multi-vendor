@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-unfetch';
 import { API_URL } from '../../../config';
+// import ReactMegaMenu from "react-mega-menu"
 
 class HeaderCategoryMenu extends React.Component {
     constructor(props) {
@@ -41,7 +42,7 @@ class HeaderCategoryMenu extends React.Component {
     render() {
         return (
             <span className="main-menu">
-                <nav className="nav nav-container">
+                {/* <nav className="nav nav-container">
                     <ul className="nav__menu">
                         <li className="nav__menu-item" onMouseLeave={this.customerHandleLeave}>
                             <div 
@@ -59,7 +60,14 @@ class HeaderCategoryMenu extends React.Component {
                             }
                         </li>
                     </ul>
-                </nav>
+                </nav> */}
+                {/* <ReactMegaMenu 
+                    tolerance={50}      // optional, defaults to 100
+                    direction={"LEFT"}  // optional, defaults to "RIGHT", takes in "RIGHT" || "LEFT"
+                    styleConfig={...}   // defaults to an empty object. not recommended to be left blank.
+                    onExit={()=>{...}}  // a function to be called when a mouse leaves the container
+                    data={[me, you, me]}        // array of data to be rendered
+                /> */}
             </span>          
         )
     }

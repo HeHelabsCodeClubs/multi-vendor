@@ -313,31 +313,6 @@ html {
                     }
                 }
             }
-            .total-price {
-                .subtotal {
-                    font-size: 1.28rem;
-                    font-family: $font-regular;
-                }
-                .shipping-grid {
-                    .shipping-title {
-                        font-size: 1.28rem;
-                        font-family: $font-regular;
-                    }
-                    .shipping-dropdown {
-
-                    }
-                    .shipping {
-                        font-size: 1.28rem;
-                        font-family: $font-regular;
-                    }
-                }
-                .total-grid {
-                    .total {
-                        font-size: 1.28rem;
-                        font-family: $font-regular;
-                    }
-                }
-            }
             .go-to-checkout {
                 .grand-total {
                     font-size: 1.4rem;
@@ -349,6 +324,28 @@ html {
                         font-family: $font-bold;
                     }
                 }
+            }
+        }
+    }
+    .total-price {
+        .subtotal {
+            font-size: 1.28rem;
+            font-family: $font-regular;
+        }
+        .shipping-grid {
+            .shipping-title {
+                font-size: 1.28rem;
+                font-family: $font-regular;
+            }
+            .shipping {
+                font-size: 1.28rem;
+                font-family: $font-regular;
+            }
+        }
+        .total-grid {
+            .total {
+                font-size: 1.28rem;
+                font-family: $font-regular;
             }
         }
     }
@@ -495,6 +492,26 @@ html {
             }
         }
     }
+    .title {
+        font-size: 1.28rem;
+        font-family: $font-regular;
+    }
+    .s-price {
+        font-size: 1.4rem;
+        font-family: $font-semi-bold;
+    }
+    .u-price {
+        font-size: 1.28rem;
+        font-family: $font-semi-bold;
+    }
+    .t-price {
+        font-size: 1.4rem;
+        font-family: $font-bold;
+    }
+    .product-att {
+        font-size: 1rem;
+        font-family: $font-regular;
+    }
     .order-summary-grid {
         background: $gray-color-2;
         .order-summary-wrapper {
@@ -504,26 +521,6 @@ html {
                 font-family: $font-bold;
             }
             .white-background {
-                .title {
-                    font-size: 1.28rem;
-                    font-family: $font-regular;
-                }
-                .s-price {
-                    font-size: 1.4rem;
-                    font-family: $font-semi-bold;
-                }
-                .u-price {
-                    font-size: 1.28rem;
-                    font-family: $font-semi-bold;
-                }
-                .t-price {
-                    font-size: 1.4rem;
-                    font-family: $font-bold;
-                }
-                .product-att {
-                    font-size: 1rem;
-                    font-family: $font-regular;
-                }
                 .checkout-cart-header {
                     .store-cart-content {
                         .store-name {
@@ -639,5 +636,40 @@ html {
     .products-title {
         font-size: 1.7rem;
         font-family: $font-bold;
+    }
+
+    // seller
+
+    .line-display {
+        display: inline-grid;
+        margin: 1rem 6rem 1rem 0;
+    
+        .store-name {
+            font-family: $font-regular;
+            font-size: 1.4rem;
+            title {
+                font-family: $font-regular;
+            }
+        }
+        .store-category {
+            font-family: $font-regular;
+            font-size: 1.28rem;
+        }
+    }
+    .store-start-date {
+        font-size: 1.4rem;
+        font-family: $font-regular;
+    }
+    .store-link a {
+        font-family: $font-regular;
+        font-size: 1.4rem;
+    }
+    .seller-category-search {
+        .search-wrapper {
+            input {
+                font-family: $font-semi-bold;
+                font-size: 1.28rem;
+            }
+        }
     }
 }

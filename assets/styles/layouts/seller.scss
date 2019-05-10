@@ -1,0 +1,80 @@
+@import "../main";
+
+.multi-vendor-seller-wrapper {
+    border-bottom: 1px solid $gray-color-6;
+    .seller-logo-container {
+        text-align: center;
+        .seller-logo {
+            img {
+                border: 1px solid $gray-color-6;
+                padding: 0.5rem 1rem;
+                height: 4rem;
+                border-radius: 0.35rem;
+                margin: 1rem 0;
+            }
+        }
+    }
+}
+.line-display {
+    display: inline-grid;
+    margin: 1rem 6rem 1rem 0;
+
+    .store-name {
+        color: $gray-color-4;
+        title {
+            color: $black-color-3;
+            letter-spacing: 0.07rem;
+        }
+    }
+    .store-category {
+        color: $green-color-2;
+        background: $green-color-3;
+        padding: 0.2rem 1rem;
+        border-radius: 2rem;
+    }
+}
+.store-start-date {
+    color: $gray-color-4;
+    line-height: 1.2;
+}
+.store-link a {
+    color: $orange-color-1 !important;
+    line-height: 1.2;
+}
+.seller-category-search {
+    text-align: center;
+    margin: 1rem 0 0 2rem;
+    .search-wrapper {
+        padding: 0 2rem;
+        background: #e4e4e4;
+        border-radius: 2rem;
+        input {
+            border: none;
+            background: $gray-color-7;
+            outline: none !important;
+            padding: 0.5rem 0;
+            width: 90%;
+            &::placeholder {
+                color: $gray-color-8;
+            }
+        }
+        button {
+            border: none;
+            background: $gray-color-7;
+            outline: none !important;
+            padding: 0.5rem 0;
+
+            .icon-Path-64:before {
+                color: $gray-color-8;
+            }
+        }
+    }
+}
+.main-seller-banner {
+    margin: 1rem 3.5rem 2rem 2.5rem !important;
+    .seller-banner {
+        img {
+            width: 100%;
+        }
+    }
+}
