@@ -265,6 +265,25 @@
         }
     }
 }
+.special-single-product {
+    width: 20%;
+}
+.special-single-product-wrapper {
+    .product-description {
+        &:before {
+            content: "" !important;
+        }
+    }
+    .price-cart {
+        border-top: none !important;
+        padding: 1.5rem 1rem !important;
+
+        .initial-price {
+            position: relative !important;
+            bottom: 0 !important;
+        }
+    }
+}
 .made-in-rwanda {
     background: $gray-color-2;
     padding: 1rem 0 3rem 0;

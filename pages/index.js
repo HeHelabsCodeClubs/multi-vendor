@@ -10,6 +10,7 @@ import HomepageCategory from "../components/views/homepage/HomepageCategory";
 import fetch from 'isomorphic-unfetch';
 import { API_URL } from '../config';
 import FeaturedSellers from "../components/views/homepage/FeaturedSellers";
+import Promotion from "../components/views/homepage/Promotion";
 
 class Index extends React.Component {
 	constructor(props) {
@@ -54,11 +55,14 @@ class Index extends React.Component {
 				<div className='top-stores'>
 					<TopStores topStores={topStores} />
 				</div>
-				<div className='special-offers'>
+				<div className='made-in-rwanda special-offers'>
 					<SpecialOffers />
 				</div>
-				<div className='made-in-rwanda'>
+				<div className='made-in-rwanda special-offers'>
 					<MadeInRwanda stores={stores} />
+				</div>
+				<div className='made-in-rwanda special-offers'>
+					<Promotion />
 				</div>
 			</Global>
 		);

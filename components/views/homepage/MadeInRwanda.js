@@ -53,6 +53,38 @@ class MadeInRwanda extends Component {
 			]
 		}
 
+		var prodSettings = {
+			infinite: true,
+			speed: 500,
+			slidesToShow: 4,
+			slidesToScroll: 2,
+			responsive: [
+				{
+					breakpoint: 1024,
+					settings: {
+						slidesToShow: 3,
+						slidesToScroll: 3,
+						infinite: true,
+						dots: true
+					}
+				},
+				{
+					breakpoint: 600,
+					settings: {
+						slidesToShow: 2,
+						slidesToScroll: 2
+					}
+				},
+				{
+					breakpoint: 480,
+					settings: {
+						slidesToShow: 1,
+						slidesToScroll: 1
+					}
+				}
+			]
+		}
+
 		return (
 			<div className='made-in-rwanda-wrapper'>
 				<div className='made-in-rwanda-title maximum-width'>Made In Rwanda <span>Brands</span></div>
@@ -61,22 +93,31 @@ class MadeInRwanda extends Component {
 						{this.renderStores(this.props.stores)}
                     </Slider>
                 </div>
-				<div className='made-in-rwanda-content maximum-width'>
-					<div className='made-in-rwanda-wrapper'>
-                        <div className='row rwanda-wrapper'>
-                            <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
-                                <Product />
-                            </div>
-                            <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
-                                <Product />
-                            </div>
-                            <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
-                                <Product />
-                            </div>
-                            <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
-                                <Product />
-                            </div>
-                        </div>
+				<div className='special-offers-wrapper'>
+					<div className='special-offers-title maximum-width'>Special Offers</div>
+					<div className='special-offers-content maximum-width'>
+						<div className='special-wrapper'>
+							<Slider {...prodSettings}>
+								<div>
+									<Product />
+								</div>
+								<div>
+									<Product />
+								</div>
+								<div>
+									<Product />
+								</div>
+								<div>
+									<Product />
+								</div>
+								<div>
+									<Product />
+								</div>
+								<div>
+									<Product />
+								</div>
+							</Slider>
+						</div>
 					</div>
 				</div>
 			</div>
