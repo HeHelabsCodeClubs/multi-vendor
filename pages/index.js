@@ -61,9 +61,9 @@ class Index extends React.Component {
 				<div className='made-in-rwanda special-offers'>
 					<MadeInRwanda stores={stores} />
 				</div>
-				<div className='made-in-rwanda special-offers'>
+				{/* <div className='made-in-rwanda special-offers'>
 					<Promotion />
-				</div>
+				</div> */}
 			</Global>
 		);
 	}

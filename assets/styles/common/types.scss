@@ -707,6 +707,13 @@ html {
                 font-family: $font-bold;
                 font-size: 1.1rem;
             }
+            .subscribe {
+                background: $white-color;
+                border-radius: 0.2rem;
+                input {
+                    font-size: 1rem;
+                }
+            }
         }
     }
 }
