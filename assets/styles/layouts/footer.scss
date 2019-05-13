@@ -29,5 +29,10 @@
             text-transform: uppercase;
             color: $white-color;
         }
+        input {
+            padding: 0.4rem 1rem;
+            border-radius: 0.2rem 0 0 0.2rem;
+            border: none;
+        }
     }
 }
