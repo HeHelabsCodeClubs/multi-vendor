@@ -683,4 +683,30 @@ html {
             }
         }
     }
+
+    // Footer
+
+    .footer-wrapper {
+        .footer-wrapper-content {
+    
+            .footer-title {
+                font-family: $font-semi-bold;
+                font-size: 1.4rem;
+            }
+            .footer-content {
+                .content {
+                    font-family: $font-light;
+                    font-size: 1.4rem;
+                }
+            }
+            .contact-content {
+                font-family: $font-light;
+                font-size: 1.4rem;
+            }
+            button {
+                font-family: $font-bold;
+                font-size: 1.1rem;
+            }
+        }
+    }
 }
