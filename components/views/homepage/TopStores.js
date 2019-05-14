@@ -5,7 +5,7 @@ class TopStores extends Component {
     renderTopStores(topStores) {
 		const storesLayout = topStores.map((topStore) => {
 			return (
-                <div className='col-lg-1 col-md-1 col-sm-3 col-4 col-reset category' key={topStore.image_url}>
+                <div className='col-lg-2 col-md-2 col-sm-3 col-3 col-reset category' key={topStore.image_url}>
                     <a href='/categories'>
                         <img src={topStore.image_url} />
                         <h4>{topStore.tag_name}</h4>

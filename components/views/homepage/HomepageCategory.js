@@ -22,7 +22,32 @@ class HomepageCategory extends Component {
 			infinite: true,
 			speed: 1000,
 			slidesToShow: 6,
-  			slidesToScroll: 2
+            slidesToScroll: 2,
+            responsive: [
+                {
+                  breakpoint: 979,
+                  settings: {
+                    slidesToShow: 5,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: true
+                  }
+                },
+                {
+                  breakpoint: 768,
+                  settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                  }
+                },
+                {
+                  breakpoint: 480,
+                  settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1
+                  }
+                }
+              ]
 		};
         return  (
             <Slider {...catSettings}>
