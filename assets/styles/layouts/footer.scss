@@ -1,0 +1,50 @@
+@import "../main";
+
+.footer-wrapper {
+    background: $black-color-2;
+    .footer-wrapper-content {
+        width: 90%;
+        margin: 0 auto;
+        padding: 3rem 0 4rem 0;
+
+        .footer-title {
+            color: $gray-color-6;
+            text-transform: uppercase;
+        }
+        .footer-content {
+            margin: 1rem 0 0 0;
+            .content {
+                color: $gray-color-6;
+            }
+        }
+        .contact-content {
+            color: $gray-color-6;
+            margin: 0 0 1rem 0;
+        }
+        button {
+            background: $green-color-2;
+            border: none;
+            border-radius: 0.2rem;
+            padding: 0.4rem 1rem;
+            text-transform: uppercase;
+            color: $white-color;
+        }
+        .subscribe {
+            background: $white-color;
+            border-radius: 0.2rem;
+            margin: 0 0 1rem 0;
+            input {
+                padding: 0.4rem 1rem;
+                border-radius: 0.2rem 0 0 0.2rem;
+                border: none;
+                width: 70%;
+                &::placeholder {
+                    color: $gray-color-6;
+                }
+            }
+            button {
+                width: 30%;
+            }
+        }
+    }
+}

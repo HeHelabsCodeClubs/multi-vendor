@@ -133,7 +133,50 @@
             }
         }
     }
-}   
+} 
+.featured-wrapper {
+    background: $white-color;
+    box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.05);
+    border-radius: 0.35rem;
+    padding: 1rem;
+    margin: 0 1%;
+    width: 98% !important;
+
+    .featured-seller-product {
+        padding: 0 0.2rem !important;
+        margin: 1rem 0 0 0;
+
+        img {
+            width: 100%;
+            border: 1px solid $gray-color-6;
+            border-radius: 0.3rem;
+        }
+    } 
+    .featured-header {
+        @include flexbox;
+        @include flexalignitems(center);
+    }
+    .margin-reset {
+        margin: 1rem !important;
+        .store-category {
+            font-family: "Harmonia Sans Pro Regular";
+            font-size: 0.9rem;
+        }
+        .store-name {
+            text-transform: uppercase;
+        }
+    }
+    .seller-link a {
+        color: $green-color-2 !important;
+        @include flexbox;
+        @include flexalignitems(center);
+        @include flexjustifycontent(center);
+
+        span {
+            margin: 0 0 0 1rem;
+        }
+    }
+} 
 .top-stores {
     background: $gray-color-2;
     padding: 0 0 2rem 0;
@@ -148,6 +191,7 @@
             .stores-wrapper {
                 width: 90%;
                 margin: 0 auto;
+                border-bottom: 1px solid $gray-color-6;
 
                 .category {
                     text-align: center;
@@ -225,6 +269,25 @@
                     }
                 }
             }
+        }
+    }
+}
+.special-single-product {
+    width: 20%;
+}
+.special-single-product-wrapper {
+    .product-description {
+        &:before {
+            content: "" !important;
+        }
+    }
+    .price-cart {
+        border-top: none !important;
+        padding: 1.5rem 1rem !important;
+
+        .initial-price {
+            position: relative !important;
+            bottom: 0 !important;
         }
     }
 }

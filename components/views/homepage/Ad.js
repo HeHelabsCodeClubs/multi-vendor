@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import FullPageSlider from '../../adds/FullPageSlider'; 
+import FullPageSlider from '../../ads/FullPageSlider'; 
 
-class Add extends Component {
+class Ad extends Component {
     constructor(props) {
         super(props);
     }
@@ -21,4 +21,4 @@ class Add extends Component {
     }   
 }
 
-export default Add;
+export default Ad;

@@ -1,21 +1,27 @@
 import React from "react";
 import Global from '../components/reusable/Global';
 import '../assets/styles/layouts/homepage.scss';
+import '../assets/styles/layouts/seller.scss';
 import TopStores from '../components/views/homepage/TopStores';
 import SpecialOffers from "../components/views/homepage/SpecialOffers";
 import MadeInRwanda from "../components/views/homepage/MadeInRwanda";
-import Add from "../components/views/homepage/Add";
+import Ad from "../components/views/homepage/Ad";
 import HomepageCategory from "../components/views/homepage/HomepageCategory";
 import fetch from 'isomorphic-unfetch';
 import { API_URL } from '../config';
+import FeaturedSellers from "../components/views/homepage/FeaturedSellers";
+import Promotion from "../components/views/homepage/Promotion";
 
 class Index extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			promoAdds: [],
+			promoAds: [],
 			type: null,
-			categories: []
+			categories: [],
+			stores: [],
+			topStores: [],
+			sellers: []
 		}
 	}
 	async componentDidMount() {
@@ -23,33 +29,41 @@ class Index extends React.Component {
         const data = await res.json()
 
         this.setState({
-		   promoAdds: data.data.adds.promo.data,
+		   promoAds: data.data.adds.promo.data,
 		   type: data.data.adds.promo.type,
-		   categories: data.data.categories
+		   categories: data.data.categories,
+		   stores: data.data.made_in_rwanda_brands,
+		   topStores: data.data.top_stores,
+		   sellers: data.data.featured_sellers
         });
-        //console.log(`Show data fetched. Count: ${JSON.stringify(data.data.adds.promo)}`)
     }
 	render() {
-		const { promoAdds, type, categories } = this.state;
+		const { promoAds, type, categories, stores, topStores, sellers } = this.state;
 		return (
 			<Global>
 				<div className='main-banners'>
-					<Add type={type} data={promoAdds}/>
+					<Ad type={type} data={promoAds}/>
 				</div>
 				<div className='categories-scroller'>
 					<div className='maximum-width'>
 						<HomepageCategory categories={categories} />
 					</div>
 				</div>
-				<div className='top-stores'>
-					<TopStores />
-				</div>
 				<div className='special-offers'>
+					<FeaturedSellers sellers={sellers} />
+				</div>
+				<div className='top-stores'>
+					<TopStores topStores={topStores} />
+				</div>
+				<div className='made-in-rwanda special-offers'>
 					<SpecialOffers />
 				</div>
-				<div className='made-in-rwanda'>
-					<MadeInRwanda />
+				<div className='made-in-rwanda special-offers'>
+					<MadeInRwanda stores={stores} />
 				</div>
+				{/* <div className='made-in-rwanda special-offers'>
+					<Promotion />
+				</div> */}
 			</Global>
 		);
 	}
