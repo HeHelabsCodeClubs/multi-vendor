@@ -148,6 +148,8 @@
             width: 100%;
             border: 1px solid $gray-color-6;
             border-radius: 0.3rem;
+            height: 15rem;
+            object-fit: contain;
         }
     } 
     .featured-header {
@@ -328,6 +330,12 @@
                 margin: 0 auto;
             }
         }
+    }
+}
+.promotion-wrapper {
+    .slick-slide img {
+        width: 98% !important;
+        margin: 0 1%;
     }
 }
 h4 {

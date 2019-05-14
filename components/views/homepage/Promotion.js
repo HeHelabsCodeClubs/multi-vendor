@@ -4,18 +4,13 @@ import Slider from "react-slick";
 
 class Promotion extends Component {
 
-    renderPromotion() {
-        return (
-            <div>me</div>
-        )
-    }
-
 	render() {
-		var prodSettings = {
+		var settings = {
 			infinite: true,
 			speed: 500,
-			slidesToShow: 4,
-			slidesToScroll: 2,
+			slidesToShow: 3,
+			slidesToScroll: 1,
+			dots: true,
 			responsive: [
 				{
 					breakpoint: 1024,
@@ -48,25 +43,25 @@ class Promotion extends Component {
 				<div className='made-in-rwanda-title maximum-width'>Promotion and Events In the news - Gallery</div>
 				<div className='special-offers-wrapper'>
 					<div className='special-offers-content maximum-width'>
-						<div className='special-wrapper'>
-							<Slider {...prodSettings}>
+						<div className='special-wrapper promotion-wrapper'>
+							<Slider {...settings}>
 								<div>
-									{this.renderPromotion()}
+									<img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1557819406/multi-vendor/ad1_2x.png' />
 								</div>
 								<div>
-									{this.renderPromotion()}
+									<img src='https://res.cloudinary.com/hehe/image/upload/v1557819405/multi-vendor/ad2_2x.png' />
 								</div>
 								<div>
-									{this.renderPromotion()}
+									<img src='https://res.cloudinary.com/hehe/image/upload/v1557819404/multi-vendor/ad3_2x.png' />
 								</div>
 								<div>
-									{this.renderPromotion()}
+									<img src='https://res.cloudinary.com/hehe/image/upload/v1557819406/multi-vendor/ad1_2x.png' />
 								</div>
 								<div>
-									{this.renderPromotion()}
+									<img src='https://res.cloudinary.com/hehe/image/upload/v1557819405/multi-vendor/ad2_2x.png' />
 								</div>
 								<div>
-									{this.renderPromotion()}
+									<img src='https://res.cloudinary.com/hehe/image/upload/v1557819404/multi-vendor/ad3_2x.png' />
 								</div>
 							</Slider>
 						</div>
