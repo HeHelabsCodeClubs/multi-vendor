@@ -32,7 +32,7 @@ class Index extends React.Component {
 		   promoAds: data.data.adds.promo.data,
 		   type: data.data.adds.promo.type,
 		   categories: data.data.categories,
-		   stores: data.data.made_in_rwanda_brands,
+		   stores: data.data.made_in_rwanda_brands.brands,
 		   topStores: data.data.top_stores,
 		   sellers: data.data.featured_sellers
         });
