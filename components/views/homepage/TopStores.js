@@ -8,7 +8,7 @@ class TopStores extends React.Component {
                 <div className='top-stores-content maximum-width'>
                     <div className='stores-wrapper'>
                         <div className='row reset-row'>
-                            <div className='col-lg-2 col-md-2 col-sm-4 col-6 category'>
+                            <div className='col-lg-2 col-md-2 col-sm-3 col-3 category'>
                                 <Link href='/categories'>
                                     <a>
                                         <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
@@ -16,7 +16,7 @@ class TopStores extends React.Component {
                                     </a>
                                 </Link>
                             </div>
-                            <div className='col-lg-2 col-md-2 col-sm-4 col-6 category'>
+                            <div className='col-lg-2 col-md-2 col-sm-3 col-3 category'>
                                 <Link href='/categories'>
                                     <a>
                                         <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
@@ -24,7 +24,7 @@ class TopStores extends React.Component {
                                     </a>
                                 </Link>
                             </div>
-                            <div className='col-lg-2 col-md-2 col-sm-4 col-6 category'>
+                            <div className='col-lg-2 col-md-2 col-sm-3 col-3 category'>
                                 <Link href='/categories'>
                                     <a>
                                         <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
@@ -32,7 +32,7 @@ class TopStores extends React.Component {
                                     </a>
                                 </Link>
                             </div>
-                            <div className='col-lg-2 col-md-2 col-sm-4 col-6 category'>
+                            <div className='col-lg-2 col-md-2 col-sm-3 col-3 category'>
                                 <Link href='/categories'>
                                     <a>
                                         <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
@@ -40,7 +40,7 @@ class TopStores extends React.Component {
                                     </a>
                                 </Link>
                             </div>
-                            <div className='col-lg-2 col-md-2 col-sm-4 col-6 category'>
+                            <div className='col-lg-2 col-md-2 col-sm-3 col-3 category'>
                                 <Link href='/categories'>
                                     <a>
                                         <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
@@ -48,22 +48,14 @@ class TopStores extends React.Component {
                                     </a>
                                 </Link>
                             </div>
-                            <div className='col-lg-2 col-md-2 col-sm-4 col-6 category'>
+                            <div className='col-lg-2 col-md-2 col-sm-3 col-3 category'>
                                 <Link href='/categories'>
                                     <a>
                                         <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                                         <h4>Groceries</h4>
                                     </a>
                                 </Link>
-                            </div><div className='col-lg-2 col-md-2 col-sm-4 col-6 category'>
-                                <Link href='/categories'>
-                                    <a>
-                                        <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
-                                        <h4>Groceries</h4>
-                                    </a>
-                                </Link>
-                            </div>
-                            <div className='col-lg-2 col-md-2 col-sm-4 col-6 category'>
+                            </div><div className='col-lg-2 col-md-2 col-sm-3 col-3 category'>
                                 <Link href='/categories'>
                                     <a>
                                         <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
@@ -71,7 +63,7 @@ class TopStores extends React.Component {
                                     </a>
                                 </Link>
                             </div>
-                            <div className='col-lg-2 col-md-2 col-sm-4 col-6 category'>
+                            <div className='col-lg-2 col-md-2 col-sm-3 col-3 category'>
                                 <Link href='/categories'>
                                     <a>
                                         <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
@@ -79,7 +71,7 @@ class TopStores extends React.Component {
                                     </a>
                                 </Link>
                             </div>
-                            <div className='col-lg-2 col-md-2 col-sm-4 col-6 category'>
+                            <div className='col-lg-2 col-md-2 col-sm-3 col-3 category'>
                                 <Link href='/categories'>
                                     <a>
                                         <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
@@ -87,7 +79,7 @@ class TopStores extends React.Component {
                                     </a>
                                 </Link>
                             </div>
-                            <div className='col-lg-2 col-md-2 col-sm-4 col-6 category'>
+                            <div className='col-lg-2 col-md-2 col-sm-3 col-3 category'>
                                 <Link href='/categories'>
                                     <a>
                                         <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
@@ -95,7 +87,15 @@ class TopStores extends React.Component {
                                     </a>
                                 </Link>
                             </div>
-                            <div className='col-lg-2 col-md-2 col-sm-4 col-6 category'>
+                            <div className='col-lg-2 col-md-2 col-sm-3 col-3 category'>
+                                <Link href='/categories'>
+                                    <a>
+                                        <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
+                                        <h4>Groceries</h4>
+                                    </a>
+                                </Link>
+                            </div>
+                            <div className='col-lg-2 col-md-2 col-sm-3 col-3 category'>
                                 <Link href='/categories'>
                                     <a>
                                         <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
