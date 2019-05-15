@@ -156,6 +156,11 @@ html {
     .made-in-rwanda-title {
         font-size: 2.14rem;
         font-family: $font-bold;
+
+        @media screen and (max-width: $mobile-lg) {
+            font-size: 1.2rem;
+        }
+
         span {
             font-family: $font-regular;
         }
@@ -185,10 +190,18 @@ html {
             .price {
                 font-size: 1.42rem;
                 font-family: $font-bold;
+
+                @media screen and (max-width: $mobile-lg) {
+                    font-size: 0.8rem;
+                }
             }
             .initial-price {
                 font-size: 1.14rem;
                 font-family: $font-semi-bold;
+
+                @media screen and (max-width: $mobile-lg) {
+                    font-size: 0.7rem;
+                }
             }
             .add-to-cart {
                 button {
@@ -222,10 +235,18 @@ html {
         .hot {
             font-size: 1rem;
             font-family: $font-regular;
+
+            @media screen and (max-width: $mobile-lg) {
+                font-size: 0.6rem;
+            }
         }
         .discount {
             font-size: 1rem;
             font-family: $font-regular;
+
+            @media screen and (max-width: $mobile-lg) {
+                font-size: 0.6rem;
+            }
         }
     }
     .made-in-rwanda-wrapper {

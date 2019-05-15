@@ -48,6 +48,7 @@ class MadeInRwanda extends Component {
 					settings: {
 						slidesToShow: 1,
 						slidesToScroll: 1
+						
 					}
 				}
 			]
@@ -79,7 +80,10 @@ class MadeInRwanda extends Component {
 					breakpoint: 480,
 					settings: {
 						slidesToShow: 1,
+						centerMode: true,
+						centerPadding: "40px",
 						slidesToScroll: 1
+
 					}
 				}
 			]

@@ -260,6 +260,10 @@
                             content: '\e919';
                             color: $black-color-2;
                         }
+
+                        @media screen and (max-width: $mobile-lg) {
+                            display: none;
+                        }
                     }
                     .slick-prev {
                         border-radius: 1rem 0 0 1rem;
@@ -268,6 +272,11 @@
                             content: '\e91a';
                             color: $black-color-2;
                         }
+
+                        @media screen and (max-width: $mobile-lg) {
+                            display: none;
+                        }
+
                     }
                 }
             }
@@ -276,6 +285,10 @@
 }
 .special-single-product {
     width: 20%;
+
+    @media screen and (max-width: $mobile-lg){
+        width: 33.33%;
+    }
 }
 .special-single-product-wrapper {
     .product-description {
@@ -286,6 +299,10 @@
     .price-cart {
         border-top: none !important;
         padding: 1.5rem 1rem !important;
+
+        @media screen and (max-width: $mobile-lg){
+            padding: 10px 0px 10px 5px !important;
+        }
 
         .initial-price {
             position: relative !important;
