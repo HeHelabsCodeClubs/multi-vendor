@@ -77,31 +77,33 @@ class Product extends React.Component {
     }
 
     renderProduct(product) {
-        return (
-            <a href={`#${product.slug}`}>
-                {/* <img className='product-img' src={product.image_url} /> */}
-                <ImageLoader 
-                    imageClassName='product-img' 
-                    imageUrl={product.image_url}
-                    placeholderHeight={300}
-                    placeholderBackgroundColor='#f5f5f5'
-                />
-                {this.renderProductIdentifier(product)}
-                <div className='product-description'>
-                    <div className='store-logo'>
-                        <img className='store-img' src={product.store.icon} />
-                        <span className='store-name'>{product.store.name}</span>
+        if (product) {
+            return (
+                <a href={`#${product.slug}`}>
+                    {/* <img className='product-img' src={product.image_url} /> */}
+                    <ImageLoader 
+                        imageClassName='product-img' 
+                        imageUrl={product.image_url}
+                        placeholderHeight={300}
+                        placeholderBackgroundColor='#f5f5f5'
+                    />
+                    {this.renderProductIdentifier(product)}
+                    <div className='product-description'>
+                        <div className='store-logo'>
+                            <img className='store-img' src={product.store.icon} />
+                            <span className='store-name'>{product.store.name}</span>
+                        </div>
+                        <div className='product-name'>{product.description}</div>
+                        <div className='price-cart'>
+                            {this.renderProductPrice(product)}
+                            <span className='add-to-cart'>
+                                <button><span className='icon-Path-63'></span></button>
+                            </span>
+                        </div>
                     </div>
-                    <div className='product-name'>{product.description}</div>
-                    <div className='price-cart'>
-                        {this.renderProductPrice(product)}
-                        <span className='add-to-cart'>
-                            <button><span className='icon-Path-63'></span></button>
-                        </span>
-                    </div>
-                </div>
-            </a>            
-        );
+                </a>            
+            );
+        }
     }
 
 	render() {

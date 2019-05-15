@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Link from 'next/link';
 
 class TopStores extends Component {
 
@@ -6,10 +7,12 @@ class TopStores extends Component {
 		const storesLayout = topStores.map((topStore) => {
 			return (
                 <div className='col-lg-2 col-md-2 col-sm-3 col-3 col-reset category' key={topStore.image_url}>
-                    <a href='/categories'>
-                        <img src={topStore.image_url} />
-                        <h4>{topStore.tag_name}</h4>
-                    </a>
+                    <Link href='/categories' prefetch>
+                        <a>
+                            <img src={topStore.image_url} />
+                            <h4>{topStore.tag_name}</h4>
+                        </a>
+                    </Link>
                 </div>
 			)
 		});
