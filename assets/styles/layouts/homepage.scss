@@ -195,6 +195,11 @@
                 margin: 0 auto;
                 border-bottom: 1px solid $gray-color-6;
 
+                @media screen and (max-width: $mobile-lg) {
+                    border-bottom: 0.1px solid $gray-color-6;
+                    padding-bottom: 25px;
+                }
+
                 .category {
                     text-align: center;
                     margin: 0 0 3rem 0;
@@ -245,6 +250,11 @@
             .special-wrapper {
                 width: 90%;
                 margin: 0 auto;
+
+                @media screen and (max-width: $mobile-lg){
+                    width: 100%;
+                }
+        
                 .slick-slider {
                     .slick-arrow {
                         width: 3.14rem;
@@ -262,7 +272,7 @@
                         }
 
                         @media screen and (max-width: $mobile-lg) {
-                            display: none;
+                            display: none !important;
                         }
                     }
                     .slick-prev {
@@ -274,7 +284,7 @@
                         }
 
                         @media screen and (max-width: $mobile-lg) {
-                            display: none;
+                            display: none !important;
                         }
 
                     }
@@ -323,6 +333,11 @@
             padding: 1rem 0;
             background: $white-color;
             margin: 1rem 0 2rem 0;
+
+            @media screen and (max-width: $mobile-lg){
+                display: none;
+            }
+    
 
             .slick-list {
                 width: 90%;
