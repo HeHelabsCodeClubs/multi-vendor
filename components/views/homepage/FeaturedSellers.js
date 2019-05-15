@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import Slider from "react-slick";
+import ImageLoader from '../../reusable/ImageLoader';
 
 class FeaturedSellers extends Component {
 
@@ -28,7 +29,10 @@ class FeaturedSellers extends Component {
                             <div className='featured-header'>
                                 <a href='' className='seller-logo-container'>
                                     <div className='seller-logo'>
-                                        <img src={seller.logo} />
+                                        <ImageLoader 
+                                        imageUrl={seller.logo}
+                                        placeholderBackgroundColor='#ffffff'
+                                        />
                                     </div>
                                 </a>
                                 <span className='line-display margin-reset'>

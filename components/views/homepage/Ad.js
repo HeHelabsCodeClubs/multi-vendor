@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FullPageSlider from '../../ads/FullPageSlider'; 
+import Promotion from '../homepage/Promotion';
 
 class Ad extends Component {
     constructor(props) {
@@ -10,6 +11,8 @@ class Ad extends Component {
         switch(addType) {
             case 'slider':
                 return <FullPageSlider adds={data} />
+            case 'default':
+                return <Promotion events={data} />
             default:
                 return null;
 

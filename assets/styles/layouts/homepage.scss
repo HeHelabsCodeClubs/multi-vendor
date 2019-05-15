@@ -306,6 +306,9 @@
             content: "" !important;
         }
     }
+    img.product-img {
+        border-bottom: 1px solid $gray-color-2;    
+    }
     .price-cart {
         border-top: none !important;
         padding: 1.5rem 1rem !important;
@@ -381,3 +384,4 @@ h4 {
     color: $black-color-3 !important;
     margin: 0.5rem 0 0 0 !important;
 }
+

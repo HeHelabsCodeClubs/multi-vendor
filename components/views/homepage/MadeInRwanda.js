@@ -20,10 +20,22 @@ class MadeInRwanda extends Component {
 		}
 	}
 
+	renderProducts(products) {
+        const productsLayout = products.map((product) => {
+            return (
+				<div key={product.slug}>
+					<Product product={product} />
+				</div>
+            );
+        });
+        return productsLayout;
+    }
+
 	render() {
         const settings = {
-			infinite: true,
+			infinite: false,
 			speed: 500,
+			rows:1,
 			slidesToShow: 4,
 			slidesToScroll: 2,
 			responsive: [
@@ -55,8 +67,9 @@ class MadeInRwanda extends Component {
 		}
 
 		var prodSettings = {
-			infinite: true,
+			infinite: false,
 			speed: 500,
+			rows: 1,
 			slidesToShow: 4,
 			slidesToScroll: 2,
 			responsive: [
@@ -88,37 +101,21 @@ class MadeInRwanda extends Component {
 				}
 			]
 		}
+		const { stores, products } = this.props;
 
 		return (
 			<div className='made-in-rwanda-wrapper'>
 				<div className='made-in-rwanda-title maximum-width'>Made In Rwanda <span>Brands</span></div>
                 <div className='stores-logos'>
                     <Slider {...settings}>
-						{this.renderStores(this.props.stores)}
+						{this.renderStores(stores)}
                     </Slider>
                 </div>
 				<div className='special-offers-wrapper'>
 					<div className='special-offers-content maximum-width'>
 						<div className='special-wrapper'>
 							<Slider {...prodSettings}>
-								<div>
-									<Product />
-								</div>
-								<div>
-									<Product />
-								</div>
-								<div>
-									<Product />
-								</div>
-								<div>
-									<Product />
-								</div>
-								<div>
-									<Product />
-								</div>
-								<div>
-									<Product />
-								</div>
+								{this.renderProducts(products)}
 							</Slider>
 						</div>
 					</div>

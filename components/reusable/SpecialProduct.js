@@ -1,8 +1,8 @@
 import Link from 'next/link'; 
 import Modal from 'react-responsive-modal';
-import Select2 from 'react-select2-wrapper';
 import '../../assets/styles/layouts/product.scss';
 import ProductPopup from '../views/ProductPopup';
+import ImageLoader from './ImageLoader';
 
 class SpecialProduct extends React.Component {
     constructor(props) {
@@ -12,6 +12,9 @@ class SpecialProduct extends React.Component {
         };
         this.onOpenModal = this.onOpenModal.bind(this);
         this.onCloseModal = this.onCloseModal.bind(this);
+        this.renderProduct = this.renderProduct.bind(this);
+        this.renderProductIdentifier = this.renderProductIdentifier.bind(this);
+        this.renderProductPrice = this.renderProductPrice.bind(this);
     }
     onOpenModal() {
         this.setState({ 
@@ -19,31 +22,88 @@ class SpecialProduct extends React.Component {
         });
     };
 
-    onCloseModal () {
+    onCloseModal() {
         this.setState({ 
             open: false 
         });
     };
+
+    renderProductIdentifier(product) {
+        const { has_discount, is_popular, discount_percent } = product;
+        const discount = Number(has_discount);
+        const popularity = Number(is_popular);
+        if ( discount === 1 && popularity === 1 ) {
+            return (
+                <div className='top-icons'>
+                    <span className='hot'><span className='icon-Path-54'></span>hot</span>
+                    <span className='discount'>{`${discount_percent}% OFF`}</span>
+                </div>
+            );
+        }
+
+        if ( discount === 1 && popularity !== 1) {
+            return (
+                <div className='top-icons'>
+                    <span className='discount'>{`${discount_percent}% OFF`}</span>
+                </div>
+            );
+        }
+
+        if (discount !== 1 && popularity === 1) {
+            return (
+                <div className='top-icons'>
+                    <span className='hot'><span className='icon-Path-54'></span>hot</span>
+                </div>
+            );
+        }
+        
+        return null;
+    }
+
+    renderProductPrice(product) {
+        const { has_discount, price, special_price } = product;
+        const discount = Number(has_discount);
+        if (discount === 1) {
+            return (
+                <div className='price-cart'>
+                    <span className='price'>{`Rwf ${special_price}`}</span>
+                    <span className='initial-price'>{`Rwf ${price}`}</span>
+                </div>
+            );
+        }
+
+        return (
+            <div className='price-cart'>
+                <span className='price'>{`Rwf ${special_price}`}</span>
+            </div>
+        );
+    }
+
+    renderProduct(product) {
+        return (
+            <Link href={`#${product.slug}`}>
+                <a>
+                    <ImageLoader 
+                    imageClassName='product-img' 
+                    imageUrl={product.image_url}
+                    hasPlaceholder={true}
+                    placeholderHeight={300}
+                    />
+                    {this.renderProductIdentifier(product)}
+                    <div className='product-description'>
+                        {this.renderProductPrice(product)}
+                    </div>
+                </a>
+            </Link>            
+        );
+    }
 	render() {
         const { open } = this.state;
+        const { product } = this.props;
 		return (
             <div className='special-single-product-wrapper'>
                 <div className='single-product' onClick={this.onOpenModal}>
-                    <Link href=''>
-                        <a>
-                            <img className='product-img' src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288624/multi-vendor/prod_3_2x.png' />
-                            <div className='top-icons'>
-                                <span className='hot'><span className='icon-Path-54'></span>hot</span>
-                                <span className='discount'>50% OFF</span>
-                            </div>
-                            <div className='product-description'>
-                                <div className='price-cart'>
-                                    <span className='price'>Rwf 5000</span>
-                                    <span className='initial-price'>Rwf 10000</span>
-                                </div>
-                            </div>
-                        </a>
-                    </Link>            
+                    {this.renderProduct(product)}
                 </div>
                 <Modal open={open} onClose={this.onCloseModal} center>
                     <ProductPopup />
