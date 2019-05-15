@@ -3,9 +3,20 @@ import React, { Component } from 'react';
 import Slider from "react-slick";
 
 class Promotion extends Component {
+	renderEvents(events) {
+		const eventsLayout = events.map((event) => {
+			return (
+				<a key={event.id}>
+					<img src={event.image_url} />
+				</a>
+			);
+		});
+		return eventsLayout;
+	}
 
 	render() {
-		var settings = {
+		const { events } = this.props;
+		const settings = {
 			infinite: true,
 			speed: 500,
 			slidesToShow: 3,
@@ -45,24 +56,7 @@ class Promotion extends Component {
 					<div className='special-offers-content maximum-width'>
 						<div className='special-wrapper promotion-wrapper'>
 							<Slider {...settings}>
-								<div>
-									<img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1557819406/multi-vendor/ad1_2x.png' />
-								</div>
-								<div>
-									<img src='https://res.cloudinary.com/hehe/image/upload/v1557819405/multi-vendor/ad2_2x.png' />
-								</div>
-								<div>
-									<img src='https://res.cloudinary.com/hehe/image/upload/v1557819404/multi-vendor/ad3_2x.png' />
-								</div>
-								<div>
-									<img src='https://res.cloudinary.com/hehe/image/upload/v1557819406/multi-vendor/ad1_2x.png' />
-								</div>
-								<div>
-									<img src='https://res.cloudinary.com/hehe/image/upload/v1557819405/multi-vendor/ad2_2x.png' />
-								</div>
-								<div>
-									<img src='https://res.cloudinary.com/hehe/image/upload/v1557819404/multi-vendor/ad3_2x.png' />
-								</div>
+								{this.renderEvents(events)}
 							</Slider>
 						</div>
 					</div>
