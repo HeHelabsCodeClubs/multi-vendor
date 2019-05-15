@@ -15,6 +15,7 @@ class SpecialProduct extends React.Component {
         this.renderProduct = this.renderProduct.bind(this);
         this.renderProductIdentifier = this.renderProductIdentifier.bind(this);
         this.renderProductPrice = this.renderProductPrice.bind(this);
+        this.showProduct = this.showProduct.bind(this);
     }
     onOpenModal() {
         this.setState({ 
@@ -78,24 +79,35 @@ class SpecialProduct extends React.Component {
             </div>
         );
     }
+    showProduct(e, product) {
+        e.preventDefault();
+        this.setState({
+            open: true
+        });
+        console.log('clicked');
+    }
 
     renderProduct(product) {
-        return (
-            <Link href={`#${product.slug}`}>
-                <a>
-                    <ImageLoader 
-                    imageClassName='product-img' 
-                    imageUrl={product.image_url}
-                    placeholderHeight={300}
-                    placeholderBackgroundColor='#ffffff'
-                    />
-                    {this.renderProductIdentifier(product)}
-                    <div className='product-description'>
-                        {this.renderProductPrice(product)}
-                    </div>
-                </a>
-            </Link>            
-        );
+        if (product) {
+            return (
+                <Link 
+                href=''
+                >
+                    <a>
+                        <ImageLoader 
+                        imageClassName='product-img' 
+                        imageUrl={product.image_url}
+                        placeholderHeight={300}
+                        placeholderBackgroundColor='#ffffff'
+                        />
+                        {this.renderProductIdentifier(product)}
+                        <div className='product-description'>
+                            {this.renderProductPrice(product)}
+                        </div>
+                    </a>
+                </Link>            
+            );
+        }
     }
 	render() {
         const { open } = this.state;

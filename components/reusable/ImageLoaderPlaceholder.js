@@ -37,7 +37,6 @@ class ImageLoaderPlaceHolder extends React.Component{
         const placeholderClass = !loading ? 'image-placeholder loaded' : 'image-placeholder';
         const background = placeholderBackgroundColor == undefined ? '#f5f5f5' : placeholderBackgroundColor;
         const back = !loading ? background : placeholderBackBefore;
-        //const height_value = loading ? `${height}px` : 'auto';
         return (
             <div 
             className={placeholderClass}
