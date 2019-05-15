@@ -88,7 +88,7 @@ class Index extends React.Component {
 						<HomepageCategory categories={categories} />
 					</div>
 				</div>
-				<div className='special-offers'>
+				<div className='special-offers featured-sellers'>
 					<FeaturedSellers sellers={sellers} />
 				</div>
 				<div className='top-stores'>

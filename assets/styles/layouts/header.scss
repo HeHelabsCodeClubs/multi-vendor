@@ -142,6 +142,20 @@
             }
         }
     }
+
+    .account-grid {
+
+        .header-content {
+
+            @media screen and (max-width: $mobile-lg) {
+                display: none;
+            }
+        }
+
+    }
+
+
+
     .icon-Path-62 {
         @include flexbox;
         @include flexalignitems(center);
@@ -157,6 +171,13 @@
         @include flexalignitems(center);
         @include flexjustifycontent(flex-start);
         height: 3rem;
+
+        .header-content {
+
+            @media screen and (max-width: $mobile-lg) {
+                display: none;
+            }
+        }
         
         .icon-Path-63 {
             &:before {

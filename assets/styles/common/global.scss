@@ -80,6 +80,11 @@ a {
     @include flexjustifycontent(center);
     @include flexalignitems(center);
     background-color: $gray-color-2;
+
+    @media screen and (max-width: $mobile-lg) {
+        height: auto !important;
+    }
+
     img {
         max-width: 100%;
         opacity: 0;
