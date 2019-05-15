@@ -1,4 +1,5 @@
 import Slider from "react-slick";
+import ImageLoader from '../reusable/ImageLoader';
 
 const settings = {
     infinite: true,
@@ -15,7 +16,11 @@ function renderAdds(adds) {
     const addsLayout = adds.map((add) => {
         return (
             <div key={add.id}>
-                <img src={add.image_url} />
+                <ImageLoader 
+                imageUrl={add.image_url}
+                hasPlaceholder={false}
+                placeholderHeight={300}
+                />
             </div>
         );
     });

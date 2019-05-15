@@ -69,3 +69,28 @@ a {
         }
     }
 }
+
+.img-loader-enter-active {
+    opacity: 1 !important;
+}
+
+.image-placeholder {
+    width: 100%;
+    @include flexbox();
+    @include flexjustifycontent(center);
+    @include flexalignitems(center);
+    background-color: $gray-color-2;
+    img {
+        max-width: 100%;
+        opacity: 0;
+        @include transition(opacity .3s ease-in);
+    }
+
+    &.loaded {
+        img {
+            opacity: 1 !important;
+        }
+    }
+}
+
+
