@@ -1,6 +1,5 @@
 import Link from 'next/link'; 
 import Modal from 'react-responsive-modal';
-import Select2 from 'react-select2-wrapper';
 import '../../assets/styles/layouts/product.scss';
 import ProductPopup from '../views/ProductPopup';
 
@@ -81,17 +80,15 @@ class SpecialProduct extends React.Component {
 
     renderProduct(product) {
         return (
-            <div className='single-product' onClick={this.onOpenModal}>
-                    <Link href={`#${product.slug}`}>
-                        <a>
-                            <img className='product-img' src={product.image_url} />
-                            {this.renderProductIdentifier(product)}
-                            <div className='product-description'>
-                                {this.renderProductPrice(product)}
-                            </div>
-                        </a>
-                    </Link>            
-            </div>
+            <Link href={`#${product.slug}`}>
+                <a>
+                    <img className='product-img' src={product.image_url} />
+                    {this.renderProductIdentifier(product)}
+                    <div className='product-description'>
+                        {this.renderProductPrice(product)}
+                    </div>
+                </a>
+            </Link>            
         );
     }
 	render() {
