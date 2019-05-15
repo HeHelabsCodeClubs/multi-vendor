@@ -21,7 +21,8 @@ class Index extends React.Component {
 			categories: [],
 			stores: [],
 			topStores: [],
-			sellers: []
+			sellers: [],
+			specialOffers: []
 		}
 	}
 	async componentDidMount() {
@@ -34,11 +35,20 @@ class Index extends React.Component {
 		   categories: data.data.categories,
 		   stores: data.data.made_in_rwanda_brands.brands,
 		   topStores: data.data.top_stores,
-		   sellers: data.data.featured_sellers
+		   sellers: data.data.featured_sellers,
+		   specialOffers: data.data.special_offers
         });
     }
 	render() {
-		const { promoAds, type, categories, stores, topStores, sellers } = this.state;
+		const { 
+			promoAds, 
+			type, 
+			categories, 
+			stores, 
+			topStores, 
+			sellers,
+			specialOffers
+		} = this.state;
 		return (
 			<Global>
 				<div className='main-banners'>
@@ -56,7 +66,7 @@ class Index extends React.Component {
 					<TopStores topStores={topStores} />
 				</div>
 				<div className='made-in-rwanda special-offers'>
-					<SpecialOffers />
+					<SpecialOffers specialOffers={specialOffers} />
 				</div>
 				<div className='made-in-rwanda special-offers'>
 					<MadeInRwanda stores={stores} />

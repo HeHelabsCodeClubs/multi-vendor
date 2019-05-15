@@ -94,13 +94,8 @@
                 color: $black-color-2;
             }
             .initial-price {
-                line-height: 1;
                 text-align: left;
                 color: $gray-color-6;
-                // border-bottom: 1px solid $gray-color-6;
-                line-height: 0.1rem !important;
-                position: absolute;
-                bottom: 1.7rem;
                 padding: 0 0.5rem;
                 margin: 0 0.5rem;
                 text-decoration: line-through;
