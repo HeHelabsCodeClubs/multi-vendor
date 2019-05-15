@@ -9,7 +9,8 @@
     position: relative;
 
     img.product-img {
-        width: 100%;      
+        width: 100%;   
+        object-fit: contain;   
     }
     .top-icons {
         position: absolute;
