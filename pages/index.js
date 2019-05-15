@@ -40,6 +40,7 @@ class Index extends React.Component {
 		   eventAddType: data.adds.events.type,
 		   categories: data.categories,
 		   stores: data.made_in_rwanda_brands.brands,
+		   products: data.made_in_rwanda_brands.products,
 		   topStores: data.top_stores,
 		   sellers: data.featured_sellers,
 		   specialOffers: data.special_offers
@@ -70,6 +71,7 @@ class Index extends React.Component {
 			type, 
 			categories, 
 			stores, 
+			products,
 			topStores, 
 			sellers,
 			eventAddType,
@@ -96,7 +98,7 @@ class Index extends React.Component {
 					<SpecialOffers offers={specialOffers} />
 				</div>
 				<div className='made-in-rwanda special-offers'>
-					<MadeInRwanda stores={stores} />
+					<MadeInRwanda stores={stores} products={products} />
 				</div>
 				<div className='made-in-rwanda special-offers'>
 					<Ad type={eventAddType} data={eventsAds}/>

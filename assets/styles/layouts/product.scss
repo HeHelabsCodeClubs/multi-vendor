@@ -48,6 +48,7 @@
     .product-description {
         background: $white-color;
         position: relative;
+        box-shadow: 0 -6px 12px 0 rgba(0, 0, 0, 0.05);
 
         &:before {
             content: "\e920";
@@ -62,6 +63,7 @@
                 position: absolute;
                 top: -1.3rem;
                 left: 2.24rem;
+                object-fit: contain;
                 height: 3rem;
                 width: 3rem;
                 background: $green-color-1;
