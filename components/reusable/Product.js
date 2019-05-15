@@ -2,6 +2,7 @@
 import Modal from 'react-responsive-modal';
 import '../../assets/styles/layouts/product.scss';
 import ProductPopup from '../views/ProductPopup';
+import ImageLoader from './ImageLoader';
 
 class Product extends React.Component {
     constructor(props) {
@@ -78,7 +79,13 @@ class Product extends React.Component {
     renderProduct(product) {
         return (
             <a href={`#${product.slug}`}>
-                <img className='product-img' src={product.image_url} />
+                {/* <img className='product-img' src={product.image_url} /> */}
+                <ImageLoader 
+                    imageClassName='product-img' 
+                    imageUrl={product.image_url}
+                    placeholderHeight={300}
+                    placeholderBackgroundColor='#f5f5f5'
+                />
                 {this.renderProductIdentifier(product)}
                 <div className='product-description'>
                     <div className='store-logo'>

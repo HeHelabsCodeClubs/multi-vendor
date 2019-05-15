@@ -1,13 +1,19 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import Slider from "react-slick";
+import ImageLoader from '../../reusable/ImageLoader';
 
 class Promotion extends Component {
 	renderEvents(events) {
 		const eventsLayout = events.map((event) => {
 			return (
 				<a key={event.id}>
-					<img src={event.image_url} />
+					<ImageLoader 
+					imageUrl={event.image_url}
+					placeholderbackBefore="#ffffff"
+					placeholderBackgroundColor="#f5f5f5"
+					placeholderHeight={300}
+					/>
 				</a>
 			);
 		});

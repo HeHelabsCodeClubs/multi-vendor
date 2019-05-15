@@ -25,7 +25,8 @@ class ImageLoader extends React.Component {
             imageUrl,
             placeholderHeight, 
             placeholderWidth,
-            placeholderBackgroundColor
+            placeholderBackgroundColor,
+            placeholderBackBefore
         } = this.props;
         if (!loading) {
             return (
@@ -35,6 +36,7 @@ class ImageLoader extends React.Component {
                 width={placeholderWidth}
                 url={imageUrl}
                 placeholderBackgroundColor={placeholderBackgroundColor}
+                placeholderBackBefore={placeholderBackBefore}
                 />
             );
         }

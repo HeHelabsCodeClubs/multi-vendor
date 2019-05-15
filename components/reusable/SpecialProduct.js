@@ -86,8 +86,8 @@ class SpecialProduct extends React.Component {
                     <ImageLoader 
                     imageClassName='product-img' 
                     imageUrl={product.image_url}
-                    hasPlaceholder={true}
                     placeholderHeight={300}
+                    placeholderBackgroundColor='#ffffff'
                     />
                     {this.renderProductIdentifier(product)}
                     <div className='product-description'>
