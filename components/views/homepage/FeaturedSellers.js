@@ -11,7 +11,12 @@ class FeaturedSellers extends Component {
             const productLayout = products.map((product) => {
                 return (
                     <div className='col-lg-4 col-md-4 col-sm-4 col-4 featured-seller-product' key={product.image_url}>
-                        <img src={product.image_url} />
+                        <ImageLoader 
+                        imageUrl={product.image_url}
+                        placeholderHeight={200}
+                        placeholderBackgroundColor='#ffffff'
+                        />
+                        {/* <img src={product.image_url} /> */}
                     </div>
                 );
             });
