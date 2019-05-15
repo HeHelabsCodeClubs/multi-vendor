@@ -33,9 +33,11 @@ class Promotion extends Component {
 					}
 				},
 				{
-					breakpoint: 600,
+					breakpoint: 767,
 					settings: {
 						slidesToShow: 2,
+						centerMode: true,
+						centerPadding: "40px",
 						slidesToScroll: 2
 					}
 				},
@@ -43,6 +45,8 @@ class Promotion extends Component {
 					breakpoint: 480,
 					settings: {
 						slidesToShow: 1,
+						centerMode: true,
+						centerPadding: "40px",
 						slidesToScroll: 1
 					}
 				}
