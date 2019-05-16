@@ -71,7 +71,7 @@ class Product extends React.Component {
 
         return (
             <span>
-                <span className='price'>{`Rwf ${special_price}`}</span>
+                <span className='price'>{`Rwf ${price}`}</span>
             </span>
         );
     }
