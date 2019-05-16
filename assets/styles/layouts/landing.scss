@@ -1,54 +1,44 @@
 @import "../main";
 
+.background-images {
+	position: absolute;
+	animation: moveSlideshow 12s linear infinite alternate;
+	height: 100vh;
+	transform: translate3d(0, 0, 0);
+	z-index: -1;
+
+	div {
+		img {
+			width: 80%;
+			margin: 3rem auto !important;
+			display: block;
+		}
+	}
+}
+@keyframes moveSlideshow {
+	100% { 
+	  transform: translateY(-66%);  
+	}
+}
+
+
 .landing-main-wrapper {
+	position: relative;
 	@include flexbox;
 	@include flexalignitems(center);
+	transform: translate3d(0, 0, 0);
+	max-height: 100vh;
 	height: 100vh;
+	overflow: hidden;
+	background: #f4f6f6;
 	
-	background-image:
-    url(https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png),
-    url(https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png),
-    url(https://res.cloudinary.com/hehe/image/upload/v1556122596/multi-vendor/Group_409.png),
-	url(https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_400.png),
-	url(https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png),
-    url(https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png),
-    url(https://res.cloudinary.com/hehe/image/upload/v1556122596/multi-vendor/Group_409.png),
-	url(https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_400.png),
-	url(https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_400.png),
-	url(https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png),
-    url(https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png),
-    url(https://res.cloudinary.com/hehe/image/upload/v1556122596/multi-vendor/Group_409.png),
-	url(https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_400.png),
-	url(https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_400.png),
-	url(https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png),
-    url(https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png),
-    url(https://res.cloudinary.com/hehe/image/upload/v1556122596/multi-vendor/Group_409.png),
-	url(https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_400.png);
-	
-	background-position: 
-	top 5% left 5%,
-	top 5% left 23%,
-	top 5% left 41%,
-	top 5% left 59%,
-	top 5% left 77%,
-	top 5% right 5%,
-	top 50% left 5%,
-	top 50% left 23%,
-	top 50% left 41%,
-	top 50% left 59%,
-	top 50% left 77%,
-	top 50% right 5%,
-    top 95% left 5%,
-	top 95% left 23%,
-	top 95% left 41%,
-	top 95% left 59%,
-	top 95% left 77%,
-	top 95% right 5%;
-	
-	background-size: 10%;
-	background-repeat: no-repeat;
-	background-color: rgba(0, 0, 0, 0.15);
-	
+	.content-wrapper{
+		background: rgba(0, 0, 0, 0.15);
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+	}
 	.landing-wrapper {
 		@include backdropfilter(blur(30px));
 		@include boxshadow(0 3px 36px 0 rgba(0, 0, 0, 0.1));
@@ -158,7 +148,7 @@
 			}
 		}
 		.bottom-part {
-			background-color: $green-color-1;
+			background-color: $green-color-3;
 			padding: 0.5rem 0;
 			text-align: center;
 			border-radius: 0 0 0.5rem 0.5rem;

@@ -69,7 +69,7 @@ class Header extends React.Component {
                                         </div>
                                         <div className='col-lg-9 col-md-9 col-sm-9 col-9 col-reset'>
                                             <div className='header-content'>My account</div>
-                                            <div className='header-content'>Sign in / Register</div>
+                                            <div className='header-content'><a href='/signin'>Sign in</a> / <a href='/register'>Register</a></div>
                                         </div>
                                     </div>
                                 </div>
