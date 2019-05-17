@@ -23,8 +23,7 @@ class HeaderCategoryMenu extends React.Component {
         });
         const data = await res.json();
         this.setState({
-           categories: data.data,
-           showCustomerMenu: true
+           categories: data.data
         });
     }
 

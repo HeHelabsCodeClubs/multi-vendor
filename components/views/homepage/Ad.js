@@ -15,7 +15,6 @@ class Ad extends Component {
                 return <Promotion events={data} />
             default:
                 return null;
-
         }
     }
     render() {

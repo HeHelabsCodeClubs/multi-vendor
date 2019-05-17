@@ -78,9 +78,9 @@ class Product extends React.Component {
 
     renderProduct(product) {
         if (product) {
+            const productDescription = product.description !== '' ? product.description : 'No description';
             return (
                 <a href={`#${product.slug}`}>
-                    {/* <img className='product-img' src={product.image_url} /> */}
                     <ImageLoader 
                         imageClassName='product-img' 
                         imageUrl={product.image_url}
@@ -93,7 +93,7 @@ class Product extends React.Component {
                             <img className='store-img' src={product.store.icon} />
                             <span className='store-name'>{product.store.name}</span>
                         </div>
-                        <div className='product-name'>{product.description}</div>
+                        <div className='product-name'>{productDescription}</div>
                         <div className='price-cart'>
                             {this.renderProductPrice(product)}
                             <span className='add-to-cart'>
