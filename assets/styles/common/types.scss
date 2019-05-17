@@ -11,6 +11,10 @@ html {
     .light-title {
         font-family: $font-regular !important;
     }
+    .breadcrumbs {
+        font-size: 1.1rem;
+        font-family: $font-regular;
+    }
 
     // landing page
 
@@ -709,6 +713,39 @@ html {
             input {
                 font-family: $font-semi-bold;
                 font-size: 1.28rem;
+            }
+        }
+    }
+
+    // Register and Login
+
+    .auth-content {
+        .auth-title {
+            font-size: 1.28rem;
+            font-family: $font-bold;
+        }
+        .auth-form {
+            .input-field {
+                input {
+                    font-size: 1.28rem;
+                    font-family: $font-regular;
+                }
+            }
+            .checkbox-field {
+                span {
+                    font-size: 1.1rem;
+                    font-family: $font-regular;
+                }
+            }
+            .auth-button {
+                button {
+                    font-size: 1.1rem;
+                    font-family: $font-regular;
+                }
+            }
+            .auth-text {
+                font-size: 1.1rem;
+                font-family: $font-regular;
             }
         }
     }

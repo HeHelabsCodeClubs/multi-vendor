@@ -1,0 +1,52 @@
+@import "../main";
+
+.auth-content {
+    width: 60%;
+    margin: 0 auto;
+    padding: 2rem 0;
+
+    .auth-title {
+        color: $black-color-4;
+        margin: 2rem 0 1rem 0;
+    }
+    .auth-form {
+        .input-field {
+            input {
+                width: 100%;
+                margin: 1rem 0;
+                border: none;
+                background: $gray-color-2;
+                padding: 0.3rem 1rem;
+                border-radius: 0.3rem;
+            }
+        }
+        .checkbox-field {
+            @include flexbox;
+            @include flexalignitems(center);
+            margin: 0 0.5rem 1rem 0.5rem;
+
+            span {
+                color: $black-color-3;
+                margin: 0 0 0 0.5rem;
+            }
+        }
+        .auth-button {
+            text-align: center;
+            margin: 2rem 0 1rem 0;
+            button {
+                border: none;
+                border-radius: 0.3rem;
+                background: $orange-color-5;
+                color: $white-color;
+                padding: 0.3rem 2rem;
+            }
+        }
+        .auth-text {
+            color: $black-color-2;
+            text-align: center;
+            a {
+                color: $green-color-2 !important;
+            }
+        }
+    }
+}
