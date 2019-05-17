@@ -1,5 +1,4 @@
 import Select2 from 'react-select2-wrapper';
-import Link from 'next/link';
 
 const SidebarUI = ({ isOpen, ...rest }) => {
     const classes = [
@@ -155,7 +154,7 @@ class Cart extends React.Component {
                                 </div>
                                 <div className='go-to-checkout'>
                                     <span className='grand-total'>All Total: Rwf 70,000</span>
-                                    <span className='proceed-button'><button><Link href='/checkout'><a>Proceed to Checkout</a></Link></button></span>
+                                    <span className='proceed-button'><button><a href='/checkout'>Proceed to Checkout</a></button></span>
                                 </div>
                             </div>
                         </div>
