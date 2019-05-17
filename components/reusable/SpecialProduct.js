@@ -1,4 +1,3 @@
-import Link from 'next/link'; 
 import Modal from 'react-responsive-modal';
 import '../../assets/styles/layouts/product.scss';
 import ProductPopup from '../views/ProductPopup';
@@ -90,22 +89,18 @@ class SpecialProduct extends React.Component {
     renderProduct(product) {
         if (product) {
             return (
-                <Link 
-                href=''
-                >
-                    <a>
-                        <ImageLoader 
-                        imageClassName='product-img' 
-                        imageUrl={product.image_url}
-                        placeholderHeight={300}
-                        placeholderBackgroundColor='#ffffff'
-                        />
-                        {this.renderProductIdentifier(product)}
-                        <div className='product-description'>
-                            {this.renderProductPrice(product)}
-                        </div>
-                    </a>
-                </Link>            
+                <a href=''>
+                    <ImageLoader 
+                    imageClassName='product-img' 
+                    imageUrl={product.image_url}
+                    placeholderHeight={300}
+                    placeholderBackgroundColor='#ffffff'
+                    />
+                    {this.renderProductIdentifier(product)}
+                    <div className='product-description'>
+                        {this.renderProductPrice(product)}
+                    </div>
+                </a>          
             );
         }
     }
