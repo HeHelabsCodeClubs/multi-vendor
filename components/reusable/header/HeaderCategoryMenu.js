@@ -14,11 +14,17 @@ class HeaderCategoryMenu extends React.Component {
     };
 
     async componentDidMount() {
-        const res = await fetch(`${API_URL}/categories`)
-        const data = await res.json()
-
+        const res = await fetch(`${API_URL}/categories`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        const data = await res.json();
         this.setState({
-		   categories: data.data
+           categories: data.data,
+           showCustomerMenu: true
         });
     }
 
@@ -36,18 +42,21 @@ class HeaderCategoryMenu extends React.Component {
         this.setState({ showSubCategory: false })
     };
 
-    renderCategory() {
-        const categoryLayout = this.state.categories.map((category) => {
-            return (
-                <li className="nav__submenu-item " key={category.id} onMouseEnter={this.categoryHandleHover} onMouseLeave={this.categoryHandleLeave} >
-                    <a href="/categories" className='sub-menu__item-a'>{category.name}</a>
-                </li>
-            )
-        })
-        return categoryLayout;
+    renderCategory(categories) {
+        if (categories) {
+            const categoryLayout = categories.map((category) => {
+                return (
+                    <li className="nav__submenu-item " key={category.id} onMouseEnter={this.categoryHandleHover} onMouseLeave={this.categoryHandleLeave} >
+                        <a href="/categories" className='sub-menu__item-a'>{category.name}</a>
+                    </li>
+                )
+            });
+            return categoryLayout;
+        }
     }
 
     render() {
+        const { categories } = this.state;
         return (
             <span className="main-menu">
                 <nav className="nav nav-container">
@@ -63,7 +72,7 @@ class HeaderCategoryMenu extends React.Component {
                             </div>
                             {this.state.showCustomerMenu && 
                                 <ul className="nav__submenu">
-                                    {this.renderCategory()}
+                                    {this.renderCategory(categories)}
                                 </ul>
                             }
                         </li>
