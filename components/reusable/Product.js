@@ -79,7 +79,7 @@ class Product extends React.Component {
     renderProduct(product) {
         if (product) {
             return (
-                <a href={`#${product.slug}`}>
+                <a href='/productpage'>
                     {/* <img className='product-img' src={product.image_url} /> */}
                     <ImageLoader 
                         imageClassName='product-img' 
@@ -111,7 +111,7 @@ class Product extends React.Component {
         const { product } = this.props;
 		return (
             <div>
-                <div className='single-product' onClick={this.onOpenModal}>
+                <div className='single-product'>
                     {this.renderProduct(product)}           
                 </div>
                 <Modal open={open} onClose={this.onCloseModal} center>
