@@ -14,15 +14,6 @@ import FeaturedSellers from "../components/views/homepage/FeaturedSellers";
 class Index extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			promoAds: [],
-			type: null,
-			categories: [],
-			stores: [],
-			topStores: [],
-			sellers: [],
-			specialOffers: []
-		}
 	}
 	/**
 	 * This function is better for server side rendering
@@ -46,25 +37,7 @@ class Index extends React.Component {
 		   specialOffers: data.special_offers
         };
 	}
-	/**
-	 * IMPORTANT!!
-	 * 
-	 * This one is very bad and will not allow us to do server side rendering
-	 * 
-	 */
-	// async componentDidMount() {
-    //     const res = await fetch(`${API_URL}/pages/homepage`)
-    //     const data = await res.json()
 
-    //     this.setState({
-	// 	   promoAds: data.data.adds.promo.data,
-	// 	   type: data.data.adds.promo.type,
-	// 	   categories: data.data.categories,
-	// 	   stores: data.data.made_in_rwanda_brands.brands,
-	// 	   topStores: data.data.top_stores,
-	// 	   sellers: data.data.featured_sellers
-    //     });
-    // }
 	render() {
 		const { 
 			promoAds, 

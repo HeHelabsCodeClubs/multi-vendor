@@ -45,7 +45,7 @@ class Header extends React.Component {
                             </span>
                             <HeaderCategoryMenu />
                         </div>
-                        <div className='col-lg-5 col-md-5 col-sm-12 col-12'>
+                        <div className='col-lg-5 col-md-5 col-sm-12 col-2 search-container'>
                             <span className='main-search'>
                                 <input type="text" placeholder="Search store or product" />
                                 <span className='categories-dropdown'>
@@ -62,14 +62,14 @@ class Header extends React.Component {
                                 <button type="submit"><span className="icon-Path-64"></span></button>
                             </span>
                         </div>
-                        <div className='col-lg-3 col-md-3 col-sm-12 col-12'>
+                        <div className='col-lg-3 col-md-3 col-sm-12 col-3 account-container'>
                             <div className='row'>
-                                <div className='col-lg-6 col-md-6 col-sm-6 col-6 account-grid'>
+                                <div className='col-lg-6 col-md-6 col-sm-6 col-2 account-grid'>
                                     <div className='row'>
-                                        <div className='col-lg-3 col-md-3 col-sm-3 col-3 col-reset'>
+                                        <div className='col-lg-3 col-md-3 col-sm-3 col-12 col-reset'>
                                             <span className='icon-Path-62'></span>
                                         </div>
-                                        <div className='col-lg-9 col-md-9 col-sm-9 col-9 col-reset'>
+                                        <div className='col-lg-9 col-md-9 col-sm-9 col-9 col-reset account-links'>
                                             <div className='header-content'>My account</div>
                                             <div className='header-content'><a href='/signin'>Sign in</a> / <a href='/register'>Register</a></div>
                                         </div>

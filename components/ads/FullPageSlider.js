@@ -13,22 +13,23 @@ const settings = {
 
 
 function renderAdds(adds) {
-    const addsLayout = adds.map((add) => {
-        return (
-            <div key={add.id}>
-                <ImageLoader 
-                imageUrl={add.image_url}
-                hasPlaceholder={false}
-                placeholderHeight={300}
-                />
-            </div>
-        );
-    });
-
-    return addsLayout;
+    if (adds) {
+        const addsLayout = adds.map((add) => {
+            return (
+                <div key={add.id}>
+                    <ImageLoader 
+                    imageUrl={add.image_url}
+                    hasPlaceholder={false}
+                    placeholderHeight={300}
+                    />
+                </div>
+            );
+        });
+    
+        return addsLayout;
+    }
+    
 }
-
-
 const FullPageSlider  = ({ adds }) => {
     return (
         <Slider {...settings}>

@@ -8,9 +8,9 @@ class FeaturedSellers extends Component {
     renderProduct(seller) {
         const products = seller.products;
         if (!_.isEmpty(products)) {
-            const productLayout = products.map((product) => {
+            const productLayout = products.map((product, index) => {
                 return (
-                    <div className='col-lg-4 col-md-4 col-sm-4 col-4 featured-seller-product' key={product.image_url}>
+                    <div className='col-lg-4 col-md-4 col-sm-4 col-4 featured-seller-product' key={`${index}_${product.name}`}>
                         <ImageLoader 
                         imageUrl={product.image_url}
                         placeholderHeight={200}
