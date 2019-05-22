@@ -94,11 +94,11 @@ class Cart extends React.Component {
                                                 <div />
                                             </div>
                                             <div className='cart-bk'>
-                                                <div className='edit'><span className='icon-Path-68'></span><span class="xs-hidden__txt">Edit</span></div>
+                                                <div className='edit'><span className='icon-Path-68'></span><span className="xs-hidden__txt">Edit</span></div>
                                                 <div className='initial-price'>Rwf 1000</div>
                                             </div>
                                             <div className='cart-bk'>
-                                                <div className='remove'><span className='icon-Path-60'></span><span class="xs-hidden__txt">Remove</span></div>
+                                                <div className='remove'><span className='icon-Path-60'></span><span className="xs-hidden__txt">Remove</span></div>
                                                 <div className='price'>Rwf 900</div>
                                             </div>
                                         </div>
@@ -122,11 +122,11 @@ class Cart extends React.Component {
                                                 <div />
                                             </div>
                                             <div className='cart-bk'>
-                                                <div className='edit'><span className='icon-Path-68'></span><span class="xs-hidden__txt">Edit</span></div>
+                                                <div className='edit'><span className='icon-Path-68'></span><span className="xs-hidden__txt">Edit</span></div>
                                                 <div className='initial-price'>Rwf 1000</div>
                                             </div>
                                             <div className='cart-bk'>
-                                                <div className='remove'><span className='icon-Path-60'></span><span class="xs-hidden__txt">Remove</span></div>
+                                                <div className='remove'><span className='icon-Path-60'></span><span className="xs-hidden__txt">Remove</span></div>
                                                 <div className='price'>Rwf 900</div>
                                             </div>
                                         </div>

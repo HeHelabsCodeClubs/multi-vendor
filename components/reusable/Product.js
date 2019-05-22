@@ -78,7 +78,6 @@ class Product extends React.Component {
 
     renderProduct(product) {
         if (product) {
-            const productDescription = product.description !== '' ? product.description : 'No description';
             return (
                 <a href='/productpage'>
                     {/* <img className='product-img' src={product.image_url} /> */}
@@ -94,7 +93,7 @@ class Product extends React.Component {
                             <img className='store-img' src={product.store.icon} />
                             <span className='store-name'>{product.store.name}</span>
                         </div>
-                        <div className='product-name'>{productDescription}</div>
+                        <div className='product-name'>{`${product.name} - ${product.description}`}</div>
                         <div className='price-cart'>
                             {this.renderProductPrice(product)}
                             <span className='add-to-cart'>
@@ -122,7 +121,7 @@ class Product extends React.Component {
                         <img className='store-img' src='https://res.cloudinary.com/hehe/image/upload/v1556288678/multi-vendor/shop-icon-4_2x.png' />
                         <span className='store-name'>Amata</span>
                     </div>
-                    <div className='product-name'>Amata ni meza</div>
+                    <div className='product-name'>Product 1</div>
                     <div className='price-cart'>
                         <span>
                             <span className='price'>Rwf 500</span>

@@ -7,6 +7,12 @@
     margin: 3rem 10% 3rem 20%;
     @include flexbox;
     @include flexjustifycontent(space-between);
+
+    @media screen and (max-width: $mobile-lg) {
+        width: 100%;
+        margin: 3rem 0;
+    }
+
     .single-process {
         display: inline-block;
         .process-point {
@@ -18,20 +24,40 @@
         }
         .process-name {
             color: $gray-color-6;
+
+            // &::before {
+            //     content: '';
+            //     height: 1rem;
+            //     width: 1rem;
+            //     background: $gray-color-6;
+            //     border-radius: 50%;
+            // }
         }
     }
 }
 .account-info-wrapper {
     width: 80%;
     margin: 0 10% 0 10%;
+    @media screen and (max-width: $mobile-lg) {
+        width: 100%;
+        margin: 0;
+    }
     .singin-block {
         border-right: 1px solid $gray-color-6;
+        @media screen and (max-width: $mobile-lg) {
+            border-right: none;
+            padding: 0 !important;
+        }
     }
     .account-info-title {
         color: $black-color-4;
     }
     .billing-title {
         margin: 1rem 1.3rem;
+
+        @media screen and (max-width: $mobile-lg) {
+            margin: 1rem 0;
+        }
     }
     .signin-form {
         .input-field {
@@ -66,6 +92,10 @@
     }
     .shipping-form {
         border-bottom: 1px solid $gray-color-2;
+
+        @media screen and (max-width: $mobile-lg) {
+            margin: 0 -15px !important;
+        }
     }
     .shipping-btn {
         margin: 1rem;
@@ -196,6 +226,11 @@
         border-bottom: 1px solid $gray-color-2;
         margin: 0 1rem 0 0;
         color: $gray-color-6;
+
+        @media screen and (max-width: $mobile-lg) {
+            width: 50%;
+            margin: 0;
+        }
     }
     .react-tabs__tab--selected {
         border-color: transparent;
@@ -234,6 +269,11 @@
     background: $gray-color-2;
     .order-summary-wrapper {
         margin: 3rem 1rem;
+
+        @media screen and (max-width: $mobile-lg) {
+            margin: 3rem 0 !important;
+        }
+
         .order-summary-title {
             color: $gray-color-6;
             text-align: center;

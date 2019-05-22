@@ -216,6 +216,9 @@ html {
                 &:hover {
                     .icon-Path-63:before {
                         font-family: $font-semi-bold;
+                        @media (max-width: $mobile-lg) {
+                            font-family: 'icomoon';
+                        }
                     }
                 }
             }

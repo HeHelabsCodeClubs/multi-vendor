@@ -123,8 +123,14 @@
                 &:hover {
                     button {
                         border-radius: 2rem;
+                        @media (max-width: $mobile-lg) {
+                            border-radius: 50%;
+                        }
                         .icon-Path-63:before {
-                            content: 'Add to cart'
+                            content: 'Add to cart';
+                            @media (max-width: $mobile-lg) {
+                                content: "\e912";
+                            }
                         }
                     }
                 }

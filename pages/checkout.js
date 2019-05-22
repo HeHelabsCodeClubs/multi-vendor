@@ -60,8 +60,8 @@ class Checkout extends React.Component {
                     <div className='row reset-row'>
                         <div className='col-lg-8 col-md-8 col-sm-8 col-12'>
                             <div className='checkout-process'>
-                                <div className='single-process'>
-                                    <div className='process-point' onClick={this.renderAccountView}></div>
+                                <div className='single-process' onClick={this.renderAccountView}>
+                                    <div className='process-point'></div>
                                     <div className='process-name'>1. Account info</div>
                                 </div>
                                 <div className='single-process' onClick={this.renderBillingView}>

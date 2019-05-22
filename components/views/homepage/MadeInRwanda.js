@@ -85,20 +85,10 @@ class MadeInRwanda extends Component {
 				{
 					breakpoint: 767,
 					settings: {
-						slidesToShow: 2,
-						centerMode: true,
-						centerPadding: "40px",
-						slidesToScroll: 2
-					}
-				},
-				{
-					breakpoint: 480,
-					settings: {
 						slidesToShow: 1,
 						centerMode: true,
 						centerPadding: "40px",
 						slidesToScroll: 1
-
 					}
 				}
 			]
