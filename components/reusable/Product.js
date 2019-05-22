@@ -104,6 +104,36 @@ class Product extends React.Component {
                 </a>            
             );
         }
+        return (
+            <a href='/productpage'>
+                <ImageLoader 
+                    imageClassName='product-img' 
+                    imageUrl='https://res.cloudinary.com/hehe/image/upload/v1556288623/multi-vendor/prod_2_2x.png'
+                    placeholderHeight={300}
+                    placeholderBackgroundColor='#f5f5f5'
+                />
+                <div className='top-icons'>
+                    <span className='hot'><span className='icon-Path-54'></span>hot</span>
+                    <span className='discount'>50% OFF</span>
+                </div>
+                <div className='product-description'>
+                    <div className='store-logo'>
+                        <img className='store-img' src='https://res.cloudinary.com/hehe/image/upload/v1556288678/multi-vendor/shop-icon-4_2x.png' />
+                        <span className='store-name'>Amata</span>
+                    </div>
+                    <div className='product-name'>Amata ni meza</div>
+                    <div className='price-cart'>
+                        <span>
+                            <span className='price'>Rwf 500</span>
+                            <span className='initial-price'>Rwf 1000</span>
+                        </span>
+                        <span className='add-to-cart'>
+                            <button><span className='icon-Path-63'></span></button>
+                        </span>
+                    </div>
+                </div>
+            </a>
+        )
     }
 
 	render() {

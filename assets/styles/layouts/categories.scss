@@ -7,6 +7,10 @@
     .multi-vendor-categories-wrapper {
         width: 96%;
         margin: 0 2%;
+
+        @media screen and (max-width: $mobile-lg) {
+            display: none;
+        }
         .single-category {
             border: 1px solid $gray-color-5;
             border-radius: 0.5rem;
@@ -67,6 +71,11 @@
                 padding: 1rem;
                 height: auto !important;
                 border-top: 1px solid $gray-color-1;
+
+                @media screen and (max-width: $mobile-lg) {
+                    padding: 0.5rem 1rem;
+                }
+
             }
             &:hover {
                 border: none !important;
@@ -123,6 +132,10 @@
             padding: 0 1rem;
             @include flexbox;
             @include flexalignitems(center);
+
+            @media screen and (max-width: $mobile-lg) {
+                display: none;
+            }
         
             .line-display {
                 display: inline-block;
