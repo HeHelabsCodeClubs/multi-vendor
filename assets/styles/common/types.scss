@@ -303,14 +303,16 @@ html {
                         .product-name {
                             font-size: 1.28rem;
                             font-family: $font-regular;
+
+                            @media screen and (max-width: $mobile-lg) {
+                                font-size: 1rem;
+                            }
                         }
                         .qty-measurement {
                             font-size: 1rem;
                             font-family: $font-regular;
                         }
                         .qty-increment {
-                            position: absolute;
-                            bottom: 0;
                             .number {
                                 font-family: $font-bold;
                             }
@@ -321,6 +323,10 @@ html {
                             
                             .discount {
                                 font-size: 0.9rem;
+
+                                @media screen and (max-width: $mobile-lg) {
+                                    font-size: 0.6rem;
+                                }
                             }
                             .edit {
                                 font-size: 1rem;
@@ -331,6 +337,9 @@ html {
                             }
                             .initial-price {
                                 font-size: 1rem;
+                                @media screen and (max-width: $mobile-lg) {
+                                    font-size: 0.7rem;
+                                }
                             }
                             .remove {
                                 font-size: 1rem;
@@ -341,6 +350,10 @@ html {
                             }
                             .price {
                                 font-size: 1.1rem;
+
+                                @media screen and (max-width: $mobile-lg) {
+                                    font-size: 0.8rem;
+                                }
                             }
                         }
                     }

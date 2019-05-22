@@ -76,10 +76,10 @@ class Cart extends React.Component {
                                         <span className='store-name'>Mart (3 Items from Mart store)</span>
                                     </div>
                                     <div className='row reset-row cart-item'>
-                                        <div className='col-lg-2 col-md-2 col-sm-2 col-2 col-reset product-cart-image'>
+                                        <div className='col-lg-2 col-md-2 col-sm-2 col-3 col-reset product-cart-image'>
                                             <img className='cart-product-img' src='https://res.cloudinary.com/hehe/image/upload/v1556288623/multi-vendor/prod_1_2x.png' />
                                         </div>
-                                        <div className='col-lg-5 col-md-5 col-sm-5 col-5 col-reset name-incremenet'>
+                                        <div className='col-lg-5 col-md-5 col-sm-5 col-4 col-reset name-incremenet'>
                                             <div className='product-name'>Cabagge</div>
                                             <div className='qty-measurement'>Pce</div>
                                             <div className='qty-increment'>
@@ -94,20 +94,20 @@ class Cart extends React.Component {
                                                 <div />
                                             </div>
                                             <div className='cart-bk'>
-                                                <div className='edit'><span className='icon-Path-68'></span>Edit</div>
+                                                <div className='edit'><span className='icon-Path-68'></span><span class="xs-hidden__txt">Edit</span></div>
                                                 <div className='initial-price'>Rwf 1000</div>
                                             </div>
                                             <div className='cart-bk'>
-                                                <div className='remove'><span className='icon-Path-60'></span>Remove</div>
+                                                <div className='remove'><span className='icon-Path-60'></span><span class="xs-hidden__txt">Remove</span></div>
                                                 <div className='price'>Rwf 900</div>
                                             </div>
                                         </div>
                                     </div>
                                     <div className='row reset-row cart-item'>
-                                        <div className='col-lg-2 col-md-2 col-sm-2 col-2 col-reset product-cart-image'>
+                                        <div className='col-lg-2 col-md-2 col-sm-2 col-3 col-reset product-cart-image'>
                                             <img className='cart-product-img' src='https://res.cloudinary.com/hehe/image/upload/v1556288623/multi-vendor/prod_1_2x.png' />
                                         </div>
-                                        <div className='col-lg-5 col-md-5 col-sm-5 col-5 col-reset name-incremenet'>
+                                        <div className='col-lg-5 col-md-5 col-sm-5 col-4 col-reset name-incremenet'>
                                             <div className='product-name'>Cabagge</div>
                                             <div className='qty-measurement'>Pce</div>
                                             <div className='qty-increment'>
@@ -122,11 +122,11 @@ class Cart extends React.Component {
                                                 <div />
                                             </div>
                                             <div className='cart-bk'>
-                                                <div className='edit'><span className='icon-Path-68'></span>Edit</div>
+                                                <div className='edit'><span className='icon-Path-68'></span><span class="xs-hidden__txt">Edit</span></div>
                                                 <div className='initial-price'>Rwf 1000</div>
                                             </div>
                                             <div className='cart-bk'>
-                                                <div className='remove'><span className='icon-Path-60'></span>Remove</div>
+                                                <div className='remove'><span className='icon-Path-60'></span><span class="xs-hidden__txt">Remove</span></div>
                                                 <div className='price'>Rwf 900</div>
                                             </div>
                                         </div>
