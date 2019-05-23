@@ -3,6 +3,22 @@ import { API_URL } from '../../../config';
 import { ReactMegaMenu } from "react-mega-menu";
 // import $ from "jquery";
 
+// const { JSDOM } = require( 'jsdom' );
+// const jsdom = new JSDOM( testHTML );
+
+// // Set window and document from jsdom
+// const { window } = jsdom;
+// const { document } = window;
+// // Also set global window and document before requiring jQuery
+// global.window = window;
+// global.document = document;
+
+// const $ = global.jQuery = require( 'jquery' );
+
+// console.log( `jQuery ${jQuery.fn.jquery} working! Yay!!!` );
+// const inputElement = $( '#fiptest' );
+// console.log( inputElement.length );
+
 // $("#menu").menuAim({
 //     activate: $.noop,  // fired on row activation
 //     deactivate: $.noop  // fired on row deactivation

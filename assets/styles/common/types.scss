@@ -467,6 +467,38 @@ html {
             }
         }
     }
+    .filter-title {
+        font-size: 1.7rem;
+        font-family: $font-semi-bold;
+    }
+    .filter-sidebar-title {
+        padding: 1rem 2rem;
+        .icon-Path-71:before {
+            font-size: 1rem;
+        }
+        .back {
+            font-size: 1.28rem;
+            font-family: $font-bold;
+        }
+        .title {
+            font-size: 1.4rem;
+            font-family: $font-bold;
+        }
+    }
+    .filter-sidebar-content {
+        .clear-button {
+            button {
+                font-size: 1.28rem
+            }
+        }
+        form {
+            .rrs__label {
+                span {
+                    font-size: 1.28rem
+                }
+            }
+        }
+    }
 
     // Checkout
 
@@ -655,13 +687,13 @@ html {
                 }
                 .orange-btn {
                     button {
-                        font-size: 1.7rem;
+                        font-size: 1.5rem;
                         font-family: $font-semi-bold;
                     }
                 }
                 .white-btn {
                     button {
-                        font-size: 1.7rem;
+                        font-size: 1.5rem;
                         font-family: $font-semi-bold;
                     }
                 }
@@ -779,11 +811,18 @@ html {
                 .content {
                     font-family: $font-light;
                     font-size: 1.4rem;
+
+                    @media (max-width: $mobile-lg) {
+                        font-size: 1.2rem;
+                    }
                 }
             }
             .contact-content {
                 font-family: $font-light;
                 font-size: 1.4rem;
+                @media (max-width: $mobile-lg) {
+                    font-size: 1.2rem;
+                }
             }
             button {
                 font-family: $font-bold;

@@ -119,9 +119,9 @@ class Product extends React.Component {
                 <div className='product-description'>
                     <div className='store-logo'>
                         <img className='store-img' src='https://res.cloudinary.com/hehe/image/upload/v1556288678/multi-vendor/shop-icon-4_2x.png' />
-                        <span className='store-name'>Amata</span>
+                        <span className='store-name'>Tuma250</span>
                     </div>
-                    <div className='product-name'>Product 1</div>
+                    <div className='product-name'>Product 1: A nice product</div>
                     <div className='price-cart'>
                         <span>
                             <span className='price'>Rwf 500</span>

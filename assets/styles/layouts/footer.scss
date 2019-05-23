@@ -6,6 +6,9 @@
         width: 90%;
         margin: 0 auto;
         padding: 3rem 0 4rem 0;
+        @media (max-width: $mobile-lg) {
+            width: 100%;
+        }
 
         .footer-title {
             color: $gray-color-6;

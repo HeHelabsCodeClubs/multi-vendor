@@ -36,10 +36,11 @@
         .site-logo {
 
             @media (max-width: $mobile-lg) {
-                position: absolute;
-                z-index: 1;
-                top: 38px;
-                left: 35px;
+                // position: absolute;
+                // z-index: 1;
+                // top: 38px;
+                // left: 35px;
+                display: none;
             }
 
             img {
@@ -60,6 +61,11 @@
 
             .select2-container {
                 width: 100% !important;
+
+                @media (max-width: $mobile-lg) {
+                    width: 50% !important;
+                    margin: 0 25% !important;
+                }
             }
             .select2-container--default .select2-selection--single {
                 height: 3rem;
@@ -277,6 +283,9 @@
     @media (max-width: $mobile-lg) {
         float: left;
         background: transparent;
+        height: 65%;
+        @include flexbox;
+        @include flexalignitems(center);
     }
 
     .nav-container {

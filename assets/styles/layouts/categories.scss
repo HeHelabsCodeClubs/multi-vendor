@@ -170,3 +170,64 @@
         }
     }
 }
+.filter-title {
+    padding: 1rem 2.6rem;
+    height: auto;
+    text-transform: capitalize;
+    border-top: 1px solid $gray-color-6;
+    margin: 0 -15px;
+    color: $black-color-3;
+}
+.filter-sidebar-title {
+    padding: 1rem 2rem;
+    text-align: center;
+    .close {
+        float: left;
+    }
+    .icon-Path-71:before {
+        color: $black-color-3;
+    }
+    .back {
+        color: $black-color-3;
+        margin: 0 0 0 1rem;
+    }
+    .title {
+        color: $black-color-3;
+    }
+}
+.filter-sidebar-content {
+    background: $green-color-3;
+    min-height: calc(100vh - 4.2rem);
+    .clear-button {
+        margin: 0 2rem 1rem 2rem;
+        button {
+            width: 100%;
+            margin: 1rem 0 0 0;
+            background: transparent;
+            border: 1px solid $green-color-2;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            color: $green-color-2;
+        }
+    }
+    form {
+        margin: 1rem 2rem;
+        .rrs__button {
+            margin: 1rem 0;
+            box-shadow: none !important;
+        }
+        .rrs__label {
+            border-radius: 0.4rem !important;
+            border: 1px solid $gray-color-6;
+            @include flexbox;
+            @include flexalignitems(center);
+            @include flexjustifycontent(space-between);
+            span {
+                color: $black-color-3;
+            }
+        }
+    }
+}
+
+
+
