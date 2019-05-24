@@ -384,4 +384,22 @@
         color: $black-color-1;
         content: "\e919";
     }
+    .image-placeholder {
+        margin: 0.3rem 0.3rem 0 0.3rem;
+        img {
+            cursor: pointer;
+        }
+    }
+}
+.slide-for {
+    .image-placeholder {
+        img {
+            cursor: not-allowed;
+        }
+    }
+}
+.image-placeholder {
+    width: auto !important;
+    margin: 0 0.3rem;
+    border: 1px solid $gray-color-2;
 }
