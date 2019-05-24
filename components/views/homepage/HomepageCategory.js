@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import _ from 'lodash';
 import React, { Component } from 'react';
 import Slider from "react-slick";
@@ -8,10 +9,12 @@ class HomepageCategory extends Component {
             const categoriesLayout = categories.map((category) => {
                 //let singleCategoryPageUrl = category.slug !== 'categories' ? `/categories/${category.slug}` : 'categories';
                 return (
-                    <a href='/categories' key={category.id}>
-                        <div className={`cat-icon ${category.icon_class_name}`}></div>
-                        <div className='cat-name'>{category.name}</div>
-                    </a>
+                    //<Link prefetch href='/categories' key={category.id}>
+                        <a href='/categories'>
+                          <div className={`cat-icon ${category.icon_class_name}`}></div>
+                          <div className='cat-name'>{category.name}</div>
+                        </a>
+                    //</Link>
                 );
             });
             return categoriesLayout;

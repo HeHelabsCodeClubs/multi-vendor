@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Select2 from 'react-select2-wrapper';
 import Cart from './Cart';
 import HeaderCategoryMenu from './HeaderCategoryMenu';

@@ -10,14 +10,18 @@ class FeaturedSellers extends Component {
         if (!_.isEmpty(products)) {
             const productLayout = products.map((product, index) => {
                 return (
-                    <div className='col-lg-4 col-md-4 col-sm-4 col-4 featured-seller-product' key={`${index}_${product.name}`}>
+                    <a 
+                    href={`sellers/${product.store_slug}/products/${product.product_slug}`} 
+                    className='col-lg-4 col-md-4 col-sm-4 col-4 featured-seller-product' 
+                    key={`${index}_${product.name}`}
+                    >
                         <ImageLoader 
                         imageUrl={product.image_url}
                         placeholderHeight={200}
                         placeholderBackgroundColor='#ffffff'
                         />
                         {/* <img src={product.image_url} /> */}
-                    </div>
+                    </a>
                 );
             });
             return productLayout;

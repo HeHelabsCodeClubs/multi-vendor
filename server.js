@@ -10,6 +10,13 @@ app
     .then(() => {
         const server = express()
 
+        server.get('/sellers/:seller/products/:slug', (req, res) => {
+            return app.render(req, res, '/product-page', { 
+                seller: req.params.seller,
+                slug: req.params.slug
+            });
+        })
+
         server.get('/p/:id', (req, res) => {
             const actualPage = '/post'
             const queryParams = { title: req.params.id }
