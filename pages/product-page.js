@@ -25,6 +25,7 @@ class ProductPage extends React.Component {
         this.renderProductDescription = this.renderProductDescription.bind(this);
         this.renderProductUnitDescription = this.renderProductUnitDescription.bind(this);
         this.renderProductDiscountedPrice = this.renderProductDiscountedPrice.bind(this);
+        this.renderProductImages = this.renderProductImages.bind(this);
     }
 
     static async getInitialProps({ query }) {
@@ -186,6 +187,66 @@ class ProductPage extends React.Component {
         }
     }
 
+    renderProductImages(productData) {
+        if (productData) {
+            const { images } = productData;
+            if (images) {
+                const mainSliderImages = images.map((image) => {
+                    return (
+                        <div key={image.image_url}>
+                            <ImageLoader 
+                            className='big-prod-img' 
+                            imageUrl={image.image_url} 
+                            />
+                        </div>
+                    );
+                });
+
+                const thumbnailImages = images.map((image) => {
+                    return (
+                        <div key={image.image_url}>
+                            <ImageLoader 
+                            className='small-prod-img' 
+                            imageUrl={image.image_url}
+                            />
+                        </div>
+                    );
+                });
+
+                return (
+                    <div>
+                        <div className='slide-for'>
+                            <Slider
+                            asNavFor= {this.state.nav2}
+                            ref= {slider => (this.slider1 = slider)}
+                            slidesToShow={1}
+                            slidesToScroll={1}
+                            arrows={false}
+                            fade={true}
+                            >
+                              {mainSliderImages}  
+                            </Slider>
+                        </div>
+                        <div className='slide-nav'>
+                            <Slider
+                            asNavFor={this.state.nav1}
+                            ref={slider => (this.slider2 = slider)}
+                            slidesToShow={4}
+                            slidesToScroll={1}
+                            dots={false}
+                            focusOnSelect={true}
+                            rows={1}
+                            >
+                                {thumbnailImages}
+                            </Slider>
+                        </div>
+                    </div>
+                );
+            }
+        }
+        
+    }
+
 
 	render() {
         const { productData } = this.props;
@@ -197,89 +258,7 @@ class ProductPage extends React.Component {
                             <div className='product-details-wrapper'>
                                 <div className='row reset-row'>
                                     <div className='col-lg-5 col-md-5 col-sm-5 col-12 images-wrapper'>
-                                        <div className='slide-for'>
-                                            <Slider
-                                            asNavFor= {this.state.nav2}
-                                            ref= {slider => (this.slider1 = slider)}
-                                            slidesToShow={1}
-                                            slidesToScroll={1}
-                                            arrows={false}
-                                            fade={true}
-                                            >
-                                                <div>
-                                                    <ImageLoader 
-                                                    className='big-prod-img' 
-                                                    imageUrl='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288623/multi-vendor/prod_1_2x.png' 
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <ImageLoader 
-                                                    className='big-prod-img' 
-                                                    imageUrl='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288624/multi-vendor/prod_3_2x.png' 
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <ImageLoader 
-                                                    className='big-prod-img' 
-                                                    imageUrl='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288623/multi-vendor/prod_2_2x.png' 
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <ImageLoader 
-                                                    className='big-prod-img' 
-                                                    imageUrl='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288624/multi-vendor/prod_3_2x.png' 
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <ImageLoader 
-                                                    className='big-prod-img' 
-                                                    imageUrl='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288623/multi-vendor/prod_2_2x.png' 
-                                                    />
-                                                </div>
-                                            </Slider>
-                                        </div>
-                                        <div className='slide-nav'>
-                                            <Slider
-                                            asNavFor={this.state.nav1}
-                                            ref={slider => (this.slider2 = slider)}
-                                            slidesToShow={4}
-                                            slidesToScroll={1}
-                                            dots={false}
-                                            focusOnSelect={true}
-                                            rows={1}
-                                            >
-                                                <div>
-                                                    <ImageLoader 
-                                                    className='small-prod-img' 
-                                                    imageUrl='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288623/multi-vendor/prod_1_2x.png' 
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <ImageLoader 
-                                                    className='small-prod-img' 
-                                                    imageUrl='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288624/multi-vendor/prod_3_2x.png' 
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <ImageLoader 
-                                                    className='small-prod-img' 
-                                                    imageUrl='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288623/multi-vendor/prod_2_2x.png' 
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <ImageLoader 
-                                                    className='small-prod-img' 
-                                                    imageUrl='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288624/multi-vendor/prod_3_2x.png' 
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <ImageLoader 
-                                                    className='small-prod-img' 
-                                                    imageUrl='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288623/multi-vendor/prod_2_2x.png' 
-                                                    />
-                                                </div>
-                                            </Slider>
-                                        </div>
+                                        {this.renderProductImages(productData)}
                                     </div>
                                     <div className='col-lg-7 col-md-7 col-sm-7 col-12 description-wrapper'>
                                         <div className='details'>
