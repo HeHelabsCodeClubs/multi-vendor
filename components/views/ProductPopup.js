@@ -114,7 +114,7 @@ class ProductPopup extends React.Component {
                                         </span>
                                     </div>
                                     <div className='product-detail'>
-                                        <span className='details-title'>Price:</span>
+                                        <span className='details-title'>From store: </span>
                                         <span className='product-store'>
                                             <span className='store-img'>
                                                 <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556532890/multi-vendor/NoPath_-_Copy.png' />

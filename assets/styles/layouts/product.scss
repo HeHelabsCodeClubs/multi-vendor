@@ -365,3 +365,10 @@
         margin: 0 1rem !important;
     }
 }
+.single-product-page {
+    width: 90%;
+    margin: 0 auto;
+    @media (max-width: $mobile-lg) {
+        width: 100%;
+    }
+}
