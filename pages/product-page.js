@@ -26,6 +26,7 @@ class ProductPage extends React.Component {
         this.renderProductUnitDescription = this.renderProductUnitDescription.bind(this);
         this.renderProductDiscountedPrice = this.renderProductDiscountedPrice.bind(this);
         this.renderProductImages = this.renderProductImages.bind(this);
+        this.getSlidesToShow = this.getSlidesToShow.bind(this);
     }
 
     static async getInitialProps({ query }) {
@@ -187,6 +188,14 @@ class ProductPage extends React.Component {
         }
     }
 
+    getSlidesToShow(images) {
+        if(images.length >= 4) {
+            return 4;
+        }
+
+        return images.length;
+    }
+
     renderProductImages(productData) {
         if (productData) {
             const { images } = productData;
@@ -229,9 +238,10 @@ class ProductPage extends React.Component {
                         </div>
                         <div className='slide-nav'>
                             <Slider
+                            //infinite={false}
                             asNavFor={this.state.nav1}
                             ref={slider => (this.slider2 = slider)}
-                            slidesToShow={4}
+                            slidesToShow={this.getSlidesToShow(images)}
                             slidesToScroll={1}
                             dots={false}
                             focusOnSelect={true}
