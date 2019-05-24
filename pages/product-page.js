@@ -27,6 +27,7 @@ class ProductPage extends React.Component {
         this.renderProductDiscountedPrice = this.renderProductDiscountedPrice.bind(this);
         this.renderProductImages = this.renderProductImages.bind(this);
         this.getSlidesToShow = this.getSlidesToShow.bind(this);
+        this.renderSimilarProducts = this.renderSimilarProducts.bind(this);
     }
 
     static async getInitialProps({ query }) {
@@ -257,6 +258,31 @@ class ProductPage extends React.Component {
         
     }
 
+    renderSimilarProducts(products, type) {
+        if (products) {
+            const sectionTitle = type === 'related' ? 'Related Items' : 'Often bought with';
+            const similarProductsLayout = products.map((product) => {
+                return (
+                    <div 
+                    className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'
+                    key={product.slug}
+                    >
+                        <Product product={product} />
+                    </div>
+                );
+            })
+
+            return (
+                <div>
+                    <div className='products-title'>{sectionTitle}</div>
+                    <div className='row reset-row popup-products'>
+                        {similarProductsLayout}
+                    </div>
+                </div>
+            )
+        }
+    }
+
 
 	render() {
         const { productData } = this.props;
@@ -293,36 +319,8 @@ class ProductPage extends React.Component {
                                 </div>  
                             </div>
                         </div>
-                        <div className='products-title'>Related Items</div>
-                        <div className='row reset-row popup-products'>
-                            <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
-                                <Product />
-                            </div>
-                            <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
-                                <Product />
-                            </div>
-                            <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
-                                <Product />
-                            </div>
-                            <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
-                                <Product />
-                            </div>
-                        </div>
-                        <div className='products-title'>Often bought with</div>
-                        <div className='row reset-row popup-products'>
-                            <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
-                                <Product />
-                            </div>
-                            <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
-                                <Product />
-                            </div>
-                            <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
-                                <Product />
-                            </div>
-                            <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
-                                <Product />
-                            </div>
-                        </div>
+                        {this.renderSimilarProducts(productData.related_products, 'related')}
+                        {this.renderSimilarProducts(productData.cross_sell_products, 'often_bought_with')}
                     </div>
                 </div>
             </Global>

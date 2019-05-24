@@ -14,7 +14,7 @@ export default (product) => {
 
     return (
         <span className='price-cart'>
-            <span className='price'>{`Rwf ${special_price}`}</span>
+            <span className='price'>{`Rwf ${price}`}</span>
         </span>
     );
 }
