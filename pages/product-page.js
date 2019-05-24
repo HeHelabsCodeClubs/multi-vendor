@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-unfetch';
 import Select2 from 'react-select2-wrapper';
+import Slider from "react-slick";
 import Product from '../components/reusable/Product';
 import Global from '../components/reusable/Global';
 import { API_URL } from '../config';
@@ -12,6 +13,10 @@ import ImageLoader from '../components/reusable/ImageLoader';
 class ProductPage extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            nav1: null,
+            nav2: null
+        };
         this.renderProductMetaData = this.renderProductMetaData.bind(this);
         this.renderProductAttributes = this.renderProductAttributes.bind(this);
         this.renderAttributeSelectOption = this.renderAttributeSelectOption.bind(this);
@@ -31,6 +36,12 @@ class ProductPage extends React.Component {
         return {
             productData: data
         };
+    }
+    componentDidMount() {
+        this.setState({
+          nav1: this.slider1,
+          nav2: this.slider2
+        });
     }
     
     renderProductMetaData(product) {
@@ -180,78 +191,148 @@ class ProductPage extends React.Component {
         const { productData } = this.props;
 		return (
             <Global>
-                <div>
-                    <div className='popup-wrapper'>
-                        <div className='product-details-wrapper'>
-                            <div className='row reset-row'>
-                                <div className='col-lg-5 col-md-5 col-sm-5 col-12 images-wrapper'>
-                                    <img className='big-prod-img' src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288624/multi-vendor/prod_3_2x.png' />
-                                    <div className='row'>
-                                        <div className='col-lg-3 col-md-3 col-sm-3 col-3'>
-                                            <img className='small-prod-img' src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288624/multi-vendor/prod_3_2x.png' />
+                <div className='maximum-width'>
+                    <div className='single-product-page'>
+                        <div className='popup-wrapper'>
+                            <div className='product-details-wrapper'>
+                                <div className='row reset-row'>
+                                    <div className='col-lg-5 col-md-5 col-sm-5 col-12 images-wrapper'>
+                                        <div className='slide-for'>
+                                            <Slider
+                                            asNavFor= {this.state.nav2}
+                                            ref= {slider => (this.slider1 = slider)}
+                                            slidesToShow={1}
+                                            slidesToScroll={1}
+                                            arrows={false}
+                                            fade={true}
+                                            >
+                                                <div>
+                                                    <ImageLoader 
+                                                    className='big-prod-img' 
+                                                    imageUrl='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288623/multi-vendor/prod_1_2x.png' 
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <ImageLoader 
+                                                    className='big-prod-img' 
+                                                    imageUrl='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288624/multi-vendor/prod_3_2x.png' 
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <ImageLoader 
+                                                    className='big-prod-img' 
+                                                    imageUrl='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288623/multi-vendor/prod_2_2x.png' 
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <ImageLoader 
+                                                    className='big-prod-img' 
+                                                    imageUrl='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288624/multi-vendor/prod_3_2x.png' 
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <ImageLoader 
+                                                    className='big-prod-img' 
+                                                    imageUrl='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288623/multi-vendor/prod_2_2x.png' 
+                                                    />
+                                                </div>
+                                            </Slider>
                                         </div>
-                                        <div className='col-lg-3 col-md-3 col-sm-3 col-3'>
-                                            <img className='small-prod-img' src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288624/multi-vendor/prod_3_2x.png' />
-                                        </div>
-                                        <div className='col-lg-3 col-md-3 col-sm-3 col-3'>
-                                            <img className='small-prod-img' src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288624/multi-vendor/prod_3_2x.png' />
-                                        </div>
-                                        <div className='col-lg-3 col-md-3 col-sm-3 col-3'>
-                                            <img className='small-prod-img' src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288624/multi-vendor/prod_3_2x.png' />
+                                        <div className='slide-nav'>
+                                            <Slider
+                                            asNavFor={this.state.nav1}
+                                            ref={slider => (this.slider2 = slider)}
+                                            slidesToShow={4}
+                                            slidesToScroll={1}
+                                            dots={false}
+                                            focusOnSelect={true}
+                                            rows={1}
+                                            >
+                                                <div>
+                                                    <ImageLoader 
+                                                    className='small-prod-img' 
+                                                    imageUrl='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288623/multi-vendor/prod_1_2x.png' 
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <ImageLoader 
+                                                    className='small-prod-img' 
+                                                    imageUrl='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288624/multi-vendor/prod_3_2x.png' 
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <ImageLoader 
+                                                    className='small-prod-img' 
+                                                    imageUrl='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288623/multi-vendor/prod_2_2x.png' 
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <ImageLoader 
+                                                    className='small-prod-img' 
+                                                    imageUrl='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288624/multi-vendor/prod_3_2x.png' 
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <ImageLoader 
+                                                    className='small-prod-img' 
+                                                    imageUrl='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556288623/multi-vendor/prod_2_2x.png' 
+                                                    />
+                                                </div>
+                                            </Slider>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='col-lg-7 col-md-7 col-sm-7 col-12 description-wrapper'>
-                                    <div className='details'>
-                                        {this.renderProductMetaData(productData)}
-                                        {this.renderProductAttributes(productData.attributes)}
-                                        <StockIncrementor stock={productData.stock} />
-                                        <div className='product-detail'>
-                                            <span className='orange-btn'>
-                                                <button>Add to Cart</button>
-                                            </span>
-                                            <span className='white-btn'>
-                                                <button>Direct Buy</button>
-                                            </span>
-                                            <span className='white-btn'>
-                                                <button>Add to Wishlist</button>
-                                            </span>
+                                    <div className='col-lg-7 col-md-7 col-sm-7 col-12 description-wrapper'>
+                                        <div className='details'>
+                                            {this.renderProductMetaData(productData)}
+                                            {this.renderProductAttributes(productData.attributes)}
+                                            <StockIncrementor stock={productData.stock} />
+                                            <div className='product-detail'>
+                                                <span className='orange-btn'>
+                                                    <button>Add to Cart</button>
+                                                </span>
+                                                <span className='white-btn'>
+                                                    <button>Direct Buy</button>
+                                                </span>
+                                                <span className='white-btn'>
+                                                    <button>Add to Wishlist</button>
+                                                </span>
+                                            </div>
+                                            {this.renderProductStore(productData.belongs_to_exclusive_store, productData.store)}
                                         </div>
-                                        {this.renderProductStore(productData.belongs_to_exclusive_store, productData.store)}
+                                    {this.renderProductDescription(productData)}
                                     </div>
-                                   {this.renderProductDescription(productData)}
-                                </div>
-                            </div>  
+                                </div>  
+                            </div>
                         </div>
-                    </div>
-                    <div className='products-title'>Related Items</div>
-                    <div className='row reset-row popup-products'>
-                        <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
-                            <Product />
+                        <div className='products-title'>Related Items</div>
+                        <div className='row reset-row popup-products'>
+                            <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                                <Product />
+                            </div>
+                            <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                                <Product />
+                            </div>
+                            <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                                <Product />
+                            </div>
+                            <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                                <Product />
+                            </div>
                         </div>
-                        <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
-                            <Product />
-                        </div>
-                        <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
-                            <Product />
-                        </div>
-                        <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
-                            <Product />
-                        </div>
-                    </div>
-                    <div className='products-title'>Often bought with</div>
-                    <div className='row reset-row popup-products'>
-                        <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
-                            <Product />
-                        </div>
-                        <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
-                            <Product />
-                        </div>
-                        <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
-                            <Product />
-                        </div>
-                        <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
-                            <Product />
+                        <div className='products-title'>Often bought with</div>
+                        <div className='row reset-row popup-products'>
+                            <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                                <Product />
+                            </div>
+                            <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                                <Product />
+                            </div>
+                            <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                                <Product />
+                            </div>
+                            <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                                <Product />
+                            </div>
                         </div>
                     </div>
                 </div>

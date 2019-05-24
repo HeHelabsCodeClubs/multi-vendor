@@ -372,3 +372,8 @@
         width: 100%;
     }
 }
+.slide-nav {
+    .slick-prev:before, .slick-next:before {
+        color: $black-color-1;
+    }
+}

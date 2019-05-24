@@ -747,6 +747,12 @@ html {
         font-size: 1.7rem;
         font-family: $font-bold;
     }
+    .slide-nav {
+        .slick-prev:before, .slick-next:before {
+            // font-family: 'icomoon';
+            // content: 
+        }
+    }
 
     // seller
 
