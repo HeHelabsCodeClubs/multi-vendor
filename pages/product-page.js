@@ -243,7 +243,7 @@ class ProductPage extends React.Component {
                                             asNavFor={this.state.nav1}
                                             ref={slider => (this.slider2 = slider)}
                                             slidesToShow={4}
-                                            slidesToScroll={1}
+                                            slidesToScroll={2}
                                             dots={false}
                                             focusOnSelect={true}
                                             rows={1}
