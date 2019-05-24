@@ -376,4 +376,12 @@
     .slick-prev:before, .slick-next:before {
         color: $black-color-1;
     }
+    .slick-prev:before {
+        color: $black-color-1;
+        content: "\e91a";
+    }
+    .slick-next:before {
+        color: $black-color-1;
+        content: "\e919";
+    }
 }
