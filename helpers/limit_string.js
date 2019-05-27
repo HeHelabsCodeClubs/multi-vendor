@@ -1,0 +1,1 @@
+export default (text, limit) => `${text.substring(0, limit)}...`;

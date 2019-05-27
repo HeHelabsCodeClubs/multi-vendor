@@ -190,6 +190,10 @@ class ProductPage extends React.Component {
     }
 
     getSlidesToShow(images) {
+        if (images.length == 1) {
+            return 1;
+        }
+        
         if(images.length >= 4) {
             return 4;
         }
@@ -206,7 +210,8 @@ class ProductPage extends React.Component {
                         <div key={image.image_url}>
                             <ImageLoader 
                             className='big-prod-img' 
-                            imageUrl={image.image_url} 
+                            imageUrl={image.image_url}
+                            placeholderHeight={600} 
                             />
                         </div>
                     );
@@ -218,6 +223,7 @@ class ProductPage extends React.Component {
                             <ImageLoader 
                             className='small-prod-img' 
                             imageUrl={image.image_url}
+                            placeholderHeight={100}
                             />
                         </div>
                     );
@@ -260,26 +266,28 @@ class ProductPage extends React.Component {
 
     renderSimilarProducts(products, type) {
         if (products) {
-            const sectionTitle = type === 'related' ? 'Related Items' : 'Often bought with';
-            const similarProductsLayout = products.map((product) => {
+            if (products.length > 0) {
+                const sectionTitle = type === 'related' ? 'Related items' : 'Often bought with';
+                const similarProductsLayout = products.map((product) => {
+                    return (
+                        <div 
+                        className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'
+                        key={product.slug}
+                        >
+                            <Product product={product} />
+                        </div>
+                    );
+                });
+    
                 return (
-                    <div 
-                    className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'
-                    key={product.slug}
-                    >
-                        <Product product={product} />
+                    <div>
+                        <div className='products-title'>{sectionTitle}</div>
+                        <div className='row reset-row popup-products'>
+                            {similarProductsLayout}
+                        </div>
                     </div>
                 );
-            })
-
-            return (
-                <div>
-                    <div className='products-title'>{sectionTitle}</div>
-                    <div className='row reset-row popup-products'>
-                        {similarProductsLayout}
-                    </div>
-                </div>
-            )
+            }
         }
     }
 

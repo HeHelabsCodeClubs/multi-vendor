@@ -3,6 +3,8 @@ import '../../assets/styles/layouts/product.scss';
 import ImageLoader from './ImageLoader';
 import renderProductIdentifier from '../../helpers/render_product_identifier';
 import renderProductPrice from '../../helpers/render_product_price';
+import limitString from '../../helpers/limit_string';
+
 
 class Product extends React.Component {
     constructor(props) {
@@ -10,9 +12,11 @@ class Product extends React.Component {
     }
     renderProduct(product) {
         if (product) {
+            const { description, name } = product;
+            const productDescription = (description !== '') ? limitString(description, 10) : '';
+            const displayedProductTitle = (productDescription !== '') ? `${name} - ${productDescription}` : name;
             return (
-                <a href={`sellers/${product.store.slug}/products/${product.slug}`}>
-                    {/* <img className='product-img' src={product.image_url} /> */}
+                <a href={`/sellers/${product.store.slug}/products/${product.slug}`}>
                     <ImageLoader 
                         imageClassName='product-img' 
                         imageUrl={product.image_url}
@@ -25,7 +29,7 @@ class Product extends React.Component {
                             <img className='store-img' src={product.store.icon} />
                             <span className='store-name'>{product.store.name}</span>
                         </div>
-                        <div className='product-name'>{`${product.name} - ${product.description}`}</div>
+                        <div className='product-name'>{displayedProductTitle}</div>
                         <div className='price-cart'>
                             {renderProductPrice(product)}
                             <span className='add-to-cart'>
