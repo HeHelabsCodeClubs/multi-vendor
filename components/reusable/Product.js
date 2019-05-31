@@ -52,9 +52,9 @@ class Product extends React.Component {
                 return this.renderProductToCartButton(product);
             }
             return (
-                <span className='add-to-cart'>
+                <span className='add-to-cart select-options'>
                     <a href={`/sellers/${store.slug}/products/${slug}`}>
-                        Select options
+                        <button>Select options</button>
                     </a>
                 </span>
             );

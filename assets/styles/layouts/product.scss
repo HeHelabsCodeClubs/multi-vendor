@@ -141,6 +141,15 @@
                         }
                     }
                 }
+                &.select-options {
+                    button {
+                        border-radius: 2rem;
+                        color: $green-color-2;
+                        @media (max-width: $mobile-lg) {
+                            border-radius: 50%;
+                        }
+                    }
+                }
             }
         }
     }

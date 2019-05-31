@@ -52,6 +52,11 @@ class Footer extends Component {
                                     <button>Subscribe</button>
                                 </div>
                                 <div className='footer-title'>Pay with</div>
+                                <div className='footer-payment-mode'>
+                                    <span className='payment'><img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1559309603/multi-vendor/Visa-icon.png' /></span>
+                                    <span className='payment'><img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1559309603/multi-vendor/mastercard-logo-icon-png_44630.png' /></span>
+                                    <span className='payment'><img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1559309603/multi-vendor/MoMo-icon.png' /></span>
+                                </div>
                             </div>
                         </div>
                     </div>
