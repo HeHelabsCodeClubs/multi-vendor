@@ -81,12 +81,20 @@ class SidemenuCategories extends Component {
         this.setState({ isOpen });
     }
 
+    redirectToPage() {
+        window.location.assign('/');
+    }
+
     render() {
         const { isOpen } = this.state;
         const { isRight } = this.props;
         return (
             <div>
-                <SideMenu items={items} />
+                <SideMenu 
+                    items={items} 
+                    onMenuItemClick={() => this.redirectToPage()}
+                    shouldTriggerClickOnParents={true}
+                />
                 <SidebarUI isOpen={isOpen}>
                     <div className='filter-title' onClick={this.openSidebar}>Filter</div>
                     <SidebarUI.Content isRight={isRight}>
