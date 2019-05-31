@@ -12,20 +12,18 @@ class SpecialProduct extends React.Component {
     renderProduct(product) {
         if (product) {
             return (
-                //<Link href={`/product-page?seller=${product.store.slug}&slug=${product.slug}`} as={`sellers/${product.store.slug}/products/${product.slug}`}>
-                    <a href={`sellers/${product.store.slug}/products/${product.slug}`}>
-                        <ImageLoader 
-                        imageClassName='product-img' 
-                        imageUrl={product.image_url}
-                        placeholderHeight={300}
-                        placeholderBackgroundColor='#ffffff'
-                        />
-                        {renderProductIdentifier(product)}
-                        <div className='product-description'>
-                            {renderProductPrice(product)}
-                        </div>
-                    </a>
-                //</Link>          
+                <a href={`sellers/${product.store.slug}/products/${product.slug}`}>
+                    <ImageLoader 
+                    imageClassName='product-img' 
+                    imageUrl={product.image_url}
+                    placeholderHeight={300}
+                    placeholderBackgroundColor='#ffffff'
+                    />
+                    {renderProductIdentifier(product)}
+                    <div className='product-description'>
+                        {renderProductPrice(product)}
+                    </div>
+                </a>        
             );
         }
     }

@@ -99,9 +99,11 @@ class MadeInRwanda extends Component {
 			<div className='made-in-rwanda-wrapper'>
 				<div className='made-in-rwanda-title maximum-width'>Made In Rwanda <span>Brands</span></div>
                 <div className='stores-logos'>
-                    <Slider {...settings}>
-						{this.renderStores(stores)}
-                    </Slider>
+					<div className='maximum-width'>
+						<Slider {...settings}>
+							{this.renderStores(stores)}
+						</Slider>
+					</div>
                 </div>
 				<div className='special-offers-wrapper'>
 					<div className='special-offers-content maximum-width'>

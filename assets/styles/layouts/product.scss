@@ -83,6 +83,7 @@
             text-align: left;
             color: $black-color-2;
             margin: 0.5rem 1rem;
+            min-height: 1.8rem;
         }
         .price-cart {
             border-top: 2px solid $gray-color-2;
@@ -90,7 +91,13 @@
             @include flexbox;
             @include flexalignitems(center);
             @include flexjustifycontent(space-between);
-            
+
+            &.single-price-cart {
+                .price-cart {
+                    border-top: none !important;
+                    padding: 0 !important;
+                }
+            }
             .price {
                 line-height: 0.8;
                 text-align: left;
@@ -210,6 +217,8 @@
             }
             .product-detail {
                 margin: 0 0 2rem 0;
+                @include flexbox;
+                @include flexalignitems(center);
                 @media (max-width: $mobile-lg) {
                     margin: 0 0 1rem 0;
                 }
@@ -236,17 +245,17 @@
                         @include flexbox;
                         @include flexalignitems(center);
                         @include flexjustifycontent(space-between);
+                        outline: none !important;
 
                         .select2-selection__rendered {
-                            margin-top: -0.3rem;
                             padding: 0;
+                            line-height: initial !important;
                             .select2-selection__placeholder {
                                 color: $black-color-2;
                             }
                         }
                         .select2-selection__arrow {
                             position: relative !important;
-                            margin-top: -0.3rem;
                             b {
                                 color: $black-color-2;
                             }
@@ -268,6 +277,13 @@
                         height: 2rem;
                         width: 2rem;
                         margin: 0 0.5rem 0 0;
+                        border: none;
+                        outline: none;
+                        transition: 0.5s;
+                        
+                        &:hover {
+                            opacity: 0.5;
+                        }
                     }
                     .number {
                         @include flexbox;
@@ -312,23 +328,31 @@
                 }
                 .product-store {
                     display: inline-flex;
+                    border-radius: 0.3rem;
                     .store-img {
                         display: inline-block;
                         height: 4rem;
                         background: $gray-color-2;
                         border-right: 1px solid $white-color;
+                        @include flexbox;
+                        @include flexalignitems(center);
+                        @include flexjustifycontent(center);
+                        border-radius: 0.3rem 0 0 0.3rem;
                         img {
                             height: 3rem;
                         }
                     }
                     .store-content {
                         display: inline-block;
+                        border-radius: 0 0.3rem 0.3rem 0;
                         .content {
                             color: $black-color-3;
                             height: 2rem;
                             @include flexbox;
                             @include flexalignitems(center);
                             background: $gray-color-2;
+                            padding: 0 0.5rem;
+                            border-radius: 0 0.3rem 0 0;
                             .black {
                                 color: $black-color-3;
                             }
@@ -337,6 +361,7 @@
                             }
                             &.bottom {
                                 border-top: 1px solid $white-color;
+                                border-radius: 0 0 0.3rem 0 !important;
                             }
                         }
                     }
@@ -398,8 +423,10 @@
         }
     }
 }
-.image-placeholder {
-    width: auto !important;
-    margin: 0 0.3rem;
-    border: 1px solid $gray-color-2;
+.popup-wrapper {
+    .image-placeholder {
+        width: auto !important;
+        margin: 0 0.3rem;
+        border: 1px solid $gray-color-2;
+    }
 }

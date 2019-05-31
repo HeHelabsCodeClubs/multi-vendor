@@ -30,7 +30,7 @@ class Product extends React.Component {
                             <span className='store-name'>{product.store.name}</span>
                         </div>
                         <div className='product-name'>{displayedProductTitle}</div>
-                        <div className='price-cart'>
+                        <div className='price-cart single-price-cart'>
                             {renderProductPrice(product)}
                             <span className='add-to-cart'>
                                 <button><span className='icon-Path-63'></span></button>

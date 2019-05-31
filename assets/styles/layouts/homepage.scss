@@ -216,12 +216,6 @@
     background: $gray-color-2;
     padding: 0 0 2rem 0;
 
-    @media screen {
-            padding: 25px 0 25px 0;
-            border-top: 0.1px solid $gray-color-6;
-            border-bottom: 0.1px solid $gray-color-6;
-    }
-
     .top-stores-wrapper {
         .top-stores-title {
             text-align: center;

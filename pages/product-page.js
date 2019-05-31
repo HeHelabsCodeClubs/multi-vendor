@@ -190,7 +190,7 @@ class ProductPage extends React.Component {
     }
 
     getSlidesToShow(images) {
-        if (images.length == 1) {
+        if (images.length === 1) {
             return 1;
         }
         
@@ -217,18 +217,39 @@ class ProductPage extends React.Component {
                     );
                 });
 
-                const thumbnailImages = images.map((image) => {
+                let thumbnailImages = [];
+                if (images.length > 1) {
+                    thumbnailImages = images.map((image) => {
+                        return (
+                            <div key={image.image_url}>
+                                <ImageLoader 
+                                className='small-prod-img' 
+                                imageUrl={image.image_url}
+                                placeholderHeight={100}
+                                />
+                            </div>
+                        );
+                    });
+                }
+
+                if (thumbnailImages.length < 1) {
                     return (
-                        <div key={image.image_url}>
-                            <ImageLoader 
-                            className='small-prod-img' 
-                            imageUrl={image.image_url}
-                            placeholderHeight={100}
-                            />
+                        <div>
+                            <div className='slide-for'>
+                                <Slider
+                                asNavFor= {this.state.nav2}
+                                ref= {slider => (this.slider1 = slider)}
+                                slidesToShow={1}
+                                slidesToScroll={1}
+                                arrows={false}
+                                fade={true}
+                                >
+                                  {mainSliderImages}  
+                                </Slider>
+                            </div>
                         </div>
                     );
-                });
-
+                }
                 return (
                     <div>
                         <div className='slide-for'>
