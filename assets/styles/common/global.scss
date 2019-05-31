@@ -17,6 +17,11 @@ html {
         font-size: 10px !important;
     } 
 }
+body {
+    min-height: 100vh;
+    position: relative;
+    width: 100%;
+}
 .maximum-width {
     max-width: 1920px;
     margin: 0 auto !important;

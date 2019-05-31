@@ -91,6 +91,13 @@
 					height: 3rem;
 					border-radius: 0.3rem;
 					background-color: $gray-color-2;
+					outline: none !important;
+
+					.select2-search--dropdown {
+						.select2-search__field {
+							outline: none !important;
+						}
+					}
 		
 					.select2-selection__rendered {
 						line-height: unset !important;

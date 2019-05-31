@@ -71,6 +71,12 @@
                 height: 3rem;
                 border-radius: 0 !important;
                 border: none !important;  
+                outline: none !important;
+                .select2-search--dropdown {
+                    .select2-search__field {
+                        outline: none !important;
+                    }
+                }
 
                 .select2-selection__rendered {
                     line-height: unset !important;
@@ -154,6 +160,13 @@
                     border-radius: 0 !important;
                     border: none !important;  
                     background: transparent;
+                    outline: none !important;
+
+                    .select2-search--dropdown {
+                        .select2-search__field {
+                            outline: none !important;
+                        }
+                    }
         
                     .select2-selection__rendered {
                         line-height: unset !important;
@@ -467,6 +480,12 @@
         overflow: auto;
         position: relative;
         height: calc(100vh - 3.3rem);
+        overflow: hidden;
+
+        .cart-content-content {
+            overflow-y: scroll;
+            height: calc(100vh - 7.6rem);
+        }
         .cart-store-content {
             position: relative;
             margin: 2rem 1rem 0 1rem;
