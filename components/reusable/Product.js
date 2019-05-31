@@ -19,15 +19,15 @@ class Product extends React.Component {
             if (Number(has_attributes) == 0) {
                 return (
                     <span className='add-to-cart'>
-                            <button><span className='icon-Path-63'></span></button>
+                        <button><span className='icon-Path-63'></span></button>
                     </span>
                 );
             }
 
             return (
-                <span className='add-to-cart'>
+                <span className='add-to-cart select-options'>
                     <a href={`/sellers/${store.slug}/products/${slug}`}>
-                        Select options
+                        <button>Select options</button>
                     </a>
                 </span>
             );
