@@ -9,6 +9,29 @@ import limitString from '../../helpers/limit_string';
 class Product extends React.Component {
     constructor(props) {
         super(props);
+        this.renderProduct = this.renderProduct.bind(this);
+        this.renderProductClickAction = this.renderProductClickAction.bind(this);
+    }
+
+    renderProductClickAction(product) {
+        if (product) {
+            const { has_attributes, store, slug } = product;
+            if (Number(has_attributes) == 0) {
+                return (
+                    <span className='add-to-cart'>
+                            <button><span className='icon-Path-63'></span></button>
+                    </span>
+                );
+            }
+
+            return (
+                <span className='add-to-cart'>
+                    <a href={`/sellers/${store.slug}/products/${slug}`}>
+                        Select options
+                    </a>
+                </span>
+            );
+        }
     }
     renderProduct(product) {
         if (product) {
@@ -32,9 +55,7 @@ class Product extends React.Component {
                         <div className='product-name'>{displayedProductTitle}</div>
                         <div className='price-cart single-price-cart'>
                             {renderProductPrice(product)}
-                            <span className='add-to-cart'>
-                                <button><span className='icon-Path-63'></span></button>
-                            </span>
+                            {this.renderProductClickAction(product)}
                         </div>
                     </div>
                 </a>            
