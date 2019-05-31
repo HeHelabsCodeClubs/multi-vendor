@@ -8,6 +8,6 @@ const Global = props => (
         {props.children}
         <Footer />
     </div>
-)
+);
 
 export default Global;
