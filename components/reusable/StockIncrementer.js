@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import addProductToCart from '../../helpers/add_product_to_cart';
+import { getCartProductQuantityValue } from '../../helpers/cart_functionality_helpers';
 
 class StockIncrementor extends Component {
     constructor(props) {
@@ -14,12 +16,37 @@ class StockIncrementor extends Component {
         this.decrementStock = this.decrementStock.bind(this);
         this.renderLayout = this.renderLayout.bind(this);
         this.displayIncrementError = this.displayIncrementError.bind(this);
+        this.saveProductToCartOnChange = this.saveProductToCartOnChange.bind(this);
+        this.updateToInitialQuantity = this.updateToInitialQuantity.bind(this);
     }
 
     componentWillMount() {
-        const { stock } = this.props;
+        const { stock, product, incrementInitial } = this.props;
+        if (product) {
+            try {
+                getCartProductQuantityValue(
+                    product.store.slug, 
+                    product.slug,
+                    this.updateToInitialQuantity
+                );
+            } catch(err) {
+
+            }
+        }
+
         this.setState({
             stock: Number(stock)
+        });
+    }
+
+    updateToInitialQuantity(quantity) {
+        let newQuantity = Number(quantity);
+        if (this.props.incrementInitial) {
+            newQuantity = newQuantity + 1;
+            this.saveProductToCartOnChange(newQuantity);
+        }
+        this.setState({
+            initialStockIncrement: newQuantity
         });
     }
 
@@ -27,6 +54,11 @@ class StockIncrementor extends Component {
         const { initialStockIncrement, stock } = this.state;
         if (initialStockIncrement !== stock) {
             const newStock = initialStockIncrement + 1;
+            this.props.getSelectedQuantity(newStock);
+            /**
+             * Check if we have to add product to cart as we increment
+             */
+            this.saveProductToCartOnChange(newStock);
             this.setState({
                 initialStockIncrement: newStock
             });
@@ -49,13 +81,17 @@ class StockIncrementor extends Component {
         const { initialStockIncrement} = this.state;
         if (initialStockIncrement !== 1) {
             const newStock = initialStockIncrement - 1;
+            this.props.getSelectedQuantity(newStock);
+            /**
+             * Check if we have to add product to cart as we increment
+             */
+            this.saveProductToCartOnChange(newStock);
             this.setState({
                 initialStockIncrement: newStock
             });
         } 
 
         if (initialStockIncrement === 1) {
-
             this.setState({
                 errorMessage: 'At least 1 item' 
             });
@@ -64,6 +100,16 @@ class StockIncrementor extends Component {
                     errorMessage: ''
                 });
             }, 1000);
+        }
+    }
+
+    saveProductToCartOnChange(newStock) {
+        const { updateCartOnChange, product } = this.props;
+        if (updateCartOnChange) {
+            if (product) {
+                product.quantity = newStock;
+                addProductToCart(product);
+            }
         }
     }
 

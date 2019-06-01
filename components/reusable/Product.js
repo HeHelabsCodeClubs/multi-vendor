@@ -5,33 +5,77 @@ import renderProductIdentifier from '../../helpers/render_product_identifier';
 import renderProductPrice from '../../helpers/render_product_price';
 import limitString from '../../helpers/limit_string';
 import StockIncrementor from './StockIncrementer';
+import addProductToCart from '../../helpers/add_product_to_cart';
+import { performActionIfProductNotInCart } from '../../helpers/cart_functionality_helpers';
 
 
 class Product extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            displayQuantityIncrementor: false
+            displayQuantityIncrementor: false,
+            selectedQuantity: 1,
+            incrementInitial: false
         };
         this.renderProduct = this.renderProduct.bind(this);
         this.renderProductClickAction = this.renderProductClickAction.bind(this);
         this.renderQuantityIncrementor = this.renderQuantityIncrementor.bind(this);
         this.renderProductToCartButton = this.renderProductToCartButton.bind(this);
+        this.updateSelectedQuantity = this.updateSelectedQuantity.bind(this);
+        this.incrementCartItemProduct = this.incrementCartItemProduct.bind(this);
+    }
+
+    incrementCartItemProduct(product) {
+        this.setState({
+            incrementInitial: true
+        });
+        this.renderQuantityIncrementor(product);
     }
 
     renderQuantityIncrementor(product) {
+        const { selectedQuantity, displayQuantityIncrementor } = this.state;
+
+        /**
+         * Adding the selected quantity to the existing product data
+         * 
+         */
+        product.quantity = selectedQuantity;
+
+        /**
+         * Try to add product to the cart
+         */
+        try {
+            performActionIfProductNotInCart(product.store.slug, product.slug, () => {
+                addProductToCart(product);
+            });
+            if (!displayQuantityIncrementor) {
+                this.setState({
+                    displayQuantityIncrementor: true
+                });
+            }
+        } catch(err) {
+            /**
+             * Console error
+             */
+            console.log('an error happened');
+        }
+        
+    }
+
+    updateSelectedQuantity(quantity) {
         this.setState({
-            displayQuantityIncrementor: true
+            selectedQuantity: quantity
         });
     }
 
     renderProductToCartButton(product) {
-        if (!this.state.displayQuantityIncrementor) {
+        const { incrementInitial, displayQuantityIncrementor } = this.state;
+        if (!displayQuantityIncrementor) {
             return (
                 <span className='add-to-cart'>
                     <button 
                     type='button'
-                    onClick={() => this.renderQuantityIncrementor(product)}>
+                    onClick={() => this.incrementCartItemProduct(product)}>
                         <span className='icon-Path-63'></span>
                     </button>
                 </span>
@@ -39,8 +83,12 @@ class Product extends React.Component {
         }
         return (
             <StockIncrementor 
-            stock={product.stock} 
+            stock={product.stock}
             layout='incrementor'
+            getSelectedQuantity={this.updateSelectedQuantity}
+            updateCartOnChange={true}
+            product={product}
+            incrementInitial={incrementInitial}
             />
         );
     }
