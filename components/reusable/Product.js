@@ -19,7 +19,7 @@ class Product extends React.Component {
         this.renderProductToCartButton = this.renderProductToCartButton.bind(this);
     }
 
-    renderQuantityIncrementor() {
+    renderQuantityIncrementor(product) {
         this.setState({
             displayQuantityIncrementor: true
         });
@@ -31,7 +31,7 @@ class Product extends React.Component {
                 <span className='add-to-cart'>
                     <button 
                     type='button'
-                    onClick={() => this.renderQuantityIncrementor()}>
+                    onClick={() => this.renderQuantityIncrementor(product)}>
                         <span className='icon-Path-63'></span>
                     </button>
                 </span>

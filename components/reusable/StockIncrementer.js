@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactTooltip from 'react-tooltip'
 
 class StockIncrementor extends Component {
     constructor(props) {
@@ -8,7 +7,7 @@ class StockIncrementor extends Component {
         this.state = {
             initialStockIncrement: 1,
             stock: 0,
-            errorMessage: 'Only up to 49 items'
+            errorMessage: ''
         };
         this.renderIncrementor = this.renderIncrementor.bind(this);
         this.incrementStock = this.incrementStock.bind(this);
@@ -42,7 +41,7 @@ class StockIncrementor extends Component {
                 this.setState({
                     errorMessage: ''
                 });
-            }, 2000);
+            }, 1000);
         }
     }
 
@@ -64,7 +63,7 @@ class StockIncrementor extends Component {
                 this.setState({
                     errorMessage: ''
                 });
-            }, 2000);
+            }, 1000);
         }
     }
 
@@ -109,18 +108,19 @@ class StockIncrementor extends Component {
     }
 
     renderLayout(defaultLayout) {
-        const { initialStockIncrement, stock } = this.state;
+        const { initialStockIncrement, stock, errorMessage } = this.state;
+        const wrapperClass = (errorMessage !== '') ? 'product-detail error' : 'product-detail';
         switch(defaultLayout) {
             case 'incrementor':
                 return (
-                    <div className='product-detail'>
+                    <div className={wrapperClass}>
                         {this.displayIncrementError()}
                         {this.renderIncrementor(initialStockIncrement)}
                     </div>
                 );
             default:
                 return (
-                    <div className='product-detail'>
+                    <div className={wrapperClass}>
                         <span className='details-title'>Quantity:</span>
                         {this.renderIncrementor(initialStockIncrement)}
                         <span className='details-title'>{`(${stock} peaces available)`}</span>

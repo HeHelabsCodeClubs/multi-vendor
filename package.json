@@ -34,7 +34,6 @@
 		"react-sidemenu": "^1.1.0",
 		"react-slick": "^0.24.0",
 		"react-tabs": "^3.0.0",
-		"react-tooltip": "^3.10.0",
 		"react-transition-group": "^4.0.1",
 		"redux": "^4.0.1",
 		"redux-form": "^8.2.0",

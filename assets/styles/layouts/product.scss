@@ -7,6 +7,7 @@
     width: 96%;
     margin: 1rem 2%;
     position: relative;
+    min-height: 300px;
 
     img.product-img {
         width: 100%;   
@@ -93,9 +94,14 @@
             @include flexjustifycontent(space-between);
 
             &.single-price-cart {
+                padding: 2rem 1rem;
+                min-height: 7rem;
                 .price-cart {
                     border-top: none !important;
                     padding: 0 !important;
+                }
+                .product-detail {
+                    margin: 0;
                 }
             }
             .price {
@@ -334,6 +340,7 @@
     @media (max-width: $mobile-lg) {
         margin: 0 0 1rem 0;
     }
+
     .details-title {
         color: $gray-color-6;
         margin: 0 1.5rem 0 0;
@@ -447,13 +454,18 @@
             }
         }
     }
+
+    &.error {
+        margin: 0;
+    }
 }
 
 .quantity-error-container {
     position: absolute;
-    top: -3rem;
-    background: $white-color;
+    top: -5rem;
+    background: $light-gray;
     margin: 0;
+    padding: 1rem 1rem;
     h5 {
         color: $red-color-1;
         font-size: 1rem;
