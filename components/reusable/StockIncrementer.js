@@ -21,7 +21,7 @@ class StockIncrementor extends Component {
     }
 
     componentWillMount() {
-        const { stock, product, incrementInitial } = this.props;
+        const { stock, product} = this.props;
         if (product) {
             try {
                 getCartProductQuantityValue(

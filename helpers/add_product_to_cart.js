@@ -20,20 +20,32 @@ export default (product) => {
      */
 
     localforage.getItem(CART_ITEMS_KEY).then((items) => {
-        if (!items) {
+        if (items === null) {
             const cartItems = createCartItems(product);
-            localforage.setItem(CART_ITEMS_KEY, cartItems).catch((err) => {
-                throw UNABLE_TO_SAVE_LOCAL_DATA_ERROR;
+            localforage.setItem(CART_ITEMS_KEY, cartItems).then(() => {
+                // do nothing
+                return;
+            }).catch((err) => {
+                if (err) {
+                    throw UNABLE_TO_SAVE_LOCAL_DATA_ERROR;
+                }
             });
         } else {
             try {
                 updateCartItems(items, product);
+                return;
             } catch (err) {
-                throw err;
+                if (err) {
+                    throw 'can not update cart items';
+                }
             }
         }
     }).catch((err) => {
-        throw UNABLE_TO_GET_CART_ITEMS_ERROR;
+        if (err) {
+            console.log(err);
+            console.log('throwing error here');
+            throw UNABLE_TO_GET_CART_ITEMS_ERROR;
+        }
     });
 }
 
@@ -74,7 +86,9 @@ function updateCartItems(cartItems, newProduct) {
      * Save updated data in the cart
     */
     
-    localforage.setItem(CART_ITEMS_KEY, updated_cart_items).catch((err) => {
+    localforage.setItem(CART_ITEMS_KEY, updated_cart_items).then(() => {
+        return;
+    }).catch((err) => {
         throw UNABLE_TO_SAVE_LOCAL_DATA_ERROR
     });
 }

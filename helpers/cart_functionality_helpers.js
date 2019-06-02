@@ -6,23 +6,43 @@ import {
 
 export const performActionIfProductNotInCart = (store_slug, product_slug, callback) => {
     localforage.getItem(CART_ITEMS_KEY).then((items) => {
-        if (!items) {
-            if (items[store_slug].products[product_slug]) {
+            if (items == null) {
                 callback();
+                return;
             }
-        }
+
+            if (items !== null) {
+                if (items[store_slug] === undefined) {
+                    callback();
+                    return;
+                }
+
+                if (items[store_slug].products[product_slug] === undefined) {
+                    callback();
+                    return;
+                }
+            } 
     }).catch((err) => {
-        throw UNABLE_TO_GET_CART_ITEMS_ERROR;
+        if (err) {
+            console.log('i am reaching herettt');
+            console.log(err);
+            throw UNABLE_TO_GET_CART_ITEMS_ERROR;
+        }
     });
 }
 
 export const getCartProductQuantityValue = (store_slug, product_slug, callback) => {
     localforage.getItem(CART_ITEMS_KEY).then((items) => {
-        if (items) {
-            callback(items[store_slug].products[product_slug].quantity);
-            return items[store_slug].products[product_slug].quantity;
+        if (items !== null) {
+            if (items[store_slug] !== undefined) {
+                callback(items[store_slug].products[product_slug].quantity);
+                return;
+            }
         }
     }).catch((err) => {
-        throw UNABLE_TO_GET_CART_ITEMS_ERROR;
+        if (err) {
+            console.log(err);
+            throw UNABLE_TO_GET_CART_ITEMS_ERROR;
+        }
     });
 }

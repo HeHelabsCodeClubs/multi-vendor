@@ -44,6 +44,7 @@ class Product extends React.Component {
         /**
          * Try to add product to the cart
          */
+    
         try {
             performActionIfProductNotInCart(product.store.slug, product.slug, () => {
                 addProductToCart(product);
@@ -57,7 +58,9 @@ class Product extends React.Component {
             /**
              * Console error
              */
-            console.log('an error happened');
+            if (err) {
+                console.log('an error happened');
+            }
         }
         
     }
