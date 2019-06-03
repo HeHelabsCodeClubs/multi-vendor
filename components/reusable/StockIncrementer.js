@@ -54,7 +54,9 @@ class StockIncrementor extends Component {
         const { initialStockIncrement, stock } = this.state;
         if (initialStockIncrement !== stock) {
             const newStock = initialStockIncrement + 1;
-            this.props.getSelectedQuantity(newStock);
+            if (this.props.getSelectedQuantity !== undefined) {
+                this.props.getSelectedQuantity(newStock);
+            }
             /**
              * Check if we have to add product to cart as we increment
              */
@@ -81,7 +83,9 @@ class StockIncrementor extends Component {
         const { initialStockIncrement} = this.state;
         if (initialStockIncrement !== 1) {
             const newStock = initialStockIncrement - 1;
-            this.props.getSelectedQuantity(newStock);
+            if (this.props.getSelectedQuantity !== undefined) {
+                this.props.getSelectedQuantity(newStock);
+            }
             /**
              * Check if we have to add product to cart as we increment
              */

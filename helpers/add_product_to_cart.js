@@ -36,6 +36,7 @@ export default (product) => {
                 return;
             } catch (err) {
                 if (err) {
+                    console.log(err);
                     throw 'can not update cart items';
                 }
             }
@@ -132,14 +133,15 @@ function createCartItemProduct(product) {
         stock,
         has_discount,
         special_price,
-        discount_percent
-
+        discount_percent,
+        name
     } = product;
 
     if (Number(has_attributes) == 0) {
         return {
+            name,
             cart_image_url,
-            has_attribute_options: has_attributes,
+            has_attributes,
             price,
             quantity,
             stock,
@@ -150,8 +152,9 @@ function createCartItemProduct(product) {
     }
 
     return {
+        name,
         cart_image_url,
-        has_attribute_options: has_attributes,
+        has_attributes,
         meta: getDataProduct(product)
     }
 }
