@@ -64,7 +64,7 @@ class Header extends React.Component {
                             </span>
                         </div>
                         <div className='col-lg-3 col-md-3 col-sm-12 col-3 account-container'>
-                            <div className='row'>
+                            <div className='row row-container'>
                                 <div className='col-lg-6 col-md-6 col-sm-6 col-2 account-grid'>
                                     <div className='row'>
                                         <div className='col-lg-3 col-md-3 col-sm-3 col-12 col-reset'>
