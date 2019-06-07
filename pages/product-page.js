@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-unfetch';
-import Select2 from 'react-select2-wrapper';
 import Slider from "react-slick";
+import { notify } from 'react-notify-toast';
 import Product from '../components/reusable/Product';
 import Global from '../components/reusable/Global';
 import { API_URL } from '../config';
@@ -9,13 +9,19 @@ import renderProductPrice from '../helpers/render_product_price';
 import getFormattedStoreUrl from '../helpers/get_formatted_store_url';
 import StockIncrementor from '../components/reusable/StockIncrementer';
 import ImageLoader from '../components/reusable/ImageLoader';
+import addProductToCart from '../helpers/add_product_to_cart';
+import AttributeOptionSelector from '../components/reusable/AttributeOptionSelector';
+import isObjectEmpty from '../helpers/is_object_empty';
  
 class ProductPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             nav1: null,
-            nav2: null
+            nav2: null,
+            updateCart: false,
+            selectedProductQuantity: 1,
+            selectedAttributes: {}
         };
         this.renderProductMetaData = this.renderProductMetaData.bind(this);
         this.renderProductAttributes = this.renderProductAttributes.bind(this);
@@ -28,6 +34,11 @@ class ProductPage extends React.Component {
         this.renderProductImages = this.renderProductImages.bind(this);
         this.getSlidesToShow = this.getSlidesToShow.bind(this);
         this.renderSimilarProducts = this.renderSimilarProducts.bind(this);
+        this.saveProductToCart = this.saveProductToCart.bind(this);
+        this.updateSelectedProductQuantity = this.updateSelectedProductQuantity.bind(this);
+        this.saveSelectedAttributeValue = this.saveSelectedAttributeValue.bind(this);
+        this.updateExistingSelectedAttributes = this.updateExistingSelectedAttributes.bind(this);
+        this.validateAttributeOptions = this.validateAttributeOptions.bind(this);
     }
 
     static async getInitialProps({ query }) {
@@ -105,26 +116,46 @@ class ProductPage extends React.Component {
         }
     }
 
-    renderAttributeSelectOption(option) {
-        const SelectorData = option.data.map((option_item) => {
-            return {
-                text: option_item.title,
-                id: option_item.option_id
-            };
+    saveSelectedAttributeValue(e) {
+        if (e !== undefined) {
+            try{
+                const attributeValue = JSON.parse(e.target.value);
+                const { selectedAttributes } = this.state;
+                if (isObjectEmpty(selectedAttributes)) {
+                    this.updateExistingSelectedAttributes(attributeValue);
+                } else {
+                    if (selectedAttributes.hasOwnProperty(attributeValue.option_name)) {
+                        this.updateExistingSelectedAttributes(attributeValue);
+                    } else {
+                        this.updateExistingSelectedAttributes(attributeValue);
+                    }
+                }
+            } catch(err) {
+                
+            }
+            
+        }
+        
+    }
+
+    updateExistingSelectedAttributes(attributeValue) {
+        const { selectedAttributes } = this.state;
+        const newAttributes = selectedAttributes;
+        newAttributes[attributeValue.option_name] = attributeValue.data;
+        this.setState({
+            selectedAttributes: newAttributes
         });
-        return (
-            <div className='product-detail' key={option.title}>
-                <span className='details-title'>{`${option.title}:`}</span>
-                <span className='select-dropdown'>
-                    <Select2
-                        data={SelectorData}
-                        options={
-                            { placeholder: 'Select' }
-                        }
-                    />
-                </span>
-            </div>
-        );
+    }
+
+    renderAttributeSelectOption(option) {
+        if (option) {
+            return (
+                <AttributeOptionSelector 
+                option={option}
+                getSelectedAttributeValue={this.saveSelectedAttributeValue} 
+                />
+            );
+        }
     }
 
     renderProductStore(has_store_url, store) {
@@ -312,11 +343,53 @@ class ProductPage extends React.Component {
         }
     }
 
+    updateSelectedProductQuantity(quantity) {
+        this.setState({
+            selectedProductQuantity: quantity
+        });
+    }
+
+    saveProductToCart(product) {
+        const { selectedProductQuantity, selectedAttributes } = this.state;
+        /**
+         * Validate selected attributes if they require validation
+         */
+        const errors = this.validateAttributeOptions(product.attributes.options);
+        if (errors.length !== 0) {
+            notify.show(errors[0], 'error', 2000);
+            return;
+        }
+
+        product.quantity = selectedProductQuantity;
+        product.selected_options = selectedAttributes;
+        addProductToCart(product, () => {
+            this.setState({
+                updateCart: true
+            });
+        });
+    }
+
+    validateAttributeOptions(attributeOptions) {
+        const { selectedAttributes } = this.state;
+        const errors = [];
+        for (let i = 0; i < attributeOptions.length; i++) {
+            const { is_required, title } = attributeOptions[i];
+            if (Number(is_required) === 1) {
+                if (selectedAttributes[title] === undefined) {
+                    errors.push(`Please select ${title} to proceed`);
+                }
+            }
+        }
+        return errors;
+    }
+
 
 	render() {
         const { productData } = this.props;
+        console.log('selected attributes');
+        console.log(this.state.selectedAttributes);
 		return (
-            <Global>
+            <Global updateCart={this.state.updateCart}>
                 <div className='maximum-width'>
                     <div className='single-product-page'>
                         <div className='popup-wrapper'>
@@ -329,10 +402,18 @@ class ProductPage extends React.Component {
                                         <div className='details'>
                                             {this.renderProductMetaData(productData)}
                                             {this.renderProductAttributes(productData.attributes)}
-                                            <StockIncrementor stock={productData.stock} />
+                                            <StockIncrementor 
+                                            stock={productData.stock}
+                                            getSelectedQuantity={this.updateSelectedProductQuantity} 
+                                            />
                                             <div className='product-detail'>
                                                 <span className='orange-btn'>
-                                                    <button>Add to Cart</button>
+                                                    <button
+                                                    type='submit'
+                                                    onClick={() => this.saveProductToCart(productData)}
+                                                    >
+                                                    Add to Cart
+                                                    </button>
                                                 </span>
                                                 <span className='white-btn'>
                                                     <button>Direct Buy</button>

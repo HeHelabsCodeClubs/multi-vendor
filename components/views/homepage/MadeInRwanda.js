@@ -21,10 +21,14 @@ class MadeInRwanda extends Component {
 	}
 
 	renderProducts(products) {
+		const { cartShouldUpdate } = this.props;
         const productsLayout = products.map((product) => {
             return (
 				<div key={product.slug}>
-					<Product product={product} />
+					<Product 
+					product={product} 
+					cartShouldUpdate={cartShouldUpdate}
+					/>
 				</div>
             );
         });

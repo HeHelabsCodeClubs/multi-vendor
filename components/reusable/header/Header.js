@@ -4,6 +4,26 @@ import Cart from './Cart';
 import HeaderCategoryMenu from './HeaderCategoryMenu';
 
 class Header extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            updateCart: false
+        };
+        this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { updateCart } = nextProps;
+        if (updateCart) {
+            this.cartShouldUpdate();
+        }
+    }
+
+    cartShouldUpdate() {
+        this.setState({
+            updateCart: true
+        });
+    }
 
     render() {
         return (
@@ -76,7 +96,9 @@ class Header extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                                <Cart />
+                                <Cart 
+                                updateCart={this.state.updateCart}
+                                />
                             </div>
                         </div>
                     </div>

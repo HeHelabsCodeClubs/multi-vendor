@@ -21,7 +21,7 @@ body {
     min-height: 100vh;
     position: relative;
     width: 100%;
-    padding-bottom: 22rem;
+    padding-bottom: 22rem !important;
 }
 .maximum-width {
     max-width: 1920px;
@@ -111,5 +111,38 @@ a {
 .cart-wrapper {
     background: none;
     outline: none !important;
-    border: 0 !important;
+    @include flexbox;
+    @include flexalignitems(center);
+    @include flexjustifycontent(center);
+    cursor: pointer;
+    margin: 0;
+    .header-content {
+        @include flexbox;
+        @include flexalignitems(center);
+        @include flexjustifycontent(center);
+        position: relative;
+        span {
+            @include flexbox;
+            @include flexalignitems(center);
+            @include flexjustifycontent(center);
+
+            &.cart-items-counter{
+                position: absolute;
+                width: 1.5rem;
+                height: 1.5rem;
+                right: 0rem;
+                top: -1rem;
+                border-radius: 50%;
+                border: 1px solid $red-color-1;
+                background: $red-color-1;
+                //padding: 0.1rem 0.3rem;
+                color: $white-color;
+            }
+        }
+    }
+
+    .cart-title {
+        margin: auto 0;
+        color: $black-color-3;
+    }
 }

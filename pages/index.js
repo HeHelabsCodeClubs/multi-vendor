@@ -14,6 +14,16 @@ import FeaturedSellers from "../components/views/homepage/FeaturedSellers";
 class Index extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			updateCart: false
+		};
+		this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
+	}
+	cartShouldUpdate() {
+		console.log('i am run')
+		this.setState({
+			updateCart: true
+		});
 	}
 	/**
 	 * This function is better for server side rendering
@@ -52,7 +62,9 @@ class Index extends React.Component {
 			specialOffers
 		} = this.props;
 		return (
-			<Global>
+			<Global 
+			updateCart={this.state.updateCart}
+			>
 				<div className='main-banners'>
 					<Ad type={type} data={promoAds}/>
 				</div>
@@ -71,7 +83,10 @@ class Index extends React.Component {
 					<SpecialOffers offers={specialOffers} />
 				</div>
 				<div className='made-in-rwanda special-offers'>
-					<MadeInRwanda stores={stores} products={products} />
+					<MadeInRwanda 
+					stores={stores} products={products} 
+					cartShouldUpdate={this.cartShouldUpdate}
+					/>
 				</div>
 				<div className='made-in-rwanda special-offers'>
 					<Ad type={eventAddType} data={eventsAds}/>

@@ -16,6 +16,17 @@ html {
         font-family: $font-regular;
     }
 
+    .empty-cart-items {
+        font-size: 2rem;
+    }
+
+    .cart-wrapper {
+        .cart-title {
+            font-family: $font-regular;
+            font-size: 1.2rem;
+        }
+    }
+
     // landing page
 
     .landing-title {

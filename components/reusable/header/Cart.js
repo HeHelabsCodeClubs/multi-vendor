@@ -52,10 +52,18 @@ class Cart extends Component {
         this.openSidebar = this.openSidebar.bind(this);
         this.renderCartContent = this.renderCartContent.bind(this);
         this.updateCartItems = this.updateCartItems.bind(this);
+        this.renderCartIcon = this.renderCartIcon.bind(this);
     };
 
     componentDidMount() {
         this.updateCartItems();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { updateCart } = nextProps;
+        if (updateCart) {
+            this.updateCartItems();
+        }
     }
 
     updateCartItems() {
@@ -75,9 +83,18 @@ class Cart extends Component {
         }
     }
 
-    openSidebar(isOpen = true) {
+    openSidebar() {
         this.updateCartItems();
-        this.setState({ isOpen });
+        const { isOpen } = this.state;
+        if (isOpen) {
+            this.setState({ 
+                isOpen: false 
+            });
+        } else {
+            this.setState({ 
+                isOpen: true
+            });
+        }
     }
 
     renderCartContent() {
@@ -110,10 +127,46 @@ class Cart extends Component {
         }
 
         return (
-            <h5>
+            <h5 className="empty-cart-items">
                 No item in the cart
             </h5>
         );
+    }
+
+    renderCartIcon(cartItemsCounter) {
+        if (cartItemsCounter !== 0) {
+            return (
+                <a 
+                className='row cart-wrapper'
+                onClick={this.openSidebar}
+                >
+                    <span className='header-content'>
+                        <span className='icon-Path-63'></span>
+                        <span className='cart-items-counter'>
+                            {cartItemsCounter}
+                        </span>
+                    </span>
+                    <span>
+                        <h5 className="cart-title">My Cart</h5>
+                    </span>
+                </a>
+            );
+        }
+
+        return (
+            <a 
+            className='row cart-wrapper'
+            onClick={this.openSidebar}
+            >
+                <span className='header-content'>
+                    <span className='icon-Path-63'></span>
+                </span>
+                <span>
+                    <h5 className="cart-title">My Cart</h5>
+                </span>
+            </a>
+        );
+        
     }
 
     render() {
@@ -122,37 +175,33 @@ class Cart extends Component {
         const counter = countCartItems(cartItems);
         const cartCounterDisplay = counter !== 0 ? `(${counter} Items Total)` : null;
         return (
-            <SidebarUI isOpen={isOpen}>
-                <div>
-                    <div className='col-lg-6 col-md-6 col-sm-6 col-6 cart-grid'>
-                        <button 
-                        type='button'
-                        onClick={this.openSidebar}
-                        className='cart-wrapper'
-                        >
-                            <span className='icon-Path-63'></span>
-                            <span className='header-content'>Cart</span>
-                        </button>
-                    </div>
-                    <SidebarUI.Content isRight={isRight}>
-                        <div className="cart-sidebar">
-                            <div className="main-title">
-                                <div className='sidebar-title'>
-                                    <span className='icon-Path-63'></span>
-                                    <span className='title'>My cart</span>
-                                    <span className='item-nbr'>{cartCounterDisplay}</span>
+            <div className='col-lg-6 col-md-6 col-sm-6 col-6 cart-grid'>
+                <SidebarUI isOpen={isOpen}>
+                    <div>
+                        {this.renderCartIcon(counter)}
+                        <SidebarUI.Content isRight={isRight}>
+                            <div className="cart-sidebar">
+                                <div className="main-title">
+                                    <div className='sidebar-title'>
+                                        <span className='icon-Path-63'></span>
+                                        <span className='title'>My cart</span>
+                                        <span className='item-nbr'>{cartCounterDisplay}</span>
+                                    </div>
+                                    <button 
+                                    type='button'
+                                    className='sidebar-close' onClick={() => this.openSidebar(false)}>
+                                        <span className='close-cart'>Close</span>
+                                        <span className="icon-Path-58" />
+                                    </button>
                                 </div>
-                                <div className='sidebar-close' onClick={() => this.openSidebar(false)}>
-                                    <span className='close-cart'>Close</span><span className="icon-Path-58" />
-                                </div>
+                                {this.renderCartContent()}
                             </div>
-                            {this.renderCartContent()}
-                        </div>
-                    </SidebarUI.Content>
-                </div>
-                {isOpen ? <SidebarUI.Overlay onClick={() => this.openSidebar(false)} /> : false}
-            </SidebarUI>
-        )
+                        </SidebarUI.Content>
+                    </div>
+                    {isOpen ? <SidebarUI.Overlay onClick={() => this.openSidebar(false)} /> : false}
+                </SidebarUI>
+            </div>
+        );
     }
 }
 

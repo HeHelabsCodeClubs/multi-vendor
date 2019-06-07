@@ -47,7 +47,9 @@ class Product extends React.Component {
     
         try {
             performActionIfProductNotInCart(product.store.slug, product.slug, () => {
-                addProductToCart(product);
+                addProductToCart(product, () => {
+                    this.props.cartShouldUpdate();
+                });
             });
             if (!displayQuantityIncrementor) {
                 this.setState({
@@ -84,6 +86,7 @@ class Product extends React.Component {
                 </span>
             );
         }
+
         return (
             <StockIncrementor 
             stock={product.stock}
@@ -92,6 +95,7 @@ class Product extends React.Component {
             updateCartOnChange={true}
             product={product}
             incrementInitial={incrementInitial}
+            runOnCartChange={this.props.cartShouldUpdate}
             />
         );
     }

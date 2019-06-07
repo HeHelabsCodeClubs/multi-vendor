@@ -18,10 +18,26 @@ class StockIncrementor extends Component {
         this.displayIncrementError = this.displayIncrementError.bind(this);
         this.saveProductToCartOnChange = this.saveProductToCartOnChange.bind(this);
         this.updateToInitialQuantity = this.updateToInitialQuantity.bind(this);
+        this.shouldUpdateInititalQuantity = this.shouldUpdateInititalQuantity.bind(this);
     }
 
-    componentWillMount() {
-        const { stock, product} = this.props;
+    componentDidMount() {
+        this.shouldUpdateInititalQuantity();
+        const { stock } = this.props;
+        this.setState({
+            stock: Number(stock)
+        });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { updateInitial } = nextProps;
+        if (updateInitial) {
+            this.shouldUpdateInititalQuantity();
+        }
+    }
+
+    shouldUpdateInititalQuantity() {
+        const { product } = this.props;
         if (product) {
             try {
                 getCartProductQuantityValue(
@@ -30,13 +46,10 @@ class StockIncrementor extends Component {
                     this.updateToInitialQuantity
                 );
             } catch(err) {
-
+                console.log('get initial');
+                console.log(err);
             }
         }
-
-        this.setState({
-            stock: Number(stock)
-        });
     }
 
     updateToInitialQuantity(quantity) {
@@ -61,6 +74,7 @@ class StockIncrementor extends Component {
              * Check if we have to add product to cart as we increment
              */
             this.saveProductToCartOnChange(newStock);
+
             this.setState({
                 initialStockIncrement: newStock
             });
@@ -90,6 +104,7 @@ class StockIncrementor extends Component {
              * Check if we have to add product to cart as we increment
              */
             this.saveProductToCartOnChange(newStock);
+
             this.setState({
                 initialStockIncrement: newStock
             });
@@ -108,11 +123,16 @@ class StockIncrementor extends Component {
     }
 
     saveProductToCartOnChange(newStock) {
-        const { updateCartOnChange, product } = this.props;
+        const { updateCartOnChange, product, runOnCartChange } = this.props;
         if (updateCartOnChange) {
+            console.log('yes i am here on the update');
             if (product) {
                 product.quantity = newStock;
-                addProductToCart(product);
+                addProductToCart(product, ()=> {
+                    if (runOnCartChange !== undefined) {
+                        runOnCartChange();
+                    }
+                });
             }
         }
     }

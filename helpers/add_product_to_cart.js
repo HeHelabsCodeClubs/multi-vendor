@@ -3,12 +3,13 @@ import {
     CART_ITEMS_KEY,
     UNABLE_TO_GET_CART_ITEMS_ERROR,
     UNABLE_TO_SAVE_LOCAL_DATA_ERROR,
-    CART_ITEMS_OBJECT_EMPTY
+    CART_ITEMS_OBJECT_EMPTY,
+    CAN_NOT_UPDATE_CART_ITEMS_ERROR
 }  from '../config';
 
 
 
-export default (product) => {
+export default (product, callback) => {
     /**
      * TO DO:
      * 1.Check if the cart has data
@@ -23,7 +24,10 @@ export default (product) => {
         if (items === null) {
             const cartItems = createCartItems(product);
             localforage.setItem(CART_ITEMS_KEY, cartItems).then(() => {
-                // do nothing
+                // run callback
+                if (callback !== undefined) {
+                    callback();
+                }
                 return;
             }).catch((err) => {
                 if (err) {
@@ -32,12 +36,12 @@ export default (product) => {
             });
         } else {
             try {
-                updateCartItems(items, product);
+                updateCartItems(items, product, callback);
                 return;
             } catch (err) {
                 if (err) {
                     console.log(err);
-                    throw 'can not update cart items';
+                    throw CAN_NOT_UPDATE_CART_ITEMS_ERROR;
                 }
             }
         }
@@ -56,7 +60,7 @@ export default (product) => {
  * @param {object} product 
  * @return {void}
  */
-function updateCartItems(cartItems, newProduct) {
+function updateCartItems(cartItems, newProduct, callback) {
     const {
         store: { slug },
     } = newProduct;
@@ -88,8 +92,12 @@ function updateCartItems(cartItems, newProduct) {
     */
     
     localforage.setItem(CART_ITEMS_KEY, updated_cart_items).then(() => {
+        if (callback !== undefined) {
+            callback();
+        }
         return;
     }).catch((err) => {
+        console.log(err);
         throw UNABLE_TO_SAVE_LOCAL_DATA_ERROR
     });
 }
@@ -134,7 +142,8 @@ function createCartItemProduct(product) {
         has_discount,
         special_price,
         discount_percent,
-        name
+        name,
+        attributes
     } = product;
 
     if (Number(has_attributes) == 0) {
@@ -147,7 +156,8 @@ function createCartItemProduct(product) {
             stock,
             has_discount,
             special_price,
-            discount_percent
+            discount_percent,
+            attributes
         }
     }
 
@@ -155,7 +165,12 @@ function createCartItemProduct(product) {
         name,
         cart_image_url,
         has_attributes,
-        meta: getDataProduct(product)
+        meta: getDataProduct(product),
+        attributes,
+        price,
+        has_discount,
+        special_price,
+        discount_percent
     }
 }
 
@@ -266,15 +281,8 @@ function addNewProductCartItem(cart_items, newProduct) {
 function addNewCartItem(cart_items, newProduct) {
     const { store: { slug }, has_attributes } = newProduct;
     let updatedCartItems = {};
-    if (Number(has_attributes) === 0) {
-        updatedCartItems = cart_items;
-        const newCartItems = createCartItems(newProduct);
-        updatedCartItems[slug] = newCartItems[slug];
-    }
-
-    if (Number(has_attributes) === 1) {
-        // product has attribute options
-    }
-    
+    updatedCartItems = cart_items;
+    const newCartItems = createCartItems(newProduct);
+    updatedCartItems[slug] = newCartItems[slug];
     return updatedCartItems;
 }

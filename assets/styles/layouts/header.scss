@@ -267,6 +267,7 @@
         @include flexalignitems(center);
         @include flexjustifycontent(flex-start);
         height: 3rem;
+        padding: 0 0 0 4rem;
 
         .header-content {
 
@@ -466,6 +467,9 @@
             @include flexbox;
             @include flexalignitems(center);
             @include flexjustifycontent(flex-end);
+            background: none;
+            border: 0;
+            outline: none !important;
             .close-cart {
                 color: $white-color;
                 padding: 0 0.5rem;
@@ -605,7 +609,9 @@
                         }
                         .edit {
                             color: $gray-color-6;
-
+                            background: none;
+                            border: 0;
+                            outline: none !important;
                             @media screen and (max-width: $mobile-lg) {
                                 margin-right: -15px;
                             }
@@ -622,6 +628,9 @@
                             text-decoration: line-through;
                         }
                         .remove {
+                            background: none;
+                            border: 0;
+                            outline: none !important;
                             color: $gray-color-6;
                             .icon-Path-60:before {
                                 color: $green-color-2;
@@ -667,6 +676,11 @@
 .sub-category {
     position: absolute;
     margin-left: 15rem;
+}
+
+.empty-cart-items{
+    text-align: center;
+    padding: 23rem 0 0 0;
 }
 
 

@@ -29,6 +29,7 @@
 		"react-dom": "^16.8.6",
 		"react-lazyload": "^2.5.0",
 		"react-mega-menu": "^1.0.1",
+		"react-notify-toast": "^0.5.0",
 		"react-redux": "^7.0.3",
 		"react-responsive-modal": "^3.6.0",
 		"react-select2-wrapper": "^1.0.4-beta6",
