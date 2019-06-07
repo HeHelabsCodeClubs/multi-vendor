@@ -195,6 +195,10 @@ html {
                 font-size: 1.42rem;
                 font-family: $font-bold;
 
+                @media screen and (min-width: $tablet-min) and (max-width: $tablet-md) {
+                    font-size: 1rem;
+                }
+
                 @media screen and (max-width: $mobile-lg) {
                     font-size: 0.8rem;
                 }
@@ -202,7 +206,9 @@ html {
             .initial-price {
                 font-size: 1.14rem;
                 font-family: $font-semi-bold;
-
+                @media screen and (min-width: $tablet-min) and (max-width: $tablet-md) {
+                    font-size: 0.8rem;
+                }
                 @media screen and (max-width: $mobile-lg) {
                     font-size: 0.7rem;
                 }
@@ -829,6 +835,9 @@ html {
             .footer-title {
                 font-family: $font-semi-bold;
                 font-size: 1.4rem;
+                @media screen and (min-width: $tablet-min) and (max-width: $desktop-min) {
+                    font-size: 1.3rem;
+                }
             }
             .footer-content {
                 .content {

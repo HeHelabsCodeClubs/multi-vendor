@@ -9,6 +9,13 @@
     position: relative;
     min-height: 300px;
 
+    @media screen and (min-width: $tablet-min) and (max-width: $desktop-min) {
+        min-height: 180px !important;
+    }
+    @media screen and (max-width: $mobile-lg) {
+        min-height: 125px !important;
+    }
+
     img.product-img {
         width: 100%;   
         object-fit: contain;   
@@ -85,6 +92,9 @@
             color: $black-color-2;
             margin: 0.5rem 1rem;
             min-height: 1.8rem;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
         }
         .price-cart {
             border-top: 2px solid $gray-color-2;

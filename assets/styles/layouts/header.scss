@@ -28,7 +28,9 @@
 
     .header-left {
         padding-right: 0 !important;
-        
+        @media screen and (min-width: $tablet-min) and (max-width: $tablet-md) {
+            max-width: 26%;
+        }
         @media (max-width: $mobile-lg) {
             padding-left: 0;
         }
@@ -36,11 +38,10 @@
         .site-logo {
 
             @media (max-width: $mobile-lg) {
-                // position: absolute;
-                // z-index: 1;
-                // top: 38px;
-                // left: 35px;
-                display: none;
+                position: absolute;
+                z-index: 1;
+                top: 38px;
+                left: 35px;
             }
 
             img {
@@ -52,6 +53,12 @@
             display: inline-block;
             margin: 0 0 0 1rem;
             min-width: 40%;
+
+            @media screen and (min-width: $tablet-min) and (max-width: $tablet-md) {
+                position: absolute;
+                top: -35px;
+                left: 280px;
+            }
 
             @media (max-width: $mobile-lg) {
                 width: 100vw;
@@ -72,6 +79,12 @@
                 border-radius: 0 !important;
                 border: none !important;  
                 outline: none !important;
+
+                @media screen and (min-width: $tablet-min) and (max-width: $tablet-md) {
+                    background: transparent !important;
+                    height: 2.5rem;
+                }                
+
                 .select2-search--dropdown {
                     .select2-search__field {
                         outline: none !important;
@@ -84,13 +97,24 @@
                     @include flexbox;
                     @include flexalignitems(center);
                     outline: none;
+
+                    @media screen and (min-width: $tablet-min) and (max-width: $tablet-md) {
+                        color: #fff;
+                    }
+
                 }  
                 .select2-selection__arrow {
                     height: 3rem;
                     color: $black-color-4;
-                    height: 3rem;
+                    padding-left: 5px;
                     @include flexbox;
                     @include flexalignitems(center);
+
+                    @media screen and (min-width: $tablet-min) and (max-width: $tablet-md) {
+                        height: 2.5rem;
+                        color: #fff;
+                        
+                    }
 
                     b {
                         display: none;
@@ -224,6 +248,10 @@
     }
 
     .account-container {
+        @media screen and (min-width: $tablet-min) and (max-width: $tablet-md) {
+            max-width: 30%;
+            flex: 0 0 30%;
+        }
 
         @media screen and (max-width: $mobile-lg) {
             position: absolute;

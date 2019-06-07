@@ -45,7 +45,7 @@ class Footer extends Component {
                                 <div className='footer-title'>Sell with HeHe</div>
                                 <div><button>Become a seller</button></div>
                             </div>
-                            <div className='col-lg-3 col-md-3 col-sm-6 col-12'>
+                            <div className='col-lg-3 col-md-3 col-sm-6 col-12 subscribe-grid'>
                                 <div className='footer-title'>Get more from Hehe</div>
                                 <div className='subscribe'>
                                     <input type='text' name='email' placeholder='Email' />

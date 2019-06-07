@@ -221,6 +221,10 @@
             text-align: center;
             padding: 0 0 2rem 0;
             color: $black-color-4;
+
+            @media screen and (max-width: $mobile-lg) {
+                padding: 3rem 0 2rem 0;
+            }
         }
         .top-stores-content {
             .stores-wrapper {
@@ -238,6 +242,7 @@
 
                     @media screen and (max-width: $mobile-lg) {
                         margin: 0;
+                        margin-bottom: 20px;
                         padding: 4px 4px 10px;
                     }
 
@@ -346,12 +351,24 @@
         padding: 1.5rem 1rem !important;
 
         @media screen and (max-width: $mobile-lg){
-            padding: 10px 0px 10px 5px !important;
+            padding: 10px 5px 10px 5px !important;
+        }
+        .price {
+
+            @media (min-width: $tablet-min) and (max-width: $tablet-md) {
+                font-size: 1rem;
+            }
         }
 
         .initial-price {
             position: relative !important;
             bottom: 0 !important;
+            margin: 0 !important;
+            padding:0 !important;
+
+            @media (min-width: $tablet-min) and (max-width: $tablet-md) {
+                font-size: 0.9rem;
+            }
         }
     }
 }
