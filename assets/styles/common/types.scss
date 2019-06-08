@@ -706,24 +706,13 @@ html {
                         }
                     }
                 }
-                .orange-btn {
-                    button {
-                        font-size: 1.5rem;
-                        font-family: $font-semi-bold;
-                        
-                        @media screen and (max-width: $mobile-lg) {
-                            margin: 0 1rem 1rem 0;
-                        }
-                    }
-                }
-                .white-btn {
-                    button {
-                        font-size: 1.5rem;
-                        font-family: $font-semi-bold;
-
-                        @media screen and (max-width: $mobile-lg) {
-                            margin: 0 1rem 1rem 0;
-                        }
+                .orange-btn,
+                .white-btn{
+                    font-size: 1.5rem;
+                    font-family: $font-semi-bold;
+                    line-height: 1.5rem;
+                    @media screen and (max-width: $mobile-lg) {
+                        margin: 0 1rem 1rem 0;
                     }
                 }
                 .product-store {

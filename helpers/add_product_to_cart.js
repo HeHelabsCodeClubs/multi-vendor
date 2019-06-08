@@ -1,4 +1,5 @@
 import localforage from 'localforage';
+import { isEqual } from 'lodash.isequal';
 import { 
     CART_ITEMS_KEY,
     UNABLE_TO_GET_CART_ITEMS_ERROR,
@@ -239,7 +240,7 @@ function createCartItemProduct(product) {
   * @return {object}
   */
 function updateCartItemsProduct(cart_items, newProduct) {
-    const { store: { slug }, has_attributes } = newProduct;
+    const { store: { slug }, has_attributes, index } = newProduct;
     let updatedCartItems = {};
     if (Number(has_attributes) === 0) {
         // product has no attribute options
@@ -250,9 +251,48 @@ function updateCartItemsProduct(cart_items, newProduct) {
 
     if (Number(has_attributes) === 1) {
         // product has attribute options
+        const optionsDataSet = cart_items[slug].products[newProduct.slug].meta;
+        if (index !== undefined) {
+            const productAttributeOptions = optionsDataSet[index].options;
+            const { selected_options } = newProduct;
+            if (isProductInStorage(productAttributeOptions, selected_options)) {
+                optionsDataSet[index].quantity = newProduct.quantity;
+            } else {
+                const productData = getDataProduct(newProduct);
+                optionsDataSet.push(productData[0]);
+            }
+            
+        } else {
+            const productData = getDataProduct(newProduct);
+            optionsDataSet.push(productData[0]);
+        }
+        cart_items[slug].products[newProduct.slug].meta = optionsDataSet;
+        updatedCartItems = cart_items;
+    }
+    return updatedCartItems;
+}
+
+/**
+ * Checks if a product with the selected attribute options is already in storage
+ * @param {*} cart_items 
+ * @param {*} newProduct 
+ */
+function isProductInStorage(options, selectedOptions) {
+    const optionsLen = Object.keys(options).length;
+    let counter = 0;
+    Object.keys(options).forEach((key) => {
+        if (options[key].title === selectedOptions[key].title) {
+            counter = counter + 1;
+        }
+    });
+
+    if (counter === optionsLen) {
+        return true;
     }
 
-    return updatedCartItems;
+    console.log('i am reaching here');
+
+    return false;
 }
 
 /**
@@ -265,21 +305,20 @@ function updateCartItemsProduct(cart_items, newProduct) {
 function addNewProductCartItem(cart_items, newProduct) {
     const { store: { slug }, has_attributes } = newProduct;
     let updatedCartItems = {};
-    if (Number(has_attributes) === 0) {
-        const productData = createCartItemProduct(newProduct);
-        cart_items[slug].products[newProduct.slug] = productData;
-        updatedCartItems = cart_items;
-    }
+    //if (Number(has_attributes) === 0) {
+    const productData = createCartItemProduct(newProduct);
+    cart_items[slug].products[newProduct.slug] = productData;
+    updatedCartItems = cart_items;
+    //}
 
-    if (Number(has_attributes) === 1) {
+    //if (Number(has_attributes) === 1) {
         // product has attribute options
-    }
-
+    //}
     return updatedCartItems;
 }
 
 function addNewCartItem(cart_items, newProduct) {
-    const { store: { slug }, has_attributes } = newProduct;
+    const { store: { slug } } = newProduct;
     let updatedCartItems = {};
     updatedCartItems = cart_items;
     const newCartItems = createCartItems(newProduct);

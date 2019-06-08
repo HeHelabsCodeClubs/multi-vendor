@@ -108,6 +108,10 @@ a {
     color: $black-color-2;
 }
 
+/**
+* Cart styles
+**/
+
 .cart-wrapper {
     background: none;
     outline: none !important;
@@ -128,13 +132,14 @@ a {
 
             &.cart-items-counter{
                 position: absolute;
-                width: 1.5rem;
-                height: 1.5rem;
+                min-width: 2rem;
+                height: 2rem;
                 right: 0rem;
                 top: -1rem;
                 border-radius: 50%;
                 border: 1px solid $red-color-1;
                 background: $red-color-1;
+                text-align: center;
                 //padding: 0.1rem 0.3rem;
                 color: $white-color;
             }
@@ -146,3 +151,31 @@ a {
         color: $black-color-3;
     }
 }
+
+.cart-item-options-wrapper {
+    @include flexbox;
+    list-style: none;
+    margin: 0 0 1rem 0;
+    padding: 0;
+    .cart-item-options-wrapper__li {
+        @include flexbox;
+
+        &:first-child {
+            margin-right: 0.5rem;
+        }
+
+        span {
+            h5 {
+                font-size: 1rem;
+            }
+            &:first-child {
+                h5 {
+                    color: $gray-color-6;
+                    text-transform: capitalize;
+                }
+            }
+        }
+    }
+}
+
+

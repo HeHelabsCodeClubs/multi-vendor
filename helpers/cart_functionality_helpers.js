@@ -56,13 +56,37 @@ export const performActionIfProductNotInCart = (store_slug, product_slug, callba
  * @return {void}
  */
 
-export const getCartProductQuantityValue = (store_slug, product_slug, callback) => {
+export const getCartProductQuantityValue = (product, callback, productIndex) => {
     localforage.getItem(CART_ITEMS_KEY).then((items) => {
         if (items !== null) {
-            if (items[store_slug] !== undefined) {
-                if (callback !== undefined) {
-                    callback(items[store_slug].products[product_slug].quantity);
+            if (items[product.store.slug] !== undefined) {
+                if (Number(product.has_attributes) === 0 ) {
+                    if (callback !== undefined) {
+                        callback(items[product.store.slug].products[product.slug].quantity);
+                    }
+                } else {
+                    callback(items[product.store.slug].products[product.slug].meta[productIndex].quantity);
                 }
+            }
+        }
+    }).catch((err) => {
+        if (err) {
+            throw UNABLE_TO_GET_CART_ITEMS_ERROR;
+        }
+    });
+}
+
+/**
+ * Get product attribute options
+ * @param {object} product
+ * @param {integer} productIndex
+ * @param {function} callback 
+ */
+export const getProductAttributeOptions = (product, productIndex, callback) => {
+    localforage.getItem(CART_ITEMS_KEY).then((items) => {
+        if (items !== null) {
+            if (items[product.store.slug] !== undefined) {
+                callback(items[product.store.slug].products[product.slug].meta[productIndex].options);
             }
         }
     }).catch((err) => {
@@ -100,10 +124,31 @@ export const countCartItems = (cartItems) => {
     let counter = 0;
     if (cartItems !== null) {
         Object.keys(cartItems).forEach((key, index) => {
-            var size = Object.keys(cartItems[key].products).length;
+            var size = countSingleStoreCartItems(cartItems[key].products);
+            //Object.keys(cartItems[key].products).length;
             counter = counter + size;
         });
     }
+    return counter;
+}
+
+/**
+ * count single store cart items
+ * @param {object} singleStoreProduct 
+ */
+ const countSingleStoreCartItems = (singleStoreProducts) => {
+    let counter = 0;
+    Object.keys(singleStoreProducts).forEach((key, index) => {
+        const { has_attributes } = singleStoreProducts[key];
+        if (Number(has_attributes) === 0) {
+            counter = counter + singleStoreProducts[key].quantity;
+        } else {
+            const productOptionSet = singleStoreProducts[key].meta;
+            for (let i = 0; i < productOptionSet.length; i++) {
+                counter = counter + productOptionSet[i].quantity;
+            }
+        }
+    });
     return counter;
 }
 
@@ -133,10 +178,15 @@ export const countCartItems = (cartItems) => {
      if (store !== null) {
          const { products } = store;
          Object.keys(products).forEach((product_name, index) => {
-            if (Number(products[product_name].has_discount) === 0) {
-                totalPrice = totalPrice + (products[product_name].quantity * products[product_name].price);
+            if (products[product_name].meta !== undefined) {
+                // product has options
+                totalPrice = totalPrice + singleProductOptionTotalPrice(products[product_name].meta);
             } else {
-                totalPrice = totalPrice + (products[product_name].quantity * products[product_name].special_price);
+                if (Number(products[product_name].has_discount) === 0) {
+                    totalPrice = totalPrice + (products[product_name].quantity * products[product_name].price);
+                } else {
+                    totalPrice = totalPrice + (products[product_name].quantity * products[product_name].special_price);
+                }
             }
          });
      }
@@ -158,4 +208,16 @@ export const countCartItems = (cartItems) => {
         });
      }
      return totalPrice;
+ }
+
+ /**
+  * Calculate total price for products with options in a single store
+  */
+ function singleProductOptionTotalPrice(productOptions) {
+    let totalPrice = 0;
+    for (let i = 0; i < productOptions.length; i++) {
+        const price = Number(productOptions[i].has_discount) === 1 ? productOptions[i].special_price : productOptions[i].price;
+        totalPrice = totalPrice + (productOptions[i].quantity * price);
+    }
+    return totalPrice;
  }

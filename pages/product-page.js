@@ -21,7 +21,9 @@ class ProductPage extends React.Component {
             nav2: null,
             updateCart: false,
             selectedProductQuantity: 1,
-            selectedAttributes: {}
+            selectedAttributes: {},
+            resetSelectedAttribute: false,
+            addToCartSubmitStatus: 'initial'
         };
         this.renderProductMetaData = this.renderProductMetaData.bind(this);
         this.renderProductAttributes = this.renderProductAttributes.bind(this);
@@ -39,6 +41,8 @@ class ProductPage extends React.Component {
         this.saveSelectedAttributeValue = this.saveSelectedAttributeValue.bind(this);
         this.updateExistingSelectedAttributes = this.updateExistingSelectedAttributes.bind(this);
         this.validateAttributeOptions = this.validateAttributeOptions.bind(this);
+        this.getAddToCartButtonText = this.getAddToCartButtonText.bind(this);
+        this.performAfterAddingProductToCart = this.performAfterAddingProductToCart.bind(this);
     }
 
     static async getInitialProps({ query }) {
@@ -149,8 +153,10 @@ class ProductPage extends React.Component {
 
     renderAttributeSelectOption(option) {
         if (option) {
+            const { resetSelectedAttribute } = this.state;
             return (
-                <AttributeOptionSelector 
+                <AttributeOptionSelector
+                resetSelectedValue={resetSelectedAttribute} 
                 option={option}
                 getSelectedAttributeValue={this.saveSelectedAttributeValue} 
                 />
@@ -350,25 +356,57 @@ class ProductPage extends React.Component {
     }
 
     saveProductToCart(product) {
-        const { selectedProductQuantity, selectedAttributes } = this.state;
-        /**
-         * Validate selected attributes if they require validation
-         */
-        const errors = this.validateAttributeOptions(product.attributes.options);
-        if (errors.length !== 0) {
-            notify.show(errors[0], 'error', 2000);
-            return;
+        const { selectedProductQuantity, selectedAttributes, addToCartSubmitStatus } = this.state;
+        if (Number(product.has_attributes) === 1) {
+            /**
+             * Validate selected attributes if they require validation
+             */
+            const errors = this.validateAttributeOptions(product.attributes.options);
+            if (errors.length !== 0) {
+                notify.show(errors[0], 'error', 2000);
+                return;
+            }
         }
-
-        product.quantity = selectedProductQuantity;
-        product.selected_options = selectedAttributes;
-        addProductToCart(product, () => {
+        
+        if (addToCartSubmitStatus === 'initial') {
             this.setState({
-                updateCart: true
+                addToCartSubmitStatus: 'submitting'
             });
-        });
+            setTimeout(() => {
+                product.quantity = selectedProductQuantity;
+                if (Number(product.has_attributes) === 1) {
+                    product.selected_options = selectedAttributes;
+                }
+                addProductToCart(product, () => {
+                    this.performAfterAddingProductToCart(product)
+                });
+            }, 2000);
+        }
     }
 
+    performAfterAddingProductToCart(product) {
+        this.setState({
+            updateCart: true,
+            addToCartSubmitStatus: 'submitted'
+        });
+
+        // Display message to user
+        const successMessage = `${product.name} was add to your shopping cart. Visit your shopping cart to buy`;
+        notify.show(successMessage, 'success', 2000);
+
+        setTimeout(() => {
+            this.setState({
+                resetSelectedAttribute: true,
+                selectedAttributes: {},
+                addToCartSubmitStatus: 'initial'
+            });
+            setTimeout(() => {
+                this.setState({
+                    resetSelectedAttribute: false
+                });
+            }, 500);
+        }, 2000);
+    }
     validateAttributeOptions(attributeOptions) {
         const { selectedAttributes } = this.state;
         const errors = [];
@@ -383,11 +421,21 @@ class ProductPage extends React.Component {
         return errors;
     }
 
+    getAddToCartButtonText() {
+        const { addToCartSubmitStatus } = this.state;
+        switch(addToCartSubmitStatus) {
+            case 'submitting':
+                return 'Adding to Cart';
+            case 'submitted':
+                return 'Added to Cart';
+            default:
+                return 'Add to Cart';
+        }
+    }
+
 
 	render() {
         const { productData } = this.props;
-        console.log('selected attributes');
-        console.log(this.state.selectedAttributes);
 		return (
             <Global updateCart={this.state.updateCart}>
                 <div className='maximum-width'>
@@ -407,20 +455,15 @@ class ProductPage extends React.Component {
                                             getSelectedQuantity={this.updateSelectedProductQuantity} 
                                             />
                                             <div className='product-detail'>
-                                                <span className='orange-btn'>
-                                                    <button
-                                                    type='submit'
-                                                    onClick={() => this.saveProductToCart(productData)}
-                                                    >
-                                                    Add to Cart
-                                                    </button>
-                                                </span>
-                                                <span className='white-btn'>
-                                                    <button>Direct Buy</button>
-                                                </span>
-                                                <span className='white-btn'>
-                                                    <button>Add to Wishlist</button>
-                                                </span>
+                                                <button
+                                                type='button'
+                                                className='orange-btn'
+                                                onClick={() => this.saveProductToCart(productData)}
+                                                >
+                                                {this.getAddToCartButtonText()}
+                                                </button>
+                                                <button className='white-btn'>Direct Buy</button>
+                                                <button className='white-btn'>Add to Wishlist</button>
                                             </div>
                                             {this.renderProductStore(productData.belongs_to_exclusive_store, productData.store)}
                                         </div>

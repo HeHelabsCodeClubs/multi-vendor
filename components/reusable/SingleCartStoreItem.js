@@ -63,7 +63,7 @@ class SingleCartStoreItem extends Component {
                 productData.slug = product_slug;
                 productsLayout.push(
                     <SingleCartProductItem 
-                    key={index}
+                    key={product_slug}
                     product={productData}
                     updateCartData={this.props.updateCartData}
                     />

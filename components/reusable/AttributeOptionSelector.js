@@ -12,6 +12,15 @@ export default class AttributeOptionSelector extends Component {
         this.updateSelectorValue = this.updateSelectorValue.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+        const { resetSelectedValue } = nextProps;
+        if (resetSelectedValue) {
+            this.setState({
+                selectorValue: ''
+            });
+        }
+    }
+
     updateSelectorValue(e) {
         if (e) {
             this.setState({

@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import addProductToCart from '../../helpers/add_product_to_cart';
-import { getCartProductQuantityValue } from '../../helpers/cart_functionality_helpers';
+import isObjectEmpty from '../../helpers/is_object_empty';
+import { 
+    getCartProductQuantityValue, 
+    getProductAttributeOptions 
+} from '../../helpers/cart_functionality_helpers';
 
 class StockIncrementor extends Component {
     constructor(props) {
@@ -9,7 +13,8 @@ class StockIncrementor extends Component {
         this.state = {
             initialStockIncrement: 1,
             stock: 0,
-            errorMessage: ''
+            errorMessage: '',
+            productAttributeOptions: {} // for only products with attribute options
         };
         this.renderIncrementor = this.renderIncrementor.bind(this);
         this.incrementStock = this.incrementStock.bind(this);
@@ -37,16 +42,29 @@ class StockIncrementor extends Component {
     }
 
     shouldUpdateInititalQuantity() {
-        const { product } = this.props;
+        const { product, index } = this.props;
         if (product) {
             try {
+                const { has_attributes } = product;
+                const productIndex = Number(has_attributes) === 1 ? index : undefined; 
                 getCartProductQuantityValue(
-                    product.store.slug, 
-                    product.slug,
-                    this.updateToInitialQuantity
+                    product,
+                    this.updateToInitialQuantity,
+                    productIndex
                 );
+
+                if (productIndex !== undefined) {
+                    getProductAttributeOptions(
+                        product,
+                        productIndex,
+                        (attributeOptions) => {
+                            this.setState({
+                                productAttributeOptions: attributeOptions
+                            });
+                        }
+                    )
+                }
             } catch(err) {
-                console.log('get initial');
                 console.log(err);
             }
         }
@@ -123,11 +141,19 @@ class StockIncrementor extends Component {
     }
 
     saveProductToCartOnChange(newStock) {
-        const { updateCartOnChange, product, runOnCartChange } = this.props;
+        const { updateCartOnChange, product, runOnCartChange, index } = this.props;
         if (updateCartOnChange) {
-            console.log('yes i am here on the update');
             if (product) {
                 product.quantity = newStock;
+                const { productAttributeOptions } = this.state;
+                if (!isObjectEmpty(productAttributeOptions)) {
+                    product.selected_options = productAttributeOptions;
+                }
+
+                if (index !== undefined) {
+                    product.index = index;
+                }
+                
                 addProductToCart(product, ()=> {
                     if (runOnCartChange !== undefined) {
                         runOnCartChange();

@@ -383,35 +383,15 @@
     }
     
     .orange-btn {
-        margin: 0 1rem 0 0;
-        button {
-            background: $orange-color-1;
-            color: $white-color;
-            @include transition(0.5s);
-            border: 1px solid $orange-color-1;
-            padding: 0.1rem 1rem;
-            border-radius: 0.35rem;
-
-            &:hover {
-                background: $white-color;
-                color: $orange-color-1; 
-            }
-        }
+        @extend .default-button-styles;
     }
     .white-btn {
-        margin: 0 1rem 0 0;
-        button {
-            background: $white-color;
-            color: $orange-color-1;
-            @include transition(0.5s);
-            border: 1px solid $orange-color-1;
-            padding: 0.1rem 1rem;
-            border-radius: 0.35rem;
-
-            &:hover {
-                background: $orange-color-1;
-                color: $white-color;
-            }
+        @extend .default-button-styles;
+        background: $white-color;
+        color: $orange-color-1;
+        &:hover {
+            background: $orange-color-1;
+            color: $white-color;
         }
     }
     .product-store {
