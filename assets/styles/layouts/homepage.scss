@@ -66,16 +66,15 @@
         border-radius: 20px;
         @include boxshadow(0 3px 36px 0 rgba(0, 0, 0, 0.16));
 
-        @media screen and (max-width: $tablet-min) {
+        @media screen and (max-width: $mobile-lg) {
             width: 100%;
             padding: 0.5rem 0;
             top: 1rem;
             background: transparent;
             box-shadow: none;
-        }
-
-        @media screen and (max-width: $mobile-lg) {
             padding-bottom: 25px;
+            border-bottom: .5px solid $gray-color-7;
+            border-radius: 0;
         }
     
         .slick-prev {
@@ -85,7 +84,7 @@
             width: 3.14rem;
             @include boxshadow(8px 0 6px 0 rgba(0, 0, 0, 0.05));
 
-            @media screen and (max-width: $tablet-min) {
+            @media screen and (max-width: $mobile-lg) {
                 display: none !important;
             }
 
@@ -131,9 +130,11 @@
                             width: 40px;
                             border-radius: 50%;
                             margin: 0 auto;
+                            box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.06);
                             @include flexbox;
                             @include flexalignitems(center);
                             @include flexjustifycontent(center);
+                            
                         }
                     }
                 }
@@ -179,21 +180,28 @@
 
             img {
                 width: 100%;
-                border: 1px solid $gray-color-6;
+                border: 0.5px solid $gray-color-6;
                 border-radius: 0.3rem;
-                height: 15rem;
+                height: 10rem;
                 object-fit: contain;
+                padding: 3px;
             }
         } 
         .featured-header {
             @include flexbox;
             @include flexalignitems(center);
+            @include flexjustifycontent(space-between);
+            width: 100%;
         }
         .margin-reset {
-            margin: 1rem !important;
+            margin: 0 7px !important;
+
             .store-category {
                 font-family: "Harmonia Sans Pro Regular";
                 font-size: 0.9rem;
+                @media screen {
+                    font-size: 0.6rem;
+                }
             }
             .store-name {
                 text-transform: uppercase;
@@ -216,17 +224,25 @@
     background: $gray-color-2;
     padding: 0 0 2rem 0;
 
+    @media screen and (max-width: $mobile-lg) {
+        border-bottom: .5px solid #e4e4e4;
+    }
+
     .top-stores-wrapper {
         .top-stores-title {
             text-align: center;
             padding: 0 0 2rem 0;
             color: $black-color-4;
+
+            @media screen and (max-width: $mobile-lg) {
+                padding: 3rem 0 2rem 0;
+            }
         }
         .top-stores-content {
             .stores-wrapper {
                 width: 90%;
                 margin: 0 auto;
-                border-bottom: 1px solid $gray-color-6;
+                border-bottom: 0.5px solid $gray-color-6;
 
                 @media screen and (max-width: $mobile-lg) {
                     border-bottom: none;
@@ -238,6 +254,7 @@
 
                     @media screen and (max-width: $mobile-lg) {
                         margin: 0;
+                        margin-bottom: 20px;
                         padding: 4px 4px 10px;
                     }
 
@@ -346,18 +363,34 @@
         padding: 1.5rem 1rem !important;
 
         @media screen and (max-width: $mobile-lg){
-            padding: 10px 0px 10px 5px !important;
+            padding: 10px 5px 10px 5px !important;
+        }
+        .price {
+
+            @media (min-width: $tablet-min) and (max-width: $tablet-md) {
+                font-size: 1rem;
+            }
         }
 
         .initial-price {
             position: relative !important;
             bottom: 0 !important;
+            margin: 0 !important;
+            padding:0 !important;
+
+            @media (min-width: $tablet-min) and (max-width: $tablet-md) {
+                font-size: 0.9rem;
+            }
         }
     }
 }
 .made-in-rwanda {
     background: $gray-color-2;
     padding: 1rem 0 3rem 0;
+
+    @media screen and (max-width: $mobile-lg) {
+        padding: 2rem 0 1rem 0;
+    }
     .made-in-rwanda-wrapper {
         .made-in-rwanda-title {
             text-align: center;
@@ -365,7 +398,7 @@
             color: $black-color-4;
         }
         .stores-logos {
-            padding: 1rem 0;
+            padding: 2rem 0;
             background: $white-color;
             margin: 1rem 0 2rem 0;
 
@@ -379,7 +412,7 @@
                 margin: 0 5%;
             }
             .slick-slide img {
-                height: 6rem;
+                height: 3rem;
                 object-fit: contain;
                 width: 100%;
             }

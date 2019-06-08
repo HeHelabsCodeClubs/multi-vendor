@@ -1,13 +1,20 @@
 @import "../main";
 
 .single-product {
-    border-radius: 0.35rem;
+    border-radius: 5px;
     box-shadow: -2px -1px 9px 0px rgba(0, 0, 0, 0.05);;
     background-color: $white-color;
     width: 96%;
     margin: 1rem 2%;
     position: relative;
-    min-height: 300px;
+    min-height: 270px;
+
+    @media screen and (min-width: $tablet-min) and (max-width: $desktop-min) {
+        min-height: 180px !important;
+    }
+    @media screen and (max-width: $mobile-lg) {
+        min-height: 125px !important;
+    }
 
     img.product-img {
         width: 100%;   
@@ -50,6 +57,7 @@
         background: $white-color;
         position: relative;
         box-shadow: 0 -6px 12px 0 rgba(0, 0, 0, 0.05);
+        border-radius: 0 0 5px 5px;
 
         &:before {
             content: "\e920";
@@ -85,6 +93,9 @@
             color: $black-color-2;
             margin: 0.5rem 1rem;
             min-height: 1.8rem;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
         }
         .price-cart {
             border-top: 2px solid $gray-color-2;

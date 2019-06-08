@@ -8,7 +8,7 @@ class Footer extends Component {
                 <div className='maximum-width'>
                     <div className='footer-wrapper-content'>
                         <div className='row reset-row'>
-                            <div className='col-lg-2 col-md-2 col-sm-2 col-6'>
+                            <div className='col-lg-2 col-md-2 col-sm-3 col-6'>
                                 <div className='footer-title'>Way to shop</div>
                                 <div className='footer-content'>
                                     <div className='content'>All products</div>
@@ -17,7 +17,7 @@ class Footer extends Component {
                                     <div className='content'>Blogs</div>
                                 </div>
                             </div>
-                            <div className='col-lg-2 col-md-2 col-sm-2 col-6'>
+                            <div className='col-lg-2 col-md-2 col-sm-3 col-6'>
                                 <div className='footer-title'>Extras</div>
                                 <div className='footer-content'>
                                     <div className='content'>About us</div>
@@ -27,7 +27,7 @@ class Footer extends Component {
                                     <div className='content'>Testimonials</div>
                                 </div>
                             </div>
-                            <div className='col-lg-2 col-md-2 col-sm-2 col-6'>
+                            <div className='col-lg-2 col-md-2 col-sm-3 col-6'>
                                 <div className='footer-title'>Quick Links</div>
                                 <div className='footer-content'>
                                     <div className='content'>Privacy policies</div>
@@ -45,7 +45,7 @@ class Footer extends Component {
                                 <div className='footer-title'>Sell with HeHe</div>
                                 <div><button>Become a seller</button></div>
                             </div>
-                            <div className='col-lg-3 col-md-3 col-sm-6 col-12'>
+                            <div className='col-lg-3 col-md-3 col-sm-6 col-12 subscribe-grid'>
                                 <div className='footer-title'>Get more from Hehe</div>
                                 <div className='subscribe'>
                                     <input type='text' name='email' placeholder='Email' />
