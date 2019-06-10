@@ -58,9 +58,9 @@ class HeaderCategoryMenu extends React.Component {
         const { categories } = this.state;
         return (
             <span className="main-menu">
-                <nav className="nav nav-container">
+                <nav className="nav nav-container" onMouseLeave={this.customerHandleLeave}>
                     <ul className="nav__menu">
-                        <li className="nav__menu-item" onMouseLeave={this.customerHandleLeave}>
+                        <li className="nav__menu-item">
                             <div 
                                 onMouseEnter={this.customerHandleHover} 
                                 className={this.props.view === 'customers' || this.props.view === 'customercreate' ? 'main-menu__item-a active' : 'main-menu__item-a'
@@ -76,10 +76,11 @@ class HeaderCategoryMenu extends React.Component {
                             }
                         </li>
                     </ul>
+                    {this.state.showSubCategory && 
+                        <div className='sub-category'>{this.renderCategory(categories)}</div>
+                    }
                 </nav>
-                {this.state.showSubCategory && 
-                    <div className='sub-category'>meeeeeeeeeeee</div>
-                }
+                
             </span>   
             
             // <header>

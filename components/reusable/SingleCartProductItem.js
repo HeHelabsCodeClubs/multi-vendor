@@ -123,9 +123,9 @@ export default class SingleCartProductItem extends Component {
                 has_attributes
             } = productData;
             if (Number(has_attributes) === 0) {
-                const pieceDescr = attributes.descquantity !== undefined ? (
-                    <div className='qty-measurement'>Pce</div>
-                ) : null;
+                // const pieceDescr = attributes.descquantity !== undefined ? (
+                //     <div className='qty-measurement'>Pce</div>
+                // ) : null;
                 return (
                     <div className='row reset-row cart-item'>
                         <div className='col-lg-2 col-md-2 col-sm-2 col-3 col-reset product-cart-image'>
@@ -133,7 +133,7 @@ export default class SingleCartProductItem extends Component {
                         </div>
                         <div className='col-lg-5 col-md-5 col-sm-5 col-4 col-reset name-incremenet'>
                             <div className='product-name'>{name}</div>
-                            {pieceDescr}
+                            {/* {pieceDescr} */}
                             <StockIncrementer 
                             stock={productData.stock}
                             updateCartOnChange={true}
