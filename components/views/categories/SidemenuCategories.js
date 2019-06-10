@@ -92,7 +92,7 @@ class SidemenuCategories extends Component {
             <div>
                 <SideMenu 
                     items={items} 
-                    onMenuItemClick={() => this.redirectToPage()}
+                    //onMenuItemClick={() => this.redirectToPage()}
                     shouldTriggerClickOnParents={true}
                 />
                 <SidebarUI isOpen={isOpen}>
