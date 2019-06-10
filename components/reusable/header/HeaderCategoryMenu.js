@@ -1,30 +1,5 @@
 import fetch from 'isomorphic-unfetch';
 import { API_URL } from '../../../config';
-import { ReactMegaMenu } from "react-mega-menu";
-// import $ from "jquery";
-
-// const { JSDOM } = require( 'jsdom' );
-// const jsdom = new JSDOM( testHTML );
-
-// // Set window and document from jsdom
-// const { window } = jsdom;
-// const { document } = window;
-// // Also set global window and document before requiring jQuery
-// global.window = window;
-// global.document = document;
-
-// const $ = global.jQuery = require( 'jquery' );
-
-// console.log( `jQuery ${jQuery.fn.jquery} working! Yay!!!` );
-// const inputElement = $( '#fiptest' );
-// console.log( inputElement.length );
-
-// $("#menu").menuAim({
-//     activate: $.noop,  // fired on row activation
-//     deactivate: $.noop  // fired on row deactivation
-// });
-
-
 
 class HeaderCategoryMenu extends React.Component {
     constructor(props) {
@@ -105,53 +80,46 @@ class HeaderCategoryMenu extends React.Component {
                 {this.state.showSubCategory && 
                     <div className='sub-category'>meeeeeeeeeeee</div>
                 }
-                {/* <ReactMegaMenu 
-                    tolerance={50}      // optional, defaults to 100
-                    direction={"LEFT"}  // optional, defaults to "RIGHT", takes in "RIGHT" || "LEFT"
-                    // styleConfig={...}   // defaults to an empty object. not recommended to be left blank.
-                    // onExit={}  // a function to be called when a mouse leaves the container
-                    data={this.renderCategory()}      // array of data to be rendered
-                /> */}
             </span>   
             
             // <header>
-            //     <div class="cd-dropdown-wrapper">
-            //         <a class="cd-dropdown-trigger" href="#0">Dropdown</a>
-            //         <nav class="cd-dropdown">
+            //     <div className="cd-dropdown-wrapper">
+            //         <a className="cd-dropdown-trigger" href="#0">Dropdown</a>
+            //         <nav className="cd-dropdown">
             //             <h2>Title</h2>
-            //             <a href="#0" class="cd-close">Close</a>
-            //             <ul class="cd-dropdown-content">
+            //             <a href="#0" className="cd-close">Close</a>
+            //             <ul className="cd-dropdown-content">
             //                 <li>
-            //                     <form class="cd-search">
+            //                     <form className="cd-search">
             //                         <input type="search" placeholder="Search..." />
             //                     </form>
             //                 </li>
 
-            //                 <li class="has-children">
+            //                 <li className="has-children">
             //                     <a href="#0">Clothing</a>
-            //                     <ul class="cd-secondary-dropdown is-hidden">
-            //                     <li class="go-back"><a href="#0">Menu</a></li>
-            //                     <li class="see-all"><a href="#0">All Clothing</a></li>
-            //                     <li class="has-children">
+            //                     <ul className="cd-secondary-dropdown is-hidden">
+            //                     <li className="go-back"><a href="#0">Menu</a></li>
+            //                     <li className="see-all"><a href="#0">All Clothing</a></li>
+            //                     <li className="has-children">
             //                         <a href="#0">Accessories</a>
 
-            //                         <ul class="is-hidden">
-            //                             <li class="go-back"><a href="#0">Clothing</a></li>
-            //                             <li class="see-all"><a href="#0">All Accessories</a></li>
-            //                             <li class="has-children">
+            //                         <ul className="is-hidden">
+            //                             <li className="go-back"><a href="#0">Clothing</a></li>
+            //                             <li className="see-all"><a href="#0">All Accessories</a></li>
+            //                             <li className="has-children">
             //                             <a href="#0">Beanies</a>
-            //                             <ul class="is-hidden">
-            //                                 <li class="go-back"><a href="#0">Accessories</a></li>
-            //                                 <li class="see-all"><a href="#0">All Benies</a></li>
+            //                             <ul className="is-hidden">
+            //                                 <li className="go-back"><a href="#0">Accessories</a></li>
+            //                                 <li className="see-all"><a href="#0">All Benies</a></li>
             //                                 <li><a href="#0">Caps &amp; Hats</a></li>
                                             
             //                             </ul>
             //                             </li>
-            //                             <li class="has-children">
+            //                             <li className="has-children">
             //                             <a href="#0">Caps &amp; Hats</a>
-            //                             <ul class="is-hidden">
-            //                                 <li class="go-back"><a href="#0">Accessories</a></li>
-            //                                 <li class="see-all"><a href="#0">All Caps &amp; Hats</a></li>
+            //                             <ul className="is-hidden">
+            //                                 <li className="go-back"><a href="#0">Accessories</a></li>
+            //                                 <li className="see-all"><a href="#0">All Caps &amp; Hats</a></li>
             //                                 <li><a href="#0">Beanies</a></li>
                                             
             //                             </ul>
@@ -161,27 +129,27 @@ class HeaderCategoryMenu extends React.Component {
             //                         </ul>
             //                     </li>
 
-            //                     <li class="has-children">
+            //                     <li className="has-children">
                                     
             //                     </li>
 
-            //                     <li class="has-children">
+            //                     <li className="has-children">
                                     
             //                     </li>
 
-            //                     <li class="has-children">
+            //                     <li className="has-children">
                              
             //                     </li>
             //                 </ul>
             //                 </li>
 
-            //                 <li class="has-children">
+            //                 <li className="has-children">
             //                 </li>
 
-            //                 <li class="has-children">
+            //                 <li className="has-children">
             //                 </li>
 
-            //                 <li class="cd-divider">Divider</li>
+            //                 <li className="cd-divider">Divider</li>
 
             //                 <li><a href="#0">Page 1</a></li>
             //             </ul>
