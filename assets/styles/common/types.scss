@@ -768,6 +768,10 @@ html {
         .store-name {
             font-family: $font-regular;
             font-size: 1.4rem;
+
+            @media screen and (max-width: $mobile-lg) {
+                font-size: 1rem;
+            }
             title {
                 font-family: $font-regular;
             }
@@ -857,7 +861,7 @@ html {
                 }
             }
             button {
-                font-family: $font-bold;
+                font-family: $font-semi-bold;
                 font-size: 1.1rem;
             }
             .subscribe {

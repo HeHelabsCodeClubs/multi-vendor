@@ -260,7 +260,18 @@
             padding: 0 !important;
         }
 
+        .row-container {
+            @media screen and (max-width: $mobile-lg) {
+                margin: 0 !important;
+            }
+
+        }
+
         .account-grid {
+
+            @media screen and (max-width: $mobile-lg) {
+                padding: 0 10px;
+            }
 
             .account-links {
 
@@ -295,6 +306,11 @@
         @include flexalignitems(center);
         @include flexjustifycontent(flex-start);
         height: 3rem;
+
+        @media screen and (max-width: $mobile-lg) {
+            padding: 0 0 0 10px;
+            max-width: 100%;
+        }
 
         .header-content {
 
@@ -456,6 +472,10 @@
                 left: auto !important;
                 right: 0 !important;
                 background: $white-color;
+
+                @media (min-width: $tablet-min) and (max-width: $tablet-md) {
+                    width: 60% !important
+                }
 
                 @media screen and (max-width: $mobile-lg) {
                     width: 100% !important;

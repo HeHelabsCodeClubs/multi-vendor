@@ -61,7 +61,7 @@ class Index extends React.Component {
 						<HomepageCategory categories={categories} />
 					</div>
 				</div>
-				<div className='special-offers featured-sellers'>
+				<div className='special-offers featured-sellers mobile-invisible'>
 					<FeaturedSellers sellers={sellers} />
 				</div>
 				<div className='top-stores'>
@@ -72,6 +72,9 @@ class Index extends React.Component {
 				</div>
 				<div className='made-in-rwanda special-offers'>
 					<MadeInRwanda stores={stores} products={products} />
+				</div>
+				<div className='special-offers featured-sellers mobile-visible'>
+					<FeaturedSellers sellers={sellers} />
 				</div>
 				<div className='made-in-rwanda special-offers'>
 					<Ad type={eventAddType} data={eventsAds}/>
