@@ -5,7 +5,7 @@ import '../../assets/styles/layouts/header.scss';
 const Global = props => (
     <div className='site-wrapper'>
         <Header />
-        {props.children}
+            {props.children}
         <Footer />
     </div>
 );
