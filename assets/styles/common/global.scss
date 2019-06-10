@@ -196,7 +196,7 @@ a {
     display: block !important;
 }
 
-@media screen {
+@media screen and (maximum-width: $mobile-lg) {
     .mobile-visible {
         display: block !important;
     }
