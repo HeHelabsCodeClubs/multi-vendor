@@ -723,7 +723,11 @@
 }
 .sub-category {
     position: absolute;
-    margin-left: 15rem;
+    margin-left: 14rem;
+    height: 100%;
+    background: $white-color;
+    z-index: 9;
+    width: 100%;
 }
 
 .empty-cart-items{

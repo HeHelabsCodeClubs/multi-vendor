@@ -45,9 +45,12 @@ class HeaderCategoryMenu extends React.Component {
         if (categories) {
             const categoryLayout = categories.map((category) => {
                 return (
-                    <li className="nav__submenu-item " key={category.id} onMouseEnter={this.categoryHandleHover} onMouseLeave={this.categoryHandleLeave} >
+                    <span className="nav__submenu-item " key={category.id} onMouseEnter={this.categoryHandleHover} onMouseLeave={this.categoryHandleLeave} >
                         <a href="/categories" className='sub-menu__item-a'>{category.name}</a>
-                    </li>
+                        {this.state.showSubCategory && 
+                            <div className='sub-category'>Submenu</div>
+                        }
+                    </span>
                 )
             });
             return categoryLayout;
@@ -71,14 +74,15 @@ class HeaderCategoryMenu extends React.Component {
                             </div>
                             {this.state.showCustomerMenu && 
                                 <ul className="nav__submenu">
-                                    {this.renderCategory(categories)}
+                                    <li>
+                                        {this.renderCategory(categories)}
+                                    </li>
+                                    
                                 </ul>
                             }
                         </li>
                     </ul>
-                    {this.state.showSubCategory && 
-                        <div className='sub-category'>{this.renderCategory(categories)}</div>
-                    }
+                    
                 </nav>
                 
             </span>   
