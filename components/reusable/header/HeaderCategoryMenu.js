@@ -1,15 +1,52 @@
 import fetch from 'isomorphic-unfetch';
 import { API_URL } from '../../../config';
 
+const SidebarUI = ({ isOpen, ...rest }) => {
+    const classes = [
+        'Sidebar',
+        isOpen ? 'is-open' : '',
+    ];
+    return (
+        <div aria-hidden={!isOpen} className={classes.join(' ')} {...rest} />
+    );
+};
+  
+SidebarUI.Overlay = props => <div className="SidebarOverlay" {...props} />;
+
+SidebarUI.Content = ({ width = '40%', isRight = false, ...rest }) => {
+    const classes = [
+        'SidebarContent',
+        isRight ? 'is-right' : '',
+    ];
+    const style = {
+        width,
+        height: '100%',
+        top: 0,
+        right: isRight ? `-${width}` : 'auto',
+        left: !isRight ? `-${width}` : 'auto',
+    };
+    
+    return (
+        <div
+            className={classes.join(' ')}
+            style={style}
+            {...rest}
+        />
+    );
+};
+
 class HeaderCategoryMenu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             showCustomerMenu: false,
             showSubCategory: false,
-            categories: []
+            categories: [],
+            isOpen: props.isOpen
         };
         this.renderCategory = this.renderCategory.bind(this);
+        this.openSidebar = this.openSidebar.bind(this);
+        this.renderMoboCategory = this.renderMoboCategory.bind(this);
     };
 
     async componentDidMount() {
@@ -22,13 +59,17 @@ class HeaderCategoryMenu extends React.Component {
         });
         const data = await res.json();
         this.setState({
-           categories: data.data,
-           //showCustomerMenu: true
+           categories: data.data
         });
     }
 
     customerHandleHover = () => {
-        this.setState({ showCustomerMenu: true });
+        const { showCustomerMenu } = this.state;
+        if (showCustomerMenu === false) {
+            this.setState({ showCustomerMenu: true });
+        } else {
+            this.setState({ showCustomerMenu: false });
+        }
     };
     customerHandleLeave = () => {
         this.setState({ showCustomerMenu: false });
@@ -41,15 +82,140 @@ class HeaderCategoryMenu extends React.Component {
         this.setState({ showSubCategory: false })
     };
 
+    openSidebar() {
+        const { isOpen } = this.state;
+        if (isOpen) {
+            this.setState({ 
+                isOpen: false 
+            });
+        } else {
+            this.setState({ 
+                isOpen: true
+            });
+        }
+    }
+
     renderCategory(categories) {
         if (categories) {
             const categoryLayout = categories.map((category) => {
                 return (
-                    <span className="nav__submenu-item " key={category.id} onMouseEnter={this.categoryHandleHover} onMouseLeave={this.categoryHandleLeave} >
+                    <span className="nav__submenu-item " key={category.id} >
                         <a href="/categories" className='sub-menu__item-a'>{category.name}</a>
-                        {this.state.showSubCategory && 
-                            <div className='sub-category'>Submenu</div>
-                        }
+                        <div className='sub-category'>
+                            <div className='row'>
+                                <div className='col-lg-3 col-md-3 col-sm-3 col-12'>
+                                    <h5>Mobile phones</h5>
+                                    <p>Mobile Phones</p>
+                                    <p>Front Camera</p>
+                                    <p>Fingerprint Recognition</p>
+                                    <p>Touch Screen</p>
+                                    <p>Dual SIM Card</p>
+                                    <p>5.7-inch Display</p>
+                                    <p>Mobile Phone Parts</p>
+                                    <p>Mobile Phone LCDs</p>
+                                    <p>Mobile Phone Batteries</p>
+                                    <p>Mobile Phone Housings</p>
+                                    <p>Mobile Phone Touch Panel</p>
+                                    <p>Flex Cables</p>
+
+                                    <h5>Mobile phones</h5>
+                                    <p>Mobile Phones</p>
+                                    <p>Front Camera</p>
+                                    <p>Fingerprint Recognition</p>
+                                    <p>Touch Screen</p>
+                                    <p>Dual SIM Card</p>
+                                    <p>5.7-inch Display</p>
+                                    <p>Mobile Phone Parts</p>
+                                    <p>Mobile Phone LCDs</p>
+                                    <p>Mobile Phone Batteries</p>
+                                    <p>Mobile Phone Housings</p>
+                                    <p>Mobile Phone Touch Panel</p>
+                                    <p>Flex Cables</p>
+                                </div>
+                                <div className='col-lg-3 col-md-3 col-sm-3 col-12'>
+                                    <h5>Mobile phones</h5>
+                                    <p>Mobile Phones</p>
+                                    <p>Front Camera</p>
+                                    <p>Fingerprint Recognition</p>
+                                    <p>Touch Screen</p>
+                                    <p>Dual SIM Card</p>
+                                    <p>5.7-inch Display</p>
+                                    <p>Mobile Phone Parts</p>
+                                    <p>Mobile Phone LCDs</p>
+                                    <p>Mobile Phone Batteries</p>
+                                    <p>Mobile Phone Housings</p>
+                                    <p>Mobile Phone Touch Panel</p>
+                                    <p>Flex Cables</p>
+
+                                    <h5>Mobile phones</h5>
+                                    <p>Mobile Phones</p>
+                                    <p>Front Camera</p>
+                                    <p>Fingerprint Recognition</p>
+                                    <p>Touch Screen</p>
+                                    <p>Dual SIM Card</p>
+                                    <p>5.7-inch Display</p>
+                                    <p>Mobile Phone Parts</p>
+                                    <p>Mobile Phone LCDs</p>
+                                    <p>Mobile Phone Batteries</p>
+                                    <p>Mobile Phone Housings</p>
+                                    <p>Mobile Phone Touch Panel</p>
+                                    <p>Flex Cables</p>
+                                </div>
+                                <div className='col-lg-3 col-md-3 col-sm-3 col-12'>
+                                    <h5>Mobile phones</h5>
+                                    <p>Mobile Phones</p>
+                                    <p>Front Camera</p>
+                                    <p>Fingerprint Recognition</p>
+                                    <p>Touch Screen</p>
+                                    <p>Dual SIM Card</p>
+                                    <p>5.7-inch Display</p>
+                                    <p>Mobile Phone Parts</p>
+                                    <p>Mobile Phone LCDs</p>
+                                    <p>Mobile Phone Batteries</p>
+                                    <p>Mobile Phone Housings</p>
+                                    <p>Mobile Phone Touch Panel</p>
+                                    <p>Flex Cables</p>
+
+                                    <h5>Mobile phones</h5>
+                                    <p>Mobile Phones</p>
+                                    <p>Front Camera</p>
+                                    <p>Fingerprint Recognition</p>
+                                    <p>Touch Screen</p>
+                                    <p>Dual SIM Card</p>
+                                    <p>5.7-inch Display</p>
+                                    <p>Mobile Phone Parts</p>
+                                    <p>Mobile Phone LCDs</p>
+                                    <p>Mobile Phone Batteries</p>
+                                    <p>Mobile Phone Housings</p>
+                                    <p>Mobile Phone Touch Panel</p>
+                                    <p>Flex Cables</p>
+                                </div>
+                                <div className='col-lg-3 col-md-3 col-sm-3 col-12'>
+                                    <div className='menu-img'>
+                                        <img src='https://res.cloudinary.com/hehe/image/upload/v1560250753/multi-vendor/3043262_ultraradiant-met-hp-ast_ecom1830-4.png' />
+                                    </div>
+                                    <div className='menu-img'>
+                                        <img src='https://res.cloudinary.com/hehe/image/upload/v1560250767/multi-vendor/Products_Banner2-928x461.png' />
+                                    </div>
+                                    <div className='menu-img'>
+                                        <img src='https://res.cloudinary.com/hehe/image/upload/v1560250753/multi-vendor/3043262_ultraradiant-met-hp-ast_ecom1830-4.png' />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </span>
+                )
+            });
+            return categoryLayout;
+        }
+    }
+
+    renderMoboCategory(categories) {
+        if (categories) {
+            const categoryLayout = categories.map((category) => {
+                return (
+                    <span className="nav__submenu-item " key={category.id} >
+                        <a href="/categories" className='sub-menu__item-a'>{category.name}</a>
                     </span>
                 )
             });
@@ -58,33 +224,65 @@ class HeaderCategoryMenu extends React.Component {
     }
 
     render() {
-        const { categories } = this.state;
+        const { categories, isOpen } = this.state;
+        const { isRight } = this.props;
         return (
             <span className="main-menu">
-                <nav className="nav nav-container" onMouseLeave={this.customerHandleLeave}>
+                <nav className="nav nav-container">
                     <ul className="nav__menu">
                         <li className="nav__menu-item">
-                            <div 
-                                onMouseEnter={this.customerHandleHover} 
-                                className={this.props.view === 'customers' || this.props.view === 'customercreate' ? 'main-menu__item-a active' : 'main-menu__item-a'
-                            }>
+                            <div
+                                onClick={this.customerHandleHover} 
+                                className='main-menu__item-a'
+                            >
                                 <span className='icon-Path-61'></span>
                                 <span className='icon-Path-73'></span>
                                 <span className={this.state.showCustomerMenu ? 'icon-icon_up-arrow-small' : 'icon-icon_down-arrow-small'}></span>
                             </div>
                             {this.state.showCustomerMenu && 
-                                <ul className="nav__submenu">
-                                    <li>
-                                        {this.renderCategory(categories)}
-                                    </li>
-                                    
-                                </ul>
+                                <div className='menu-wrapper'>
+                                    <ul className="nav__submenu">
+                                        <li>
+                                            {this.renderCategory(categories)}
+                                        </li>
+                                    </ul>
+                                </div>
                             }
                         </li>
+                        <li className="nav__menu-item-mobo">
+                            <SidebarUI isOpen={isOpen}>
+                                <div>
+                                    <div
+                                        className='main-menu__item-a'
+                                        onClick={this.openSidebar}
+                                    >
+                                        <span className='icon-Path-61'></span>
+                                        <span className='icon-Path-73'></span>
+                                        <span className={this.state.showCustomerMenu ? 'icon-icon_up-arrow-small' : 'icon-icon_down-arrow-small'}></span>
+                                    </div>
+                                    <SidebarUI.Content isRight={isRight}>
+                                        <div className="cart-sidebar">
+                                            <div className="main-title">
+                                                <div className='sidebar-title'>
+                                                    <span className='icon-Path-71' onClick={() => this.openSidebar(false)}></span>
+                                                    <span className='title'>Categories</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <ul className="nav__submenu">
+                                                    <li>
+                                                        {this.renderMoboCategory(categories)}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </SidebarUI.Content>
+                                </div>
+                                {isOpen ? <SidebarUI.Overlay onClick={() => this.openSidebar(false)} /> : false}
+                            </SidebarUI>
+                        </li>
                     </ul>
-                    
                 </nav>
-                
             </span>   
             
             // <header>

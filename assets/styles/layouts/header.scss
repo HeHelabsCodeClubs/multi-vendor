@@ -361,6 +361,10 @@
                 display: inline-block;
                 position: relative;
 
+                @media screen and (max-width: $mobile-lg) {
+                    display: none;
+                }
+
                 .icon-Path-73{
                     @include flexbox;
                     @include flexalignitems(center);
@@ -402,11 +406,34 @@
 
                 }
             }
+
+            .nav__menu-item-mobo {
+                display: none;
+
+                @media screen and (max-width: $mobile-lg) {
+                    display: block;
+                }
+
+                .SidebarContent {
+                    width: 70% !important;
+                    left: -70% !important;
+                }
+                .Sidebar.is-open .SidebarContent {
+                    left: 0 !important;
+                }
+                .nav__submenu {
+                    position: relative;
+                    width: 100%;
+                    z-index: 99999999999 !important;
+                    box-shadow: none;
+                }
+            }
         }
     }
 
     .nav__submenu {
         position: absolute;
+        right: 0;
         background-color: $white-color;
         width: 100%;
         height: 1rem;
@@ -414,6 +441,11 @@
         @include boxshadow(-1px 8px 20px $gray-color-5);
         translate: 0.3s;
         width: 15rem;
+
+        li {
+            background-color: $white-color;
+            @include boxshadow(-1px 8px 20px $gray-color-5);
+        }
         .nav__submenu-item {
             cursor: pointer;
             color: $black-color-2;
@@ -423,6 +455,10 @@
             padding: 0.5rem 1rem;
             &:hover {
                 background: $gray-color-2;
+
+                .sub-category {
+                    visibility: visible;
+                }
             }
         }
     }
@@ -721,13 +757,29 @@
         }
     }
 }
+.menu-wrapper {
+    display: -webkit-inline-box;
+}
 .sub-category {
     position: absolute;
+    top: 0;
+    padding: 2rem 0 2rem 2rem;
     margin-left: 14rem;
     height: 100%;
     background: $white-color;
     z-index: 9;
-    width: 100%;
+    min-width: 980px;
+    visibility: hidden;
+    @include boxshadow(3px 6px 20px $gray-color-5);
+
+    p {
+        line-height: 0.5rem;
+    }
+    .menu-img {
+        img {
+            width: 100%;
+        }
+    }
 }
 
 .empty-cart-items{
