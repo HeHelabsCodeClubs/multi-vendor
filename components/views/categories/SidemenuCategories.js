@@ -92,8 +92,8 @@ class SidemenuCategories extends Component {
             <div>
                 <SideMenu 
                     items={items} 
-                    //onMenuItemClick={() => this.redirectToPage()}
-                    shouldTriggerClickOnParents={true}
+                    // onMenuItemClick={() => this.redirectToPage()}
+                    // shouldTriggerClickOnParents={true}
                 />
                 <SidebarUI isOpen={isOpen}>
                     <div className='filter-title' onClick={this.openSidebar}>Filter</div>
