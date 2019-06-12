@@ -8,6 +8,14 @@ html {
             font-size: 0.9rem !important;
         }
     }
+    h5 {
+        font-size: 1rem !important;
+        font-family: $font-bold;
+    }
+    p {
+        font-family: $font-regular;
+        font-size: 1rem;
+    }
     .light-title {
         font-family: $font-regular !important;
     }
@@ -131,6 +139,34 @@ html {
         font-family: $font-regular;
         font-size: 1rem;
     }
+    .nav__submenu-item {
+        a {
+            font-family: $font-semi-bold;
+            font-size: 1.28rem;
+        }
+        .menu-item-icon {
+            &:before {
+                font-size: 2rem;
+            }
+        }
+    }
+    .menu-btn {
+        button {
+            font-family: $font-semi-bold;
+            font-size: 1.28rem;
+        }
+    }
+    .mobo-menu-title {
+        .icon-Path-71 {
+            :before {
+                font-size: 2rem;
+            }
+        }
+        .title {
+            font-size: 1.28rem !important;
+        }
+    }
+
 
     // Homepage
 

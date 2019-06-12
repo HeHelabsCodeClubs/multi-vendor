@@ -100,7 +100,10 @@ class HeaderCategoryMenu extends React.Component {
             const categoryLayout = categories.map((category) => {
                 return (
                     <span className="nav__submenu-item " key={category.id} >
-                        <a href="/categories" className='sub-menu__item-a'>{category.name}</a>
+                        <a href="/categories" className='sub-menu__item-a'>
+                        <span className={`${category.icon_class_name} menu-item-icon`} />
+                        {category.name}
+                        </a>
                         <div className='sub-category'>
                             <div className='row'>
                                 <div className='col-lg-3 col-md-3 col-sm-3 col-12'>
@@ -215,7 +218,10 @@ class HeaderCategoryMenu extends React.Component {
             const categoryLayout = categories.map((category) => {
                 return (
                     <span className="nav__submenu-item " key={category.id} >
-                        <a href="/categories" className='sub-menu__item-a'>{category.name}</a>
+                        <a href="/categories" className='sub-menu__item-a'>
+                            <span className={`${category.icon_class_name} menu-item-icon`} />
+                            {category.name}
+                        </a>
                     </span>
                 )
             });
@@ -231,20 +237,24 @@ class HeaderCategoryMenu extends React.Component {
                 <nav className="nav nav-container">
                     <ul className="nav__menu">
                         <li className="nav__menu-item">
-                            <div
+                            <a
                                 onClick={this.customerHandleHover} 
                                 className='main-menu__item-a'
                             >
                                 <span className='icon-Path-61'></span>
                                 <span className='icon-Path-73'></span>
                                 <span className={this.state.showCustomerMenu ? 'icon-icon_up-arrow-small' : 'icon-icon_down-arrow-small'}></span>
-                            </div>
+                            </a>
                             {this.state.showCustomerMenu && 
                                 <div className='menu-wrapper'>
                                     <ul className="nav__submenu">
                                         <li>
                                             {this.renderCategory(categories)}
+                                            <div className='menu-btn'>
+                                                <button>Shop by Seller</button>
+                                            </div>
                                         </li>
+                                        
                                     </ul>
                                 </div>
                             }
@@ -252,20 +262,20 @@ class HeaderCategoryMenu extends React.Component {
                         <li className="nav__menu-item-mobo">
                             <SidebarUI isOpen={isOpen}>
                                 <div>
-                                    <div
+                                    <a
                                         className='main-menu__item-a'
                                         onClick={this.openSidebar}
                                     >
                                         <span className='icon-Path-61'></span>
                                         <span className='icon-Path-73'></span>
                                         <span className={this.state.showCustomerMenu ? 'icon-icon_up-arrow-small' : 'icon-icon_down-arrow-small'}></span>
-                                    </div>
+                                    </a>
                                     <SidebarUI.Content isRight={isRight}>
                                         <div className="cart-sidebar">
-                                            <div className="main-title">
+                                            <div className='mobo-menu-title'>
                                                 <div className='sidebar-title'>
-                                                    <span className='icon-Path-71' onClick={() => this.openSidebar(false)}></span>
-                                                    <span className='title'>Categories</span>
+                                                    <a className='icon-Path-71' onClick={() => this.openSidebar(false)}></a>
+                                                    <h4 className='title'>Categories</h4>
                                                 </div>
                                             </div>
                                             <div>
@@ -284,81 +294,6 @@ class HeaderCategoryMenu extends React.Component {
                     </ul>
                 </nav>
             </span>   
-            
-            // <header>
-            //     <div className="cd-dropdown-wrapper">
-            //         <a className="cd-dropdown-trigger" href="#0">Dropdown</a>
-            //         <nav className="cd-dropdown">
-            //             <h2>Title</h2>
-            //             <a href="#0" className="cd-close">Close</a>
-            //             <ul className="cd-dropdown-content">
-            //                 <li>
-            //                     <form className="cd-search">
-            //                         <input type="search" placeholder="Search..." />
-            //                     </form>
-            //                 </li>
-
-            //                 <li className="has-children">
-            //                     <a href="#0">Clothing</a>
-            //                     <ul className="cd-secondary-dropdown is-hidden">
-            //                     <li className="go-back"><a href="#0">Menu</a></li>
-            //                     <li className="see-all"><a href="#0">All Clothing</a></li>
-            //                     <li className="has-children">
-            //                         <a href="#0">Accessories</a>
-
-            //                         <ul className="is-hidden">
-            //                             <li className="go-back"><a href="#0">Clothing</a></li>
-            //                             <li className="see-all"><a href="#0">All Accessories</a></li>
-            //                             <li className="has-children">
-            //                             <a href="#0">Beanies</a>
-            //                             <ul className="is-hidden">
-            //                                 <li className="go-back"><a href="#0">Accessories</a></li>
-            //                                 <li className="see-all"><a href="#0">All Benies</a></li>
-            //                                 <li><a href="#0">Caps &amp; Hats</a></li>
-                                            
-            //                             </ul>
-            //                             </li>
-            //                             <li className="has-children">
-            //                             <a href="#0">Caps &amp; Hats</a>
-            //                             <ul className="is-hidden">
-            //                                 <li className="go-back"><a href="#0">Accessories</a></li>
-            //                                 <li className="see-all"><a href="#0">All Caps &amp; Hats</a></li>
-            //                                 <li><a href="#0">Beanies</a></li>
-                                            
-            //                             </ul>
-            //                             </li>
-            //                             <li><a href="#0">Glasses</a></li>
-                                        
-            //                         </ul>
-            //                     </li>
-
-            //                     <li className="has-children">
-                                    
-            //                     </li>
-
-            //                     <li className="has-children">
-                                    
-            //                     </li>
-
-            //                     <li className="has-children">
-                             
-            //                     </li>
-            //                 </ul>
-            //                 </li>
-
-            //                 <li className="has-children">
-            //                 </li>
-
-            //                 <li className="has-children">
-            //                 </li>
-
-            //                 <li className="cd-divider">Divider</li>
-
-            //                 <li><a href="#0">Page 1</a></li>
-            //             </ul>
-            //         </nav>
-            //     </div>
-            // </header>
         )
     }
 }
