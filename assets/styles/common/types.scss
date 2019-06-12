@@ -712,7 +712,7 @@ html {
     .popup-wrapper {
         .description-wrapper {
             .product-name {
-                font-size: 2.85rem;
+                font-size: 2.4rem;
                 font-family: $font-bold;
             }
             .top-icons {
@@ -727,15 +727,15 @@ html {
             }
             .product-detail {
                 .details-title {
-                    font-size: 1.28rem;
+                    font-size: 1.1rem;
                     font-family: $font-regular;
                 }
                 .initial-price {
-                    font-size: 1.28rem;
+                    font-size: 1.15rem;
                     font-family: $font-regular;
                 }
                 .price {
-                    font-size: 1.7rem;
+                    font-size: 1.3rem;
                     font-family: $font-bold;
                 }
                 .select-dropdown {
@@ -750,7 +750,7 @@ html {
                 }
                 .orange-btn,
                 .white-btn{
-                    font-size: 1.5rem;
+                    font-size: 1.3rem;
                     font-family: $font-semi-bold;
                     line-height: 1.5rem;
                     @media screen and (max-width: $mobile-lg) {

@@ -2,11 +2,18 @@
 
 .multi-vendor-seller-wrapper {
     border-bottom: 0.5px solid $gray-color-6;
-    padding-bottom: 10px;
+    padding: 10px 0;
+    @include flexbox;
+    @include flexalignitems(center);
 
     .seller-logo-container {
         text-align: center;
         max-width: 30%;
+
+        @media screen and (max-width: $mobile-lg) {
+            max-width: none;
+            padding: 10px 0;
+        }
 
         .seller-logo {
             img {
@@ -23,6 +30,12 @@
 .line-display {
     display: inline-grid;
     margin: 1rem 6rem 1rem 0;
+
+    @media screen and (max-width: $mobile-lg) {
+        margin: 0 !important;
+        max-width: 50%;
+        padding: 10px;
+    }
 
     .store-name {
         color: $gray-color-4;

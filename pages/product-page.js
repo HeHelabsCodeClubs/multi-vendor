@@ -329,7 +329,7 @@ class ProductPage extends React.Component {
                 const similarProductsLayout = products.map((product) => {
                     return (
                         <div 
-                        className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'
+                        className='col-lg-3 col-md-4 col-sm-4 col-6 col-reset'
                         key={product.slug}
                         >
                             <Product product={product} />

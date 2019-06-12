@@ -15,10 +15,10 @@ class Seller extends React.Component {
                 <div className='categories-content'>
                     <div className='maximum-width'>
                         <div className='row reset-row'>
-                            <div className='col-lg-3 col-md-3 col-sm-3 col-12'>
+                            <div className='col-lg-3 col-md-4 col-sm-4 col-12'>
                                 <SellerCategories />
                             </div>
-                            <div className='col-lg-9 col-md-9 col-sm-9 col-12 col-reset main-content-wrapper'>
+                            <div className='col-lg-9 col-md-8 col-sm-8 col-12 col-reset main-content-wrapper'>
                                 <MainContent />
                             </div>
                         </div>

@@ -1,74 +1,70 @@
 import Slider from "react-slick";
 import Link from 'next/link';
+import Router from 'next/router';
 
 class TopCategories extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            categories: []
+        };
+        this.renderCategories = this.renderCategories.bind(this);
+    }
+    componentDidMount() {
+        const { categories } = this.props;
+        this.setState({
+            categories: categories
+        });
+    }
+
+    renderCategories() {
+        const { categories } = this.state;
+        if (categories) {
+            const categoriesLayout = categories.map((category) => {
+                const iconClassName = category.icon_class_name;
+                const { slug } = category;
+                const activeClassName = (Router.router.query.category_slug === slug) ? 'is-active' : '';
+                return (
+                    <a 
+                    key={slug}
+                    href={`/categories/${slug}`}
+                    className={`single-category ${activeClassName}`}>
+                        <i className={`cat-icon ${iconClassName}`} />
+                        {category.name}
+                    </a>
+                );
+            });
+            return categoriesLayout;
+        }
+
+        return null;
+    }
 	render() {
         var settings = {
 			infinite: true,
             speed: 1000,
 			slidesToShow: 6,
-  			slidesToScroll: 2
+            slidesToScroll: 2,
+            responsive: [
+				{
+				 	breakpoint: 1024,
+					settings: {
+						slidesToShow: 5,
+					}
+                },
+                {
+                    breakpoint: 979,
+                   settings: {
+                       slidesToShow: 4,
+                   }
+               }
+			]
 		};
 		return (
 			<div className='maximum-width'>
                 <div className='multi-vendor-categories-wrapper'>
                     <Slider {...settings}>
-                        <Link href=''>
-                            <a>
-                                <div className='single-category'>
-                                    <span className='cat-icon icon-Categories-ico'></span>
-                                    All Categories
-                                </div>
-                            </a>
-                        </Link>
-                        <Link href=''>
-                            <a>
-                                <div className='single-category'>
-                                    <span className='cat-icon icon-Elecronics-ico'></span>
-                                    Electronics
-                                </div>
-                            </a>
-                        </Link>
-                        <Link href=''>
-                            <a>
-                                <div className='single-category'>
-                                    <span className='cat-icon icon-Groceries-ico'></span>
-                                    Groceries
-                                </div>
-                            </a>
-                        </Link>
-                        <Link href=''>
-                            <a>
-                                <div className='single-category'>
-                                    <span className='cat-icon icon-LITTERATURE-ICO'></span>
-                                    Home Appliences
-                                </div>
-                            </a>
-                        </Link>
-                        <Link href=''>
-                            <a>
-                                <div className='single-category'>
-                                    <span className='cat-icon icon-Coametics-ico'></span>
-                                    Cosmetics & Beauty
-                                </div>
-                            </a>
-                        </Link>
-                        <Link href=''>
-                            <a>
-                                <div className='single-category'>
-                                    <span className='cat-icon icon-Categories-ico'></span>
-                                    Kids & Hobies
-                                </div>
-                            </a>
-                        </Link>
-                        <Link href=''>
-                            <a>
-                                <div className='single-category'>
-                                    <span className='cat-icon icon-Fashion-ico'></span>
-                                    Clothing
-                                </div>
-                            </a>
-                        </Link>
+                       {this.renderCategories()}
                     </Slider>
                 </div>
             </div>

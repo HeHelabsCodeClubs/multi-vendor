@@ -23,12 +23,13 @@
 
 
 .landing-main-wrapper {
-	position: relative;
+	position: fixed;
 	@include flexbox;
 	@include flexalignitems(center);
 	transform: translate3d(0, 0, 0);
 	max-height: 100vh;
 	height: 100vh;
+	width: 100vw;
 	overflow: hidden;
 	background: #f4f6f6;
 	
@@ -46,7 +47,7 @@
 		border-radius: 0.5rem;
 
 		.top-part {
-			border-bottom: 1px solid $gray-color-1;
+			border-bottom: .5px solid $gray-color-1;
 			padding: 1rem;
 			margin: 0 1rem;
 			text-align: center;
@@ -80,9 +81,11 @@
 					text-align: left;
 					color: $gray-color-1;
 					margin: 0;
+					padding: 10px 0;
 				}
 				.select2-container {
 					width: 100% !important;
+					margin: 10px 0;
 					&.select2-container--focus {
 						outline: none;
 					}
@@ -170,5 +173,10 @@
 				margin: 1rem;
 			}
 		}
+	}
+
+
+	.select2-container--default .select2-selection--single {
+		border-width: .5px;
 	}
 }
