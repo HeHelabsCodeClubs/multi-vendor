@@ -100,7 +100,9 @@ class HeaderCategoryMenu extends React.Component {
             const categoryLayout = categories.map((category) => {
                 return (
                     <span className="nav__submenu-item " key={category.id} >
-                        <a href="/categories" className='sub-menu__item-a'>{category.name}</a>
+                        <a 
+                        href={`/categories/${category.slug}`} 
+                        className='sub-menu__item-a'>{category.name}</a>
                         <div className='sub-category'>
                             <div className='row'>
                                 <div className='col-lg-3 col-md-3 col-sm-3 col-12'>

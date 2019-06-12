@@ -1,101 +1,142 @@
 import React, { Component } from 'react';
+import Router from 'next/router';
 import SideMenu from 'react-sidemenu';
-import ReactResponsiveSelect from 'react-responsive-select';
+import Item from 'react-sidemenu';
+// import ReactResponsiveSelect from 'react-responsive-select';
  
-const onChange = (newValue) => console.log('onChange', newValue);
-const onSubmit = () => console.log('onSubmit');
+// const onChange = (newValue) => console.log('onChange', newValue);
+// const onSubmit = () => console.log('onSubmit');
 
-const items = [
-    {divider: true, label: 'All Categories', value: 'main-nav'},
-    {
-        label: 'Womens clothing' , value: 'clothing',
-        children: [
-            {label: 'Dresses', value: 'Dresses'},
-            {label: 'Sweaters', value: 'Sweaters'},
-            {label: 'Jumpsuits', value: 'Jumpsuits'},
-            {label: 'Bodysuits', value: 'Bodysuits'},
-            {label: 'Blouses & Shirts', value: 'Blouses'}
-        ]
-    },
-    {
-        label: 'Shoes', value: 'shoes',
-        children: [
-            {label: 'Open shoes', value: 'open'},
-            {label: 'Closed shoes', value: 'close'}
-        ]
-    },
-    {label: 'Bags', value: 'bags'},
-    {label: 'Jewelry & Accessories', value: 'accessories'}
-];
-
-const SidebarUI = ({ isOpen, ...rest }) => {
-    const classes = [
-        'Sidebar',
-        isOpen ? 'is-open' : '',
-    ];
-    return (
-        <div aria-hidden={!isOpen} className={classes.join(' ')} {...rest} />
-    );
-};
+// const SidebarUI = ({ isOpen, ...rest }) => {
+//     const classes = [
+//         'Sidebar',
+//         isOpen ? 'is-open' : '',
+//     ];
+//     return (
+//         <div aria-hidden={!isOpen} className={classes.join(' ')} {...rest} />
+//     );
+// };
   
-SidebarUI.Overlay = props => <div className="SidebarOverlay" {...props} />;
+// SidebarUI.Overlay = props => <div className="SidebarOverlay" {...props} />;
 
-SidebarUI.Content = ({ width = '40%', isRight = true, ...rest }) => {
-    const classes = [
-        'SidebarContent',
-        isRight ? 'is-right' : '',
-    ];
-    const style = {
-        width,
-        height: '100%',
-        top: 0,
-        right: isRight ? `-${width}` : 'auto',
-        left: !isRight ? `-${width}` : 'auto',
-    };
+// SidebarUI.Content = ({ width = '40%', isRight = true, ...rest }) => {
+//     const classes = [
+//         'SidebarContent',
+//         isRight ? 'is-right' : '',
+//     ];
+//     const style = {
+//         width,
+//         height: '100%',
+//         top: 0,
+//         right: isRight ? `-${width}` : 'auto',
+//         left: !isRight ? `-${width}` : 'auto',
+//     };
     
-    return (
-        <div
-            className={classes.join(' ')}
-            style={style}
-            {...rest}
-        />
-    );
-};
+//     return (
+//         <div
+//             className={classes.join(' ')}
+//             style={style}
+//             {...rest}
+//         />
+//     );
+// };
 
-const caretIcon = (
-    <svg className="caret-icon" x="0px" y="0px" width="11.848px" height="6.338px" viewBox="351.584 2118.292 11.848 6.338">
-      <g><path d="M363.311,2118.414c-0.164-0.163-0.429-0.163-0.592,0l-5.205,5.216l-5.215-5.216c-0.163-0.163-0.429-0.163-0.592,0s-0.163,0.429,0,0.592l5.501,5.501c0.082,0.082,0.184,0.123,0.296,0.123c0.103,0,0.215-0.041,0.296-0.123l5.501-5.501C363.474,2118.843,363.474,2118.577,363.311,2118.414L363.311,2118.414z"/></g>
-    </svg>
-);
+// const caretIcon = (
+//     <svg className="caret-icon" x="0px" y="0px" width="11.848px" height="6.338px" viewBox="351.584 2118.292 11.848 6.338">
+//       <g><path d="M363.311,2118.414c-0.164-0.163-0.429-0.163-0.592,0l-5.205,5.216l-5.215-5.216c-0.163-0.163-0.429-0.163-0.592,0s-0.163,0.429,0,0.592l5.501,5.501c0.082,0.082,0.184,0.123,0.296,0.123c0.103,0,0.215-0.041,0.296-0.123l5.501-5.501C363.474,2118.843,363.474,2118.577,363.311,2118.414L363.311,2118.414z"/></g>
+//     </svg>
+// );
 
 class SidemenuCategories extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: props.isOpen
-        }
+            isOpen: props.isOpen,
+            categories: []
+        };
         this.openSidebar = this.openSidebar.bind(this);
+        this.renderMenuItems = this.renderMenuItems.bind(this);
+        this.renderCategoryChildren = this.renderCategoryChildren.bind(this);
+        this.redirectToPage = this.redirectToPage.bind(this);
+    }
+
+    componentWillMount() {
+        const { subCategories } = this.props;
+        this.setState({
+            categories: subCategories
+        });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { subCategories } = nextProps;
+        this.setState({
+            categories: subCategories
+        });
     }
 
     openSidebar(isOpen = true) {
         this.setState({ isOpen });
     }
 
-    redirectToPage() {
-        window.location.assign('/');
+    redirectToPage(value, e) {
+        if (e !== undefined) {
+            e.preventDefault();
+        }
+        console.log('clicked');
+        console.log(value);
+        const { parentCategorySlug } = this.props;
+        console.log('parent cat', parentCategorySlug);
+        Router.push(`/categories/${parentCategorySlug}/${value}`);
+        //window.location.assign('/');
     }
 
+    renderMenuItems() {
+        const { categories } = this.state;
+        if (categories.length === 0) {
+            return [];
+        }
+
+        const items = [
+            {divider: true, label: 'All Categories', value: 'main-nav'}
+        ];
+
+        for (let i = 0; i < categories.length; i++) {
+            items.push({
+                label: categories[i].name,
+                value: categories[i].slug,
+                children: this.renderCategoryChildren(categories[i].children)
+            });
+        }
+
+        return items;
+    }
+
+    renderCategoryChildren(category_children) {
+        if (category_children.length === 0 || !category_children) {
+            return [];
+        }
+        const childrenData = [];
+        for (let i = 0; i < category_children.length; i++) {
+            childrenData.push({
+                label: category_children[i].name,
+                value: category_children[i].slug
+            });
+        }
+
+        return childrenData;
+    }
     render() {
         const { isOpen } = this.state;
         const { isRight } = this.props;
         return (
             <div>
-                <SideMenu 
-                    items={items} 
-                    // onMenuItemClick={() => this.redirectToPage()}
-                    // shouldTriggerClickOnParents={true}
-                />
-                <SidebarUI isOpen={isOpen}>
+                {/* <SideMenu 
+                    items={this.renderMenuItems()} 
+                    onMenuItemClick={(value) => this.redirectToPage(value)}
+                    shouldTriggerClickOnParents={true}
+                /> */}
+                
+                {/* <SidebarUI isOpen={isOpen}>
                     <div className='filter-title' onClick={this.openSidebar}>Filter</div>
                     <SidebarUI.Content isRight={isRight}>
                         <div>
@@ -152,7 +193,7 @@ class SidemenuCategories extends Component {
                         </div>
                     </SidebarUI.Content>
                     {isOpen ? <SidebarUI.Overlay onClick={() => this.openSidebar(false)} /> : false}
-                </SidebarUI>
+                </SidebarUI> */}
             </div>
         );
     }

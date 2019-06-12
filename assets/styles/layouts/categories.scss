@@ -26,12 +26,15 @@
             .cat-icon:before {
                 margin: 0 1rem 0 0;
             }
+
             &:hover {
-                background: $green-color-1;
-                color: $green-color-2;
-                cursor: pointer;
-                border: 1px solid $green-color-2;
+                @extend .cat-hover-styles;
             }
+
+            &.is-active {
+                @extend .cat-hover-styles;
+            }
+
         }
         .slick-next {
             right: -2%;
