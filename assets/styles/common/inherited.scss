@@ -10,10 +10,11 @@
     background: $orange-color-1;
     color: $white-color;
     @include transition(0.5s);
-    border: 1px solid $orange-color-1;
-    padding: 1rem 1.8rem;
+    border: .5px solid $orange-color-1;
     border-radius: 0.35rem;
     outline: none !important;
+    padding: 0.7rem 2.2rem;
+
     &:hover {
         background: $white-color;
         color: $orange-color-1; 

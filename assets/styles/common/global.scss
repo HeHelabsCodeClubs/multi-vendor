@@ -190,17 +190,16 @@ a {
 
 .mobile-visible {
     display: none !important;
+    @media screen and (max-width: $mobile-lg) {
+        display: block !important;
+    }
 }
 
 .mobile-invisible {
     display: block !important;
-}
 
-@media screen and (maximum-width: $mobile-lg) {
-    .mobile-visible {
-        display: block !important;
-    }
-    .mobile-invisible {
+    @media screen and (max-width: $mobile-lg) {
         display: none !important;
     }
 }
+

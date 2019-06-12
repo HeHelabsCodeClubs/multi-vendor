@@ -10,52 +10,52 @@ class MainContent extends React.Component {
                     <Ad />
                 </div>
                 <div className='row reset-row main-content'>
-                    <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                    <div className='col-lg-3 col-md-4 col-sm-6 col-6 col-reset'>
                         <Product />
                     </div>
-                    <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                    <div className='col-lg-3 col-md-4 col-sm-6 col-6 col-reset'>
                         <Product />
                     </div>
-                    <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                    <div className='col-lg-3 col-md-4 col-sm-6 col-6 col-reset'>
                         <Product />
                     </div>
-                    <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                    <div className='col-lg-3 col-md-4 col-sm-6 col-6 col-reset'>
                         <Product />
                     </div>
-                    <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                    <div className='col-lg-3 col-md-4 col-sm-6 col-6 col-reset'>
                         <Product />
                     </div>
-                    <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                    <div className='col-lg-3 col-md-4 col-sm-6 col-6 col-reset'>
                         <Product />
                     </div>
-                    <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                    <div className='col-lg-3 col-md-4 col-sm-6 col-6 col-reset'>
                         <Product />
                     </div>
-                    <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                    <div className='col-lg-3 col-md-4 col-sm-6 col-6 col-reset'>
                         <Product />
                     </div>
-                    <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                    <div className='col-lg-3 col-md-4 col-sm-6 col-6 col-reset'>
                         <Product />
                     </div>
-                    <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                    <div className='col-lg-3 col-md-4 col-sm-6 col-6 col-reset'>
                         <Product />
                     </div>
-                    <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                    <div className='col-lg-3 col-md-4 col-sm-6 col-6 col-reset'>
                         <Product />
                     </div>
-                    <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                    <div className='col-lg-3 col-md-4 col-sm-6 col-6 col-reset'>
                         <Product />
                     </div>
-                    <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                    <div className='col-lg-3 col-md-4 col-sm-6 col-6 col-reset'>
                         <Product />
                     </div>
-                    <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                    <div className='col-lg-3 col-md-4 col-sm-6 col-6 col-reset'>
                         <Product />
                     </div>
-                    <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                    <div className='col-lg-3 col-md-4 col-sm-6 col-6 col-reset'>
                         <Product />
                     </div>
-                    <div className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'>
+                    <div className='col-lg-3 col-md-4 col-sm-6 col-6 col-reset'>
                         <Product />
                     </div>
                 </div>

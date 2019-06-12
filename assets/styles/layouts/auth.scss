@@ -9,6 +9,13 @@ body {
     margin: 0 auto;
     padding: 2rem 0;
 
+    @media screen and (max-width: $mobile-lg ) {
+        width: 80%;
+    }
+    @media screen and (min-width: $mobile-lg ) and (max-width: $tablet-md) {
+        width: 70%;
+    }
+
     .auth-title {
         color: $black-color-4;
         margin: 2rem 0 1rem 0;

@@ -129,14 +129,12 @@ export default function Landing() {
                         </div>
                         <div className='middle-part'>
                             <div className='selector'>
-                                <label className='landing-label'>Select Location</label>
+                                <label className='landing-label'>Choose category</label>
                                 <Select2
-                                    defaultValue={2}
+                                    defaultValue={1}
                                     data={[
-                                        { text: 'Kigali, Kacyiru', id: 1 },
-                                        { text: 'Kigali, Kimironko', id: 2 },
-                                        { text: 'Kigali, Kanombe', id: 3},
-                                        { text: 'Kigali, Town', id: 4 }
+                                        { text: 'Fresh produce', id: 1 },
+                                        { text: 'Others', id: 2 },
                                     ]}
                                 />
                             </div>
