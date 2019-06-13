@@ -99,6 +99,10 @@
                 }
 
                 .item-level-2 {
+                    height: auto;
+                    visibility: visible;
+                    opacity: 1;
+
                     .item-title {
                         color: $black-color-3;
 
@@ -115,6 +119,11 @@
             }
         }
         .item-level-2 {
+            height: 0;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility .3s, opacity 0.5s linear, height 1s ease-in-out;
+
             .item-title {
                 padding: 0.5rem 1rem;
                 height: auto !important;

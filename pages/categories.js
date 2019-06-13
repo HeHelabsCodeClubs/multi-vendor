@@ -19,7 +19,8 @@ class Categories extends React.Component {
             parentCategorySlug: query.category_slug,
             categoriesData: data.parent_categories,
             subCategoriesData: data.sub_categories,
-            productsData: data.products
+            productsData: [] 
+            //data.products
         };
     }
 	render() {

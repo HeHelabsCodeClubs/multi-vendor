@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Router from 'next/router';
 import SideMenu from 'react-sidemenu';
 import Item from 'react-sidemenu';
+import MenuItemCategory from "./MenuItemCategory";
+
 // import ReactResponsiveSelect from 'react-responsive-select';
  
 // const onChange = (newValue) => console.log('onChange', newValue);
@@ -135,6 +137,12 @@ class SidemenuCategories extends Component {
                     onMenuItemClick={(value) => this.redirectToPage(value)}
                     shouldTriggerClickOnParents={true}
                 /> */}
+
+                <div className="Side-menu Side-menu-default  children active">
+                    <div className="divider divider-level-1">All Categories</div>
+                    < MenuItemCategory />
+                </div>
+
                 
                 {/* <SidebarUI isOpen={isOpen}>
                     <div className='filter-title' onClick={this.openSidebar}>Filter</div>

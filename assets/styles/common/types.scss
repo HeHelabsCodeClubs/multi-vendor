@@ -239,7 +239,7 @@ html {
         }
         .price-cart {
             .price {
-                font-size: 1.42rem;
+                font-size: 1.2rem;
                 font-family: $font-bold;
 
                 @media screen and (min-width: $tablet-min) and (max-width: $tablet-md) {
@@ -742,7 +742,7 @@ html {
                     .select2-selection.select2-selection--single {
                         .select2-selection__rendered {
                             .select2-selection__placeholder {
-                                font-size: 1.5rem;
+                                font-size: 1.35rem;
                                 font-family: $font-semi-bold;
                             }
                         }
