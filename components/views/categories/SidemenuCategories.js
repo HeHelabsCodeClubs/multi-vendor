@@ -95,22 +95,33 @@ class SidemenuCategories extends Component {
     renderMenuItems() {
         const { categories } = this.state;
         if (categories.length === 0) {
-            return [];
+            return null;
         }
 
-        const items = [
-            {divider: true, label: 'All Categories', value: 'main-nav'}
-        ];
+        const menuItemsLayout = categories.map((category) => {
+           return (
+                <MenuItemCategory 
+                key={category.slug}
+                category={category}
+                />
+           );
+        });
 
-        for (let i = 0; i < categories.length; i++) {
-            items.push({
-                label: categories[i].name,
-                value: categories[i].slug,
-                children: this.renderCategoryChildren(categories[i].children)
-            });
-        }
+        return menuItemsLayout;
 
-        return items;
+        // const items = [
+        //     {divider: true, label: 'All Categories', value: 'main-nav'}
+        // ];
+
+        // for (let i = 0; i < categories.length; i++) {
+        //     items.push({
+        //         label: categories[i].name,
+        //         value: categories[i].slug,
+        //         children: this.renderCategoryChildren(categories[i].children)
+        //     });
+        // }
+
+        // return items;
     }
 
     renderCategoryChildren(category_children) {
@@ -140,7 +151,7 @@ class SidemenuCategories extends Component {
 
                 <div className="Side-menu Side-menu-default  children active">
                     <div className="divider divider-level-1">All Categories</div>
-                    < MenuItemCategory />
+                    {this.renderMenuItems()}
                 </div>
 
                 

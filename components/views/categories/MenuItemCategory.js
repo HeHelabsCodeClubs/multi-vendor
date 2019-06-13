@@ -1,60 +1,107 @@
 import React, { Component } from "react";
+import isObjectEmpty from '../../../helpers/is_object_empty';
 
 export default class  MenuItemCategory extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            isMenuItemActive: false
+            isMenuItemActive: false,
+            category: {}
         };
+        this.renderCategories = this.renderCategories.bind(this);
+        this.renderCategoryChildren = this.renderCategoryChildren.bind(this);
+        this.renderCategoryNameDropDownIcon = this.renderCategoryNameDropDownIcon.bind(this);
+        this.handleParentCategoryClick = this.handleParentCategoryClick.bind(this);
+        this.handleDisplayOfSubCategories = this.handleDisplayOfSubCategories.bind(this);
     }
 
-    render () {
-        const itemClass = this.state.isMenuItemActive ? 'active' : ''; 
+    componentDidMount() {
+        const { category } = this.props;
+        this.setState({
+            category: category
+        });
+    }
+
+    renderCategoryChildren(children) {
+        const subCategoriesLayout = children.map((subcategory) => {
+            const { name, slug } = subcategory;
+            return (
+                <a 
+                key={slug}
+                className="item item-level-2"
+                >
+                    <h5 className="item-title">
+                        {name}
+                        {/* <span>
+                            <span className="item-label"></span>
+                        </span> */}
+                    </h5>
+                </a>
+            );
+        });
+        return subCategoriesLayout;
+    }
+
+    renderCategoryNameDropDownIcon() {
         return (
-            <div className={`item item-level-1 ${itemClass}`}>
-                        <div className="item-title">
-                            <span>
-                                <a href="" className="item-label">Womens' Clothing <i className="fa fa-chevron-left"></i></a>
-                            </span>
-                        </div>
-                        <div className="children active">
-                            <div className="item item-level-2">
-                                <div className="item-title">
-                                    <span>
-                                        <span className="item-label">Dresses</span>
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="item item-level-2">
-                                <div className="item-title">
-                                    <span>
-                                        <span className="item-label">Dresses</span>
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="item item-level-2">
-                                <div className="item-title">
-                                    <span>
-                                        <span className="item-label">Dresses</span>
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="item item-level-2">
-                                <div className="item-title">
-                                    <span>
-                                        <span className="item-label">Dresses</span>
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="item item-level-2">
-                                <div className="item-title">
-                                    <span>
-                                        <span className="item-label">Dresses</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+            <i className="fa fa-chevron-left"></i>
+        );
+    }
+
+    handleParentCategoryClick(e) {
+        if (e !== undefined) {
+            e.preventDefault();
+        }
+        this.handleDisplayOfSubCategories();
+    }
+
+    handleDisplayOfSubCategories() {
+        const { isMenuItemActive } = this.state;
+        if (isMenuItemActive) {
+            this.setState({
+                isMenuItemActive: false
+            });
+        } else {
+            this.setState({
+                isMenuItemActive: true
+            });
+        }
+    }
+
+    renderCategories() {
+        const { category, isMenuItemActive } = this.state;
+        if (!isObjectEmpty(category)) {
+            const { 
+                name,
+                children 
+            } = category
+            const itemClass = isMenuItemActive ? 'active' : '';
+            const childrenLayout = children.length > 0 ? (
+                    <div className="children active">
+                        {this.renderCategoryChildren(children)}
                     </div>
-        )
+                 ) : null;
+            const dropDownIcon = children.length > 0 ? this.renderCategoryNameDropDownIcon() : null;
+            return (
+                <div className={`item item-level-1 ${itemClass}`}>
+                        <a 
+                        href="#" 
+                        onClick={this.handleParentCategoryClick}
+                        className="item-title">
+                            <h5  
+                            className="item-label">
+                                {name} 
+                                {dropDownIcon}
+                            </h5>
+                        </a>
+                        {childrenLayout}
+                </div>
+            );
+        }
+        return null;
+    }
+
+    render() { 
+        return this.renderCategories();
     }
 }
