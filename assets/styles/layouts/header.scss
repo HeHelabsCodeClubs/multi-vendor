@@ -134,6 +134,12 @@
             top: 47px;
             right: 100px;
         }
+
+        @media (min-width: $mobile-md-lg) and (max-width: $mobile-lg) {
+            position: relative;
+            top: 38px;
+            right: 0;
+        }
         
         .main-search {
             background: $gray-color-2;

@@ -16,8 +16,10 @@
             border-radius: 0.5rem;
             padding: 1rem 1rem;
             line-height: 1;
-            margin: 1rem;
+            margin: 1rem 4%;
+            width: 92% !important;
             min-height: 5.2rem;
+            text-align: center;
             @include flexbox;
             @include flexalignitems(center);
             color: $black-color-3;
@@ -78,6 +80,7 @@
                 padding: 1rem;
                 height: auto !important;
                 border-top: .5px solid $gray-color-1;
+                display: block;
 
                 @media screen and (max-width: $mobile-lg) {
                     padding: 0.5rem 1rem;
@@ -99,7 +102,7 @@
                 }
 
                 .item-level-2 {
-                    height: auto;
+                    height: 30px;
                     visibility: visible;
                     opacity: 1;
 
@@ -119,10 +122,11 @@
             }
         }
         .item-level-2 {
+            display: block;
             height: 0;
             visibility: hidden;
             opacity: 0;
-            transition: visibility .3s, opacity 0.5s linear, height 1s ease-in-out;
+            transition: all .5s ease-in-out;
 
             .item-title {
                 padding: 0.5rem 1rem;

@@ -47,7 +47,7 @@ class Header extends React.Component {
                 </div>
                 <div className='header'>
                     <div className='row maximum-width'>
-                        <div className='col-lg-4 col-md-4 col-sm-12 col-12 header-left'>
+                        <div className='col-lg-4 col-md-4 col-sm-6 col-12 header-left'>
                             <span className='site-logo'>
                                 <a href='/'>
                                     <img src='https://res.cloudinary.com/hehe/image/upload/v1556120378/multi-vendor/HeHe_Logo_Original_landscape.svg' />
@@ -66,7 +66,7 @@ class Header extends React.Component {
                             </span>
                             <HeaderCategoryMenu />
                         </div>
-                        <div className='col-lg-5 col-md-5 col-sm-12 col-2 search-container'>
+                        <div className='col-lg-5 col-md-5 col-sm-2 col-2 search-container'>
                             <span className='main-search'>
                                 <input type="text" placeholder="Search store or product" />
                                 <span className='categories-dropdown'>
@@ -83,7 +83,7 @@ class Header extends React.Component {
                                 <button type="submit"><span className="icon-Path-64"></span></button>
                             </span>
                         </div>
-                        <div className='col-lg-3 col-md-3 col-sm-12 col-3 account-container'>
+                        <div className='col-lg-3 col-md-3 col-sm-4 col-3 account-container'>
                             <div className='row row-container'>
                                 <div className='col-lg-6 col-md-6 col-sm-6 col-2 account-grid'>
                                     <div className='row'>
