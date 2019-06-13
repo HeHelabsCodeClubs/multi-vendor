@@ -24,14 +24,6 @@
         }
         .process-name {
             color: $gray-color-6;
-
-            // &::before {
-            //     content: '';
-            //     height: 1rem;
-            //     width: 1rem;
-            //     background: $gray-color-6;
-            //     border-radius: 50%;
-            // }
         }
     }
 }
@@ -42,11 +34,17 @@
         width: 100%;
         margin: 0;
     }
-    .singin-block {
+    .signin-block {
         border-right: 1px solid $gray-color-6;
         @media screen and (max-width: $mobile-lg) {
             border-right: none;
             padding: 0 !important;
+        }
+    }
+    .signup-block {
+        @media screen and (max-width: $mobile-lg) {
+            padding: 0 !important;
+            margin: 2rem 0;
         }
     }
     .account-info-title {
@@ -143,9 +141,6 @@
                         margin: 0 0.5rem 0 0;
                     }
                 }
-                .title-right {
-
-                }
             }
             .card-payment {
                 .payment-input {
@@ -216,6 +211,10 @@
             background: $green-color-3;
             width: 100%;
             margin: 0;
+
+            .shipping-dropdown {
+                width: 33%;
+            }
         }
     }
 }
@@ -242,6 +241,34 @@
     border-bottom: 1px solid $gray-color-6;
     padding: 0.5rem 0;
     margin: 0 0 0 1rem;
+    .title {
+        color: $black-color-2;
+        letter-spacing: 0.06rem;
+    }
+    .s-price {
+        color: $black-color-2;
+    }
+    .u-price {
+        color: $black-color-5;
+    }
+    .t-price {
+        color: $black-color-2;
+    }
+}
+.t-title {
+    color: $black-color-5;
+}
+.t-content {
+    color: $black-color-2;
+}
+.dur-title {
+    color: $black-color-3;
+}
+.dur-content {
+    color: $orange-color-6;
+}
+.select2-container {
+    width: 100% !important;
 }
 .line {
     @include flexbox;

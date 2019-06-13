@@ -12,6 +12,10 @@ html {
         font-size: 1rem !important;
         font-family: $font-bold;
     }
+    h6 {
+        font-family: $font-regular;
+        font-size: 1rem;
+    }
     p {
         font-family: $font-regular;
         font-size: 1rem;
@@ -147,6 +151,12 @@ html {
         .menu-item-icon {
             &:before {
                 font-size: 2rem;
+            }
+        }
+        .sub-wrapper {
+            a {
+                font-family: $font-regular !important;
+                font-size: 1rem !important;
             }
         }
     }
@@ -705,6 +715,22 @@ html {
                 }
             }
         }
+    }
+    .t-title {
+        font-size: 1.28rem;
+        font-family: $font-regular;
+    }
+    .t-content {
+        font-size: 1.28rem;
+        font-family: $font-semi-bold;
+    }
+    .dur-title {
+        font-size: 1.28rem;
+        font-family: $font-semi-bold;
+    }
+    .dur-content {
+        font-size: 1.28rem;
+        font-family: $font-semi-bold;
     }
 
     // Product details

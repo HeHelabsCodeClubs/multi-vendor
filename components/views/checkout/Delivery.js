@@ -22,69 +22,117 @@ class Delivery extends React.Component {
 						<TabPanel>
 							<div>
 								<div className='cart-product'>
-									<div className='line'>
-										<span className='title'>Cabbage</span>
-										<span className='u-price'>Rwf 200</span>
-										<span>
-											<Select2
-                                                data={[
-                                                    { text: 'WHS same day', id: 1 },
-                                                    { text: 'WHS next day', id: 2 },
-                                                    { text: 'WHS three days', id: 3}
-                                                ]}
-                                                options={
-                                                    { placeholder: 'Select' }
-                                                }
-                                            />
-										</span>
+									<div className='row reset-row'>
+										<div className='col-lg-4 col-md-4 col-sm-4 col-4 col-reset'>
+											<div className='title'>Cabbage</div>
+											<div className='product-att'>qty: 2 pieces</div>
+											<div className='product-att'>Unit price: Rwf 100</div>
+										</div>
+										<div className='col-lg-4 col-md-4 col-sm-4 col-4 col-reset'>
+											<div className='u-price'>Rwf 200</div>
+											<div>
+												<span className='t-title'>Shipping: </span> 
+												<span className='t-content'>Rwf 1,345</span>
+											</div>
+										</div>
+										<div className='col-lg-4 col-md-4 col-sm-4 col-4 col-reset'>
+											<div>
+												<Select2
+													data={[
+														{ text: 'WHS same day', id: 1 },
+														{ text: 'WHS next day', id: 2 },
+														{ text: 'WHS three days', id: 3}
+													]}
+													options={
+														{ placeholder: 'Select' }
+													}
+												/>
+											</div>
+											<div>
+												<span className='dur-title'>Estimated duration </span> 
+												<span className='dur-content'>2days</span>
+											</div>
+										</div>
 									</div>
-									<div className='product-att'>qty: 2 piieces</div>
-									<div className='product-att'>Unit price: Rwf 100</div>
 								</div>
 								<div className='cart-product'>
-									<div className='line'>
-										<span className='title'>Cabbage</span>
-										<span className='u-price'>Rwf 200</span>
-										<span>
-											<Select2
-                                                data={[
-                                                    { text: 'WHS same day', id: 1 },
-                                                    { text: 'WHS next day', id: 2 },
-                                                    { text: 'WHS three days', id: 3}
-                                                ]}
-                                                options={
-                                                    { placeholder: 'Select' }
-                                                }
-                                            />
-										</span>
+									<div className='row reset-row'>
+										<div className='col-lg-4 col-md-4 col-sm-4 col-4 col-reset'>
+											<div className='title'>Cabbage</div>
+											<div className='product-att'>qty: 2 pieces</div>
+											<div className='product-att'>Unit price: Rwf 100</div>
+										</div>
+										<div className='col-lg-4 col-md-4 col-sm-4 col-4 col-reset'>
+											<div className='u-price'>Rwf 200</div>
+											<div>
+												<span className='t-title'>Shipping: </span> 
+												<span className='t-content'>Rwf 1,345</span>
+											</div>
+										</div>
+										<div className='col-lg-4 col-md-4 col-sm-4 col-4 col-reset'>
+											<div>
+												<Select2
+													data={[
+														{ text: 'WHS same day', id: 1 },
+														{ text: 'WHS next day', id: 2 },
+														{ text: 'WHS three days', id: 3}
+													]}
+													options={
+														{ placeholder: 'Select' }
+													}
+												/>
+											</div>
+											<div>
+												<span className='dur-title'>Estimated duration </span> 
+												<span className='dur-content'>2days</span>
+											</div>
+										</div>
 									</div>
-									<div className='product-att'>qty: 2 piieces</div>
-									<div className='product-att'>Unit price: Rwf 100</div>
 								</div>
 								<div className='cart-product'>
-									<div className='line'>
-										<span className='title'>Cabbage</span>
-										<span className='u-price'>Rwf 200</span>
-										<span>
-											<Select2
-                                                data={[
-                                                    { text: 'WHS same day', id: 1 },
-                                                    { text: 'WHS next day', id: 2 },
-                                                    { text: 'WHS three days', id: 3}
-                                                ]}
-                                                options={
-                                                    { placeholder: 'Select' }
-                                                }
-                                            />
-										</span>
+									<div className='row reset-row'>
+										<div className='col-lg-4 col-md-4 col-sm-4 col-4 col-reset'>
+											<div className='title'>Cabbage</div>
+											<div className='product-att'>qty: 2 pieces</div>
+											<div className='product-att'>Unit price: Rwf 100</div>
+										</div>
+										<div className='col-lg-4 col-md-4 col-sm-4 col-4 col-reset'>
+											<div className='u-price'>Rwf 200</div>
+											<div>
+												<span className='t-title'>Shipping: </span> 
+												<span className='t-content'>Rwf 1,345</span>
+											</div>
+										</div>
+										<div className='col-lg-4 col-md-4 col-sm-4 col-4 col-reset'>
+											<div>
+												<Select2
+													data={[
+														{ text: 'WHS same day', id: 1 },
+														{ text: 'WHS next day', id: 2 },
+														{ text: 'WHS three days', id: 3}
+													]}
+													options={
+														{ placeholder: 'Select' }
+													}
+												/>
+											</div>
+											<div>
+												<span className='dur-title'>Estimated duration </span> 
+												<span className='dur-content'>2days</span>
+											</div>
+										</div>
 									</div>
-									<div className='product-att'>qty: 2 piieces</div>
-									<div className='product-att'>Unit price: Rwf 100</div>
 								</div>
 								<div className='total-price'>
-                                    <div className='subtotal'>Sutotal: Rwf 21,345</div>
+                                    <div className='subtotal'>
+										<span className='t-title'>Subtotal: </span>
+										<span className='t-content'>Rwf 21,345</span>
+									</div>
                                     <div className='total-grid'>
-                                        <span className='total'>Total: Rwf 45,475</span>
+                                        <span className='total'>
+											<span className='t-title'>Total: </span>
+											<span className='t-content'>Rwf 21,345</span>
+										</span>
                                     </div>
                                 </div>
 							</div>
@@ -92,67 +140,88 @@ class Delivery extends React.Component {
 						<TabPanel>
 							<div>
 								<div className='cart-product'>
-									<div className='line'>
-										<span className='title'>Cabbage</span>
-										<span className='u-price'>Rwf 200</span>
-										<span>
-											<Select2
-                                                data={[
-                                                    { text: 'WHS same day', id: 1 },
-                                                    { text: 'WHS next day', id: 2 },
-                                                    { text: 'WHS three days', id: 3}
-                                                ]}
-                                                options={
-                                                    { placeholder: 'Select' }
-                                                }
-                                            />
-										</span>
+									<div className='row reset-row'>
+										<div className='col-lg-4 col-md-4 col-sm-4 col-4 col-reset'>
+											<div className='title'>Cabbage</div>
+											<div className='product-att'>qty: 2 pieces</div>
+											<div className='product-att'>Unit price: Rwf 100</div>
+										</div>
+										<div className='col-lg-4 col-md-4 col-sm-4 col-4 col-reset'>
+											<div className='u-price'>Rwf 200</div>
+										</div>
+										<div className='col-lg-4 col-md-4 col-sm-4 col-4 col-reset'>
+											<div>
+												<Select2
+													data={[
+														{ text: 'WHS same day', id: 1 },
+														{ text: 'WHS next day', id: 2 },
+														{ text: 'WHS three days', id: 3}
+													]}
+													options={
+														{ placeholder: 'Select' }
+													}
+												/>
+											</div>
+										</div>
 									</div>
-									<div className='product-att'>qty: 2 pieces</div>
-									<div className='product-att'>Unit price: Rwf 100</div>
 								</div>
 								<div className='cart-product'>
-									<div className='line'>
-										<span className='title'>Cabbage</span>
-										<span className='u-price'>Rwf 200</span>
-										<span>
-											<Select2
-                                                data={[
-                                                    { text: 'WHS same day', id: 1 },
-                                                    { text: 'WHS next day', id: 2 },
-                                                    { text: 'WHS three days', id: 3}
-                                                ]}
-                                                options={
-                                                    { placeholder: 'Select' }
-                                                }
-                                            />
-										</span>
+									<div className='row reset-row'>
+										<div className='col-lg-4 col-md-4 col-sm-4 col-4 col-reset'>
+											<div className='title'>Cabbage</div>
+											<div className='product-att'>qty: 2 pieces</div>
+											<div className='product-att'>Unit price: Rwf 100</div>
+										</div>
+										<div className='col-lg-4 col-md-4 col-sm-4 col-4 col-reset'>
+											<div className='u-price'>Rwf 200</div>
+										</div>
+										<div className='col-lg-4 col-md-4 col-sm-4 col-4 col-reset'>
+											<div>
+												<Select2
+													data={[
+														{ text: 'WHS same day', id: 1 },
+														{ text: 'WHS next day', id: 2 },
+														{ text: 'WHS three days', id: 3}
+													]}
+													options={
+														{ placeholder: 'Select' }
+													}
+												/>
+											</div>
+										</div>
 									</div>
-									<div className='product-att'>qty: 2 pieces</div>
-									<div className='product-att'>Unit price: Rwf 100</div>
 								</div>
 								<div className='cart-product'>
-									<div className='line'>
-										<span className='title'>Cabbage</span>
-										<span className='u-price'>Rwf 200</span>
-										<span>
-											<Select2
-                                                data={[
-                                                    { text: 'WHS same day', id: 1 },
-                                                    { text: 'WHS next day', id: 2 },
-                                                    { text: 'WHS three days', id: 3}
-                                                ]}
-                                                options={
-                                                    { placeholder: 'Select' }
-                                                }
-                                            />
-										</span>
+									<div className='row reset-row'>
+										<div className='col-lg-4 col-md-4 col-sm-4 col-4 col-reset'>
+											<div className='title'>Cabbage</div>
+											<div className='product-att'>qty: 2 pieces</div>
+											<div className='product-att'>Unit price: Rwf 100</div>
+										</div>
+										<div className='col-lg-4 col-md-4 col-sm-4 col-4 col-reset'>
+											<div className='u-price'>Rwf 200</div>
+										</div>
+										<div className='col-lg-4 col-md-4 col-sm-4 col-4 col-reset'>
+											<div>
+												<Select2
+													data={[
+														{ text: 'WHS same day', id: 1 },
+														{ text: 'WHS next day', id: 2 },
+														{ text: 'WHS three days', id: 3}
+													]}
+													options={
+														{ placeholder: 'Select' }
+													}
+												/>
+											</div>
+										</div>
 									</div>
-									<div className='product-att'>qty: 2 pieces</div>
-									<div className='product-att'>Unit price: Rwf 100</div>
 								</div>
 								<div className='total-price'>
-                                    <div className='subtotal'>Sutotal: Rwf 21,345</div>
+                                    <div className='subtotal'>
+										<span className='t-title'>Subtotal: </span>
+										<span className='t-content'>Rwf 21,345</span>	
+									</div>
                                     <div className='shipping-grid'>
                                         <span className='shipping-title'>Shipping method</span>
                                         <span className='shipping-dropdown'>
@@ -165,10 +234,16 @@ class Delivery extends React.Component {
                                                 ]}
                                             />
                                         </span>
-                                        <span className='shipping'>Total: Rwf 21,345</span>
+                                        <span className='shipping'>
+											<span className='t-title'>Subtotal: </span>
+											<span className='t-content'>Rwf 21,345</span>
+										</span>
                                     </div>
                                     <div className='total-grid'>
-                                        <span className='total'>Total: Rwf 45,475</span>
+                                        <span className='total'>
+											<span className='t-title'>Subtotal: </span>
+											<span className='t-content'>Rwf 21,345</span>
+										</span>
                                     </div>
                                 </div>
 							</div>

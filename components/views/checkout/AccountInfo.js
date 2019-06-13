@@ -6,7 +6,7 @@ class AccountInfo extends React.Component {
 		return (
             <div className='account-info-wrapper'>
                 <div className='row reset-row'>
-                    <div className='col-lg-6 col-md-6 col-sm-6 col-12 singin-block'>
+                    <div className='col-lg-6 col-md-6 col-sm-6 col-12 signin-block'>
                         <div className='account-info-title'>Returning customer</div>
                         <form className='signin-form' >
                             <div className='input-field'>
@@ -25,7 +25,7 @@ class AccountInfo extends React.Component {
                             </div>
                         </form>
                     </div>
-                    <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
+                    <div className='col-lg-6 col-md-6 col-sm-6 col-12 signup-block'>
                         <div className='account-info-title'>New customer</div>
                         <div className='register-content'>
                             <div className='content'>Create a permanent HeHe account <br />and use it for checkout</div>
