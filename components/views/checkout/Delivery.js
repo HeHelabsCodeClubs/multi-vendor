@@ -12,7 +12,7 @@ class Delivery extends React.Component {
 				<div className='delivery-content'>
 					<div className='store-logo'>
 						<img className='store-img' src='https://res.cloudinary.com/hehe/image/upload/v1556288678/multi-vendor/shop-icon-4_2x.png' />
-						<span className='store-name'>Mart (3 Items from Mart store)</span>
+						<span className='store-name'><span className='name'>Mart</span>(3 Items from Mart store)</span>
 					</div>
 					<Tabs>
 						<TabList>
@@ -125,8 +125,13 @@ class Delivery extends React.Component {
 								</div>
 								<div className='total-price'>
                                     <div className='subtotal'>
-										<span className='t-title'>Subtotal: </span>
-										<span className='t-content'>Rwf 21,345</span>
+										<span>
+										<input type='checkbox' />Use the same shipping method to all
+										</span>
+										<span>
+											<span className='t-title'>Subtotal: </span>
+											<span className='t-content'>Rwf 21,345</span>
+										</span>
 									</div>
                                     <div className='total-grid'>
                                         <span className='total'>
@@ -239,7 +244,11 @@ class Delivery extends React.Component {
 											<span className='t-content'>Rwf 21,345</span>
 										</span>
                                     </div>
-                                    <div className='total-grid'>
+                                    <div className='total-grid row reset-row'>
+										<span>
+											<span className='dur-title'>Estimated duration </span> 
+											<span className='dur-content'>2days</span>
+										</span>
                                         <span className='total'>
 											<span className='t-title'>Subtotal: </span>
 											<span className='t-content'>Rwf 21,345</span>

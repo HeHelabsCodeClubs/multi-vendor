@@ -59,24 +59,20 @@ class Checkout extends React.Component {
                 <div className='maximum-width'>
                     <div className='row reset-row'>
                         <div className='col-lg-8 col-md-8 col-sm-8 col-12'>
-                            <div className='checkout-process'>
-                                <div className='single-process' onClick={this.renderAccountView}>
-                                    <div className='process-point'></div>
+                            <ul className='checkout-process'>
+                                <li className='single-process done' onClick={this.renderAccountView}>
                                     <div className='process-name'>1. Account info</div>
-                                </div>
-                                <div className='single-process' onClick={this.renderBillingView}>
-                                    <div className='process-point'></div>
+                                </li>
+                                <li className='single-process active' onClick={this.renderBillingView}>
                                     <div className='process-name'>2. Billing and shipping address</div>
-                                </div>
-                                <div className='single-process' onClick={this.renderDeliveryView}>
-                                    <div className='process-point'></div>
+                                </li>
+                                <li className='single-process' onClick={this.renderDeliveryView}>
                                     <div className='process-name'>3. Delivery</div>
-                                </div>
-                                <div className='single-process' onClick={this.renderPaymentView}>
-                                    <div className='process-point'></div>
+                                </li>
+                                <li className='single-process' onClick={this.renderPaymentView}>
                                     <div className='process-name'>4. Payment</div>
-                                </div>
-                            </div>
+                                </li>
+                            </ul>
                             {this.renderContent()}
                         </div>
                         <div className='col-lg-4 col-md-4 col-sm-4 col-12 order-summary-grid'>
