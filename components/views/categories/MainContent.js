@@ -5,7 +5,9 @@ class MainContent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            products: []
+            products: [],
+            firstTimeLoad: true,
+            showLoader: false
         };
         this.renderProducts = this.renderProducts.bind(this);
     }
@@ -13,12 +15,43 @@ class MainContent extends React.Component {
     componentDidMount() {
         const { products } = this.props;
         this.setState({
-            products
+            products,
+            firstTimeLoad: false
         });
     }
 
+    componentWillReceiveProps(nextProps) {
+        const { updatedProducts, showLoader } = nextProps;
+        const { firstTimeLoad, products } = this.state;
+
+        if (!firstTimeLoad) {
+            if (updatedProducts.length !== products.length) {
+                this.setState({
+                    products: updatedProducts
+                });
+            }
+
+            if (showLoader !== this.state.showLoader) {
+                this.setState({
+                    showLoader: showLoader
+                });
+            }
+        }
+    }
+
     renderProducts() {
-        const { products } = this.state;
+        const { products, showLoader } = this.state;
+        const { cartShouldUpdate } = this.props;
+        if (showLoader) {
+            return (
+                <div className="loader-wrapper">
+                    <img 
+                    src='https://res.cloudinary.com/hehe/image/upload/v1560444707/multi-vendor/Shop_loader.gif' 
+                    />
+                </div>
+            );
+        }
+
         if (products.length !== 0) {
             const productsLayout = products.map((product) => {
                 return (
@@ -26,12 +59,16 @@ class MainContent extends React.Component {
                     key={product.slug}
                     className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'
                     >
-                        <Product product={product} />
+                        <Product 
+                        product={product} 
+                        cartShouldUpdate={cartShouldUpdate}
+                        />
                     </div>
                 );
             });
             return productsLayout;
         }
+<<<<<<< HEAD
         return (
             <div className="empty-category">
                 <p>
@@ -39,6 +76,17 @@ class MainContent extends React.Component {
                 </p>
             </div>
         );
+=======
+
+        if (products.length === 0) {
+            return (
+                <h5>
+                    We have no product in this category
+                </h5>
+            );
+        }
+        
+>>>>>>> fc51970588e103f80bad4450500d6db811497184
     }
  
 	render() {

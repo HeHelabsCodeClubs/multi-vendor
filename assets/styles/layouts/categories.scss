@@ -221,9 +221,13 @@
             .empty-category {
                 height: calc(43vh - 6rem);
                 width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                @include flexbox;
+                @include flexalignitems(center);
+                @include flexjustifycontent(center);
+
+                p {
+                    color: $gray-color-5;
+                }
             }
         }
     }
