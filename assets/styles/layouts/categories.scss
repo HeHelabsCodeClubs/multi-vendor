@@ -62,6 +62,7 @@
 }
 .categories-content {
     background: $gray-color-2;
+    min-height: 23vh;
     .Side-menu-default {
         background-color: $gray-color-2;
         color: $black-color-3;
@@ -165,12 +166,11 @@
     }
     .main-content-wrapper {
         border-left: .5px solid $gray-color-6;
+
         .multi-vendor-stores-wrapper {
             border-bottom: .5px solid $gray-color-6;
             padding: 0 1rem;
             overflow: hidden;
-            @include flexbox;
-            @include flexalignitems(center);
 
             @media screen and (max-width: $mobile-lg) {
                 display: none;
@@ -178,9 +178,22 @@
         
             .line-display {
                 display: inline-block;
+                vertical-align: top;
+                margin: 0;
+                padding: 20px 0 0 10px;
 
                 .more-link a{
                     color: $orange-color-4 !important;
+                }
+            }
+            .stores-wrapper {
+                display: inline-block;
+
+                .slick-next:before {
+                    content: "more +";
+                    font-family: "Harmonia Sans Pro Regular";
+                    color: #dc7c02;
+                    font-size: 1.28rem;
                 }
             }
             .single-store {
@@ -188,9 +201,11 @@
                 margin: 1rem;
                 padding: 0.5rem;
                 border-radius: 0.5rem;
+                width: 94%;
     
                 img {
                     height: 3rem;
+                    margin: 0 auto;
                 }
             }
             .stores-title {
