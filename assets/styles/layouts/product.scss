@@ -133,11 +133,13 @@
                     border: none;
                     border-radius: 50%;
                     background: $green-color-3;
-                    padding: 0.4rem 1.4rem;
+                    padding: .8rem .7rem 1rem;
+                    height: 3rem;
                     @include flexbox;
                     @include flexalignitems(center);
                     @include flexjustifycontent(center);
                     @include transition(0.5s);
+                    
 
                     .icon-Path-63:before {
                         color: $green-color-2;
@@ -152,6 +154,9 @@
                         }
                         .icon-Path-63:before {
                             content: 'Add to cart';
+                            font-size: 1.1rem;
+                            @include transition(0s);
+
                             @media (max-width: $mobile-lg) {
                                 content: "\e912";
                             }
