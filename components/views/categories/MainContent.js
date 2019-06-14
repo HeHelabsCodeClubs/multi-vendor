@@ -68,25 +68,17 @@ class MainContent extends React.Component {
             });
             return productsLayout;
         }
-<<<<<<< HEAD
-        return (
-            <div className="empty-category">
-                <p>
-                    We have no product in this category
-                </p>
-            </div>
-        );
-=======
 
         if (products.length === 0) {
             return (
-                <h5>
-                    We have no product in this category
-                </h5>
+                <div className="empty-category">
+                    <p>
+                        We have no product in this category
+                    </p>
+                </div>
             );
         }
         
->>>>>>> fc51970588e103f80bad4450500d6db811497184
     }
  
 	render() {
