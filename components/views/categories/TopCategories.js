@@ -21,7 +21,7 @@ class TopCategories extends React.Component {
         const { categories } = this.state;
         if (categories) {
             const categoriesLayout = categories.map((category) => {
-                const iconClassName = category.icon_class_name;
+                const iconClassName = category.icon_class_name !== '' ? category.icon_class_name : 'icon-KITCHENWARE-ICO';
                 const { slug } = category;
                 const activeClassName = (Router.router.query.category_slug === slug) ? 'is-active' : '';
                 return (

@@ -111,6 +111,7 @@ class HeaderCategoryMenu extends React.Component {
         this.renderCategory = this.renderCategory.bind(this);
         this.openSidebar = this.openSidebar.bind(this);
         this.renderMoboCategory = this.renderMoboCategory.bind(this);
+        this.renderCategorySubCategories = this.renderCategorySubCategories.bind(this);
     };
 
     async componentDidMount() {
@@ -159,122 +160,70 @@ class HeaderCategoryMenu extends React.Component {
         }
     }
 
+    renderCategorySubCategories(parent_category_slug, category_children) {
+        if (category_children.length > 0) {
+            const parentCategoryLayout = category_children.map((parentCat) => {
+                let categoryChildLayout = null;
+                const { children } = parentCat;
+                if (children.length > 0) {
+                    categoryChildLayout = children.map((childCat) => {
+                        return (
+                            <a 
+                            href={`/categories/${parent_category_slug}/${parentCat.slug}/${childCat.slug}`}
+                            key={childCat.slug}
+                            className='sub-cat-item'
+                            >
+                            {childCat.name}
+                            </a>
+                        );
+                    });
+                }
+                return (
+                    <div 
+                    key={parentCat.slug}
+                    className='sub-wrapper'>
+                        <a
+                        href={`/categories/${parent_category_slug}/${parentCat.slug}`}
+                        className='sub-cat-title'
+                        >
+                            {parentCat.name}
+                        </a>
+                        <div
+                        className='sub-cat-wrapper'
+                        >
+                            {categoryChildLayout}
+                        </div>
+                    </div>
+                );
+            })
+            return parentCategoryLayout;
+        }
+        return null;
+    }
+
     renderCategory(categories) {
         if (categories) {
             const categoryLayout = categories.map((category) => {
+                const {
+                    id,
+                    slug,
+                    name,
+                    icon_class_name,
+                    children
+                } = category;
+                const IconClassName = icon_class_name !== '' ? icon_class_name : 'icon-KITCHENWARE-ICO';
                 return (
-                    <span className="nav__submenu-item " key={category.id} >
+                    <span className="nav__submenu-item " key={id} >
                         <a 
-                        href={`/categories/${category.slug}`} 
+                        href={`/categories/${slug}`} 
                         className='sub-menu__item-a'>
-                        <span className={`${category.icon_class_name} menu-item-icon`} />
-                        {category.name}
+                        <span className={`${IconClassName} menu-item-icon`} />
+                        {name}
                         </a>
                         <div className='sub-category'>
                             <div className='row'>
                                 <div className='col-lg-9 col-md-9 col-sm-9 col-12'>
-                                    <div className='sub-wrapper'>
-                                        <h5>Mobile phones</h5>
-                                        <div>
-                                            <a>Mobile Phones</a>
-                                            <a>Front Camera</a>
-                                            <a>Fingerprint Recognition</a>
-                                            <a>Touch Screen</a>
-                                            <a>Dual SIM Card</a>
-                                            <a>5.7-inch Display</a>
-                                            <a>Mobile Phone Parts</a>
-                                            <a>Mobile Phone LCDs</a>
-                                            <a>Mobile Phone Batteries</a>
-                                            <a>Mobile Phone Housings</a>
-                                            <a>Mobile Phone Touch Panel</a>
-                                            <a>Flex Cables</a>
-                                        </div>
-                                    </div>
-                                    <div className='sub-wrapper'>
-                                        <h5>Mobile phones</h5>
-                                        <div>
-                                            <a>Mobile Phones</a>
-                                            <a>Front Camera</a>
-                                            <a>Fingerprint Recognition</a>
-                                            <a>Touch Screen</a>
-                                            <a>Dual SIM Card</a>
-                                            <a>5.7-inch Display</a>
-                                            <a>Mobile Phone Parts</a>
-                                            <a>Mobile Phone LCDs</a>
-                                            <a>Mobile Phone Batteries</a>
-                                            <a>Mobile Phone Housings</a>
-                                            <a>Mobile Phone Touch Panel</a>
-                                            <a>Flex Cables</a>
-                                        </div>
-                                    </div>
-                                    <div className='sub-wrapper'>
-                                        <h5>Mobile phones</h5>
-                                        <div>
-                                            <a>Mobile Phones</a>
-                                            <a>Front Camera</a>
-                                            <a>Fingerprint Recognition</a>
-                                            <a>Touch Screen</a>
-                                            <a>Dual SIM Card</a>
-                                            <a>5.7-inch Display</a>
-                                            <a>Mobile Phone Parts</a>
-                                            <a>Mobile Phone LCDs</a>
-                                            <a>Mobile Phone Batteries</a>
-                                            <a>Mobile Phone Housings</a>
-                                            <a>Mobile Phone Touch Panel</a>
-                                            <a>Flex Cables</a>
-                                        </div>
-                                    </div>
-                                    <div className='sub-wrapper'>
-                                        <h5>Mobile phones</h5>
-                                        <div>
-                                            <a>Mobile Phones</a>
-                                            <a>Front Camera</a>
-                                            <a>Fingerprint Recognition</a>
-                                            <a>Touch Screen</a>
-                                            <a>Dual SIM Card</a>
-                                            <a>5.7-inch Display</a>
-                                            <a>Mobile Phone Parts</a>
-                                            <a>Mobile Phone LCDs</a>
-                                            <a>Mobile Phone Batteries</a>
-                                            <a>Mobile Phone Housings</a>
-                                            <a>Mobile Phone Touch Panel</a>
-                                            <a>Flex Cables</a>
-                                        </div>
-                                    </div>
-                                    <div className='sub-wrapper'>
-                                        <h5>Mobile phones</h5>
-                                        <div>
-                                            <a>Mobile Phones</a>
-                                            <a>Front Camera</a>
-                                            <a>Fingerprint Recognition</a>
-                                            <a>Touch Screen</a>
-                                            <a>Dual SIM Card</a>
-                                            <a>5.7-inch Display</a>
-                                            <a>Mobile Phone Parts</a>
-                                            <a>Mobile Phone LCDs</a>
-                                            <a>Mobile Phone Batteries</a>
-                                            <a>Mobile Phone Housings</a>
-                                            <a>Mobile Phone Touch Panel</a>
-                                            <a>Flex Cables</a>
-                                        </div>
-                                    </div>
-                                    <div className='sub-wrapper'>
-                                        <h5>Mobile phones</h5>
-                                        <div>
-                                            <a>Mobile Phones</a>
-                                            <a>Front Camera</a>
-                                            <a>Fingerprint Recognition</a>
-                                            <a>Touch Screen</a>
-                                            <a>Dual SIM Card</a>
-                                            <a>5.7-inch Display</a>
-                                            <a>Mobile Phone Parts</a>
-                                            <a>Mobile Phone LCDs</a>
-                                            <a>Mobile Phone Batteries</a>
-                                            <a>Mobile Phone Housings</a>
-                                            <a>Mobile Phone Touch Panel</a>
-                                            <a>Flex Cables</a>
-                                        </div>
-                                    </div>
+                                    {this.renderCategorySubCategories(slug, children)}
                                 </div>
                                 <div className='col-lg-3 col-md-3 col-sm-3 col-12'>
                                     <div className='menu-img'>
