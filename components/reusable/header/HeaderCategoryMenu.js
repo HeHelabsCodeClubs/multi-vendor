@@ -1,6 +1,70 @@
 import fetch from 'isomorphic-unfetch';
 import { API_URL } from '../../../config';
 
+
+// const subMenuItems = [
+//     {
+//         name: 'Mobile Phones',
+//         subSubMenuItems: [
+//             {name: 'Front camera'},
+//             {name: 'Fingerprint Recognition'},
+//             {name: 'Touch screen'},
+//             {name: '5.7 -inch Display'},
+//             {name: 'Flex cables'},
+//             {name: 'Mobile phone housings'},
+//             {name: 'Mobile phone touch panel'}
+//         ]
+//     },
+//     {
+//         name: 'Mobile Phones',
+//         subSubMenuItems: [
+//             {name: 'Front camera'},
+//             {name: 'Fingerprint Recognition'},
+//             {name: 'Touch screen'},
+//             {name: '5.7 -inch Display'},
+//             {name: 'Flex cables'},
+//             {name: 'Mobile phone housings'},
+//             {name: 'Mobile phone touch panel'}
+//         ]
+//     },
+//     {
+//         name: 'Mobile Phones',
+//         subSubMenuItems: [
+//             {name: 'Front camera'},
+//             {name: 'Fingerprint Recognition'},
+//             {name: 'Touch screen'},
+//             {name: '5.7 -inch Display'},
+//             {name: 'Flex cables'},
+//             {name: 'Mobile phone housings'},
+//             {name: 'Mobile phone touch panel'}
+//         ]
+//     },
+//     {
+//         name: 'Mobile Phones',
+//         subSubMenuItems: [
+//             {name: 'Front camera'},
+//             {name: 'Fingerprint Recognition'},
+//             {name: 'Touch screen'},
+//             {name: '5.7 -inch Display'},
+//             {name: 'Flex cables'},
+//             {name: 'Mobile phone housings'},
+//             {name: 'Mobile phone touch panel'}
+//         ]
+//     },
+//     {
+//         name: 'Mobile Phones',
+//         subSubMenuItems: [
+//             {name: 'Front camera'},
+//             {name: 'Fingerprint Recognition'},
+//             {name: 'Touch screen'},
+//             {name: '5.7 -inch Display'},
+//             {name: 'Flex cables'},
+//             {name: 'Mobile phone housings'},
+//             {name: 'Mobile phone touch panel'}
+//         ]
+//     },
+// ]
+
 const SidebarUI = ({ isOpen, ...rest }) => {
     const classes = [
         'Sidebar',
@@ -102,95 +166,115 @@ class HeaderCategoryMenu extends React.Component {
                     <span className="nav__submenu-item " key={category.id} >
                         <a 
                         href={`/categories/${category.slug}`} 
-                        className='sub-menu__item-a'>{category.name}</a>
+                        className='sub-menu__item-a'>
+                        <span className={`${category.icon_class_name} menu-item-icon`} />
+                        {category.name}
+                        </a>
                         <div className='sub-category'>
                             <div className='row'>
-                                <div className='col-lg-3 col-md-3 col-sm-3 col-12'>
-                                    <h5>Mobile phones</h5>
-                                    <p>Mobile Phones</p>
-                                    <p>Front Camera</p>
-                                    <p>Fingerprint Recognition</p>
-                                    <p>Touch Screen</p>
-                                    <p>Dual SIM Card</p>
-                                    <p>5.7-inch Display</p>
-                                    <p>Mobile Phone Parts</p>
-                                    <p>Mobile Phone LCDs</p>
-                                    <p>Mobile Phone Batteries</p>
-                                    <p>Mobile Phone Housings</p>
-                                    <p>Mobile Phone Touch Panel</p>
-                                    <p>Flex Cables</p>
-
-                                    <h5>Mobile phones</h5>
-                                    <p>Mobile Phones</p>
-                                    <p>Front Camera</p>
-                                    <p>Fingerprint Recognition</p>
-                                    <p>Touch Screen</p>
-                                    <p>Dual SIM Card</p>
-                                    <p>5.7-inch Display</p>
-                                    <p>Mobile Phone Parts</p>
-                                    <p>Mobile Phone LCDs</p>
-                                    <p>Mobile Phone Batteries</p>
-                                    <p>Mobile Phone Housings</p>
-                                    <p>Mobile Phone Touch Panel</p>
-                                    <p>Flex Cables</p>
-                                </div>
-                                <div className='col-lg-3 col-md-3 col-sm-3 col-12'>
-                                    <h5>Mobile phones</h5>
-                                    <p>Mobile Phones</p>
-                                    <p>Front Camera</p>
-                                    <p>Fingerprint Recognition</p>
-                                    <p>Touch Screen</p>
-                                    <p>Dual SIM Card</p>
-                                    <p>5.7-inch Display</p>
-                                    <p>Mobile Phone Parts</p>
-                                    <p>Mobile Phone LCDs</p>
-                                    <p>Mobile Phone Batteries</p>
-                                    <p>Mobile Phone Housings</p>
-                                    <p>Mobile Phone Touch Panel</p>
-                                    <p>Flex Cables</p>
-
-                                    <h5>Mobile phones</h5>
-                                    <p>Mobile Phones</p>
-                                    <p>Front Camera</p>
-                                    <p>Fingerprint Recognition</p>
-                                    <p>Touch Screen</p>
-                                    <p>Dual SIM Card</p>
-                                    <p>5.7-inch Display</p>
-                                    <p>Mobile Phone Parts</p>
-                                    <p>Mobile Phone LCDs</p>
-                                    <p>Mobile Phone Batteries</p>
-                                    <p>Mobile Phone Housings</p>
-                                    <p>Mobile Phone Touch Panel</p>
-                                    <p>Flex Cables</p>
-                                </div>
-                                <div className='col-lg-3 col-md-3 col-sm-3 col-12'>
-                                    <h5>Mobile phones</h5>
-                                    <p>Mobile Phones</p>
-                                    <p>Front Camera</p>
-                                    <p>Fingerprint Recognition</p>
-                                    <p>Touch Screen</p>
-                                    <p>Dual SIM Card</p>
-                                    <p>5.7-inch Display</p>
-                                    <p>Mobile Phone Parts</p>
-                                    <p>Mobile Phone LCDs</p>
-                                    <p>Mobile Phone Batteries</p>
-                                    <p>Mobile Phone Housings</p>
-                                    <p>Mobile Phone Touch Panel</p>
-                                    <p>Flex Cables</p>
-
-                                    <h5>Mobile phones</h5>
-                                    <p>Mobile Phones</p>
-                                    <p>Front Camera</p>
-                                    <p>Fingerprint Recognition</p>
-                                    <p>Touch Screen</p>
-                                    <p>Dual SIM Card</p>
-                                    <p>5.7-inch Display</p>
-                                    <p>Mobile Phone Parts</p>
-                                    <p>Mobile Phone LCDs</p>
-                                    <p>Mobile Phone Batteries</p>
-                                    <p>Mobile Phone Housings</p>
-                                    <p>Mobile Phone Touch Panel</p>
-                                    <p>Flex Cables</p>
+                                <div className='col-lg-9 col-md-9 col-sm-9 col-12'>
+                                    <div className='sub-wrapper'>
+                                        <h5>Mobile phones</h5>
+                                        <div>
+                                            <a>Mobile Phones</a>
+                                            <a>Front Camera</a>
+                                            <a>Fingerprint Recognition</a>
+                                            <a>Touch Screen</a>
+                                            <a>Dual SIM Card</a>
+                                            <a>5.7-inch Display</a>
+                                            <a>Mobile Phone Parts</a>
+                                            <a>Mobile Phone LCDs</a>
+                                            <a>Mobile Phone Batteries</a>
+                                            <a>Mobile Phone Housings</a>
+                                            <a>Mobile Phone Touch Panel</a>
+                                            <a>Flex Cables</a>
+                                        </div>
+                                    </div>
+                                    <div className='sub-wrapper'>
+                                        <h5>Mobile phones</h5>
+                                        <div>
+                                            <a>Mobile Phones</a>
+                                            <a>Front Camera</a>
+                                            <a>Fingerprint Recognition</a>
+                                            <a>Touch Screen</a>
+                                            <a>Dual SIM Card</a>
+                                            <a>5.7-inch Display</a>
+                                            <a>Mobile Phone Parts</a>
+                                            <a>Mobile Phone LCDs</a>
+                                            <a>Mobile Phone Batteries</a>
+                                            <a>Mobile Phone Housings</a>
+                                            <a>Mobile Phone Touch Panel</a>
+                                            <a>Flex Cables</a>
+                                        </div>
+                                    </div>
+                                    <div className='sub-wrapper'>
+                                        <h5>Mobile phones</h5>
+                                        <div>
+                                            <a>Mobile Phones</a>
+                                            <a>Front Camera</a>
+                                            <a>Fingerprint Recognition</a>
+                                            <a>Touch Screen</a>
+                                            <a>Dual SIM Card</a>
+                                            <a>5.7-inch Display</a>
+                                            <a>Mobile Phone Parts</a>
+                                            <a>Mobile Phone LCDs</a>
+                                            <a>Mobile Phone Batteries</a>
+                                            <a>Mobile Phone Housings</a>
+                                            <a>Mobile Phone Touch Panel</a>
+                                            <a>Flex Cables</a>
+                                        </div>
+                                    </div>
+                                    <div className='sub-wrapper'>
+                                        <h5>Mobile phones</h5>
+                                        <div>
+                                            <a>Mobile Phones</a>
+                                            <a>Front Camera</a>
+                                            <a>Fingerprint Recognition</a>
+                                            <a>Touch Screen</a>
+                                            <a>Dual SIM Card</a>
+                                            <a>5.7-inch Display</a>
+                                            <a>Mobile Phone Parts</a>
+                                            <a>Mobile Phone LCDs</a>
+                                            <a>Mobile Phone Batteries</a>
+                                            <a>Mobile Phone Housings</a>
+                                            <a>Mobile Phone Touch Panel</a>
+                                            <a>Flex Cables</a>
+                                        </div>
+                                    </div>
+                                    <div className='sub-wrapper'>
+                                        <h5>Mobile phones</h5>
+                                        <div>
+                                            <a>Mobile Phones</a>
+                                            <a>Front Camera</a>
+                                            <a>Fingerprint Recognition</a>
+                                            <a>Touch Screen</a>
+                                            <a>Dual SIM Card</a>
+                                            <a>5.7-inch Display</a>
+                                            <a>Mobile Phone Parts</a>
+                                            <a>Mobile Phone LCDs</a>
+                                            <a>Mobile Phone Batteries</a>
+                                            <a>Mobile Phone Housings</a>
+                                            <a>Mobile Phone Touch Panel</a>
+                                            <a>Flex Cables</a>
+                                        </div>
+                                    </div>
+                                    <div className='sub-wrapper'>
+                                        <h5>Mobile phones</h5>
+                                        <div>
+                                            <a>Mobile Phones</a>
+                                            <a>Front Camera</a>
+                                            <a>Fingerprint Recognition</a>
+                                            <a>Touch Screen</a>
+                                            <a>Dual SIM Card</a>
+                                            <a>5.7-inch Display</a>
+                                            <a>Mobile Phone Parts</a>
+                                            <a>Mobile Phone LCDs</a>
+                                            <a>Mobile Phone Batteries</a>
+                                            <a>Mobile Phone Housings</a>
+                                            <a>Mobile Phone Touch Panel</a>
+                                            <a>Flex Cables</a>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className='col-lg-3 col-md-3 col-sm-3 col-12'>
                                     <div className='menu-img'>
