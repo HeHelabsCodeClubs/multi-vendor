@@ -50,9 +50,6 @@ export default class  MenuItemCategory extends Component {
                 >
                     <h5 className="item-title">
                         {name}
-                        {/* <span>
-                            <span className="item-label"></span>
-                        </span> */}
                     </h5>
                 </a>
             );
