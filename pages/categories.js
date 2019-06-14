@@ -7,22 +7,65 @@ import MainContent from '../components/views/categories/MainContent';
 import { API_URL } from '../config';
 
 class Categories extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            updatedProducts: [],
+            showLoader: false,
+            updateCart: false
+        };
+        this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
+        this.updateProductsData = this.updateProductsData.bind(this);
+        this.handleDisplayLoader = this.handleDisplayLoader.bind(this);
+    }
     static async getInitialProps({ query }) {
-        // console.log(query.category_id);
-		const res = await fetch(`${API_URL}/categories/${query.category_slug}/parent_page`)
+        const { category_slug, sub_cat_slug, sub_last_cat_slug } = query;
+        let remoteUrl = `${API_URL}/categories/${category_slug}/parent_page`;
+        if (category_slug !== undefined && sub_cat_slug !== undefined && sub_last_cat_slug === undefined) {
+            remoteUrl = `${remoteUrl}?sub_cats=${sub_cat_slug}`
+        }
+
+        if (category_slug !== undefined && sub_cat_slug !== undefined && sub_last_cat_slug !== undefined) {
+            remoteUrl = `${remoteUrl}?sub_cats=${sub_cat_slug},${sub_last_cat_slug}`;
+        }
+		const res = await fetch(remoteUrl);
         const response = await res.json()
 		const { 
 			data
         } = response;
-        console.log('full_url', `${API_URL}/categories/${query.category_slug}/parent_page`);
         return {
             parentCategorySlug: query.category_slug,
             categoriesData: data.parent_categories,
             subCategoriesData: data.sub_categories,
-            productsData: [] 
-            //data.products
+            productsData: data.products
         };
     }
+
+    cartShouldUpdate() {
+		this.setState({
+			updateCart: true
+		});
+	}
+
+    updateProductsData(newProducts) {
+        this.setState({
+            updatedProducts: newProducts
+        });
+    }
+
+    handleDisplayLoader() {
+        const { showLoader } = this.state;
+        if (showLoader) {
+            this.setState({
+                showLoader: false
+            });
+        } else {
+            this.setState({
+                showLoader: true
+            });
+        }
+    }
+ 
 	render() {
         const { 
             categoriesData,
@@ -30,8 +73,16 @@ class Categories extends React.Component {
             productsData,
             parentCategorySlug
         } = this.props;
+
+        const { 
+            updatedProducts,
+            showLoader,
+            updateCart 
+        } = this.state;
 		return (
-			<Global>
+			<Global
+            updateCart={this.state.updateCart}
+            >
 				<div className='multi-vendor-categories'>
                     <TopCategories 
                     categories={categoriesData}
@@ -44,11 +95,16 @@ class Categories extends React.Component {
                                 <SidemenuCategories 
                                 subCategories={subCategoriesData}
                                 parentCategorySlug={parentCategorySlug}
+                                updateProducts={this.updateProductsData}
+                                displayLoader={this.handleDisplayLoader}
                                 />
                             </div>
                             <div className='col-lg-9 col-md-8 col-sm-8 col-12 col-reset main-content-wrapper'>
                                 <MainContent 
                                 products={productsData}
+                                updatedProducts={updatedProducts}
+                                showLoader={showLoader}
+                                cartShouldUpdate={this.cartShouldUpdate}
                                 />
                             </div>
                         </div>

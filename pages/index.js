@@ -20,7 +20,6 @@ class Index extends React.Component {
 		this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
 	}
 	cartShouldUpdate() {
-		console.log('i am run')
 		this.setState({
 			updateCart: true
 		});

@@ -20,6 +20,7 @@
             width: 92% !important;
             min-height: 5.2rem;
             text-align: center;
+            display: flex !important;
             @include flexbox;
             @include flexalignitems(center);
             color: $black-color-3;
@@ -62,6 +63,7 @@
 }
 .categories-content {
     background: $gray-color-2;
+    min-height: 43vh;
     .Side-menu-default {
         background-color: $gray-color-2;
         color: $black-color-3;
@@ -152,25 +154,35 @@
             }
         }
 
-        i.fa.fa-chevron-down:before {
-            content: '-';
-            line-height: 0.7;
-            color: $green-color-2;
+        i.fa.fa-chevron-down {
+            margin-top: -3px;
+            padding-top: 0;
+
+            &:before {
+                content: '-';
+                line-height: 0.7;
+                color: $green-color-2;
+            }
         }
-        i.fa.fa-chevron-left:before {
-            content: '+';
-            line-height: 0.7;
-            color: $green-color-2;
+
+        i.fa.fa-chevron-left {
+            margin-top: -3px;
+            padding-top: 0;
+            
+            &:before {
+                content: '+';
+                line-height: 0.7;
+                color: $green-color-2;
+            }
         }
     }
     .main-content-wrapper {
         border-left: .5px solid $gray-color-6;
+
         .multi-vendor-stores-wrapper {
             border-bottom: .5px solid $gray-color-6;
             padding: 0 1rem;
             overflow: hidden;
-            @include flexbox;
-            @include flexalignitems(center);
 
             @media screen and (max-width: $mobile-lg) {
                 display: none;
@@ -178,9 +190,27 @@
         
             .line-display {
                 display: inline-block;
+                vertical-align: top;
+                margin: 0;
+                padding: 20px 0 0 10px;
 
                 .more-link a{
                     color: $orange-color-4 !important;
+                }
+            }
+            .stores-wrapper {
+                display: inline-block;
+
+                .slick-prev:before {
+                    content: '\E91A';
+                    color: #e5aa5e;
+                }
+
+                .slick-next:before {
+                    content: "more +";
+                    font-family: "Harmonia Sans Pro Regular";
+                    color: #dc7c02;
+                    font-size: 1.28rem;
                 }
             }
             .single-store {
@@ -188,9 +218,15 @@
                 margin: 1rem;
                 padding: 0.5rem;
                 border-radius: 0.5rem;
+                width: 94%;
+                height: 4rem;
+                @include flexbox;
+                @include flexalignitems(center);
     
                 img {
-                    height: 3rem;
+                    max-height: 3rem;
+                    margin: 0 auto;
+                    max-width: 100%;
                 }
             }
             .stores-title {
@@ -201,6 +237,18 @@
             margin: 0 3rem 2rem 2rem !important;
             @media screen and (max-width: $mobile-lg) {
                 margin: 0 0.5rem 2rem 0.5rem !important;
+            }
+
+            .empty-category, .loader-wrapper {
+                height: calc(43vh - 6rem);
+                width: 100%;
+                @include flexbox;
+                @include flexalignitems(center);
+                @include flexjustifycontent(center);
+
+                p {
+                    color: $gray-color-5;
+                }
             }
         }
     }

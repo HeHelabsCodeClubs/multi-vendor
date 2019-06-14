@@ -154,6 +154,14 @@ html {
             }
         }
         .sub-wrapper {
+            .sub-cat-title {
+
+            }
+
+            .sub-cat-item {
+                font-family: $font-regular !important;
+                font-size: 1rem !important;
+            }
             a {
                 font-family: $font-regular !important;
                 font-size: 1rem !important;
@@ -529,6 +537,14 @@ html {
                 }
             }
         }
+
+        .empty-category {
+            p {
+                font-size: 2rem;
+            }            
+        }
+
+
     }
     .filter-title {
         font-size: 1.7rem;
