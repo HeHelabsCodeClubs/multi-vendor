@@ -32,6 +32,14 @@ app
             });
         })
 
+        server.get('/categories/:category_slug/:sub_cat_slug/:sub_last_cat_slug', (req, res) => {
+            return app.render(req, res, '/categories', { 
+                category_slug: req.params.category_slug,
+                sub_cat_slug: req.params.sub_cat_slug,
+                sub_last_cat_slug: req.params.sub_last_cat_slug
+            });
+        })
+
         server.get('/p/:id', (req, res) => {
             const actualPage = '/post'
             const queryParams = { title: req.params.id }
