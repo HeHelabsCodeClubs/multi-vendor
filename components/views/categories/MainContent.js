@@ -33,9 +33,11 @@ class MainContent extends React.Component {
             return productsLayout;
         }
         return (
-            <h5>
-                We have no product in this category
-            </h5>
+            <div className="empty-category">
+                <p>
+                    We have no product in this category
+                </p>
+            </div>
         );
     }
  
