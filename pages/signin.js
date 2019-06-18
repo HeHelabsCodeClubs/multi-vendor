@@ -134,7 +134,7 @@ export default function Signin() {
                                 <div className='auth-button'>
                                     <button>Login</button>
                                 </div>
-                                <div className='auth-text'>Don't have an account? <a href=''>Register</a></div>
+                                <div className='auth-text'>Don't have an account? <a href='/register'>Register</a></div>
                             </form>
                         </div>
                     </div>
