@@ -244,7 +244,7 @@ class Delivery extends React.Component {
 											<span className='t-content'>Rwf 21,345</span>
 										</span>
                                     </div>
-                                    <div className='total-grid row reset-row'>
+                                    <div className='total-grid checkout-total-grid row reset-row'>
 										<span>
 											<span className='dur-title'>Estimated duration </span> 
 											<span className='dur-content'>2days</span>

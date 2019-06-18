@@ -147,7 +147,7 @@ export default function Register() {
                                 <div className='auth-button'>
                                     <button>Register</button>
                                 </div>
-                                <div className='auth-text'>Already have an account? <a href=''>Login</a></div>
+                                <div className='auth-text'>Already have an account? <a href='/signin'>Login</a></div>
                             </form>
                         </div>
                     </div>
