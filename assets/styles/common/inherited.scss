@@ -14,7 +14,7 @@
     border-radius: 0.35rem;
     outline: none !important;
     padding: 0.7rem 0;
-    min-width: 100px;
+    min-width: 11rem;
 
     &:hover {
         background: $white-color;
@@ -27,4 +27,23 @@
     color: $green-color-2 !important;
     cursor: pointer;
     border: .5px solid $green-color-2;
+}
+
+
+// Dropdowns
+
+.select2-dropdown {
+    border: 1px solid $gray-color-2 !important;
+    box-shadow: 0 3px 6px 0 $box-shadow-color !important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: $green-color-2 !important;
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field {
+    border: .5px solid $gray-color-2 !important;
+}
+.select2-container--default .select2-search--dropdown .select2-search__field:focus {
+    outline: .5px solid $orange-color-1 !important;
 }

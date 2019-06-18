@@ -139,7 +139,10 @@
                     @include flexalignitems(center);
                     @include flexjustifycontent(center);
                     @include transition(0.5s);
-                    
+
+                    @media screen and (max-width: $mobile-lg) {
+                        height: 2rem;
+                    }                 
 
                     .icon-Path-63:before {
                         color: $green-color-2;
