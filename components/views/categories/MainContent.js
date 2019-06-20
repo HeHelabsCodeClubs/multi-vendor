@@ -57,7 +57,7 @@ class MainContent extends React.Component {
                 return (
                     <div 
                     key={product.slug}
-                    className='col-lg-3 col-md-3 col-sm-4 col-6 col-reset'
+                    className='col-lg-3 col-md-4 col-sm-6 col-6 col-reset'
                     >
                         <Product 
                         product={product} 
