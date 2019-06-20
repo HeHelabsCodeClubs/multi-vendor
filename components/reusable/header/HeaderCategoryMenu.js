@@ -184,10 +184,12 @@ class HeaderCategoryMenu extends React.Component {
     renderMoboCategory(categories) {
         if (categories) {
             const categoryLayout = categories.map((category) => {
+                const { slug, icon_class_name } = category;
+                const IconClassName = icon_class_name !== '' ? icon_class_name : 'icon-KITCHENWARE-ICO';
                 return (
                     <span className="nav__submenu-item " key={category.id} >
-                        <a href="/categories" className='sub-menu__item-a'>
-                            <span className={`${category.icon_class_name} menu-item-icon`} />
+                        <a href={`/categories/${slug}`} className='sub-menu__item-a'>
+                            <span className={`${IconClassName} menu-item-icon`} />
                             {category.name}
                         </a>
                     </span>

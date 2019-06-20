@@ -63,7 +63,7 @@
             @media (max-width: $mobile-lg) {
                 width: 100vw;
                 margin: 0;
-                border-bottom: 1px solid $gray-color-2;
+                border-bottom: 1px solid $gray-color-5;
             }
 
             .select2-container {
@@ -420,6 +420,8 @@
                 .SidebarContent {
                     width: 70% !important;
                     left: -70% !important;
+                    top: 4.3rem !important;
+                    box-shadow: 12px 13px 20px $gray-color-5;
                 }
                 .Sidebar.is-open .SidebarContent {
                     left: 0 !important;
@@ -442,6 +444,11 @@
                         @media (max-width: $mobile-lg) {
                             display: none;
                         }
+                    }
+                }
+                .Sidebar {
+                    .SidebarOverlay {
+                        background: none !important;
                     }
                 }
             }
@@ -645,6 +652,7 @@
                     left: 1.95rem;
                     height: 2.8rem;
                     width: 2.8rem;
+                    object-fit: contain;
                     background: $green-color-3;
                     border-radius: 50%;
                 }
