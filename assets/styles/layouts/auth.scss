@@ -22,13 +22,43 @@ body {
     }
     .auth-form {
         .input-field {
+            position: relative;
             input {
                 width: 100%;
                 margin: 1rem 0;
-                border: none;
+                border: 1px solid $gray-color-2;
                 background: $gray-color-2;
                 padding: 0.3rem 1rem;
                 border-radius: 0.3rem;
+                outline: none;
+
+                &.is-invalid {
+                    border: 1px solid red;
+                }
+            }
+            .select2-container {
+                width: 100% !important;
+                margin: 1rem 0;
+            }
+            .select2-container--default .select2-selection--single {
+                border-width: .5px;
+                border: 1px solid $gray-color-2;
+                background: $gray-color-2;
+                padding: 0 0.5rem;
+                border-radius: 0.3rem;
+                outline: none;
+            }
+            .select2-selection__rendered {
+                color: $black-color-1;
+            }
+            .select2-selection__placeholder {
+                color: $black-color-3;
+            }
+            .validation-error {
+                font-size: 0.8rem !important;
+                color: red;
+                position: absolute;
+                bottom: -0.5rem;
             }
         }
         .checkbox-field {
