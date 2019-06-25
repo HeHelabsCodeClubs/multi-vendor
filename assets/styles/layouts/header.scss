@@ -26,6 +26,11 @@
     padding: 1rem 0;
     @include boxshadow(0 3px 16px 0 rgba(0, 0, 0, 0.05));
 
+    @media screen and (max-width: $mobile-lg) {
+        min-height: 80px;
+        padding: 0;
+    }
+
     .header-left {
         padding-right: 0 !important;
         @media screen and (min-width: $tablet-min) and (max-width: $tablet-md) {
@@ -40,12 +45,12 @@
             @media (max-width: $mobile-lg) {
                 position: absolute;
                 z-index: 1;
-                top: 38px;
-                left: 35px;
+                top: 41px;
+                left: 40px;
             }
 
             img {
-                height: 3rem;
+                height: 2.7rem;
                 margin: 0 0 0 1rem;
             }
         }
@@ -63,7 +68,7 @@
             @media (max-width: $mobile-lg) {
                 width: 100vw;
                 margin: 0;
-                border-bottom: 1px solid $gray-color-5;
+                border-bottom: .5px solid $gray-color-5;
             }
 
             .select2-container {
@@ -131,7 +136,7 @@
 
         @media (max-width: $mobile-lg) {
             position: absolute;
-            top: 47px;
+            top: 40px;
             right: 100px;
         }
 
@@ -261,8 +266,8 @@
 
         @media screen and (max-width: $mobile-lg) {
             position: absolute;
-            right: 0;
-            top: 47px;
+            right: 8px;
+            top: 39px;
             padding: 0 !important;
         }
 
@@ -315,21 +320,27 @@
         padding: 0 0 0 4rem;
 
         @media screen and (max-width: $mobile-lg) {
-            padding: 0 0 0 10px;
+            padding: 2px 0 0 17px;
             max-width: 100%;
         }
 
-        .cart-title {
-
+        .cart-wrapper {
             @media screen and (max-width: $mobile-lg) {
-                display: none;
+                margin: 0;
             }
-        }
-        
-        .icon-Path-63 {
-            &:before {
-                padding: 0 1rem 0 0;
-                color: $green-color-2;
+
+            .cart-title {
+
+                @media screen and (max-width: $mobile-lg) {
+                    display: none;
+                }
+            }
+            
+            .icon-Path-63 {
+                &:before {
+                    padding: 0 1rem 0 0;
+                    color: $green-color-2;
+                }
             }
         }
     }
@@ -347,7 +358,7 @@
     @media (max-width: $mobile-lg) {
         float: left;
         background: transparent;
-        height: 65%;
+        height: 77%;
         @include flexbox;
         @include flexalignitems(center);
     }
@@ -357,7 +368,7 @@
         @include flexbox;
         @include flexjustifycontent(center);
 
-        ul {
+        .nav__menu {
             list-style: none;
             padding-left: 0;
             margin-top: 0;
@@ -420,11 +431,15 @@
                 .SidebarContent {
                     width: 70% !important;
                     left: -70% !important;
-                    top: 4.3rem !important;
+                    top: 30.5px !important;
                     box-shadow: 12px 13px 20px $gray-color-5;
                 }
                 .Sidebar.is-open .SidebarContent {
                     left: 0 !important;
+
+                    @media screen and (max-width: $mobile-lg) {
+                        box-shadow: 30px 3px 46px 0 rgba(0, 0, 0, 0.16) !important;
+                    }
                 }
                 .nav__submenu {
                     position: relative;

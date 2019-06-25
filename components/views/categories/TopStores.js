@@ -7,9 +7,15 @@ class TopStores extends React.Component {
 		var settings = {
 			infinite: true,
             speed: 1000,
-			slidesToShow: 5,
+			slidesToShow: 6,
             slidesToScroll: 2,
             responsive: [
+				{
+					breakpoint: 1440,
+				   settings: {
+					   slidesToShow: 5,
+				   }
+			   	},
 				{
 				 	breakpoint: 1024,
 					settings: {

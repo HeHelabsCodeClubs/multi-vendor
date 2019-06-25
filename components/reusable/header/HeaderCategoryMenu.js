@@ -20,8 +20,10 @@ SidebarUI.Content = ({ width = '40%', isRight = false, ...rest }) => {
     ];
     const style = {
         width,
+        maxWidth: 300,
         height: '100%',
         top: 0,
+        boxShadow: 'none',
         right: isRight ? `-${width}` : 'auto',
         left: !isRight ? `-${width}` : 'auto',
     };

@@ -10,7 +10,7 @@ html {
     }
     h5 {
         font-size: 1rem !important;
-        font-family: $font-bold;
+        font-family: $font-bold !important;
     }
     h6 {
         font-family: $font-regular;
@@ -493,9 +493,9 @@ html {
         }
     }
     .categories-content {
-        .Side-menu-default {
+        .side-category__grid {
             .divider {
-                font-size: 1.7rem;
+                font-size: 1.7rem !important;
                 font-family: $font-semi-bold;
                 padding: 1rem;
                 height: auto;
@@ -503,24 +503,24 @@ html {
             }
             .item-level-1 {
                 .item-label {
-                    font-size: 1.28rem;
+                    font-size: 1.28rem !important;
                     font-family: $font-bold;
                 }
             }
             .item-level-2 {
                 .item-label {
-                    font-size: 1.28rem;
+                    font-size: 1.28rem !important;
                     font-family: $font-regular;
                 }
             }
 
             i.fa.fa-chevron-down:before {
-                font-size: 2.28rem;
+                font-size: 2.28rem !important;
                 font-family: $font-bold;
                 font-style: normal;
             }
             i.fa.fa-chevron-left:before {
-                font-size: 2.28rem;
+                font-size: 2.28rem !important;
                 font-family: $font-bold;
                 font-style: normal;
             }

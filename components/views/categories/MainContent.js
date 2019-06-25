@@ -66,7 +66,16 @@ class MainContent extends React.Component {
                     </div>
                 );
             });
-            return productsLayout;
+            return (
+                <div>
+                    <div class="row reset-row">
+                        {productsLayout}
+                    </div> 
+                    <div className="load-more__btn-wrapper">
+                       <button className="btn btn-primary">Load more</button>
+                   </div>
+                </div>
+            ) 
         }
 
         if (products.length === 0) {
@@ -80,6 +89,17 @@ class MainContent extends React.Component {
         }
         
     }
+
+    handlePagesClick () {
+
+    }
+
+    loadMoreProducts() {
+        this.setState({
+            currentPage: metaProductsData.current_page,
+            lastPage: metaProductsData.last_page
+        });
+    }
  
 	render() {
 		return (
@@ -87,7 +107,7 @@ class MainContent extends React.Component {
                 <div>
                     <TopStores />
                 </div>
-                <div className='row reset-row main-content'>
+                <div className='main-content'>
                    {this.renderProducts()}
                 </div>
             </div>

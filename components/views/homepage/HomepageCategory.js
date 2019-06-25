@@ -24,16 +24,34 @@ class HomepageCategory extends Component {
     }
     render() {
         const catSettings = {
-			infinite: true,
-			speed: 1000,
-			slidesToShow: 6,
-            slidesToScroll: 2,
+            infinite: true,
+            speed: 1000,
+            slidesToShow: 7,
+            slidesToScroll: 1,
             responsive: [
+                {
+                  breakpoint: 1920,
+                  settings: {
+                    slidesToShow: 7,
+                    slidesToScroll: 2,
+                    infinite: true,
+                    dots: true
+                  }
+                },
+                {
+                  breakpoint: 1280,
+                  settings: {
+                    slidesToShow: 6,
+                    slidesToScroll: 2,
+                    infinite: true,
+                    dots: true
+                  }
+                },
                 {
                   breakpoint: 979,
                   settings: {
                     slidesToShow: 5,
-                    slidesToScroll: 1,
+                    slidesToScroll: 2,
                     infinite: true,
                     dots: true
                   }
@@ -42,7 +60,7 @@ class HomepageCategory extends Component {
                   breakpoint: 768,
                   settings: {
                     slidesToShow: 4,
-                    slidesToScroll: 1,
+                    slidesToScroll: 2,
                   }
                 },
                 {
