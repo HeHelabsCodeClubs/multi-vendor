@@ -119,7 +119,7 @@ class Cart extends Component {
                         {itemsLayout}
                         <div className='go-to-checkout'>
                             <span className='grand-total'>{`All Total: Rwf ${productsTotalPrice}`}</span>
-                            <span className='proceed-button'><button><a href='/checkout'>Proceed to Checkout</a></button></span>
+                            <span className='proceed-button'><button><a href='/checkout/account'>Proceed to Checkout</a></button></span>
                         </div>
                     </div>
                 </div>

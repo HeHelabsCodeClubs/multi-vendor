@@ -204,4 +204,47 @@ a {
     }
 }
 
+// select2 library styles
+.input-field {
+    &.is-invalid {
+        .select2-container {
+            border: 1px solid $red-color-1;
+        }
+    }
+}
+
+// validation error box
+.validation-error-box {
+    display: none;
+    opacity: 0;
+    @include transition(opacity .3s ease-in);
+    padding: 1rem 1rem;
+    text-align: center;
+    background-color: $red-color-1;
+    color: $white-color;
+    &.success {
+        background-color: $green-color-2;
+    }
+    &.display {
+        @include flexbox();
+        @include flexalignitems(center);
+        @include flexjustifycontent(center);
+    }
+    &.show {
+        opacity: 1;
+    }
+}
+
+// Loader styles 
+.loader-wrapper {
+    width: 100%;
+    @include flexbox;
+    @include flexalignitems(center);
+    @include flexjustifycontent(center);
+    img {
+        max-width: 150px;
+    }      
+}
+
+
 

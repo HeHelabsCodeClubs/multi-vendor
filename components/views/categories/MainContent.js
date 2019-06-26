@@ -1,5 +1,6 @@
 import TopStores from './TopStores';
 import Product from '../../reusable/Product';
+import Loader from '../../reusable/Loader';
 
 class MainContent extends React.Component {
     constructor(props) {
@@ -44,11 +45,7 @@ class MainContent extends React.Component {
         const { cartShouldUpdate } = this.props;
         if (showLoader) {
             return (
-                <div className="loader-wrapper">
-                    <img 
-                    src='https://res.cloudinary.com/hehe/image/upload/v1560444707/multi-vendor/Shop_loader.gif' 
-                    />
-                </div>
+               <Loader />
             );
         }
 

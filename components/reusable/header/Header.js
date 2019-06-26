@@ -2,16 +2,26 @@ import Link from 'next/link';
 import Select2 from 'react-select2-wrapper';
 import Cart from './Cart';
 import HeaderCategoryMenu from './HeaderCategoryMenu';
+import { getUserAuthenticatedInfo, logoutUser } from '../../../helpers/auth';
+import isObjectEmpty from '../../../helpers/is_object_empty';
 
 class Header extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            updateCart: false
+            updateCart: false,
+            authUser: {}
         };
         this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
+        this.renderUserProfile = this.renderUserProfile.bind(this);
+        this.updateAuthUser = this.updateAuthUser.bind(this);
+        this.logOut = this.logOut.bind(this);
     }
-
+    componentDidMount() {
+        getUserAuthenticatedInfo((user) => {
+            this.updateAuthUser(user);
+        });
+    }
     componentWillReceiveProps(nextProps) {
         const { updateCart } = nextProps;
         if (updateCart) {
@@ -23,6 +33,49 @@ class Header extends React.Component {
         this.setState({
             updateCart: true
         });
+    }
+
+    updateAuthUser(user) {
+        this.setState({
+            authUser: user
+        });
+    }
+
+    logOut(e) {
+        if (e !== undefined) {
+            e.preventDefault();
+        }
+        logoutUser();
+    }
+
+    renderUserProfile() {
+        const { authUser } = this.state;
+        if (!isObjectEmpty(authUser)) {
+            const {
+                last_name,
+                first_name
+            } = authUser;
+            const userName = `${last_name} ${first_name[0]}`;
+            return (
+                <div className='col-lg-9 col-md-9 col-sm-9 col-9 col-reset account-links'>
+                    <div className='header-content'>{userName}</div>
+                    <div className='header-content'>
+                        <a 
+                        href='/logout'
+                        onClick={this.logOut}
+                        >
+                            Logout
+                        </a>
+                    </div>                 
+                </div>
+            );
+        }
+        return (
+            <div className='col-lg-9 col-md-9 col-sm-9 col-9 col-reset account-links'>
+                <div className='header-content'>My account</div>
+                <div className='header-content'><a href='/signin'>Sign in</a> / <a href='/register'>Register</a></div>                 
+            </div>
+        );
     }
 
     render() {
@@ -90,10 +143,8 @@ class Header extends React.Component {
                                         <div className='col-lg-3 col-md-3 col-sm-3 col-12 col-reset'>
                                             <span className='icon-Path-62'></span>
                                         </div>
-                                        <div className='col-lg-9 col-md-9 col-sm-9 col-9 col-reset account-links'>
-                                            <div className='header-content'>My account</div>
-                                            <div className='header-content'><a href='/signin'>Sign in</a> / <a href='/register'>Register</a></div>
-                                        </div>
+                                        {/* user profile goes here */}
+                                        {this.renderUserProfile()}
                                     </div>
                                 </div>
                                 <Cart 
