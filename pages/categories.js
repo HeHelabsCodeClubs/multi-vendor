@@ -31,13 +31,15 @@ class Categories extends React.Component {
 		const res = await fetch(remoteUrl);
         const response = await res.json()
 		const { 
-			data
+            data,
+            meta
         } = response;
         return {
             parentCategorySlug: query.category_slug,
             categoriesData: data.parent_categories,
             subCategoriesData: data.sub_categories,
-            productsData: data.products
+            productsData: data.products,
+            metaProductsData: meta.pagination_data
         };
     }
 
@@ -71,8 +73,15 @@ class Categories extends React.Component {
             categoriesData,
             subCategoriesData,
             productsData,
-            parentCategorySlug
+            parentCategorySlug,
+            metaProductsData
         } = this.props;
+
+        this.props = {
+            categoriesData:[],
+            subCategoriesData:[],
+            metaProductsData: []
+        }
 
         const { 
             updatedProducts,
@@ -91,7 +100,7 @@ class Categories extends React.Component {
                 <div className='categories-content'>
                     <div className='maximum-width'>
                         <div className='row reset-row'>
-                            <div className='col-lg-3 col-md-4 col-sm-4 col-12'>
+                            <div className='col-lg-3 col-md-4 col-sm-4 col-12 side-category__grid'>
                                 <SidemenuCategories 
                                 subCategories={subCategoriesData}
                                 parentCategorySlug={parentCategorySlug}
@@ -105,6 +114,8 @@ class Categories extends React.Component {
                                 updatedProducts={updatedProducts}
                                 showLoader={showLoader}
                                 cartShouldUpdate={this.cartShouldUpdate}
+                                metaProductsData={metaProductsData}
+
                                 />
                             </div>
                         </div>

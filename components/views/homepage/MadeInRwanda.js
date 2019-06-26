@@ -81,14 +81,32 @@ class MadeInRwanda extends Component {
 			infinite: false,
 			speed: 500,
 			rows: 1,
-			slidesToShow: 4,
+			slidesToShow: 6,
 			slidesToScroll: 2,
 			responsive: [
 				{
-					breakpoint: 1024,
+				breakpoint: 1440,
+					settings: {
+						slidesToShow: 5,
+						slidesToScroll: 2,
+						infinite: true,
+						dots: true
+					}
+				},
+				{
+				breakpoint: 1280,
+					settings: {
+						slidesToShow: 4,
+						slidesToScroll: 2,
+						infinite: true,
+						dots: true
+					}
+				},
+				{
+				breakpoint: 979,
 					settings: {
 						slidesToShow: 3,
-						slidesToScroll: 3,
+						slidesToScroll: 2,
 						infinite: true,
 						dots: true
 					}

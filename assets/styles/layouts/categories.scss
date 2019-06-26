@@ -64,6 +64,13 @@
 .categories-content {
     background: $gray-color-2;
     min-height: 55vh;
+
+    .side-category__grid {
+        @media screen and (min-width: $desktopHd-min) {
+            max-width: 20%;
+        }
+        
+    }
     .Side-menu-default {
         background-color: $gray-color-2;
         color: $black-color-3;
@@ -158,6 +165,10 @@
             margin-top: -3px;
             padding-top: 0;
 
+            @media screen and (max-width: $mobile-lg) {
+                margin-top: 0;
+            }
+
             &:before {
                 content: '-';
                 line-height: 0.7;
@@ -178,6 +189,10 @@
     }
     .main-content-wrapper {
         border-left: .5px solid $gray-color-6;
+
+        @media screen and (min-width: $desktopHd-min) {
+            max-width: 80%;
+        }
 
         .multi-vendor-stores-wrapper {
             border-bottom: .5px solid $gray-color-6;
@@ -235,8 +250,15 @@
         }
         .main-content {
             margin: 0 3rem 2rem 2rem !important;
+
             @media screen and (max-width: $mobile-lg) {
                 margin: 0 0.5rem 2rem 0.5rem !important;
+            }
+
+            .col-lg-3 {
+                @media screen and (min-width: $desktopHd-min) {
+                    max-width: 20%;
+                }
             }
 
             .empty-category, .loader-wrapper {

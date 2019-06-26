@@ -90,7 +90,7 @@
 
             &:before {
                 content: '\E91a';
-                color: $black-color-1 !important;
+                color: $gray-color-10 !important;
             }
         }
         .slick-next {
@@ -106,7 +106,7 @@
 
             &:before {
                 content: '\e919';
-                color: $black-color-1 !important;
+                color: $gray-color-10 !important;
             }
         }
         .slick-slide img {
@@ -121,20 +121,23 @@
 
             @media screen and (max-width: $mobile-lg) {
                 padding: 0;
+            }
 
-                div {
-                    a {
-                        .cat-icon {
+            div {
+                a {
+                    .cat-icon {
+                        color: $gray-color-11 !important;
+
+                        @media screen and (max-width: $mobile-lg) {
                             background: $white-color;
-                            height: 40px;
-                            width: 40px;
+                            height: 60px;
+                            width: 60px;
                             border-radius: 50%;
                             margin: 0 auto;
                             box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.06);
                             @include flexbox;
                             @include flexalignitems(center);
-                            @include flexjustifycontent(center);
-                            
+                            @include flexjustifycontent(center);                            
                         }
                     }
                 }
@@ -144,6 +147,7 @@
             min-width: 9rem;
             margin: 1rem 0 0 0;
             line-height: 1;
+            color: $black-color-3;
 
             @media screen and (max-width: $tablet-min) {
                 min-width: 100%;
@@ -195,6 +199,10 @@
         }
         .margin-reset {
             margin: 0 7px !important;
+
+            @media screen and (max-width: $mobile-lg) {
+                margin: 0 !important;
+            }
 
             .store-category {
                 font-family: "Harmonia Sans Pro Regular";
@@ -288,7 +296,7 @@
 }
 .special-offers {
     background: $gray-color-2;
-    padding: 1rem 0 3rem 0;
+    padding: 1rem 0 6rem 0;
     .special-offers-wrapper {
         .special-offers-title {
             text-align: center;
@@ -345,7 +353,15 @@
 .special-single-product {
     width: 20%;
 
-    @media screen and (max-width: $mobile-lg){
+    @media screen and (min-width: $desktopHd-min) {
+        width: 16.66%;
+    }
+
+    @media screen and (min-width: $mobile-lg) and (max-width: $tablet-md) {
+        width: 25%;
+    }
+
+    @media screen and (max-width: $mobile-lg) {
         width: 33.33%;
     }
 }
