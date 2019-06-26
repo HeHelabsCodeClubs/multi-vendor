@@ -130,8 +130,8 @@
 
                         @media screen and (max-width: $mobile-lg) {
                             background: $white-color;
-                            height: 40px;
-                            width: 40px;
+                            height: 60px;
+                            width: 60px;
                             border-radius: 50%;
                             margin: 0 auto;
                             box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.06);
@@ -199,6 +199,10 @@
         }
         .margin-reset {
             margin: 0 7px !important;
+
+            @media screen and (max-width: $mobile-lg) {
+                margin: 0 !important;
+            }
 
             .store-category {
                 font-family: "Harmonia Sans Pro Regular";
@@ -351,6 +355,10 @@
 
     @media screen and (min-width: $desktopHd-min) {
         width: 16.66%;
+    }
+
+    @media screen and (min-width: $mobile-lg) and (max-width: $tablet-md) {
+        width: 25%;
     }
 
     @media screen and (max-width: $mobile-lg) {

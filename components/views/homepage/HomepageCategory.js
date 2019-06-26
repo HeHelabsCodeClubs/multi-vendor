@@ -66,7 +66,7 @@ class HomepageCategory extends Component {
                 {
                   breakpoint: 480,
                   settings: {
-                    slidesToShow: 4,
+                    slidesToShow: 3,
                     centerMode: true,
 					centerPadding: "30px",
                     slidesToScroll: 1
