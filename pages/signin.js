@@ -1,5 +1,6 @@
 import '../assets/styles/layouts/landing.scss';
 import '../assets/styles/layouts/auth.scss';
+import SignInForm from '../components/views/signin/SignInForm';
 
 export default function Signin() {
     return (
@@ -118,28 +119,16 @@ export default function Signin() {
                 <div className='col-lg-6 col-md-6 col-sm-8 col-xs-10 offset-lg-3 offset-md-3 offset-sm-2 offset-xs-1'>
                     <div className='landing-wrapper'>
                         <div className='auth-content'>
-                            <div className='breadcrumbs'>Home / Signin</div>
-                            <div className='auth-title'>Signin</div>
-                            <form className='auth-form' >
-                                <div className='input-field'>
-                                    <input type='text' placeholder='Email' />
-                                </div>
-                                <div className='input-field'>
-                                    <input type='password' placeholder='Password' />
-                                </div>
-                                <div className='checkbox-field'>
-                                    <input type='checkbox' />
-                                    <span>Sign up for our newsletter!</span>
-                                </div>
-                                <div className='auth-button'>
-                                    <button>Login</button>
-                                </div>
-                                <div className='auth-text'>Don't have an account? <a href='/register'>Register</a></div>
-                            </form>
+                            <SignInForm 
+                            showBreadCrumbs={true}
+                            displayRegistrationLayout={true}
+                            actiontTitle='Sign in'
+                            redirectPageAfterLogin='/'
+                            />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    )
+    );
 }

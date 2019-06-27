@@ -2,8 +2,10 @@
 
 .checkout-process {
     position: relative;
-    width: 95%;
-    margin: 3rem 0 3rem 5%;
+    width: 100%;
+    //95%;
+    margin: 3rem;
+    //3rem 0 3rem 5%;
     @include flexbox;
     @include flexjustifycontent(space-between);
 
@@ -21,6 +23,7 @@
         @include flexalignitems(flex-start);
         position: relative;
         margin: 2rem 0 0 0;
+        cursor: pointer;
 
         &:after {
             content: '';

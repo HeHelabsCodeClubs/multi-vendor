@@ -6,6 +6,8 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 const port = app_conf.env.port;
+const getTokenValue = app_conf.env.getTokenValue;
+
 
 app
     .prepare()
@@ -37,6 +39,21 @@ app
                 category_slug: req.params.category_slug,
                 sub_cat_slug: req.params.sub_cat_slug,
                 sub_last_cat_slug: req.params.sub_last_cat_slug
+            });
+        })
+
+        server.get('/checkout/:page', (req, res) => {
+            const token = req.headers.cookie;
+            if (token && req.params.page === 'account') {
+                res.redirect('/checkout/addresses');
+            }
+
+            if (!token && req.params.page !== 'account') {
+                res.redirect('/checkout/account');
+            }
+            
+            return app.render(req, res, '/checkout', { 
+                page: req.params.page
             });
         })
 

@@ -272,29 +272,6 @@
                     color: $gray-color-5;
                 }
             }
-
-            .loader-wrapper {
-                img {
-                    max-width: 150px;
-                }                
-            }
-
-            .load-more__btn-wrapper {
-                display: block;
-                width: 100%;
-                margin-top: 50px;
-                text-align: center;
-
-                button {
-                    background: $green-color-2;
-                    border-color: $green-color-2;
-                    padding: .6rem 3rem;
-
-                    &:focus {
-                        box-shadow: 0 3px 6px 0 $box-shadow-color;
-                    }
-                }
-            }
         }
     }
 }
