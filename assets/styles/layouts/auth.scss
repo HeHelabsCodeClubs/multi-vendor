@@ -4,10 +4,32 @@ body {
     padding: 0;
 }
 
+.checkbox-field {
+    @include flexbox;
+    @include flexalignitems(center);
+    
+    //margin: 0 0.5rem 1rem 0.5rem;
+
+    a {
+        color: $black-color-3;
+        margin-left: 0.4rem;
+        font-size: 1.2rem;
+        //margin: 0 0 0 0.5rem;
+
+        &.is-invalid {
+            color: $red-color-1;
+        }
+    }
+}
+
 .auth-content {
     width: 60%;
     margin: 0 auto;
     padding: 2rem 0;
+
+    &.delivery-address {
+        width: 100%;
+    }
 
     @media screen and (max-width: $mobile-lg ) {
         width: 80%;
@@ -61,20 +83,7 @@ body {
                 bottom: -0.5rem;
             }
         }
-        .checkbox-field {
-            @include flexbox;
-            @include flexalignitems(center);
-            margin: 0 0.5rem 1rem 0.5rem;
-
-            span {
-                color: $black-color-3;
-                margin: 0 0 0 0.5rem;
-
-                &.is-invalid {
-                    color: $red-color-1;
-                }
-            }
-        }
+        
         .auth-button {
             text-align: center;
             margin: 2rem 0 1rem 0;

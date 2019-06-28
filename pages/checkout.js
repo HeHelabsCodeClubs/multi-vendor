@@ -47,12 +47,10 @@ class Checkout extends React.Component {
     }
 
     componentDidMount() {
-        console.log('i am called');
         this.decideContentToShow();
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('called from props');
         this.decideContentToShow();
     }
 

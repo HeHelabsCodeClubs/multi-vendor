@@ -3,7 +3,9 @@ export const API_ROOT_URL = 'https://vendor-dashboard.hehe.rw';
 export const TOKEN_KEY = 'VENDOR_TOKEN';
 export const AUTH_USER_LOCAL_STORAGE_INFO = 'AUTH_USER_LOCAL_INFO';
 export const PLATFORM_CLIENT_ID = 2;
-export const PLATFORM_CLIENT_SECRET = 'cDI50b1uaS6XbArAbJkw60lkYwhGqJK70hlqg2L9';
+export const PLATFORM_CLIENT_SECRET = 'sy71st8Eg4PjgCpHGq25kmC5EbrRvdrF30DSemgL';
+export const COUNTRY_API_URL = 'http://battuta.medunes.net/api';
+export const COUNTRY_API_KEY = '46545b12aaa7048c8390dfe80c396937';
 
 // local storage variables
 export const CART_ITEMS_KEY = 'CART_ITEMS';

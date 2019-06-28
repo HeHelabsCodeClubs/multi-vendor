@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
 import Select2 from 'react-select2-wrapper';
+import Switch from 'react-switch';
 
 export default class InputField extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            inputValue: this.props.typeOfInput !== 'checkbox' ? '' : 0,
+            inputValue: this.props.typeOfInput !== 'checkbox' ? '' : false,
             hasError: false
         };
         this.renderInputField = this.renderInputField.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.inputFieldShouldDisplayError = this.inputFieldShouldDisplayError.bind(this);
+    }
+
+    componentDidMount() {
+        // change input value to default value if provided
+        const { defaultInputValue } = this.props;
+        if (defaultInputValue !== undefined) {
+            this.setState({
+                inputValue: defaultInputValue
+            });
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -31,9 +42,11 @@ export default class InputField extends Component {
     }
 
     handleInputChange(e) {
-        e.preventDefault();
+        if (e.preventDefault !== undefined) {
+            e.preventDefault();
+        }
         const { name, updateInputFieldValue } = this.props;
-        const newInputFieldValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+        const newInputFieldValue = e.target === undefined ? e : e.target.value;
         updateInputFieldValue(name, newInputFieldValue);
         this.setState({
             inputValue: newInputFieldValue
@@ -90,18 +103,33 @@ export default class InputField extends Component {
         if (typeOfInput === 'checkbox') {
             return (
                 <div className='checkbox-field'>
-                    <input 
+                    {/* <input 
                         type={type} 
                         id={id}
                         name={name}
                         checked={inputValue}
                         onChange={this.handleInputChange} 
+                    /> */}
+                    <Switch 
+                    id={id}
+                    name={name}
+                    checked={inputValue}
+                    onChange={this.handleInputChange}
                     />
-                    <span
+                    <a
                     className={inputClassName}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        if (inputValue) {
+                            this.handleInputChange(false);
+                            return;
+                        }
+                        this.handleInputChange(true);
+                    }}
                     >
+                    
                     {fieldText}
-                    </span>
+                    </a>
                 </div>
             ); 
         }
