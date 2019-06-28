@@ -7,13 +7,14 @@ body {
 .checkbox-field {
     @include flexbox;
     @include flexalignitems(center);
-    
+    margin-bottom: 1rem;
     //margin: 0 0.5rem 1rem 0.5rem;
 
     a {
         color: $black-color-3;
         margin-left: 0.4rem;
         font-size: 1.2rem;
+        cursor: pointer;
         //margin: 0 0 0 0.5rem;
 
         &.is-invalid {
@@ -23,9 +24,12 @@ body {
 }
 
 .auth-content {
-    width: 90%;
+    // width: 90%;
+    // margin: 0;
+    // padding: 2rem 0;
+    width: 100%;
     margin: 0;
-    padding: 2rem 0;
+    padding: 2rem 2rem;
 
     &.delivery-address {
         width: 100%;
