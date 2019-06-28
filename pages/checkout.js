@@ -14,7 +14,8 @@ class Checkout extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeContent: ''
+            activeContent: '',
+            sideContentClass: 'wrap'
         };
         this.renderContent = this.renderContent.bind(this);
         this.renderAccountView = this.renderAccountView.bind(this);
@@ -22,6 +23,7 @@ class Checkout extends React.Component {
         this.renderDeliveryView = this.renderDeliveryView.bind(this);
         this.renderPaymentView = this.renderPaymentView.bind(this);
         this.decideContentToShow = this.decideContentToShow.bind(this);
+        this.handleFixing = this.handleFixing.bind(this);
     }
 
     static async getInitialProps({ req, query }) {
@@ -128,7 +130,18 @@ class Checkout extends React.Component {
             activeContent: 'payment'
         })
     }
+    handleFixing (e) {
+        console.log("I am working", e);
+        // let element = e.target
+        // if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+        //     this.setState ({
+        //         sideContentClass: 'wrap fixed'
+        //     })
+        // }
+
+    }
 	render() {
+        const { sideContentClass } = this.state;
 		return (
 			<Global>
                 <div className='maximum-width'>
@@ -170,7 +183,9 @@ class Checkout extends React.Component {
                                     </a>
                                </Link>
                             </ul>
-                            {this.renderContent()}
+                            <div className={sideContentClass} onScroll={this.handleFixing}>
+                                {this.renderContent()}
+                            </div>
                         </div>
                         <div className='col-lg-4 col-md-4 col-sm-4 col-12 order-summary-grid'>
                             <OrderSummary />

@@ -85,7 +85,7 @@ class MadeInRwanda extends Component {
 			slidesToScroll: 2,
 			responsive: [
 				{
-				breakpoint: 1440,
+				breakpoint: 1600,
 					settings: {
 						slidesToShow: 5,
 						slidesToScroll: 2,
@@ -94,7 +94,7 @@ class MadeInRwanda extends Component {
 					}
 				},
 				{
-				breakpoint: 1280,
+				breakpoint: 1440,
 					settings: {
 						slidesToShow: 4,
 						slidesToScroll: 2,
