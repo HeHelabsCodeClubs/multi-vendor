@@ -3,6 +3,7 @@
 .checkout-process {
     position: relative;
     width: 100%;
+    padding-left: 0;
     //95%;
     margin: 3rem;
     //3rem 0 3rem 5%;
@@ -80,14 +81,14 @@
     }
 }
 .account-info-wrapper {
-    width: 80%;
-    margin: 0 10% 0 10%;
+    width: 90%;
+    margin: 0 0 0 10%;
     @media screen and (max-width: $mobile-lg) {
         width: 100%;
         margin: 0;
     }
     .signin-block {
-        border-right: 1px solid $gray-color-6;
+        border-right: solid 2px $gray-color-12;
         @media screen and (max-width: $mobile-lg) {
             border-right: none;
             padding: 0 !important;
@@ -166,11 +167,9 @@
         }
     }
     button.auth-button {
+        @extend .default-button-styles;
         background: $orange-color-5;
-        color: $white-color;
-        border: none;
-        padding: 0.2rem 2rem;
-        border-radius: 0.3rem;
+        color: $white-color;      
     }
     .payment-section {
         padding: 1rem 0;
@@ -308,9 +307,9 @@
     }
 }
 .cart-product {
-    border-bottom: 1px solid $gray-color-6;
-    padding: 0.5rem 0;
-    margin: 0 0 0 1rem;
+    border-bottom: 1px solid $light-gray;
+    padding: 1rem 0;
+
     .title {
         color: $black-color-2;
         letter-spacing: 0.06rem;
@@ -372,13 +371,16 @@
         }
 
         .order-summary-title {
-            color: $gray-color-6;
+            color: $orange-color-1;
             margin: 1.7rem 0 1rem;
+            text-align: center;
         }
         .white-background {
             background: $white-color;
-            padding: 0.5rem;
+            padding: 2rem;
             margin: 1rem 0 0 0;
+            border-radius: 4px;
+
             img.store-logo {
                 height: 3rem;
                 width: 3rem;
@@ -386,12 +388,12 @@
                 border-radius: 50%;
             }
             .checkout-cart-header {
-                padding: 0 0 0.5rem 0;
+                padding: 0 0 1rem 0;
                 margin: 0 0 0.5rem 0;
                 @include flexbox;
                 @include flexjustifycontent(space-between);
                 @include flexalignitems(flex-end);
-                border-bottom: 1px solid $gray-color-6;
+                border-bottom: 1px solid $light-gray;
 
                 .store-cart-content {
                     @include flexbox;
@@ -404,14 +406,15 @@
                     width: 80%;
                     background: $gray-color-2;
                     border: none;
-                    padding: 0.3rem 1rem;
+                    padding: 0.6rem 1rem;
                     border-radius: 0.3rem 0 0 0.3rem;
                 }
                 button {
                     background: $white-color;
                     width: 20%;
                     border: 1px solid $gray-color-2;
-                    padding: 0.24rem 1rem;
+                    padding:0.54rem 1rem;
+                    border-radius: 0 0.3rem 0.3rem 0;
                 }
             }
             .subtotal {
@@ -421,6 +424,7 @@
             .shipping {
                 color: $black-color-2;
                 text-align: right;
+                line-height: 33px;
             }
             .total {
                 text-align: right;
