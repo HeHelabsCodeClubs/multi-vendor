@@ -1,5 +1,13 @@
 @import "../main";
 
+
+.checkout-content div:nth-child(1) {
+    flex: 0 0 66.66667%;
+
+    .not-sticky__container, .not-sticky__container div:nth-child(1) {
+        flex: none !important;
+    }
+}
 .checkout-process {
     position: relative;
     width: 100%;
@@ -82,7 +90,7 @@
 }
 .account-info-wrapper {
     width: 90%;
-    margin: 0 0 0 10%;
+    margin: 0 0 70px 10%;
     @media screen and (max-width: $mobile-lg) {
         width: 100%;
         margin: 0;
@@ -142,7 +150,7 @@
         }
     }
     .shipping-form {
-        border-bottom: 1px solid $gray-color-2;
+        border-bottom: .5px solid $gray-color-2;
 
         @media screen and (max-width: $mobile-lg) {
             margin: 0 -15px !important;
@@ -153,7 +161,7 @@
         text-align: center;
     }
     .signin-content {
-        border-bottom: 1px solid $gray-color-6;
+        border-bottom: .5px solid $gray-color-6;
         padding: 0 0 1rem 0;
         margin: 0 0 1rem 0;
     }
@@ -173,7 +181,7 @@
     }
     .payment-section {
         padding: 1rem 0;
-        border-bottom: 1px solid $gray-color-2;
+        border-bottom: .5px solid $gray-color-2;
         .wallet-title {
             color: $gray-color-4;
         }
@@ -231,7 +239,7 @@
         }
     }
     .delivery-content {
-        border: 1px solid $gray-color-6;
+        border: .5px solid $gray-color-6;
         border-radius: 0.35rem;
         .store-logo {
             background: $gray-color-6;
@@ -250,13 +258,13 @@
             }
         }
         .react-tabs__tab-list {
-            border-bottom: 1px solid $gray-color-6 !important;
+            border-bottom: .5px solid $gray-color-6 !important;
             margin: 1rem;
             .react-tabs__tab {
                 border-bottom: none;
             }
             .react-tabs__tab--selected {
-                border-bottom: 1px solid $orange-color-2;
+                border-bottom: .5px solid $orange-color-2;
                 outline: none;
             }
         }
@@ -291,7 +299,7 @@
     border-bottom: none !important;
     .react-tabs__tab {
         padding: 0 0.5rem;
-        border-bottom: 1px solid $gray-color-2;
+        border-bottom: .5px solid $gray-color-2;
         margin: 0 1rem 0 0;
         color: $gray-color-6;
 
@@ -302,12 +310,12 @@
     }
     .react-tabs__tab--selected {
         border-color: transparent;
-        border-bottom: 1px solid $orange-color-2;
+        border-bottom: .5px solid $orange-color-2;
         color: $black-color-2;
     }
 }
 .cart-product {
-    border-bottom: 1px solid $light-gray;
+    border-bottom: .5px solid $light-gray;
     padding: 1rem 0;
 
     .title {
@@ -393,7 +401,7 @@
                 @include flexbox;
                 @include flexjustifycontent(space-between);
                 @include flexalignitems(flex-end);
-                border-bottom: 1px solid $light-gray;
+                border-bottom: .5px solid $light-gray;
 
                 .store-cart-content {
                     @include flexbox;
@@ -412,7 +420,7 @@
                 button {
                     background: $white-color;
                     width: 20%;
-                    border: 1px solid $gray-color-2;
+                    border: .5px solid $gray-color-2;
                     padding:0.54rem 1rem;
                     border-radius: 0 0.3rem 0.3rem 0;
                 }
