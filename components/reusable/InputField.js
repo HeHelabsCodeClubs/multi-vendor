@@ -7,7 +7,8 @@ export default class InputField extends Component {
         super(props);
         this.state = {
             inputValue: this.props.typeOfInput !== 'checkbox' ? '' : false,
-            hasError: false
+            hasError: false,
+            wasGivenDefaultValue: false
         };
         this.renderInputField = this.renderInputField.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -17,7 +18,7 @@ export default class InputField extends Component {
     componentDidMount() {
         // change input value to default value if provided
         const { defaultInputValue } = this.props;
-        if (defaultInputValue !== undefined) {
+        if (defaultInputValue) {
             this.setState({
                 inputValue: defaultInputValue
             });
@@ -25,8 +26,26 @@ export default class InputField extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { inputWithError } = nextProps;
-        this.inputFieldShouldDisplayError(inputWithError);
+        const { defaultInputValue, inputWithError } = nextProps;
+        const { wasGivenDefaultValue, hasError } = this.state;
+        if (defaultInputValue && !wasGivenDefaultValue ) {
+            this.setState({
+                inputValue: defaultInputValue,
+                wasGivenDefaultValue: true
+            });
+        }
+
+        if (inputWithError !== '' && !hasError) {
+            this.setState({
+                hasError: true
+            });
+        }
+
+        if (inputWithError === '' && hasError) {
+            this.setState({
+                hasError: false
+            });
+        }
     }
 
     inputFieldShouldDisplayError(inputWithError) {
@@ -65,10 +84,20 @@ export default class InputField extends Component {
             fieldText
         } = this.props;
         const { inputValue, hasError } = this.state;
-        const inputClassName = hasError ? `${classN} is-invalid`: classN;
+        //const inputClassName = hasError ? `${classN} is-invalid`: classN;
+        let inputClassName = typeOfInput !== 'selector' ? '' : 'input-field';
+        if (name === this.props.inputWithError) {
+            if (hasError) {
+                inputClassName = 'input-field is-invalid';
+            }
+        }
+
         if (typeOfInput === 'text_field') {
             return (
                 <div className='input-field'>
+                    <label htmlFor={name}>
+                        {placeholder}
+                    </label>
                     <input 
                     type={type}
                     id={id}
@@ -83,8 +112,12 @@ export default class InputField extends Component {
         }
 
         if (typeOfInput === 'selector') {
+            
             return (
-                <div className ={hasError ? 'input-field is-invalid' : 'input-field'}>
+                <div className ={inputClassName}>
+                     <label htmlFor={name}>
+                        {placeholder}
+                    </label>
                     <Select2
                     id={id}
                     name={name}

@@ -151,6 +151,9 @@
     .shipping-btn {
         margin: 1rem;
         text-align: center;
+        .auth-button {
+            @extend .default-button-styles;
+        }
     }
     .signin-content {
         border-bottom: 1px solid $gray-color-6;

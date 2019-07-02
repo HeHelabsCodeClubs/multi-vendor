@@ -20,6 +20,14 @@
         background: $white-color;
         color: $orange-color-1; 
     }
+
+    &.is-submitting {
+        opacity: 0.6;
+        &:hover {
+            background: $orange-color-1;
+            color: $white-color;
+        }
+    }
 }
 
 .cat-hover-styles {

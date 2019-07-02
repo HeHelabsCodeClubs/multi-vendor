@@ -8,14 +8,16 @@ import Billing from '../components/views/checkout/Billing';
 import Delivery from '../components/views/checkout/Delivery';
 import Payment from '../components/views/checkout/Payment';
 import Loader from '../components/reusable/Loader';
-import { getClientAuthToken } from '../helpers/auth';
+import { getClientAuthToken, getTokenValue } from '../helpers/auth';
+import { API_URL } from '../config';
 
 class Checkout extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             activeContent: '',
-            sideContentClass: 'wrap'
+            sideContentClass: 'wrap',
+            triggerUpdateOfCustomerDeliveryAddress: false
         };
         this.renderContent = this.renderContent.bind(this);
         this.renderAccountView = this.renderAccountView.bind(this);
@@ -24,12 +26,27 @@ class Checkout extends React.Component {
         this.renderPaymentView = this.renderPaymentView.bind(this);
         this.decideContentToShow = this.decideContentToShow.bind(this);
         this.handleFixing = this.handleFixing.bind(this);
+        this.getCustomerAccountAddresses = this.getCustomerAccountAddresses.bind(this);
+        this.handleTabItemClick = this.handleTabItemClick.bind(this);
     }
 
     static async getInitialProps({ req, query }) {
         // if req means it is being rendered on the server
         if (req) {
-            return {};
+            const token = getTokenValue(req.headers.cookie);
+            const res = await fetch(`${API_URL}/customers/addresses`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+               
+            });
+            const response = await res.json();
+            return {
+                customerAddressData: response.data
+            };
         }
         const isClient = typeof document !== undefined;
         if (isClient) {
@@ -42,10 +59,45 @@ class Checkout extends React.Component {
             } else {
                 if (!token) {
                     Router.push('/checkout?page=account', '/checkout/account');
+                } else  {
+                    if (page === 'addresses') {
+                        const res = await fetch(`${API_URL}/customers/addresses`, {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                           
+                        });
+                        const response = await res.json();
+                        return {
+                            customerAddressData: response.data
+                        };
+                    }
                 }
             }
         }
         return {};
+    }
+
+    getCustomerAccountAddresses(token) {
+        fetch(`${API_URL}/customers/addresses`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+           
+        }).then(async (res) => {
+            try {
+                const response = await res.json();
+            } catch (err) {
+                console.log('error');
+                console.log(err);
+            }
+        });
     }
 
     componentDidMount() {
@@ -91,12 +143,21 @@ class Checkout extends React.Component {
     }
 
     renderContent() {
-        const { activeContent } = this.state;
+        const { 
+            activeContent,
+            triggerUpdateOfCustomerDeliveryAddress
+        } = this.state;
+        const { customerAddressData } = this.props;
         switch(activeContent) {
             case 'accountInfo':
                 return <AccountInfo />;
             case 'billing':
-                return <Billing />;
+                return (
+                    <Billing 
+                    customerAddressData={customerAddressData}
+                    triggerUpdateOfCustomerDeliveryAddress={triggerUpdateOfCustomerDeliveryAddress}
+                    />
+                );
             case 'delivery':
                 return <Delivery />;
             case 'payment':
@@ -131,7 +192,6 @@ class Checkout extends React.Component {
         })
     }
     handleFixing (e) {
-        console.log("I am working", e);
         // let element = e.target
         // if (element.scrollHeight - element.scrollTop === element.clientHeight) {
         //     this.setState ({
@@ -139,6 +199,18 @@ class Checkout extends React.Component {
         //     })
         // }
 
+    }
+
+    handleTabItemClick(tab_name) {
+        switch(tab_name) {
+            case 'delivery':
+                this.setState({
+                    triggerUpdateOfCustomerDeliveryAddress: true
+                });
+            break;
+            default:
+                // do nothing
+        }
     }
 	render() {
         const { sideContentClass } = this.state;
@@ -166,14 +238,12 @@ class Checkout extends React.Component {
                                         <h5 className='process-name'>2. Billing and shipping address</h5>
                                     </a>
                                 </Link>
-                                <Link
-                                href="/checkout?page=delivery"
-                                as="/checkout/delivery"
+                                <a 
+                                className='single-process' 
+                                onClick={(e) => {e.preventDefault(); this.handleTabItemClick('delivery') }}
                                 >
-                                    <a className='single-process' onClick={this.renderDeliveryView}>
-                                        <h5 className='process-name'>3. Delivery</h5>
-                                    </a>
-                                </Link>
+                                    <h5 className='process-name'>3. Delivery</h5>
+                                </a>
                                <Link
                                href="/checkout?page=payment"
                                as="/checkout/payment"
