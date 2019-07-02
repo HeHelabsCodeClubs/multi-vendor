@@ -82,7 +82,7 @@ class SingleCartStoreItem extends Component {
                 <div className='total-price'>
                     <div className='subtotal'>{`Sutotal: Rwf ${totalPrice}`}</div>
                     <div className='shipping-grid'>
-                        <span className='shipping-title'>Shipping method</span>
+                        <span className='shipping-title'>Shipping <span className="hidden-xs">method</span></span>
                         <span className='shipping-dropdown'>
                             <Select2
                                 defaultValue={1}

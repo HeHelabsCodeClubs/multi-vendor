@@ -48,12 +48,10 @@ class Checkout extends React.Component {
     }
 
     componentDidMount() {
-        console.log('i am called');
         this.decideContentToShow();
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('called from props');
         this.decideContentToShow();
     }
 
@@ -138,7 +136,7 @@ class Checkout extends React.Component {
                 <div className='maximum-width'>
                     <div className='row reset-row checkout-content'>
                         <StickyContainer >
-                            <div className='col-lg-8 col-md-8 col-sm-8 col-12 not-sticky__container'>
+                            <div className='col-11 checkouot__left-block not-sticky__container'>
                                 <ul className='checkout-process'>
                                     <Link
                                     href="/checkout?page=account"

@@ -296,7 +296,7 @@
 }
 .special-offers {
     background: $gray-color-2;
-    padding: 1rem 0 6rem 0;
+    padding: 1rem 0 2rem 0;
     .special-offers-wrapper {
         .special-offers-title {
             text-align: center;
@@ -405,7 +405,7 @@
     padding: 1rem 0 3rem 0;
 
     @media screen and (max-width: $mobile-lg) {
-        padding: 2rem 0 1rem 0;
+        padding: 2rem 0 3rem 0;
     }
     .made-in-rwanda-wrapper {
         .made-in-rwanda-title {
@@ -428,7 +428,7 @@
                 margin: 0 5%;
             }
             .slick-slide img {
-                height: 3rem;
+                height: 2.3rem;
                 object-fit: contain;
                 width: 100%;
             }

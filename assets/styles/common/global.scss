@@ -64,12 +64,44 @@ a {
         @include flexbox;
         @include flexalignitems(center);
         @include flexjustifycontent(space-between);
+
+        @media screen and (max-width: $mobile-lg) {
+            width: 100%;
+            margin-left: 0;
+            justify-content: start;
+        }
+
         .shipping-title {
             color: $black-color-5;
+            @media screen and (max-width: $mobile-lg) {
+                width: 22%;
+            }
         }
         .shipping {
             color: $black-color-5;
+            @media screen and (max-width: $mobile-lg) {
+                width: 35%;
+                text-align: right;
+            }
         }
+
+        .shipping-dropdown {
+
+            @media screen and (max-width: $mobile-lg) {
+                width: 43%;
+                text-align: center;
+
+                .select2-container {
+                    width: 100% !important;
+                    text-align: left;
+                }
+            }
+
+            .select2-selection--single {
+                border-width: .5px;
+            }
+        }
+        
     }
     .total-grid {
         padding: 1rem 0.5rem;
@@ -252,4 +284,9 @@ input {
     color: $black-color-3 !important;
 }
 
-
+// Special
+@media screen and (max-width: $mobile-lg) {
+    .hidden-xs {
+        display: none !important;
+    }
+}

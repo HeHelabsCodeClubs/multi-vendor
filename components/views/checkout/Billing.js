@@ -1,51 +1,74 @@
+import React, { Component } from 'react';
 import Link from 'next/link';
 import ProductPopup from '../ProductPopup';
+import InputField from '../../reusable/InputField';
+import DeliveryCustomerDetailForm from './DeliveryCustomerDetailForm';
 
-class Billing extends React.Component {
+class Billing extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			billingFormIsDisplayed: false,
+			billingAndShippingSame: true
+		};
+		this.renderCustomerDetailForm = this.renderCustomerDetailForm.bind(this);
+		this.handleBillingAddressDisplay = this.handleBillingAddressDisplay.bind(this);
+	}
+
+	renderCustomerDetailForm() {
+		const { billingAndShippingSame } = this.state;
+		if (billingAndShippingSame) {
+			return (
+				<div className='account-info-wrapper'>
+					<DeliveryCustomerDetailForm 
+					formTitle='Shipping address'
+					/>
+					<InputField 
+						typeOfInput='checkbox'
+						type='checkbox'
+						name='billingAndShippingSame'
+						fieldText='Billing and shipping address are the same'
+						updateInputFieldValue={this.handleBillingAddressDisplay}
+						defaultInputValue={billingAndShippingSame}
+					/>
+					<div className='shipping-btn'><button className='auth-button'>Continue</button></div>
+				</div>
+			);
+		}
+
+		return (
+			<div className='account-info-wrapper'>
+					<DeliveryCustomerDetailForm 
+					formTitle='Shipping address'
+					formType='shipping'
+					submitForm={false}
+					/>
+					<InputField 
+						typeOfInput='checkbox'
+						type='checkbox'
+						name='billingAndShippingSame'
+						fieldText='Billing and shipping address are the same'
+						updateInputFieldValue={this.handleBillingAddressDisplay}
+					/>
+					<DeliveryCustomerDetailForm 
+					formTitle='Billing address'
+					formType='billing'
+					submitForm={false}
+					/>
+					<div className='shipping-btn'>
+						<button className='auth-button'>Continue</button>
+					</div>
+			</div>
+		);
+	}
+	handleBillingAddressDisplay(fieldStateName, newValue) {
+		this.setState({
+			[fieldStateName]: newValue
+		});
+	}
 
 	render() {
-		return (
-            <div className='account-info-wrapper'>
-				<div className='account-info-title billing-title'>Shipping address</div>
-				<form className='row reset-row signin-form shipping-form' >
-					<div className=' col-lg-6 col-md-6 col-sm-6 col-12 input-field'>
-						<input type='text' placeholder='First name' />
-					</div>
-					<div className='col-lg-6 col-md-6 col-sm-6 col-12 input-field'>
-						<input type='text' placeholder='Last name' />
-					</div>
-					<div className='col-lg-6 col-md-6 col-sm-6 col-12 input-field'>
-						<input type='email' placeholder='Email' />
-					</div>
-					<div className='col-lg-6 col-md-6 col-sm-6 col-12 input-field'>
-						<input type='text' placeholder='Phone' />
-					</div>
-					<div className=' col-lg-6 col-md-6 col-sm-6 col-12 input-field'>
-						<input type='text' placeholder='City' />
-					</div>
-					<div className='col-lg-6 col-md-6 col-sm-6 col-12 input-field'>
-						<input type='text' placeholder='Neighborhood' />
-					</div>
-					<div className=' col-lg-6 col-md-6 col-sm-6 col-12 input-field'>
-						<input type='text' placeholder='Street no' />
-					</div>
-					<div className='col-lg-6 col-md-6 col-sm-6 col-12 input-field'>
-						<input type='text' placeholder='House no' />
-					</div>
-					<div className='col-lg-6 col-md-6 col-sm-6 col-12'>
-						<div className='input-checkbox billing-checkbox'>
-							<span className='remember'>Address type:</span>
-							<span className='remember'><input type='checkbox' />Residential</span>
-							<span className='remember'><input type='checkbox' />Commercial</span>
-						</div>
-						<div className='input-checkbox billing-checkbox two'>
-							<span className='remember'><input type='checkbox' />Billing and shipping address are the same</span>
-						</div>
-					</div>
-				</form>
-				<div className='shipping-btn'><button className='auth-button'>Continue</button></div>
-            </div>
-		);
+		return this.renderCustomerDetailForm();
 	}
 }
 

@@ -29,7 +29,8 @@ html {
     }
 
     .empty-cart-items {
-        font-size: 2rem;
+        font-size: 2.5rem !important;
+        font-family: "Harmonia Sans Pro light" !important;
     }
 
     .cart-wrapper {
@@ -240,6 +241,35 @@ html {
             font-family: $font-bold;
         }
     }
+    .special-single-product {
+        .product-description {
+            .price-cart {
+                .price {
+                    font-size: 1.2rem;
+                    font-family: $font-bold;
+    
+                    @media screen and (min-width: $tablet-min) and (max-width: $tablet-md) {
+                        font-size: 1rem;
+                    }
+    
+                    @media screen and (max-width: $mobile-lg) {
+                        font-size: 0.8rem;
+                    }
+                }
+                .initial-price {
+                    font-size: 1.14rem;
+                    font-family: $font-semi-bold;
+                    @media screen and (min-width: $tablet-min) and (max-width: $tablet-md) {
+                        font-size: 0.8rem;
+                    }
+                    @media screen and (max-width: $mobile-lg) {
+                        font-size: 0.7rem;
+                    }
+                }
+            }
+        }
+    }
+
     .product-description {
         &:before {
             font-family: 'icomoon';
@@ -292,6 +322,9 @@ html {
                         }
                     }
                 }
+            }
+            .select-options {
+                font-family: $font-semi-bold;
             }
         }
     }
@@ -437,11 +470,18 @@ html {
                 .grand-total {
                     font-size: 1.4rem;
                     font-family: $font-regular;
+                    @media screen and (max-width: $mobile-lg) {
+                        font-size: 1.2rem;
+                    }
                 }
                 .proceed-button {
                     button {
                         font-size: 1.4rem;
                         font-family: $font-bold;
+
+                        @media screen and (max-width: $mobile-lg) {
+                            font-size: 1.2rem;
+                        }
                     }
                 }
             }
@@ -941,7 +981,7 @@ html {
                     font-family: $font-light;
                     font-size: 1.4rem;
 
-                    @media (max-width: $mobile-lg) {
+                    @media (max-width: $tablet-md) {
                         font-size: 1.2rem;
                     }
                 }
@@ -949,7 +989,8 @@ html {
             .contact-content {
                 font-family: $font-light;
                 font-size: 1.4rem;
-                @media (max-width: $mobile-lg) {
+                
+                @media (max-width: $tablet-md) {
                     font-size: 1.2rem;
                 }
             }
