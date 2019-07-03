@@ -3,6 +3,8 @@ import fetch from 'isomorphic-unfetch';
 import { notify } from 'react-notify-toast';
 import '../../../assets/styles/layouts/landing.scss';
 import '../../../assets/styles/layouts/auth.scss';
+import '../../reusable/Breadcrumb'
+
 import { 
     API_URL, 
     API_ROOT_URL,
@@ -20,6 +22,7 @@ import {
     storeAuthUserInfoInLocalStorage,
     redirectUserToAfterLoginPage
 } from '../../../helpers/auth';
+import Breadcrumb from '../../reusable/Breadcrumb';
 
 class SignInForm extends Component {
     constructor(props) {
@@ -267,7 +270,7 @@ class SignInForm extends Component {
         const { showBreadCrumbs } = this.props;
         if (showBreadCrumbs) {
             return (
-                <div className='breadcrumbs'>Home / Registration</div>
+                <Breadcrumb/>
             );
         }
         return null;

@@ -290,3 +290,18 @@ input {
         display: none !important;
     }
 }
+
+// react checkbox switch
+.react-switch-bg {
+    height: 2rem !important;
+    width: 4rem !important;
+}
+.react-switch-bg svg {
+    top: -2px !important;
+}
+.react-switch-handle {
+    height: 1.4rem !important;
+    width: 1.4rem !important;
+    left: .25rem;
+    top: .28rem !important;
+}

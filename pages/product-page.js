@@ -391,7 +391,7 @@ class ProductPage extends React.Component {
         });
 
         // Display message to user
-        const successMessage = `${product.name} was add to your shopping cart. Visit your shopping cart to buy`;
+        const successMessage = `${product.name} was added to your shopping cart. Visit your shopping cart to checkout`;
         notify.show(successMessage, 'success', 2000);
 
         setTimeout(() => {
@@ -463,7 +463,7 @@ class ProductPage extends React.Component {
                                                 {this.getAddToCartButtonText()}
                                                 </button>
                                                 <button className='white-btn'>Direct Buy</button>
-                                                <button className='white-btn'>Add to Wishlist</button>
+                                                {/* <button className='white-btn'>Add to Wishlist</button> */}
                                             </div>
                                             {this.renderProductStore(productData.belongs_to_exclusive_store, productData.store)}
                                         </div>
