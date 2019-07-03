@@ -251,6 +251,9 @@
         .store-logo {
             background: $gray-color-6;
             padding: 0.7rem 1rem;
+            @include flexbox;
+            @include flexalignitems(center);
+            @include flexjustifycontent(space-between);
             img.store-img {
                 height: 3rem;
                 width: 3rem;
@@ -263,6 +266,20 @@
                     padding: 0 2rem 0 0.5rem;
                 }
             }
+            .btn_store-cartProducts {
+                color: $white-color !important;
+            }
+        }
+        .store-cartProducts {
+            visibility: hidden;
+            max-height: 0;
+            overflow-y: scroll;
+            transition: all .5s ease-in-out;
+        }
+        .store-cartProducts.active {
+            visibility: visible;
+            max-height: 20rem;
+            transition: all .5s ease-in-out;
         }
         .react-tabs {
             padding-bottom: 10px;
