@@ -91,9 +91,9 @@ class Header extends React.Component {
                         </div>
                         <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
                             <div className='top-panel-right'>
-                                <span className='top-content'>Track your order</span>
-                                <span className='top-content'>about</span>
-                                <span className='top-content'>contact</span>
+                                <a href="https://tracking.wherehouseshipping.com/" target="_blank"><span className='top-content'>Track your order</span></a>
+                                <a href="https://hehe.rw/" target="_blank"><span className='top-content'>about</span></a>
+                                <a href="https://hehe.rw/#contactUs" target="_blank"><span className='top-content'>contact</span></a>
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@ class Header extends React.Component {
                             </span>
                             <HeaderCategoryMenu />
                         </div>
-                        <div className='col-lg-5 col-md-5 col-sm-2 col-2 search-container'>
+                        <div className='col-lg-5 col-md-5 col-sm-2 col-3 search-container'>
                             <span className='main-search'>
                                 <input type="text" placeholder="Search store or product" />
                                 <span className='categories-dropdown'>

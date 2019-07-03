@@ -51,7 +51,7 @@ class HomepageCategory extends Component {
                   breakpoint: 979,
                   settings: {
                     slidesToShow: 5,
-                    slidesToScroll: 2,
+                    slidesToScroll: 3,
                     infinite: true,
                     dots: true
                   }
@@ -60,7 +60,7 @@ class HomepageCategory extends Component {
                   breakpoint: 768,
                   settings: {
                     slidesToShow: 4,
-                    slidesToScroll: 2,
+                    slidesToScroll: 3,
                   }
                 },
                 {
@@ -68,8 +68,8 @@ class HomepageCategory extends Component {
                   settings: {
                     slidesToShow: 3,
                     centerMode: true,
-					centerPadding: "30px",
-                    slidesToScroll: 1
+					          centerPadding: "30px",
+                    slidesToScroll: 3
                   }
                 }
               ]

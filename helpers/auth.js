@@ -89,9 +89,14 @@ function clearAuthUserLocalStorageInfo() {
  * Parse token
  */
 export const getTokenValue = (tokenString) => {
+    if (tokenString === undefined) {
+        return undefined;
+    }
+
     const tokenArray = tokenString.split('=');
     if (tokenArray[1]) {
         return tokenArray[1];
     }
+    
     return undefined;
 }

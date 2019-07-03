@@ -10,6 +10,7 @@ import Payment from '../components/views/checkout/Payment';
 import Loader from '../components/reusable/Loader';
 import { getClientAuthToken, getTokenValue } from '../helpers/auth';
 import { API_URL } from '../config';
+import { StickyContainer, Sticky } from 'react-sticky';
 
 class Checkout extends React.Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class Checkout extends React.Component {
         this.state = {
             activeContent: '',
             sideContentClass: 'wrap',
-            triggerUpdateOfCustomerDeliveryAddress: false
+            triggerUpdateOfCustomerDeliveryAddress: false,
         };
         this.renderContent = this.renderContent.bind(this);
         this.renderAccountView = this.renderAccountView.bind(this);
@@ -207,59 +208,83 @@ class Checkout extends React.Component {
                 this.setState({
                     triggerUpdateOfCustomerDeliveryAddress: true
                 });
+                setTimeout(() => {
+                    this.setState({
+                        triggerUpdateOfCustomerDeliveryAddress: false
+                    });
+                }, 400);
             break;
             default:
                 // do nothing
         }
     }
 	render() {
-        const { sideContentClass } = this.state;
 		return (
 			<Global>
                 <div className='maximum-width'>
-                    <div className='row reset-row'>
-                        <div className='col-lg-8 col-md-8 col-sm-8 col-12'>
-                            <ul className='checkout-process'>
-                                <Link
-                                href="/checkout?page=account"
-                                as="/checkout/account"
-                                >
-                                    <a 
-                                    className='single-process done' 
+                    <div className='row reset-row checkout-content'>
+                        <StickyContainer >
+                            <div className='col-11 checkouot__left-block not-sticky__container'>
+                                <ul className='checkout-process'>
+                                    <Link
+                                    href="/checkout?page=account"
+                                    as="/checkout/account"
                                     >
-                                        <h5 className='process-name'>1. Account info</h5>
-                                    </a>
-                                </Link>
+                                        <a 
+                                        className='single-process done' 
+                                        >
+                                            <h5 className='process-name'>1. Account info</h5>
+                                        </a>
+                                    </Link>
+                                    <Link
+                                    href="/checkout?page=addresses"
+                                    as="/checkout/addresses"
+                                    >
+                                        <a className='single-process active'>
+                                            <h5 className='process-name'>2. Billing and shipping address</h5>
+                                        </a>
+                                    </Link>
+                                    {/* <Link
+                                    href="/checkout?page=delivery"
+                                    as="/checkout/delivery"
+                                    > */}
+                                        <a 
+                                        className='single-process' 
+                                        onClick={(e) => { e.preventDefault(); this.handleTabItemClick('delivery') }}
+                                        >
+                                            <h5 className='process-name'>3. Delivery</h5>
+                                        </a>
+                                    {/* </Link> */}
                                 <Link
-                                href="/checkout?page=addresses"
-                                as="/checkout/addresses"
+                                href="/checkout?page=payment"
+                                as="/checkout/payment"
                                 >
-                                    <a className='single-process active'>
-                                        <h5 className='process-name'>2. Billing and shipping address</h5>
-                                    </a>
+                                        <a className='single-process' onClick={this.renderPaymentView}>
+                                            <h5 className='process-name'>4. Payment</h5>
+                                        </a>
                                 </Link>
-                                <a 
-                                className='single-process' 
-                                onClick={(e) => {e.preventDefault(); this.handleTabItemClick('delivery') }}
-                                >
-                                    <h5 className='process-name'>3. Delivery</h5>
-                                </a>
-                               <Link
-                               href="/checkout?page=payment"
-                               as="/checkout/payment"
-                               >
-                                    <a className='single-process' onClick={this.renderPaymentView}>
-                                        <h5 className='process-name'>4. Payment</h5>
-                                    </a>
-                               </Link>
-                            </ul>
-                            <div className={sideContentClass} onScroll={this.handleFixing}>
-                                {this.renderContent()}
-                            </div>
-                        </div>
-                        <div className='col-lg-4 col-md-4 col-sm-4 col-12 order-summary-grid'>
+                                </ul>
+
+                                <Sticky topOffset={80}>
+                                    {({
+                                        style,
+                                        isSticky,
+                                        wasSticky,
+                                        distanceFromTop,
+                                        distanceFromBottom,
+                                        calculatedHeight
+                                    }) => (
+                                        <header style={style}>
+                                            {this.renderContent()}
+                                        </header>
+                                    )}
+                                </Sticky>
+                            </div>                                                      
+                        </StickyContainer>
+
+                        <div className='col-lg-4 col-md-4 col-sm-4 col-12 order-summary-grid not-sticky__container'>
                             <OrderSummary />
-                        </div>
+                        </div> 
                     </div>
                 </div>
 			</Global>

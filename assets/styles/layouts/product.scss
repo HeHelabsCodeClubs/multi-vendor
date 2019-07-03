@@ -75,6 +75,7 @@
                 object-fit: contain;
                 height: 3rem;
                 width: 3rem;
+                padding: 4px;
                 background: $green-color-3;
                 border-radius: 50%;
             }
@@ -128,32 +129,36 @@
             }
             .add-to-cart {
                 float: right;
+
                 button {
                     border: none;
                     border-radius: 50%;
-                    background: $green-color-3;
+                    background: $orange-color-3;
                     padding: .8rem .7rem 1rem;
                     height: 3rem;
+                    width: 3rem;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
                     @include flexbox;
                     @include flexalignitems(center);
                     @include flexjustifycontent(center);
-                    @include transition(0.5s);
-
-                    @media screen and (max-width: $mobile-lg) {
-                        height: 2rem;
-                    }                 
+                    @include transition(0.5s);              
 
                     .icon-Path-63:before {
-                        color: $green-color-2;
+                        color: $orange-color-1;
                         @include transition(0.5s);
                     }
                 }
                 &:hover {
                     button {
+                        width: 8rem;
                         border-radius: 2rem;
+
                         @media (max-width: $mobile-lg) {
                             border-radius: 50%;
                         }
+
                         .icon-Path-63:before {
                             content: 'Add to cart';
                             font-size: 1.1rem;
@@ -168,7 +173,7 @@
                 &.select-options {
                     button {
                         border-radius: 2rem;
-                        color: $green-color-2;
+                        color: $orange-color-1;
                         padding: 0 0.8rem !important;
 
                         @media (max-width: $mobile-lg) {
@@ -385,7 +390,7 @@
 
     @media (max-width: $mobile-lg) {
         margin: 0 0 1rem 0;
-        display: block !important;
+        min-height: 3rem;
     }
 
     .details-title {

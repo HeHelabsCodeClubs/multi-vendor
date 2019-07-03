@@ -59,7 +59,7 @@ export default class SingleCartProductItem extends Component {
         //const removeProductClick = this.removeProductFromCart.bind(product, productIndex, this);
         if (Number(has_discount) === 1) {
             return (
-                <div className='col-lg-5 col-md-5 col-sm-5 col-5 col-reset prices-discounts'>
+                <div className='col-lg-5 col-md-5 col-sm-5 col-4 col-reset prices-discounts'>
                     <div className='cart-bk'>
                         <div className='discount'>{`${discount_percent}% OFF`}</div>
                     </div>
@@ -71,7 +71,7 @@ export default class SingleCartProductItem extends Component {
                         onClick={() => this.removeProductFromCart(product, productIndex)}
                         >
                             <span className='icon-Path-60'></span>
-                            <span>Remove</span>
+                            <span className="hidden-xs">Remove</span>
                         </button>
                         <div className='price'>{`Rwf ${special_price}`}</div>
                     </div>    
@@ -80,7 +80,7 @@ export default class SingleCartProductItem extends Component {
         }
 
         return (
-            <div className='col-lg-5 col-md-5 col-sm-5 col-5 col-reset prices-discounts'>
+            <div className='col-lg-5 col-md-5 col-sm-5 col-4 col-reset prices-discounts'>
                 <div className='cart-bk'>
                     &nbsp;
                 </div>
@@ -92,7 +92,7 @@ export default class SingleCartProductItem extends Component {
                     onClick={() => this.removeProductFromCart(product, productIndex)}
                     >
                         <span className='icon-Path-60'></span>
-                        <span>Remove</span>
+                        <span className="hidden-xs">Remove</span>
                     </button>
                     <div className='price'>{`Rwf ${price}`}</div>
                 </div>    
@@ -131,18 +131,21 @@ export default class SingleCartProductItem extends Component {
                         <div className='col-lg-2 col-md-2 col-sm-2 col-3 col-reset product-cart-image'>
                             <img className='cart-product-img' src={cart_image_url} />
                         </div>
-                        <div className='col-lg-5 col-md-5 col-sm-5 col-4 col-reset name-incremenet'>
-                            <div className='product-name'>{name}</div>
-                            {/* {pieceDescr} */}
-                            <StockIncrementer 
-                            stock={productData.stock}
-                            updateCartOnChange={true}
-                            product={productData}
-                            runOnCartChange={this.props.updateCartData}
-                            incrementInitial={false}
-                            updateInitial={true}
-                            layout={'incrementor'}
-                            />
+                        <div className='col-lg-5 col-md-5 col-sm-5 col-5 col-reset name-incremenet'>
+                            <div className="cart-increment__content">
+                                <div className='product-name'>{name}</div>
+                                {/* {pieceDescr} */}
+                                <StockIncrementer 
+                                stock={productData.stock}
+                                updateCartOnChange={true}
+                                product={productData}
+                                runOnCartChange={this.props.updateCartData}
+                                incrementInitial={false}
+                                updateInitial={true}
+                                layout={'incrementor'}
+                                />
+                            </div>                           
+                            
                         </div>
                         {this.renderProductPrice(productData)}
                     </div>
@@ -174,20 +177,22 @@ export default class SingleCartProductItem extends Component {
                         <div className='col-lg-2 col-md-2 col-sm-2 col-3 col-reset product-cart-image'>
                             <img className='cart-product-img' src={cart_image_url} />
                         </div>
-                        <div className='col-lg-5 col-md-5 col-sm-5 col-4 col-reset name-incremenet'>
-                            <div className='product-name'>{name}</div>
-                            {pieceDescr}
-                            {this.renderOptions(productItem.options)}
-                            <StockIncrementer 
-                            stock={product.stock}
-                            updateCartOnChange={true}
-                            product={product}
-                            runOnCartChange={this.props.updateCartData}
-                            incrementInitial={false}
-                            updateInitial={true}
-                            layout={'incrementor'}
-                            index={index}
-                            />
+                        <div className='col-lg-5 col-md-5 col-sm-5 col-5 col-reset name-incremenet'>
+                            <div className="cart-increment__content">
+                                <div className='product-name'>{name}</div>
+                                {pieceDescr}
+                                {this.renderOptions(productItem.options)}
+                                <StockIncrementer 
+                                stock={product.stock}
+                                updateCartOnChange={true}
+                                product={product}
+                                runOnCartChange={this.props.updateCartData}
+                                incrementInitial={false}
+                                updateInitial={true}
+                                layout={'incrementor'}
+                                index={index}
+                                />
+                            </div>
                         </div>
                         {this.renderProductPrice(product, index)}
                 </div>
