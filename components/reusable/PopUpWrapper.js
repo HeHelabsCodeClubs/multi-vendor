@@ -6,112 +6,112 @@ class PopUpWrapper extends Component {
         return (
             <div className='row reset-row background-images'>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
                 <div className='col-lg-2 col-md-2 col-sm-3 col-4'>
-                    <img src='https://res.cloudinary.com/hehe/image/upload/v1556122597/multi-vendor/Group_403.png' />
+                    <img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556122597/multi-vendor/Group_403.png' />
                 </div>
             </div>
         )
