@@ -7,6 +7,7 @@ import isObjectEmpty from '../../../helpers/is_object_empty';
 import { API_URL } from '../../../config';
 import { getClientAuthToken } from '../../../helpers/auth';
 
+// just testing deployment
 class Billing extends Component {
 	constructor(props) {
 		super(props);
