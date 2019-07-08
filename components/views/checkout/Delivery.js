@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Router from 'next/router';
 import SingleStoreDeliveryItem from './SingleStoreDeliveryItem';
 import Loader from '../../reusable/Loader';
 import { getCartItems } from '../../../helpers/cart_functionality_helpers';
@@ -12,6 +13,8 @@ class Delivery extends Component {
 		};
 		this.updateCartItems = this.updateCartItems.bind(this);
 		this.renderItems = this.renderItems.bind(this);
+		this.renderPlaceOrderButton = this.renderPlaceOrderButton.bind(this);
+		this.redirectToPayment = this.redirectToPayment.bind(this);
 	}
 
 	componentDidMount() {
@@ -50,6 +53,26 @@ class Delivery extends Component {
 
 		return <Loader />;
 	}
+
+	redirectToPayment() {
+		const actionUrl = '/checkout?page=payment';
+        const asUrl = '/checkout/payment';
+        Router.push(actionUrl, asUrl);
+	}
+
+	renderPlaceOrderButton() {
+		return (
+			<div className='shipping-btn'>
+				<button 
+				type='button'
+				className='auth-button'
+				onClick={this.redirectToPayment}
+				>
+				Place Order
+				</button>
+			</div>
+		);
+	}
 	render() {
 		return (
             <div className='account-info-wrapper'>
@@ -57,23 +80,11 @@ class Delivery extends Component {
 					<div className='account-info-title'>
 						<h5>Choose delivery methods</h5>
 					</div>
-					<div className='shipping-btn'>
-						<button 
-						type='button'
-						className='auth-button'
-						>
-						Place Order
-						</button>
-					</div>
+					{this.renderPlaceOrderButton()}
 				</div>
 				{this.renderItems()}
 				<div className='shipping-btn'>
-					<button 
-					type='button'
-					className='auth-button'
-					>
-					Place Order
-					</button>
+					{this.renderPlaceOrderButton()}
 				</div>
             </div>
 		);
