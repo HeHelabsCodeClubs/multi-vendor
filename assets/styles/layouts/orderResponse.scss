@@ -1,0 +1,46 @@
+@import "../main";
+
+.order-response__content {
+    max-width: 60rem !important;
+    margin: auto !important;
+    text-align: center;    
+    
+    .landing-wrapper {
+        border-top: 1.5rem solid $green-color-3;
+    }
+
+    h1 {
+        color: $green-color-3;
+    }
+    h5 {
+        padding: 1.5rem 0;
+    }
+    p {
+        margin: .1rem;
+    }
+
+    ul {
+        padding: 0;
+        margin-top: 4rem;
+
+        li {
+            display: inline;
+            padding: 1rem;
+
+            a {
+                text-decoration: underline;
+                color: $green-color-2 !important;
+            }
+        }
+    }
+
+    .site-logo {
+        border-top: .5px solid rgba(0, 0, 0, 0.2);
+        padding-top: 1.2rem;
+
+        img {
+            max-width: 8rem;
+        }
+    }
+
+}
