@@ -3,44 +3,68 @@
 .order-response__content {
     max-width: 60rem !important;
     margin: auto !important;
-    text-align: center;    
-    
+    text-align: center;
+
     .landing-wrapper {
         border-top: 1.5rem solid $green-color-3;
-    }
 
-    h1 {
-        color: $green-color-3;
-    }
-    h5 {
-        padding: 1.5rem 0;
-    }
-    p {
-        margin: .1rem;
-    }
+        &.failure-content {
+            border-top: 1.5rem solid $red-color-4;
 
-    ul {
-        padding: 0;
-        margin-top: 4rem;
+            h1 {
+                color: $red-color-4;
+            }
+            ul {
+                li {
+                    a {
+                        color: $red-color-3 !important;
+                    }
+                }
+            }
+        }
+        h1 {
+            color: $green-color-3;
+        }
+        h5 {
+            padding: 1.5rem 0;
+        }
+        p {
+            margin: .1rem;
+        }
 
-        li {
-            display: inline;
-            padding: 1rem;
+        ul {
+            padding: 0;
+            margin-top: 4rem;
 
-            a {
-                text-decoration: underline;
-                color: $green-color-2 !important;
+            li {
+                display: inline;
+                padding: 1rem;
+
+                &:nth-child(2) {
+                    position: absolute;
+                    right: 30px;
+                    margin-top: -10px;
+
+                    a {
+                        font-family: 'Harmonia Sans Pro Regular';
+                        font-size: 1rem !important;
+                    }
+                }
+
+                a {
+                    text-decoration: underline;
+                    color: $green-color-2 !important;
+                }
+            }
+        }
+
+        .site-logo {
+            border-top: .5px solid rgba(0, 0, 0, 0.2);
+            padding-top: 1.2rem;
+
+            img {
+                max-width: 8rem;
             }
         }
     }
-
-    .site-logo {
-        border-top: .5px solid rgba(0, 0, 0, 0.2);
-        padding-top: 1.2rem;
-
-        img {
-            max-width: 8rem;
-        }
-    }
-
 }
