@@ -82,7 +82,7 @@ export const logoutUser = () => {
  */
 function clearAuthUserLocalStorageInfo() {
     localforage.removeItem(AUTH_USER_LOCAL_STORAGE_INFO);
-    localforage.removeItem(CART_ITEMS_KEY);
+    //localforage.removeItem(CART_ITEMS_KEY);
 }
 
 /**

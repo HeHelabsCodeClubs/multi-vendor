@@ -71,7 +71,7 @@ const isFieldEmpty = (value) => {
  */
 const getEmptyFieldErrorMessage = (value, context) => {
     if (typeof value === 'number') {
-        return `Please read and accept ${context}.`;
+        return `Please read and accept the ${context} before proceeding.`;
     }
     return `The ${context} is required`;
 }

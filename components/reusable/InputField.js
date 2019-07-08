@@ -13,6 +13,7 @@ export default class InputField extends Component {
         this.renderInputField = this.renderInputField.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.inputFieldShouldDisplayError = this.inputFieldShouldDisplayError.bind(this);
+        this.renderInputLabel = this.renderInputLabel.bind(this);
     }
 
     componentDidMount() {
@@ -72,6 +73,19 @@ export default class InputField extends Component {
         });
     }
 
+    renderInputLabel() {
+        const { hideLabel, name, placeholder } = this.props;
+        if (hideLabel) {
+            return null
+        }
+
+        return (
+            <label htmlFor={name}>
+                {placeholder}
+            </label>
+        );
+    }
+
     renderInputField() {
         const { 
             type,
@@ -95,9 +109,7 @@ export default class InputField extends Component {
         if (typeOfInput === 'text_field') {
             return (
                 <div className='input-field'>
-                    <label htmlFor={name}>
-                        {placeholder}
-                    </label>
+                    {this.renderInputLabel()}
                     <input 
                     type={type}
                     id={id}
@@ -115,9 +127,7 @@ export default class InputField extends Component {
             
             return (
                 <div className ={inputClassName}>
-                     <label htmlFor={name}>
-                        {placeholder}
-                    </label>
+                     {this.renderInputLabel()}
                     <Select2
                     id={id}
                     name={name}

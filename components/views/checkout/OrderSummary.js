@@ -1,29 +1,69 @@
 import React, { Component } from 'react';
+import SingleStoreOrderSummary from './SingleStoreOrderSummary';
+import isObjectEmpty from '../../../helpers/is_object_empty';
 import { 
     getCartItems,
     countCartItems,
-    storeProductsTotalPrice,
-    singleStoreProductsCount,
-    singleStoreTotalPrice
+    storeProductsTotalPrice
 } from '../../../helpers/cart_functionality_helpers';
-import isObjectEmpty from '../../../helpers/is_object_empty';
+import { 
+    getTotalShippingPrice 
+} from '../../../helpers/shipment_method_functionality_helpers';
 
 class OrderSummary extends Component {
     constructor(props) {
         super(props);
         this.state = {
             cartItems: {},
-            totalItemsPrice: 0
+            totalItemsPrice: 0,
+            totalShippingPrice: 0,
+            triggerUpdateForSingleStoreShippingPrice: false
         };
         this.updateCartItems = this.updateCartItems.bind(this);
         this.renderCartItemsTotal = this.renderCartItemsTotal.bind(this);
         this.renderProducts = this.renderProducts.bind(this);
+        this.updateTotalShippingPrice = this.updateTotalShippingPrice.bind(this);
+        this.updateShippingPriceForAStore = this.updateShippingPriceForAStore.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { triggerShipmentMethodUpdate } = nextProps;
+        if (triggerShipmentMethodUpdate) {
+            // update total shipping price
+            getTotalShippingPrice((totalPrice) => {
+                this.updateTotalShippingPrice(totalPrice);
+                // update shipping price for each store
+                this.updateShippingPriceForAStore();
+                
+            });
+        }
     }
 
     componentDidMount() {
         getCartItems((items) => {
            this.updateCartItems(items);
         });
+
+        // update total shipping price
+        getTotalShippingPrice((totalPrice) => {
+            this.updateTotalShippingPrice(totalPrice);
+        });
+    }
+
+    updateShippingPriceForAStore() {
+        const { triggerUpdateForSingleStoreShippingPrice } = this.state;
+        if (!triggerUpdateForSingleStoreShippingPrice) {
+            this.setState({
+                triggerUpdateForSingleStoreShippingPrice: true
+            });
+
+            // back to initital state
+            setTimeout(() => {
+                this.setState({
+                    triggerUpdateForSingleStoreShippingPrice: false
+                })
+            }, 400);
+        }
     }
 
     updateCartItems(items) {
@@ -32,8 +72,17 @@ class OrderSummary extends Component {
         });
     }
 
+    updateTotalShippingPrice(totalPrice) {
+        const { totalShippingPrice } = this.state;
+        if (totalShippingPrice !== totalPrice) {
+            this.setState({
+                totalShippingPrice: totalPrice
+            });
+        }
+    }
+
     renderCartItemsTotal() {
-        const { cartItems } = this.state;
+        const { cartItems, totalShippingPrice } = this.state;
         if (!isObjectEmpty(cartItems)) {
             const totalItems = countCartItems(cartItems);
             const totalItemsText = totalItems === 1 ? `${totalItems} item` : `${totalItems} item(s)`;
@@ -46,7 +95,7 @@ class OrderSummary extends Component {
                     </div>
                     <div className='line'>
                         <span className='title'>Total shipping:</span>
-                        <span className='s-price'>Rwf 2100</span>
+                        <span className='s-price'>{`Rwf ${totalShippingPrice}`}</span>
                     </div>
                 </div>
             );
@@ -56,100 +105,20 @@ class OrderSummary extends Component {
     }
 
     renderProducts() {
-        const { cartItems } = this.state;
+        const { cartItems, triggerUpdateForSingleStoreShippingPrice } = this.state;
         if (!isObjectEmpty(cartItems)) {
             const storeLayout = [];
             Object.keys(cartItems).forEach((storeSlug, index) => {
-                const storeProducts = cartItems[storeSlug].products;
-                const productsLayout = [];
-                Object.keys(storeProducts).forEach((productSlug, index) => {
-                    if (Number(storeProducts[productSlug].has_attributes) === 0) {
-                        const { name, price, quantity, has_discount, special_price } = storeProducts[productSlug];
-                        const productPrice = Number(has_discount) === 1 ? Number(special_price) : Number(price);
-                        const totalPrice = Number(productPrice) * Number(quantity);
-                        productsLayout.push(
-                            <div 
-                            className='cart-product'
-                            key={`${name}-${index}`}
-                            >
-                                <div className='line'>
-                                    <span className='title'>{name}</span>
-                                    <span className='u-price'>{`Rwf ${totalPrice}`}</span>
-                                </div>
-                                <div className='product-att'>{`qty: ${quantity}`}</div>
-                                <div className='product-att'>{`Unit price: Rwf ${price}`}</div>
-                            </div>
-                        );
-                    } else {
-                        const { meta, name } = storeProducts[productSlug];
-                        const products = meta.map((product, index) => {
-                            const productPrice = Number(product.has_discount) === 1 ? Number(product.special_price) : Number(product.price);
-                            const totalPrice = Number(product.quantity) * productPrice;
-                            const optionsLayout = [];
-                            const { options } = product;
-                            Object.keys(options).forEach((option, index) => {
-                                optionsLayout.push(
-                                    <div 
-                                    className='product-att'
-                                    key={`${option}-${index}`}
-                                    >
-                                    {`${option}: ${options[option].title}`}
-                                    </div>
-                                );
-                            });
-                            return (
-                                <div 
-                                className='cart-product'
-                                key={`${name}-${index}`}
-                                >
-                                    <div className='line'>
-                                        <span className='title'>{name}</span>
-                                        <span className='u-price'>{`Rwf ${totalPrice}`}</span>
-                                    </div>
-                                    <div className='product-att'>{`qty: ${product.quantity}`}</div>
-                                    {optionsLayout}
-                                    <div className='product-att'>{`Unit price: Rwf ${product.price}`}</div>
-                                </div>
-                            );
-                        });
-                        productsLayout.push(products);
-                    }
-                });
-
-                const storeProductsCount = singleStoreProductsCount(cartItems[storeSlug]);
-                const productsCountText = storeProductsCount === 1 ? `(${storeProductsCount} Item from ${cartItems[storeSlug].info.name} store)` : `(${storeProductsCount} Items from ${cartItems[storeSlug].info.name} store)`;
-                const storeTotalPrice = singleStoreTotalPrice(cartItems[storeSlug]);
+                const data = {
+                    slug: storeSlug,
+                    ...cartItems[storeSlug]
+                };
                 storeLayout.push(
-
-                    <div 
-                    className='white-background'
+                    <SingleStoreOrderSummary 
                     key={`${storeSlug}-${index}`}
-                    >
-                        <div 
-                        className='checkout-cart-header'
-                        >
-                            <div className='store-cart-content'>
-                                <img className='store-logo' src={cartItems[storeSlug].info.icon}/>
-                                <span className='store-name'>{cartItems[storeSlug].info.name}</span>
-                            </div>
-                            <span className='store-items'>{productsCountText}</span>
-                            
-                        </div>
-                        {productsLayout}
-                    
-                    {/* <div className='gift-block'>
-                        <div>
-                            <input type='text' placeholder='Gift certificate or promo code' />
-                            <button>Apply</button>
-                        </div>
-                    </div> */}
-                    <div>
-                        <div className='subtotal'><span className='light-title'>Subtotal:</span> {`Rwf ${storeTotalPrice}`}</div>
-                        <div className='shipping'><span className='light-title'>Shipping:</span>  Rwf 100</div>
-                        <div className='total'><span className='total-t'><span className='light-title'>Total:</span>  Rwf 1100</span></div>
-                    </div>
-                </div>
-                    
+                    storeData={data}
+                    triggerUpdateForSingleStoreShippingPrice={triggerUpdateForSingleStoreShippingPrice}
+                    />
                 );
             });
             return storeLayout;
@@ -157,7 +126,6 @@ class OrderSummary extends Component {
         return null; 
     }
 	render() {
-        console.log('items', this.state.cartItems);
 		return (
             <div className='order-summary-wrapper'>
                 <div className='order-summary'>

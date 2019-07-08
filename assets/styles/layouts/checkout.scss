@@ -189,6 +189,15 @@
     .payment-section {
         padding: 1rem 0;
         border-bottom: .5px solid $gray-color-2;
+        &.delivery-section {
+            @include flexbox();
+            @include flexjustifycontent(space-between);
+
+            .account-info-title {
+                @include flexbox();
+                @include flexalignitems(center);
+            }
+        }
         .wallet-title {
             color: $gray-color-4;
         }
@@ -201,10 +210,32 @@
                 background: $gray-color-2; 
             }
             .single-payment-title {
+                @include flexbox();
+                @include flexjustifycontent(space-between);
+
+                .title-wrapper {
+                    @include flexbox;
+                    @include flexalignitems(center);
+                }
                 .title-left {
                     color: $black-color-3;
+                    .title {
+                        margin: 0;
+                        padding: 0;
+                    }
                     input {
                         margin: 0 0.5rem 0 0;
+                    }
+                }
+
+                .title-right {
+                    .payment-logo {
+                        width: 3.5rem;
+                        margin-right: 0.3rem;
+
+                        &:last-child {
+                            margin-right: 0;
+                        }
                     }
                 }
             }
@@ -230,6 +261,7 @@
             }
         }
         .payment-comment {
+            margin-top: 1rem;
             .comment-title {
                 color: $gray-color-1;
             }
@@ -248,6 +280,8 @@
     .delivery-content {
         border: .5px solid $gray-color-6;
         border-radius: 0.35rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
         .store-logo {
             background: $gray-color-6;
             padding: 0.7rem 1rem;
@@ -267,7 +301,9 @@
                 }
             }
             .btn_store-cartProducts {
-                color: $white-color !important;
+                // color: $white-color !important;
+                @extend .default-button-styles;
+                padding: 0.3rem 0;
             }
         }
         .store-cartProducts {
