@@ -3,8 +3,16 @@ import fetch from 'isomorphic-unfetch';
 import { notify } from 'react-notify-toast';
 import '../../../assets/styles/layouts/landing.scss';
 import '../../../assets/styles/layouts/auth.scss';
-import '../../reusable/Breadcrumb'
-
+import Breadcrumb from '../../reusable/Breadcrumb';
+import InputField from '../../reusable/InputField';
+import MessageDisplayer from '../../reusable/MessageDisplayer';
+import { getValidatedInputErrorMessage } from '../../../helpers/validation';
+import { setPageAsVisited } from '../../../helpers/checkout_page_visits';
+import { 
+    storeTokenInLocalStorage, 
+    storeAuthUserInfoInLocalStorage,
+    redirectUserToAfterLoginPage
+} from '../../../helpers/auth';
 import { 
     API_URL, 
     API_ROOT_URL,
@@ -14,15 +22,7 @@ import {
     PLATFORM_CLIENT_SECRET,
     USER_FORBIDDEN
 } from '../../../config';
-import InputField from '../../reusable/InputField';
-import MessageDisplayer from '../../reusable/MessageDisplayer';
-import { getValidatedInputErrorMessage } from '../../../helpers/validation';
-import { 
-    storeTokenInLocalStorage, 
-    storeAuthUserInfoInLocalStorage,
-    redirectUserToAfterLoginPage
-} from '../../../helpers/auth';
-import Breadcrumb from '../../reusable/Breadcrumb';
+
 
 class SignInForm extends Component {
     constructor(props) {
@@ -224,6 +224,7 @@ class SignInForm extends Component {
                      */
                     storeTokenInLocalStorage(access_token, expires_in);
                     storeAuthUserInfoInLocalStorage(user);
+                    setPageAsVisited('account'); // set checkout page account as visited
                     redirectUserToAfterLoginPage(redirectPageAfterLogin);
                 } else {
                     this.performOnUserAuthFailure();
@@ -270,7 +271,11 @@ class SignInForm extends Component {
         const { showBreadCrumbs } = this.props;
         if (showBreadCrumbs) {
             return (
-                <Breadcrumb/>
+                <Breadcrumb>
+                    <a href="/" className="breadcrumb-link">Home</a>
+                        <span> / </span>
+                    <a href="/register" className="breadcrumb-current">Register</a>
+                </Breadcrumb>
             );
         }
         return null;

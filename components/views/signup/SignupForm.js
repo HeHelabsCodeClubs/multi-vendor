@@ -20,6 +20,7 @@ import {
     storeAuthUserInfoInLocalStorage,
     redirectUserToAfterLoginPage
 } from '../../../helpers/auth';
+import Breadcrumb from '../../reusable/Breadcrumb';
 
 class SignupForm extends Component {
     constructor(props) {
@@ -335,7 +336,11 @@ class SignupForm extends Component {
         const { showBreadCrumbs } = this.props;
         if (showBreadCrumbs) {
             return (
-                <div className='breadcrumbs'>Home / Registration</div>
+                <Breadcrumb>
+                    <a href="/" className="breadcrumb-link">Home</a>
+                        <span> / </span>
+                    <a href="#" className="breadcrumb-current">Register</a>
+                </Breadcrumb>
             );
         }
         return null;

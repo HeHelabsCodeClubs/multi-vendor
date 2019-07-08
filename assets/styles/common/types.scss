@@ -9,8 +9,8 @@ html {
         }
     }
     h5 {
-        font-size: 1rem !important;
-        font-family: $font-bold !important;
+        font-size: 1rem; //!important;
+        font-family: $font-bold; //!important;
     }
     h6 {
         font-family: $font-regular;
@@ -684,9 +684,19 @@ html {
                     .title-left {
                         font-size: 1.28rem;
                         font-family: $font-regular;
+
+                        .title {
+                            font-size: 1.28rem;
+                            font-family: $font-regular;
+                        }
                     }
                 }
                 .card-payment {
+                    p {
+                        font-size: 1.28rem;
+                        line-height: 1.92rem;
+                        color: $black-color-3;
+                    }
                     .payment-input {
                         input {
                             font-size: 1.28rem;

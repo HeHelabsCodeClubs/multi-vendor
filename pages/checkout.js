@@ -8,14 +8,22 @@ import Billing from '../components/views/checkout/Billing';
 import Delivery from '../components/views/checkout/Delivery';
 import Payment from '../components/views/checkout/Payment';
 import Loader from '../components/reusable/Loader';
-import { getClientAuthToken } from '../helpers/auth';
+import CheckoutPageSectionLink from '../components/views/checkout/CheckoutPageSectionLink';
+import { getClientAuthToken, getTokenValue } from '../helpers/auth';
+import { API_URL } from '../config';
 import { StickyContainer, Sticky } from 'react-sticky';
 
 class Checkout extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeContent: ''
+            activeContent: '',
+            sideContentClass: 'wrap',
+            triggerUpdateOfCustomerDeliveryAddress: false,
+            triggerShipmentMethodUpdate: false,
+            accountPageVisitedClass: 'single-process',
+            billingPageVisitedClass: 'single-process',
+
         };
         this.renderContent = this.renderContent.bind(this);
         this.renderAccountView = this.renderAccountView.bind(this);
@@ -23,12 +31,28 @@ class Checkout extends React.Component {
         this.renderDeliveryView = this.renderDeliveryView.bind(this);
         this.renderPaymentView = this.renderPaymentView.bind(this);
         this.decideContentToShow = this.decideContentToShow.bind(this);
+        this.getCustomerAccountAddresses = this.getCustomerAccountAddresses.bind(this);
+        this.handleTabItemClick = this.handleTabItemClick.bind(this);
+        this.updateShipmentInfo = this.updateShipmentInfo.bind(this);
     }
 
     static async getInitialProps({ req, query }) {
         // if req means it is being rendered on the server
         if (req) {
-            return {};
+            const token = getTokenValue(req.headers.cookie);
+            const res = await fetch(`${API_URL}/customers/addresses`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+               
+            });
+            const response = await res.json();
+            return {
+                customerAddressData: response.data
+            };
         }
         const isClient = typeof document !== undefined;
         if (isClient) {
@@ -41,10 +65,45 @@ class Checkout extends React.Component {
             } else {
                 if (!token) {
                     Router.push('/checkout?page=account', '/checkout/account');
+                } else  {
+                    if (page === 'addresses') {
+                        const res = await fetch(`${API_URL}/customers/addresses`, {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                           
+                        });
+                        const response = await res.json();
+                        return {
+                            customerAddressData: response.data
+                        };
+                    }
                 }
             }
         }
         return {};
+    }
+
+    getCustomerAccountAddresses(token) {
+        fetch(`${API_URL}/customers/addresses`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+           
+        }).then(async (res) => {
+            try {
+                const response = await res.json();
+            } catch (err) {
+                console.log('error');
+                console.log(err);
+            }
+        });
     }
 
     componentDidMount() {
@@ -90,14 +149,27 @@ class Checkout extends React.Component {
     }
 
     renderContent() {
-        const { activeContent } = this.state;
+        const { 
+            activeContent,
+            triggerUpdateOfCustomerDeliveryAddress,
+        } = this.state;
+        const { customerAddressData } = this.props;
         switch(activeContent) {
             case 'accountInfo':
                 return <AccountInfo />;
             case 'billing':
-                return <Billing />;
+                return (
+                    <Billing 
+                    customerAddressData={customerAddressData}
+                    triggerUpdateOfCustomerDeliveryAddress={triggerUpdateOfCustomerDeliveryAddress}
+                    />
+                );
             case 'delivery':
-                return <Delivery />;
+                return (
+                    <Delivery
+                    updateShipmentInfo={this.updateShipmentInfo}
+                    />
+                );
             case 'payment':
                 return <Payment />;
             default:
@@ -129,8 +201,51 @@ class Checkout extends React.Component {
             activeContent: 'payment'
         })
     }
+
+    handleTabItemClick(tab_name) {
+        switch(tab_name) {
+            case 'delivery':
+                const { router: { query: { page } } } = Router;
+                if (page === 'addresses') {
+                    this.setState({
+                        triggerUpdateOfCustomerDeliveryAddress: true
+                    });
+                    setTimeout(() => {
+                        this.setState({
+                            triggerUpdateOfCustomerDeliveryAddress: false
+                        });
+                    }, 400);
+                }
+
+                if (page === 'delivery' || page === 'payment') {
+                    this.setState({
+                        activeContent: 'delivery'
+                    });
+                }
+            break;
+            default:
+                // do nothing
+        }
+    }
+    updateShipmentInfo() {
+        const { triggerShipmentMethodUpdate } = this.state;
+        if (!triggerShipmentMethodUpdate) {
+            this.setState({
+                triggerShipmentMethodUpdate: true
+            });
+
+            // go to initial state
+            setTimeout(() => {
+                this.setState({
+                    triggerShipmentMethodUpdate: false
+                });
+            }, 400)
+        }
+    }
+
     
 	render() {
+        const { triggerShipmentMethodUpdate } = this.state;
 		return (
 			<Global>
                 <div className='maximum-width'>
@@ -138,40 +253,23 @@ class Checkout extends React.Component {
                         <StickyContainer >
                             <div className='col-11 checkouot__left-block not-sticky__container'>
                                 <ul className='checkout-process'>
-                                    <Link
-                                    href="/checkout?page=account"
-                                    as="/checkout/account"
-                                    >
-                                        <a 
-                                        className='single-process done' 
-                                        >
-                                            <h5 className='process-name'>1. Account info</h5>
-                                        </a>
-                                    </Link>
-                                    <Link
-                                    href="/checkout?page=addresses"
-                                    as="/checkout/addresses"
-                                    >
-                                        <a className='single-process active'>
-                                            <h5 className='process-name'>2. Billing and shipping address</h5>
-                                        </a>
-                                    </Link>
-                                    <Link
-                                    href="/checkout?page=delivery"
-                                    as="/checkout/delivery"
-                                    >
-                                        <a className='single-process' onClick={this.renderDeliveryView}>
-                                            <h5 className='process-name'>3. Delivery</h5>
-                                        </a>
-                                    </Link>
-                                <Link
-                                href="/checkout?page=payment"
-                                as="/checkout/payment"
-                                >
-                                        <a className='single-process' onClick={this.renderPaymentView}>
-                                            <h5 className='process-name'>4. Payment</h5>
-                                        </a>
-                                </Link>
+                                    <CheckoutPageSectionLink 
+                                    pageName='account'
+                                    title='1. Account info'
+                                    />
+                                    <CheckoutPageSectionLink 
+                                    pageName='addresses'
+                                    title='2. Billing and shipping address'
+                                    />
+                                    <CheckoutPageSectionLink 
+                                    pageName='delivery'
+                                    title='3. Delivery'
+                                    doOnClick={() => this.handleTabItemClick('delivery')}
+                                    />
+                                    <CheckoutPageSectionLink 
+                                    pageName='payment'
+                                    title='4. Payment'
+                                    />
                                 </ul>
 
                                 <Sticky topOffset={80}>
@@ -192,7 +290,9 @@ class Checkout extends React.Component {
                         </StickyContainer>
 
                         <div className='col-lg-4 col-md-4 col-sm-4 col-12 order-summary-grid not-sticky__container'>
-                            <OrderSummary />
+                            <OrderSummary 
+                            triggerShipmentMethodUpdate={triggerShipmentMethodUpdate}
+                            />
                         </div> 
                     </div>
                 </div>

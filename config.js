@@ -9,6 +9,8 @@ export const COUNTRY_API_KEY = '46545b12aaa7048c8390dfe80c396937';
 
 // local storage variables
 export const CART_ITEMS_KEY = 'CART_ITEMS';
+export const LOCAL_SHIPMENTS_KEY = 'SHIPMENT_METHODS_ITEMS';
+export const CHECKOUT_PAGE_VISITS = 'CHECKOUT_PAGE_VISITS';
 export const UNABLE_TO_SAVE_LOCAL_DATA_ERROR = 'can not store cart items';
 export const UNABLE_TO_GET_CART_ITEMS_ERROR = 'can not get cart items';
 export const CART_ITEMS_OBJECT_EMPTY = 'can items object empty';

@@ -17,8 +17,19 @@
     min-width: 11rem;
 
     &:hover {
-        background: $white-color;
-        color: $orange-color-1; 
+        background: $orange-color-6;
+        //$white-color;
+        color: $white-color;
+        //$orange-color-1; 
+    }
+
+    &.is-submitting {
+        opacity: 0.6;
+        cursor: not-allowed;
+        &:hover {
+            background: $orange-color-1;
+            color: $white-color;
+        }
     }
 }
 

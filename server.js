@@ -43,7 +43,7 @@ app
         })
 
         server.get('/checkout/:page', (req, res) => {
-            const token = req.headers.cookie;
+            const token = getTokenValue(req.headers.cookie);
             if (token && req.params.page === 'account') {
                 res.redirect('/checkout/addresses');
             }

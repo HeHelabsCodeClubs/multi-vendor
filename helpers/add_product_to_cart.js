@@ -111,12 +111,13 @@ function updateCartItems(cartItems, newProduct, callback) {
 
 function createCartItems(product) {
     const cartItems = {};
-    const { store: { slug, name, url, icon } } = product;
+    const { store: { slug, name, url, icon, shipment_methods } } = product;
     cartItems[slug] = {
         info: {
             name,
             url,
-            icon
+            icon,
+            shipment_methods
         }
     };
 
@@ -144,7 +145,7 @@ function createCartItemProduct(product) {
         special_price,
         discount_percent,
         name,
-        attributes
+        attributes,
     } = product;
 
     if (Number(has_attributes) == 0) {

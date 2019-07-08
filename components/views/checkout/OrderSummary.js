@@ -1,115 +1,140 @@
-import Link from 'next/link';
+import React, { Component } from 'react';
+import SingleStoreOrderSummary from './SingleStoreOrderSummary';
+import isObjectEmpty from '../../../helpers/is_object_empty';
+import { 
+    getCartItems,
+    countCartItems,
+    storeProductsTotalPrice
+} from '../../../helpers/cart_functionality_helpers';
+import { 
+    getTotalShippingPrice 
+} from '../../../helpers/shipment_method_functionality_helpers';
 
-class OrderSummary extends React.Component {
+class OrderSummary extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            cartItems: {},
+            totalItemsPrice: 0,
+            totalShippingPrice: 0,
+            triggerUpdateForSingleStoreShippingPrice: false
+        };
+        this.updateCartItems = this.updateCartItems.bind(this);
+        this.renderCartItemsTotal = this.renderCartItemsTotal.bind(this);
+        this.renderProducts = this.renderProducts.bind(this);
+        this.updateTotalShippingPrice = this.updateTotalShippingPrice.bind(this);
+        this.updateShippingPriceForAStore = this.updateShippingPriceForAStore.bind(this);
+    }
 
+    componentWillReceiveProps(nextProps) {
+        const { triggerShipmentMethodUpdate } = nextProps;
+        if (triggerShipmentMethodUpdate) {
+            // update total shipping price
+            getTotalShippingPrice((totalPrice) => {
+                this.updateTotalShippingPrice(totalPrice);
+                // update shipping price for each store
+                this.updateShippingPriceForAStore();
+                
+            });
+        }
+    }
+
+    componentDidMount() {
+        getCartItems((items) => {
+           this.updateCartItems(items);
+        });
+
+        // update total shipping price
+        getTotalShippingPrice((totalPrice) => {
+            this.updateTotalShippingPrice(totalPrice);
+        });
+    }
+
+    updateShippingPriceForAStore() {
+        const { triggerUpdateForSingleStoreShippingPrice } = this.state;
+        if (!triggerUpdateForSingleStoreShippingPrice) {
+            this.setState({
+                triggerUpdateForSingleStoreShippingPrice: true
+            });
+
+            // back to initital state
+            setTimeout(() => {
+                this.setState({
+                    triggerUpdateForSingleStoreShippingPrice: false
+                })
+            }, 400);
+        }
+    }
+
+    updateCartItems(items) {
+        this.setState({
+            cartItems: items
+        });
+    }
+
+    updateTotalShippingPrice(totalPrice) {
+        const { totalShippingPrice } = this.state;
+        if (totalShippingPrice !== totalPrice) {
+            this.setState({
+                totalShippingPrice: totalPrice
+            });
+        }
+    }
+
+    renderCartItemsTotal() {
+        const { cartItems, totalShippingPrice } = this.state;
+        if (!isObjectEmpty(cartItems)) {
+            const totalItems = countCartItems(cartItems);
+            const totalItemsText = totalItems === 1 ? `${totalItems} item` : `${totalItems} item(s)`;
+            const totalItemsPrice = storeProductsTotalPrice(cartItems);
+            return (
+                <div className='white-background'>
+                    <div className='line'>
+                        <span className='title'>{totalItemsText}</span>
+                        <span className='t-price'>{`Rwf ${totalItemsPrice}`}</span>
+                    </div>
+                    <div className='line'>
+                        <span className='title'>Total shipping:</span>
+                        <span className='s-price'>{`Rwf ${totalShippingPrice}`}</span>
+                    </div>
+                </div>
+            );
+        }
+
+        return null;
+    }
+
+    renderProducts() {
+        const { cartItems, triggerUpdateForSingleStoreShippingPrice } = this.state;
+        if (!isObjectEmpty(cartItems)) {
+            const storeLayout = [];
+            Object.keys(cartItems).forEach((storeSlug, index) => {
+                const data = {
+                    slug: storeSlug,
+                    ...cartItems[storeSlug]
+                };
+                storeLayout.push(
+                    <SingleStoreOrderSummary 
+                    key={`${storeSlug}-${index}`}
+                    storeData={data}
+                    triggerUpdateForSingleStoreShippingPrice={triggerUpdateForSingleStoreShippingPrice}
+                    />
+                );
+            });
+            return storeLayout;
+        }
+        return null; 
+    }
 	render() {
 		return (
             <div className='order-summary-wrapper'>
                 <div className='order-summary'>
                     <div className='order-summary-title'>Order Summary</div>
-                    <div className='white-background'>
-                        <div className='line'>
-                            <span className='title'>9 item(s)</span>
-                            <span className='t-price'>Rwf 70000</span>
-                        </div>
-                        <div className='line'>
-                            <span className='title'>Total shipping:</span>
-                            <span className='s-price'>Rwf 2100</span>
-                        </div>
-                    </div>
+                    {this.renderCartItemsTotal()}
                 </div>
                 <div className='products'>
                     <div className='order-summary-title'>Products</div>
-                    <div className='white-background'>
-                        <div className='checkout-cart-header'>
-                            <div className='store-cart-content'>
-                                <img className='store-logo' src='https://res.cloudinary.com/hehe/image/upload/v1556288678/multi-vendor/shop-icon-4_2x.png'/>
-                                <span className='store-name'>Mart</span>
-                            </div>
-                            <span className='store-items'>(3 Items from Mart store)</span>
-                            
-                        </div>
-                        <div className='cart-product'>
-                            <div className='line'>
-                                <span className='title'>Cabbage</span>
-                                <span className='u-price'>Rwf 200</span>
-                            </div>
-                            <div className='product-att'>qty: 2 piieces</div>
-                            <div className='product-att'>Unit price: Rwf 100</div>
-                        </div>
-                        <div className='cart-product'>
-                            <div className='line'>
-                                <span className='title'>Cabbage</span>
-                                <span className='u-price'>Rwf 200</span>
-                            </div>
-                            <div className='product-att'>qty: 2 piieces</div>
-                            <div className='product-att'>Unit price: Rwf 100</div>
-                        </div>
-                        <div className='cart-product'>
-                            <div className='line'>
-                                <span className='title'>Cabbage</span>
-                                <span className='u-price'>Rwf 200</span>
-                            </div>
-                            <div className='product-att'>qty: 2 piieces</div>
-                            <div className='product-att'>Unit price: Rwf 100</div>
-                        </div>
-                        <div className='gift-block'>
-                            <div>
-                                <input type='text' placeholder='Gift certificate or promo code' />
-                                <button>Apply</button>
-                            </div>
-                        </div>
-                        <div>
-                            <div className='subtotal'><span className='light-title'>Subtotal:</span> Rwf 1000</div>
-                            <div className='shipping'><span className='light-title'>Shipping:</span>  Rwf 100</div>
-                            <div className='total'><span className='total-t'><span className='light-title'>Total:</span>  Rwf 1100</span></div>
-                        </div>
-                    </div>
-                    <div className='white-background'>
-                        <div className='checkout-cart-header'>
-                            <div className='store-cart-content'>
-                                <img className='store-logo' src='https://res.cloudinary.com/hehe/image/upload/v1556288678/multi-vendor/shop-icon-4_2x.png'/>
-                                <span className='store-name'>Mart</span>
-                            </div>
-                            <span className='store-items'>(3 Items from Mart store)</span>
-                            
-                        </div>
-                        <div className='cart-product'>
-                            <div className='line'>
-                                <span className='title'>Cabbage</span>
-                                <span className='u-price'>Rwf 200</span>
-                            </div>
-                            <div className='product-att'>qty: 2 piieces</div>
-                            <div className='product-att'>Unit price: Rwf 100</div>
-                        </div>
-                        <div className='cart-product'>
-                            <div className='line'>
-                                <span className='title'>Cabbage</span>
-                                <span className='u-price'>Rwf 200</span>
-                            </div>
-                            <div className='product-att'>qty: 2 piieces</div>
-                            <div className='product-att'>Unit price: Rwf 100</div>
-                        </div>
-                        <div className='cart-product'>
-                            <div className='line'>
-                                <span className='title'>Cabbage</span>
-                                <span className='u-price'>Rwf 200</span>
-                            </div>
-                            <div className='product-att'>qty: 2 piieces</div>
-                            <div className='product-att'>Unit price: Rwf 100</div>
-                        </div>
-                        <div className='gift-block'>
-                            <div>
-                                <input type='text' placeholder='Gift certificate or promo code' />
-                                <button>Apply</button>
-                            </div>
-                        </div>
-                        <div>
-                            <div className='subtotal'><span className='light-title'>Subtotal:</span> Rwf 1000</div>
-                            <div className='shipping'><span className='light-title'>Shipping:</span>  Rwf 100</div>
-                            <div className='total'><span className='total-t'><span className='light-title'>Total:</span>  Rwf 1100</span></div>
-                        </div>
-                    </div>
+                    {this.renderProducts()}
                 </div>
             </div>
 		);

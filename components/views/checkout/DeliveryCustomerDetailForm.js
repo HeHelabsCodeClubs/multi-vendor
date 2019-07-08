@@ -4,6 +4,8 @@ import InputField from '../../reusable/InputField';
 import { COUNTRY_API_KEY, COUNTRY_API_URL } from '../../../config';
 import RegionData from '../../../helpers/regionData';
 import CityData from '../../../helpers/cityData';
+import { getValidatedInputErrorMessage } from '../../../helpers/validation';
+import MessageDisplayer from '../../reusable/MessageDisplayer';
 
 class DeliveryCustomerDetailForm extends Component {
     constructor(props) {
@@ -22,7 +24,13 @@ class DeliveryCustomerDetailForm extends Component {
             neighborhood: '',
             streetNumber: '',
 			houseNumber: '',
+			residentialAddressType: false,
+			commercialAddressType: false,
 			inputWithError: false,
+			errorMessage: '',
+			inputIsInvalid: false,
+			messageType: 'error',
+			hasProvidedCustomerDetails: false,
 			defaultCountryFetchDataUrl: 'country/all',
 			defaultStatesFetchDataUrl: 'region/rw/all',
 			defaultCitiesFetchDataUrl: 'city/rw/search/?region=kigali_province'
@@ -32,11 +40,199 @@ class DeliveryCustomerDetailForm extends Component {
 		this.fetchRegionsData = this.fetchRegionsData.bind(this);
 		this.updateFieldSelectorData = this.updateFieldSelectorData.bind(this);
 		this.handleChangeOfSelectorData = this.handleChangeOfSelectorData.bind(this);
+		this.updateFormFieldsToInitialData = this.updateFormFieldsToInitialData.bind(this);
+		this.renderAddressTypePlaceholders = this.renderAddressTypePlaceholders.bind(this);
+		this.submitValues = this.submitValues.bind(this);
+		this.validateInputFields = this.validateInputFields.bind(this);
+		this.handleToggleOfAddressType = this.handleToggleOfAddressType.bind(this);
+		this.getTheRightAddressType = this.getTheRightAddressType.bind(this);
 	}
 
 	componentDidMount() {
 		this.getFormSelectorsData(true);
+		this.updateFormFieldsToInitialData();
+		
 	}
+
+	componentWillReceiveProps(nextProps) {
+		const { provideCustomerDetails } = nextProps;
+		const { hasProvidedCustomerDetails } = this.state;
+		if (provideCustomerDetails && !hasProvidedCustomerDetails) {
+			this.setState({
+				hasProvidedCustomerDetails: true
+			}, () => this.submitValues())
+		}
+	}
+
+	updateFormFieldsToInitialData() {
+		const { customerAddressData, formType } = this.props;
+		const addressType = this.getTheRightAddressType(customerAddressData[formType].address_type);
+		if (customerAddressData) {
+			this.setState({
+				firstName: customerAddressData[formType].first_name,
+				lastName: customerAddressData[formType].last_name,
+				email: customerAddressData[formType].email,
+				phone: customerAddressData[formType].phone,
+				country: customerAddressData[formType].country,
+				state: customerAddressData[formType].state === '02' ? 'kigali_province,rw' : customerAddressData[formType].last_name,
+				city: customerAddressData[formType].city,
+				streetNumber: customerAddressData[formType].address_1,
+				houseNumber: customerAddressData[formType].address_2,
+				residentialAddressType: addressType === 'residential' ? true : false,
+				commercialAddressType: addressType === 'commercial' ? true : false
+			});
+		}
+	}
+
+	getTheRightAddressType(address_type) {
+		if (address_type !== undefined && address_type !== '') {
+			if (address_type === 'commercial') {
+				return 'commercial';
+			}
+		}
+		return 'residential';
+	}
+
+	submitValues() {
+		const data = {};
+		const { formType } = this.props;
+		const { 
+			firstName,
+			lastName,
+			email,
+			phone,
+			country,
+			state,
+			city,
+			streetNumber,
+			houseNumber,
+			commercialAddressType
+		 } = this.state;
+
+		 const customerValidationRules = [
+            [
+                {
+                    type: 'empty',
+                    context: 'First name',
+                    inputStateValue: firstName,
+                    inputStateName: 'firstName'
+                }
+            ],
+            [
+                {
+                    type: 'empty',
+                    context: 'Last name',
+                    inputStateValue: lastName,
+                    inputStateName: 'lastName'
+                }
+            ],
+            [
+                {
+                    type: 'empty',
+                    context: 'Email',
+                    inputStateValue: email,
+                    inputStateName: 'email'
+                },
+                {
+                    type: 'email',
+                    context: 'Email',
+                    inputStateValue: email,
+                    inputStateName: 'email'
+                }
+            ],
+            [
+                {
+                    type: 'empty',
+                    context: 'Phone',
+                    inputStateValue: phone,
+                    inputStateName: 'phone'
+                }
+            ],
+            [
+                {
+                    type: 'empty',
+                    context: 'Country',
+                    inputStateValue: country,
+                    inputStateName: 'country'
+                }
+            ],
+            [
+                {
+                    type: 'empty',
+                    context: 'State',
+                    inputStateValue: state,
+                    inputStateName: 'state'
+                }
+			],
+			[
+                {
+                    type: 'empty',
+                    context: 'District',
+                    inputStateValue: city,
+                    inputStateName: 'city'
+                }
+			]
+        ];
+
+        if (!this.validateInputFields(customerValidationRules)) {
+			this.setState({
+				hasProvidedCustomerDetails: false
+			});
+            return;
+        }
+		 data[formType] = {
+			firstName,
+			lastName,
+			email,
+			phone,
+			country,
+			state,
+			city,
+			streetNumber,
+			houseNumber
+		};
+
+		if (formType === 'shipping') {
+			data[formType].address_type = commercialAddressType ? 'commercial' : 'residential';
+		}
+
+		this.props.getSubmittedValues((data), () => {
+			this.setState({
+				hasProvidedCustomerDetails: false
+			});
+		});
+	}
+
+	validateInputFields(validationRules) {
+        for(let i = 0; i < validationRules.length; i++) {
+            const currentValidation = validationRules[i];
+            for (let y = 0; y < currentValidation.length; y++) {
+                const {
+                    type,
+                    context,
+                    inputStateValue,
+                    optionalInputStateValue,
+                    inputStateName
+                } = currentValidation[y];
+                const fieldErrorMessage = type !== 'password_confirmation' ? getValidatedInputErrorMessage(type, context, inputStateValue) : getValidatedInputErrorMessage(type, context, inputStateValue, optionalInputStateValue);
+                if (fieldErrorMessage !== '') {
+                    this.setState({
+                        inputIsInvalid: true,
+                        inputWithError: inputStateName,
+                        errorMessage: fieldErrorMessage
+                    });
+                    setTimeout(() => {
+                        this.setState({
+                            inputIsInvalid: false,
+                            inputWithError: '',
+                        });
+                    }, 2000);
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
 	getFormSelectorsData(fetchAllData) {
 		const {
@@ -106,7 +302,7 @@ class DeliveryCustomerDetailForm extends Component {
 					case 'city':
 							return {
 								text: item.city,
-								id: item.city
+								id: item.city.toLowerCase()
 							};
 					default:
 							// do nothing
@@ -135,7 +331,29 @@ class DeliveryCustomerDetailForm extends Component {
 		}
         this.setState({
             [fieldStateName]: newValue
-        });
+        }, () => {
+			this.handleToggleOfAddressType(fieldStateName, newValue);
+		});
+	}
+
+	handleToggleOfAddressType(fieldStateName, newValue) {
+		if (fieldStateName === 'residentialAddressType') {
+			console.log('hereeee');
+			if (newValue === true) {
+				this.setState({
+					commercialAddressType: false
+				});
+			}
+		}
+
+		if (fieldStateName === 'commercialAddressType') {
+			console.log('here but', newValue);
+			if (newValue === true) {
+				this.setState({
+					residentialAddressType: false
+				});
+			}
+		}
 	}
 
 	handleChangeOfSelectorData(stateName, stateNewValue) {
@@ -162,17 +380,73 @@ class DeliveryCustomerDetailForm extends Component {
 		}
 	}
 
+	renderAddressTypePlaceholders() {
+		const { formType } = this.props;
+		const { 
+			residentialAddressType,
+			commercialAddressType
+		 } = this.state;
+		if (formType === 'shipping') {
+			return (
+				<div className='col-lg-6 col-md-6 col-sm-6 col-12'>
+					<div className='input-checkbox billing-checkbox'>
+						<span className='remember'>Address type:</span>
+						<InputField 
+						typeOfInput='checkbox'
+						type='checkbox'
+						name='residentialAddressType'
+						fieldText='Residential'
+						updateInputFieldValue={this.getInputFieldValue}
+						defaultInputValue={residentialAddressType}
+						/>
+						
+						<InputField 
+						typeOfInput='checkbox'
+						type='checkbox'
+						name='commercialAddressType'
+						fieldText='Commercial'
+						updateInputFieldValue={this.getInputFieldValue}
+						defaultInputValue={commercialAddressType}
+						/>
+
+						{/* <span className='remember'><input type='checkbox' />Residential</span>
+						<span className='remember'><input type='checkbox' />Commercial</span> */}
+					</div>
+				</div>
+			);
+		}
+
+		return null;
+	}
+
     render() {
 		const { 
 			inputWithError,
 			countrySelectorData,
 			stateSelectorData,
-			citySectorData
+			citySectorData,
+			firstName,
+			lastName,
+			email,
+			phone,
+			country,
+			state,
+			city,
+			streetNumber,
+			houseNumber,
+			inputIsInvalid,
+			errorMessage,
+			messageType
 		 } = this.state;
 		const { formTitle } = this.props;
         return (
             <div className='auth-content delivery-address'>
 				<div className='account-info-title billing-title'>{formTitle}</div>
+				<MessageDisplayer 
+                display={inputIsInvalid ? true : false }
+                errorMessage={errorMessage}
+                type={messageType}
+                />
 				<form className='row reset-row auth-form signin-form shipping-form' >
                     <div className=' col-lg-6 col-md-6 col-sm-6 col-12'>
 						<InputField
@@ -181,6 +455,7 @@ class DeliveryCustomerDetailForm extends Component {
 							id='first-name'
 							name='firstName'
 							placeholder='First name' 
+							defaultInputValue={firstName}
 							updateInputFieldValue={this.getInputFieldValue}
 							inputWithError={inputWithError}
 						/>
@@ -191,7 +466,8 @@ class DeliveryCustomerDetailForm extends Component {
                         type='text' 
                         id='last-name'
                         name='lastName'
-                        placeholder='Last Name' 
+						placeholder='Last Name' 
+						defaultInputValue={lastName}
                         updateInputFieldValue={this.getInputFieldValue}
                         inputWithError={inputWithError}
                     />
@@ -203,6 +479,7 @@ class DeliveryCustomerDetailForm extends Component {
 							id='email'
 							name='email'
 							placeholder='Email'
+							defaultInputValue={email}
 							updateInputFieldValue={this.getInputFieldValue}
 							inputWithError={inputWithError}
 						/>
@@ -214,6 +491,7 @@ class DeliveryCustomerDetailForm extends Component {
 							id='phone'
 							name='phone'
 							placeholder='Phone' 
+							defaultInputValue={phone}
 							updateInputFieldValue={this.getInputFieldValue}
 							inputWithError={inputWithError}
 						/>
@@ -225,6 +503,7 @@ class DeliveryCustomerDetailForm extends Component {
 							name='country'
 							selectorData={countrySelectorData}
 							placeholder='Country'
+							defaultInputValue={country}
 							updateInputFieldValue={this.getInputFieldValue}
 							inputWithError={inputWithError}
 						/>
@@ -236,6 +515,7 @@ class DeliveryCustomerDetailForm extends Component {
 							name='state'
 							selectorData={stateSelectorData}
 							placeholder='State'
+							defaultInputValue={state}
 							updateInputFieldValue={this.getInputFieldValue}
 							inputWithError={inputWithError}
 						/>
@@ -246,17 +526,19 @@ class DeliveryCustomerDetailForm extends Component {
 							id='city'
 							name='city'
 							selectorData={citySectorData}
-							placeholder='City'
+							placeholder='District'
+							defaultInputValue={city}
 							updateInputFieldValue={this.getInputFieldValue}
 							inputWithError={inputWithError}
 						/>
 					</div>
-					<div className='col-lg-6 col-md-6 col-sm-6 col-12 input-field'>
+					{/* <div className='col-lg-6 col-md-6 col-sm-6 col-12 input-field'>
 						<InputField 
 							typeOfInput='text_field'
 							type='text'
 							id='neighborhood'
 							name='neighborhood'
+							defaultInputValue={neighborhood}
 							// selectorData={[
 							// 	{ text: 'Kigali', id: 'kigali' },
 							// 	{ text: 'Gasabo', id: 'Gasabo' },
@@ -265,36 +547,35 @@ class DeliveryCustomerDetailForm extends Component {
 							updateInputFieldValue={this.getInputFieldValue}
 							inputWithError={inputWithError}
 						/>
-					</div>
-					<div className=' col-lg-6 col-md-6 col-sm-6 col-12 input-field'>
+					</div> */}
+					<div className=' col-lg-6 col-md-6 col-sm-6 col-12'>
 						<InputField
 							typeOfInput='text_field'
 							type='text' 
-							id='street-phone'
-							name='streetPhone'
+							id='street-number'
+							name='streetNumber'
 							placeholder='Street no' 
+							defaultInputValue={streetNumber}
 							updateInputFieldValue={this.getInputFieldValue}
 							inputWithError={inputWithError}
 						/>
 					</div>
-					<div className='col-lg-6 col-md-6 col-sm-6 col-12 input-field'>
+					<div className='col-lg-6 col-md-6 col-sm-6 col-12'>
 						<InputField
 							typeOfInput='text_field'
 							type='text' 
 							id='house-number'
 							name='houseNumber'
 							placeholder='House no' 
+							defaultInputValue={houseNumber}
 							updateInputFieldValue={this.getInputFieldValue}
 							inputWithError={inputWithError}
 						/>
 					</div>
 					<div className='col-lg-6 col-md-6 col-sm-6 col-12'>
-						<div className='input-checkbox billing-checkbox'>
-							<span className='remember'>Address type:</span>
-							<span className='remember'><input type='checkbox' />Residential</span>
-							<span className='remember'><input type='checkbox' />Commercial</span>
-						</div>
+						&nbsp;
 					</div>
+					{this.renderAddressTypePlaceholders()}
 				</form>
             </div>
         );
