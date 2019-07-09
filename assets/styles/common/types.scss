@@ -1045,4 +1045,30 @@ html {
             }
         }
     }
+
+    // profile page
+
+    .profile-page {
+        h5 {
+            font-size: 1.5rem !important;
+        }
+
+        .item-menu {
+            font-size: 1.2rem !important;
+            font-family: 'Harmonia Sans Pro Regular';
+
+            &.active {
+                font-family: 'Harmonia Sans Pro SemiBd';
+            }
+        }
+        
+        th {
+            font-size: 1.3rem !important;
+            font-family: 'Harmonia Sans Pro Bold';
+        }
+        td {
+            font-size: 1.1rem !important;
+            font-family: 'Harmonia Sans Pro Regular';
+        }
+    }
 }

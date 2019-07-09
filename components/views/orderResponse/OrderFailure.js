@@ -21,7 +21,7 @@ class OrderFailure extends Component {
                     </div>
                     <ul>
                         <li><a href="#">Try again</a></li>
-                        <li>or Go to <a href="/order">Home page</a></li>
+                        <li>or Go to <a href="/">Home page</a></li>
                     </ul>
                     <div className="site-logo">
                         <a href='/'>
