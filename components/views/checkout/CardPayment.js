@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import InputField from '../../reusable/InputField';
 import MessageDisplayer from '../../reusable/MessageDisplayer';
 import { getValidatedInputErrorMessage } from '../../../helpers/validation';
+import { getCartItems } from '../../../helpers/cart_functionality_helpers';
+import { retrieveShipmentData } from '../../../helpers/shipment_method_functionality_helpers';
+import isObjectEmpty from '../../../helpers/is_object_empty';
 
 export default class CardPayment extends Component {
     constructor(props) {
@@ -12,13 +15,30 @@ export default class CardPayment extends Component {
             inputIsInvalid: false,
             errorMessage: '',
             messageType: 'error',
-            buttonStatus: 'initial'
+            buttonStatus: 'initial',
+            cartItems: {},
+            shipmentData: {},
         };
         this.getInputFieldValue = this.getInputFieldValue.bind(this);
         this.handleOrderSubmission = this.handleOrderSubmission.bind(this);
         this.validateInputFields = this.validateInputFields.bind(this);
         this.renderSubmitButton = this.renderSubmitButton.bind(this);
+        this.updateCartItems = this.updateCartItems.bind(this);
+        this.updateShipmentData = this.updateShipmentData.bind(this);
+        this.proceedToMigs = this.proceedToMigs.bind(this);
     }
+    componentDidMount() {
+        // get cart data on component load
+        getCartItems((items) => {
+            this.updateCartItems(items);
+        });
+
+        // get shipment data on component load
+        retrieveShipmentData((items) => {
+            this.updateShipmentData(items);
+        });
+    }
+
     getInputFieldValue(fieldStateName, newValue) {
         this.setState({
             [fieldStateName]: newValue
@@ -55,6 +75,28 @@ export default class CardPayment extends Component {
         this.setState({
             buttonStatus: 'submitting'
         });
+
+        // proceed to migs
+        this.proceedToMigs();
+    }
+
+    updateCartItems(items) {
+        this.setState({
+            cartItems: items
+        });
+    }
+
+    updateShipmentData(items) {
+        this.setState({
+            shipmentData: items
+        });
+    }
+
+    proceedToMigs() {
+        const { cartItems, shipmentData } = this.state;
+        if (!isObjectEmpty(cartItems) && !isObjectEmpty(shipmentData)) {
+            // handle redirection to migs
+        }
     }
 
     validateInputFields(validationRules) {
