@@ -1,0 +1,109 @@
+@import "../main";
+
+.profile-page {
+    min-height: 70vh;
+    background-color: $light-gray;
+
+    .sidemenu {
+        border-right: .5px solid $gray-color-5;
+
+        .sidemenu-content {
+            padding: 2rem 10%;
+
+            .sidemenu-title {
+                border-bottom: .5px solid $gray-color-5;
+                margin-bottom: 1rem;
+                padding: 1rem .5rem;
+
+                h5 {
+                  color: $black-color-3;  
+                }
+            }
+
+            .item-menu {
+                a {
+                    color: $black-color-3 !important;
+                    margin-bottom: .1rem;
+                    padding: .6rem 0 .6rem 2rem;
+                    display: block;
+                    border-radius: 0 2rem 2rem 0;
+
+                    &:hover {
+                        background-color: $gray-color-12;
+                    }
+                }
+                &.active {
+                    a {
+                        color: $green-color-2 !important;
+                        background-color: $green-color-3;
+                    }
+                }
+            }
+        }
+    }
+
+    .main-content {
+        margin-top: 2rem;
+        margin-bottom: 5rem;
+
+        .content-header {
+            h5 {
+                margin-bottom: 1rem;
+                padding: 1rem .5rem;
+            }
+        }
+
+        .table-wrapper {
+            background-color: $white-color;
+            padding: 1rem;
+            border-radius: 3px;
+
+            table {
+                width: 100%;
+                thead {
+                    border-bottom: 1.5px solid $light-gray;
+                    padding-bottom: 1rem;
+                    th {
+                        color: $black-color-3;
+                    }
+                }    
+                
+                td {
+                    color: $black-color-3;
+                    padding: 1rem 0 0;
+
+                    &:nth-child(1) {
+                        a {
+                            color: $green-color-2 !important;
+                        }
+                        
+                    }
+                    &:nth-last-child(1) {
+                        padding-left: 1.5rem;
+
+                        span {
+                            color: $green-color-2;
+                        }
+                    }
+
+                    .badge-txt {
+                        color: $orange-color-1;
+                        background-color: $orange-color-3;
+                        display: inline;
+                        border-radius: 5px;
+                        padding: 0 .7rem .1rem;
+                    }
+
+                    span {
+                        display: block;
+                        color: $gray-color-5;
+                    }
+                }
+                tr {
+                    border-bottom: 1.5px solid $light-gray;
+                }
+            }
+        }
+        
+    }
+}

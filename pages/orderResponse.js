@@ -14,12 +14,8 @@ class OrderResponse extends Component {
 
                 <div className='content-wrapper'>
                     <div className='order-response__content col-lg-6 col-md-6 col-sm-8 col-xs-10 offset-lg-3 offset-md-3 offset-sm-2 offset-xs-1'>
-                        <div className='landing-wrapper'>
-                            <div className='auth-content'>
-                                <OrderSuccess/>
-                                {/* <OrderFailure/> */}
-                            </div>
-                        </div>
+                        {/* <OrderSuccess/> */}
+                        <OrderFailure/>
                     </div>
                 </div>
             </div>
