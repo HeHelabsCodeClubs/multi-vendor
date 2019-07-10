@@ -233,7 +233,14 @@ class Checkout extends React.Component {
                     this.setState({
                         activeContent: 'delivery'
                     });
+                    const actionUrl = '/checkout?page=delivery';
+                    const asUrl = '/checkout/delivery';
+                    Router.push(actionUrl, asUrl);
                 }
+            // case 'payment':
+            //     const { router: { query: { page } } } = Router;
+            //     if(page === )
+
             break;
             default:
                 // do nothing

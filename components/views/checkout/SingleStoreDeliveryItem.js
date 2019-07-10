@@ -157,15 +157,29 @@ export default class SingleStoreDeliveryItem extends Component {
             };
         });
         return (
-            <InputField 
-            typeOfInput='selector'
+            // <InputField 
+            // typeOfInput='selector'
+            // id='shipment-method-selector'
+            // name='shipmentMethod'
+            // selectorData={selectorData}
+            // hideLabel={true}
+            // placeholder='shipment'
+            // updateInputFieldValue={this.getInputFieldValue}
+            // defaultInputValue={shipmentMethod}
+            // />
+
+            <Select2
             id='shipment-method-selector'
             name='shipmentMethod'
-            selectorData={selectorData}
-            hideLabel={true}
-            placeholder='shipment'
-            updateInputFieldValue={this.getInputFieldValue}
-            defaultInputValue={shipmentMethod}
+            data={selectorData}
+            options={{
+                placeholder: 'shipment'
+            }}
+            value={shipmentMethod}
+            className='test-select'
+            onChange={(e) => {
+                this.getInputFieldValue('shipmentMethod', e.target.value);
+            }}
             />
         );
     }
