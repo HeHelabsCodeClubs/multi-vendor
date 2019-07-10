@@ -50,6 +50,10 @@ class Header extends React.Component {
 
     renderUserProfile() {
         const { authUser } = this.state;
+        if (!authUser) {
+            // logout client
+            logoutUser()
+        }
         if (!isObjectEmpty(authUser)) {
             const {
                 last_name,

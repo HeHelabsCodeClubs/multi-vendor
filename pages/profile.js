@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import SideProfile from "../components/views/profile/SideProfile";
 import ContentProfile from "../components/views/profile/ContentProfile";
+import OrderRow from "../components/views/profile/OrderRow";
+import OrderDetail from "../components/views/profile/OrderDetail";
 import Global from '../components/reusable/Global';
 import '../assets/styles/layouts/profile.scss';
 

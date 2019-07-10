@@ -1,17 +1,19 @@
 import Router from 'next/router';
-import Link from 'next/link';
 import Global from '../components/reusable/Global';
 import '../assets/styles/layouts/checkout.scss';
+import '../assets/styles/layouts/auth.scss';
 import AccountInfo from '../components/views/checkout/AccountInfo';
 import OrderSummary from '../components/views/checkout/OrderSummary';
 import Billing from '../components/views/checkout/Billing';
 import Delivery from '../components/views/checkout/Delivery';
 import Payment from '../components/views/checkout/Payment';
 import Loader from '../components/reusable/Loader';
+import Overlay from '../components/reusable/Overlay';
 import CheckoutPageSectionLink from '../components/views/checkout/CheckoutPageSectionLink';
 import { getClientAuthToken, getTokenValue } from '../helpers/auth';
-import { API_URL } from '../config';
+import { API_URL, CART_ITEMS_KEY } from '../config';
 import { StickyContainer, Sticky } from 'react-sticky';
+import { getCartItems } from '../helpers/cart_functionality_helpers';
 
 class Checkout extends React.Component {
     constructor(props) {
@@ -23,6 +25,8 @@ class Checkout extends React.Component {
             triggerShipmentMethodUpdate: false,
             accountPageVisitedClass: 'single-process',
             billingPageVisitedClass: 'single-process',
+            showOverlay: false,
+            triggerValidateDelivery: false
 
         };
         this.renderContent = this.renderContent.bind(this);
@@ -34,57 +38,75 @@ class Checkout extends React.Component {
         this.getCustomerAccountAddresses = this.getCustomerAccountAddresses.bind(this);
         this.handleTabItemClick = this.handleTabItemClick.bind(this);
         this.updateShipmentInfo = this.updateShipmentInfo.bind(this);
+        this.toogleDisplayOverlay = this.toogleDisplayOverlay.bind(this);
+        this.redirectToSpecificPage = this.redirectToSpecificPage.bind(this);
     }
 
     static async getInitialProps({ req, query }) {
         // if req means it is being rendered on the server
         if (req) {
-            const token = getTokenValue(req.headers.cookie);
-            const res = await fetch(`${API_URL}/customers/addresses`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-               
-            });
-            const response = await res.json();
-            return {
-                customerAddressData: response.data
-            };
-        }
-        const isClient = typeof document !== undefined;
-        if (isClient) {
-            const token = getClientAuthToken();
-            const { page } = query;
-            if (page === 'account') {
-                if (token) {
-                    Router.push('/checkout?page=addresses', '/checkout/addresses');
-                }
-            } else {
-                if (!token) {
-                    Router.push('/checkout?page=account', '/checkout/account');
-                } else  {
-                    if (page === 'addresses') {
-                        const res = await fetch(`${API_URL}/customers/addresses`, {
-                            method: 'GET',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json',
-                                'Authorization': `Bearer ${token}`
-                            },
-                           
-                        });
-                        const response = await res.json();
-                        return {
-                            customerAddressData: response.data
-                        };
+            if (req.params.page === 'addresses') {
+                const token = getTokenValue(req.headers.cookie);
+                const res = await fetch(`${API_URL}/customers/addresses`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                
+                });
+                const response = await res.json();
+                return {
+                    customerAddressData: response.data
+                };
+            }
+        } else {
+            const isClient = typeof document !== undefined;
+            if (isClient) {
+                // remove order data cookie
+                const token = getClientAuthToken();
+                const { page } = query;
+                if (page === 'account') {
+                    if (token) {
+                        Router.push('/checkout?page=addresses', '/checkout/addresses');
+                    }
+                } else {
+                    if (!token) {
+                        Router.push('/checkout?page=account', '/checkout/account');
+                    } else  {
+                        if (page === 'addresses') {
+                            const res = await fetch(`${API_URL}/customers/addresses`, {
+                                method: 'GET',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json',
+                                    'Authorization': `Bearer ${token}`
+                                },
+                            
+                            });
+                            const response = await res.json();
+                            return {
+                                customerAddressData: response.data
+                            };
+                        }
                     }
                 }
             }
         }
+        
         return {};
+    }
+
+    componentWillMount() {
+        /**
+         * If no cart items redirect user to homepage
+         */
+        getCartItems((items) => {
+            if (!items) {
+                Router.push('/');
+            }
+        });
     }
 
     getCustomerAccountAddresses(token) {
@@ -152,6 +174,7 @@ class Checkout extends React.Component {
         const { 
             activeContent,
             triggerUpdateOfCustomerDeliveryAddress,
+            triggerValidateDelivery
         } = this.state;
         const { customerAddressData } = this.props;
         switch(activeContent) {
@@ -168,10 +191,15 @@ class Checkout extends React.Component {
                 return (
                     <Delivery
                     updateShipmentInfo={this.updateShipmentInfo}
+                    triggerValidateDelivery={triggerValidateDelivery}
                     />
                 );
             case 'payment':
-                return <Payment />;
+                return (
+                    <Payment 
+                    toogleDisplayOverlay={this.toogleDisplayOverlay}
+                    />
+                    );
             default:
                 return (
                     <div className='row loader-row'>
@@ -199,13 +227,19 @@ class Checkout extends React.Component {
     renderPaymentView() {
         this.setState({
             activeContent: 'payment'
-        })
+        });
+    }
+
+    redirectToSpecificPage(page) {
+        const actionUrl = `/checkout?page=${page}`;
+        const asUrl = `/checkout/${page}`;
+        Router.push(actionUrl, asUrl);
     }
 
     handleTabItemClick(tab_name) {
+        const { router: { query: { page } } } = Router;
         switch(tab_name) {
             case 'delivery':
-                const { router: { query: { page } } } = Router;
                 if (page === 'addresses') {
                     this.setState({
                         triggerUpdateOfCustomerDeliveryAddress: true
@@ -215,14 +249,46 @@ class Checkout extends React.Component {
                             triggerUpdateOfCustomerDeliveryAddress: false
                         });
                     }, 400);
+
+                    break;
                 }
+
+                // if (page === 'delivery') {
+                //     this.setState({
+                //         triggerValidateDelivery: true
+                //     });
+                //     setTimeout(() => {
+                //         this.setState({
+                //             triggerValidateDelivery: false
+                //         });
+                //     }, 400);
+                //     break;
+                // }
 
                 if (page === 'delivery' || page === 'payment') {
                     this.setState({
                         activeContent: 'delivery'
                     });
+                    this.redirectToSpecificPage('delivery');
+                    break;
                 }
-            break;
+
+                break;
+            case 'payment':
+                if(page === 'delivery') {
+                    this.setState({
+                        triggerValidateDelivery: true
+                    });
+                    setTimeout(() => {
+                        this.setState({
+                            triggerValidateDelivery: false
+                        });
+                    }, 400);
+                    break;
+                }
+
+                this.redirectToSpecificPage('payment');
+                break;
             default:
                 // do nothing
         }
@@ -243,11 +309,26 @@ class Checkout extends React.Component {
         }
     }
 
+    toogleDisplayOverlay(show) {
+        if (show) {
+            this.setState({
+                showOverlay: true
+            });
+        } else {
+            this.setState({
+                showOverlay: false
+            })
+        }
+    }
+
     
 	render() {
-        const { triggerShipmentMethodUpdate } = this.state;
+        const { triggerShipmentMethodUpdate, showOverlay } = this.state;
 		return (
 			<Global>
+                <Overlay 
+                show={showOverlay}
+                />
                 <div className='maximum-width'>
                     <div className='row reset-row checkout-content'>
                         <StickyContainer >
@@ -269,6 +350,7 @@ class Checkout extends React.Component {
                                     <CheckoutPageSectionLink 
                                     pageName='payment'
                                     title='4. Payment'
+                                    doOnClick={() => this.handleTabItemClick('payment')}
                                     />
                                 </ul>
 

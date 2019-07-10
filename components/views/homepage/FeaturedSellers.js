@@ -4,6 +4,10 @@ import Slider from "react-slick";
 import ImageLoader from '../../reusable/ImageLoader';
 
 class FeaturedSellers extends Component {
+    constructor(props) {
+        super(props);
+        this.renderShopNowUrl = this.renderShopNowUrl.bind(this);
+    }
 
     renderProduct(seller) {
         const products = seller.products;
@@ -28,6 +32,23 @@ class FeaturedSellers extends Component {
         }
     }
 
+    renderShopNowUrl(seller) {
+        if (seller.store_url) {
+            if (seller.store_url !== '') {
+                return (
+                    <span className='line-display seller-link margin-reset'>
+                        <a href={seller.store_url} target='_blank'>Shop now <span className='icon-Path-75'></span></a>
+                    </span>
+                );
+            }
+            /**
+             * Check if it has a parent category and link to it instead
+             */
+        }
+
+        return <span />;
+    }
+
     renderSeller(sellers) {
         if (!_.isEmpty(sellers)) {
             const sellerLayout = sellers.map((seller) => {
@@ -48,9 +69,7 @@ class FeaturedSellers extends Component {
                                     <div className='store-name'>{seller.name}</div>
                                     <div className='store-category'>{seller.category.name}</div>
                                 </span>
-                                <span className='line-display seller-link margin-reset'>
-                                    <a href=''>Shop now <span className='icon-Path-75'></span></a>
-                                </span>
+                                {this.renderShopNowUrl(seller)}
                             </div>
                         </div>
                         <div className='row reset-row'>

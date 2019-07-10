@@ -147,6 +147,27 @@ import { LOCAL_SHIPMENTS_KEY } from '../config';
        }
     });
 }
+/**
+ * Get all the shipment data
+ * @param {function} callback 
+ */
+export const retrieveShipmentData = (callback) => {
+    localforage.getItem(LOCAL_SHIPMENTS_KEY).then((items) => {
+        if (items === null) {
+            if (callback !== undefined) {
+                callback({});
+            }
+        } else {
+            if (callback !== undefined) {
+                callback(items);
+            }
+        }
+     }).catch((err) => {
+        if (err) {
+            console.log(err);
+        }
+     });
+}
 
 /**
  * Provides the total shipping price

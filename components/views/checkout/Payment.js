@@ -84,23 +84,30 @@ export default class Payment extends Component {
 	}
 
 	decideWhichPaymentLayoutToDisplay(payment_method_title) {
+		const { toogleDisplayOverlay } = this.props;
 		switch(payment_method_title) {
 			case 'credit_card_/_debit_card':
 				return (
 					<TabPanel>
-						<CardPayment />
+						<CardPayment 
+						toogleDisplayOverlay={toogleDisplayOverlay}
+						/>
 					</TabPanel>
 				);
 			case 'mobile_money':
 				return (
 					<TabPanel>
-						<MtnMobileMoneyPayment />
+						<MtnMobileMoneyPayment 
+						toogleDisplayOverlay={toogleDisplayOverlay}
+						/>
 					</TabPanel>
 				);
 			case 'cash_on_delivery':
 				return (
 					<TabPanel>
-						<CashOnDeliveryPayment />
+						<CashOnDeliveryPayment 
+						toogleDisplayOverlay={toogleDisplayOverlay}
+						/>
 					</TabPanel>
 				);
 			default:

@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 import InputField from '../../reusable/InputField';
 import MessageDisplayer from '../../reusable/MessageDisplayer';
 import { getValidatedInputErrorMessage } from '../../../helpers/validation';
+import { getCartItems } from '../../../helpers/cart_functionality_helpers';
+import { retrieveShipmentData } from '../../../helpers/shipment_method_functionality_helpers';
+import isObjectEmpty from '../../../helpers/is_object_empty';
+import { 
+    createPaymentSubmissionData,
+    storeOrderDATACookie,
+    removeOrderDATACookie
+ } from '../../../helpers/process_payment';
+ import { API_URL } from '../../../config';
+ import { getClientAuthToken, getOrderCookie } from '../../../helpers/auth';
 
 export default class CardPayment extends Component {
     constructor(props) {
@@ -12,13 +22,35 @@ export default class CardPayment extends Component {
             inputIsInvalid: false,
             errorMessage: '',
             messageType: 'error',
-            buttonStatus: 'initial'
+            buttonStatus: 'initial',
+            cartItems: {},
+            shipmentData: {},
         };
         this.getInputFieldValue = this.getInputFieldValue.bind(this);
         this.handleOrderSubmission = this.handleOrderSubmission.bind(this);
         this.validateInputFields = this.validateInputFields.bind(this);
         this.renderSubmitButton = this.renderSubmitButton.bind(this);
+        this.updateCartItems = this.updateCartItems.bind(this);
+        this.updateShipmentData = this.updateShipmentData.bind(this);
+        this.proceedToMigs = this.proceedToMigs.bind(this);
+        this.createOrderOnTheApi = this.createOrderOnTheApi.bind(this);
+        this.handleResponse = this.handleResponse.bind(this);
+        this.onOrderCreationUnknownFailure = this.onOrderCreationUnknownFailure.bind(this);
+        this.onOrderCreationSuccess = this.onOrderCreationSuccess.bind(this);
+        this.onOrderCreationRetry = this.onOrderCreationRetry.bind(this);
     }
+    componentDidMount() {
+        // get cart data on component load
+        getCartItems((items) => {
+            this.updateCartItems(items);
+        });
+
+        // get shipment data on component load
+        retrieveShipmentData((items) => {
+            this.updateShipmentData(items);
+        });
+    }
+
     getInputFieldValue(fieldStateName, newValue) {
         this.setState({
             [fieldStateName]: newValue
@@ -55,6 +87,130 @@ export default class CardPayment extends Component {
         this.setState({
             buttonStatus: 'submitting'
         });
+
+        const { toogleDisplayOverlay } = this.props;
+        toogleDisplayOverlay(true);
+
+        // proceed to migs
+        this.proceedToMigs();
+    }
+
+    updateCartItems(items) {
+        this.setState({
+            cartItems: items
+        });
+    }
+
+    updateShipmentData(items) {
+        this.setState({
+            shipmentData: items
+        });
+    }
+
+    proceedToMigs() {
+        const { cartItems, shipmentData } = this.state;
+        
+        if (!isObjectEmpty(cartItems) && !isObjectEmpty(shipmentData)) {
+            // handle redirection to migs
+            const dataToSubmit = createPaymentSubmissionData('card', cartItems, shipmentData);
+            const token = getClientAuthToken();
+            if (!isObjectEmpty(dataToSubmit) && token) {
+                // check if there's no pending order
+                const orderID = getOrderCookie();
+                if (orderID) {
+                    // use already existing order
+                    this.onOrderCreationRetry(orderID);
+                    return;
+                }
+
+                this.createOrderOnTheApi(dataToSubmit, token);
+            }
+        }
+    }
+
+    createOrderOnTheApi(dataToSubmit, token) {
+        const data = {
+            payment_type: 'card',
+            order_data: dataToSubmit
+        };
+
+        fetch(`${API_URL}/payments/process`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(data)
+        }).then(async (res) => {
+            try {
+                const response = await res.json();
+                this.handleResponse(response);
+            } catch (err) {
+                console.log('error');
+                console.log(err);
+                this.onOrderCreationUnknownFailure();
+            }
+        }).catch((err) => {
+            if (err) {
+                console.log('err', err);
+                onOrderCreationUnknownFailure();
+            }
+        });
+    }
+
+    handleResponse(response) {
+        switch(Number(response.status_code)) {
+            case 200:
+                /**
+                 * Proceed to migs
+                 */
+                this.onOrderCreationSuccess(response.data.order_id);
+                return;
+            case 405:
+                /**
+                 * Handle creation failure
+                 */
+            default:
+                /**
+                 * Handle errors
+                 */
+                this.onOrderCreationUnknownFailure();
+                return;
+
+        }
+    }
+
+    onOrderCreationRetry(orderID) {
+        this.onOrderCreationSuccess(orderID);
+    }
+
+    onOrderCreationSuccess(orderID) {
+        removeOrderDATACookie();
+        storeOrderDATACookie(orderID,'card');
+        setTimeout(() => {
+            window.location = '/process/card';
+        }, 500);
+    }
+
+    onOrderCreationUnknownFailure(errorMessage) {
+        this.setState({
+            buttonStatus: 'inital'
+        });
+        this.props.toogleDisplayOverlay();
+
+        if (errorMessage !== undefined) {
+            this.setState({
+                inputIsInvalid: true,
+                errorMessage: errorMessage
+            });
+
+            setTimeout(() => {
+                this.setState({
+                    inputIsInvalid: false
+                });
+            }, 1000);
+        }
     }
 
     validateInputFields(validationRules) {
@@ -106,7 +262,15 @@ export default class CardPayment extends Component {
 	}
 
     render() {
-        const { inputWithError, inputIsInvalid, errorMessage, messageType } = this.state;
+        const { 
+            inputWithError, 
+            inputIsInvalid, 
+            errorMessage, 
+            messageType,
+            buttonStatus,
+            cartItems,
+            shipmentData
+        } = this.state;
         return (
             <div>
                 <MessageDisplayer 
