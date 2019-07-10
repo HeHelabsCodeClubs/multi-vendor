@@ -1,13 +1,36 @@
 import React, { Component } from 'react';
-import fetch from 'isomorphic-unfetch';
-import { notify } from 'react-notify-toast';
-import '../../../assets/styles/layouts/landing.scss';
-import '../../../assets/styles/layouts/auth.scss';
-import '../../../assets/styles/layouts/orderResponse.scss';
+import { perfomOnPaymentSuccess } from '../../../helpers/process_payment';
 
 
 class OrderSuccess extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            message: 'Your payment is successfull'
+        };
+    }
+    componentDidMount() {
+        const { message } = this.props;
+        this.setState({
+            message
+        });
+        /**
+         * Perform on payment successful
+         * DONE:
+         * 1.Clear local data cart
+         * 2.Clear order Cookie
+         * 3.Clear local shipment data
+         */
+        perfomOnPaymentSuccess();
+    }
+    componentWillReceiveProps(nextProps) {
+        const { message } = nextProps;
+        this.setState({
+            message
+        });
+    }
     render() {
+        const { message } = this.state;
         return (
             <div className='landing-wrapper success-content'>
                 <div className='auth-content'>
@@ -15,13 +38,13 @@ class OrderSuccess extends Component {
                         <h1>Thank You</h1>
                     </div>
                     <div>
-                        <h5>Your payment is successfull</h5>
-                        <p>Thank yo for shopping with us! An automated receipt will</p>
+                        <h5>{message}</h5>
+                        <p>Thank you for shopping with us! An automated receipt will</p>
                         <p>be sent on your registered email</p>
                     </div>
                     <ul>
-                        <li><a href="/">Go back home</a></li>
-                        <li>or Go to <a href="/order"> Orders page</a></li>
+                        <li><a href="/">Continue Shopping</a></li>
+                        {/* <li>or Go to <a href="/order"> Orders page</a></li> */}
                     </ul>
                     <div className="site-logo">
                         <a href='/'>
@@ -30,7 +53,7 @@ class OrderSuccess extends Component {
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
 

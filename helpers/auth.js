@@ -1,8 +1,11 @@
 import Router from 'next/router';
 import localforage from 'localforage';
-import nextCookie from 'next-cookies';
 import cookie from 'js-cookie';
-import { TOKEN_KEY, AUTH_USER_LOCAL_STORAGE_INFO, CART_ITEMS_KEY } from '../config';
+import { 
+    TOKEN_KEY, 
+    AUTH_USER_LOCAL_STORAGE_INFO, 
+    ORDER_DATA_TOKEN
+} from '../config';
 
 /**
  * Stores the token in the local storage
@@ -66,6 +69,13 @@ export const getClientAuthToken = () => {
 }
 
 /**
+ * Get client order cookie
+ */
+export const getOrderCookie = () => {
+    return cookie.get(ORDER_DATA_TOKEN);
+}
+
+/**
  * Logout User
  */
 export const logoutUser = () => {
@@ -88,15 +98,26 @@ function clearAuthUserLocalStorageInfo() {
 /**
  * Parse token
  */
-export const getTokenValue = (tokenString) => {
+export const getTokenValue = (tokenString, key) => {
     if (tokenString === undefined) {
         return undefined;
     }
 
-    const tokenArray = tokenString.split('=');
-    if (tokenArray[1]) {
-        return tokenArray[1];
+    const identifier = (key == undefined) ? TOKEN_KEY : key;
+
+    const cookiesData = tokenString.split(';');
+    //console.log('cookies', cookiesData);
+    for(let i = 0; i < cookiesData.length; i++) {
+        let singleCookieData = cookiesData[i].split('=');
+        if (singleCookieData[0].trim() === identifier) {
+            return singleCookieData[1];
+        }
     }
+
+    // const tokenArray = ;
+    // if (tokenArray[1]) {
+    //     return tokenArray[1];
+    // }
     
     return undefined;
 }

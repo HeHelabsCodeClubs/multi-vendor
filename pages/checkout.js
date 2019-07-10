@@ -1,5 +1,4 @@
 import Router from 'next/router';
-import Link from 'next/link';
 import Global from '../components/reusable/Global';
 import '../assets/styles/layouts/checkout.scss';
 import AccountInfo from '../components/views/checkout/AccountInfo';
@@ -8,6 +7,7 @@ import Billing from '../components/views/checkout/Billing';
 import Delivery from '../components/views/checkout/Delivery';
 import Payment from '../components/views/checkout/Payment';
 import Loader from '../components/reusable/Loader';
+import Overlay from '../components/reusable/Overlay';
 import CheckoutPageSectionLink from '../components/views/checkout/CheckoutPageSectionLink';
 import { getClientAuthToken, getTokenValue } from '../helpers/auth';
 import { API_URL } from '../config';
@@ -23,6 +23,7 @@ class Checkout extends React.Component {
             triggerShipmentMethodUpdate: false,
             accountPageVisitedClass: 'single-process',
             billingPageVisitedClass: 'single-process',
+            showOverlay: false
 
         };
         this.renderContent = this.renderContent.bind(this);
@@ -34,56 +35,62 @@ class Checkout extends React.Component {
         this.getCustomerAccountAddresses = this.getCustomerAccountAddresses.bind(this);
         this.handleTabItemClick = this.handleTabItemClick.bind(this);
         this.updateShipmentInfo = this.updateShipmentInfo.bind(this);
+        this.toogleDisplayOverlay = this.toogleDisplayOverlay.bind(this);
     }
 
     static async getInitialProps({ req, query }) {
         // if req means it is being rendered on the server
         if (req) {
-            const token = getTokenValue(req.headers.cookie);
-            const res = await fetch(`${API_URL}/customers/addresses`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-               
-            });
-            const response = await res.json();
-            return {
-                customerAddressData: response.data
-            };
-        }
-        const isClient = typeof document !== undefined;
-        if (isClient) {
-            const token = getClientAuthToken();
-            const { page } = query;
-            if (page === 'account') {
-                if (token) {
-                    Router.push('/checkout?page=addresses', '/checkout/addresses');
-                }
-            } else {
-                if (!token) {
-                    Router.push('/checkout?page=account', '/checkout/account');
-                } else  {
-                    if (page === 'addresses') {
-                        const res = await fetch(`${API_URL}/customers/addresses`, {
-                            method: 'GET',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json',
-                                'Authorization': `Bearer ${token}`
-                            },
-                           
-                        });
-                        const response = await res.json();
-                        return {
-                            customerAddressData: response.data
-                        };
+            if (req.params.page === 'addresses') {
+                const token = getTokenValue(req.headers.cookie);
+                const res = await fetch(`${API_URL}/customers/addresses`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                
+                });
+                const response = await res.json();
+                return {
+                    customerAddressData: response.data
+                };
+            }
+        } else {
+            const isClient = typeof document !== undefined;
+            if (isClient) {
+                // remove order data cookie
+                const token = getClientAuthToken();
+                const { page } = query;
+                if (page === 'account') {
+                    if (token) {
+                        Router.push('/checkout?page=addresses', '/checkout/addresses');
+                    }
+                } else {
+                    if (!token) {
+                        Router.push('/checkout?page=account', '/checkout/account');
+                    } else  {
+                        if (page === 'addresses') {
+                            const res = await fetch(`${API_URL}/customers/addresses`, {
+                                method: 'GET',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json',
+                                    'Authorization': `Bearer ${token}`
+                                },
+                            
+                            });
+                            const response = await res.json();
+                            return {
+                                customerAddressData: response.data
+                            };
+                        }
                     }
                 }
             }
         }
+        
         return {};
     }
 
@@ -171,7 +178,11 @@ class Checkout extends React.Component {
                     />
                 );
             case 'payment':
-                return <Payment />;
+                return (
+                    <Payment 
+                    toogleDisplayOverlay={this.toogleDisplayOverlay}
+                    />
+                    );
             default:
                 return (
                     <div className='row loader-row'>
@@ -199,7 +210,7 @@ class Checkout extends React.Component {
     renderPaymentView() {
         this.setState({
             activeContent: 'payment'
-        })
+        });
     }
 
     handleTabItemClick(tab_name) {
@@ -243,11 +254,26 @@ class Checkout extends React.Component {
         }
     }
 
+    toogleDisplayOverlay(show) {
+        if (show) {
+            this.setState({
+                showOverlay: true
+            });
+        } else {
+            this.setState({
+                showOverlay: false
+            })
+        }
+    }
+
     
 	render() {
-        const { triggerShipmentMethodUpdate } = this.state;
+        const { triggerShipmentMethodUpdate, showOverlay } = this.state;
 		return (
 			<Global>
+                <Overlay 
+                show={showOverlay}
+                />
                 <div className='maximum-width'>
                     <div className='row reset-row checkout-content'>
                         <StickyContainer >

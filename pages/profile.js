@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import SideProfile from "../components/views/profile/SideProfile";
 import ContentProfile from "../components/views/profile/ContentProfile";
+import OrderRow from "../components/views/profile/OrderRow";
+import OrderDetail from "../components/views/profile/OrderDetail";
 import Global from '../components/reusable/Global';
 import '../assets/styles/layouts/profile.scss';
 
@@ -14,8 +16,9 @@ class Profile extends Component {
                     </div>
 
                     <div className="col-lg-9 col-md-9 col-sm-7 col-12 main-content">
-                        <ContentProfile />
-                        
+                        {/* <ContentProfile /> */}
+                        {/* <OrderRow /> */}
+                        <OrderDetail />
                     </div>
                 </div>
             </Global>

@@ -14,6 +14,18 @@ app
     .then(() => {
         const server = express()
 
+        server.get('/order-complete/:payment', (req, res) => {
+            return app.render(req, res, '/order-complete', { 
+                payment: req.params.payment
+            });
+        })
+
+        server.get('/process/:payment', (req, res) => {
+            return app.render(req, res, '/process', { 
+                payment: req.params.payment
+            });
+        })
+
         server.get('/sellers/:seller/products/:slug', (req, res) => {
             return app.render(req, res, '/product-page', { 
                 seller: req.params.seller,
