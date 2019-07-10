@@ -1070,5 +1070,28 @@ html {
             font-size: 1.1rem !important;
             font-family: 'Harmonia Sans Pro Regular';
         }
+
+        .order-detail {
+            h5, p {
+                font-size: 1.1rem !important;
+            }
+        }
     }
+}
+
+// Terms and privacy doc pages
+.doc-page {
+    .content-wrapper {
+        h1 {
+            font-family: 'Harmonia Sans Pro Bold';
+        }
+
+        h4 {
+            font-family: 'Harmonia Sans Pro Bold';
+        }
+        p {
+            font-size: 1.1rem !important;
+        }
+    }
+    
 }

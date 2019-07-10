@@ -52,6 +52,10 @@
             margin: 1rem 0 0 0;
             .content {
                 color: $gray-color-6;
+                
+                a {
+                    color: $gray-color-6 !important;
+                }
             }
         }
         .contact-content {

@@ -16,9 +16,7 @@ class Profile extends Component {
                     </div>
 
                     <div className="col-lg-9 col-md-9 col-sm-7 col-12 main-content">
-                        {/* <ContentProfile /> */}
-                        {/* <OrderRow /> */}
-                        <OrderDetail />
+                        <ContentProfile />
                     </div>
                 </div>
             </Global>

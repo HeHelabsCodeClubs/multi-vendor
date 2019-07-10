@@ -11,28 +11,26 @@ class Footer extends Component {
                             <div className='col-lg-2 col-md-2 col-sm-3 col-6'>
                                 <div className='footer-title'>Way to shop</div>
                                 <div className='footer-content'>
-                                    <div className='content'>All products</div>
-                                    <div className='content'>Featured products</div>
-                                    <div className='content'>Featured shops</div>
-                                    <div className='content'>Blogs</div>
+                                    <div className='content'><a href="/categories/clothing-fashion">Clothing &amp; Fashion</a></div>
+                                    <div className='content'><a href="/categories/electronics">Electronics</a></div>
+                                    <div className='content'><a href="/categories/home-appliances">Home Appliances</a></div>
+                                    <div className='content'><a href="/categories/kids-babies">Kids &amp; Babies</a></div>
+                                    <div className='content'><a href="/categories/groceries">Groceries</a></div>
                                 </div>
                             </div>
                             <div className='col-lg-2 col-md-2 col-sm-3 col-6'>
                                 <div className='footer-title'>Extras</div>
                                 <div className='footer-content'>
-                                    <div className='content'>About us</div>
-                                    <div className='content'>Become a seller</div>
-                                    <div className='content'>Advertise with us</div>
-                                    <div className='content'>Affiliates</div>
-                                    <div className='content'>Testimonials</div>
+                                    <div className='content'><a href="https://hehe.rw/" target="_blank">About us</a></div>
+                                    <div className='content'><a href="https://hehe.rw/#contactUs" target="_blank">Become a seller</a></div>
                                 </div>
                             </div>
                             <div className='col-lg-2 col-md-2 col-sm-3 col-6'>
                                 <div className='footer-title'>Quick Links</div>
                                 <div className='footer-content'>
-                                    <div className='content'>Privacy policies</div>
-                                    <div className='content'>Terms & Conditions</div>
-                                    <div className='content'>Contact us</div>
+                                    <div className='content'><a href="/privacy">Privacy policies</a></div>
+                                    <div className='content'><a href="/terms">Terms &amp; Conditions</a></div>
+                                    <div className='content'><a href="https://hehe.rw/#contactUs" target="_blank">Contact us</a></div>
                                 </div>
                             </div>
                             <div className='col-lg-3 col-md-3 col-sm-3 col-6'>
@@ -43,7 +41,7 @@ class Footer extends Component {
                                 <div className='contact-content'>support@dmmhehe.com</div>
 
                                 <div className='footer-title'>Sell with HeHe</div>
-                                <div><button>Become a seller</button></div>
+                                <div><a href="https://hehe.rw/#contactUs" target="_blank"><button>Become a seller</button></a></div>
                             </div>
                             <div className='col-lg-3 col-md-3 col-sm-6 col-12 subscribe-grid'>
                                 <div className='footer-title'>Get more from Hehe</div>
