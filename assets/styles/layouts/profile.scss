@@ -104,6 +104,46 @@
                 }
             }
         }
+
+        .order-detail {
+            
+            .card-content {
+                background-color: #fff;
+                padding: 1rem;
+                margin: 1rem 0;
+                border-radius: .2rem;
+
+                p {
+                    color: $black-color-3;
+                }
+                h5 {
+                    color: $black-color-3;
+                }
+            }
+
+            .table-wrapper {
+                table {
+                    tr {
+
+                        
+                        td {
+                            padding: .3rem 0;
+
+                            tr {
+                                border: none;
+
+                                img {
+                                    max-height: 50px;
+                                    margin-right: 3rem;
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+                
+            }
+        }
         
     }
 }
