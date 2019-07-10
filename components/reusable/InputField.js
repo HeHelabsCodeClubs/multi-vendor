@@ -16,6 +16,7 @@ export default class InputField extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.inputFieldShouldDisplayError = this.inputFieldShouldDisplayError.bind(this);
         this.renderInputLabel = this.renderInputLabel.bind(this);
+        this.renderSelect = this.renderSelect.bind(this);
     }
 
     componentDidMount() {
@@ -88,6 +89,18 @@ export default class InputField extends Component {
         );
     }
 
+    renderSelect(selectorData) {
+        const optionsLayout = selectorData.map((selectorItem) => {
+            return (
+                <option key={selectorItem.id} value={selectorItem.id}>
+                    {selectorItem.text}
+                </option>
+            );
+        });
+
+        return optionsLayout
+    }
+
     renderInputField() {
         const { 
             type,
@@ -130,7 +143,7 @@ export default class InputField extends Component {
             return (
                 <div className ={inputClassName}>
                      {this.renderInputLabel()}
-                    <Select2
+                    {/* <Select2
                     id={id}
                     name={name}
                     data={selectorData}
@@ -140,7 +153,15 @@ export default class InputField extends Component {
                     value={inputValue}
                     className='test-select'
                     onChange={this.handleInputChange}
-                    />
+                    /> */}
+                    <select 
+                    value={inputValue}
+                    id={id}
+                    name={name}
+                    onChange={this.handleInputChange}
+                    >
+                        {this.renderSelect(selectorData)}
+                    </select>
                 </div> 
             );
         }

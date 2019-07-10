@@ -31,6 +31,29 @@ export default class SingleStoreDeliveryItem extends Component {
         this.renderShipmentTotalLayout = this.renderShipmentTotalLayout.bind(this);
         this.updateLocalShipmentData = this.updateLocalShipmentData.bind(this);
         this.setDefaultShipmentMethodIfInLocalStorage = this.setDefaultShipmentMethodIfInLocalStorage.bind(this);
+        this.validatedShipment = this.validatedShipment.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { triggerValidation } = nextProps;
+        //console.log('i am called', triggerValidation);
+        if (triggerValidation) {
+            //console.log('i am called');
+            const { store } = this.state;
+            retrieveShipmentDataPerStoreSlug(store.slug, (existingMethod) => {
+                this.validatedShipment(existingMethod); 
+            });
+        }
+    }
+
+    validatedShipment(shipment_method) {
+        //const { shipmentMethod } = this.state;
+        console.log('shipment is', shipment_method);
+        if (shipment_method === '') {
+            this.props.isShipmentValid(false);
+        } else {
+            this.props.isShipmentValid(true);
+        }
     }
 
     componentDidMount() {
@@ -157,30 +180,30 @@ export default class SingleStoreDeliveryItem extends Component {
             };
         });
         return (
-            // <InputField 
-            // typeOfInput='selector'
-            // id='shipment-method-selector'
-            // name='shipmentMethod'
-            // selectorData={selectorData}
-            // hideLabel={true}
-            // placeholder='shipment'
-            // updateInputFieldValue={this.getInputFieldValue}
-            // defaultInputValue={shipmentMethod}
-            // />
-
-            <Select2
+            <InputField 
+            typeOfInput='selector'
             id='shipment-method-selector'
             name='shipmentMethod'
-            data={selectorData}
-            options={{
-                placeholder: 'shipment'
-            }}
-            value={shipmentMethod}
-            className='test-select'
-            onChange={(e) => {
-                this.getInputFieldValue('shipmentMethod', e.target.value);
-            }}
+            selectorData={selectorData}
+            hideLabel={true}
+            placeholder='shipment'
+            updateInputFieldValue={this.getInputFieldValue}
+            defaultInputValue={shipmentMethod}
             />
+
+            // <Select2
+            // id='shipment-method-selector'
+            // name='shipmentMethod'
+            // data={selectorData}
+            // options={{
+            //     placeholder: 'shipment'
+            // }}
+            // value={shipmentMethod}
+            // className='test-select'
+            // onChange={(e) => {
+            //     this.getInputFieldValue('shipmentMethod', e.target.value);
+            // }}
+            ///>
         );
     }
     renderContent() {
