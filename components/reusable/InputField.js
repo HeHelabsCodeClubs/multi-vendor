@@ -89,9 +89,20 @@ export default class InputField extends Component {
         );
     }
 
-    renderSelect(selectorData) {
-        const optionsLayout = selectorData.map((selectorItem) => {
-            return (
+    renderSelect(selectorData, placeholder) {
+        const optionsLayout = [
+            <option 
+            key='placeholder---'
+            value=""
+            selected 
+            disabled
+            hidden
+            >
+            {placeholder}
+            </option>
+        ];
+        selectorData.map((selectorItem) => {
+            optionsLayout.push(
                 <option key={selectorItem.id} value={selectorItem.id}>
                     {selectorItem.text}
                 </option>
@@ -160,7 +171,7 @@ export default class InputField extends Component {
                     name={name}
                     onChange={this.handleInputChange}
                     >
-                        {this.renderSelect(selectorData)}
+                        {this.renderSelect(selectorData, placeholder)}
                     </select>
                 </div> 
             );
