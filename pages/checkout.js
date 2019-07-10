@@ -275,7 +275,7 @@ class Checkout extends React.Component {
 
                 break;
             case 'payment':
-                if(page === 'delivery') {
+                if(page === 'delivery' || page === 'addresses') {
                     this.setState({
                         triggerValidateDelivery: true
                     });
@@ -286,7 +286,6 @@ class Checkout extends React.Component {
                     }, 400);
                     break;
                 }
-
                 this.redirectToSpecificPage('payment');
                 break;
             default:

@@ -119,21 +119,13 @@ class SingleCartStoreItem extends Component {
             return (
                 <div className='total-price'>
                     <div className='subtotal'>{`Sutotal: Rwf ${totalPrice}`}</div>
-                    <div className='shipping-grid'>
+                    {/* <div className='shipping-grid'>
                         <span className='shipping-title'>Shipping <span className="hidden-xs">method</span></span>
                         <span className='auth-form'>
-                            {/* <Select2
-                                defaultValue={1}
-                                data={[
-                                    { text: 'WHS', id: 1 },
-                                    { text: 'another WHS', id: 2 },
-                                    { text: 'other WHS', id: 3}
-                                ]}
-                            /> */}
                             {this.renderShipmentMethodSelector(storeData)}
                         </span>
                         <span className='shipping'>{`Total: Rwf ${totalPrice}`}</span>
-                    </div>
+                    </div> */}
                     <div className='total-grid'>
                         <span className='total'>{`Total: Rwf ${totalPrice}`}</span>
                     </div>

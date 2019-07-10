@@ -186,7 +186,7 @@ export default class SingleStoreDeliveryItem extends Component {
             name='shipmentMethod'
             selectorData={selectorData}
             hideLabel={true}
-            placeholder='shipment'
+            placeholder='Choose shipment'
             updateInputFieldValue={this.getInputFieldValue}
             defaultInputValue={shipmentMethod}
             />

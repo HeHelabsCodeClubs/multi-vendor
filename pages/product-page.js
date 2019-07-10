@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-unfetch';
+import Router from 'next/router';
 import Slider from "react-slick";
 import { notify } from 'react-notify-toast';
 import Product from '../components/reusable/Product';
@@ -12,6 +13,8 @@ import ImageLoader from '../components/reusable/ImageLoader';
 import addProductToCart from '../helpers/add_product_to_cart';
 import AttributeOptionSelector from '../components/reusable/AttributeOptionSelector';
 import isObjectEmpty from '../helpers/is_object_empty';
+import { getClientAuthToken } from '../helpers/auth';
+import { getCartItems } from '../helpers/cart_functionality_helpers';
  
 class ProductPage extends React.Component {
     constructor(props) {
@@ -43,6 +46,7 @@ class ProductPage extends React.Component {
         this.validateAttributeOptions = this.validateAttributeOptions.bind(this);
         this.getAddToCartButtonText = this.getAddToCartButtonText.bind(this);
         this.performAfterAddingProductToCart = this.performAfterAddingProductToCart.bind(this);
+        this.handleDirectBuy = this.handleDirectBuy.bind(this);
     }
 
     static async getInitialProps({ query }) {
@@ -433,6 +437,15 @@ class ProductPage extends React.Component {
         }
     }
 
+    handleDirectBuy() {
+        const token = getClientAuthToken();
+        if (token) {
+            Router.push('/checkout/addresses');
+            return;
+        }
+
+        Router.push('/checkout/account');
+    }
 
 	render() {
         const { productData } = this.props;
@@ -462,7 +475,13 @@ class ProductPage extends React.Component {
                                                 >
                                                 {this.getAddToCartButtonText()}
                                                 </button>
-                                                <button className='white-btn'>Direct Buy</button>
+                                                <button 
+                                                className='white-btn'
+                                                type='submit'
+                                                onClick={this.handleDirectBuy}
+                                                >
+                                                    Direct Buy
+                                                </button>
                                                 {/* <button className='white-btn'>Add to Wishlist</button> */}
                                             </div>
                                             {this.renderProductStore(productData.belongs_to_exclusive_store, productData.store)}

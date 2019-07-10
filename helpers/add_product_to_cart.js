@@ -98,8 +98,11 @@ function updateCartItems(cartItems, newProduct, callback) {
         }
         return;
     }).catch((err) => {
-        console.log(err);
-        throw UNABLE_TO_SAVE_LOCAL_DATA_ERROR
+        if (err) {
+            console.log(err);
+            throw UNABLE_TO_SAVE_LOCAL_DATA_ERROR
+        }
+        
     });
 }
 
