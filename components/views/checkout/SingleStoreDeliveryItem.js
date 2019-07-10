@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Select2 from 'react-select2-wrapper';
 import InputField from '../../reusable/InputField';
 import isObjectEmpty from '../../../helpers/is_object_empty';
 import { 
