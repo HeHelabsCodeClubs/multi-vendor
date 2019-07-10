@@ -1095,3 +1095,28 @@ html {
     }
     
 }
+
+
+// inputs
+
+label {
+    font-family: 'Harmonia Sans Pro Regular';
+    font-size: 1.28rem;
+}
+select {
+    font-family: 'Harmonia Sans Pro Regular' !important;
+    font-size: 1.28rem !important;
+}
+select {
+    width: 100%;
+    margin: 1rem 0;
+    border: 1px solid $gray-color-2;
+    background: $gray-color-2;
+    padding: 0.3rem 1rem;
+    border-radius: 0.3rem;
+    outline: none;
+
+    &.is-invalid {
+        border: 1px solid $red-color-1 !important;
+    }
+}

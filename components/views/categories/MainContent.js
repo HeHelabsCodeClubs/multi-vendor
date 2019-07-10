@@ -67,10 +67,7 @@ class MainContent extends React.Component {
                 <div>
                     <div class="row reset-row">
                         {productsLayout}
-                    </div> 
-                    <div className="load-more__btn-wrapper">
-                       <button className="btn btn-primary">Load more</button>
-                   </div>
+                    </div>
                 </div>
             ) 
         }

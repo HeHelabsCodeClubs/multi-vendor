@@ -49,7 +49,7 @@ body {
     .auth-form {
         .input-field {
             position: relative;
-            input {
+            input, select {
                 width: 100%;
                 margin: 1rem 0;
                 border: 1px solid $gray-color-2;
