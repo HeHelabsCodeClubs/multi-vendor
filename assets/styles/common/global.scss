@@ -22,6 +22,7 @@ body {
     position: relative;
     width: 100%;
     padding-bottom: 24rem !important;
+    overflow-x: hidden !important;
 
     @media screen and (max-width: $mobile-md-lg) {
         padding-bottom: 55rem !important;
@@ -49,6 +50,7 @@ a {
     border-top: 2px solid $gray-color-2;
     background: $white-color;
     margin: 0 1rem;
+    padding-bottom: 1.5rem;
 
     .subtotal {
         text-align: right;
@@ -322,6 +324,23 @@ input {
         left: 0 !important;
         top: 0 !important;
         z-index: 10000000000;
+    }
+    
+}
+
+// Terms and privacy doc pages
+.doc-page {
+    .content-wrapper {
+        max-width: 1000px;
+        margin: 3rem auto;
+
+        h1 {
+            margin: 0 0 2rem;
+        }
+
+        h4 {
+            margin-bottom: 1.3rem !important;
+        }
     }
     
 }

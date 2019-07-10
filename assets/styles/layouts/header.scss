@@ -506,6 +506,7 @@
 
             .menu-btn {
                 padding: 1rem 2rem 3rem 2rem;
+                display: none !important;
                 button {
                     width: 100%;
                     border-radius: 0.2rem;
@@ -651,6 +652,10 @@
         .cart-content-content {
             overflow-y: scroll;
             height: calc(100vh - 7.6rem);
+
+            .shipping-grid {
+                display: none !important;
+            }
         }
         .cart-store-content {
             position: relative;
@@ -866,7 +871,7 @@
     min-height: 100%;
     background: $white-color;
     z-index: 9;
-    min-width: 90.0rem;
+    min-width: 71rem;
     visibility: hidden;
     @include boxshadow(.3rem .6rem 2.0rem $gray-color-5);
     h5 {
