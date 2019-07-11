@@ -279,6 +279,13 @@ html {
             .store-name {
                 font-size: 1.2rem;
                 font-family: $font-regular;
+
+                .items-in-cart {
+                    
+                    @media screen and (max-width: $mobile-lg) {
+                        font-size: 1rem;
+                    }
+                }
             }
         }
         .product-name {
@@ -629,6 +636,10 @@ html {
             .process-name {
                 font-size: 1.28rem;
                 font-family: $font-bold;
+
+                @media screen and (max-width: $mobile-lg) {
+                    font-size: .8rem;
+                }
             }
         }
     }
@@ -703,6 +714,15 @@ html {
                             font-family: $font-regular;
                         }
                     }
+                }
+                .momo-payment {
+                    h5 {
+                        font-size: 1.28rem;
+                    }
+                    input {
+                        font-size: 1.28rem;
+                    }
+                    
                 }
                 .payment-comment {
                     .comment-title {
@@ -953,6 +973,10 @@ html {
                 input {
                     font-size: 1.28rem;
                     font-family: $font-regular;
+
+                    @media screen and (max-width: $mobile-lg) {
+                        font-size: 1rem !important;
+                    }
                 }
             }
             .checkbox-field {
@@ -1102,20 +1126,15 @@ html {
 label {
     font-family: 'Harmonia Sans Pro Regular';
     font-size: 1.28rem;
+
+    @media screen and (max-width: $mobile-lg) {
+        font-size: 1rem;
+    }
 }
 select {
     font-family: 'Harmonia Sans Pro Regular' !important;
     font-size: 1.28rem !important;
-}
-select {
-    width: 100%;
-    border: 1px solid $gray-color-2;
-    background: $gray-color-2;
-    padding: 0.3rem 1rem;
-    border-radius: 0.3rem;
-    outline: none;
-
-    &.is-invalid {
-        border: 1px solid $red-color-1 !important;
+    @media screen and (max-width: $mobile-lg) {
+        font-size: 1rem !important;
     }
 }

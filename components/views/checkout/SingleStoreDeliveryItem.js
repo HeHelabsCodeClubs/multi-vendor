@@ -288,9 +288,10 @@ export default class SingleStoreDeliveryItem extends Component {
                 <div className='delivery-content'>
                     <div className='store-logo'>
                         <div className="left-block">
-                            <img className='store-img' src={info.icon} />
+                            <span className="store-logo-wrapper"><img className='store-img' src={info.icon} /></span>
+                            
                             <span className='store-name'>
-                                <span className='name'>{name}</span>{itemsText}
+                                <span className='name'>{name}</span><span class="items-in-cart">{itemsText}</span>
                             </span>
                         </div>
                         <div className="right-block">
