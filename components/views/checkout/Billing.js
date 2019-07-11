@@ -159,14 +159,16 @@ class Billing extends Component {
 					getSubmittedValues={this.getSubmittedValues}
 					provideCustomerDetails={retrieveCustomerDetails}
 					/>
-					<InputField 
-						typeOfInput='checkbox'
-						type='checkbox'
-						name='billingAndShippingSame'
-						fieldText='Billing and shipping address are the same'
-						updateInputFieldValue={this.handleBillingAddressDisplay}
-						defaultInputValue={billingAndShippingSame}
-					/>
+					<div className="same-bil-ship__checkbox">
+						<InputField 
+							typeOfInput='checkbox'
+							type='checkbox'
+							name='billingAndShippingSame'
+							fieldText='Billing and shipping address are the same'
+							updateInputFieldValue={this.handleBillingAddressDisplay}
+							defaultInputValue={billingAndShippingSame}
+						/>
+					</div>
 					{this.renderSubmitButton()}
 				</div>
 			);

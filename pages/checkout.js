@@ -12,7 +12,6 @@ import Overlay from '../components/reusable/Overlay';
 import CheckoutPageSectionLink from '../components/views/checkout/CheckoutPageSectionLink';
 import { getClientAuthToken, getTokenValue } from '../helpers/auth';
 import { API_URL, CART_ITEMS_KEY } from '../config';
-import { StickyContainer, Sticky } from 'react-sticky';
 import { getCartItems } from '../helpers/cart_functionality_helpers';
 
 class Checkout extends React.Component {
@@ -330,46 +329,30 @@ class Checkout extends React.Component {
                 />
                 <div className='maximum-width'>
                     <div className='row reset-row checkout-content'>
-                        <StickyContainer >
-                            <div className='col-11 checkouot__left-block not-sticky__container'>
-                                <ul className='checkout-process'>
-                                    <CheckoutPageSectionLink 
-                                    pageName='account'
-                                    title='1. Account info'
-                                    />
-                                    <CheckoutPageSectionLink 
-                                    pageName='addresses'
-                                    title='2. Billing and shipping address'
-                                    />
-                                    <CheckoutPageSectionLink 
-                                    pageName='delivery'
-                                    title='3. Delivery'
-                                    doOnClick={() => this.handleTabItemClick('delivery')}
-                                    />
-                                    <CheckoutPageSectionLink 
-                                    pageName='payment'
-                                    title='4. Payment'
-                                    doOnClick={() => this.handleTabItemClick('payment')}
-                                    />
-                                </ul>
+                        <div className='col-lg-8 col-md-8 col-sm-8 col-12 checkouot__left-block not-sticky__container'>
+                            <ul className='checkout-process'>
+                                <CheckoutPageSectionLink 
+                                pageName='account'
+                                title='1. Account info'
+                                />
+                                <CheckoutPageSectionLink 
+                                pageName='addresses'
+                                title='2. Billing and shipping address'
+                                />
+                                <CheckoutPageSectionLink 
+                                pageName='delivery'
+                                title='3. Delivery'
+                                doOnClick={() => this.handleTabItemClick('delivery')}
+                                />
+                                <CheckoutPageSectionLink 
+                                pageName='payment'
+                                title='4. Payment'
+                                doOnClick={() => this.handleTabItemClick('payment')}
+                                />
+                            </ul>
 
-                                <Sticky topOffset={80}>
-                                    {({
-                                        style,
-                                        isSticky,
-                                        wasSticky,
-                                        distanceFromTop,
-                                        distanceFromBottom,
-                                        calculatedHeight
-                                    }) => (
-                                        <header style={style}>
-                                            {this.renderContent()}
-                                        </header>
-                                    )}
-                                </Sticky>
-                            </div>                                                      
-                        </StickyContainer>
-
+                            {this.renderContent()}
+                        </div> 
                         <div className='col-lg-4 col-md-4 col-sm-4 col-12 order-summary-grid not-sticky__container'>
                             <OrderSummary 
                             triggerShipmentMethodUpdate={triggerShipmentMethodUpdate}

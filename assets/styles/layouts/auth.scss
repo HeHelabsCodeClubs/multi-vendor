@@ -29,7 +29,7 @@ body {
     // padding: 2rem 0;
     width: 100%;
     margin: 0;
-    padding: 2rem 2rem;
+    padding: 2rem;
 
     &.delivery-address {
         width: 100%;
@@ -91,6 +91,10 @@ body {
         .auth-button {
             text-align: center;
             margin: 2rem 0 1rem 0;
+
+            @media screen and (max-width: $mobile-lg) {
+                text-align: left;
+            }
             button {
                 @extend .default-button-styles;
             }
@@ -98,9 +102,18 @@ body {
         .auth-text {
             color: $black-color-2;
             text-align: center;
+
+            @media screen and (max-width: $mobile-lg) {
+                text-align: left;
+            }
+
             a {
                 color: $green-color-2 !important;
             }
         }
     }
+}
+
+.same-bil-ship__checkbox {
+    padding-left: 4rem;
 }

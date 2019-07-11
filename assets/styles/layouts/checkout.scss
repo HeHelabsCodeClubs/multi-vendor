@@ -1,17 +1,5 @@
 @import "../main";
 
-
-.checkout-content div:nth-child(1) {
-    flex: 0 0 66.66667%;
-
-    @media screen and (max-width: $mobile-lg) {
-        flex: 0 0 100%;
-    }
-
-    .not-sticky__container, .not-sticky__container div:nth-child(1) {
-        flex: none !important;
-    }
-}
 .checkout-process {
     position: relative;
     width: 100%;
@@ -26,6 +14,10 @@
         width: 100%;
         margin: 3rem 0;
         padding: 0;
+    }
+
+    header {
+        width: 90% !important;
     }
 
     .single-process {
@@ -108,7 +100,7 @@
     }
     .signup-block {
         @media screen and (max-width: $mobile-lg) {
-            padding: 0 !important;
+            padding: 0 0 0 2rem !important;
             margin: 2rem 0;
         }
     }
@@ -288,6 +280,7 @@
             @include flexbox;
             @include flexalignitems(center);
             @include flexjustifycontent(space-between);
+            
             img.store-img {
                 height: 3rem;
                 width: 3rem;
@@ -461,12 +454,22 @@
             margin: 1rem 0 0 0;
             border-radius: 4px;
 
-            img.store-logo {
+            .store-logo-wrapper {
                 height: 3rem;
                 width: 3rem;
                 background: $green-color-3;
                 border-radius: 50%;
+                @include flexbox;
+                @include flexalignitems(center);
+                @include flexjustifycontent(center);
+
+                img.store-logo {
+                    max-height: 2rem;
+                    max-width: 2rem;
+                    
+                }
             }
+            
             .checkout-cart-header {
                 padding: 0 0 1rem 0;
                 margin: 0 0 0.5rem 0;
@@ -478,6 +481,10 @@
                 .store-cart-content {
                     @include flexbox;
                     @include flexalignitems(flex-end);
+
+                    .store-name {
+                        padding-left: 1rem;
+                    }
                 }
             }
             .gift-block {

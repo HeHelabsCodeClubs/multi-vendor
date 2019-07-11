@@ -121,7 +121,7 @@ export default class SingleStoreOrderSummary extends Component {
                     className='checkout-cart-header'
                     >
                         <div className='store-cart-content'>
-                            <img className='store-logo' src={store.info.icon}/>
+                            <span className="store-logo-wrapper"><img className='store-logo' src={store.info.icon}/></span>
                             <span className='store-name'>{store.info.name}</span>
                         </div>
                         <span className='store-items'>{productsCountText}</span>
