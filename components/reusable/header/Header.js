@@ -4,7 +4,7 @@ import Cart from './Cart';
 import HeaderCategoryMenu from './HeaderCategoryMenu';
 import { getUserAuthenticatedInfo, logoutUser } from '../../../helpers/auth';
 import isObjectEmpty from '../../../helpers/is_object_empty';
-import SearchDropdown from './searchDropdown';
+import SearchDropdown from './SearchDropdown';
 
 class Header extends React.Component {
     constructor(props) {
