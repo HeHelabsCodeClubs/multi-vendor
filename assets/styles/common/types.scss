@@ -106,6 +106,12 @@ html {
             font-family: $font-regular;
             font-size: 1.28rem;
         }
+        .react-autosuggest__suggestions-list {
+            li {
+                font-family: $font-regular;
+                font-size: 1.1rem;
+            }
+        }
         .select2-container--default .select2-selection--single .select2-selection__placeholder {
             font-family: $font-semi-bold;
             font-size: 1.28rem;
@@ -124,6 +130,7 @@ html {
                 font-size: 1.2rem;
             }
         }
+
     }
     .icon-Path-62 {
         &:before {

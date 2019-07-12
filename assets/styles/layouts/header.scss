@@ -152,6 +152,13 @@
             display: block;
             height: 3rem;
             border-radius: 0.35rem;
+            position: relative;
+
+            &:focus {
+                border: solid 1px $orange-color-1;
+                border-bottom: none;
+                outline: none;
+            }
 
             @media (max-width: $mobile-lg) {
                 height: auto;
@@ -159,22 +166,53 @@
                 display: inline-block;
                 background: transparent;
             }
-
-            input {
+            .react-autosuggest__container {
                 width: 65%;
-                height: 3rem;
-                background: $gray-color-2;
-                border-right: .1rem solid $white-color !important;
-                border: none;
-                border-radius: 0.35rem 0 0 0.35rem;
-                padding: 0 1rem;
-                outline: none;
+                display: inline-block; 
 
-                @media (max-width: $mobile-lg) {
-                    display: none;
+                input {
+                    width: 100%;
+                    height: 3rem;
+                    background: $gray-color-2;
+                    border-right: .1rem solid $white-color !important;
+                    border: none;
+                    border-radius: 0.35rem 0 0 0.35rem;
+                    padding: 0 1rem;
+                    outline: none;
+    
+                    @media (max-width: $mobile-lg) {
+                        display: none;
+                    }
+    
                 }
 
+                .react-autosuggest__suggestions-list {
+                    position: absolute;
+                    width: 100%;
+                    z-index: 10;
+                    background: $white-color;
+                    box-shadow: 0 3px 6px 0 $box-shadow-color;
+                    padding: 1rem 0;
+                    border-radius: 0 0 .3rem .3rem;
+                    max-height: 300px;
+                    overflow-y: scroll;
+                    border: solid 1px #f6921e;
+                    border-top-width: .5px;
+
+                    li {
+                        a {
+                            display: block;
+                            padding: .5rem 1.3rem;
+                            color: $black-color-3 !important;
+
+                            &:hover {
+                                background-color: $gray-color-13;
+                            }
+                        }                        
+                    }
+                }
             }
+            
             .categories-dropdown {
                 display: inline-block;
                 position: absolute;

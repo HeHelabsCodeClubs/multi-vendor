@@ -4,6 +4,7 @@ import Cart from './Cart';
 import HeaderCategoryMenu from './HeaderCategoryMenu';
 import { getUserAuthenticatedInfo, logoutUser } from '../../../helpers/auth';
 import isObjectEmpty from '../../../helpers/is_object_empty';
+import SearchDropdown from './searchDropdown';
 
 class Header extends React.Component {
     constructor(props) {
@@ -125,7 +126,9 @@ class Header extends React.Component {
                         </div>
                         <div className='col-lg-5 col-md-5 col-sm-2 col-3 search-container'>
                             <span className='main-search'>
-                                <input type="text" placeholder="Search store or product" />
+
+                                <SearchDropdown />
+                                {/* <input type="text" placeholder="Search store or product" /> */}
                                 <span className='categories-dropdown'>
                                     <Select2
                                         defaultValue={2}
