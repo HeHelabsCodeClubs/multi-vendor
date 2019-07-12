@@ -36,10 +36,10 @@ body {
     }
 
     @media screen and (max-width: $mobile-lg ) {
-        width: 80%;
+        // width: 80%;
     }
     @media screen and (min-width: $mobile-lg ) and (max-width: $tablet-md) {
-        width: 70%;
+        // width: 70%;
     }
 
     .auth-title {
@@ -57,6 +57,10 @@ body {
                 padding: 0.3rem 1rem;
                 border-radius: 0.3rem;
                 outline: none;
+
+                @media screen and (max-width: $mobile-lg) {
+                    margin: .2rem 0 1rem;
+                }
 
                 &.is-invalid {
                     border: 1px solid $red-color-1 !important;

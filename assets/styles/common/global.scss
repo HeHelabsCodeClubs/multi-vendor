@@ -282,8 +282,23 @@ a {
 
 
 // Inputs
-input {
+input, select {
     color: $black-color-3 !important;
+}
+label {
+    padding-left: 1rem;
+}
+select {
+    width: 100%;
+    border: 1px solid $gray-color-2;
+    background: $gray-color-2;
+    padding: 0.3rem 1rem;
+    border-radius: 0.3rem;
+    outline: none;
+
+    &.is-invalid {
+        border: 1px solid $red-color-1 !important;
+    }
 }
 
 // Special
