@@ -43,7 +43,8 @@ const createCardPaymentSubmissionData = (cartItems, shipmentData) => {
                 title: shipment[0],
                 description: shipment[1],
                 rate: shipment[2],
-                cart_shipping_id: shipment[3] 
+                cart_shipping_id: shipment[3],
+                code: shipment[4] ? shipment[4] : 'sales.carriers.whs-nextday.active'
             };
             cartItems[store_slug].shipment_method = data;
         }

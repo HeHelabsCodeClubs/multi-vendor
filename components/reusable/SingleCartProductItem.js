@@ -90,7 +90,7 @@ export default class SingleCartProductItem extends Component {
                 <div className='cart-bk'>
                     &nbsp;
                 </div>
-                {this.renderCartItemEditButton(has_attributes)}
+                {/* {this.renderCartItemEditButton(has_attributes)} */}
                 <div className='cart-bk'>
                     <button 
                     className='remove'
