@@ -79,7 +79,9 @@ class SearchDropdown extends Component {
     
    renderSuggestion(suggestion) {
         return(
+
             <div>
+                {/* links */}
                 <a href="#">{suggestion.productName} in Electronics</a>
             </div>
         );
@@ -114,6 +116,7 @@ class SearchDropdown extends Component {
         };
 
         return (
+            
             <Autosuggest
                 suggestions={suggestions}
                 onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
