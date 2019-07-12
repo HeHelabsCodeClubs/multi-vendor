@@ -12,6 +12,7 @@ import {
  } from '../../../helpers/process_payment';
  import { API_URL } from '../../../config';
  import { getClientAuthToken, getOrderCookie } from '../../../helpers/auth';
+ import { ORDER_CREATION_UNKWOWN_ERROR } from '../../../config';
 
 export default class CardPayment extends Component {
     constructor(props) {
@@ -38,6 +39,7 @@ export default class CardPayment extends Component {
         this.onOrderCreationUnknownFailure = this.onOrderCreationUnknownFailure.bind(this);
         this.onOrderCreationSuccess = this.onOrderCreationSuccess.bind(this);
         this.onOrderCreationRetry = this.onOrderCreationRetry.bind(this);
+        this.onOrderCreationKnownFailure = this.onOrderCreationKnownFailure.bind(this);
     }
     componentDidMount() {
         // get cart data on component load
@@ -147,14 +149,15 @@ export default class CardPayment extends Component {
                 const response = await res.json();
                 this.handleResponse(response);
             } catch (err) {
-                console.log('error');
-                console.log(err);
-                this.onOrderCreationUnknownFailure();
+                if (err) {
+                    console.log(err);
+                    this.onOrderCreationUnknownFailure(ORDER_CREATION_UNKWOWN_ERROR);
+                } 
             }
         }).catch((err) => {
             if (err) {
                 console.log('err', err);
-                onOrderCreationUnknownFailure();
+                onOrderCreationUnknownFailure(ORDER_CREATION_UNKWOWN_ERROR);
             }
         });
     }
@@ -171,6 +174,8 @@ export default class CardPayment extends Component {
                 /**
                  * Handle creation failure
                  */
+                this.onOrderCreationKnownFailure(response);
+                return;
             default:
                 /**
                  * Handle errors
@@ -195,9 +200,9 @@ export default class CardPayment extends Component {
 
     onOrderCreationUnknownFailure(errorMessage) {
         this.setState({
-            buttonStatus: 'inital'
+            buttonStatus: 'initial'
         });
-        this.props.toogleDisplayOverlay();
+        this.props.toogleDisplayOverlay(false);
 
         if (errorMessage !== undefined) {
             this.setState({
@@ -209,7 +214,15 @@ export default class CardPayment extends Component {
                 this.setState({
                     inputIsInvalid: false
                 });
-            }, 1000);
+            }, 5000);
+        }
+    }
+
+    onOrderCreationKnownFailure(response) {
+        if (response.errors) {
+            const errors = response.errors;
+            this.onOrderCreationUnknownFailure(errors[0]);
+            return;
         }
     }
 

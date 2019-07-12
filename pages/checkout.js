@@ -13,6 +13,7 @@ import CheckoutPageSectionLink from '../components/views/checkout/CheckoutPageSe
 import { getClientAuthToken, getTokenValue } from '../helpers/auth';
 import { API_URL, CART_ITEMS_KEY } from '../config';
 import { getCartItems } from '../helpers/cart_functionality_helpers';
+import IsObjectEmpty from '../helpers/is_object_empty';
 
 class Checkout extends React.Component {
     constructor(props) {
@@ -46,19 +47,26 @@ class Checkout extends React.Component {
         if (req) {
             if (req.params.page === 'addresses') {
                 const token = getTokenValue(req.headers.cookie);
-                const res = await fetch(`${API_URL}/customers/addresses`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                
-                });
-                const response = await res.json();
+                if (token) {
+                    const res = await fetch(`${API_URL}/customers/addresses`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                    
+                    });
+                    const response = await res.json();
+                    return {
+                        customerAddressData: response.data
+                    };
+                }
+
                 return {
-                    customerAddressData: response.data
-                };
+                    customerAddressData: []
+                }
+                
             }
         } else {
             const isClient = typeof document !== undefined;
@@ -102,9 +110,18 @@ class Checkout extends React.Component {
          * If no cart items redirect user to homepage
          */
         getCartItems((items) => {
-            if (!items) {
-                Router.push('/');
-            }
+            if (!items ){
+				Router.push('/');
+				return;
+			} 
+
+			const itemsIsObject = (typeof items) === 'object' ? true : false;
+			if (itemsIsObject) {
+				if (IsObjectEmpty(items)) {
+					Router.push('/');
+					return;
+				}
+			}
         });
     }
 
@@ -251,18 +268,6 @@ class Checkout extends React.Component {
 
                     break;
                 }
-
-                // if (page === 'delivery') {
-                //     this.setState({
-                //         triggerValidateDelivery: true
-                //     });
-                //     setTimeout(() => {
-                //         this.setState({
-                //             triggerValidateDelivery: false
-                //         });
-                //     }, 400);
-                //     break;
-                // }
 
                 if (page === 'delivery' || page === 'payment') {
                     this.setState({

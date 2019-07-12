@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Router from 'next/router';
 import CardPayment from './CardPayment';
 import MtnMobileMoneyPayment from './MtnMobileMoneyPayment';
 import CashOnDeliveryPayment from './CashOnDeliveryPayment';
@@ -6,6 +7,8 @@ import Loader from '../../reusable/Loader';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { API_URL } from '../../../config';
 import { getClientAuthToken } from '../../../helpers/auth';
+import { getCartItems } from '../../../helpers/cart_functionality_helpers';
+import isObjectEmpty from '../../../helpers/is_object_empty';
 
 export default class Payment extends Component {
 	constructor(props) {
@@ -20,6 +23,27 @@ export default class Payment extends Component {
 		this.renderTabPanes = this.renderTabPanes.bind(this);
 		this.decideWhichPaymentLayoutToDisplay = this.decideWhichPaymentLayoutToDisplay.bind(this);
 	}
+	componentWillMount() {
+        /**
+         * If no cart items redirect user to homepage
+         */
+        // getCartItems((items) => {
+        //     console.log('i am called from checkout', typeof items);
+        //     if (!items ){
+		// 		console.log('i am heere')
+		// 		Router.push('/');
+		// 		return;
+		// 	} 
+
+		// 	const itemsIsObject = (typeof items) === 'object' ? true : false;
+		// 	if (itemsIsObject) {
+		// 		if (isObjectEmpty(items)) {
+		// 			Router.push('/');
+		// 			return;
+		// 		}
+		// 	}
+        // });
+    }
 	componentDidMount() {
 		const { paymentMethods } = this.state;
 		if (paymentMethods.length === 0) {

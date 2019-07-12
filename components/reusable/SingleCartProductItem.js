@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Router from 'next/router';
 import StockIncrementer from './StockIncrementer';
 import isObjectEmpty from '../../helpers/is_object_empty';
 import RemoveProductFromCart from '../../helpers/remove_product_from_cart';
@@ -15,6 +16,7 @@ export default class SingleCartProductItem extends Component {
         this.renderProductWithAttributes = this.renderProductWithAttributes.bind(this);
         this.renderOptions = this.renderOptions.bind(this);
         this.renderCartItemEditButton = this.renderCartItemEditButton.bind(this);
+        this.performOnProductRemovalFromCart = this.performOnProductRemovalFromCart.bind(this);
     }
 
     componentDidMount() {
@@ -34,18 +36,22 @@ export default class SingleCartProductItem extends Component {
     }
 
     removeProductFromCart(product, productIndex) {
-        // console.log('item is this');
-        // console.log(item);
         const { updateCartData } = this.props;
         if (product) {
-            // if (productIndex !== undefined) {
-            //     console.log('product index');
-            //     console.log(productIndex);
-            // }
+            
             RemoveProductFromCart(product, () => {
-                updateCartData();
+                this.performOnProductRemovalFromCart();
             }, productIndex);
         }
+    }
+
+    performOnProductRemovalFromCart() {
+        const { router: { pathname } } = Router;
+        if (pathname === '/checkout') {
+            location.reload();
+            return;
+        }
+        updateCartData();
     }
  
     renderProductPrice(product, productIndex) {

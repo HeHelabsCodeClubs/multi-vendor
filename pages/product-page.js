@@ -213,9 +213,9 @@ class ProductPage extends React.Component {
             const { attributes } = productData;
             if (attributes) {
                 const { short_description, description, descquantity } = attributes;
+                const displayedDescription = description !== '' ? description : short_description;
                 if ((short_description !== '') || (description !== '')) {
                     if (descquantity && (descquantity !== short_description) && (descquantity !== description)) {
-                        const displayedDescription = description !== '' ? description : short_description;
                         return (
                             <div className='description-details'>
                                 <div className='desc-title'>Product Details</div>
@@ -225,6 +225,15 @@ class ProductPage extends React.Component {
                             </div>
                         );
                     }
+
+                    return (
+                        <div className='description-details'>
+                            <div className='desc-title'>Product Details</div>
+                            <p className='desc-content'>
+                                {displayedDescription}
+                            </p>
+                        </div>
+                    );
                 }
             }
         }

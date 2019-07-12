@@ -7,8 +7,8 @@ class ContentProfile extends Component {
     render () {
         return (
             <div>
-                {/* <OrderRow/> */}
-                <OrderDetail />
+                <OrderRow/>
+                {/* <OrderDetail /> */}
             </div>
         );
     }

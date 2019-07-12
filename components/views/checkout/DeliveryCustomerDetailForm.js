@@ -66,8 +66,8 @@ class DeliveryCustomerDetailForm extends Component {
 
 	updateFormFieldsToInitialData() {
 		const { customerAddressData, formType } = this.props;
-		const addressType = this.getTheRightAddressType(customerAddressData[formType].address_type);
 		if (customerAddressData) {
+			const addressType = this.getTheRightAddressType(customerAddressData[formType].address_type);
 			this.setState({
 				firstName: customerAddressData[formType].first_name,
 				lastName: customerAddressData[formType].last_name,

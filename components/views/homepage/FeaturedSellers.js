@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import Slider from "react-slick";
 import ImageLoader from '../../reusable/ImageLoader';
+import LimitString from '../../../helpers/limit_string';
 
 class FeaturedSellers extends Component {
     constructor(props) {
@@ -21,7 +22,7 @@ class FeaturedSellers extends Component {
                     >
                         <ImageLoader 
                         imageUrl={product.image_url}
-                        placeholderHeight={200}
+                        placeholderHeight={100}
                         placeholderBackgroundColor='#ffffff'
                         />
                         {/* <img src={product.image_url} /> */}
@@ -66,7 +67,12 @@ class FeaturedSellers extends Component {
                                     </div>
                                 </a>
                                 <span className='line-display margin-reset'>
-                                    <div className='store-name'>{seller.name}</div>
+                                    <h5 
+                                    className='store-name'
+                                    title={seller.name}
+                                    >
+                                        {LimitString(seller.name, 8)}
+                                    </h5>
                                     <div className='store-category'>{seller.category.name}</div>
                                 </span>
                                 {this.renderShopNowUrl(seller)}
