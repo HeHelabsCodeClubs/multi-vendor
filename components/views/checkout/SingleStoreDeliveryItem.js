@@ -173,10 +173,10 @@ export default class SingleStoreDeliveryItem extends Component {
         }
 
         const selectorData = shipment_methods.map((shipment_method, index) => {
-            const { title, description, cart_shipping_id, rate } = shipment_method;
+            const { title, description, cart_shipping_id, rate, code } = shipment_method;
             return {
                 text: title,
-                id: `${title},${description},${rate},${cart_shipping_id}`
+                id: `${title},${description},${rate},${cart_shipping_id}, ${code}`
             };
         });
         return (

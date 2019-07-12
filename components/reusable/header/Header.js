@@ -49,6 +49,8 @@ class Header extends React.Component {
         logoutUser();
     }
 
+    // test deploy
+
     renderUserProfile() {
         const { authUser } = this.state;
         if (!authUser) {

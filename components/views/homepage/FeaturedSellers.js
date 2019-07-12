@@ -90,7 +90,7 @@ class FeaturedSellers extends Component {
 
 	render() {
         const { sellers } = this.props;
-        const infiniteSetting = sellers.length > 3 ? true : false;
+        const infiniteSetting = sellers.length >= 3 ? true : false;
 		const settings = {
 			infinite: infiniteSetting,
 			speed: 500,

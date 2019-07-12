@@ -57,9 +57,9 @@ export const performActionIfProductNotInCart = (store_slug, product_slug, callba
  */
 
 export const getCartProductQuantityValue = (product, callback, productIndex) => {
-    console.log('product', product);
-    console.log('function', callback);
-    console.log('productindex', productIndex);
+    // console.log('product', product);
+    // console.log('function', callback);
+    // console.log('productindex', productIndex);
     localforage.getItem(CART_ITEMS_KEY).then((items) => {
         if (items !== null) {
             if (items[product.store.slug] !== undefined) {
