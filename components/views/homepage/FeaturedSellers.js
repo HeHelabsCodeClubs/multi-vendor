@@ -58,14 +58,14 @@ class FeaturedSellers extends Component {
                         <div className='row reset-row multi-vendor-seller-wrapper'>
                             
                             <div className='featured-header'>
-                                <a href='' className='seller-logo-container'>
+                                <span className='seller-logo-container'>
                                     <div className='seller-logo'>
                                         <ImageLoader 
                                         imageUrl={seller.logo}
                                         placeholderBackgroundColor='#ffffff'
                                         />
                                     </div>
-                                </a>
+                                </span>
                                 <span className='line-display margin-reset'>
                                     <h5 
                                     className='store-name'
@@ -89,8 +89,10 @@ class FeaturedSellers extends Component {
     }
 
 	render() {
+        const { sellers } = this.props;
+        const infiniteSetting = sellers.length > 3 ? true : false;
 		const settings = {
-			infinite: true,
+			infinite: infiniteSetting,
 			speed: 500,
 			slidesToShow: 4,
 			slidesToScroll: 1,
