@@ -340,5 +340,12 @@
     }
 }
 
+.homecategory-wrapper {
+    @include flexbox;
+    @include flexjustifycontent(center);
+    @include flexalignitems(center);
+    @include flexdirection(column);
+}
+
 
 

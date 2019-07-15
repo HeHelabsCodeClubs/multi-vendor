@@ -147,37 +147,40 @@ class HeaderCategoryMenu extends React.Component {
                     slug,
                     name,
                     icon_class_name,
+                    icon_url,
                     children
                 } = category;
-                const IconClassName = icon_class_name !== '' ? icon_class_name : 'icon-KITCHENWARE-ICO';
-                return (
-                    <span className="nav__submenu-item " key={id} >
-                        <a 
-                        href={`/categories/${slug}`} 
-                        className='sub-menu__item-a'>
-                        <span className={`${IconClassName} menu-item-icon`} />
-                        {name}
-                        </a>
-                        <div className='sub-category'>
-                            <div className='row'>
-                                <div className='col-lg-9 col-md-9 col-sm-9 col-12'>
-                                    {this.renderCategorySubCategories(slug, children)}
-                                </div>
-                                <div className='col-lg-3 col-md-3 col-sm-3 col-12'>
-                                    <div className='menu-img'>
-                                        <img src='https://res.cloudinary.com/hehe/image/upload/v1560250753/multi-vendor/3043262_ultraradiant-met-hp-ast_ecom1830-4.png' />
+                const IconUrl = icon_url !== '' ? icon_url : 'icon-KITCHENWARE-ICO';
+                //const links = icon_class_name.split(',');
+                    return (
+                        <span className="nav__submenu-item " key={id} >
+                            <a 
+                            href={`/categories/${slug}`} 
+                            className='sub-menu__item-a'>
+                            {/* <span className={`${IconClassName} menu-item-icon`} /> */}
+                            <img src={IconUrl} className={`cat-icon`} />
+                            <h5>{name}</h5>
+                            </a>
+                            <div className='sub-category'>
+                                <div className='row'>
+                                    <div className='col-lg-9 col-md-9 col-sm-9 col-12'>
+                                        {this.renderCategorySubCategories(slug, children)}
                                     </div>
-                                    <div className='menu-img'>
-                                        <img src='https://res.cloudinary.com/hehe/image/upload/v1560250767/multi-vendor/Products_Banner2-928x461.png' />
-                                    </div>
-                                    <div className='menu-img'>
-                                        <img src='https://res.cloudinary.com/hehe/image/upload/v1560250753/multi-vendor/3043262_ultraradiant-met-hp-ast_ecom1830-4.png' />
+                                    <div className='col-lg-3 col-md-3 col-sm-3 col-12'>
+                                        <div className='menu-img'>
+                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1560250753/multi-vendor/3043262_ultraradiant-met-hp-ast_ecom1830-4.png' />
+                                        </div>
+                                        <div className='menu-img'>
+                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1560250767/multi-vendor/Products_Banner2-928x461.png' />
+                                        </div>
+                                        <div className='menu-img'>
+                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1560250753/multi-vendor/3043262_ultraradiant-met-hp-ast_ecom1830-4.png' />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </span>
-                )
+                        </span>
+                    )
             });
             return categoryLayout;
         }

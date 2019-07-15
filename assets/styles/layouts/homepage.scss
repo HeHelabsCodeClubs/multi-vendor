@@ -126,7 +126,8 @@
 
             div {
                 a {
-                    @include flexbox;
+                    // @include flexbox;
+                    display: flex !important;
                     @include flexalignitems(center);
                     @include flexjustifycontent(center);
                     @include flexdirection(column);

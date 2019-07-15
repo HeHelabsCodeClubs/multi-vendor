@@ -565,7 +565,13 @@
 
             .sub-menu__item-a {
                 color: $black-color-3 !important;
-
+                @include flexbox;
+                @include flexjustifycontent(center);
+                @include flexalignitems(center);
+                h5 {
+                    margin: 0;
+                    padding: 0.5rem 0 0 0;
+                }
                 img {
                     width: 3rem;
                     height: 3rem;
