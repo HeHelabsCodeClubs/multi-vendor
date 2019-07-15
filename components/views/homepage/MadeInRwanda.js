@@ -37,7 +37,7 @@ class MadeInRwanda extends Component {
 
 	render() {
         const settings = {
-			infinite: false,
+			infinite: true,
 			speed: 500,
 			rows:1,
 			slidesToShow: 9,
@@ -78,7 +78,7 @@ class MadeInRwanda extends Component {
 		}
 
 		var prodSettings = {
-			infinite: false,
+			infinite: true,
 			speed: 500,
 			rows: 1,
 			slidesToShow: 6,

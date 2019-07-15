@@ -11,6 +11,7 @@ class Categories extends React.Component {
         super(props);
         this.state = {
             updatedProducts: [],
+            paginationData: {},
             showLoader: false,
             updateCart: false
         };
@@ -49,9 +50,10 @@ class Categories extends React.Component {
 		});
 	}
 
-    updateProductsData(newProducts) {
+    updateProductsData(data) {
         this.setState({
-            updatedProducts: newProducts
+            updatedProducts: data.products,
+            paginationData: data.meta
         });
     }
 
@@ -76,17 +78,11 @@ class Categories extends React.Component {
             parentCategorySlug,
             metaProductsData
         } = this.props;
-
-        this.props = {
-            categoriesData:[],
-            subCategoriesData:[],
-            metaProductsData: []
-        }
-
         const { 
             updatedProducts,
             showLoader,
-            updateCart 
+            updateCart,
+            paginationData
         } = this.state;
 		return (
 			<Global
@@ -112,6 +108,7 @@ class Categories extends React.Component {
                                 <MainContent 
                                 products={productsData}
                                 updatedProducts={updatedProducts}
+                                paginationData={paginationData}
                                 showLoader={showLoader}
                                 cartShouldUpdate={this.cartShouldUpdate}
                                 metaProductsData={metaProductsData}

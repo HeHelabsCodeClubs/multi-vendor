@@ -91,7 +91,11 @@ export default class  MenuItemCategory extends Component {
         const remoteUrl = `${API_URL}/categories/${categorySlug}/products`;
         const res = await fetch(remoteUrl);
         const response = await res.json();
-        callback(response.data);
+        const data = {
+            products: response.data,
+            meta: response.meta.pagination_data
+        };
+        callback(data);
     }
 
     handleDisplayOfSubCategories() {
