@@ -115,7 +115,6 @@ class Categories extends React.Component {
                                 showLoader={showLoader}
                                 cartShouldUpdate={this.cartShouldUpdate}
                                 metaProductsData={metaProductsData}
-
                                 />
                             </div>
                         </div>
