@@ -37,7 +37,7 @@ class MadeInRwanda extends Component {
 
 	render() {
         const settings = {
-			infinite: true,
+			infinite: false,
 			speed: 500,
 			rows:1,
 			slidesToShow: 9,
@@ -56,24 +56,21 @@ class MadeInRwanda extends Component {
 					breakpoint: 979,
 					settings: {
 						slidesToShow: 6,
-						slidesToScroll: 2,
-						infinite: false
+						slidesToScroll: 2
 					}
 				},
 				{
 					breakpoint: 767,
 					settings: {
 						slidesToShow: 5,
-						slidesToScroll: 2,
-						infinite: false
+						slidesToScroll: 2
 					}
 				},
 				{
 					breakpoint: 480,
 					settings: {
 						slidesToShow: 3,
-						slidesToScroll: 1,
-						infinite: false
+						slidesToScroll: 1
 						
 					}
 				}
@@ -81,9 +78,9 @@ class MadeInRwanda extends Component {
 		}
 
 		var prodSettings = {
-			infinite: true,
+			infinite: false,
 			speed: 500,
-			//rows: 1,
+			rows: 1,
 			slidesToShow: 6,
 			slidesToScroll: 2,
 			responsive: [
@@ -118,7 +115,6 @@ class MadeInRwanda extends Component {
 					breakpoint: 767,
 					settings: {
 						slidesToShow: 1,
-						infinite: false,
 						centerMode: true,
 						centerPadding: "40px",
 						slidesToScroll: 1
