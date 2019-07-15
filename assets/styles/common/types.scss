@@ -1107,6 +1107,20 @@ html {
                 font-size: 1.1rem !important;
             }
         }
+
+        .user-detail {
+            .user-summary__detail {
+                td {
+                    font-family: 'Harmonia Sans Pro Bold';
+                    font-size: 1.5rem !important;
+
+                    span {
+                        font-family: 'Harmonia Sans Pro Regular';
+                        font-size: 1.1rem !important;
+                    }
+                }
+            }
+        }
     }
 }
 

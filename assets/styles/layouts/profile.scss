@@ -150,6 +150,97 @@
         }
         
     }
+
+    .user-detail {
+        padding: 0 1rem;
+
+        .user-header {
+            padding: 0 3rem 2rem;
+            @include flexbox;
+            @include flexalignitems(center);
+
+            .user-dp {
+                height: 5rem;
+                width: 5rem;
+                border: 2px solid #b3bcc6;
+                border-radius: 50%;
+                overflow: hidden;
+                margin-right: 1rem;
+                @include flexbox;
+                @include flexalignitems(center);
+                @include flexjustifycontent(center);
+
+                img {
+                    max-height: 4.6rem;
+                }
+            }            
+        }
+        .user-summary__detail {
+            border-radius: 5px;
+            box-shadow: 0 6px 16px 0 $box-shadow-color;
+            background-color: $green-color-4;
+            padding: 1.3rem;
+            margin: 0 1.2rem 3rem;
+
+            table {
+                width: 100%;
+                text-align: center;
+
+                td {
+                    border-right: 1px solid $gray-color-5;                    
+                    &:nth-last-child(1) {
+                        border-right: none;
+                    }
+                    span {
+                        display: block;
+                    }
+                }                
+            }
+        }
+        .user-info__body {
+
+            .card-content {
+                border-radius: 5px;
+                box-shadow: 0 6px 16px 0 $box-shadow-color-2;
+                background-color: $white-color;
+                margin-bottom: 3rem;
+
+                .card-header {
+                    background: white;
+                    border-bottom: 1px solid #f4f6f7;
+                    margin: 0 1.3rem;
+                    padding: 1rem 0;
+                    @include flexbox;
+                    @include flexjustifycontent(space-between);
+
+                    .button-container {
+                        display: flex;
+                    }
+                    button {
+                        background: transparent;
+                        border: none;
+                        @include flexbox;
+                        @include flexalignitems(center);
+                        @include flexjustifycontent(space-between);
+
+                        span {
+                            color: $green-color-2;
+                            margin-right: .5rem;
+                        }
+                    }
+                }
+
+                td {
+                    padding: .5rem;
+                    color: $black-color-3;
+                }
+                th {
+                    color: $black-color-3;
+                    padding-left: 3rem;
+                }
+            }
+        }
+    }
 }
 
 .invoice-wrapper {
