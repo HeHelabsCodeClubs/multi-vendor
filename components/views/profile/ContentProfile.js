@@ -3,6 +3,7 @@ import Router from 'next/router';
 import OrderRow from "../profile/OrderRow";
 import OrderDetail from "../profile/OrderDetail";
 import Invoice from './Invoice';
+import UserDetail from './UserDetail';
 
 class ContentProfile extends Component {
     constructor() {

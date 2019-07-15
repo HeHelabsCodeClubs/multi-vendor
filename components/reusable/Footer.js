@@ -35,7 +35,7 @@ class Footer extends Component {
                             </div>
                             <div className='col-lg-3 col-md-3 col-sm-3 col-6'>
                                 <div className='footer-title'>Call us</div>
-                                <div className='contact-content'>+250 784 849 949</div>
+                                <div className='contact-content'>+250 786 456 686</div>
 
                                 <div className='footer-title'>Email us</div>
                                 <div className='contact-content'>support@dmmhehe.com</div>

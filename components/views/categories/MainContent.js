@@ -24,12 +24,13 @@ class MainContent extends React.Component {
     componentWillReceiveProps(nextProps) {
         const { updatedProducts, showLoader } = nextProps;
         const { firstTimeLoad, products } = this.state;
-
         if (!firstTimeLoad) {
             if (updatedProducts.length !== products.length) {
-                this.setState({
-                    products: updatedProducts
-                });
+                if (updatedProducts.length !== 0) {
+                    this.setState({
+                        products: updatedProducts
+                    });
+                }
             }
 
             if (showLoader !== this.state.showLoader) {
@@ -98,9 +99,9 @@ class MainContent extends React.Component {
 	render() {
 		return (
 			<div>
-                <div>
+                {/* <div>
                     <TopStores />
-                </div>
+                </div> */}
                 <div className='main-content'>
                    {this.renderProducts()}
                 </div>

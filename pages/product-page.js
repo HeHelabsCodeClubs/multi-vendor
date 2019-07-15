@@ -262,6 +262,7 @@ class ProductPage extends React.Component {
                             className='big-prod-img' 
                             imageUrl={image.image_url}
                             placeholderHeight={600} 
+                            placeholderBackgroundColor='#ffffff'
                             />
                         </div>
                     );
@@ -276,6 +277,7 @@ class ProductPage extends React.Component {
                                 className='small-prod-img' 
                                 imageUrl={image.image_url}
                                 placeholderHeight={100}
+                                placeholderBackgroundColor='#ffffff'
                                 />
                             </div>
                         );

@@ -51,7 +51,7 @@ export default class SingleCartProductItem extends Component {
             location.reload();
             return;
         }
-        updateCartData();
+        this.props.updateCartData();
     }
  
     renderProductPrice(product, productIndex) {
