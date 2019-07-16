@@ -54,6 +54,19 @@ app
             });
         })
 
+        server.get('/profile/:page', (req, res) => {
+            return app.render(req, res, '/profile', { 
+                page: req.params.page
+            });
+        })
+
+        server.get('/profile/:page/:order_id', (req, res) => {
+            return app.render(req, res, '/profile', { 
+                page: req.params.page,
+                order_id: req.params.order_id
+            });
+        })
+
         server.get('/checkout/:page', (req, res) => {
             const token = getTokenValue(req.headers.cookie);
             if (token && req.params.page === 'account') {

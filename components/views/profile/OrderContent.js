@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 
 class OrderContent extends Component {
+
     render () {
+        const { order } = this.props;
+        console.log(order);
         return (
             <div>
                 <h5>Placed on Jan 12, 2016, 16:18</h5>

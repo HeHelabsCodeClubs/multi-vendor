@@ -48,7 +48,7 @@ class MadeInRwanda extends Component {
 					settings: {
 						slidesToShow: 8,
 						slidesToScroll: 3,
-						infinite: true,
+						infinite: false,
 						dots: true
 					}
 				},
@@ -89,7 +89,7 @@ class MadeInRwanda extends Component {
 					settings: {
 						slidesToShow: 5,
 						slidesToScroll: 2,
-						infinite: true,
+						infinite: false,
 						dots: true
 					}
 				},
@@ -98,7 +98,7 @@ class MadeInRwanda extends Component {
 					settings: {
 						slidesToShow: 4,
 						slidesToScroll: 2,
-						infinite: true,
+						infinite: false,
 						dots: true
 					}
 				},
@@ -107,7 +107,7 @@ class MadeInRwanda extends Component {
 					settings: {
 						slidesToShow: 3,
 						slidesToScroll: 2,
-						infinite: true,
+						infinite: false,
 						dots: true
 					}
 				},

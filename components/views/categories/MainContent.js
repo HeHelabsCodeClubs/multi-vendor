@@ -1,6 +1,10 @@
-import TopStores from './TopStores';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import Router from 'next/router';
 import Product from '../../reusable/Product';
 import Loader from '../../reusable/Loader';
+import { API_URL } from '../../../config';
+import isObjectEmpty from '../../../helpers/is_object_empty';
+
 
 class MainContent extends React.Component {
     constructor(props) {
@@ -8,28 +12,42 @@ class MainContent extends React.Component {
         this.state = {
             products: [],
             firstTimeLoad: true,
-            showLoader: false
+            showLoader: false,
+            currentPage: 1,
+            lastPage: 0
         };
         this.renderProducts = this.renderProducts.bind(this);
+        this.loadMoreProducts = this.loadMoreProducts.bind(this);
+        this.updateProductsOnPagination = this.updateProductsOnPagination.bind(this);
     }
 
     componentDidMount() {
-        const { products } = this.props;
+        const { products, metaProductsData } = this.props;
         this.setState({
             products,
-            firstTimeLoad: false
+            firstTimeLoad: false,
+            lastPage: metaProductsData.last_page,
+            currentPage: metaProductsData.current_page
         });
     }
 
     componentWillReceiveProps(nextProps) {
-        const { updatedProducts, showLoader } = nextProps;
+        const { updatedProducts, showLoader, paginationData } = nextProps;
         const { firstTimeLoad, products } = this.state;
         if (!firstTimeLoad) {
             if (updatedProducts.length !== products.length) {
                 if (updatedProducts.length !== 0) {
-                    this.setState({
-                        products: updatedProducts
-                    });
+                    if (!isObjectEmpty(paginationData)) {
+                        this.setState({
+                            products: updatedProducts,
+                            currentPage: paginationData.current_page,
+                            lastPage: paginationData.last_page
+                        });
+                    } else {
+                        this.setState({
+                            products: updatedProducts
+                        });
+                    }
                 }
             }
 
@@ -89,23 +107,64 @@ class MainContent extends React.Component {
 
     }
 
-    loadMoreProducts() {
+    async loadMoreProducts() {
+        const { currentPage } = this.state;
+        const { router: { query } } = Router;
+        const { category_slug, sub_cat_slug, sub_last_cat_slug } = query;
+        let remoteUrl = `${API_URL}/categories/${category_slug}/parent_page`;
+
+        if (category_slug !== undefined && sub_cat_slug !== undefined && sub_last_cat_slug === undefined) {
+            remoteUrl = `${API_URL}/categories/${sub_cat_slug}/products`
+        } 
+
+        if (category_slug !== undefined && sub_cat_slug !== undefined && sub_last_cat_slug !== undefined) {
+            remoteUrl = `${API_URL}/categories/${sub_last_cat_slug}/products`;
+        }
+
+        // const remoteUrl = `${API_URL}`
+        const newPage = Number(currentPage) + 1;
+        remoteUrl = `${remoteUrl}?page=${newPage}`
+        const res = await fetch(remoteUrl);
+        const response = await res.json();
+        const { data } = response;
+        if (data.products) {
+            this.updateProductsOnPagination(data.products);
+            return;
+        } else {
+            this.updateProductsOnPagination(data);
+        }
+    }
+
+    updateProductsOnPagination(data) {
+        const { products, currentPage } = this.state;
+        const newProducts = products;
+        const newPage = Number(currentPage) + 1;
+        data.map((product) => {
+            newProducts.push(product);
+        });
         this.setState({
-            currentPage: metaProductsData.current_page,
-            lastPage: metaProductsData.last_page
+            products: newProducts,
+            currentPage: newPage
         });
     }
  
 	render() {
+        const { lastPage, currentPage, products } = this.state;
+        const hasMore = (Number(currentPage) < Number(lastPage)) ? true : false;
 		return (
-			<div>
+			<InfiniteScroll
+            dataLength={products.length}
+            next={this.loadMoreProducts}
+            hasMore={hasMore}
+            loader={<Loader />}
+            >
                 {/* <div>
                     <TopStores />
                 </div> */}
                 <div className='main-content'>
                    {this.renderProducts()}
                 </div>
-            </div>
+            </InfiniteScroll>
 		);
 	}
 }
