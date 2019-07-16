@@ -17,11 +17,13 @@ function renderAdds(adds) {
         const addsLayout = adds.map((add) => {
             return (
                 <div key={add.id}>
-                    <ImageLoader 
-                    imageUrl={add.image_url}
-                    hasPlaceholder={false}
-                    placeholderHeight={300}
-                    />
+                    <a href="#">
+                        <ImageLoader 
+                        imageUrl={add.image_url}
+                        hasPlaceholder={false}
+                        placeholderHeight={300}
+                        />
+                    </a>
                 </div>
             );
         });

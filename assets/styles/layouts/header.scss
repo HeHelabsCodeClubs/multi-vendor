@@ -963,7 +963,7 @@
     position: fixed;
     top: 0;
     transition: top 0.6s;
-    z-index: 100;
+    z-index: 10000;
   }
   
   .navbar__hidden {

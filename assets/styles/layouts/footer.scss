@@ -79,9 +79,11 @@
             }
             input {
                 padding: 0.4rem 1rem;
-                border-radius: 4px 0 0 4px;
+                border-radius: .4rem 0 0 .4rem;
                 border: none;
                 width: 66%;
+                height: 2.5rem;
+
                 &::placeholder {
                     color: $gray-color-6;
                 }
@@ -95,7 +97,8 @@
             }
             button {
                 width: 34%;
-                border-radius: 0 4px 4px 0;
+                border-radius: 0 .4rem .4rem 0;
+                height: 2.5rem;
 
                 @media screen and (min-width: $tablet-min) and (max-width: $desktop-min) {
                     width: 40%;
