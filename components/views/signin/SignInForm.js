@@ -147,7 +147,7 @@ class SignInForm extends Component {
     }
 
     handleResponse(response) {
-        const { status_code } = response;
+        const { status_code, errors } = response;
         switch(Number(status_code)) {
             case 200:
                 const {
@@ -170,7 +170,8 @@ class SignInForm extends Component {
                 this.performOnRegistrationSuccess(user, this.state.password);
                 break;
             case 401:
-                this.performOnUserAuthFailure();
+                const customErrorMessage = errors[0];
+                this.performOnUserAuthFailure(customErrorMessage);
                 break;
             default:
                 this.performOnUserAuthFailure();
@@ -179,11 +180,12 @@ class SignInForm extends Component {
         }
     }
 
-    performOnUserAuthFailure() {
+    performOnUserAuthFailure(message) {
+        const errMessage = ((message === '') || (message === undefined)) ? USER_FORBIDDEN : message; 
         this.setState({
             loginStatus: 'initial',
             inputIsInvalid: true,
-            errorMessage: USER_FORBIDDEN
+            errorMessage: errMessage
         });
     }
 
