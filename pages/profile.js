@@ -38,6 +38,8 @@ class Profile extends Component {
                 this.setState({
                     customerOrdersData: response.data
                 })
+            } else {
+                Router.push('/signin')
             }
         }
     }

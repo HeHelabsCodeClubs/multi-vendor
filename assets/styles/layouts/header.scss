@@ -317,7 +317,7 @@
         }
 
         .account-grid {
-
+            position: relative;
             @media screen and (max-width: $mobile-lg) {
                 padding: 0 1.0rem;
             }
@@ -333,6 +333,51 @@
                     @media screen and (max-width: $mobile-lg) {
                         display: none;
                     }
+                }
+            }
+            .profile-name {
+                height: 3rem;
+                @include flexbox;
+                @include flexalignitems(center);
+            }
+            .profile-dropdown-wrapper {
+                position: absolute;
+                visibility: hidden;
+                left: -3rem;
+                transition-duration: 0.3s;
+            
+                .profile-dropdown {
+                    margin: 1rem 0 0 0;
+                    background: $white-color;
+                    box-shadow: 3px -6px 16px 0 rgba(0, 0, 0, 0.2);
+                    border-radius: 0.2rem;
+                    border: 1px solid $gray-color-6;
+
+                    ul {
+                        padding: 1rem;
+                        list-style: none;
+                        margin: 0 !important;
+                        li {
+                            a {
+                                color: $black-color-3 !important;
+                                line-height: 1.67;
+                            }
+                        }
+                    }
+                    .logout {
+                        padding: 0.5rem;
+                        text-align: center;
+                        border-top: 1px solid $gray-color-6;
+
+                        a {
+                            color: $orange-color-1 !important;
+                        }
+                    }
+                }
+            }
+            &:hover {
+                .profile-dropdown-wrapper {
+                    visibility: visible;
                 }
             }
         }
@@ -964,11 +1009,12 @@
     top: 0;
     transition: top 0.6s;
     z-index: 10000;
-  }
+}
   
-  .navbar__hidden {
+.navbar__hidden {
     top: -75px;
-  }
-  .header-panel {
-      height: 7.5rem;
-  }
+}
+.header-panel {
+    height: 7.5rem;
+}
+

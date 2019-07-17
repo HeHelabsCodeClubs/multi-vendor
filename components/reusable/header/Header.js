@@ -88,18 +88,29 @@ class Header extends React.Component {
                 last_name,
                 first_name
             } = authUser;
-            const userName = `${last_name} ${first_name[0]}`;
+            const userName = `Hi ${first_name}`;
             return (
                 <div className='col-lg-9 col-md-9 col-sm-9 col-9 col-reset account-links'>
-                    <div className='header-content'>{userName}</div>
-                    <div className='header-content'>
-                        <a 
-                        href='/logout'
-                        onClick={this.logOut}
-                        >
-                            Logout
-                        </a>
-                    </div>                 
+                    <div className='header-content profile-name'>{userName}</div>
+                    <div className="profile-dropdown-wrapper">
+                        <div className='profile-dropdown'>
+                            <ul>
+                                {/* <li><a href=''>My Profile</a></li> */}
+                                <li><a href='/profile/orders'>My Orders</a></li>
+                                {/* <li><a href=''>Wishlist</a></li>
+                                <li><a href=''>My Favorite Stores</a></li>
+                                <li><a href=''>My Coupons</a></li> */}
+                            </ul>
+                            <div className='header-content logout'>
+                                <a 
+                                href='/logout'
+                                onClick={this.logOut}
+                                >
+                                    Logout
+                                </a>
+                            </div>
+                        </div>
+                    </div>               
                 </div>
             );
         }

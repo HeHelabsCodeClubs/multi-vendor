@@ -30,6 +30,8 @@ body {
     width: 100%;
     margin: 0;
     padding: 2rem;
+    max-height: 98vh;
+    overflow-y: scroll;
 
     &.delivery-address {
         width: 100%;
@@ -120,4 +122,18 @@ body {
 
 .same-bil-ship__checkbox {
     padding-left: 4rem;
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
 }

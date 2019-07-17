@@ -192,6 +192,22 @@ html {
             font-size: 1.28rem !important;
         }
     }
+    .profile-dropdown {
+        ul {
+            li {
+                a {
+                    font-family: $font-regular;
+                    font-size: 1rem;
+                }
+            }
+        }
+        .logout {
+            a {
+                font-family: $font-regular;
+                font-size: 1rem;
+            }
+        }
+    }
 
 
     // Homepage
