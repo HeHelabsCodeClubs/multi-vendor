@@ -64,7 +64,7 @@ class SearchResults extends React.Component {
                             <Breadcrumb>
                                 <a href="/" className="breadcrumb-link">Home</a>
                                     <span> / </span>
-                                <a href="/signin" className="breadcrumb-current">Signin</a>
+                                <a href="" className="breadcrumb-current">Search results</a>
                             </Breadcrumb>
                         </div>
                         <div className='row reset-row'>
