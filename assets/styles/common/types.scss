@@ -1138,6 +1138,18 @@ html {
             }
         }
     }
+
+    // search results
+
+    .search-results-title {
+        h4 {
+            font-family: $font-semi-bold;
+            font-size: 1.4rem !important;
+            .item {
+                font-size: 1.1rem !important;
+            }
+        }
+    }
 }
 
 // Terms and privacy doc pages
