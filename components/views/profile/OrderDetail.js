@@ -10,13 +10,16 @@ class OrderDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            customerSingleOrdersData: []
+            orderDetailsInfo: {},
+            orderPayments: {},
+            orderShippingAddress: [],
+            orderItems: [],
         };
     }
     async componentDidMount() {
-        const { orderId } = this.props;
         const token = getClientAuthToken();
-        const res = await fetch(`${API_URL}/customers/orders/87`, {
+        const { orderId } = this.props;
+        const res = await fetch(`${API_URL}/customers/orders/${orderId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -25,18 +28,20 @@ class OrderDetail extends Component {
             },
         });
         const response = await res.json();
-        console.log(response);
         this.setState({
-            customerSingleOrderData: response.data
+            orderDetailsInfo: response.data.detail.info,
+            orderPayments: response.data.detail.payment,
+            orderShippingAddress: response.data.detail.shipping,
+            orderItems: response.data.items
         });
     }
 
     render () {
-        const { customerSingleOrderData } = this.state;
+        const { orderDetailsInfo, orderPayments, orderShippingAddress, orderItems } = this.state;
         return (
             <div className="order-detail">
                 <div className="content-header">
-                    <h5>Order #0015</h5>
+                    <h5>Order #{orderDetailsInfo.id}</h5>
                 </div>
 
                 <Tabs>
@@ -47,7 +52,12 @@ class OrderDetail extends Component {
                     </TabList>
                 
                     <TabPanel>
-                        <OrderContent order={customerSingleOrderData}/>
+                        <OrderContent 
+                        info={orderDetailsInfo}
+                        payment={orderPayments}
+                        shipping={orderShippingAddress}
+                        items={orderItems}
+                        />
                     </TabPanel>
 
                     <TabPanel>

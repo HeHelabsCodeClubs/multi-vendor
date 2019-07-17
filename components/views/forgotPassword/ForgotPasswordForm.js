@@ -39,41 +39,39 @@ class SignInForm extends Component {
         };
         this.handleFormSubmission = this.handleFormSubmission.bind(this);
         this.getLoginButtonText = this.getLoginButtonText.bind(this);
-        this.getInputFieldValue = this.getInputFieldValue.bind(this);
+        //this.getInputFieldValue = this.getInputFieldValue.bind(this);
         this.validateInputFields = this.validateInputFields.bind(this);
         this.handleResponse = this.handleResponse.bind(this);
         this.performOnRegistrationSuccess = this.performOnRegistrationSuccess.bind(this);
         this.performOnUserAuthFailure = this.performOnUserAuthFailure.bind(this);
         this.renderBreadCrumbs = this.renderBreadCrumbs.bind(this);
-        this.renderRegistrationActionLayout = this.renderRegistrationActionLayout.bind(this);
-        this.renderForgotPasswordActionLayout = this.renderForgotPasswordActionLayout.bind(this);
+        //this.renderRegistrationActionLayout = this.renderRegistrationActionLayout.bind(this);
+        //this.renderForgotPasswordActionLayout = this.renderForgotPasswordActionLayout.bind(this);
     }
 
     getLoginButtonText() {
         const { loginStatus } = this.state;
         switch(loginStatus) {
             case 'submitting':
-                return 'Logging...';
+                return 'Sending...';
             case 'submitted':
-                return 'Logged';
+                return 'Sent';
             default:
-                return 'Login';
+                return 'Send';
         }
     }
 
     
-    getInputFieldValue(fieldStateName, newValue) {
-        this.setState({
-            [fieldStateName]: newValue
-        });
-    }
+    // getInputFieldValue(fieldStateName, newValue) {
+    //     this.setState({
+    //         [fieldStateName]: newValue
+    //     });
+    // }
     
     handleFormSubmission(e) {
         e.preventDefault();
         const {
             email,
-            password,
-            newsletterCheckbox,
             loginStatus
         } = this.state;
 
@@ -276,36 +274,36 @@ class SignInForm extends Component {
                 <Breadcrumb>
                     <a href="/" className="breadcrumb-link">Home</a>
                         <span> / </span>
-                    <a href="/register" className="breadcrumb-current">Register</a>
+                    <a href="/signin" className="breadcrumb-current">Signin</a>
                 </Breadcrumb>
             );
         }
         return null;
     }
 
-    renderRegistrationActionLayout() {
-        const { displayRegistrationLayout } = this.props;
-        if (displayRegistrationLayout) {
-            return (
-                <div className='auth-text'>
-                    Don't have an account? <a href='/register'>Register</a>
-                </div>
-            );
-        }
+    // renderRegistrationActionLayout() {
+    //     const { displayRegistrationLayout } = this.props;
+    //     if (displayRegistrationLayout) {
+    //         return (
+    //             <div className='auth-text'>
+    //                 Don't have an account? <a href='/register'>Register</a>
+    //             </div>
+    //         );
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    renderForgotPasswordActionLayout() {
-        const { displayForgotPasswordLayout } = this.props;
-        if (displayForgotPasswordLayout) {
-            return (
-                <div className='auth-text'>
-                    Forgot your password ? <a href='/reset_password'>Reset</a>
-                </div>
-            );
-        }
-    }
+    // renderForgotPasswordActionLayout() {
+    //     const { displayForgotPasswordLayout } = this.props;
+    //     if (displayForgotPasswordLayout) {
+    //         return (
+    //             <div className='auth-text'>
+    //                 Forgot your password ? <a href='/reset_password'>Reset</a>
+    //             </div>
+    //         );
+    //     }
+    // }
 
     render() {
         const {
@@ -331,35 +329,17 @@ class SignInForm extends Component {
                         id='email'
                         name='email'
                         placeholder='Email'
-                        updateInputFieldValue={this.getInputFieldValue}
+                        //updateInputFieldValue={this.getInputFieldValue}
                         inputWithError={inputWithError}
                     />
-                    
-                    <InputField 
-                        typeOfInput='text_field'
-                        type='password' 
-                        id='password'
-                        name='password'
-                        placeholder='Password'
-                        updateInputFieldValue={this.getInputFieldValue}
-                        inputWithError={inputWithError}
-                    />
-                    
-                    <InputField 
-                        typeOfInput='checkbox'
-                        type='checkbox'
-                        name='newsletterCheckbox'
-                        fieldText='Sign up for our newsletter!'
-                        updateInputFieldValue={this.getInputFieldValue}
-                        inputWithError={inputWithError}
-                    />
+                    <div>We will send you a link via this email to reset your password</div>
                     <div className='auth-button'>
                         <button type='submit'>
                             {this.getLoginButtonText()}
                         </button>
                     </div>
-                    {this.renderRegistrationActionLayout()}
-                    {this.renderForgotPasswordActionLayout()}
+                    {/* {this.renderRegistrationActionLayout()} */}
+                    {/* {this.renderForgotPasswordActionLayout()} */}
                 </form>
             </div>
         )

@@ -55,15 +55,12 @@ app
         })
 
         server.get('/profile/:page', (req, res) => {
+            const token = getTokenValue(req.headers.cookie);
+            if (!token && req.params.page === 'orders') {
+                res.redirect('/signin');
+            }
             return app.render(req, res, '/profile', { 
                 page: req.params.page
-            });
-        })
-
-        server.get('/profile/:page/:order_id', (req, res) => {
-            return app.render(req, res, '/profile', { 
-                page: req.params.page,
-                order_id: req.params.order_id
             });
         })
 

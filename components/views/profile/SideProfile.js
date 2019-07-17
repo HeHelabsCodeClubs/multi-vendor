@@ -8,13 +8,13 @@ class SideProfile extends Component {
                     <div className="sidemenu-title">
                         <h5>My Profile</h5>
                     </div>
-                    <div className="item-menu">
+                    {/* <div className="item-menu">
                         <a className="item-title" href="#">Profile details</a>
-                    </div>
+                    </div> */}
                     <div className="item-menu active">
                         <a className="item-title" href="#">All Orders</a>
                     </div>
-                    <div className="item-menu">
+                    {/* <div className="item-menu">
                         <a className="item-title" href="#">Refund &amp; Disputes</a>
                     </div>
                     <div className="item-menu">
@@ -25,7 +25,7 @@ class SideProfile extends Component {
                     </div>
                     <div className="item-menu">
                         <a className="item-title" href="#">Shipping Address</a>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         );
