@@ -142,6 +142,7 @@ class Cart extends Component {
                 >
                     <span className='header-content'>
                         <span className='icon-Path-63'></span>
+                        <span className="mobile-menu__title mobile-visible">Cart</span>
                         <span className='cart-items-counter'>
                             {cartItemsCounter}
                         </span>
@@ -160,6 +161,7 @@ class Cart extends Component {
             >
                 <span className='header-content'>
                     <span className='icon-Path-63'></span>
+                    <span className="mobile-menu__title mobile-visible">Cart</span>
                 </span>
                 <span>
                     <h5 className="cart-title">My Cart</h5>

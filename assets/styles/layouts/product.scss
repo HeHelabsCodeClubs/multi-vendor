@@ -176,6 +176,22 @@
                         color: $orange-color-1;
                         padding: 0 0.8rem !important;
 
+                        .select-btn__icon {
+                            display: block;
+                        }
+                        .select-btn__txt {
+                            display: none;
+                        }
+
+                        &:hover {
+                            .select-btn__icon {
+                                display: none;
+                            }
+                            .select-btn__txt {
+                                display: block;
+                            }
+                        }
+
                         @media (max-width: $mobile-lg) {
                             border-radius: 50px;
                             padding: 2px 7px 3px;

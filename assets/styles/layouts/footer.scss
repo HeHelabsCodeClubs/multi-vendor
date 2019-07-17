@@ -10,6 +10,7 @@
 
     @media screen and (max-width: $mobile-lg) {
         height: 55rem;
+        bottom: 6rem;
     }
     @media screen and (min-width: $mobile-md-lg) and (max-width: $mobile-lg) {
         height: 42rem;

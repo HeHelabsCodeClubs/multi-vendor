@@ -77,6 +77,13 @@
             border-bottom: .5px solid $gray-color-7;
             border-radius: 0;
         }
+
+        .slick-track {
+            @media screen and (max-width: $mobile-lg) {
+                transform: translate3d(0, 0px, 0px) !important;
+                width: 100vw !important;
+            }            
+        }
     
         .slick-prev {
             z-index: 999;
@@ -121,7 +128,10 @@
             padding: 0 2rem;
 
             @media screen and (max-width: $mobile-lg) {
-                padding: 0;
+                padding: 1rem;
+                width: 33.33% !important;
+                float: none !important;
+                display: inline-block;
             }
 
             div {
@@ -170,6 +180,7 @@
 
             @media screen and (max-width: $mobile-lg) {
                 width: calc(100% - 1rem);
+                padding: 0 !important;
             }
         }
     }

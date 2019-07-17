@@ -27,7 +27,7 @@
     @include boxshadow(0 .3rem 1.6rem 0 rgba(0, 0, 0, 0.05));
 
     @media screen and (max-width: $mobile-lg) {
-        min-height: 8.0rem;
+        min-height: 6rem;
         padding: 0;
     }
 
@@ -41,17 +41,20 @@
         }
 
         .site-logo {
-
+            display: inline-block;
             @media (max-width: $mobile-lg) {
                 position: absolute;
                 z-index: 1;
-                top: 4.1rem;
-                left: 4.0rem;
+                top: 2rem;
+                left: 1rem;
             }
-
             img {
                 height: 2.7rem;
                 margin: 0 0 0 1rem;
+
+                @media screen and (max-width: $mobile-lg) {
+                    margin: 0;
+                }
             }
         }
         .location-dropdown {
@@ -69,6 +72,7 @@
                 width: 100vw;
                 margin: 0;
                 border-bottom: .05rem solid $gray-color-5;
+                display: none !important;
             }
 
             .select2-container {
@@ -135,9 +139,8 @@
     .search-container {
 
         @media (max-width: $mobile-lg) {
-            position: absolute;
-            top: 4.0rem;
-            right: 7rem;
+            top: 1.7rem;
+            right: 0;
         }
 
         @media (min-width: $mobile-md-lg) and (max-width: $mobile-lg) {
@@ -153,6 +156,7 @@
             height: 3rem;
             border-radius: 0.35rem;
             position: relative;
+            z-index: 10;
 
             &:focus {
                 border: solid 1px $orange-color-1;
@@ -162,12 +166,11 @@
 
             @media (max-width: $mobile-lg) {
                 height: auto;
-                width: auto;
                 display: inline-block;
                 background: transparent;
             }
             .react-autosuggest__container {
-                width: 65%;
+                width: 93%;
                 display: inline-block; 
 
                 input {
@@ -181,7 +184,7 @@
                     outline: none;
     
                     @media (max-width: $mobile-lg) {
-                        display: none;
+                       
                     }
     
                 }
@@ -217,10 +220,7 @@
                 display: inline-block;
                 position: absolute;
                 min-width: 26%;
-
-                @media (max-width: $mobile-lg) {
-                    display: none;
-                }
+                display: none;
 
                 .select2-container {
                     width: 100% !important;
@@ -280,7 +280,9 @@
                 @media (max-width: $mobile-lg) {
                     width: auto;
                     background: transparent;
-                    
+                    position: absolute;
+                    right: 0;
+                    top: .2rem;           
                 }
 
                 .icon-Path-64:before {
@@ -303,33 +305,39 @@
         }
 
         @media screen and (max-width: $mobile-lg) {
-            position: absolute;
-            right: .8rem;
-            top: 3.9rem;
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            top: auto;
             padding: 0 !important;
+            z-index: 100000;
+            background: white;
+            height: 6rem;
+            @include flexbox;
+            @include flexalignitems(center);
+            @include flexjustifycontent(center);
         }
 
         .row-container {
             @media screen and (max-width: $mobile-lg) {
                 margin: 0 !important;
+                width: 100%;
+                @include flexbox;
+                @include flexalignitems(flex-end);
             }
 
         }
 
         .account-grid {
-
             @media screen and (max-width: $mobile-lg) {
                 padding: 0 1.0rem;
+                text-align: center;
             }
-
             .account-links {
-
                 @media screen and (max-width: $mobile-lg) {
                     display: none;
                 }
-
                 .header-content {
-
                     @media screen and (max-width: $mobile-lg) {
                         display: none;
                     }
@@ -348,7 +356,12 @@
 
         &:before {
             color: $gray-color-4;
+
+            @media screen and (max-width: $mobile-lg) {
+                color: $black-color-2 !important;
+            }
         }
+        
     }
     .cart-grid {
         @include flexbox;
@@ -366,19 +379,58 @@
             @media screen and (max-width: $mobile-lg) {
                 margin: 0;
             }
-
+            .header-content {
+                @media screen and (max-width: $mobile-lg) {
+                    flex-direction: column;
+                }
+            }
             .cart-title {
-
                 @media screen and (max-width: $mobile-lg) {
                     display: none;
                 }
-            }
-            
+            }            
             .icon-Path-63 {
+                
+                @media screen and (max-width: $mobile-lg) {
+                    margin-top: -1rem;
+                    padding-bottom: .5rem;
+                }                
+                
                 &:before {
                     padding: 0 1rem 0 0;
                     color: $green-color-2;
                 }
+            }
+        }
+
+        .SidebarContent {
+            @media screen and (max-width: $mobile-lg) {
+                top: auto !important;
+                bottom: 6rem !important;
+                height: calc(100vh - 6rem) !important;
+                overflow: hidden;
+            }
+        }
+    }
+
+    .main-menu__wrapper {
+        position: fixed;
+        z-index: 9999;
+        bottom: 0;
+        height: 6rem;
+        width: 100vw;
+        background: $white-color;
+        box-shadow: 0 -3px 6px 0 $box-shadow-color-2;
+
+        .home-link {
+            width: 25%;
+            height: 5.1rem;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+
+            span {
+                color: $black-color-2;
             }
         }
     }
@@ -394,17 +446,29 @@
     float: right;
 
     @media (max-width: $mobile-lg) {
-        float: left;
-        background: transparent;
-        height: 77%;
         @include flexbox;
-        @include flexalignitems(center);
+        @include flexalignitems(flex-end);
+        @include flexjustifycontent(center);
+
+        // on bottom menu
+        position: fixed;
+        bottom: 0;
+        height: 6rem;
+        width: 25%;
+        left: 25%;
+        background: $white-color;
+        border-radius: 0;
+        z-index: 10000;
     }
 
     .nav-container {
         height: 3rem;
         @include flexbox;
         @include flexjustifycontent(center);
+
+        @media screen and (max-width: $mobile-lg) {
+            height: 5rem;
+        }
 
         ul {
             list-style: none;
@@ -476,7 +540,10 @@
                     left: 0 !important;
 
                     @media screen and (max-width: $mobile-lg) {
-                        box-shadow: 3rem .3rem 4.6rem 0 rgba(0, 0, 0, 0.16) !important;
+                        box-shadow: 3rem .3rem 4.6rem 0 $box-shadow-color !important;
+                        bottom: 6rem;
+                        top: auto !important;
+                        height: calc(100vh - 6rem) !important;
                     }
                 }
                 .nav__submenu {
@@ -488,6 +555,9 @@
                 .main-menu__item-a {
                     margin: 1rem;
                     display: block;
+                    @media (max-width: $mobile-lg) {
+                        text-align: center;
+                    }
                     .icon-Path-61 {
                         @media (max-width: $mobile-lg) {
                             font-size: 1.5rem;
@@ -703,6 +773,10 @@
             overflow-y: scroll;
             height: calc(100vh - 7.6rem);
 
+            @media screen and (max-width: $mobile-lg) {
+                padding-bottom: 8rem;
+            }
+
             .shipping-grid {
                 display: none !important;
             }
@@ -890,6 +964,11 @@
             @include flexbox;
             @include flexalignitems(center);
             @include flexjustifycontent(space-between);
+
+            @media screen and (max-width: $mobile-lg) {
+                position: fixed;
+                bottom: 6rem;
+            }
         
             .grand-total {
                 color: $orange-color-1;
@@ -956,7 +1035,6 @@
 
 
 // hide menu onscroll
-
 .nav__bar {
     width: 100%;
     background-color:$white-color;
@@ -964,11 +1042,15 @@
     top: 0;
     transition: top 0.6s;
     z-index: 10000;
-  }
-  
-  .navbar__hidden {
-    top: -75px;
-  }
-  .header-panel {
-      height: 7.5rem;
-  }
+}
+
+.navbar__hidden {
+    top: -8rem;
+}
+.header-panel {
+    height: 8rem;
+
+    @media screen and (max-width: $mobile-lg) {
+        height: 6rem;
+    }
+}

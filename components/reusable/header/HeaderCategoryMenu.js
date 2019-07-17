@@ -242,6 +242,7 @@ class HeaderCategoryMenu extends React.Component {
                                         onClick={this.openSidebar}
                                     >
                                         <span className='icon-Path-61'></span>
+                                        <span className="mobile-menu__title mobile-visible">Categories</span>
                                         <span className='icon-Path-73'></span>
                                         <span className={this.state.showCustomerMenu ? 'icon-icon_up-arrow-small' : 'icon-icon_down-arrow-small'}></span>
                                     </a>

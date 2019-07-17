@@ -74,11 +74,10 @@
 
 @font-face {
   font-family: 'icons';
-  src:  url('https://res.cloudinary.com/hehe/raw/upload/v1562860112/multi-vendor/fonts/icons.eot?xzu71h');
-  src:  url('https://res.cloudinary.com/hehe/raw/upload/v1562860112/multi-vendor/fonts/icons.eot?xzu71h#iefix') format('embedded-opentype'),
-    url('https://res.cloudinary.com/hehe/raw/upload/v1562860112/multi-vendor/fonts/icons.ttf?xzu71h') format('truetype'),
-    url('https://res.cloudinary.com/hehe/raw/upload/v1562860112/multi-vendor/fonts/icons.woff?xzu71h') format('woff');
-    // url('fonts/icons.svg?xzu71h#icons') format('svg');
+  src:  url('https://res.cloudinary.com/hehe/raw/upload/v1563369184/multi-vendor/fonts/icons.eot?euqz6v');
+  src:  url('https://res.cloudinary.com/hehe/raw/upload/v1563369184/multi-vendor/fonts/icons.eot?euqz6v#iefix') format('embedded-opentype'),
+    url('https://res.cloudinary.com/hehe/raw/upload/v1563369185/multi-vendor/fonts/icons.ttf?euqz6v') format('truetype'),
+    url('https://res.cloudinary.com/hehe/raw/upload/v1563369184/multi-vendor/fonts/icons.woff?euqz6v') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -98,118 +97,182 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-Angle_down:before {
-  content: "\e900";
+.icon-Burger_mobo:before {
+  font-family: 'icons' !important;
+  content: "\e100";
 }
-.icon-Angle_left:before {
-  content: "\e901";
+.icon-Cart_mobo:before {
+  font-family: 'icons' !important;
+  content: "\e116";
 }
-.icon-Angle_right:before {
-  content: "\e902";
+.icon-Home:before {
+  font-family: 'icons' !important;
+  content: "\e125";
 }
-.icon-Angle_up:before {
-  content: "\e903";
-}
-.icon-Arrow:before {
-  content: "\e904";
-}
-.icon-Arrow_solid:before {
-  content: "\e905";
-}
-.icon-Banned:before {
-  content: "\e906";
-}
-.icon-Bell:before {
-  content: "\e907";
-}
-.icon-Burger:before {
-  content: "\e908";
-}
-.icon-Card_pay:before {
-  content: "\e909";
-}
-.icon-caret-down:before {
-  content: "\e90a";
-}
-.icon-caret-left:before {
-  content: "\e90b";
-}
-.icon-caret-right:before {
-  content: "\e90c";
-}
-.icon-caret-Up:before {
-  content: "\e90d";
-}
-.icon-Cart:before {
-  content: "\e90e";
-}
-.icon-Cart_add:before {
-  content: "\e90f";
-}
-.icon-Cash_pay:before {
-  content: "\e910";
-}
-.icon-check-circle:before {
-  content: "\e911";
-}
-.icon-Clock:before {
-  content: "\e912";
-}
-.icon-Comment_bubble:before {
-  content: "\e913";
-}
-.icon-Ellipsis_vertical:before {
-  content: "\e914";
-}
-.icon-external_link:before {
-  content: "\e915";
-}
-.icon-Fire:before {
-  content: "\e916";
-}
-.icon-Pad_lock:before {
-  content: "\e917";
+.icon-Home_mobo:before {
+  font-family: 'icons' !important;
+  content: "\e126";
 }
 .icon-Path-417:before {
-  content: "\e918";
+  font-family: 'icons' !important;
+  content: "\e027";
+}
+.icon-Tags:before {
+  font-family: 'icons' !important;
+  content: "\e028";
+}
+.icon-User_mobo:before {
+  font-family: 'icons' !important;
+  content: "\e029";
+}
+.icon-Angle_down:before {
+  font-family: 'icons' !important;
+  content: "\e000";
+}
+.icon-Angle_left:before {
+  font-family: 'icons' !important;
+  content: "\e001";
+}
+.icon-Angle_right:before {
+  font-family: 'icons' !important;
+  content: "\e002";
+}
+.icon-Angle_up:before {
+  font-family: 'icons' !important;
+  content: "\e003";
+}
+.icon-Arrow:before {
+  font-family: 'icons' !important;
+  content: "\e004";
+}
+.icon-Arrow_solid:before {
+  font-family: 'icons' !important;
+  content: "\e005";
+}
+.icon-Banned:before {
+  font-family: 'icons' !important;
+  content: "\e006";
+}
+.icon-Bell:before {
+  font-family: 'icons' !important;
+  content: "\e007";
+}
+.icon-Burger:before {
+  font-family: 'icons' !important;
+  content: "\e008";
+}
+.icon-Card_pay:before {
+  font-family: 'icons' !important;
+  content: "\e009";
+}
+.icon-caret-down:before {
+  font-family: 'icons' !important;
+  content: "\e00a";
+}
+.icon-caret-left:before {
+  font-family: 'icons' !important;
+  content: "\e00b";
+}
+.icon-caret-right:before {
+  font-family: 'icons' !important;
+  content: "\e00c";
+}
+.icon-caret-Up:before {
+  font-family: 'icons' !important;
+  content: "\e00d";
+}
+.icon-Cart:before {
+  font-family: 'icons' !important;
+  content: "\e00e";
+}
+.icon-Cart_add:before {
+  font-family: 'icons' !important;
+  content: "\e00f";
+}
+.icon-Cash_pay:before {
+  font-family: 'icons' !important;
+  content: "\e010";
+}
+.icon-check-circle:before {
+  font-family: 'icons' !important;
+  content: "\e011";
+}
+.icon-Clock:before {
+  font-family: 'icons' !important;
+  content: "\e012";
+}
+.icon-Comment_bubble:before {
+  font-family: 'icons' !important;
+  content: "\e013";
+}
+.icon-Ellipsis_vertical:before {
+  font-family: 'icons' !important;
+  content: "\e014";
+}
+.icon-external_link:before {
+  font-family: 'icons' !important;
+  content: "\e015";
+}
+.icon-Fire:before {
+  font-family: 'icons' !important;
+  content: "\e017";
+}
+// .icon-Pad_lock:before {
+//   font-family: 'icons' !important;   
+//   content: "\e917";
+// }
+.icon-Path-4171:before {
+  font-family: 'icons' !important;
+  content: "\e018";
 }
 .icon-Pencil:before {
-  content: "\e919";
+  font-family: 'icons' !important;
+  content: "\e019";
 }
 .icon-Phone:before {
-  content: "\e91a";
+  font-family: 'icons' !important;
+  content: "\e01a";
 }
 .icon-Pin_map:before {
-  content: "\e91b";
+  font-family: 'icons' !important;
+  content: "\e01b";
 }
 .icon-Search:before {
-  content: "\e91c";
+  font-family: 'icons' !important;
+  content: "\e01c";
 }
 .icon-Sort_down:before {
-  content: "\e91d";
+  font-family: 'icons' !important;
+  content: "\e01d";
 }
 .icon-Sort_up:before {
-  content: "\e91e";
+  font-family: 'icons' !important;
+  content: "\e01e";
 }
 .icon-Times:before {
-  content: "\e91f";
+  font-family: 'icons' !important;
+  content: "\e01f";
 }
 .icon-Times_circle:before {
-  content: "\e920";
+  font-family: 'icons' !important;
+  content: "\e020";
 }
 .icon-Times_Circular:before {
-  content: "\e921";
+  font-family: 'icons' !important;
+  content: "\e021";
 }
 .icon-Trach_bin:before {
-  content: "\e922";
+  font-family: 'icons' !important;
+  content: "\e022";
 }
 .icon-Truck:before {
-  content: "\e923";
-}
-.icon-User:before {
-  content: "\e924";
+  font-family: 'icons' !important;
+  content: "\e023";
 }
 
+// .icon-User:before {
+//   content: "\e924";
+// }
 
 
 // Icons version 1

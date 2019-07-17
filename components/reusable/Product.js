@@ -109,7 +109,7 @@ class Product extends React.Component {
             return (
                 <span className='add-to-cart select-options'>
                     <a href={`/sellers/${store.slug}/products/${slug}`}>
-                        <button>Select options</button>
+                        <button><span className="select-btn__icon icon-Ellipsis_vertical"></span><span className="select-btn__txt">Select options</span></button>
                     </a>
                 </span>
             );

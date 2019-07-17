@@ -82,6 +82,17 @@ html {
 
     // Header
 
+    .main-menu__wrapper {
+        .home-link {
+            span {
+                font-size: 2rem;
+            }
+        }
+    }
+    .mobile-menu__title {
+        font-size: .8rem !important;
+    }
+
     .top-content {
         font-size: 1rem;
         font-family: $font-semi-bold;
@@ -339,6 +350,10 @@ html {
             }
             .select-options {
                 font-family: $font-semi-bold;
+
+                .select-btn__icon {
+                    font-size: .5rem;
+                }
             }
         }
     }
