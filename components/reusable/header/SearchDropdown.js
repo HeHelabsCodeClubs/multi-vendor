@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import Autosuggest from 'react-autosuggest';
-
-
-
-
+import { API_URL } from '../../../config';
 
 class SearchDropdown extends Component {
     
@@ -12,54 +9,13 @@ class SearchDropdown extends Component {
         this.state = {
           value: '',
           suggestions: [],
-          products: [
-                {
-                    productName: 'Headphones Beats',
-                    sellerName: '',
-                    productSlug: '',
-                    sellerSlug: '',
-                    parentCategory: '', 
-                },
-                {
-                    productName: 'Headphones Ofia',
-                    sellerName: '',
-                    productSlug: '',
-                    sellerSlug: '',
-                    parentCategory: '',
-                },
-                {
-                    productName: 'Headphones Phillips',
-                    sellerName: '', 
-                    productSlug: '',
-                    sellerSlug: '',
-                    parentCategory: '',
-                },
-                {
-                    productName: 'Headsets Ofia',
-                    sellerName: '', 
-                    productSlug: '',
-                    sellerSlug: '',
-                    parentCategory: '',
-                },
-                {
-                    productName: 'Laptop Dell',
-                    sellerName:'',
-                    productSlug: '',
-                    sellerSlug: '',
-                    parentCategory: '',
-                },
-                {
-                    productName: 'Laptop hp',
-                    sellerName: '',
-                    productSlug: '',
-                    sellerSlug: '',
-                    parentCategory: '',
-                }
-            ]
+          products: []
         };
         this.getSuggestions = this.getSuggestions.bind(this);
         this.getSuggestionValue = this.getSuggestionValue.bind(this);
         this.renderSuggestion = this.renderSuggestion.bind(this);
+        this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
+        this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
 
     }
     
@@ -68,21 +24,40 @@ class SearchDropdown extends Component {
         const inputValue = value.trim().toLowerCase();
         const inputLength = inputValue.length;
        
-        return inputLength === 0 ? [] : this.state.products.filter(prdts =>
-          prdts.productName.toLowerCase().slice(0, inputLength) === inputValue
-        );
+        return inputLength === 0 ? [] : this.state.products;
+        // .filter(prdts =>
+        //   prdts.name.toLowerCase().slice(0, inputLength) == inputValue
+        // );
     };
     
     getSuggestionValue(suggestion) {
-        console.log('suggestion', suggestion.productName);
+        return suggestion.name;
     };
     
    renderSuggestion(suggestion) {
+       let categoryName = '';
+       const { name, categories, slug, seller } = suggestion;
+       if (categories) {
+            if (categories.length !== 0) {
+                const catLength = categories.length;
+                categoryName = categories[catLength - 1].name;
+            }
+       }
+       
+       let displayName = (categoryName !== '') ? (
+           <span className='wrapper'>
+               <span>{name}</span> in <span>{categoryName}</span>
+           </span>
+           
+       ) : (
+        <span className='wrapper'>
+            <span>{name}</span>
+        </span>
+       );
         return(
-
             <div>
                 {/* links */}
-                <a href="#">{suggestion.productName} in Electronics</a>
+                <a href={`/sellers/${seller.slug}/products/${slug}`}>{displayName}</a>
             </div>
         );
    }
@@ -94,13 +69,29 @@ class SearchDropdown extends Component {
         });
     };
 
-    onSuggestionsFetchRequested = ({ value }) => {
-        this.setState({
-          suggestions: this.getSuggestions(value)
-        });
+    async onSuggestionsFetchRequested({ value }){
+        if(value.length >= 3) {
+            const res = await fetch(`${API_URL}/products/search/${value}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            });
+            const response = await res.json();
+            if (response.data) {
+                this.setState({
+                    products: response.data,
+                }, () => {
+                    this.setState({
+                        suggestions: this.getSuggestions(value)
+                    });
+                });
+            }
+        }
     };
 
-    onSuggestionsClearRequested = () => {
+    onSuggestionsClearRequested(){
         this.setState({
           suggestions: []
         });
@@ -110,7 +101,7 @@ class SearchDropdown extends Component {
     render () {
         const { value, suggestions } = this.state;
         const inputProps = {
-            placeholder: 'Search store or product',
+            placeholder: 'Search for product',
             value,
             onChange: this.onChange
         };

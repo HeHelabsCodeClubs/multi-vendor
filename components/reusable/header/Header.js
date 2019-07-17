@@ -161,7 +161,7 @@ class Header extends React.Component {
 
                                     <SearchDropdown />
                                     {/* <input type="text" placeholder="Search store or product" /> */}
-                                    <span className='categories-dropdown'>
+                                    {/* <span className='categories-dropdown'>
                                         <Select2
                                             defaultValue={2}
                                             data={[
@@ -172,7 +172,7 @@ class Header extends React.Component {
                                             ]}
                                         />
                                     </span>
-                                    <button type="submit"><span className="icon-Path-64"></span></button>
+                                    <button type="submit"><span className="icon-Path-64"></span></button> */}
                                 </span>
                             </div>
                             <div className='col-lg-3 col-md-3 col-sm-4 col-3 account-container'>
