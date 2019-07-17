@@ -7,7 +7,7 @@ export const PLATFORM_CLIENT_SECRET = 'sy71st8Eg4PjgCpHGq25kmC5EbrRvdrF30DSemgL'
 export const COUNTRY_API_URL = 'http://battuta.medunes.net/api';
 export const COUNTRY_API_KEY = '46545b12aaa7048c8390dfe80c396937';
 export const ORDER_DATA_TOKEN = 'ORDER_DATA';
-export const APP_DOMAIN='https://vendor.hehe.rw';
+export const APP_DOMAIN='http://localhost:3000';
 
 // local storage variables
 export const CART_ITEMS_KEY = 'CART_ITEMS';
