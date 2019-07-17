@@ -285,3 +285,14 @@
         }
     }
 }
+.total-price {
+    margin: 0 !important;
+    border-top: none !important;
+    .total-grid {
+        padding: 1rem 0.5rem 0 0.5rem;
+        text-align: right;
+        display: block !important;
+        .total {
+        }
+    }
+}
