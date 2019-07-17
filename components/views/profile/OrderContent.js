@@ -5,8 +5,9 @@ class OrderContent extends Component {
         super(props);
     }
 
-    renderOrderInfo(info, payment) {
+    renderOrderInfo(info, payment, shipping, billing) {
         const paymentStatus = info.status;
+        const shippingName = `${shipping.first_name} ${shipping.last_name}`
         return (
             <div>
                 <h5>Placed on {info.created_at}</h5>
@@ -47,11 +48,10 @@ class OrderContent extends Component {
 
                         <div className="card-content">
                             <p>Shipping address</p>
-                            <h5>Jane Mane,</h5>
-                            <h5>KG  611 street</h5>
-                            <h5>Rugando - Remera</h5>
-                            <h5>Kigali, Rwanda</h5>
-                            <h5>Phone: 0723456789</h5>
+                            <h5>{shippingName}</h5>
+                            <h5>{shipping.address2}</h5>
+                            <h5>{shipping.city}</h5>
+                            <h5>Phone: {shipping.phone}</h5>
                             <h5>TIN number:</h5>
                         </div>
                     </div>
@@ -61,82 +61,119 @@ class OrderContent extends Component {
                             <p>Delivery status</p>
                             <h5>DELIVERED</h5>
                         </div>
-                        <div className="card-content">
-                            <p>Billing address</p>
-                            <h5>Same as billing addess</h5>
-                        </div>
+                        {this.renderBillingAddress(shipping, billing)}
                     </div>
                 </div>
             </div>
         )
     }
 
+    renderBillingAddress(shipping, billing) {
+        const billingName = `${billing.first_name} ${billing.last_name}`
+        if (
+            shipping.address1 === billing.address1 &&
+            shipping.address2 === billing.address2 &&
+            shipping.city === billing.city &&
+            shipping.country === billing.country &&
+            shipping.first_name === billing.first_name &&
+            shipping.last_name === billing.last_name &&
+            shipping.phone === billing.phone
+        ) {
+            return (
+                <div className="card-content">
+                    <p>Billing address</p>
+                    <h5>Same as billing addess</h5>
+                </div>
+            )
+        } else {
+            return (
+                <div className="card-content">
+                    <p>Shipping address</p>
+                    <h5>{billingName}</h5>
+                    <h5>{billing.address2}</h5>
+                    <h5>{billing.city}</h5>
+                    <h5>Phone: {billing.phone}</h5>
+                    <h5>TIN number:</h5>
+                </div>
+            )
+        }
+    }
+
     renderOrderItems(items) {
-        for (let i = 0; i < items.length; i++) {
-            const itemLayout = items[i].map((item) => {
-                return (
-                    <div className='delivery-content'>
-                        <div className='store-logo'>
-                            <img className='store-img' src="" />
-                            <span className='store-name'>
-                                <span className='name'>Mart</span>(3 Items from Hmart store)
-                            </span>
-                        </div>
-                        <div className="table-wrapper">                
-                            <table>
-                                <thead>
-                                    <th>Order items</th>
-                                    <th>Price</th>
-                                    <th>Qty</th>
-                                    <th>Total Price</th>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <tr>
-                                                <td><img src="https://res.cloudinary.com/hehe/image/upload/v1559573668/multi-vendor/products/1/vro0lorshxiasgf8eg9d.jpg" /></td>
-                                                <td>{item.name}<span>Pair</span></td>
-                                            </tr>
-                                        </td>                                            
-                                        <td>Rwf 6800</td>
-                                        <td>12</td>                                            
-                                        <td>Rwf 6800</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-    
-                        <div className='total-price'>
-                            <div className='subtotal'>
-                                <span className='t-title'>Subtotal: </span>
-                                <span className='t-content'>Rwf 21050</span>	
-                            </div>
-                            <div className='shipping-grid'>
-                                <span className='shipping-title'>Shipping method</span>
-                                <span className='shipping-dropdown'>
-                                    WHS internatianal
-                                </span>
-                                Shipping: Rwf 1050
-                            </div>
-                            <div className='total-grid checkout-total-grid row reset-row'>
-                                Delivery time 6 days
-                                <span className='total'>
-                                    <span className='t-title'>Total: </span>
-                                    <span className='t-content'>Rwf 21050</span>
+        const stores = items
+        const sellers = Object.keys(stores).map(function(key) {
+            return [Number(key), stores[key]];
+        });
+        for (let i = 0; i < sellers.length; i++) {
+            const sellerLayout = sellers[i].products.map((seller) => {
+                const products = seller.products;
+                console.log(products);
+                const productsLayout = products.map((product) => {
+                    return (
+                        <div className='delivery-content'>
+                            <div className='store-logo'>
+                                <img className='store-img' src="" />
+                                <span className='store-name'>
+                                    <span className='name'>Mart</span>(3 Items from Hmart store)
                                 </span>
                             </div>
-                        </div>						
-                    </div>
-                )
+                            <div className="table-wrapper">                
+                                <table>
+                                    <thead>
+                                        <th>Order items</th>
+                                        <th>Price</th>
+                                        <th>Qty</th>
+                                        <th>Total Price</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <tr>
+                                                    <td><img src="https://res.cloudinary.com/hehe/image/upload/v1559573668/multi-vendor/products/1/vro0lorshxiasgf8eg9d.jpg" /></td>
+                                                    <td>{product.name}<span>Pair</span></td>
+                                                </tr>
+                                            </td>                                            
+                                            <td>Rwf 6800</td>
+                                            <td>12</td>                                            
+                                            <td>Rwf 6800</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+        
+                            <div className='total-price'>
+                                <div className='subtotal'>
+                                    <span className='t-title'>Subtotal: </span>
+                                    <span className='t-content'>Rwf 21050</span>	
+                                </div>
+                                <div className='shipping-grid'>
+                                    <span className='shipping-title'>Shipping method</span>
+                                    <span className='shipping-dropdown'>
+                                        WHS internatianal
+                                    </span>
+                                    Shipping: Rwf 1050
+                                </div>
+                                <div className='total-grid checkout-total-grid row reset-row'>
+                                    Delivery time 6 days
+                                    <span className='total'>
+                                        <span className='t-title'>Total: </span>
+                                        <span className='t-content'>Rwf 21050</span>
+                                    </span>
+                                </div>
+                            </div>						
+                        </div>
+                    )
+                })
+                return productsLayout;
             });
-            return itemLayout;
+            return sellerLayout;
         }
     }
     render () {
-        const { info, payment, shipping, items } = this.props;
+        const { info, payment, shipping, billing, items } = this.props;
         return (
             <div>
-                {this.renderOrderInfo(info, payment)}
+                {this.renderOrderInfo(info, payment, shipping, billing)}
                 {this.renderOrderItems(items)}
             </div>
         );

@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-unfetch';
 import Global from '../components/reusable/Global';
 import '../assets/styles/layouts/categories.scss';
-import '../assets/styles/layouts/SearchResults.scss';
+import '../assets/styles/layouts/searchResults.scss';
 import TopCategories from '../components/views/categories/TopCategories';
 import SidemenuCategories from '../components/views/categories/SidemenuCategories';
 import MainContent from '../components/views/categories/MainContent';

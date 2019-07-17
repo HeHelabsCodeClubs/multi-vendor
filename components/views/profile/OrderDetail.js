@@ -12,7 +12,8 @@ class OrderDetail extends Component {
         this.state = {
             orderDetailsInfo: {},
             orderPayments: {},
-            orderShippingAddress: [],
+            orderShippingAddress: {},
+            orderBillingAddress: {},
             orderItems: [],
         };
     }
@@ -31,13 +32,14 @@ class OrderDetail extends Component {
         this.setState({
             orderDetailsInfo: response.data.detail.info,
             orderPayments: response.data.detail.payment,
-            orderShippingAddress: response.data.detail.shipping,
+            orderShippingAddress: response.data.detail.adress.shipping_address,
+            orderBillingAddress: response.data.detail.adress.billing_address,
             orderItems: response.data.items
         });
     }
 
     render () {
-        const { orderDetailsInfo, orderPayments, orderShippingAddress, orderItems } = this.state;
+        const { orderDetailsInfo, orderPayments, orderShippingAddress, orderBillingAddress, orderItems } = this.state;
         return (
             <div className="order-detail">
                 <div className="content-header">
@@ -56,6 +58,7 @@ class OrderDetail extends Component {
                         info={orderDetailsInfo}
                         payment={orderPayments}
                         shipping={orderShippingAddress}
+                        billing={orderBillingAddress}
                         items={orderItems}
                         />
                     </TabPanel>
