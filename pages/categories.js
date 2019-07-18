@@ -11,9 +11,11 @@ class Categories extends React.Component {
         super(props);
         this.state = {
             updatedProducts: [],
+            products: [],
             paginationData: {},
             showLoader: false,
-            updateCart: false
+            updateCart: false,
+            activeParentCategory: ''
         };
         this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
         this.updateProductsData = this.updateProductsData.bind(this);
@@ -40,8 +42,28 @@ class Categories extends React.Component {
             categoriesData: data.parent_categories,
             subCategoriesData: data.sub_categories,
             productsData: data.products,
-            metaProductsData: meta.pagination_data
+            metaProductsData: meta.pagination_data,
+            activeParentCategory: category_slug
         };
+    }
+
+    componentDidMount() {
+        const { activeParentCategory, categoriesData, productsData } = this.props;
+        if (activeParentCategory !== '') {
+            let parentCategoryName = '';
+            categoriesData.forEach(category => {
+                if (category.slug === activeParentCategory) {
+                    parentCategoryName = category.name;
+                }
+            });
+            this.setState({
+                activeParentCategory: parentCategoryName
+            });
+        }
+
+        this.setState({
+            products: productsData
+        });
     }
 
     cartShouldUpdate() {
@@ -52,20 +74,28 @@ class Categories extends React.Component {
 
     updateProductsData(data) {
         this.setState({
-            updatedProducts: data.products,
+            products: data.products,
             paginationData: data.meta
         });
     }
 
-    handleDisplayLoader() {
+    handleDisplayLoader(callback) {
         const { showLoader } = this.state;
         if (showLoader) {
             this.setState({
                 showLoader: false
+            }, () => {
+                if (callback) {
+                    callback();
+                }
             });
         } else {
             this.setState({
                 showLoader: true
+            }, () => {
+                if (callback) {
+                    callback();
+                }
             });
         }
     }
@@ -82,6 +112,8 @@ class Categories extends React.Component {
             updatedProducts,
             showLoader,
             updateCart,
+            activeParentCategory,
+            products,
             paginationData
         } = this.state;
 		return (
@@ -102,12 +134,13 @@ class Categories extends React.Component {
                                 parentCategorySlug={parentCategorySlug}
                                 updateProducts={this.updateProductsData}
                                 displayLoader={this.handleDisplayLoader}
+                                activeParentCategory={activeParentCategory}
                                 />
                             </div>
                             <div className='col-lg-9 col-md-8 col-sm-8 col-12 col-reset main-content-wrapper'>
                                 <MainContent 
-                                products={productsData}
-                                updatedProducts={updatedProducts}
+                                products={products}
+                                //updatedProducts={updatedProducts}
                                 paginationData={paginationData}
                                 showLoader={showLoader}
                                 cartShouldUpdate={this.cartShouldUpdate}

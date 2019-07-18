@@ -7,12 +7,16 @@ class SidemenuCategories extends Component {
         super(props);
         this.state = {
             isOpen: props.isOpen,
-            categories: []
+            categories: [],
+            subParentCatHasToBeUpdated: false
+            //triggerUpdateOfActiveSubCat: false
         };
         this.openSidebar = this.openSidebar.bind(this);
         this.renderMenuItems = this.renderMenuItems.bind(this);
         this.renderCategoryChildren = this.renderCategoryChildren.bind(this);
         this.redirectToPage = this.redirectToPage.bind(this);
+        this.renderActiveParentCategory = this.renderActiveParentCategory.bind(this);
+        this.updateActiveParentSubCat = this.updateActiveParentSubCat.bind(this);
     }
 
     componentWillMount() {
@@ -41,8 +45,14 @@ class SidemenuCategories extends Component {
         Router.push(`/categories/${parentCategorySlug}/${value}`);
     }
 
+    updateActiveParentSubCat() {
+        this.setState({
+            subParentCatHasToBeUpdated: true
+        });
+    }
+
     renderMenuItems() {
-        const { categories } = this.state;
+        const { categories, subParentCatHasToBeUpdated } = this.state;
         if (categories.length === 0) {
             return null;
         }
@@ -57,6 +67,8 @@ class SidemenuCategories extends Component {
                 parentCategorySlug={parentCategorySlug}
                 updateProducts={updateProducts}
                 displayLoader={displayLoader}
+                triggerUpdateOfActiveSubCat={this.updateActiveParentSubCat}
+                subParentCatHasToBeUpdated={subParentCatHasToBeUpdated}
                 />
            );
         });
@@ -78,11 +90,20 @@ class SidemenuCategories extends Component {
 
         return childrenData;
     }
+    renderActiveParentCategory() {
+        const { activeParentCategory } = this.props;
+        const displayedCategory = activeParentCategory === '' ? null : activeParentCategory;
+        return (
+            <div className="divider divider-level-1">
+                {displayedCategory}
+            </div>
+        );
+    }
     render() {
         return (
             <div>
                 <div className="Side-menu Side-menu-default  children active">
-                    <div className="divider divider-level-1">All Categories</div>
+                    {this.renderActiveParentCategory()}
                     {this.renderMenuItems()}
                 </div>
             </div>

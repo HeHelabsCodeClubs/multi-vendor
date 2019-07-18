@@ -1,6 +1,7 @@
 import Slider from "react-slick";
 import Link from 'next/link';
 import Router from 'next/router';
+import LimitString from '../../../helpers/limit_string';
 
 class TopCategories extends React.Component {
     constructor(props) {
@@ -21,16 +22,18 @@ class TopCategories extends React.Component {
         const { categories } = this.state;
         if (categories) {
             const categoriesLayout = categories.map((category) => {
-                const iconClassName = category.icon_class_name !== '' ? category.icon_class_name : 'icon-KITCHENWARE-ICO';
                 const { slug } = category;
                 const activeClassName = (Router.router.query.category_slug === slug) ? 'is-active' : '';
                 return (
                     <a 
                     key={slug}
                     href={`/categories/${slug}`}
+                    title={category.name}
                     className={`single-category ${activeClassName}`}>
-                        <i className={`cat-icon ${iconClassName}`} />
-                        {category.name}
+                        <img src={category.icon_url} />
+                        <span
+                        title={category.name}
+                        >{LimitString(category.name, 20)}</span>
                     </a>
                 );
             });
