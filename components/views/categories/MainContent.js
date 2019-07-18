@@ -14,7 +14,7 @@ class MainContent extends React.Component {
             firstTimeLoad: true,
             showLoader: false,
             currentPage: 1,
-            lastPage: 0
+            lastPage: 1
         };
         this.renderProducts = this.renderProducts.bind(this);
         this.loadMoreProducts = this.loadMoreProducts.bind(this);
@@ -32,30 +32,19 @@ class MainContent extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { updatedProducts, showLoader, paginationData } = nextProps;
-        const { firstTimeLoad, products } = this.state;
-        if (!firstTimeLoad) {
-            if (updatedProducts.length !== products.length) {
-                if (updatedProducts.length !== 0) {
-                    if (!isObjectEmpty(paginationData)) {
-                        this.setState({
-                            products: updatedProducts,
-                            currentPage: paginationData.current_page,
-                            lastPage: paginationData.last_page
-                        });
-                    } else {
-                        this.setState({
-                            products: updatedProducts
-                        });
-                    }
-                }
-            }
+        const { products, showLoader } = nextProps;
+        if (this.state.products != products) {
+            this.setState({
+                products: products
+            });
+        }
 
-            if (showLoader !== this.state.showLoader) {
-                this.setState({
-                    showLoader: showLoader
-                });
-            }
+        if (this.state.showLoader !== showLoader) {
+            this.setState({
+                currentPage: 1, // reset pagination
+                lastPage: 1,// reset pagination
+                showLoader: showLoader
+            });
         }
     }
 
@@ -126,16 +115,16 @@ class MainContent extends React.Component {
         remoteUrl = `${remoteUrl}?page=${newPage}`
         const res = await fetch(remoteUrl);
         const response = await res.json();
-        const { data } = response;
+        const { data, meta } = response;
         if (data.products) {
-            this.updateProductsOnPagination(data.products);
+            this.updateProductsOnPagination(data.products, meta);
             return;
         } else {
-            this.updateProductsOnPagination(data);
+            this.updateProductsOnPagination(data, meta);
         }
     }
 
-    updateProductsOnPagination(data) {
+    updateProductsOnPagination(data, meta) {
         const { products, currentPage } = this.state;
         const newProducts = products;
         const newPage = Number(currentPage) + 1;
@@ -144,7 +133,8 @@ class MainContent extends React.Component {
         });
         this.setState({
             products: newProducts,
-            currentPage: newPage
+            currentPage: newPage,
+            lastPage: Number(meta.pagination_data.last_page)
         });
     }
  

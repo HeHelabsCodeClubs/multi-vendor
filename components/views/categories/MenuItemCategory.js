@@ -8,7 +8,8 @@ export default class  MenuItemCategory extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            isMenuItemActive: false,
+            isMenuItemActive: '',
+            activeChildrenItem: '',
             category: {}
         };
         this.renderCategories = this.renderCategories.bind(this);
@@ -19,32 +20,62 @@ export default class  MenuItemCategory extends Component {
         this.handleChildrenCategoryClick = this.handleChildrenCategoryClick.bind(this);
         this.getCategoryProducts = this.getCategoryProducts.bind(this);
         this.handleUpdateProductsPerActiveCategory = this.handleUpdateProductsPerActiveCategory.bind(this);
+        this.updateActiveItemOnRender = this.updateActiveItemOnRender.bind(this);
+        this.updateChildrenCategorySelection = this.updateChildrenCategorySelection.bind(this);
     }
 
     componentDidMount() {
         const { category } = this.props;
         this.setState({
             category: category
+        }, () => {
+            this.updateActiveItemOnRender();
         });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { subParentCatHasToBeUpdated } = nextProps;
+        if (subParentCatHasToBeUpdated) {
+            this.updateActiveItemOnRender();
+        }
+    }
+
+    updateActiveItemOnRender() {
+        const { router: { query : { sub_cat_slug, sub_last_cat_slug } } } = Router;
+        if (sub_cat_slug) {
+            this.handleDisplayOfSubCategories(sub_cat_slug);
+        }
+        if (sub_last_cat_slug) {
+            this.updateChildrenCategorySelection(sub_last_cat_slug);
+        }
     }
 
     handleChildrenCategoryClick(parent_category_slug, parent_subcategory_slug, slug, e) {
         if (e !== undefined) {
             e.preventDefault();
         }
+        this.updateChildrenCategorySelection(slug);
         this.handleUpdateProductsPerActiveCategory(slug);
         const actionUrl = `/categories?category_slug=${parent_category_slug}&sub_cat_slug=${parent_subcategory_slug}&sub_last_cat_slug=${slug}`;
         const asUrl = `/categories/${parent_category_slug}/${parent_subcategory_slug}/${slug}`;
         Router.push(actionUrl, asUrl);
     }
 
+    updateChildrenCategorySelection(slug) {
+        this.setState({
+            activeChildrenItem: slug
+        });
+    }
+
     renderCategoryChildren(children, parent_subcategory_slug, parent_category_slug) {
+        const { activeChildrenItem } = this.state;
         const subCategoriesLayout = children.map((subcategory) => {
             const { name, slug } = subcategory;
+            const activeClass = activeChildrenItem === slug ? 'item item-level-2 active' : 'item item-level-2';
             return (
                 <a 
                 key={slug}
-                className="item item-level-2"
+                className={activeClass}
                 href={`/categories/${parent_category_slug}/${parent_subcategory_slug}/${slug}`}
                 onClick={(e) => this.handleChildrenCategoryClick(parent_category_slug, parent_subcategory_slug, slug, e)}
                 >
@@ -69,21 +100,24 @@ export default class  MenuItemCategory extends Component {
         }
         const { slug } = this.state.category;
         this.handleUpdateProductsPerActiveCategory(slug);
-        this.handleDisplayOfSubCategories();
+        this.handleDisplayOfSubCategories(slug);
         const actionUrl = `/categories?category_slug=${this.props.parentCategorySlug}&sub_cat_slug=${slug}`;
         const asUrl = `/categories/${this.props.parentCategorySlug}/${slug}`;
         Router.push(actionUrl, asUrl);
+        this.props.triggerUpdateOfActiveSubCat();
     }
 
     handleUpdateProductsPerActiveCategory(slug) {
         /**
          * Display loader to indicate products update
          */
-        this.props.displayLoader();
-        // update products
-        this.getCategoryProducts(slug, (newProducts) => {
-            this.props.displayLoader();
-            this.props.updateProducts(newProducts);
+        this.props.displayLoader(() => {
+             // update products
+            this.getCategoryProducts(slug, (newProducts) => {
+                this.props.displayLoader(() => {
+                    this.props.updateProducts(newProducts);
+                });
+            });
         });
     }
 
@@ -98,17 +132,10 @@ export default class  MenuItemCategory extends Component {
         callback(data);
     }
 
-    handleDisplayOfSubCategories() {
-        const { isMenuItemActive } = this.state;
-        if (isMenuItemActive) {
-            this.setState({
-                isMenuItemActive: false
-            });
-        } else {
-            this.setState({
-                isMenuItemActive: true
-            });
-        }
+    handleDisplayOfSubCategories(slug) {
+        this.setState({
+            isMenuItemActive: slug
+        });
     }
 
     renderCategories() {
@@ -120,7 +147,7 @@ export default class  MenuItemCategory extends Component {
                 children 
             } = category;
             const { parentCategorySlug } = this.props;
-            const itemClass = isMenuItemActive ? 'active' : '';
+            const itemClass = slug === isMenuItemActive ? 'item item-level-1 active' : 'item item-level-1';
             const childrenLayout = children.length > 0 ? (
                     <div className="children active">
                         {this.renderCategoryChildren(children, slug, parentCategorySlug)}
@@ -128,7 +155,7 @@ export default class  MenuItemCategory extends Component {
                  ) : null;
             const dropDownIcon = children.length > 0 ? this.renderCategoryNameDropDownIcon() : null;
             return (
-                <div className={`item item-level-1 ${itemClass}`}>
+                <div className={itemClass}>
                     <a
                     className="item-title"
                     href={`/categories/${this.props.parentCategorySlug}/${slug}`} 

@@ -21,15 +21,18 @@
             min-height: 5.2rem;
             text-align: center;
             display: flex !important;
+            justify-content: flex-start !important;
+            align-items: center !important;
             @include flexbox;
+            @include flexjustifycontent(flex-start);
             @include flexalignitems(center);
             color: $black-color-3;
             @include transition;
 
             img {
-                width: 3rem;
-                height: 3rem;
-                margin-right: .7rem;
+                width: 2rem;
+                height: 2rem;
+                margin-right: .5rem;
             }
     
             .cat-icon:before {
