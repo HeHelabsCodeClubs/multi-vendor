@@ -120,7 +120,6 @@ class Product extends React.Component {
             const { description, name } = product;
             const productDescription = (description !== '') ? limitString(description, 10) : '';
             const displayedProductTitle = (productDescription !== '') ? `${name} - ${productDescription}` : name;
-            console.log('product store slug', product.store.slug);
             return (
                 <div>
                     <a href={`/sellers/${product.store.slug}/products/${product.slug}`}>
