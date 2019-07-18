@@ -25,6 +25,8 @@ class Promotion extends Component {
 		const settings = {
 			infinite: true,
 			speed: 500,
+			autoplay: true,
+			autoplaySpeed: 3000,
 			slidesToShow: 4,
 			slidesToScroll: 1,
 			dots: true,

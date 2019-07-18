@@ -29,7 +29,7 @@ class TopCategories extends React.Component {
                     key={slug}
                     href={`/categories/${slug}`}
                     className={`single-category ${activeClassName}`}>
-                        <i className={`cat-icon ${iconClassName}`} />
+                        <img src={`${iconClassName}`} className="cat-icon" />
                         {category.name}
                     </a>
                 );
@@ -45,6 +45,7 @@ class TopCategories extends React.Component {
             speed: 1000,
 			slidesToShow: 8,
             slidesToScroll: 2,
+            swipeToSlide: true,
             responsive: [
                 {
                     breakpoint: 1600,
