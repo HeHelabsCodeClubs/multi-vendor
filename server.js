@@ -34,7 +34,6 @@ app
         })
 
         server.get('/search-results/:search_term', (req, res) => {
-            console.log('q', req.params.search_term);
             if (!req.params.search_term || (req.params.search_term === '')) {
                 res.redirect('/');
             }

@@ -71,7 +71,8 @@ class Header extends React.Component {
         }
         const { searchedValue } = this.state;
         if (searchedValue.length !== '') {
-            const validValue = searchedValue.toLowerCase().split(' ').join('_');
+            let validValue = searchedValue.toLowerCase().split(' ').join('_');
+            validValue = validValue.replace(/[^a-z0-9]+|\s+/gmi, '_');
             Router.push(`/search-results/${validValue}`);
             return;
         }

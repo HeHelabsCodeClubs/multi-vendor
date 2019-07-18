@@ -44,20 +44,26 @@ class SearchResults extends React.Component {
 
             const remoteUrl = `${API_URL}/products/search-results/${searchTerm}`;
             const res = await fetch(remoteUrl);
-            const response = await res.json()
-            const { 
-                data,
-                meta
-            } = response;
-            return {
-                productsData: data,
-                currentPage: meta.current_page,
-                lastPage: meta.last_page,
-                noMatchFound: (data.length === 0) ? true : false,
-                searchTerm: searchTerm
-            };
+            const response = await res.json();
+            if (response) {
+                const { 
+                    data,
+                    meta
+                } = response; 
+                
+                return {
+                    productsData: data,
+                    currentPage: meta.current_page,
+                    lastPage: meta.last_page,
+                    noMatchFound: (data.length === 0) ? true : false,
+                    searchTerm: searchTerm
+                };
+            }
+            
         }
-        return {};
+        return {
+            noMatchFound: true
+        };
     }
 
     componentDidMount() {

@@ -56,7 +56,8 @@ class SearchDropdown extends Component {
         </span>
        );
        const { value } = this.state;
-       const validValue = name.toLowerCase().split(' ').join('_');
+       let validValue = name.toLowerCase().split(' ').join('_');
+        validValue = validValue.replace(/[^a-z0-9]+|\s+/gmi, '_');
         return(
             <div>
                 {/* links */}
