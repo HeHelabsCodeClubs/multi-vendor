@@ -16,6 +16,7 @@ class SearchDropdown extends Component {
         this.renderSuggestion = this.renderSuggestion.bind(this);
         this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
         this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
+        this.onChange = this.onChange.bind(this);
 
     }
     
@@ -36,7 +37,7 @@ class SearchDropdown extends Component {
     
    renderSuggestion(suggestion) {
        let categoryName = '';
-       const { name, categories, slug, seller } = suggestion;
+       const { name, categories } = suggestion;
        if (categories) {
             if (categories.length !== 0) {
                 const catLength = categories.length;
@@ -54,10 +55,12 @@ class SearchDropdown extends Component {
             <span>{name}</span>
         </span>
        );
+       const { value } = this.state;
+       const validValue = value.toLowerCase().split(' ').join('_');
         return(
             <div>
                 {/* links */}
-                <a href={`/sellers/${seller.slug}/products/${slug}`}>{displayName}</a>
+                <a href={`/search-results/${validValue}`}>{displayName}</a>
             </div>
         );
    }
@@ -66,11 +69,13 @@ class SearchDropdown extends Component {
     onChange = (event, { newValue }) => {
         this.setState({
           value: newValue
+        }, () => {
+            this.props.updateParentSearchTerm(newValue);
         });
     };
 
     async onSuggestionsFetchRequested({ value }){
-        if(value.length >= 3) {
+        if(value.length !== 0) {
             const res = await fetch(`${API_URL}/products/search/${value}`, {
                 method: 'GET',
                 headers: {

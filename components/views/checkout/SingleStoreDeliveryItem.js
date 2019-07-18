@@ -291,7 +291,7 @@ export default class SingleStoreDeliveryItem extends Component {
                             <span className="store-logo-wrapper"><img className='store-img' src={info.icon} /></span>
                             
                             <span className='store-name'>
-                                <span className='name'>{name}</span><span class="items-in-cart">{itemsText}</span>
+                                <span className='name'>{name}</span><span className="items-in-cart">{itemsText}</span>
                             </span>
                         </div>
                         <div className="right-block">
@@ -304,7 +304,7 @@ export default class SingleStoreDeliveryItem extends Component {
                             </button>
                         </div>
                     </div>
-                    <div class={productsWrapperClassName}>
+                    <div className={productsWrapperClassName}>
                         {productsLayout}
                     </div>
                     <div className='total-price'>

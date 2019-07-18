@@ -84,7 +84,7 @@ class MainContent extends React.Component {
             });
             return (
                 <div>
-                    <div class="row reset-row">
+                    <div className="row reset-row">
                         {productsLayout}
                     </div>
                 </div>
