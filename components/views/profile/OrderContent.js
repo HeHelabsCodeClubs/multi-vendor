@@ -109,10 +109,11 @@ class OrderContent extends Component {
             const products = seller[1].products;
             const store = seller[1].store_info;
             const productsLayout = products.map((product) => {
+                const productImg = product.image !== null ? product.image.path : null;
                 return (
                     <div className='delivery-content'>
                         <div className='store-logo'>
-                            <img className='store-img' src="" />
+                            <img className='store-img' src={store.store.logo} />
                             <span className='store-name'>
                                 <span className='name'>{store.store.name}</span>({products.length} Items from {store.store.name} store)
                             </span>
@@ -129,7 +130,7 @@ class OrderContent extends Component {
                                     <tr>
                                         <td>
                                             <tr>
-                                                <td><img src={product.image.path} /></td>
+                                                <td><img src={productImg} /></td>
                                                 <td>{product.name}<span>{product.type}</span></td>
                                             </tr>
                                         </td>                                            

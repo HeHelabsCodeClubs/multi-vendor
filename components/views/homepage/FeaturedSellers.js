@@ -103,7 +103,7 @@ class FeaturedSellers extends Component {
 					settings: {
 						slidesToShow: 3,
 						slidesToScroll: 1,
-						infinite: true,
+						infinite: false,
 						dots: true
 					}
 				},
@@ -111,7 +111,8 @@ class FeaturedSellers extends Component {
 					breakpoint: 979,
 					settings: {
 						slidesToShow: 2,
-						slidesToScroll: 1
+                        slidesToScroll: 1,
+                        infinite: false,
 					}
                 },
                 {
@@ -120,7 +121,8 @@ class FeaturedSellers extends Component {
                         slidesToShow: 2,
                         centerMode: true,
 						centerPadding: "40px",
-						slidesToScroll: 1
+                        slidesToScroll: 1,
+                        infinite: false,
 					}
 				},
 				{

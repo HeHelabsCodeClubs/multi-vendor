@@ -20,6 +20,7 @@ class Profile extends Component {
         };
         this.renderContentProfile = this.renderContentProfile.bind(this);
         this.changeActiveContent = this.changeActiveContent.bind(this);
+        this.changeActivePage = this.changeActivePage.bind(this);
     }
     async componentDidMount() {
         const isClient = typeof document !== undefined;
@@ -76,12 +77,21 @@ class Profile extends Component {
         }
     }
 
+    changeActivePage() {
+        const { activeContent } = this.state;
+        if (activeContent === 'singleOrder') {
+            this.setState({
+                activeContent: 'orders'
+            });
+        }
+    }
+
     render () {
         return (
             <Global>
                 <div className="row reset-row profile-page">
                     <div className="col-lg-3 col-md-3 col-sm-5 col-12 sidemenu">
-                        <SideProfile />
+                        <SideProfile changeActivePage={this.changeActivePage} />
                     </div>
 
                     <div className="col-lg-9 col-md-9 col-sm-7 col-12 main-content">

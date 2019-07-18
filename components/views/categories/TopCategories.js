@@ -44,34 +44,38 @@ class TopCategories extends React.Component {
     }
 	render() {
         var settings = {
-			infinite: true,
+			infinite: false,
             speed: 1000,
 			slidesToShow: 8,
             slidesToScroll: 2,
             responsive: [
                 {
                     breakpoint: 1600,
-                   settings: {
-                       slidesToShow: 7,
-                   }
+                    settings: {
+                        slidesToShow: 7,
+                        infinite: false,
+                    }
                 },
                 {
                     breakpoint: 1440,
-                   settings: {
-                       slidesToShow: 6,
-                   }
+                    settings: {
+                        slidesToShow: 6,
+                        infinite: false,
+                    }
                 },
 				{
 				 	breakpoint: 1024,
 					settings: {
-						slidesToShow: 5,
+                        slidesToShow: 5,
+                        infinite: false,
 					}
                 },
                 {
                     breakpoint: 979,
-                   settings: {
-                       slidesToShow: 4,
-                   }
+                    settings: {
+                        slidesToShow: 4,
+                        infinite: false,
+                    }
                }
 			]
 		};
