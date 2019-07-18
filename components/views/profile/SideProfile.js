@@ -12,7 +12,7 @@ class SideProfile extends Component {
                         <a className="item-title" href="#">Profile details</a>
                     </div> */}
                     <div className="item-menu active">
-                        <a className="item-title" href="#">All Orders</a>
+                        <a className="item-title" href="#" onClick={this.props.changeActivePage}>All Orders</a>
                     </div>
                     {/* <div className="item-menu">
                         <a className="item-title" href="#">Refund &amp; Disputes</a>
