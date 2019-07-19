@@ -18,13 +18,13 @@ class OrderRow extends Component {
                 const id = order.order_id;
                 return (
                     <tr>
-                        <td><a href='' onClick={() => this.triggerSingleOrderDisplay(id)}>#{id}</a></td>
+                        <td><a href='#' onClick={() => this.triggerSingleOrderDisplay(id)}>#{id}</a></td>
                         <td>{date[0]} <span>{date[1]}</span></td>
                         <td>{order.method_title}</td>
                         <td> <span className="badge-txt">{paymentStatus.charAt(0).toUpperCase() + paymentStatus.slice(1)}</span> </td>
                         {/* <td> <span className="badge-txt">In progress</span></td> */}
                         <td>Rwf {order.base_grand_total}</td>
-                        <td><a href="" onClick={() => this.triggerSingleOrderDisplay(id)}><span className='icon-external_link'></span></a></td>
+                        <td><a href="#" onClick={() => this.triggerSingleOrderDisplay(id)}><span className='icon-external_link'></span></a></td>
                     </tr>
                 );
             });
