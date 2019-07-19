@@ -12,7 +12,7 @@ class OrderContent extends Component {
             <div>
                 <h5>Placed on {info.created_at}</h5>
 
-                <div className="row reset-row">
+                <div className="row">
                     <div className="col-lg-3 col-md-3 col-sm-6 col-6">
                         <div className="card-content">
                             <p>Payment method</p>
@@ -158,6 +158,7 @@ class OrderContent extends Component {
                             <span className='shipping-title'>Shipping method</span>
                             <span className='shipping-dropdown'>
                                 WHS internatianal
+                                {/* {store.shipping.carrier_title} */}
                             </span>
                             Shipping: Rwf 1050
                         </div>
@@ -179,6 +180,7 @@ class OrderContent extends Component {
         return (
             <div>
                 {this.renderOrderInfo(info, payment, shipping, billing)}
+                <div className='profile-products-title'><h2>Items listsss</h2></div>
                 {this.renderOrderItems(items)}
             </div>
         );

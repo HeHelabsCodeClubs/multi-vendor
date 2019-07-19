@@ -49,8 +49,8 @@ class OrderDetail extends Component {
                 <Tabs>
                     <TabList>
                         <Tab>General info</Tab>
-                        <Tab>Invoice</Tab>
-                        <Tab>Messages</Tab>
+                        {/* <Tab>Invoice</Tab>
+                        <Tab>Messages</Tab> */}
                     </TabList>
                 
                     <TabPanel>
@@ -63,13 +63,13 @@ class OrderDetail extends Component {
                         />
                     </TabPanel>
 
-                    <TabPanel>
+                    {/* <TabPanel>
                         <Invoice/>
                     </TabPanel>
 
                     <TabPanel>
                         <h2>Any content 3</h2>
-                    </TabPanel>
+                    </TabPanel> */}
                 </Tabs>
 
             </div>

@@ -1153,6 +1153,12 @@ html {
             }
         }
     }
+    .profile-products-title {
+        h2 {
+            font-size: 1.28rem;
+            font-family: $font-semi-bold;
+        }
+    }
 
     // search results
 
@@ -1198,6 +1204,7 @@ html {
             }
         }
     }
+
 }
 
 // Terms and privacy doc pages
