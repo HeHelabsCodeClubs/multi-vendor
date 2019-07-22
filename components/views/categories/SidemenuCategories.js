@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import Router from 'next/router';
 import MenuItemCategory from "./MenuItemCategory";
 
+
+
 class SidemenuCategories extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isOpen: props.isOpen,
+            openDropdown: false,
             categories: [],
             subParentCatHasToBeUpdated: false
             //triggerUpdateOfActiveSubCat: false
@@ -17,6 +20,7 @@ class SidemenuCategories extends Component {
         this.redirectToPage = this.redirectToPage.bind(this);
         this.renderActiveParentCategory = this.renderActiveParentCategory.bind(this);
         this.updateActiveParentSubCat = this.updateActiveParentSubCat.bind(this);
+        this.openDropdownMenu = this.openDropdownMenu.bind(this);
     }
 
     componentWillMount() {
@@ -52,7 +56,7 @@ class SidemenuCategories extends Component {
     }
 
     renderMenuItems() {
-        const { categories, subParentCatHasToBeUpdated } = this.state;
+        const { categories, subParentCatHasToBeUpdated, openDropdown } = this.state;
         if (categories.length === 0) {
             return null;
         }
@@ -60,19 +64,23 @@ class SidemenuCategories extends Component {
         const { parentCategorySlug, updateProducts, displayLoader } = this.props;
 
         const menuItemsLayout = categories.map((category) => {
-           return (
-                <MenuItemCategory 
-                key={category.slug}
-                category={category}
-                parentCategorySlug={parentCategorySlug}
-                updateProducts={updateProducts}
-                displayLoader={displayLoader}
-                triggerUpdateOfActiveSubCat={this.updateActiveParentSubCat}
-                subParentCatHasToBeUpdated={subParentCatHasToBeUpdated}
-                />
-           );
-        });
 
+            if (openDropdown === true) {
+                return (
+                    <MenuItemCategory 
+                    key={category.slug}
+                    category={category}
+                    parentCategorySlug={parentCategorySlug}
+                    updateProducts={updateProducts}
+                    displayLoader={displayLoader}
+                    triggerUpdateOfActiveSubCat={this.updateActiveParentSubCat}
+                    subParentCatHasToBeUpdated={subParentCatHasToBeUpdated}
+                    />
+            );
+            } else {
+                return null;
+            }
+        });
         return menuItemsLayout;
     }
 
@@ -99,6 +107,19 @@ class SidemenuCategories extends Component {
             </div>
         );
     }
+    openDropdownMenu() {        
+        const { openDropdown } = this.state;
+        if (openDropdown) {
+            this.setState({ 
+                openDropdown: false 
+            });
+        } else {
+            this.setState({ 
+                openDropdown: true
+            });
+        }
+    }
+
     render() {
         return (
             <div>
@@ -112,7 +133,7 @@ class SidemenuCategories extends Component {
                 <div className="mobile-visible side-menu__item Side-menu Side-menu-default  children active">
                     <div className="side-menu__item">
                         <div className="divider divider-level-1">
-                            <span>{this.renderActiveParentCategory()}</span> 
+                            <span onClick={this.openDropdownMenu}>{this.renderActiveParentCategory()}</span> 
                             <span className="icon-Angle_down mobile-visible"></span>
                         </div>
                     </div>
