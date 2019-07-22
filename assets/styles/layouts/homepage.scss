@@ -25,6 +25,10 @@
                 border: 1px solid rgba(255, 255, 255, 0.4);
                 border-radius: 50%;
             }
+
+            @media screen and (max-width: $mobile-lg) {
+                display: none !important;
+            }
         }
         .slick-next {
             right: 1.5rem;
@@ -44,6 +48,9 @@
                 height: 5rem;
                 border: 1px solid rgba(255, 255, 255, 0.4);
                 border-radius: 50%;
+            }
+            @media screen and (max-width: $mobile-lg) {
+                display: none !important;
             }
         }
         .slick-slide img {
@@ -129,7 +136,7 @@
 
             @media screen and (max-width: $mobile-lg) {
                 padding: 1rem;
-                width: 33.33% !important;
+                width: 20% !important;
                 float: none !important;
                 display: inline-block;
             }
@@ -151,8 +158,8 @@
 
                         @media screen and (max-width: $mobile-lg) {
                             background: $white-color;
-                            height: 60px;
-                            width: 60px;
+                            height: 3.5rem;
+                            width: 3.5rem;
                             border-radius: 50%;
                             margin: 0 auto;
                             box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.06);
@@ -237,14 +244,18 @@
                 text-transform: uppercase;
             }
         }
-        .seller-link a {
-            color: $green-color-2 !important;
-            @include flexbox;
-            @include flexalignitems(center);
-            @include flexjustifycontent(center);
+        .seller-link {
+            display: none;
+        
+            a {
+                color: $green-color-2 !important;
+                @include flexbox;
+                @include flexalignitems(center);
+                @include flexjustifycontent(center);
 
-            span {
-                margin: 0 0 0 1rem;
+                span {
+                    margin: 0 0 0 1rem;
+                }
             }
         }
     }
@@ -430,6 +441,7 @@
         padding: 2rem 0 3rem 0;
     }
     .made-in-rwanda-wrapper {
+
         .made-in-rwanda-title {
             text-align: center;
             padding: 0 0 2rem 0;
@@ -470,11 +482,17 @@
             }
         }
         .made-in-rwanda-content {
-            .rwanda-wrapper {
-                width: 90%;
-                margin: 0 auto;
-                @media screen and (max-width: $mobile-lg){
-                    width: 94%;
+            .made-in-rwanda-wrapper {
+                display: inline-flex;
+                width: 100%;
+                .rwanda-wrapper {
+                    width: 90%;
+                    margin: 0 auto;
+                    justify-content: center;
+
+                    @media screen and (max-width: $mobile-lg){
+                        width: 94%;
+                    }
                 }
             }
         }

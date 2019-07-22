@@ -95,7 +95,8 @@ class FeaturedSellers extends Component {
 			infinite: infiniteSetting,
 			speed: 500,
 			slidesToShow: 4,
-			slidesToScroll: 1,
+            slidesToScroll: 1,
+            swipeToSlide: true,
 			responsive: [
 
 				{

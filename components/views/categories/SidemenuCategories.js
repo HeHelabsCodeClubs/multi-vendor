@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import Router from 'next/router';
 import MenuItemCategory from "./MenuItemCategory";
 
+
+
 class SidemenuCategories extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isOpen: props.isOpen,
+            openDropdown: false,
             categories: [],
             subParentCatHasToBeUpdated: false
             //triggerUpdateOfActiveSubCat: false
@@ -17,6 +20,7 @@ class SidemenuCategories extends Component {
         this.redirectToPage = this.redirectToPage.bind(this);
         this.renderActiveParentCategory = this.renderActiveParentCategory.bind(this);
         this.updateActiveParentSubCat = this.updateActiveParentSubCat.bind(this);
+        // this.openDropdownMenu = this.openDropdownMenu.bind(this);
     }
 
     componentWillMount() {
@@ -60,7 +64,7 @@ class SidemenuCategories extends Component {
         const { parentCategorySlug, updateProducts, displayLoader } = this.props;
 
         const menuItemsLayout = categories.map((category) => {
-           return (
+            return (
                 <MenuItemCategory 
                 key={category.slug}
                 category={category}
@@ -70,9 +74,8 @@ class SidemenuCategories extends Component {
                 triggerUpdateOfActiveSubCat={this.updateActiveParentSubCat}
                 subParentCatHasToBeUpdated={subParentCatHasToBeUpdated}
                 />
-           );
+            );
         });
-
         return menuItemsLayout;
     }
 
@@ -99,13 +102,40 @@ class SidemenuCategories extends Component {
             </div>
         );
     }
+    // openDropdownMenu() {        
+    //     const { openDropdown } = this.state;
+    //     if (openDropdown) {
+    //         this.setState({ 
+    //             openDropdown: false 
+    //         });
+    //     } else {
+    //         this.setState({ 
+    //             openDropdown: true
+    //         });
+    //     }
+    // }
+
     render() {
         return (
             <div>
-                <div className="Side-menu Side-menu-default  children active">
-                    {this.renderActiveParentCategory()}
-                    {this.renderMenuItems()}
+                <div className="mobile-invisible side-menu__item Side-menu Side-menu-default  children active" onClick={this.openDropdownMenu}>
+                        {this.renderActiveParentCategory()}
+                    <div>
+                        {this.renderMenuItems()}
+                    </div>                    
                 </div>
+
+                {/* <div className="mobile-visible side-menu__item Side-menu Side-menu-default  children active">
+                    <div className="side-menu__item">
+                        <div className="divider divider-level-1">
+                            <span onClick={this.openDropdownMenu}>{this.renderActiveParentCategory()}</span> 
+                            <span className="icon-Angle_down mobile-visible"></span>
+                        </div>
+                    </div>
+                    <div className="item-menu-dropdown-content">
+                        {this.renderMenuItems()}
+                    </div>                    
+                </div> */}
             </div>
         );
     }

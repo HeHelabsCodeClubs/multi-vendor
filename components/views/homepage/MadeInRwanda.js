@@ -42,6 +42,7 @@ class MadeInRwanda extends Component {
 			rows:1,
 			slidesToShow: 9,
 			slidesToScroll: 2,
+			swipeToSlide: true,
 			responsive: [
 				{
 					breakpoint: 1024,
