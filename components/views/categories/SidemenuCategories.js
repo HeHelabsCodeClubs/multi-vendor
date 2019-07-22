@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Router from 'next/router';
 import MenuItemCategory from "./MenuItemCategory";
-import 'jquery/dist/jquery.min.js';
-// import 'bootstrap/dist/js/bootstrap.min.js';
 
 class SidemenuCategories extends Component {
     constructor(props) {
@@ -111,11 +109,14 @@ class SidemenuCategories extends Component {
                     </div>                    
                 </div>
 
-                <div className="mobile-visible dropdown side-menu__item Side-menu Side-menu-default  children active">
-                    <div className="dropdown-toggle" data-toggle="dropdown">
-                        {this.renderActiveParentCategory()}
+                <div className="mobile-visible side-menu__item Side-menu Side-menu-default  children active">
+                    <div className="side-menu__item">
+                        <div className="divider divider-level-1">
+                            <span>{this.renderActiveParentCategory()}</span> 
+                            <span className="icon-Angle_down mobile-visible"></span>
+                        </div>
                     </div>
-                    <div className="dropdown-menu">
+                    <div className="item-menu-dropdown-content">
                         {this.renderMenuItems()}
                     </div>                    
                 </div>
