@@ -1,6 +1,7 @@
 import Slider from "react-slick";
 import Link from 'next/link';
 import Router from 'next/router';
+import LimitString from '../../../helpers/limit_string';
 
 class TopCategories extends React.Component {
     constructor(props) {
@@ -21,16 +22,18 @@ class TopCategories extends React.Component {
         const { categories } = this.state;
         if (categories) {
             const categoriesLayout = categories.map((category) => {
-                const iconClassName = category.icon_class_name !== '' ? category.icon_class_name : 'icon-KITCHENWARE-ICO';
                 const { slug } = category;
                 const activeClassName = (Router.router.query.category_slug === slug) ? 'is-active' : '';
                 return (
                     <a 
                     key={slug}
                     href={`/categories/${slug}`}
+                    title={category.name}
                     className={`single-category ${activeClassName}`}>
-                        <img src={`${iconClassName}`} className="cat-icon" />
-                        {category.name}
+                        <img src={category.icon_url} />
+                        <span
+                        title={category.name}
+                        >{LimitString(category.name, 20)}</span>
                     </a>
                 );
             });
@@ -41,7 +44,7 @@ class TopCategories extends React.Component {
     }
 	render() {
         var settings = {
-			infinite: true,
+			infinite: false,
             speed: 1000,
 			slidesToShow: 8,
             slidesToScroll: 2,
@@ -49,27 +52,31 @@ class TopCategories extends React.Component {
             responsive: [
                 {
                     breakpoint: 1600,
-                   settings: {
-                       slidesToShow: 7,
-                   }
+                    settings: {
+                        slidesToShow: 7,
+                        infinite: false,
+                    }
                 },
                 {
                     breakpoint: 1440,
-                   settings: {
-                       slidesToShow: 6,
-                   }
+                    settings: {
+                        slidesToShow: 6,
+                        infinite: false,
+                    }
                 },
 				{
 				 	breakpoint: 1024,
 					settings: {
-						slidesToShow: 5,
+                        slidesToShow: 5,
+                        infinite: false,
 					}
                 },
                 {
                     breakpoint: 979,
-                   settings: {
-                       slidesToShow: 4,
-                   }
+                    settings: {
+                        slidesToShow: 4,
+                        infinite: false,
+                    }
                }
 			]
 		};

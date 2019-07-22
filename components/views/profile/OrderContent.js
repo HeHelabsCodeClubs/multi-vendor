@@ -5,8 +5,9 @@ class OrderContent extends Component {
         super(props);
     }
 
-    renderOrderInfo(info, payment) {
+    renderOrderInfo(info, payment, shipping, billing) {
         const paymentStatus = info.status;
+        const shippingName = `${shipping.first_name} ${shipping.last_name}`
         return (
             <div>
                 <h5>Placed on {info.created_at}</h5>
@@ -47,11 +48,10 @@ class OrderContent extends Component {
 
                         <div className="card-content">
                             <p>Shipping address</p>
-                            <h5>Jane Mane,</h5>
-                            <h5>KG  611 street</h5>
-                            <h5>Rugando - Remera</h5>
-                            <h5>Kigali, Rwanda</h5>
-                            <h5>Phone: 0723456789</h5>
+                            <h5>{shippingName}</h5>
+                            <h5>{shipping.address2}</h5>
+                            <h5>{shipping.city}</h5>
+                            <h5>Phone: {shipping.phone}</h5>
                             <h5>TIN number:</h5>
                         </div>
                     </div>
@@ -61,25 +61,61 @@ class OrderContent extends Component {
                             <p>Delivery status</p>
                             <h5>DELIVERED</h5>
                         </div>
-                        <div className="card-content">
-                            <p>Billing address</p>
-                            <h5>Same as billing addess</h5>
-                        </div>
+                        {this.renderBillingAddress(shipping, billing)}
                     </div>
                 </div>
             </div>
         )
     }
 
+    renderBillingAddress(shipping, billing) {
+        const billingName = `${billing.first_name} ${billing.last_name}`
+        if (
+            shipping.address1 === billing.address1 &&
+            shipping.address2 === billing.address2 &&
+            shipping.city === billing.city &&
+            shipping.country === billing.country &&
+            shipping.first_name === billing.first_name &&
+            shipping.last_name === billing.last_name &&
+            shipping.phone === billing.phone
+        ) {
+            return (
+                <div className="card-content">
+                    <p>Billing address</p>
+                    <h5>Same as billing addess</h5>
+                </div>
+            )
+        } else {
+            return (
+                <div className="card-content">
+                    <p>Shipping address</p>
+                    <h5>{billingName}</h5>
+                    <h5>{billing.address2}</h5>
+                    <h5>{billing.city}</h5>
+                    <h5>Phone: {billing.phone}</h5>
+                    <h5>TIN number:</h5>
+                </div>
+            )
+        }
+    }
+
     renderOrderItems(items) {
-        for (let i = 0; i < items.length; i++) {
-            const itemLayout = items[i].map((item) => {
+        const stores = items
+        const sellers = Object.keys(stores).map(function(key) {
+            return [Number(key), stores[key]];
+        });
+        const sellerLayout = sellers.map((seller) => {
+            console.log('seller', seller);
+            const products = seller[1].products;
+            const store = seller[1].store_info;
+            const productsLayout = products.map((product) => {
+                const productImg = product.image !== null ? product.image.path : null;
                 return (
                     <div className='delivery-content'>
                         <div className='store-logo'>
-                            <img className='store-img' src="" />
+                            <img className='store-img' src={store.store.logo} />
                             <span className='store-name'>
-                                <span className='name'>Mart</span>(3 Items from Hmart store)
+                                <span className='name'>{store.store.name}</span>({products.length} Items from {store.store.name} store)
                             </span>
                         </div>
                         <div className="table-wrapper">                
@@ -94,13 +130,13 @@ class OrderContent extends Component {
                                     <tr>
                                         <td>
                                             <tr>
-                                                <td><img src="https://res.cloudinary.com/hehe/image/upload/v1559573668/multi-vendor/products/1/vro0lorshxiasgf8eg9d.jpg" /></td>
-                                                <td>{item.name}<span>Pair</span></td>
+                                                <td><img src={productImg} /></td>
+                                                <td>{product.name}<span>{product.type}</span></td>
                                             </tr>
                                         </td>                                            
-                                        <td>Rwf 6800</td>
-                                        <td>12</td>                                            
-                                        <td>Rwf 6800</td>
+                                        <td>Rwf {product.price}</td>
+                                        <td>{product.qty_ordered}</td>                                            
+                                        <td>Rwf {product.total}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -128,15 +164,16 @@ class OrderContent extends Component {
                         </div>						
                     </div>
                 )
-            });
-            return itemLayout;
-        }
+            })
+            return productsLayout;
+        });
+        return sellerLayout;
     }
     render () {
-        const { info, payment, shipping, items } = this.props;
+        const { info, payment, shipping, billing, items } = this.props;
         return (
             <div>
-                {this.renderOrderInfo(info, payment)}
+                {this.renderOrderInfo(info, payment, shipping, billing)}
                 {this.renderOrderItems(items)}
             </div>
         );

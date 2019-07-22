@@ -33,6 +33,15 @@ app
             });
         })
 
+        server.get('/search-results/:search_term', (req, res) => {
+            if (!req.params.search_term || (req.params.search_term === '')) {
+                res.redirect('/');
+            }
+            return app.render(req, res, '/search-results', { 
+                search_term: req.params.search_term
+            });
+        })
+
         server.get('/categories/:category_slug', (req, res) => {
             return app.render(req, res, '/categories', { 
                 category_slug: req.params.category_slug

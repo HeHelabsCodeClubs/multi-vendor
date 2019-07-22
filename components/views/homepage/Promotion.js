@@ -23,7 +23,7 @@ class Promotion extends Component {
 	render() {
 		const { events } = this.props;
 		const settings = {
-			infinite: true,
+			infinite: false,
 			speed: 500,
 			autoplay: true,
 			autoplaySpeed: 3000,
@@ -36,7 +36,7 @@ class Promotion extends Component {
 					settings: {
 						slidesToShow: 3,
 						slidesToScroll: 1,
-						infinite: true,
+						infinite: false,
 						dots: true
 					}
 				},
@@ -46,6 +46,7 @@ class Promotion extends Component {
 						slidesToShow: 2,
 						centerMode: true,
 						centerPadding: "40px",
+						infinite: false,
 						slidesToScroll: 2
 					}
 				},
@@ -55,6 +56,7 @@ class Promotion extends Component {
 						slidesToShow: 1,
 						centerMode: true,
 						centerPadding: "40px",
+						infinite: false,
 						slidesToScroll: 1
 					}
 				}

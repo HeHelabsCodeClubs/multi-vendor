@@ -294,7 +294,7 @@ export default class CardPayment extends Component {
                 <div className='single-payment clicked'>
                     <div className='single-payment-title'>
                         <span className='title-left title-wrapper'>
-                            <h5 class='title'> 
+                            <h5 className='title'> 
                                 Online Credit | Debit Card
                             </h5>
                         </span>

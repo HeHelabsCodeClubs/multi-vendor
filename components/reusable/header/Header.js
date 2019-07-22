@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Router from 'next/router';
 import Select2 from 'react-select2-wrapper';
 import Cart from './Cart';
 import HeaderCategoryMenu from './HeaderCategoryMenu';
@@ -14,12 +14,15 @@ class Header extends React.Component {
             updateCart: false,
             authUser: {},
             prevScrollpos: 0,//window.pageYOffset,
-            visible: true
+            visible: true,
+            searchedValue: ''
         };
         this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
         this.renderUserProfile = this.renderUserProfile.bind(this);
         this.updateAuthUser = this.updateAuthUser.bind(this);
         this.logOut = this.logOut.bind(this);
+        this.updateSearchValue = this.updateSearchValue.bind(this);
+        this.handleSearchValueSubmission = this.handleSearchValueSubmission.bind(this);
     }
     componentDidMount() {
         this.setState({
@@ -54,6 +57,25 @@ class Header extends React.Component {
             e.preventDefault();
         }
         logoutUser();
+    }
+
+    updateSearchValue(newValue) {
+        this.setState({
+            searchedValue: newValue
+        });
+    }
+
+    handleSearchValueSubmission(e) {
+        if (e !== undefined) {
+            e.preventDefault();
+        }
+        const { searchedValue } = this.state;
+        if (searchedValue.length !== '') {
+            let validValue = searchedValue.toLowerCase().split(' ').join('_');
+            validValue = validValue.replace(/[^a-z0-9]+|\s+/gmi, '_');
+            Router.push(`/search-results/${validValue}`);
+            return;
+        }
     }
 
     // Hide menu on scroll      
@@ -178,9 +200,11 @@ class Header extends React.Component {
                                 <HeaderCategoryMenu />
                             </div>
                             <div className='col-lg-5 col-md-5 col-sm-2 col-11 search-container'>
-                                <span className='main-search'>
+                                <form className='main-search' onSubmit={this.handleSearchValueSubmission}>
 
-                                    <SearchDropdown />
+                                    <SearchDropdown 
+                                    updateParentSearchTerm={this.updateSearchValue}
+                                    />
                                     {/* <input type="text" placeholder="Search store or product" /> */}
                                     {/* <span className='categories-dropdown'>
                                         <Select2
@@ -194,7 +218,10 @@ class Header extends React.Component {
                                         />
                                     </span>
                                     <button type="submit"><span className="icon-Path-64"></span></button> */}
-                                </span>
+                                    <button type="submit">
+                                        <span className="icon-Path-64"></span>
+                                    </button>
+                                </form>
                             </div>
                             <div className='col-lg-3 col-md-3 col-sm-4 col-6 account-container'>
                                 <div className='row row-container'>

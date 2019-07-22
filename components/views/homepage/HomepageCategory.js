@@ -25,7 +25,7 @@ class HomepageCategory extends Component {
     }
     render() {
         const catSettings = {
-            infinite: true,
+            infinite: false,
             speed: 1000,
             slidesToShow: 8,
             slidesToScroll: 1,
@@ -74,7 +74,7 @@ class HomepageCategory extends Component {
                     slidesToScroll: 1
                   }
                 }
-              ]
+            ]
 		};
         return  (
             <Slider {...catSettings}>
