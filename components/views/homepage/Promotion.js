@@ -5,11 +5,13 @@ import ImageLoader from '../../reusable/ImageLoader';
 
 class Promotion extends Component {
 	renderEvents(events) {
+		console.log('events', events);
 		const eventsLayout = events.map((event) => {
 			return (
-				<a href="#" key={event.id}>
+				<a href={event.slider_url} key={event.id}>
 					<ImageLoader 
 					imageUrl={event.image_url}
+					// sliderUrl={event.slider_url}
 					placeholderbackBefore="#ffffff"
 					placeholderBackgroundColor="#f5f5f5"
 					placeholderHeight={300}
