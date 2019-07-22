@@ -20,7 +20,7 @@ class SidemenuCategories extends Component {
         this.redirectToPage = this.redirectToPage.bind(this);
         this.renderActiveParentCategory = this.renderActiveParentCategory.bind(this);
         this.updateActiveParentSubCat = this.updateActiveParentSubCat.bind(this);
-        this.openDropdownMenu = this.openDropdownMenu.bind(this);
+        // this.openDropdownMenu = this.openDropdownMenu.bind(this);
     }
 
     componentWillMount() {
@@ -56,7 +56,7 @@ class SidemenuCategories extends Component {
     }
 
     renderMenuItems() {
-        const { categories, subParentCatHasToBeUpdated, openDropdown } = this.state;
+        const { categories, subParentCatHasToBeUpdated } = this.state;
         if (categories.length === 0) {
             return null;
         }
@@ -64,22 +64,17 @@ class SidemenuCategories extends Component {
         const { parentCategorySlug, updateProducts, displayLoader } = this.props;
 
         const menuItemsLayout = categories.map((category) => {
-
-            if (openDropdown === true) {
-                return (
-                    <MenuItemCategory 
-                    key={category.slug}
-                    category={category}
-                    parentCategorySlug={parentCategorySlug}
-                    updateProducts={updateProducts}
-                    displayLoader={displayLoader}
-                    triggerUpdateOfActiveSubCat={this.updateActiveParentSubCat}
-                    subParentCatHasToBeUpdated={subParentCatHasToBeUpdated}
-                    />
+            return (
+                <MenuItemCategory 
+                key={category.slug}
+                category={category}
+                parentCategorySlug={parentCategorySlug}
+                updateProducts={updateProducts}
+                displayLoader={displayLoader}
+                triggerUpdateOfActiveSubCat={this.updateActiveParentSubCat}
+                subParentCatHasToBeUpdated={subParentCatHasToBeUpdated}
+                />
             );
-            } else {
-                return null;
-            }
         });
         return menuItemsLayout;
     }
@@ -107,30 +102,30 @@ class SidemenuCategories extends Component {
             </div>
         );
     }
-    openDropdownMenu() {        
-        const { openDropdown } = this.state;
-        if (openDropdown) {
-            this.setState({ 
-                openDropdown: false 
-            });
-        } else {
-            this.setState({ 
-                openDropdown: true
-            });
-        }
-    }
+    // openDropdownMenu() {        
+    //     const { openDropdown } = this.state;
+    //     if (openDropdown) {
+    //         this.setState({ 
+    //             openDropdown: false 
+    //         });
+    //     } else {
+    //         this.setState({ 
+    //             openDropdown: true
+    //         });
+    //     }
+    // }
 
     render() {
         return (
             <div>
-                <div className="mobile-invisible side-menu__item Side-menu Side-menu-default  children active">
+                <div className="mobile-invisible side-menu__item Side-menu Side-menu-default  children active" onClick={this.openDropdownMenu}>
                         {this.renderActiveParentCategory()}
                     <div>
                         {this.renderMenuItems()}
                     </div>                    
                 </div>
 
-                <div className="mobile-visible side-menu__item Side-menu Side-menu-default  children active">
+                {/* <div className="mobile-visible side-menu__item Side-menu Side-menu-default  children active">
                     <div className="side-menu__item">
                         <div className="divider divider-level-1">
                             <span onClick={this.openDropdownMenu}>{this.renderActiveParentCategory()}</span> 
@@ -140,7 +135,7 @@ class SidemenuCategories extends Component {
                     <div className="item-menu-dropdown-content">
                         {this.renderMenuItems()}
                     </div>                    
-                </div>
+                </div> */}
             </div>
         );
     }
