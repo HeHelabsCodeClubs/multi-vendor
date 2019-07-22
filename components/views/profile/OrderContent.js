@@ -12,7 +12,7 @@ class OrderContent extends Component {
             <div>
                 <h5>Placed on {info.created_at}</h5>
 
-                <div className="row reset-row">
+                <div className="row">
                     <div className="col-lg-3 col-md-3 col-sm-6 col-6">
                         <div className="card-content">
                             <p>Payment method</p>
@@ -25,10 +25,10 @@ class OrderContent extends Component {
                     </div>
 
                     <div className="col-lg-3 col-md-3 col-sm-6 col-6">
-                    <div className="card-content">
+                        {/* <div className="card-content">
                             <p>Shipping method</p>
                             <h5>{info.shipping_method}</h5>
-                        </div>
+                        </div> */}
                         <div className="card-content">
                             <p>Payment status</p>
                             <h5>{paymentStatus}</h5>
@@ -41,10 +41,10 @@ class OrderContent extends Component {
                     </div>
 
                     <div className="col-lg-3 col-md-3 col-sm-6 col-6">
-                    <div className="card-content">
+                        {/* <div className="card-content">
                             <p>Shipping Carrier</p>
                             <h5>{info.shipping_title}</h5>
-                        </div>
+                        </div> */}
 
                         <div className="card-content">
                             <p>Shipping address</p>
@@ -99,73 +99,79 @@ class OrderContent extends Component {
         }
     }
 
+    renderOrderProducts(products) {
+        const productsLayout = products.map((product) => {
+            const productImg = product.image !== null ? product.product_info.data.cart_image_url : null;
+            return (  
+                <tbody>
+                    <tr>
+                        <td>
+                            <tr>
+                                <td><img src={productImg} /></td>
+                                <td>{product.name}<span>{product.type}</span></td>
+                            </tr>
+                        </td>                                            
+                        <td>Rwf {product.price}</td>
+                        <td>{product.qty_ordered}</td>                                            
+                        <td>Rwf {product.total}</td>
+                    </tr>
+                </tbody>
+            );
+        });
+        return productsLayout;
+    }
+
     renderOrderItems(items) {
         const stores = items
         const sellers = Object.keys(stores).map(function(key) {
             return [Number(key), stores[key]];
         });
         const sellerLayout = sellers.map((seller) => {
-            console.log('seller', seller);
             const products = seller[1].products;
             const store = seller[1].store_info;
-            const productsLayout = products.map((product) => {
-                const productImg = product.image !== null ? product.image.path : null;
-                return (
-                    <div className='delivery-content'>
-                        <div className='store-logo'>
-                            <img className='store-img' src={store.store.logo} />
-                            <span className='store-name'>
-                                <span className='name'>{store.store.name}</span>({products.length} Items from {store.store.name} store)
+            console.log('seller', seller);
+            return (
+                <div className='delivery-content'>
+                    <div className='store-logo'>
+                        <img className='store-img' src={store.store.icon} />
+                        <span className='store-name'>
+                            <span className='name'>{store.store.name}</span>({products.length} Items from {store.store.name} store)
+                        </span>
+                    </div>
+                    <div className="table-wrapper">              
+                        <table>
+                            <thead>
+                                <th>Order items</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Total Price</th>
+                            </thead>
+                            {this.renderOrderProducts(products)}
+                        </table>
+                    </div>						
+                    <div className='total-price'>
+                        <div className='subtotal'>
+                            <span className='t-title'>Subtotal: </span>
+                            <span className='t-content'>Rwf 21050</span>	
+                        </div>
+                        <div className='shipping-grid'>
+                            <span className='shipping-title'>Shipping method</span>
+                            <span className='shipping-dropdown'>
+                                WHS internatianal
+                                {/* {store.shipping.carrier_title} */}
+                            </span>
+                            Shipping: Rwf 1050
+                        </div>
+                        <div className='total-grid checkout-total-grid row reset-row'>
+                            Delivery time 6 days
+                            <span className='total'>
+                                <span className='t-title'>Total: </span>
+                                <span className='t-content'>Rwf 21050</span>
                             </span>
                         </div>
-                        <div className="table-wrapper">                
-                            <table>
-                                <thead>
-                                    <th>Order items</th>
-                                    <th>Price</th>
-                                    <th>Qty</th>
-                                    <th>Total Price</th>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <tr>
-                                                <td><img src={productImg} /></td>
-                                                <td>{product.name}<span>{product.type}</span></td>
-                                            </tr>
-                                        </td>                                            
-                                        <td>Rwf {product.price}</td>
-                                        <td>{product.qty_ordered}</td>                                            
-                                        <td>Rwf {product.total}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-    
-                        <div className='total-price'>
-                            <div className='subtotal'>
-                                <span className='t-title'>Subtotal: </span>
-                                <span className='t-content'>Rwf 21050</span>	
-                            </div>
-                            <div className='shipping-grid'>
-                                <span className='shipping-title'>Shipping method</span>
-                                <span className='shipping-dropdown'>
-                                    WHS internatianal
-                                </span>
-                                Shipping: Rwf 1050
-                            </div>
-                            <div className='total-grid checkout-total-grid row reset-row'>
-                                Delivery time 6 days
-                                <span className='total'>
-                                    <span className='t-title'>Total: </span>
-                                    <span className='t-content'>Rwf 21050</span>
-                                </span>
-                            </div>
-                        </div>						
                     </div>
-                )
-            })
-            return productsLayout;
+                </div>
+            )
         });
         return sellerLayout;
     }
@@ -174,6 +180,7 @@ class OrderContent extends Component {
         return (
             <div>
                 {this.renderOrderInfo(info, payment, shipping, billing)}
+                <div className='profile-products-title'><h2>Items listsss</h2></div>
                 {this.renderOrderItems(items)}
             </div>
         );

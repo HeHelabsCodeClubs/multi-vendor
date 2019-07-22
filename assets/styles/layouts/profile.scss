@@ -157,23 +157,38 @@
                         }
                     }
                 }
+                .shipping-grid {
+                    width: 91%;
+                    margin: 0 0 0 9%;
+                }
             }
 
             .table-wrapper {
                 table {
                     tr {
-
-                        
                         td {
                             padding: .3rem 0;
-                            
+                            &:nth-child(1) {
+                                width: 60%;
+                            }
+                            &:nth-child(2) {
+                                width: 20%;
+                            }
+                            &:nth-child(3) {
+                                width: 10%;
+                            }
+                            &:nth-child(4) {
+                                width: 20%;
+                            }
                             span {
                                 color: $gray-color-5 !important;
                             }
 
                             tr {
                                 border: none;
-
+                                td {
+                                    width: auto !important;
+                                }
                                 img {
                                     max-height: 50px;
                                     margin-right: 3rem;
@@ -332,5 +347,13 @@
         display: block !important;
         .total {
         }
+    }
+}
+.profile-products-title {
+    h2 {
+        padding: 2rem;
+        margin: 1rem 0 0 0;
+        background: $white-color;
+        color: $black-color-3;
     }
 }

@@ -14,8 +14,8 @@ class OrderRow extends Component {
         if (!_.isEmpty(orders)) {
             const orderLayout = orders.map((order) => {
                 const date = order.created_at.split(' ');
-                const paymentStatus = order.status.split('_').join(' ');
-                const id = order.id;
+                const paymentStatus = order.status === 'processing' ? 'paid' : order.status.split('_').join(' ');
+                const id = order.order_id;
                 return (
                     <tr>
                         <td><a href='#' onClick={() => this.triggerSingleOrderDisplay(id)}>#{id}</a></td>
@@ -24,7 +24,7 @@ class OrderRow extends Component {
                         <td> <span className="badge-txt">{paymentStatus.charAt(0).toUpperCase() + paymentStatus.slice(1)}</span> </td>
                         {/* <td> <span className="badge-txt">In progress</span></td> */}
                         <td>Rwf {order.base_grand_total}</td>
-                        <td><a href="#"><span className='icon-Path-60'></span></a></td>
+                        <td><a href="#" onClick={() => this.triggerSingleOrderDisplay(id)}><span className='icon-external_link'></span></a></td>
                     </tr>
                 );
             });

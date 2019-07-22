@@ -39,11 +39,11 @@ class SignInForm extends Component {
         };
         this.handleFormSubmission = this.handleFormSubmission.bind(this);
         this.getLoginButtonText = this.getLoginButtonText.bind(this);
-        //this.getInputFieldValue = this.getInputFieldValue.bind(this);
+        this.getInputFieldValue = this.getInputFieldValue.bind(this);
         this.validateInputFields = this.validateInputFields.bind(this);
-        this.handleResponse = this.handleResponse.bind(this);
-        this.performOnRegistrationSuccess = this.performOnRegistrationSuccess.bind(this);
-        this.performOnUserAuthFailure = this.performOnUserAuthFailure.bind(this);
+        //this.handleResponse = this.handleResponse.bind(this);
+        //this.performOnRegistrationSuccess = this.performOnRegistrationSuccess.bind(this);
+        //this.performOnUserAuthFailure = this.performOnUserAuthFailure.bind(this);
         this.renderBreadCrumbs = this.renderBreadCrumbs.bind(this);
         //this.renderRegistrationActionLayout = this.renderRegistrationActionLayout.bind(this);
         //this.renderForgotPasswordActionLayout = this.renderForgotPasswordActionLayout.bind(this);
@@ -62,11 +62,11 @@ class SignInForm extends Component {
     }
 
     
-    // getInputFieldValue(fieldStateName, newValue) {
-    //     this.setState({
-    //         [fieldStateName]: newValue
-    //     });
-    // }
+    getInputFieldValue(fieldStateName, newValue) {
+        this.setState({
+            [fieldStateName]: newValue
+        });
+    }
     
     handleFormSubmission(e) {
         e.preventDefault();
@@ -100,14 +100,6 @@ class SignInForm extends Component {
                     inputStateValue: email,
                     inputStateName: 'email'
                 }
-            ],
-            [
-                {
-                    type: 'empty',
-                    context: 'Password',
-                    inputStateValue: password,
-                    inputStateName: 'password'
-                }
             ]
         ];
 
@@ -120,21 +112,19 @@ class SignInForm extends Component {
                 loginStatus: 'submitting'
             });
 
-            fetch(`${API_URL}/customers/login`, {
+            fetch(`${API_URL}/customers/recover`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
                 body: JSON.stringify({
-                    email: email,
-                    password: password,
-                    subscribed_to_news_letter: newsletterCheckbox
+                    email: email
                 })
             }).then(async (res) => {
                 try {
                     const response = await res.json();
-                    this.handleResponse(response);
+                    //this.handleResponse(response);
                     
                 } catch (err) {
                     console.log('error');
@@ -144,97 +134,97 @@ class SignInForm extends Component {
         }
     }
 
-    handleResponse(response) {
-        const { status_code, errors } = response;
-        switch(Number(status_code)) {
-            case 200:
-                const {
-                    email,
-                    first_name,
-                    last_name,
-                    gender,
-                    cart_customer_id,
-                    id
-                } = response.data;
-                const user = {
-                    email,
-                    first_name,
-                    last_name,
-                    gender,
-                    cart_customer_id,
-                    id
-                };
+    // handleResponse(response) {
+    //     const { status_code, errors } = response;
+    //     switch(Number(status_code)) {
+    //         case 200:
+    //             const {
+    //                 email,
+    //                 first_name,
+    //                 last_name,
+    //                 gender,
+    //                 cart_customer_id,
+    //                 id
+    //             } = response.data;
+    //             const user = {
+    //                 email,
+    //                 first_name,
+    //                 last_name,
+    //                 gender,
+    //                 cart_customer_id,
+    //                 id
+    //             };
 
-                this.performOnRegistrationSuccess(user, this.state.password);
-                break;
-            case 401:
-                const customErrorMessage = errors[0];
-                this.performOnUserAuthFailure(customErrorMessage);
-                break;
-            default:
-                this.performOnUserAuthFailure();
-                notify.show(UNKNOWN_ERROR, 'error', 2000);
+    //             this.performOnRegistrationSuccess(user, this.state.password);
+    //             break;
+    //         case 401:
+    //             const customErrorMessage = errors[0];
+    //             this.performOnUserAuthFailure(customErrorMessage);
+    //             break;
+    //         default:
+    //             this.performOnUserAuthFailure();
+    //             notify.show(UNKNOWN_ERROR, 'error', 2000);
 
-        }
-    }
+    //     }
+    // }
 
-    performOnUserAuthFailure(message) {
-        const errMessage = ((message === '') || (message === undefined)) ? USER_FORBIDDEN : message; 
-        this.setState({
-            loginStatus: 'initial',
-            inputIsInvalid: true,
-            errorMessage: errMessage
-        });
-    }
+    // performOnUserAuthFailure(message) {
+    //     const errMessage = ((message === '') || (message === undefined)) ? USER_FORBIDDEN : message; 
+    //     this.setState({
+    //         loginStatus: 'initial',
+    //         inputIsInvalid: true,
+    //         errorMessage: errMessage
+    //     });
+    // }
 
-    performOnRegistrationSuccess(user, userPassword) {
-        fetch(`${API_ROOT_URL}/oauth/token`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                grant_type: "password",
-                client_id: PLATFORM_CLIENT_ID,
-                client_secret: PLATFORM_CLIENT_SECRET,
-                username: user.email,
-                password: userPassword,
-                scope: "*"
-            })
-        }).then(async (res) => {
-            try {
-                const response = await res.json();
-                const {
-                    access_token,
-                    expires_in
-                } = response;
-                if (access_token) {
-                    this.setState({
-                        loginStatus: 'submitted',
-                        inputIsInvalid: true,
-                        messageType: 'success',
-                        errorMessage: USER_AUTHENTICATED
-                    });
-                    const { redirectPageAfterLogin } = this.props;
-                    /**
-                     * Store token in cookie
-                     * store user information in localstorage
-                     * redirect to homepage
-                     */
-                    storeTokenInLocalStorage(access_token, expires_in);
-                    storeAuthUserInfoInLocalStorage(user);
-                    setPageAsVisited('account'); // set checkout page account as visited
-                    redirectUserToAfterLoginPage(redirectPageAfterLogin);
-                } else {
-                    this.performOnUserAuthFailure();
-                }
-            } catch (err) {
-                console.log('error');
-                console.log(err);
-            }
-        });
-    }
+    // performOnRegistrationSuccess(user, userPassword) {
+    //     fetch(`${API_ROOT_URL}/oauth/token`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Accept': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             grant_type: "password",
+    //             client_id: PLATFORM_CLIENT_ID,
+    //             client_secret: PLATFORM_CLIENT_SECRET,
+    //             username: user.email,
+    //             password: userPassword,
+    //             scope: "*"
+    //         })
+    //     }).then(async (res) => {
+    //         try {
+    //             const response = await res.json();
+    //             const {
+    //                 access_token,
+    //                 expires_in
+    //             } = response;
+    //             if (access_token) {
+    //                 this.setState({
+    //                     loginStatus: 'submitted',
+    //                     inputIsInvalid: true,
+    //                     messageType: 'success',
+    //                     errorMessage: USER_AUTHENTICATED
+    //                 });
+    //                 const { redirectPageAfterLogin } = this.props;
+    //                 /**
+    //                  * Store token in cookie
+    //                  * store user information in localstorage
+    //                  * redirect to homepage
+    //                  */
+    //                 storeTokenInLocalStorage(access_token, expires_in);
+    //                 storeAuthUserInfoInLocalStorage(user);
+    //                 setPageAsVisited('account'); // set checkout page account as visited
+    //                 redirectUserToAfterLoginPage(redirectPageAfterLogin);
+    //             } else {
+    //                 this.performOnUserAuthFailure();
+    //             }
+    //         } catch (err) {
+    //             console.log('error');
+    //             console.log(err);
+    //         }
+    //     });
+    // }
 
     validateInputFields(validationRules) {
         for(let i = 0; i < validationRules.length; i++) {
@@ -329,7 +319,7 @@ class SignInForm extends Component {
                         id='email'
                         name='email'
                         placeholder='Email'
-                        //updateInputFieldValue={this.getInputFieldValue}
+                        updateInputFieldValue={this.getInputFieldValue}
                         inputWithError={inputWithError}
                     />
                     <div>We will send you a link via this email to reset your password</div>
