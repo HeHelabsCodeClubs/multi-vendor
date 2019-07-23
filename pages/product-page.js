@@ -47,6 +47,7 @@ class ProductPage extends React.Component {
         this.getAddToCartButtonText = this.getAddToCartButtonText.bind(this);
         this.performAfterAddingProductToCart = this.performAfterAddingProductToCart.bind(this);
         this.handleDirectBuy = this.handleDirectBuy.bind(this);
+        this.getDirectBuyButton = this.getDirectBuyButton.bind(this);
     }
 
     static async getInitialProps({ query }) {
@@ -448,6 +449,25 @@ class ProductPage extends React.Component {
         }
     }
 
+    getDirectBuyButton() {
+        getCartItems((items) => {
+            console.log(!items);
+            if (items) {
+                return null;
+            } else {
+                return (
+                    <button 
+                    className='white-btn'
+                    type='submit'
+                    onClick={this.handleDirectBuy}
+                    >
+                        Direct Buy
+                    </button>
+                )
+            }
+        })
+    }
+
     handleDirectBuy() {
         const token = getClientAuthToken();
         if (token) {
@@ -486,13 +506,7 @@ class ProductPage extends React.Component {
                                                 >
                                                 {this.getAddToCartButtonText()}
                                                 </button>
-                                                <button 
-                                                className='white-btn'
-                                                type='submit'
-                                                onClick={this.handleDirectBuy}
-                                                >
-                                                    Direct Buy
-                                                </button>
+                                                {this.getDirectBuyButton()}
                                                 {/* <button className='white-btn'>Add to Wishlist</button> */}
                                             </div>
                                             {this.renderProductStore(productData.belongs_to_exclusive_store, productData.store)}
