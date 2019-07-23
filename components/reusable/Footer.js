@@ -1,8 +1,42 @@
 import React, { Component } from 'react';
 import '../../assets/styles/layouts/footer.scss';
+import { API_URL } from '../../config';
 
 class Footer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            categories: []
+        }
+    };
+
+    async componentDidMount() {
+        const res = await fetch(`${API_URL}/categories`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        const data = await res.json();
+        this.setState({
+           categories: data.data
+        });
+    }
+
+    renderFooterCategories(categories) {
+        if (categories) {
+            const categoryLayout = categories.slice(0, 5).map((category) => {
+                return (
+                    <div className='content'><a href={`/categories/${category.slug}`}>{category.name}</a></div>
+                );
+            });
+            return categoryLayout;
+        }
+    }
+
     render() {
+        const { categories } = this.state;
         return (
             <div className='footer-wrapper'>
                 <div className='maximum-width'>
@@ -11,11 +45,7 @@ class Footer extends Component {
                             <div className='col-lg-2 col-md-2 col-sm-3 col-6'>
                                 <div className='footer-title'>Way to shop</div>
                                 <div className='footer-content'>
-                                    <div className='content'><a href="/categories/clothing-fashion">Clothing &amp; Fashion</a></div>
-                                    <div className='content'><a href="/categories/electronics">Electronics</a></div>
-                                    <div className='content'><a href="/categories/home-appliances">Home Appliances</a></div>
-                                    <div className='content'><a href="/categories/kids-babies">Kids &amp; Babies</a></div>
-                                    <div className='content'><a href="/categories/groceries">Groceries</a></div>
+                                    {this.renderFooterCategories(categories)}
                                 </div>
                             </div>
                             <div className='col-lg-2 col-md-2 col-sm-3 col-6'>

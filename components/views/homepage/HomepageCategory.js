@@ -36,7 +36,6 @@ class HomepageCategory extends Component {
                   settings: {
                     slidesToShow: 9,
                     slidesToScroll: 1,
-                    infinite: true,
                     dots: true
                   }
                 },
@@ -45,7 +44,6 @@ class HomepageCategory extends Component {
                   settings: {
                     slidesToShow: 8,
                     slidesToScroll: 1,
-                    infinite: true,
                     dots: true
                   }
                 },
@@ -54,7 +52,6 @@ class HomepageCategory extends Component {
                   settings: {
                     slidesToShow: 5,
                     slidesToScroll: 1,
-                    infinite: true,
                     dots: true
                   }
                 },

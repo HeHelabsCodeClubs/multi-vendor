@@ -110,7 +110,7 @@
             }
         }
         .item-level-1 {
-            
+
             .item-title {
                 padding: 1rem;
                 height: auto !important;
@@ -137,38 +137,43 @@
                 border: none !important;
                 .item-title {
                     background: transparent !important;
-                    color: $green-color-2;
+                    color: $green-color-2 !important;
                 }
+                
                 .children.active {
-                    padding-left:0;
+                    @media screen and (max-width: $mobile-lg) {
+                        padding-left:0;
+                    }
+                    
+                }
 
-                    .item-level-2 {
-                        height: 30px;
-                        visibility: visible;
-                        opacity: 1;
+                .item-level-2 {
+                    height: 30px;
+                    visibility: visible;
+                    opacity: 1;
+                    @media screen and (max-width: $mobile-lg) {
+                        display: inline-block;
+                        margin: .2rem .5rem;
+                    }
+
+                    .item-title {
+                        color: $black-color-3 !important;
+                        
                         @media screen and (max-width: $mobile-lg) {
-                            display: inline-block;
-                            margin: .2rem .5rem;
+                            background: $gray-color-14 !important;
+                            border-radius: .5rem;
                         }
+                        &:hover {
+                            background-color: #deecea !important;
+                            color: $green-color-2 !important;
+                            border-radius: 0 3rem 3rem 0;
+                            margin-left: -1.6rem;
+                            padding-left: 2.6rem;
 
-                        .item-title {
-                            color: $black-color-3;
                             @media screen and (max-width: $mobile-lg) {
-                                background: $gray-color-14 !important;
-                                border-radius: .5rem;
-                            }
-                            &:hover {
-                                background-color: #deecea !important;
-                                color: $green-color-2;
-                                border-radius: 0 3rem 3rem 0;
-                                margin-left: -1.6rem;
-                                padding-left: 2.6rem;
-
-                                @media screen and (max-width: $mobile-lg) {
-                                    border-radius: 0.5rem;
-                                    margin-left: 0;
-                                    padding-left: 0;
-                                }
+                                border-radius: 0.5rem;
+                                margin-left: 0;
+                                padding-left: 1rem;
                             }
                         }
                     }

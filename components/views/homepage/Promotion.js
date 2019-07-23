@@ -7,7 +7,7 @@ class Promotion extends Component {
 	renderEvents(events) {
 		const eventsLayout = events.map((event) => {
 			return (
-				<a href="#" key={event.id}>
+				<a href={event.slider_url} key={event.id}>
 					<ImageLoader 
 					imageUrl={event.image_url}
 					placeholderbackBefore="#ffffff"
