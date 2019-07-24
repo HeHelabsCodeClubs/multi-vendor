@@ -377,6 +377,7 @@ class ProductPage extends React.Component {
              * Validate selected attributes if they require validation
              */
             const errors = this.validateAttributeOptions(product.attributes.options);
+            console.log('ERRORS', errors);
             if (errors.length !== 0) {
                 notify.show(errors[0], 'error', 2000);
                 return;
@@ -388,6 +389,8 @@ class ProductPage extends React.Component {
                 addToCartSubmitStatus: 'submitting'
             });
             setTimeout(() => {
+                // console.log('selected product quantity', selectedProductQuantity);
+                // console.log('product', product);
                 product.quantity = selectedProductQuantity;
                 if (Number(product.has_attributes) === 1) {
                     product.selected_options = selectedAttributes;

@@ -36,7 +36,6 @@ class Error extends React.Component {
 	
 	renderCategories(categories) {
 		const categoryLayout = categories.map((category) => {
-			console.log(category);
 			return (
 				<a href=''>
 					<span className='category-item'>
@@ -44,7 +43,7 @@ class Error extends React.Component {
 						{category.name}
 					</span>
 				</a>
-			)
+			);
 		});
 		return categoryLayout;
 	}
