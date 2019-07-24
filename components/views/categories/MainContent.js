@@ -40,15 +40,27 @@ class MainContent extends React.Component {
 
         if (this.state.showLoader !== showLoader) {
             this.setState({
-                currentPage: metaProductsData.current_page, // reset pagination
-                lastPage: metaProductsData.last_page,// reset pagination
+                currentPage: 1, // reset pagination
+                lastPage: 1,// reset pagination
                 showLoader: showLoader
             });
+        }
+
+        if (metaProductsData) {
+            const { current_page, last_page } = metaProductsData;
+            if (current_page && last_page) {
+                if (current_page !== this.state.currentPage || last_page !== this.state.lastPage) {
+                    this.setState({
+                        currentPage: current_page,
+                        lastPage: last_page
+                    });
+                }
+            }
         }
     }
 
     renderProducts() {
-        const { products, showLoader } = this.state;
+        const { products, showLoader} = this.state;
         const { cartShouldUpdate } = this.props;
         if (showLoader) {
             return (
@@ -138,8 +150,8 @@ class MainContent extends React.Component {
     }
  
 	render() {
-        const { lastPage, currentPage, products } = this.state;
-        const hasMore = (Number(currentPage) < Number(lastPage)) ? true : false;
+        const { lastPage, currentPage, products, showLoader } = this.state;
+        const hasMore = ((Number(currentPage) < Number(lastPage)) && !showLoader) ? true : false;
 		return (
 			<InfiniteScroll
             dataLength={products.length}
