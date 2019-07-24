@@ -3,7 +3,6 @@ import Router from 'next/router';
 import Product from '../../reusable/Product';
 import Loader from '../../reusable/Loader';
 import { API_URL } from '../../../config';
-import isObjectEmpty from '../../../helpers/is_object_empty';
 
 
 class MainContent extends React.Component {
@@ -32,7 +31,7 @@ class MainContent extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { products, showLoader } = nextProps;
+        const { products, showLoader, metaProductsData } = nextProps;
         if (this.state.products != products) {
             this.setState({
                 products: products
@@ -41,8 +40,8 @@ class MainContent extends React.Component {
 
         if (this.state.showLoader !== showLoader) {
             this.setState({
-                currentPage: 1, // reset pagination
-                lastPage: 1,// reset pagination
+                currentPage: metaProductsData.current_page, // reset pagination
+                lastPage: metaProductsData.last_page,// reset pagination
                 showLoader: showLoader
             });
         }
@@ -58,10 +57,10 @@ class MainContent extends React.Component {
         }
 
         if (products.length !== 0) {
-            const productsLayout = products.map((product) => {
+            const productsLayout = products.map((product, index) => {
                 return (
                     <div 
-                    key={product.slug}
+                    key={`${product.slug}-${index}`}
                     className='col-lg-3 col-md-4 col-sm-6 col-6 col-reset'
                     >
                         <Product 

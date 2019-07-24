@@ -236,20 +236,20 @@ function createCartItemProduct(product) {
      return false;
  }
 
- /**
+/**
   * Update cart items product
   * 
   * @param {object}
   * 
   * @return {object}
   */
-function updateCartItemsProduct(cart_items, newProduct) {
+ function updateCartItemsProduct(cart_items, newProduct) {
     const { store: { slug }, has_attributes, index } = newProduct;
     let updatedCartItems = {};
     if (Number(has_attributes) === 0) {
         // product has no attribute options
         // update only product quantity
-        cart_items[slug].products[newProduct.slug].quantity = cart_items[slug].products[newProduct.slug].quantity + newProduct.quantity;
+        cart_items[slug].products[newProduct.slug].quantity = newProduct.quantity;
         updatedCartItems = cart_items;
     }
 
@@ -260,7 +260,7 @@ function updateCartItemsProduct(cart_items, newProduct) {
             const productAttributeOptions = optionsDataSet[index].options;
             const { selected_options } = newProduct;
             if (isProductInStorage(productAttributeOptions, selected_options)) {
-                optionsDataSet[index].quantity = optionsDataSet[index].quantity + newProduct.quantity;
+                optionsDataSet[index].quantity = newProduct.quantity;
             } else {
                 const productData = getDataProduct(newProduct);
                 optionsDataSet.push(productData[0]);
