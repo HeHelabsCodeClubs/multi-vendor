@@ -9,6 +9,9 @@
 
         .sidemenu-content {
             padding: 2rem 10%;
+            @media screen and (max-width: $mobile-lg) {
+                padding: 2rem 0 0 0;
+            }
 
             .sidemenu-title {
                 border-bottom: .5px solid $gray-color-5;
