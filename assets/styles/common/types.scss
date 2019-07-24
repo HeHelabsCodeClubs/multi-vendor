@@ -1106,7 +1106,7 @@ html {
         }
         p {
             font-size: 1.1rem;
-            font-family: 'Harmonia Sans Pro Regular';
+            font-family: $font-regular;
         }
         ul {
             li {
@@ -1127,7 +1127,7 @@ html {
 
         .item-menu {
             font-size: 1.2rem !important;
-            font-family: 'Harmonia Sans Pro Regular';
+            font-family: $font-regular;
 
             &.active {
                 font-family: 'Harmonia Sans Pro SemiBd';
@@ -1140,7 +1140,7 @@ html {
         }
         td {
             font-size: 1.1rem !important;
-            font-family: 'Harmonia Sans Pro Regular';
+            font-family: $font-regular;
         }
 
         .order-detail {
@@ -1156,7 +1156,7 @@ html {
                     font-size: 1.5rem !important;
 
                     span {
-                        font-family: 'Harmonia Sans Pro Regular';
+                        font-family: $font-regular;
                         font-size: 1.1rem !important;
                     }
                 }
@@ -1238,7 +1238,7 @@ html {
 // inputs
 
 label {
-    font-family: 'Harmonia Sans Pro Regular';
+    font-family: $font-regular;
     font-size: 1.28rem;
 
     @media screen and (max-width: $mobile-lg) {
@@ -1246,9 +1246,28 @@ label {
     }
 }
 select {
-    font-family: 'Harmonia Sans Pro Regular' !important;
+    font-family: $font-regular !important;
     font-size: 1.28rem !important;
     @media screen and (max-width: $mobile-lg) {
         font-size: 1rem !important;
+    }
+}
+
+
+// Cookies popup
+
+.cookies-wrapper {
+    p {
+        font-family: $font-light;
+        font-size: 1.1rem !important; 
+
+        a {
+            font-family: $font-semi-bold !important; 
+        }
+        button {
+            span {
+                font-size: 1rem;
+            }
+        }
     }
 }

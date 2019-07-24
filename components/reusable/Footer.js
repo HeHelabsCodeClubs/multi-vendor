@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../assets/styles/layouts/footer.scss';
 import { API_URL } from '../../config';
+import CookiesPopup from './CookiesPopup';
 
 class Footer extends Component {
     constructor(props) {
@@ -89,6 +90,9 @@ class Footer extends Component {
                         </div>
                     </div>
                 </div>
+                <div>
+					<CookiesPopup />
+				</div>
             </div>
         )
     }

@@ -10,6 +10,7 @@ import HomepageCategory from "../components/views/homepage/HomepageCategory";
 import fetch from 'isomorphic-unfetch';
 import { API_URL } from '../config';
 import FeaturedSellers from "../components/views/homepage/FeaturedSellers";
+import CookiesPopup from "../components/reusable/CookiesPopup";
 
 class Index extends React.Component {
 	constructor(props) {
