@@ -236,7 +236,7 @@ html {
         font-family: $font-semi-bold;
 
         @media screen and (max-width: $mobile-lg) {
-            font-size: 1rem;
+            font-size: .7rem;
         }
     }
     .slick-next {
@@ -585,6 +585,12 @@ html {
                 padding: 1rem;
                 height: auto;
                 text-transform: capitalize;
+
+                &.divider-level-1 {
+                    .icon-Angle_down {
+                        font-size: 1rem !important;
+                    }
+                }
             }
             .item-level-1 {
                 .item-label {
@@ -593,9 +599,13 @@ html {
                 }
             }
             .item-level-2 {
-                .item-label {
+                .item-label, .item-title {
                     font-size: 1.28rem !important;
                     font-family: $font-regular;
+
+                    @media screen and (max-width: $mobile-lg) {
+                        font-size: 1.1rem !important;
+                    }
                 }
             }
 
@@ -1153,6 +1163,12 @@ html {
             }
         }
     }
+    .profile-products-title {
+        h2 {
+            font-size: 1.28rem;
+            font-family: $font-semi-bold;
+        }
+    }
 
     // search results
 
@@ -1198,6 +1214,7 @@ html {
             }
         }
     }
+
 }
 
 // Terms and privacy doc pages

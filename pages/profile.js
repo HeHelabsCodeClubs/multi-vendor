@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Router from 'next/router';
 import SideProfile from "../components/views/profile/SideProfile";
-import ContentProfile from "../components/views/profile/ContentProfile";
 import Global from '../components/reusable/Global';
 import OrderRow from '../components/views/profile/OrderRow';
 import OrderDetail from "../components/views/profile/OrderDetail";

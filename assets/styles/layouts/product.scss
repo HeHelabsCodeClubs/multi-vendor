@@ -132,7 +132,7 @@
 
                 button {
                     border: none;
-                    border-radius: 50%;
+                    border-radius: 2rem;
                     background: $orange-color-3;
                     padding: .8rem .7rem 1rem;
                     height: 3rem;
@@ -143,11 +143,11 @@
                     @include flexbox;
                     @include flexalignitems(center);
                     @include flexjustifycontent(center);
-                    @include transition(0.5s);              
+                    @include transition(0.2s);              
 
                     .icon-Path-63:before {
                         color: $orange-color-1;
-                        @include transition(0.5s);
+                        @include transition(0.2s);
                     }
                 }
                 &:hover {

@@ -9,6 +9,9 @@
 
         .sidemenu-content {
             padding: 2rem 10%;
+            @media screen and (max-width: $mobile-lg) {
+                padding: 2rem 0 0 0;
+            }
 
             .sidemenu-title {
                 border-bottom: .5px solid $gray-color-5;
@@ -108,7 +111,7 @@
         .order-detail {
             
             .card-content {
-                background-color: #fff;
+                background-color: $white-color;
                 padding: 1rem;
                 margin: 1rem 0;
                 border-radius: .2rem;
@@ -157,23 +160,38 @@
                         }
                     }
                 }
+                .shipping-grid {
+                    width: 91%;
+                    margin: 0 0 0 9%;
+                }
             }
 
             .table-wrapper {
                 table {
                     tr {
-
-                        
                         td {
                             padding: .3rem 0;
-                            
+                            &:nth-child(1) {
+                                width: 60%;
+                            }
+                            &:nth-child(2) {
+                                width: 20%;
+                            }
+                            &:nth-child(3) {
+                                width: 10%;
+                            }
+                            &:nth-child(4) {
+                                width: 20%;
+                            }
                             span {
                                 color: $gray-color-5 !important;
                             }
 
                             tr {
                                 border: none;
-
+                                td {
+                                    width: auto !important;
+                                }
                                 img {
                                     max-height: 50px;
                                     margin-right: 3rem;
@@ -183,10 +201,8 @@
                         
                     }
                 }
-                
             }
         }
-        
     }
 
     .user-detail {
@@ -280,49 +296,6 @@
         }
     }
 }
-
-.invoice-wrapper {
-    background-color: $white-color;
-    padding: 1.5rem;
-    border-radius: 5px;
-    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.1);
-
-    .main-title {
-        padding-left: 1rem;
-    }
-
-    .head-card {
-        padding: 0;
-
-        &.empty-offset {
-            @include flexbox;
-            @include flexalignitems(flex-end);
-        }
-        .company-details {
-            margin-bottom: 1rem;
-        }
-    }
-    .table-wrapper {
-        th, td {
-            &:nth-child(1) {
-                padding-left: 1.5rem !important;
-            }
-            &:nth-last-child(1) {
-                text-align: right;
-                padding-right: 3rem !important;
-            }
-        }
-    }
-    .invoice-footer {
-        text-align: right;
-        padding: 0 3rem 0 1rem;
-
-        h5 {
-            border-top: 1px solid $light-gray;
-            padding-top: 1rem;
-        }
-    }
-}
 .total-price {
     margin: 0 !important;
     border-top: none !important;
@@ -332,5 +305,13 @@
         display: block !important;
         .total {
         }
+    }
+}
+.profile-products-title {
+    h2 {
+        padding: 2rem;
+        margin: 1rem 0 0 0;
+        background: $white-color;
+        color: $black-color-3;
     }
 }

@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import fetch from 'isomorphic-unfetch';
 import Router from 'next/router';
 import Slider from "react-slick";
@@ -26,7 +27,8 @@ class ProductPage extends React.Component {
             selectedProductQuantity: 1,
             selectedAttributes: {},
             resetSelectedAttribute: false,
-            addToCartSubmitStatus: 'initial'
+            addToCartSubmitStatus: 'initial',
+            cartItemsAvailable: false
         };
         this.renderProductMetaData = this.renderProductMetaData.bind(this);
         this.renderProductAttributes = this.renderProductAttributes.bind(this);
@@ -47,6 +49,7 @@ class ProductPage extends React.Component {
         this.getAddToCartButtonText = this.getAddToCartButtonText.bind(this);
         this.performAfterAddingProductToCart = this.performAfterAddingProductToCart.bind(this);
         this.handleDirectBuy = this.handleDirectBuy.bind(this);
+        this.getDirectBuyButton = this.getDirectBuyButton.bind(this);
     }
 
     static async getInitialProps({ query }) {
@@ -63,6 +66,18 @@ class ProductPage extends React.Component {
         this.setState({
           nav1: this.slider1,
           nav2: this.slider2
+        });
+
+        getCartItems((items) => {
+            if (!_.isEmpty(items)) {
+                this.setState({
+                    cartItemsAvailable: true
+                });
+            } else {
+                this.setState({
+                    cartItemsAvailable: false
+                });
+            }
         });
     }
     
@@ -451,6 +466,23 @@ class ProductPage extends React.Component {
         }
     }
 
+    getDirectBuyButton() {
+        const { cartItemsAvailable } = this.state;
+        if (!cartItemsAvailable) {
+            return null;
+        } else {
+            return (
+                <button 
+                className='white-btn'
+                type='submit'
+                onClick={this.handleDirectBuy}
+                >
+                    Direct Buy
+                </button>
+            );
+        }
+    }
+
     handleDirectBuy() {
         const token = getClientAuthToken();
         if (token) {
@@ -489,13 +521,7 @@ class ProductPage extends React.Component {
                                                 >
                                                 {this.getAddToCartButtonText()}
                                                 </button>
-                                                <button 
-                                                className='white-btn'
-                                                type='submit'
-                                                onClick={this.handleDirectBuy}
-                                                >
-                                                    Direct Buy
-                                                </button>
+                                                {this.getDirectBuyButton()}
                                                 {/* <button className='white-btn'>Add to Wishlist</button> */}
                                             </div>
                                             {this.renderProductStore(productData.belongs_to_exclusive_store, productData.store)}

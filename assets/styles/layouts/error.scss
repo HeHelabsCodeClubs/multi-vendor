@@ -22,16 +22,47 @@ body {
 .error-wrapper {
     height: calc(100vh - 8rem);
     position: relative;
+    .error-content {
+        height: 100%;
+        position: relative;
+    }
     .content-row {
         width: 94%;
         margin: 0 3%;
         height: calc(100vh - 20rem);
+
+        @media screen and (max-width: $mobile-lg) {
+            height: calc(100vh - 16rem);
+        }
 
         .left-content {
             float: left;
             height: 100%;
             @include inlineFlex;
             @include flexalignitems(center);
+
+            @media screen and (min-width: $tablet-min) and (max-width: $tablet-md) {
+                height: 35%; 
+                position: absolute;
+                bottom: 17rem;
+                text-align: center;
+            }
+            @media screen and (max-width: $mobile-lg) {
+                height: 35%; 
+                position: absolute;
+                bottom: 0;
+                text-align: center;
+                padding-right: 30px !important;
+            }
+            .left-content-wrapper {
+                @media screen and (min-width: $tablet-min) and (max-width: $tablet-md) {
+                    width: 100%;
+                }
+                @media screen and (max-width: $mobile-lg) {
+                    width: 100%;
+                }
+            }
+
             h2 {
                 color: $black-color-3;
             }
@@ -49,6 +80,11 @@ body {
                 color: $gray-color-13;
                 padding: 0.7rem 2rem;
                 outline: none;
+                transition-duration: 1s;
+
+                &:hover {
+                    opacity: 0.7;
+                }
             }
         }
         .right-content {
@@ -56,8 +92,27 @@ body {
             height: 100%;
             @include inlineFlex;
             @include flexalignitems(center);
+
+            @media screen and (min-width: $tablet-min) and (max-width: $tablet-md) {
+                height: 50%; 
+            }
+            @media screen and (max-width: $mobile-lg) {
+                height: 50%; 
+            }
             img {
                 height: 70%;
+                @media screen and (min-width: $desktop-min) and (max-width: $desktop-min) {
+                    height: 35%; 
+                }
+                @media screen and (min-width: $tablet-min) and (max-width: $tablet-md) {
+                    height: 90%; 
+                    margin: auto;
+                }
+                @media screen and (max-width: $mobile-lg) {
+                    height: auto;
+                    width: 100%;
+                    margin: 8rem 0 0 0;
+                }
             }
         }
     }
@@ -66,6 +121,11 @@ body {
         bottom: 2rem;
         width: 94%;
         margin: 0 3% !important;
+
+        @media screen and (max-width: $mobile-lg) {
+            display: none;
+        }
+
         .category-title p {
             color: $black-color-3;
         }
@@ -80,7 +140,6 @@ body {
                 @include inlineFlex;
                 @include flexalignitems(center);
                 @include flexjustifycontent(center);
-                transition-duration: 1s;
                 
                 &:hover {
                     .category-item {
@@ -88,6 +147,7 @@ body {
                     }
                 }
                 .category-item {
+                    transition-duration: 1s;
                     img {
                         height: 2rem;
                         margin: 0 1rem 0 0;

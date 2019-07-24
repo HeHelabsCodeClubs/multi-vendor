@@ -90,7 +90,10 @@ export default class  MenuItemCategory extends Component {
 
     renderCategoryNameDropDownIcon() {
         return (
-            <i className="fa fa-chevron-left"></i>
+            <span className="category-drop-icon">
+                <i className="fa fa-chevron-left mobile-invisible"></i>
+                <i className="icon-Angle_right mobile-visible"></i>
+            </span>
         );
     }
 

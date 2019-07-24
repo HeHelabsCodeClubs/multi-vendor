@@ -104,9 +104,6 @@
                 @media screen and (min-width: $tablet-min) and (max-width: $desktop-min) {
                     width: 40%;
                 }
-                @media screen and (max-width: $mobile-lg) {
-                    padding: 0.7rem 1rem;
-                }
             }
         }
     }

@@ -8,7 +8,8 @@ class TopStores extends React.Component {
 			infinite: false,
             speed: 1000,
 			slidesToShow: 6,
-            slidesToScroll: 2,
+			slidesToScroll: 2,
+			swipeToSlide: true,
             responsive: [
 				{
 					breakpoint: 1440,

@@ -7,7 +7,7 @@ class Promotion extends Component {
 	renderEvents(events) {
 		const eventsLayout = events.map((event) => {
 			return (
-				<a href="#" key={event.id}>
+				<a href={event.slider_url} key={event.id}>
 					<ImageLoader 
 					imageUrl={event.image_url}
 					placeholderbackBefore="#ffffff"
@@ -25,6 +25,8 @@ class Promotion extends Component {
 		const settings = {
 			infinite: false,
 			speed: 500,
+			autoplay: true,
+			autoplaySpeed: 3000,
 			slidesToShow: 4,
 			slidesToScroll: 1,
 			dots: true,

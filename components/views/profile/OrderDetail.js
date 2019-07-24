@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import OrderContent from './OrderContent';
-import Invoice from './Invoice';
 import fetch from 'isomorphic-unfetch';
 import { API_URL } from '../../../config';
 import { getClientAuthToken } from '../../../helpers/auth';
@@ -49,8 +48,7 @@ class OrderDetail extends Component {
                 <Tabs>
                     <TabList>
                         <Tab>General info</Tab>
-                        <Tab>Invoice</Tab>
-                        <Tab>Messages</Tab>
+                        {/* <Tab>Messages</Tab> */}
                     </TabList>
                 
                     <TabPanel>
@@ -63,13 +61,9 @@ class OrderDetail extends Component {
                         />
                     </TabPanel>
 
-                    <TabPanel>
-                        <Invoice/>
-                    </TabPanel>
-
-                    <TabPanel>
+                    {/* <TabPanel>
                         <h2>Any content 3</h2>
-                    </TabPanel>
+                    </TabPanel> */}
                 </Tabs>
 
             </div>

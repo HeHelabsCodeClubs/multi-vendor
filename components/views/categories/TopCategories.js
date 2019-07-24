@@ -48,6 +48,7 @@ class TopCategories extends React.Component {
             speed: 1000,
 			slidesToShow: 8,
             slidesToScroll: 2,
+            swipeToSlide: true,
             responsive: [
                 {
                     breakpoint: 1600,
