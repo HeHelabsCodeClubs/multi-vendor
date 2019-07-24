@@ -602,6 +602,10 @@ html {
                 .item-label, .item-title {
                     font-size: 1.28rem !important;
                     font-family: $font-regular;
+
+                    @media screen and (max-width: $mobile-lg) {
+                        font-size: 1.1rem !important;
+                    }
                 }
             }
 
