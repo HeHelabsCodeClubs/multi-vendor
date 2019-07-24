@@ -3,7 +3,6 @@ import Router from 'next/router';
 import Product from '../../reusable/Product';
 import Loader from '../../reusable/Loader';
 import { API_URL } from '../../../config';
-import isObjectEmpty from '../../../helpers/is_object_empty';
 
 
 class MainContent extends React.Component {
@@ -32,7 +31,7 @@ class MainContent extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { products, showLoader } = nextProps;
+        const { products, showLoader, metaProductsData } = nextProps;
         if (this.state.products != products) {
             this.setState({
                 products: products
@@ -46,10 +45,22 @@ class MainContent extends React.Component {
                 showLoader: showLoader
             });
         }
+
+        if (metaProductsData) {
+            const { current_page, last_page } = metaProductsData;
+            if (current_page && last_page) {
+                if (current_page !== this.state.currentPage || last_page !== this.state.lastPage) {
+                    this.setState({
+                        currentPage: current_page,
+                        lastPage: last_page
+                    });
+                }
+            }
+        }
     }
 
     renderProducts() {
-        const { products, showLoader } = this.state;
+        const { products, showLoader} = this.state;
         const { cartShouldUpdate } = this.props;
         if (showLoader) {
             return (
@@ -58,10 +69,10 @@ class MainContent extends React.Component {
         }
 
         if (products.length !== 0) {
-            const productsLayout = products.map((product) => {
+            const productsLayout = products.map((product, index) => {
                 return (
                     <div 
-                    key={product.slug}
+                    key={`${product.slug}-${index}`}
                     className='col-lg-3 col-md-4 col-sm-6 col-6 col-reset'
                     >
                         <Product 
@@ -139,8 +150,8 @@ class MainContent extends React.Component {
     }
  
 	render() {
-        const { lastPage, currentPage, products } = this.state;
-        const hasMore = (Number(currentPage) < Number(lastPage)) ? true : false;
+        const { lastPage, currentPage, products, showLoader } = this.state;
+        const hasMore = ((Number(currentPage) < Number(lastPage)) && !showLoader) ? true : false;
 		return (
 			<InfiniteScroll
             dataLength={products.length}
