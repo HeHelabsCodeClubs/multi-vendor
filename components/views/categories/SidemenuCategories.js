@@ -7,7 +7,7 @@ class SidemenuCategories extends Component {
         super(props);
         this.state = {
             isOpen: props.isOpen,
-            openDropdown: true,
+            openDropdown: false,
             categories: [],
             subParentCatHasToBeUpdated: false
             //triggerUpdateOfActiveSubCat: false
