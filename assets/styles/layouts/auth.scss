@@ -62,6 +62,7 @@ body {
 
                 @media screen and (max-width: $mobile-lg) {
                     margin: .2rem 0 1rem;
+                    -webkit-appearance: none;
                 }
 
                 &.is-invalid {
