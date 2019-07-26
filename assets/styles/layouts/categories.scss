@@ -245,6 +245,16 @@
                 color: $green-color-2;
             }
         }
+        i.fa.fa-chevron-right {
+            margin-top: -3px;
+            padding-top: 0;
+            
+            &:before {
+                content: '-';
+                line-height: 0.7;
+                color: $green-color-2;
+            }
+        }
     }
     .main-content-wrapper {
         border-left: .5px solid $gray-color-6;
@@ -399,6 +409,4 @@
     @include flexalignitems(center);
     @include flexdirection(column);
 }
-
-
 

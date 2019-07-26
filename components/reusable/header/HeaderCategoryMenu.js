@@ -176,6 +176,9 @@ class HeaderCategoryMenu extends React.Component {
                                         <div className='menu-img'>
                                             <img src='https://res.cloudinary.com/hehe/image/upload/v1560250753/multi-vendor/3043262_ultraradiant-met-hp-ast_ecom1830-4.png' />
                                         </div>
+                                        <div className='menu-img'>
+                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1560250753/multi-vendor/3043262_ultraradiant-met-hp-ast_ecom1830-4.png' />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -221,16 +224,19 @@ class HeaderCategoryMenu extends React.Component {
                                 <span className={this.state.showCustomerMenu ? 'icon-icon_up-arrow-small' : 'icon-icon_down-arrow-small'}></span>
                             </a>
                             {this.state.showCustomerMenu && 
-                                <div className='menu-wrapper'>
-                                    <ul className="nav__submenu">
-                                        <li>
-                                            {this.renderCategory(categories)}
-                                            <div className='menu-btn'>
-                                                <button>Shop by Seller</button>
-                                            </div>
-                                        </li>
-                                        
-                                    </ul>
+                                <div>
+                                    <div className='menu-overlay' onClick={this.customerHandleHover}></div>
+                                    <div className='menu-wrapper'>
+                                        <ul className="nav__submenu">
+                                            <li>
+                                                {this.renderCategory(categories)}
+                                                <div className='menu-btn'>
+                                                    <button>Shop by Seller</button>
+                                                </div>
+                                            </li>
+                                            
+                                        </ul>
+                                    </div>
                                 </div>
                             }
                         </li>

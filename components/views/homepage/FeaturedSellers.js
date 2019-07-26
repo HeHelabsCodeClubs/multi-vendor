@@ -74,12 +74,14 @@ class FeaturedSellers extends Component {
                                         >
                                             {seller.name}
                                         </h5>
+                                        <div className='store-category'>{seller.category.name}</div>
                                     </span>
+                                    {/* <span className='line-display margin-reset'>
+                                        
+                                    </span> */}
                                 </span>
                                 
-                                <span className='line-display margin-reset'>
-                                    <div className='store-category'>{seller.category.name}</div>
-                                </span>
+                                
                                 {/* {this.renderShopNowUrl(seller)} */}
                             </div>
                         </div>

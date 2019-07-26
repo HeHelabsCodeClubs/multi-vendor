@@ -234,6 +234,7 @@
                 @include flexbox;
                 @include flexalignitems(center);
                 align-items: center;
+                width: 100% !important;
             }
         }
         .margin-reset {
