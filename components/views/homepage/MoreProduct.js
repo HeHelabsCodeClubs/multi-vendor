@@ -14,12 +14,14 @@ export default class MoreProduct extends Component {
             currentPage: 1,
             lastPage: 1,
             catIndex: 0,
-            activeCategorySlug: ''
+            activeCategorySlug: '',
+            activeCategoryName: '',
         };
         this.performAfterCategoriesLoad = this.performAfterCategoriesLoad.bind(this);
         this.getCategoryProducts = this.getCategoryProducts.bind(this);
         this.renderSpecialProducts = this.renderSpecialProducts.bind(this);
         this.shuffleProducts = this.shuffleProducts.bind(this);
+        this.renderSectionTitle = this.renderSectionTitle.bind(this);
     }
     componentDidMount() {
         const { categories } = this.props;
@@ -34,7 +36,8 @@ export default class MoreProduct extends Component {
             this.shuffleProducts(categories);
             const categorySlug = categories[catIndex].slug;
             this.setState({
-                activeCategorySlug: categorySlug
+                activeCategorySlug: categorySlug,
+                activeCategoryName: categories[catIndex].name
             }, () => this.getCategoryProducts());
         }
     }
@@ -95,12 +98,24 @@ export default class MoreProduct extends Component {
 
         return array;
     }
+    renderSectionTitle() {
+        const { activeCategoryName } = this.state;
+        if (activeCategoryName !== '') {
+            return (
+                <div className='made-in-rwanda-title maximum-width'>
+                    {`${activeCategoryName} Products`}
+                </div>
+            );
+        }
+
+        return null;
+    }
 	render() {
         const { products, currentPage, lastPage } = this.state;
         const hasMore = Number(currentPage) < Number(lastPage) ? true : false;
 		return (
             <div className='made-in-rwanda-wrapper'>
-            {/* <div className='made-in-rwanda-title maximum-width'>View More</div> */}
+                {this.renderSectionTitle()}
                 <div className='made-in-rwanda-content maximum-width'>
                     <div className='made-in-rwanda-wrapper'>
                     <InfiniteScroll
