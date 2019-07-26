@@ -10,13 +10,13 @@ import HomepageCategory from "../components/views/homepage/HomepageCategory";
 import fetch from 'isomorphic-unfetch';
 import { API_URL } from '../config';
 import FeaturedSellers from "../components/views/homepage/FeaturedSellers";
-import CookiesPopup from "../components/reusable/CookiesPopup";
+import MoreProduct from "../components/views/homepage/MoreProduct";
 
 class Index extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			updateCart: false
+			updateCart: false,
 		};
 		this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
 	}
@@ -93,6 +93,9 @@ class Index extends React.Component {
 				</div>
 				<div className='made-in-rwanda special-offers'>
 					<Ad type={eventAddType} data={eventsAds}/>
+				</div>
+				<div className='made-in-rwanda special-offers'>
+					<MoreProduct categories={categories} />
 				</div>
 			</Global>
 		);
