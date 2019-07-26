@@ -538,7 +538,8 @@
             padding-left: 0;
             margin-top: -0.1rem;
             margin-bottom: 0;
-            border-radius: 0 0 0 0.3rem !important;
+            border-radius: 0 0 0 0.3rem !important;    
+            border-top: 1px solid rgba(0, 0, 0, 0.16);
 
             .nav__menu-item {
                 display: inline-block;
@@ -1081,6 +1082,7 @@
     min-width: 71rem;
     visibility: hidden;
     border-left: 1px solid rgba(0, 0, 0, 0.16);
+    border-top: 1px solid rgba(0, 0, 0, 0.16);
     border-radius: 0 0 0.3rem 0;
     h5 {
         margin: 2rem 0 1rem 0 !important; 

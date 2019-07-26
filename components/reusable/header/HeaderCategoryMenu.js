@@ -163,21 +163,21 @@ class HeaderCategoryMenu extends React.Component {
                             </a>
                             <div className='sub-category'>
                                 <div className='row'>
-                                    <div className='col-lg-9 col-md-9 col-sm-9 col-12'>
+                                    <div className='col-lg-8 col-md-9 col-sm-8 col-12'>
                                         {this.renderCategorySubCategories(slug, children)}
                                     </div>
-                                    <div className='col-lg-3 col-md-3 col-sm-3 col-12'>
+                                    <div className='col-lg-4 col-md-4 col-sm-4 col-12'>
                                         <div className='menu-img'>
-                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1560250753/multi-vendor/3043262_ultraradiant-met-hp-ast_ecom1830-4.png' />
+                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1564149056/multi-vendor/Group_1284_2x.png' />
                                         </div>
                                         <div className='menu-img'>
-                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1560250767/multi-vendor/Products_Banner2-928x461.png' />
+                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1564149055/multi-vendor/Group_1281_2x.png' />
                                         </div>
                                         <div className='menu-img'>
-                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1560250753/multi-vendor/3043262_ultraradiant-met-hp-ast_ecom1830-4.png' />
+                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1564149055/multi-vendor/Group_1282_2x.png' />
                                         </div>
                                         <div className='menu-img'>
-                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1560250753/multi-vendor/3043262_ultraradiant-met-hp-ast_ecom1830-4.png' />
+                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1564149055/multi-vendor/Group_1283_2x.png' />
                                         </div>
                                     </div>
                                 </div>
