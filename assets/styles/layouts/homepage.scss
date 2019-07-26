@@ -65,6 +65,10 @@
 .categories-scroller {
     background: $gray-color-2;
 
+    @media screen and (max-width: $mobile-lg) {
+        display: none;
+    }
+
     .slick-slider {
         width: 90%;
         margin: 0 auto !important;
@@ -294,21 +298,27 @@
                 @media screen and (max-width: $mobile-lg) {
                     border-bottom: none;
                 }
-
+                .category-wrapper {
+                    @include flexbox;
+                    @include flexjustifycontent(center);
+                }
                 .category {
                     text-align: center;
                     margin: 0 0 3rem 0;
-
+                    width: 12.5%;
+                    
                     @media screen and (max-width: $mobile-lg) {
+                        width: 25%;
                         margin: 0;
                         margin-bottom: 20px;
                         padding: 4px 4px 10px;
                     }
-
                     img {
                         width: 80%;
                     }
-                    
+                    h4 {
+                        margin: 0.5rem 0.5rem 0 0.5rem !important;
+                    }
                 }
                 .view-more-btn {
                     text-align: center;
