@@ -71,6 +71,12 @@ class SignupForm extends Component {
         });
     }
 
+    renderTermsAndConditionsLink() {
+        return (
+            <div>Select the checkbox to accept the <a href='/terms'>Terms and Conditions</a></div>
+        )
+    }
+
     renderErrors(errors) {
 		if (!_.isEmpty(errors)) {
 			const errorList = errors.map(error => {
@@ -437,7 +443,7 @@ class SignupForm extends Component {
                         typeOfInput='checkbox'
                         type='checkbox'
                         name='terms'
-                        fieldText='Select the checkbox to accept the Terms and Conditions'
+                        fieldText={this.renderTermsAndConditionsLink()}
                         updateInputFieldValue={this.getInputFieldValue}
                         inputWithError={inputWithError}
                     />
