@@ -324,6 +324,10 @@
                 margin: 0 0.5rem 2rem 0.5rem !important;
             }
 
+            .breadcrumbs {
+                margin: 2rem 0 1rem 0.5rem;
+            }
+
             .col-lg-3 {
                 @media screen and (min-width: $desktopHd-min) {
                     max-width: 20%;

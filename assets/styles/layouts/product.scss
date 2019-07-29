@@ -222,6 +222,11 @@
     }
 
     .product-details-wrapper {
+
+        .breadcrumbs {
+            margin: 1rem 0 2rem 0.5rem;
+        }
+
         .images-wrapper {
             padding: 0 2rem 0 0 !important;
             border-right: 1px solid $gray-color-2;
