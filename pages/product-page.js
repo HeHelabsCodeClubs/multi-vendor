@@ -505,8 +505,6 @@ class ProductPage extends React.Component {
             <Breadcrumb>
                 <a href="/" className="breadcrumb-link">Home</a>
                     <span> / </span>
-                <a href="/" className="breadcrumb-link">{productData.store.name}</a>
-                    <span> / </span>
                 <a href="" className="breadcrumb-link">{productData.name}</a>
             </Breadcrumb>
         )
