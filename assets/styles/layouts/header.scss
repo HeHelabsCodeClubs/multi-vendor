@@ -382,6 +382,7 @@
                         padding: 1rem;
                         list-style: none;
                         margin: 0 !important;
+                        
                         li {
                             a {
                                 color: $black-color-3 !important;
@@ -535,8 +536,10 @@
         ul {
             list-style: none;
             padding-left: 0;
-            margin-top: 0;
+            margin-top: -0.1rem;
             margin-bottom: 0;
+            border-radius: 0 0 0 0.3rem !important;    
+            border-top: 1px solid rgba(0, 0, 0, 0.16);
 
             .nav__menu-item {
                 display: inline-block;
@@ -658,7 +661,6 @@
         width: 100%;
         height: 1rem;
         z-index: 99999999999 !important;
-        @include boxshadow(-.1rem .8rem 2.0rem $gray-color-5);
         translate: 0.3s;
         width: 22rem;
 
@@ -668,7 +670,7 @@
 
         li {
             background-color: $white-color;
-            @include boxshadow(-.1rem .8rem 2.0rem $gray-color-5);
+            border-radius: 0 0 0 0.3rem !important;
 
             @media screen and (max-width: $mobile-lg) {
                 min-height: calc(100vh - 3.3rem);
@@ -694,6 +696,10 @@
             @include flexjustifycontent(flex-start);
             padding: 1rem;
             border-bottom: .1rem solid $gray-color-2;
+
+            &:nth-last-child(1) {
+                border-bottom: none !important;
+            }
 
             .sub-menu__item-a {
                 color: $black-color-3 !important;
@@ -1042,6 +1048,7 @@
                     color: $white-color;
                     border: none;
                     padding: 1rem;
+                    outline: none !important;
                 }
                 a {
                     color: $white-color !important;
@@ -1052,6 +1059,16 @@
 }
 .menu-wrapper {
     display: -webkit-inline-box;
+}
+.menu-overlay {
+    width: 100%;
+    height: 100%;
+    transition: opacity 300ms ease-in-out, width 0ms, height 0ms;
+    position: fixed;
+    top: 7.5rem;
+    left: 0;
+    background: rgba(29, 48, 67, 0.49);
+    z-index: 99999;
 }
 .sub-category {
     position: absolute;
@@ -1064,7 +1081,9 @@
     z-index: 9;
     min-width: 71rem;
     visibility: hidden;
-    @include boxshadow(.3rem .6rem 2.0rem $gray-color-5);
+    border-left: 1px solid rgba(0, 0, 0, 0.16);
+    border-top: 1px solid rgba(0, 0, 0, 0.16);
+    border-radius: 0 0 0.3rem 0;
     h5 {
         margin: 2rem 0 1rem 0 !important; 
     }

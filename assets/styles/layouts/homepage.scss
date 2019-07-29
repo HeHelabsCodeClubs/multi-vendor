@@ -65,6 +65,10 @@
 .categories-scroller {
     background: $gray-color-2;
 
+    @media screen and (max-width: $mobile-lg) {
+        display: none;
+    }
+
     .slick-slider {
         width: 90%;
         margin: 0 auto !important;
@@ -225,6 +229,13 @@
             @include flexalignitems(center);
             @include flexjustifycontent(space-between);
             width: 100%;
+            
+            .featured-header-shop {
+                @include flexbox;
+                @include flexalignitems(center);
+                align-items: center;
+                width: 100% !important;
+            }
         }
         .margin-reset {
             margin: 0 7px !important;
@@ -288,21 +299,27 @@
                 @media screen and (max-width: $mobile-lg) {
                     border-bottom: none;
                 }
-
+                .category-wrapper {
+                    @include flexbox;
+                    @include flexjustifycontent(center);
+                }
                 .category {
                     text-align: center;
                     margin: 0 0 3rem 0;
-
+                    width: 12.5%;
+                    
                     @media screen and (max-width: $mobile-lg) {
+                        width: 25%;
                         margin: 0;
                         margin-bottom: 20px;
                         padding: 4px 4px 10px;
                     }
-
                     img {
                         width: 80%;
                     }
-                    
+                    h4 {
+                        margin: 0.5rem 0.5rem 0 0.5rem !important;
+                    }
                 }
                 .view-more-btn {
                     text-align: center;
@@ -488,7 +505,7 @@
                 .rwanda-wrapper {
                     width: 90%;
                     margin: 0 auto;
-                    justify-content: center;
+                    //justify-content: center;
 
                     @media screen and (max-width: $mobile-lg){
                         width: 94%;

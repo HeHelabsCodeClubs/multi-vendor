@@ -545,3 +545,13 @@
         padding: 0;
     }
 }
+.product_item {
+    width: 20%;
+
+    @media (max-width: $mobile-lg) {
+        width: 50%;
+    }
+    @media screen and (min-width: $tablet-min) and (max-width: $desktop-min) {
+        width: 33.33%;
+    }
+}

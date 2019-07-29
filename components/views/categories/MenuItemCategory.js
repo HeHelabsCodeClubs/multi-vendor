@@ -10,7 +10,8 @@ export default class  MenuItemCategory extends Component {
         this.state = {
             isMenuItemActive: '',
             activeChildrenItem: '',
-            category: {}
+            category: {},
+            renderPlusIcon: true
         };
         this.renderCategories = this.renderCategories.bind(this);
         this.renderCategoryChildren = this.renderCategoryChildren.bind(this);
@@ -89,17 +90,39 @@ export default class  MenuItemCategory extends Component {
     }
 
     renderCategoryNameDropDownIcon() {
-        return (
-            <span className="category-drop-icon">
-                <i className="fa fa-chevron-left mobile-invisible"></i>
-                <i className="icon-Angle_right mobile-visible"></i>
-            </span>
-        );
+        const { renderPlusIcon } = this.state;
+
+        if (renderPlusIcon === true) {
+            return (
+                <span className="category-drop-icon">
+                    <i className="fa fa-chevron-left mobile-invisible"></i>
+                    <i className="icon-Angle_right mobile-visible"></i>
+                </span>
+            );
+        } else {
+            return (
+                <span className="category-drop-icon">
+                    <i className="fa fa-chevron-right mobile-invisible"></i>
+                    <i className="icon-Angle_right mobile-visible"></i>
+                </span>
+            );
+        }
     }
 
     handleParentCategoryClick(e) {
         if (e !== undefined) {
             e.preventDefault();
+        }
+        const { renderPlusIcon } = this.state;
+
+        if (renderPlusIcon) {
+            this.setState({
+                renderPlusIcon: false
+            })
+        } else {
+            this.setState({
+                renderPlusIcon: true
+            })
         }
         const { slug } = this.state.category;
         this.handleUpdateProductsPerActiveCategory(slug);

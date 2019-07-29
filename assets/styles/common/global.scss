@@ -388,7 +388,13 @@ select {
         a {
             color: $white-color !important;
             letter-spacing: .12rem;
-            text-decoration: underline;
+            text-decoration: none;
+            cursor: pointer;
+            &:hover, 
+            &:focus
+            {
+                color: $orange-color-1 !important;
+            }
         }
         .close-popup {
             float: right;
@@ -396,6 +402,12 @@ select {
             border: none;
             color: $white-color;
             margin-right: 2rem;
+            outline: none !important;
+            &:hover, 
+            &:focus
+            {
+                color: $red-color-1 !important;
+            }
         }
     }
 }

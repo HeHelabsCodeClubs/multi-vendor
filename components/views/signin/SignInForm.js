@@ -301,10 +301,15 @@ class SignInForm extends Component {
         if (displayForgotPasswordLayout) {
             return (
                 <div className='auth-text'>
-                    Forgot your password ? <a href='/reset_password'>Reset</a>
+                    Forgot your password ? <a href='/forgot'>Reset</a>
                 </div>
             );
         }
+        return (
+            <div className='auth-text'>
+                Forgot your password ? <a href='/forgot'>Reset</a>
+            </div>
+        );
     }
 
     render() {

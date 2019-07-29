@@ -17,7 +17,7 @@ function renderAdds(adds) {
         const addsLayout = adds.map((add) => {
             return (
                 <div key={add.id}>
-                    <a href="#">
+                    <a href={add.slider_url}>
                         <ImageLoader 
                         imageUrl={add.image_url}
                         hasPlaceholder={false}

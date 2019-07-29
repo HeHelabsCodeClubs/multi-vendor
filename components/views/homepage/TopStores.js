@@ -5,7 +5,7 @@ class TopStores extends Component {
     renderTopStores(topStores) {
 		const storesLayout = topStores.map((topStore) => {
 			return (
-                <div className='col-lg-2 col-md-2 col-sm-3 col-4 col-reset category' key={topStore.image_url}>
+                <div className='category' key={topStore.image_url}>
                         <a href={`/categories/${topStore.category_slug}`}>
                             <img src={topStore.image_url} />
                             <h4>{topStore.tag_name}</h4>
@@ -21,7 +21,7 @@ class TopStores extends Component {
                 <div className='top-stores-title maximum-width'>Shop on Kigali's Top Stores</div>
                 <div className='top-stores-content maximum-width'>
                     <div className='stores-wrapper'>
-                        <div className='row reset-row'>
+                        <div className='row reset-row category-wrapper'>
                             {this.renderTopStores(this.props.topStores)}
                         </div>
                         {/* <div className='view-more-btn'>

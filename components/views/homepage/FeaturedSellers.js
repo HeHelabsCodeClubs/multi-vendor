@@ -58,24 +58,31 @@ class FeaturedSellers extends Component {
                         <div className='row reset-row multi-vendor-seller-wrapper'>
                             
                             <div className='featured-header'>
-                                <span className='seller-logo-container'>
-                                    <div className='seller-logo'>
-                                        <ImageLoader 
-                                        imageUrl={seller.logo}
-                                        placeholderBackgroundColor='#ffffff'
-                                        />
-                                    </div>
+                                <span className='featured-header-shop'>
+                                    <span className='seller-logo-container'>
+                                        <span className='seller-logo'>
+                                            <ImageLoader 
+                                            imageUrl={seller.logo}
+                                            placeholderBackgroundColor='#ffffff'
+                                            />
+                                        </span>
+                                    </span>
+                                    <span className='line-display margin-reset'>
+                                        <h5 
+                                        className='store-name'
+                                        title={seller.name}
+                                        >
+                                            {seller.name}
+                                        </h5>
+                                        <div className='store-category'>{seller.category.name}</div>
+                                    </span>
+                                    {/* <span className='line-display margin-reset'>
+                                        
+                                    </span> */}
                                 </span>
-                                <span className='line-display margin-reset'>
-                                    <h5 
-                                    className='store-name'
-                                    title={seller.name}
-                                    >
-                                        {LimitString(seller.name, 8)}
-                                    </h5>
-                                    <div className='store-category'>{seller.category.name}</div>
-                                </span>
-                                {this.renderShopNowUrl(seller)}
+                                
+                                
+                                {/* {this.renderShopNowUrl(seller)} */}
                             </div>
                         </div>
                         <div className='row reset-row'>
