@@ -15,7 +15,9 @@ class Categories extends React.Component {
             paginationData: {},
             showLoader: false,
             updateCart: false,
-            activeParentCategory: ''
+            activeParentCategory: '',
+            activeSubCategory: '',
+            activeSubLastCategory: ''
         };
         this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
         this.updateProductsData = this.updateProductsData.bind(this);
@@ -43,21 +45,30 @@ class Categories extends React.Component {
             subCategoriesData: data.sub_categories,
             productsData: data.products,
             metaProductsData: meta.pagination_data,
-            activeParentCategory: category_slug
+            activeParentCategory: category_slug,
+            activeSubCategory: sub_cat_slug,
+            activeSubLastCategory: sub_last_cat_slug
         };
     }
 
     componentDidMount() {
-        const { activeParentCategory, categoriesData, productsData } = this.props;
+        const { activeParentCategory, activeSubCategory, activeSubLastCategory, categoriesData, subCategoriesData, productsData } = this.props;
         if (activeParentCategory !== '') {
             let parentCategoryName = '';
+            let subCategoryName = '';
             categoriesData.forEach(category => {
                 if (category.slug === activeParentCategory) {
                     parentCategoryName = category.name;
                 }
             });
+            subCategoriesData.forEach(subCategory => {
+                if (subCategory.slug === activeSubCategory) {
+                    subCategoryName = subCategory.name;
+                }
+            });
             this.setState({
-                activeParentCategory: parentCategoryName
+                activeParentCategory: parentCategoryName,
+                activeSubCategory: subCategoryName
             });
         }
 
@@ -113,6 +124,7 @@ class Categories extends React.Component {
             showLoader,
             updateCart,
             activeParentCategory,
+            activeSubCategory,
             products,
             paginationData
         } = this.state;
@@ -135,11 +147,14 @@ class Categories extends React.Component {
                                 updateProducts={this.updateProductsData}
                                 displayLoader={this.handleDisplayLoader}
                                 activeParentCategory={activeParentCategory}
+                                activeSubCategory={activeSubCategory}
                                 />
                             </div>
                             <div className='col-lg-9 col-md-8 col-sm-8 col-12 col-reset main-content-wrapper'>
                                 <MainContent 
                                 products={products}
+                                activeParentCategory={activeParentCategory}
+                                activeSubCategory={activeSubCategory}
                                 //updatedProducts={updatedProducts}
                                 paginationData={paginationData}
                                 showLoader={showLoader}

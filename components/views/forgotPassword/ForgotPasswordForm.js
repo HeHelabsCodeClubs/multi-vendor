@@ -7,20 +7,8 @@ import Breadcrumb from '../../reusable/Breadcrumb';
 import InputField from '../../reusable/InputField';
 import MessageDisplayer from '../../reusable/MessageDisplayer';
 import { getValidatedInputErrorMessage } from '../../../helpers/validation';
-import { setPageAsVisited } from '../../../helpers/checkout_page_visits';
 import { 
-    storeTokenInLocalStorage, 
-    storeAuthUserInfoInLocalStorage,
-    redirectUserToAfterLoginPage
-} from '../../../helpers/auth';
-import { 
-    API_URL, 
-    API_ROOT_URL,
-    USER_AUTHENTICATED,
-    UNKNOWN_ERROR,
-    PLATFORM_CLIENT_ID,
-    PLATFORM_CLIENT_SECRET,
-    USER_FORBIDDEN
+    API_URL
 } from '../../../config';
 
 
@@ -41,12 +29,7 @@ class SignInForm extends Component {
         this.getLoginButtonText = this.getLoginButtonText.bind(this);
         this.getInputFieldValue = this.getInputFieldValue.bind(this);
         this.validateInputFields = this.validateInputFields.bind(this);
-        //this.handleResponse = this.handleResponse.bind(this);
-        //this.performOnRegistrationSuccess = this.performOnRegistrationSuccess.bind(this);
-        //this.performOnUserAuthFailure = this.performOnUserAuthFailure.bind(this);
         this.renderBreadCrumbs = this.renderBreadCrumbs.bind(this);
-        //this.renderRegistrationActionLayout = this.renderRegistrationActionLayout.bind(this);
-        //this.renderForgotPasswordActionLayout = this.renderForgotPasswordActionLayout.bind(this);
     }
 
     getLoginButtonText() {
@@ -124,7 +107,22 @@ class SignInForm extends Component {
             }).then(async (res) => {
                 try {
                     const response = await res.json();
-                    //this.handleResponse(response);
+                    console.log('response', response);
+
+                    if(response.status === 'success') {
+                        this.setState({
+                            loginStatus: 'submitted'
+                        });
+                        notify.show(response.data.message, 'success', 5000);
+                        setTimeout(() => {
+                            window.location.href = '/signin';
+                        }, 5000);
+                    } else {
+                        this.setState({
+                            loginStatus: 'initial'
+                        });
+                        notify.show(`We couldn\'t send you a password recovery email, Please try again later`, 'error', 2000);
+                    }
                     
                 } catch (err) {
                     console.log('error');
@@ -133,98 +131,6 @@ class SignInForm extends Component {
             });
         }
     }
-
-    // handleResponse(response) {
-    //     const { status_code, errors } = response;
-    //     switch(Number(status_code)) {
-    //         case 200:
-    //             const {
-    //                 email,
-    //                 first_name,
-    //                 last_name,
-    //                 gender,
-    //                 cart_customer_id,
-    //                 id
-    //             } = response.data;
-    //             const user = {
-    //                 email,
-    //                 first_name,
-    //                 last_name,
-    //                 gender,
-    //                 cart_customer_id,
-    //                 id
-    //             };
-
-    //             this.performOnRegistrationSuccess(user, this.state.password);
-    //             break;
-    //         case 401:
-    //             const customErrorMessage = errors[0];
-    //             this.performOnUserAuthFailure(customErrorMessage);
-    //             break;
-    //         default:
-    //             this.performOnUserAuthFailure();
-    //             notify.show(UNKNOWN_ERROR, 'error', 2000);
-
-    //     }
-    // }
-
-    // performOnUserAuthFailure(message) {
-    //     const errMessage = ((message === '') || (message === undefined)) ? USER_FORBIDDEN : message; 
-    //     this.setState({
-    //         loginStatus: 'initial',
-    //         inputIsInvalid: true,
-    //         errorMessage: errMessage
-    //     });
-    // }
-
-    // performOnRegistrationSuccess(user, userPassword) {
-    //     fetch(`${API_ROOT_URL}/oauth/token`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Accept': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             grant_type: "password",
-    //             client_id: PLATFORM_CLIENT_ID,
-    //             client_secret: PLATFORM_CLIENT_SECRET,
-    //             username: user.email,
-    //             password: userPassword,
-    //             scope: "*"
-    //         })
-    //     }).then(async (res) => {
-    //         try {
-    //             const response = await res.json();
-    //             const {
-    //                 access_token,
-    //                 expires_in
-    //             } = response;
-    //             if (access_token) {
-    //                 this.setState({
-    //                     loginStatus: 'submitted',
-    //                     inputIsInvalid: true,
-    //                     messageType: 'success',
-    //                     errorMessage: USER_AUTHENTICATED
-    //                 });
-    //                 const { redirectPageAfterLogin } = this.props;
-    //                 /**
-    //                  * Store token in cookie
-    //                  * store user information in localstorage
-    //                  * redirect to homepage
-    //                  */
-    //                 storeTokenInLocalStorage(access_token, expires_in);
-    //                 storeAuthUserInfoInLocalStorage(user);
-    //                 setPageAsVisited('account'); // set checkout page account as visited
-    //                 redirectUserToAfterLoginPage(redirectPageAfterLogin);
-    //             } else {
-    //                 this.performOnUserAuthFailure();
-    //             }
-    //         } catch (err) {
-    //             console.log('error');
-    //             console.log(err);
-    //         }
-    //     });
-    // }
 
     validateInputFields(validationRules) {
         for(let i = 0; i < validationRules.length; i++) {
@@ -271,30 +177,6 @@ class SignInForm extends Component {
         return null;
     }
 
-    // renderRegistrationActionLayout() {
-    //     const { displayRegistrationLayout } = this.props;
-    //     if (displayRegistrationLayout) {
-    //         return (
-    //             <div className='auth-text'>
-    //                 Don't have an account? <a href='/register'>Register</a>
-    //             </div>
-    //         );
-    //     }
-
-    //     return null;
-    // }
-
-    // renderForgotPasswordActionLayout() {
-    //     const { displayForgotPasswordLayout } = this.props;
-    //     if (displayForgotPasswordLayout) {
-    //         return (
-    //             <div className='auth-text'>
-    //                 Forgot your password ? <a href='/reset_password'>Reset</a>
-    //             </div>
-    //         );
-    //     }
-    // }
-
     render() {
         const {
             inputWithError,
@@ -328,8 +210,6 @@ class SignInForm extends Component {
                             {this.getLoginButtonText()}
                         </button>
                     </div>
-                    {/* {this.renderRegistrationActionLayout()} */}
-                    {/* {this.renderForgotPasswordActionLayout()} */}
                 </form>
             </div>
         )

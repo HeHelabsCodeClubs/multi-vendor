@@ -177,7 +177,7 @@ class HeaderCategoryMenu extends React.Component {
                                             <img src='https://res.cloudinary.com/hehe/image/upload/v1564149055/multi-vendor/Group_1282_2x.png' />
                                         </div>
                                         <div className='menu-img'>
-                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1564149055/multi-vendor/Group_1283_2x.png' />
+                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1564398552/multi-vendor/Group_1283_2x_1.png' />
                                         </div>
                                     </div>
                                 </div>

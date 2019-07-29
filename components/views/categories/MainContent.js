@@ -3,6 +3,7 @@ import Router from 'next/router';
 import Product from '../../reusable/Product';
 import Loader from '../../reusable/Loader';
 import { API_URL } from '../../../config';
+import Breadcrumb from '../../reusable/Breadcrumb';
 
 
 class MainContent extends React.Component {
@@ -111,8 +112,9 @@ class MainContent extends React.Component {
         const { currentPage } = this.state;
         const { router: { query } } = Router;
         const { category_slug, sub_cat_slug, sub_last_cat_slug } = query;
+        
         let remoteUrl = `${API_URL}/categories/${category_slug}/parent_page`;
-
+        
         if (category_slug !== undefined && sub_cat_slug !== undefined && sub_last_cat_slug === undefined) {
             remoteUrl = `${API_URL}/categories/${sub_cat_slug}/products`
         } 
@@ -148,6 +150,22 @@ class MainContent extends React.Component {
             lastPage: Number(meta.pagination_data.last_page)
         });
     }
+
+    renderBreadCrumb() {
+        const { activeParentCategory, activeSubCategory } = this.props;
+
+        return (
+            <Breadcrumb>
+                <a href="/" className="breadcrumb-link">Home</a>
+                    <span> / </span>
+                <a href="/" className="breadcrumb-link">Categories</a>
+                    <span> / </span>
+                <a href="" className="breadcrumb-link">{activeParentCategory}</a>
+                    <span> / </span>
+                <a href="" className="breadcrumb-current">{activeSubCategory}</a>
+            </Breadcrumb>
+        )
+    }
  
 	render() {
         const { lastPage, currentPage, products, showLoader } = this.state;
@@ -162,8 +180,10 @@ class MainContent extends React.Component {
                 {/* <div>
                     <TopStores />
                 </div> */}
+                
                 <div className='main-content'>
-                   {this.renderProducts()}
+                    {this.renderBreadCrumb()}
+                    {this.renderProducts()}
                 </div>
             </InfiniteScroll>
 		);

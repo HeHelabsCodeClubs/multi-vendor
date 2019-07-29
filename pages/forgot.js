@@ -1,3 +1,4 @@
+import Notifications from 'react-notify-toast';
 import '../assets/styles/layouts/landing.scss';
 import '../assets/styles/layouts/auth.scss';
 import ForgotPasswordForm from '../components/views/forgotPassword/ForgotPasswordForm';
@@ -6,6 +7,7 @@ import PopUpWrapper from '../components/reusable/PopUpWrapper';
 export default function Forgot() {
     return (
         <div className='landing-main-wrapper'>
+            <Notifications />
             <PopUpWrapper/>
             
             <div className='content-wrapper'>
