@@ -75,7 +75,7 @@
     min-height: 55vh;
 
     .side-category__grid {
-        position: sticky;
+        // position: sticky;
         top: 0;
         @media screen and (min-width: $desktopHd-min) {
             max-width: 20%;

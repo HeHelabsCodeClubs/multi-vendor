@@ -52,6 +52,7 @@
 		@include boxshadow(0 3px 36px 0 rgba(0, 0, 0, 0.1));
 		background-color: $white-color;
 		border-radius: 0.5rem;
+		width: calc(100% + 15px);
 
 		.top-part {
 			border-bottom: .5px solid $gray-color-1;

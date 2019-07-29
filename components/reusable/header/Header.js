@@ -156,7 +156,7 @@ class Header extends React.Component {
                             <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
                                 <div className='top-panel-left'>
                                     <span className='top-content'>+(250) 786 456 686</span>
-                                    <span className='top-content'>order.hehe.rw</span>
+                                    <span className='top-content'>order@hehe.rw</span>
                                 </div>
                             </div>
                             <div className='col-lg-6 col-md-6 col-sm-6 col-12'>

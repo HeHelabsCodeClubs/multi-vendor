@@ -69,7 +69,7 @@ class Footer extends Component {
                                 <div className='contact-content'>+250 786 456 686</div>
 
                                 <div className='footer-title'>Email us</div>
-                                <div className='contact-content'>support@dmmhehe.com</div>
+                                <div className='contact-content'>order@hehe.rw</div>
 
                                 <div className='footer-title'>Sell with HeHe</div>
                                 <div><a href="https://hehe.rw/#contactUs" target="_blank"><button>Become a seller</button></a></div>
@@ -90,6 +90,10 @@ class Footer extends Component {
                         </div>
                     </div>
                 </div>
+
+                {/* <div>
+                    <button><span class="icon-Angle_up"></span>Back on top</button>
+                </div> */}
                 <div>
 					<CookiesPopup />
 				</div>
