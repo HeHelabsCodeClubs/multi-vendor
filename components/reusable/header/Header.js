@@ -228,7 +228,9 @@ class Header extends React.Component {
                                     <div className='col-lg-6 col-md-6 col-sm-6 col-6 account-grid'>
                                         <div className='row'>
                                             <div className='col-lg-3 col-md-3 col-sm-3 col-12 col-reset'>
-                                                <span className='icon-Path-62'></span> <span className="mobile-menu__title mobile-visible">Account</span>
+                                                <span className='icon-Path-62 mobile-invisible'></span>
+                                                <a href="/profile" className="mobile-visible"><span className='icon-Path-62'></span></a>
+                                                <span className="mobile-menu__title mobile-visible">Account</span>
                                             </div>
                                             {/* user profile goes here */}
                                             {this.renderUserProfile()}
