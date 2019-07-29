@@ -161,7 +161,6 @@ export default class SingleCartProductItem extends Component {
             return this.renderProductWithAttributes(productData);
             
         }
-
         return null;
     }
 
