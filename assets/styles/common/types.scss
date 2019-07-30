@@ -1257,10 +1257,7 @@ select {
         font-size: 1rem !important;
     }
 }
-
-
 // Cookies popup
-
 .cookies-wrapper {
     p {
         font-family: $font-light;
@@ -1274,5 +1271,12 @@ select {
                 font-size: 1rem;
             }
         }
+    }
+}
+
+// back on top button
+.back-to-top {    
+    span {
+        font-size: 1.7rem;
     }
 }
