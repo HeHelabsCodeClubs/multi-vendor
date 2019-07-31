@@ -46,15 +46,20 @@ class SpecialOffers extends Component {
                   breakpoint: 768,
                   settings: {
                     slidesToShow: 4,
+                    centerMode: true,
+                    centerPadding: "15px 0 0",
+                    initialSlide: 1
                   }
                 },
                 {
                   breakpoint: 480,
                   settings: {
                     slidesToShow: 3,
+                    slidesToScroll: 1,
                     centerMode: true,
-                    centerPadding: "30px",
-                    slidesToScroll: 1
+                    centerPadding: "15px 0 0",
+                    initialSlide: 1
+                                        
                   }
                 }
             ]
