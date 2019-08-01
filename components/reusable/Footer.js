@@ -74,10 +74,7 @@ class Footer extends Component {
    }
 
     render() {
-        const { categories, scrollPosition } = this.state;
-
-        console.log(scrollPosition);
-
+        const { categories} = this.state;
         return (
             <div className='footer-wrapper'>
                 <div className='maximum-width'>

@@ -505,6 +505,10 @@
                 width: 90%;
                 margin:auto;
                 padding: 1rem 2rem 1rem 1rem;
+                
+                @media screen and (max-width: $mobile-lg) {
+                    padding: 0 0 0 0.5rem;
+                }
 
                 &.prices-offers {
                     background-color: $green-color-3;

@@ -17,7 +17,9 @@ class Billing extends Component {
 			shippingCustomerDetails: {},
 			billingCustomerDetails: {},
 			retrieveCustomerDetails: false,
-			buttonStatus: 'initial'
+			buttonStatus: 'initial',
+			displayToTopButton: false,
+            scrollPosition: 0,
 		};
 		this.renderCustomerDetailForm = this.renderCustomerDetailForm.bind(this);
 		this.handleBillingAddressDisplay = this.handleBillingAddressDisplay.bind(this);
@@ -27,6 +29,13 @@ class Billing extends Component {
 		this.saveCustomerDetailsInfo = this.saveCustomerDetailsInfo.bind(this);
 		this.renderSubmitButton = this.renderSubmitButton.bind(this);
 		this.handleResponse = this.handleResponse.bind(this);
+		this.handleScroll = this.handleScroll.bind(this);
+        this.checkScroll = this.checkScroll.bind(this);
+        this.handleScrollToTop = this.handleScrollToTop.bind(this);
+	}
+
+	componentDidMount () {
+		window.addEventListener('scroll', this.handleScroll);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -35,6 +44,31 @@ class Billing extends Component {
 			this.getCustomerDetailsToSubmit();
 		}
 	}
+
+	handleScroll(event){
+        this.setState({
+            scrollPosition: window.pageYOffset
+        }, () => this.checkScroll())
+    }
+    checkScroll(){
+        if (this.state.scrollPosition > 500) {
+            this.setState({
+                displayToTopButton: true,
+            })
+        }
+        else {
+            this.setState ({ 
+                displayToTopButton: false,
+            })
+        }
+    }
+    
+    handleScrollToTop(){
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
+   }
 
 	getCustomerDetailsToSubmit() {
 		this.setState({
@@ -52,6 +86,8 @@ class Billing extends Component {
 					// data has been retrieved
 					clearInterval(IntervalRetrieval);
 					this.saveCustomerDetailsInfo();
+					this.handleScrollToTop();
+
 				}
 			}, 300);
 		});

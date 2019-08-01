@@ -15,7 +15,9 @@ class Delivery extends Component {
 			errorMessage: '',
 			messageType: 'error',
 			shipmentValid: true,
-			validateShipment: false
+			validateShipment: false,
+			displayToTopButton: false,
+            scrollPosition: 0,
 		};
 		this.updateCartItems = this.updateCartItems.bind(this);
 		this.renderItems = this.renderItems.bind(this);
@@ -23,7 +25,15 @@ class Delivery extends Component {
 		this.redirectToPayment = this.redirectToPayment.bind(this);
 		this.updateShipmentValid = this.updateShipmentValid.bind(this);
 		this.validateShipment = this.validateShipment.bind(this);
+		this.handleScroll = this.handleScroll.bind(this);
+        this.checkScroll = this.checkScroll.bind(this);
+        this.handleScrollToTop = this.handleScrollToTop.bind(this);
 	}
+
+	componentDidMount () {
+		window.addEventListener('scroll', this.handleScroll);
+	}
+
 	componentWillReceiveProps(nextProps) {
 		const { triggerValidateDelivery } = nextProps;
 		if (triggerValidateDelivery) {
@@ -107,6 +117,30 @@ class Delivery extends Component {
 		
 	}
 
+	handleScroll(event){
+        this.setState({
+            scrollPosition: window.pageYOffset
+        }, () => this.checkScroll())
+    }
+    checkScroll(){
+        if (this.state.scrollPosition > 500) {
+            this.setState({
+                displayToTopButton: true,
+            })
+        }
+        else {
+            this.setState ({ 
+                displayToTopButton: false,
+            })
+        }
+    }
+    
+    handleScrollToTop(){
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
+   }
 	validateShipment() {
 		this.setState({
 			validateShipment: true
@@ -116,9 +150,12 @@ class Delivery extends Component {
 					validateShipment: false
 				});
 				this.redirectToPayment();
+				this.handleScrollToTop();
 			}, 300);
 		});
 	}
+
+	
 
 	renderPlaceOrderButton() {
 		return (
