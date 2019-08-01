@@ -6,6 +6,7 @@ import DeliveryCustomerDetailForm from './DeliveryCustomerDetailForm';
 import isObjectEmpty from '../../../helpers/is_object_empty';
 import { API_URL } from '../../../config';
 import { getClientAuthToken } from '../../../helpers/auth';
+import Breadcrumb from '../../reusable/Breadcrumb';
 
 // just testing deployment
 class Billing extends Component {
@@ -31,7 +32,8 @@ class Billing extends Component {
 		this.handleResponse = this.handleResponse.bind(this);
 		this.handleScroll = this.handleScroll.bind(this);
         this.checkScroll = this.checkScroll.bind(this);
-        this.handleScrollToTop = this.handleScrollToTop.bind(this);
+		this.handleScrollToTop = this.handleScrollToTop.bind(this);
+		this.renderBreadCrumbs = this.renderBreadCrumbs.bind(this);
 	}
 
 	componentDidMount () {
@@ -68,7 +70,23 @@ class Billing extends Component {
             top: 0,
             behavior: 'smooth'
         })
-   }
+   	}
+
+	renderBreadCrumbs() {
+		const { showBreadCrumbs } = this.props;
+		if (showBreadCrumbs) {
+			return (
+				<Breadcrumb>
+					<a href="/" className="breadcrumb-link">Home</a>
+						<span> / </span>
+					<a href="/checkout/account" className="breadcrumb-link">Checkout</a>
+						<span> / </span>
+					<a href="#" className="breadcrumb-current">Addresses</a>
+				</Breadcrumb>
+			);
+		}
+		return null;
+	}
 
 	getCustomerDetailsToSubmit() {
 		this.setState({
@@ -187,6 +205,7 @@ class Billing extends Component {
 		if (billingAndShippingSame) {
 			return (
 				<div className='account-info-wrapper'>
+					{this.renderBreadCrumbs()}
 					<DeliveryCustomerDetailForm 
 					formTitle='Shipping address'
 					formType='shipping'
@@ -212,30 +231,31 @@ class Billing extends Component {
 
 		return (
 			<div className='account-info-wrapper'>
-					<DeliveryCustomerDetailForm 
-					formTitle='Shipping address'
-					formType='shipping'
-					submitForm={false}
-					customerAddressData={customerAddressData}
-					getSubmittedValues={this.getSubmittedValues}
-					provideCustomerDetails={retrieveCustomerDetails}
-					/>
-					<InputField 
-						typeOfInput='checkbox'
-						type='checkbox'
-						name='billingAndShippingSame'
-						fieldText='Billing and shipping address are the same'
-						updateInputFieldValue={this.handleBillingAddressDisplay}
-					/>
-					<DeliveryCustomerDetailForm 
-					formTitle='Billing address'
-					formType='billing'
-					submitForm={false}
-					getSubmittedValues={this.getSubmittedValues}
-					provideCustomerDetails={retrieveCustomerDetails}
-					customerAddressData={customerAddressData}
-					/>
-					{this.renderSubmitButton()}
+				{this.renderBreadCrumbs()}
+				<DeliveryCustomerDetailForm 
+				formTitle='Shipping address'
+				formType='shipping'
+				submitForm={false}
+				customerAddressData={customerAddressData}
+				getSubmittedValues={this.getSubmittedValues}
+				provideCustomerDetails={retrieveCustomerDetails}
+				/>
+				<InputField 
+					typeOfInput='checkbox'
+					type='checkbox'
+					name='billingAndShippingSame'
+					fieldText='Billing and shipping address are the same'
+					updateInputFieldValue={this.handleBillingAddressDisplay}
+				/>
+				<DeliveryCustomerDetailForm 
+				formTitle='Billing address'
+				formType='billing'
+				submitForm={false}
+				getSubmittedValues={this.getSubmittedValues}
+				provideCustomerDetails={retrieveCustomerDetails}
+				customerAddressData={customerAddressData}
+				/>
+				{this.renderSubmitButton()}
 			</div>
 		);
 	}

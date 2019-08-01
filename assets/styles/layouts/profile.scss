@@ -67,12 +67,28 @@
                     padding-bottom: 1rem;
                     th {
                         color: $black-color-3;
+
+                        &.mobile-invisible {
+                            display: table-cell !important;
+
+                            @media screen and (max-width: $mobile-lg) {
+                                display: none !important;
+                            }
+                        }
                     }
                 }    
                 
                 td {
                     color: $black-color-3;
                     padding: 1rem 0 0;
+
+                    &.mobile-invisible {
+                        display: table-cell !important;
+
+                        @media screen and (max-width: $mobile-lg) {
+                            display: none !important;
+                        }
+                    }
 
                     &:nth-child(1) {
                         a {

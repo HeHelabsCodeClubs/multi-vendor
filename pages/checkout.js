@@ -195,10 +195,15 @@ class Checkout extends React.Component {
         const { customerAddressData } = this.props;
         switch(activeContent) {
             case 'accountInfo':
-                return <AccountInfo />;
+                return (
+                    <AccountInfo
+                        showBreadCrumbs={true} 
+                    />
+                );
             case 'billing':
                 return (
-                    <Billing 
+                    <Billing
+                    showBreadCrumbs={true} 
                     customerAddressData={customerAddressData}
                     triggerUpdateOfCustomerDeliveryAddress={triggerUpdateOfCustomerDeliveryAddress}
                     />
@@ -206,13 +211,15 @@ class Checkout extends React.Component {
             case 'delivery':
                 return (
                     <Delivery
+                    showBreadCrumbs={true}
                     updateShipmentInfo={this.updateShipmentInfo}
                     triggerValidateDelivery={triggerValidateDelivery}
                     />
                 );
             case 'payment':
                 return (
-                    <Payment 
+                    <Payment
+                    showBreadCrumbs={true}
                     toogleDisplayOverlay={this.toogleDisplayOverlay}
                     />
                     );
