@@ -131,10 +131,11 @@ class Footer extends Component {
                 <div>
                     {this.state.displayToTopButton?
                     <button
-                        onClick={this.handleScrollToTop}
-                        className="back-to-top"
-                        >
-                        <span className="icon-Arrow_solid"></span> Back on top
+                    onClick={this.handleScrollToTop}
+                    className="back-to-top"
+                    >
+                        <span className="icon-Arrow_solid"></span>
+                        <span className="mobile-invisible">Back on top</span>
                     </button>
                     : null}
                 </div>

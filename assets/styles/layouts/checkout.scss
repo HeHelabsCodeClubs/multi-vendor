@@ -326,6 +326,11 @@
                 // color: $white-color !important;
                 @extend .default-button-styles;
                 padding: 0.3rem 0;
+                background: transparent !important;
+                border: none !important;
+                span {
+                    padding-right: .5rem;
+                }
             }
         }
         .store-cartProducts {

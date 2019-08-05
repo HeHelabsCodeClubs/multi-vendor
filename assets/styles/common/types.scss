@@ -799,6 +799,9 @@ html {
         .btn_store-cartProducts {
             font-size: 1.28rem;
             font-family: $font-semi-bold;
+            span {
+                font-size: .8rem !important;
+            }
         }
     }
     .title {
@@ -1276,7 +1279,11 @@ select {
 
 // back on top button
 .back-to-top {    
-    span {
+    [class^="icon-"] {
         font-size: 1.7rem;
+
+        @media screen and (max-width: $mobile-lg) {
+            font-size: 1rem;
+        }
     }
 }

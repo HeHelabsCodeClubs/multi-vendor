@@ -434,17 +434,18 @@ select {
     border: 0.5px solid $red-color-3 !important;
     min-width: 5rem !important;
 
+    @media screen and (max-width: $mobile-lg) {
+        bottom: 6rem;
+        min-width: 1rem;
+        padding-bottom: 0.5rem !important;
+    }
     
-    span {
+    [class^="icon-"] {
         display: block;
 
         &.icon-Arrow_solid {
             transform: rotate(-90deg);
             padding-left: .5rem;
         }
-    }
-
-    @media screen and (max-width: $mobile-lg) {
-        bottom: 6rem;
     }
 }
