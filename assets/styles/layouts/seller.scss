@@ -54,6 +54,9 @@
         padding: 0.2rem 1rem;
         border-radius: 2rem;
         text-align: center;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
 
         @media screen {
             padding: .2rem 7px;

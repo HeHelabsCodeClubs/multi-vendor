@@ -6,6 +6,7 @@ import DeliveryCustomerDetailForm from './DeliveryCustomerDetailForm';
 import isObjectEmpty from '../../../helpers/is_object_empty';
 import { API_URL } from '../../../config';
 import { getClientAuthToken } from '../../../helpers/auth';
+import Breadcrumb from '../../reusable/Breadcrumb';
 
 // just testing deployment
 class Billing extends Component {
@@ -17,7 +18,9 @@ class Billing extends Component {
 			shippingCustomerDetails: {},
 			billingCustomerDetails: {},
 			retrieveCustomerDetails: false,
-			buttonStatus: 'initial'
+			buttonStatus: 'initial',
+			displayToTopButton: false,
+            scrollPosition: 0,
 		};
 		this.renderCustomerDetailForm = this.renderCustomerDetailForm.bind(this);
 		this.handleBillingAddressDisplay = this.handleBillingAddressDisplay.bind(this);
@@ -27,6 +30,14 @@ class Billing extends Component {
 		this.saveCustomerDetailsInfo = this.saveCustomerDetailsInfo.bind(this);
 		this.renderSubmitButton = this.renderSubmitButton.bind(this);
 		this.handleResponse = this.handleResponse.bind(this);
+		this.handleScroll = this.handleScroll.bind(this);
+        this.checkScroll = this.checkScroll.bind(this);
+		this.handleScrollToTop = this.handleScrollToTop.bind(this);
+		this.renderBreadCrumbs = this.renderBreadCrumbs.bind(this);
+	}
+
+	componentDidMount () {
+		window.addEventListener('scroll', this.handleScroll);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -34,6 +45,47 @@ class Billing extends Component {
 		if (triggerUpdateOfCustomerDeliveryAddress) {
 			this.getCustomerDetailsToSubmit();
 		}
+	}
+
+	handleScroll(event){
+        this.setState({
+            scrollPosition: window.pageYOffset
+        }, () => this.checkScroll())
+    }
+    checkScroll(){
+        if (this.state.scrollPosition > 500) {
+            this.setState({
+                displayToTopButton: true,
+            })
+        }
+        else {
+            this.setState ({ 
+                displayToTopButton: false,
+            })
+        }
+    }
+    
+    handleScrollToTop(){
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
+   	}
+
+	renderBreadCrumbs() {
+		const { showBreadCrumbs } = this.props;
+		if (showBreadCrumbs) {
+			return (
+				<Breadcrumb>
+					<a href="/" className="breadcrumb-link">Home</a>
+						<span> / </span>
+					<a href="/checkout/account" className="breadcrumb-link">Checkout</a>
+						<span> / </span>
+					<a href="#" className="breadcrumb-current">Addresses</a>
+				</Breadcrumb>
+			);
+		}
+		return null;
 	}
 
 	getCustomerDetailsToSubmit() {
@@ -52,6 +104,8 @@ class Billing extends Component {
 					// data has been retrieved
 					clearInterval(IntervalRetrieval);
 					this.saveCustomerDetailsInfo();
+					this.handleScrollToTop();
+
 				}
 			}, 300);
 		});
@@ -151,6 +205,7 @@ class Billing extends Component {
 		if (billingAndShippingSame) {
 			return (
 				<div className='account-info-wrapper'>
+					{this.renderBreadCrumbs()}
 					<DeliveryCustomerDetailForm 
 					formTitle='Shipping address'
 					formType='shipping'
@@ -176,30 +231,31 @@ class Billing extends Component {
 
 		return (
 			<div className='account-info-wrapper'>
-					<DeliveryCustomerDetailForm 
-					formTitle='Shipping address'
-					formType='shipping'
-					submitForm={false}
-					customerAddressData={customerAddressData}
-					getSubmittedValues={this.getSubmittedValues}
-					provideCustomerDetails={retrieveCustomerDetails}
-					/>
-					<InputField 
-						typeOfInput='checkbox'
-						type='checkbox'
-						name='billingAndShippingSame'
-						fieldText='Billing and shipping address are the same'
-						updateInputFieldValue={this.handleBillingAddressDisplay}
-					/>
-					<DeliveryCustomerDetailForm 
-					formTitle='Billing address'
-					formType='billing'
-					submitForm={false}
-					getSubmittedValues={this.getSubmittedValues}
-					provideCustomerDetails={retrieveCustomerDetails}
-					customerAddressData={customerAddressData}
-					/>
-					{this.renderSubmitButton()}
+				{this.renderBreadCrumbs()}
+				<DeliveryCustomerDetailForm 
+				formTitle='Shipping address'
+				formType='shipping'
+				submitForm={false}
+				customerAddressData={customerAddressData}
+				getSubmittedValues={this.getSubmittedValues}
+				provideCustomerDetails={retrieveCustomerDetails}
+				/>
+				<InputField 
+					typeOfInput='checkbox'
+					type='checkbox'
+					name='billingAndShippingSame'
+					fieldText='Billing and shipping address are the same'
+					updateInputFieldValue={this.handleBillingAddressDisplay}
+				/>
+				<DeliveryCustomerDetailForm 
+				formTitle='Billing address'
+				formType='billing'
+				submitForm={false}
+				getSubmittedValues={this.getSubmittedValues}
+				provideCustomerDetails={retrieveCustomerDetails}
+				customerAddressData={customerAddressData}
+				/>
+				{this.renderSubmitButton()}
 			</div>
 		);
 	}

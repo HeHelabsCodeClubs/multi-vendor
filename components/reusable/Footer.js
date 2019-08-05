@@ -7,11 +7,18 @@ class Footer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            categories: []
+            categories: [],
+            displayToTopButton: false,
+            scrollPosition: 0,
         }
+        this.handleScroll = this.handleScroll.bind(this);
+        this.checkScroll = this.checkScroll.bind(this);
+        this.handleScrollToTop = this.handleScrollToTop.bind(this);
     };
 
+
     async componentDidMount() {
+        window.addEventListener('scroll', this.handleScroll);
         const res = await fetch(`${API_URL}/categories`, {
             method: 'GET',
             headers: {
@@ -23,6 +30,11 @@ class Footer extends Component {
         this.setState({
            categories: data.data
         });
+
+    }
+
+    componentWillUnmount () {
+
     }
 
     renderFooterCategories(categories) {
@@ -36,8 +48,33 @@ class Footer extends Component {
         }
     }
 
+    handleScroll(event){
+        this.setState({
+            scrollPosition: window.pageYOffset
+        }, () => this.checkScroll())
+    }
+    checkScroll(){
+        if (this.state.scrollPosition > 500) {
+            this.setState({
+                displayToTopButton: true,
+            })
+        }
+        else {
+            this.setState ({ 
+                displayToTopButton: false,
+            })
+        }
+    }
+    
+    handleScrollToTop(){
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
+   }
+
     render() {
-        const { categories } = this.state;
+        const { categories} = this.state;
         return (
             <div className='footer-wrapper'>
                 <div className='maximum-width'>
@@ -88,12 +125,20 @@ class Footer extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                   ` </div>
                 </div>
 
-                {/* <div>
-                    <button><span class="icon-Angle_up"></span>Back on top</button>
-                </div> */}
+                <div>
+                    {this.state.displayToTopButton?
+                    <button
+                    onClick={this.handleScrollToTop}
+                    className="back-to-top"
+                    >
+                        <span className="icon-Arrow_solid"></span>
+                        <span className="mobile-invisible">Back on top</span>
+                    </button>
+                    : null}
+                </div>
                 <div>
 					<CookiesPopup />
 				</div>

@@ -499,6 +499,73 @@
             }
         }
         .made-in-rwanda-content {
+            .special-offers-row {
+                border-radius: 1rem;
+                background-color: $green-color-3;
+                width: 90%;
+                margin:auto;
+                padding: 1rem 2rem 1rem 1rem;
+                
+                @media screen and (max-width: $mobile-lg) {
+                    padding: 0 0 0 0.5rem;
+                }
+
+                &.prices-offers {
+                    background-color: $green-color-3;
+                }
+                &.on-sale-offers {
+                    background-color: $orange-color-3;
+                    margin: 2rem auto;
+                }
+
+                .single-product {
+                    min-height: 11rem !important;
+                }
+
+                .slick-dots {
+                    display: none !important;
+                }
+
+                .slick-arrow {
+                    background: $white-color;
+                    height: 10rem;
+                    width: 2.2rem;
+                    z-index: 9;
+                    margin-right: -1rem;
+
+                    @media screen and (max-width: $mobile-lg) {
+                        display: none !important;
+                    }
+                
+                    &.slick-next {
+                        border-radius: 0 1rem 1rem 0;
+                        box-shadow: -8px 0 6px 0 $box-shadow-color-2;
+                    
+                        &:before {
+                            content: '\E919';
+                            color: $black-color-2;
+                        }
+                    }
+                    &.slick-prev {
+                        border-radius: 1rem 0 0 1rem;
+                        box-shadow: 8px 0 6px 0 $box-shadow-color-2;
+
+                        &:before {
+                            content: '\E91A';
+                            color: #1d3043;
+                        }
+                    }
+                    &.slick-disabled {
+                        display: none !important;
+                    }
+                }
+                .offers-banner {
+                    img {
+                        width: inherit;
+                    }
+                }
+            }
+            
             .made-in-rwanda-wrapper {
                 display: inline-flex;
                 width: 100%;

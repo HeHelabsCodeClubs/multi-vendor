@@ -65,7 +65,7 @@ class MadeInRwanda extends Component {
 					breakpoint: 767,
 					settings: {
 						slidesToShow: 5,
-						slidesToScroll: 2
+						slidesToScroll: 2,
 					}
 				},
 				{
@@ -118,8 +118,9 @@ class MadeInRwanda extends Component {
 					settings: {
 						slidesToShow: 2,
 						centerMode: true,
-						//centerPadding: "0",
-						slidesToScroll: 1
+						centerPadding: "15px 0 0",
+						slidesToScroll: 1,
+						initialSlide: 1,
 					}
 				}
 			]

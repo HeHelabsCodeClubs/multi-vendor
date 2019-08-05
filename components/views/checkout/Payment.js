@@ -9,6 +9,7 @@ import { API_URL } from '../../../config';
 import { getClientAuthToken } from '../../../helpers/auth';
 import { getCartItems } from '../../../helpers/cart_functionality_helpers';
 import isObjectEmpty from '../../../helpers/is_object_empty';
+import Breadcrumb from '../../reusable/Breadcrumb';
 
 export default class Payment extends Component {
 	constructor(props) {
@@ -22,6 +23,7 @@ export default class Payment extends Component {
 		this.renderTabLists = this.renderTabLists.bind(this);
 		this.renderTabPanes = this.renderTabPanes.bind(this);
 		this.decideWhichPaymentLayoutToDisplay = this.decideWhichPaymentLayoutToDisplay.bind(this);
+		this.renderBreadCrumbs = this.renderBreadCrumbs.bind(this);
 	}
 	componentWillMount() {
         /**
@@ -164,10 +166,27 @@ export default class Payment extends Component {
 		} 
 		return <Loader />;
 	}
+	
+	renderBreadCrumbs() {
+        const { showBreadCrumbs } = this.props;
+        if (showBreadCrumbs) {
+            return (
+                <Breadcrumb>
+                    <a href="/" className="breadcrumb-link">Home</a>
+                        <span> / </span>
+					<a href="/checkout/account" className="breadcrumb-link">Checkout</a>
+						<span> / </span>
+                    <a href="#" className="breadcrumb-current">Payment</a>
+                </Breadcrumb>
+            );
+        }
+        return null;
+    }
 
 	render() {
 		return (
             <div className='account-info-wrapper'>
+				{this.renderBreadCrumbs()}
 				<div className='payment-section'>
 					<div className='account-info-title'>Payment</div>
 				</div>
