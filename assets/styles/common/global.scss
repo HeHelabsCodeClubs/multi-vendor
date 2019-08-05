@@ -436,7 +436,7 @@ select {
 
     @media screen and (max-width: $mobile-lg) {
         bottom: 6rem;
-        min-width: 1rem;
+        min-width: 1rem !important;
         padding-bottom: 0.5rem !important;
     }
     
