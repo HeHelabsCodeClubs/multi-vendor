@@ -219,6 +219,21 @@ html {
             }
         }
     }
+    .cart-notify {
+        .notify-text {
+            font-family: $font-regular;
+            font-size: 1rem;
+            .icon-check-circle:before {
+                font-size: 1.5rem;
+            }
+        }
+        .notify-btn {
+            button {
+                font-family: $font-bold;
+                font-size: 1rem;
+            }
+        }
+    }
 
 
     // Homepage

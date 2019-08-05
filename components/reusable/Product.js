@@ -7,6 +7,7 @@ import limitString from '../../helpers/limit_string';
 import StockIncrementor from './StockIncrementer';
 import addProductToCart from '../../helpers/add_product_to_cart';
 import { performActionIfProductNotInCart } from '../../helpers/cart_functionality_helpers';
+import { API_URL } from '../../config';
 
 
 class Product extends React.Component {
@@ -47,8 +48,28 @@ class Product extends React.Component {
     
         try {
             performActionIfProductNotInCart(product.store.slug, product.slug, () => {
+                fetch(`${API_URL}/products/inventory/check`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'Accept': 'application/json'
+					},
+					body: JSON.stringify({
+                        product_slug: product.slug
+                    })
+				}).then(async (res) => {
+					try {
+						const response = await res.json();
+                        this.handleResponse(response);
+						
+					} catch (err) {
+						console.log('error');
+						console.log(err);
+                    }
+				});
                 addProductToCart(product, () => {
                     this.props.cartShouldUpdate();
+                    this.props.openCart();
                 });
             });
             if (!displayQuantityIncrementor) {

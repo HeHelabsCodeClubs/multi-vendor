@@ -17,12 +17,20 @@ class Index extends React.Component {
 		super(props);
 		this.state = {
 			updateCart: false,
+			openCart: false
 		};
 		this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
+		this.cartShouldOpen = this.cartShouldOpen.bind(this);
 	}
 	cartShouldUpdate() {
 		this.setState({
 			updateCart: true
+		});
+	}
+
+	cartShouldOpen() {
+		this.setState({
+			openCart: true
 		});
 	}
 	/**
@@ -64,6 +72,7 @@ class Index extends React.Component {
 		return (
 			<Global 
 			updateCart={this.state.updateCart}
+			openCart={this.state.openCart}
 			>
 				<div className='main-banners'>
 					<Ad type={type} data={promoAds}/>
@@ -86,6 +95,7 @@ class Index extends React.Component {
 					<MadeInRwanda 
 					stores={stores} products={products} 
 					cartShouldUpdate={this.cartShouldUpdate}
+					openCart={this.cartShouldOpen}
 					/>
 				</div>
 				<div className='special-offers featured-sellers mobile-visible'>

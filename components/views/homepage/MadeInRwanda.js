@@ -28,6 +28,7 @@ class MadeInRwanda extends Component {
 					<Product 
 					product={product} 
 					cartShouldUpdate={cartShouldUpdate}
+					openCart={this.props.openCart}
 					/>
 				</div>
             );
