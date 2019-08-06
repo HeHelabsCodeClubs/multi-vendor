@@ -579,6 +579,10 @@ html {
             font-family: $font-bold;
             font-size: 0.9rem;
         }
+        .featured-seller-product-price {
+            font-family: $font-bold;
+            font-size: 1rem;
+        }
     }
 
     // Categories
@@ -1054,6 +1058,10 @@ html {
                 span {
                     font-size: 1.1rem;
                     font-family: $font-regular;
+                }
+                .input-field {
+                    font-family: $font-regular;
+                    font-size: 1.2rem;
                 }
             }
             .auth-button {

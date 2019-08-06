@@ -87,6 +87,7 @@ class OrderSummary extends Component {
             const totalItems = countCartItems(cartItems);
             const totalItemsText = totalItems === 1 ? `${totalItems} item` : `${totalItems} item(s)`;
             const totalItemsPrice = storeProductsTotalPrice(cartItems);
+            const overallTotal = totalItemsPrice + totalShippingPrice
             return (
                 <div className='white-background'>
                     <div className='line'>
@@ -96,6 +97,10 @@ class OrderSummary extends Component {
                     <div className='line'>
                         <span className='title'>Total shipping:</span>
                         <span className='s-price'>{`Rwf ${totalShippingPrice}`}</span>
+                    </div>
+                    <div className='line'>
+                        <span className='title'>Total:</span>
+                        <span className='t-price'>{`Rwf ${overallTotal}`}</span>
                     </div>
                 </div>
             );

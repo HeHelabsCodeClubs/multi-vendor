@@ -214,6 +214,7 @@
         .featured-seller-product {
             padding: 0 0.2rem !important;
             margin: 1rem 0 0 0;
+            position: relative;
 
             img {
                 width: 100%;
@@ -222,6 +223,16 @@
                 height: 10rem;
                 object-fit: contain;
                 padding: 3px;
+            }
+            .featured-seller-product-price {
+                border-radius: 0.3rem;
+                position: absolute;
+                color: $white-color;
+                bottom: -0.5rem;
+                width: 80%;
+                margin: 0 12% 0 8%;
+                background: $red-color-3;
+                text-align: center;
             }
         } 
         .featured-header {
