@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-unfetch';
 import { API_URL } from '../../../config';
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 const SidebarUI = ({ isOpen, ...rest }) => {
     const classes = [
@@ -51,6 +52,7 @@ class HeaderCategoryMenu extends React.Component {
         this.renderMoboCategory = this.renderMoboCategory.bind(this);
         this.renderCategorySubCategories = this.renderCategorySubCategories.bind(this);
     };
+    //targetElement = null;
 
     async componentDidMount() {
         const res = await fetch(`${API_URL}/categories`, {
@@ -70,8 +72,10 @@ class HeaderCategoryMenu extends React.Component {
         const { showCustomerMenu } = this.state;
         if (showCustomerMenu === false) {
             this.setState({ showCustomerMenu: true });
+            //disableBodyScroll(this.targetElement);
         } else {
             this.setState({ showCustomerMenu: false });
+            //enableBodyScroll(this.targetElement);
         }
     };
     customerHandleLeave = () => {

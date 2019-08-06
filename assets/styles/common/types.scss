@@ -219,6 +219,21 @@ html {
             }
         }
     }
+    .cart-notify {
+        .notify-text {
+            font-family: $font-regular;
+            font-size: 1rem;
+            .icon-check-circle:before {
+                font-size: 1.5rem;
+            }
+        }
+        .notify-btn {
+            button {
+                font-family: $font-bold;
+                font-size: 1rem;
+            }
+        }
+    }
 
 
     // Homepage
@@ -563,6 +578,10 @@ html {
         .seller-link {
             font-family: $font-bold;
             font-size: 0.9rem;
+        }
+        .featured-seller-product-price {
+            font-family: $font-bold;
+            font-size: 1rem;
         }
     }
 
@@ -1039,6 +1058,10 @@ html {
                 span {
                     font-size: 1.1rem;
                     font-family: $font-regular;
+                }
+                .input-field {
+                    font-family: $font-regular;
+                    font-size: 1.2rem;
                 }
             }
             .auth-button {

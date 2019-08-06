@@ -1139,3 +1139,27 @@
         height: 6rem;
     }
 }
+.cart-notify {
+    padding: 0.5rem 1rem;
+    @include flexbox;
+    @include flexalignitems(center);
+    @include flexjustifycontent(space-between);
+
+    .notify-text {
+        color: $green-color-2;
+        @include flexbox;
+        @include flexalignitems(center);
+        .icon-check-circle:before {
+            margin: 0 1rem 0 0;
+        }
+    }
+    .notify-btn {
+        button {
+            background: $orange-color-1;
+            color: $white-color;
+            border-radius: 0.3rem;
+            border: none;
+            padding: 0.3rem 1rem;
+        }
+    }
+}

@@ -26,6 +26,7 @@ class Global extends Component {
                 <Notifications />
                 <Header 
                 updateCart={this.state.updateCart}
+                openCart={this.props.openCart}
                 />
                 {this.props.children}
                 <Footer />

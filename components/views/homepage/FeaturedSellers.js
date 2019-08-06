@@ -25,7 +25,7 @@ class FeaturedSellers extends Component {
                         placeholderHeight={100}
                         placeholderBackgroundColor='#ffffff'
                         />
-                        {/* <img src={product.image_url} /> */}
+                        <div className='featured-seller-product-price'>Rwf 4000</div>
                     </a>
                 );
             });

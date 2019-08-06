@@ -244,6 +244,7 @@ class Header extends React.Component {
                                     </div>
                                     <Cart 
                                     updateCart={this.state.updateCart}
+                                    openCart={this.props.openCart}
                                     />
                                 </div>
                             </div>
