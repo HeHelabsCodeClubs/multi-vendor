@@ -467,16 +467,18 @@
         .stores-logos {
             padding: 2rem 0;
             background: $white-color;
-            margin: 1rem 0 2rem 0;
+            margin: 1rem 0 0 0;
 
             @media screen and (max-width: $mobile-lg){
                 display: none;
-            }
-    
+            }  
 
             .slick-list {
                 width: 90%;
                 margin: 0 5%;
+                padding: 2rem 0;
+                border: 1px solid $gray-color-13;
+                border-radius: .5rem;
             }
             .slick-slide img {
                 height: 2.3rem;
@@ -498,6 +500,16 @@
                 }
             }
         }
+        .made-in-rwanda_products {
+            background-color: $white-color;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+
+            .slick-arrow {
+                background: $gray-color-13 !important;
+            }
+        }
+
         .made-in-rwanda-content {
             .special-offers-row {
                 border-radius: 1rem;

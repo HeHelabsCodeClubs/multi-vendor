@@ -136,7 +136,7 @@ class MadeInRwanda extends Component {
 						</Slider>
 					</div>
                 </div>
-				<div className='special-offers-wrapper'>
+				<div className='special-offers-wrapper made-in-rwanda_products'>
 					<div className='special-offers-content maximum-width'>
 						<div className='special-wrapper'>
 							<Slider {...prodSettings}>
