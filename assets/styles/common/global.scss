@@ -418,3 +418,34 @@ select {
     z-index: 10001;
     position: relative;
 }
+
+// Back on top button
+
+.back-to-top {
+    @extend .default-button-styles;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 1rem .5rem !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: -4px -6px 12px 0 rgba(0, 0, 0, 0.2);
+    background-color: $red-color-3 !important;
+    border: 0.5px solid $red-color-3 !important;
+    min-width: 5rem !important;
+
+    @media screen and (max-width: $mobile-lg) {
+        bottom: 6rem;
+        min-width: 1rem !important;
+        padding-bottom: 0.5rem !important;
+    }
+    
+    [class^="icon-"] {
+        display: block;
+
+        &.icon-Arrow_solid {
+            transform: rotate(-90deg);
+            padding-left: .5rem;
+        }
+    }
+}

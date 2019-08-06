@@ -219,6 +219,21 @@ html {
             }
         }
     }
+    .cart-notify {
+        .notify-text {
+            font-family: $font-regular;
+            font-size: 1rem;
+            .icon-check-circle:before {
+                font-size: 1.5rem;
+            }
+        }
+        .notify-btn {
+            button {
+                font-family: $font-bold;
+                font-size: 1rem;
+            }
+        }
+    }
 
 
     // Homepage
@@ -564,6 +579,10 @@ html {
             font-family: $font-bold;
             font-size: 0.9rem;
         }
+        .featured-seller-product-price {
+            font-family: $font-bold;
+            font-size: 1rem;
+        }
     }
 
     // Categories
@@ -799,6 +818,9 @@ html {
         .btn_store-cartProducts {
             font-size: 1.28rem;
             font-family: $font-semi-bold;
+            span {
+                font-size: .8rem !important;
+            }
         }
     }
     .title {
@@ -1037,6 +1059,10 @@ html {
                     font-size: 1.1rem;
                     font-family: $font-regular;
                 }
+                .input-field {
+                    font-family: $font-regular;
+                    font-size: 1.2rem;
+                }
             }
             .auth-button {
                 button {
@@ -1257,10 +1283,7 @@ select {
         font-size: 1rem !important;
     }
 }
-
-
 // Cookies popup
-
 .cookies-wrapper {
     p {
         font-family: $font-light;
@@ -1273,6 +1296,17 @@ select {
             span {
                 font-size: 1rem;
             }
+        }
+    }
+}
+
+// back on top button
+.back-to-top {    
+    [class^="icon-"] {
+        font-size: 1.7rem;
+
+        @media screen and (max-width: $mobile-lg) {
+            font-size: 1rem;
         }
     }
 }

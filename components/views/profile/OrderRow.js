@@ -20,11 +20,11 @@ class OrderRow extends Component {
                     <tr>
                         <td><a href='#' onClick={() => this.triggerSingleOrderDisplay(id)}>#{id}</a></td>
                         <td>{date[0]} <span>{date[1]}</span></td>
-                        <td>{order.method_title}</td>
-                        <td> <span className="badge-txt">{paymentStatus.charAt(0).toUpperCase() + paymentStatus.slice(1)}</span> </td>
+                        <td className="mobile-invisible">{order.method_title}</td>
+                        <td className="mobile-invisible"> <span className="badge-txt">{paymentStatus.charAt(0).toUpperCase() + paymentStatus.slice(1)}</span> </td>
                         {/* <td> <span className="badge-txt">In progress</span></td> */}
-                        <td>Rwf {order.base_grand_total}</td>
-                        <td><a href="#" onClick={() => this.triggerSingleOrderDisplay(id)}><span className='icon-external_link'></span></a></td>
+                        <td>Rwf {order.base_grand_total} <span className="mobile-visible">{order.method_title}</span></td>
+                        <td className="mobile-invisible"><a href="#" onClick={() => this.triggerSingleOrderDisplay(id)}><span className='icon-external_link'></span></a></td>
                     </tr>
                 );
             });
@@ -44,10 +44,10 @@ class OrderRow extends Component {
                         <thead>
                             <th>Order #</th>
                             <th>Date</th>
-                            <th>Payment method</th>
-                            <th>Payment status</th>
+                            <th className="mobile-invisible">Payment method</th>
+                            <th className="mobile-invisible">Payment status</th>
                             <th>Amount</th>
-                            <th>Action</th>
+                            <th className="mobile-invisible">Action</th>
                         </thead>
                         <tbody>
                             {this.renderOrders(orders)}

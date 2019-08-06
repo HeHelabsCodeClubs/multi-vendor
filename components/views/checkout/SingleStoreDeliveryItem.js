@@ -299,7 +299,8 @@ export default class SingleStoreDeliveryItem extends Component {
                             type='button'
                             className="btn_store-cartProducts"
                             onClick={this.showAllProducts}
-                            >
+                            > 
+                                <span className="icon-Angle_down"></span>
                                 {productsButtonText}
                             </button>
                         </div>

@@ -6,6 +6,7 @@ import { getUserAuthenticatedInfo, logoutUser } from '../../../helpers/auth';
 import isObjectEmpty from '../../../helpers/is_object_empty';
 import SearchDropdown from './SearchDropdown';
 import classnames from "classnames";
+import Head from 'next/head';
 
 class Header extends React.Component {
     constructor(props) {
@@ -147,6 +148,11 @@ class Header extends React.Component {
     render() {
         return (
             <div className="header-panel">
+                <Head>
+                    <link rel="shortcut icon" href="https://res.cloudinary.com/hehe/image/upload/v1563286307/multi-vendor/HeHe_Favicon.png" />
+                    <title>Hehe Marketplace</title>
+                </Head>
+
                 <div className={classnames("nav__bar", {
                     "navbar__hidden": !this.state.visible
                 })}
@@ -238,6 +244,7 @@ class Header extends React.Component {
                                     </div>
                                     <Cart 
                                     updateCart={this.state.updateCart}
+                                    openCart={this.props.openCart}
                                     />
                                 </div>
                             </div>

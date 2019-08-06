@@ -125,7 +125,7 @@ export default class InputField extends Component {
         } = this.props;
         const { inputValue, hasError } = this.state;
         //const inputClassName = hasError ? `${classN} is-invalid`: classN;
-        let inputClassName = typeOfInput !== 'selector' ? '' : 'input-field';
+        let inputClassName = typeOfInput !== 'selector' ? 'input-field' : 'input-field';
         if (name === this.props.inputWithError) {
             if (hasError) {
                 inputClassName = 'input-field is-invalid';
@@ -195,14 +195,14 @@ export default class InputField extends Component {
                     />
                     <a
                     className={inputClassName}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        if (inputValue) {
-                            this.handleInputChange(false);
-                            return;
-                        }
-                        this.handleInputChange(true);
-                    }}
+                    // onClick={(e) => {
+                    //     e.preventDefault();
+                    //     if (inputValue) {
+                    //         this.handleInputChange(false);
+                    //         return;
+                    //     }
+                    //     this.handleInputChange(true);
+                    // }}
                     >
                     
                     {fieldText}

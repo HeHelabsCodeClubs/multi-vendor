@@ -6,6 +6,7 @@ import {
     storeProductsTotalPrice
 } from '../../../helpers/cart_functionality_helpers';
 import isObjectEmpty from '../../../helpers/is_object_empty';
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 const SidebarUI = ({ isOpen, ...rest }) => {
     const classes = [
@@ -47,23 +48,32 @@ class Cart extends Component {
         super(props);
         this.state = {
             isOpen: props.isOpen,
-            cartItems: {}
+            cartItems: {},
+            openCart: false
         };
         this.openSidebar = this.openSidebar.bind(this);
         this.renderCartContent = this.renderCartContent.bind(this);
         this.updateCartItems = this.updateCartItems.bind(this);
         this.renderCartIcon = this.renderCartIcon.bind(this);
+        //this.renderNotificationInCartSidebar = this.renderNotificationInCartSidebar.bind(this);
     };
+    targetElement = null;
 
     componentDidMount() {
         this.updateCartItems();
     }
 
     componentWillReceiveProps(nextProps) {
-        const { updateCart } = nextProps;
+        const { updateCart, openCart } = nextProps;
         if (updateCart) {
             this.updateCartItems();
         }
+        // if (openCart) {
+        //     this.setState({
+        //         openCart: true
+        //     })
+        //     this.openSidebar();
+        // }
     }
 
     updateCartItems() {
@@ -84,16 +94,18 @@ class Cart extends Component {
     }
 
     openSidebar() {
-        this.updateCartItems();
         const { isOpen } = this.state;
+        this.updateCartItems();
         if (isOpen) {
             this.setState({ 
                 isOpen: false 
             });
+            //enableBodyScroll(this.targetElement);
         } else {
             this.setState({ 
                 isOpen: true
             });
+            //disableBodyScroll(this.targetElement);
         }
     }
 
@@ -168,8 +180,20 @@ class Cart extends Component {
                 </span>
             </a>
         );
-        
     }
+
+    // renderNotificationInCartSidebar() {
+    //     const { openCart } = this.props;
+    //     if (openCart) {
+    //         return (
+    //             <div className='cart-notify'>
+    //                 <span className='notify-text'><span className='icon-check-circle'></span>A new item has been added to your shopping cart. </span>
+    //                 <span className='notify-btn'><button onClick={() => this.openSidebar(false)}>Add more products</button></span>
+    //             </div>
+    //         )
+    //     } 
+    //     return null;
+    // }
 
     render() {
         const { isOpen, cartItems } = this.state;
@@ -196,6 +220,7 @@ class Cart extends Component {
                                         <span className="icon-Path-58" />
                                     </button>
                                 </div>
+                                {/* {this.renderNotificationInCartSidebar()} */}
                                 {this.renderCartContent()}
                             </div>
                         </SidebarUI.Content>

@@ -73,7 +73,7 @@ class SignupForm extends Component {
 
     renderTermsAndConditionsLink() {
         return (
-            <div>Select the checkbox to accept the <a href='/terms'>Terms and Conditions</a></div>
+            <div>Select the checkbox to accept the<a href='/terms' className='terms-link'>Terms and Conditions</a></div>
         )
     }
 
