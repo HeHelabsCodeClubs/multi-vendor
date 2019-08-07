@@ -1084,6 +1084,25 @@ html {
     // Footer
 
     .footer-wrapper {
+        .store-info {    
+            .footer-card-wrapper {
+                .footer-card {
+                    h3 {
+                        font-family: $font-bold;
+                        @media screen and (min-width: $mobile-lg) and (max-width: $tablet-md) {
+                            font-size: 1.2rem;
+                        }
+                        @media screen and (max-width: $mobile-lg) {
+                            font-size: 1.1rem;
+                        }
+                    }
+                    p {
+                        font-family: $font-regular; 
+                    }
+                }
+            }
+        }
+
         .footer-wrapper-content {
     
             .footer-title {
@@ -1096,19 +1115,23 @@ html {
             .footer-content {
                 .content {
                     font-family: $font-light;
-                    font-size: 1.4rem;
+                    font-size: 1.2rem;
+
+                    &:hover {
+                        font-family: $font-regular;
+                    }
 
                     @media (max-width: $tablet-md) {
-                        font-size: 1.2rem;
+                        font-size: 1rem;
                     }
                 }
             }
             .contact-content {
                 font-family: $font-light;
-                font-size: 1.4rem;
+                font-size: 1.2rem;
                 
                 @media (max-width: $tablet-md) {
-                    font-size: 1.2rem;
+                    font-size: 1rem;
                 }
             }
             button {
@@ -1129,7 +1152,7 @@ html {
 
     .order-response__content {
         h1 {
-            font-family: 'Harmonia Sans Pro Bold';
+            font-family: $font-bold;;
             font-size: 6rem;
         }
         h5 {

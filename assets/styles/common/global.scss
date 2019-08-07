@@ -21,14 +21,14 @@ body {
     min-height: 100vh;
     position: relative;
     width: 100%;
-    padding-bottom: 24rem !important;
+    padding-bottom: 37rem !important;
     overflow-x: hidden !important;
 
     @media screen and (max-width: $mobile-md-lg) {
-        padding-bottom: 61rem !important;
+        padding-bottom: 86rem !important;
     }
     @media screen and (min-width: $mobile-md-lg) and (max-width: $mobile-lg) {
-        padding-bottom: 42rem !important;
+        padding-bottom: 58rem !important;
     }
 }
 .maximum-width {
