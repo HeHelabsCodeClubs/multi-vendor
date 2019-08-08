@@ -208,9 +208,16 @@ class Header extends React.Component {
                             <div className='col-lg-5 col-md-5 col-sm-2 col-11 search-container'>
                                 <form className='main-search' onSubmit={this.handleSearchValueSubmission}>
 
-                                    <SearchDropdown 
-                                    updateParentSearchTerm={this.updateSearchValue}
-                                    />
+                                    <div className={classnames("search-suggestion", {
+                                    "dismiss-onscroll": !this.state.visible
+                                    })}
+                                    >
+                                        <SearchDropdown 
+                                        updateParentSearchTerm={this.updateSearchValue}
+                                        />
+
+                                    </div>
+
                                     {/* <input type="text" placeholder="Search store or product" /> */}
                                     {/* <span className='categories-dropdown'>
                                         <Select2

@@ -477,7 +477,7 @@ class ProductPage extends React.Component {
         } else {
             return (
                 <button 
-                className='white-btn'
+                className='white-btn direct-buy__btn'
                 type='submit'
                 onClick={this.handleDirectBuy}
                 >

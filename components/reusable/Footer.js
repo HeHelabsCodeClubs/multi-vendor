@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../../assets/styles/layouts/footer.scss';
 import { API_URL } from '../../config';
 import CookiesPopup from './CookiesPopup';
+import LiveChat from './LiveChat';
 
 class Footer extends Component {
     constructor(props) {
@@ -169,12 +170,13 @@ class Footer extends Component {
                     className="back-to-top"
                     >
                         <span className="icon-Arrow_solid"></span>
-                        <span className="mobile-invisible">Back on top</span>
+                        {/* <span className="mobile-invisible">Back on top</span> */}
                     </button>
                     : null}
                 </div>
                 <div>
 					<CookiesPopup />
+                    <LiveChat />
 				</div>
             </div>
         )
