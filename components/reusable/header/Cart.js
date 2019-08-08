@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
+import localforage from 'localforage';
 import SingleCartStoreItem from '../SingleCartStoreItem';
 import { 
     getCartItems,
     countCartItems,
     storeProductsTotalPrice
 } from '../../../helpers/cart_functionality_helpers';
+import { LOCAL_SHIPMENTS_KEY } from '../../../config';
 import isObjectEmpty from '../../../helpers/is_object_empty';
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { 
+    retrieveShipmentDataPerStoreSlug, 
+    removeShipmentInLocal 
+} from '../../../helpers/shipment_method_functionality_helpers';
 
 const SidebarUI = ({ isOpen, ...rest }) => {
     const classes = [
@@ -49,7 +55,9 @@ class Cart extends Component {
         this.state = {
             isOpen: props.isOpen,
             cartItems: {},
-            openCart: false
+            openCart: false,
+            shipmentMethod: '',
+            shipmentHasBeenSelected: false
         };
         this.openSidebar = this.openSidebar.bind(this);
         this.renderCartContent = this.renderCartContent.bind(this);
@@ -58,7 +66,7 @@ class Cart extends Component {
         //this.renderNotificationInCartSidebar = this.renderNotificationInCartSidebar.bind(this);
     };
     targetElement = null;
-
+    
     componentDidMount() {
         this.updateCartItems();
     }
@@ -76,6 +84,30 @@ class Cart extends Component {
         // }
     }
 
+    updateLocalShipment(cartItems) {
+        localforage.getItem(LOCAL_SHIPMENTS_KEY).then((items) => {
+        if (items !== null) {
+            Object.keys(items).forEach((key, index) => {
+                if (cartItems[key] === undefined) {
+                    retrieveShipmentDataPerStoreSlug(key, (existingMethod) => {
+                    const data = {
+                        slug: key,
+                        method: existingMethod
+                    };
+                    if (existingMethod !== '') {
+                        removeShipmentInLocal(data, () => {
+                        });
+                    }
+                })
+                }
+            });
+        }
+        }).catch((err) => {
+            if (err) {
+                console.log(err);
+            }
+        });
+    }
     updateCartItems() {
         try {
             getCartItems((items) => {
@@ -84,8 +116,8 @@ class Cart extends Component {
                         cartItems: items
                     });
                 }
+                this.updateLocalShipment(items);
             });
-            
         } catch(err) {
             if (err) {
                 console.log(err);

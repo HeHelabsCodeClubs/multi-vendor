@@ -1,5 +1,6 @@
 import localforage from 'localforage';
 import isObjectEmpty from './is_object_empty';
+import { retrieveShipmentDataPerStoreSlug, removeShipmentInLocal} from './shipment_method_functionality_helpers';
 
 import { 
     CART_ITEMS_KEY,
@@ -42,8 +43,21 @@ function removeProductFromStore(cartItems, product, productIndex) {
     
     // if all products have been removed
     if (isObjectEmpty(cartItems[slug].products)) {
+        console.log(cartItems);
         delete cartItems[slug];
+        if (slug !== undefined) {
+            retrieveShipmentDataPerStoreSlug(slug, (existingMethod) => {
+                const data = {
+                    slug: slug,
+                    method: existingMethod
+                };
+                if (existingMethod !== '') {
+                    removeShipmentInLocal(data, () => {
+                        //console.log('data', data);
+                    });
+                }
+            })
+        }
     }
-
     return cartItems;
 }
