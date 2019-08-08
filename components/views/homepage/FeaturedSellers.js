@@ -25,7 +25,7 @@ class FeaturedSellers extends Component {
                         placeholderHeight={100}
                         placeholderBackgroundColor='#ffffff'
                         />
-                        <div className='featured-seller-product-price'>Rwf 4000</div>
+                        <div className='featured-seller-product-price'>{`Rwf ${product.product_price}`}</div>
                     </a>
                 );
             });

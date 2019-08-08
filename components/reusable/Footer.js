@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../../assets/styles/layouts/footer.scss';
 import { API_URL } from '../../config';
 import CookiesPopup from './CookiesPopup';
+import LiveChat from './LiveChat';
 
 class Footer extends Component {
     constructor(props) {
@@ -77,6 +78,40 @@ class Footer extends Component {
         const { categories} = this.state;
         return (
             <div className='footer-wrapper'>
+                
+                <div className="store-info">
+                    <div className='row reset-row'>
+                        <div className="col-lg-3 col-md-3 col-sm-3 col-6 footer-card-wrapper">
+                            <div className="footer-card">
+                                <img src="https://res.cloudinary.com/hehe/image/upload/v1565080905/multi-vendor/icons/footer-info/Card_payment.svg" />
+                                <h3>Secure Payment</h3>
+                                <p>Pay with the world’s most popular and secure payment methods.</p>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-md-3 col-sm-3 col-6 footer-card-wrapper">
+                            <div className="footer-card">
+                                <img src="https://res.cloudinary.com/hehe/image/upload/v1565080905/multi-vendor/icons/footer-info/Car_Truck.svg" />
+                                <h3>Fast Delivery</h3>
+                                <p>Think, click and pick up! Delivery from your chosen store to your door.</p>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-md-3 col-sm-3 col-6 footer-card-wrapper">
+                            <div className="footer-card">
+                                <img src="https://res.cloudinary.com/hehe/image/upload/v1565080905/multi-vendor/icons/footer-info/Ptice_Tag.svg" />
+                                <h3>Great Value</h3>
+                                <p>We offer competitive prices on all products.</p>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-md-3 col-sm-3 col-6 footer-card-wrapper">
+                            <div className="footer-card">
+                                <img src="https://res.cloudinary.com/hehe/image/upload/v1565080905/multi-vendor/icons/footer-info/Return_Arrow.svg" />
+                                <h3>Hussle-Free Returns</h3>
+                                <p>We offer returns, refunds and replacements if need be. Terms & Conditions apply.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div className='maximum-width'>
                     <div className='footer-wrapper-content'>
                         <div className='row reset-row'>
@@ -135,12 +170,13 @@ class Footer extends Component {
                     className="back-to-top"
                     >
                         <span className="icon-Arrow_solid"></span>
-                        <span className="mobile-invisible">Back on top</span>
+                        {/* <span className="mobile-invisible">Back on top</span> */}
                     </button>
                     : null}
                 </div>
                 <div>
 					<CookiesPopup />
+                    <LiveChat />
 				</div>
             </div>
         )

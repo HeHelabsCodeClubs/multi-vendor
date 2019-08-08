@@ -53,6 +53,8 @@
 		background-color: $white-color;
 		border-radius: 0.5rem;
 		width: calc(100% + 15px);
+		max-width: 40rem;
+    	margin: auto;
 
 		.top-part {
 			border-bottom: .5px solid $gray-color-1;

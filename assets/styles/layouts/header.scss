@@ -170,9 +170,20 @@
                 display: inline-block;
                 background: transparent;
             }
-            .react-autosuggest__container {
+
+            .search-suggestion {
                 width: 93%;
-                display: inline-block; 
+                display: inline-block;
+                &.dismiss-onscroll {
+                    .react-autosuggest__suggestions-list {
+                        display: none;
+                    }
+                }
+            }
+
+            .react-autosuggest__container {
+                // width: 93%;
+                // display: inline-block; 
 
                 @media screen and (max-width: $mobile-lg) {
                     width: 100%;
