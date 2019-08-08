@@ -77,14 +77,14 @@ class SpecialOffers extends Component {
                         </Slider>
                     </div>
 
-                    <div className="special-offers-row on-sale-offers">
+                    {/* <div className="special-offers-row on-sale-offers">
                         <Slider {...settings}>
                             <div className="offers-banner">
                                 <img src="https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1564491392/multi-vendor/deals-offers.png" />
                             </div>
                             {this.renderSpecialProducts(offers)}
                         </Slider>
-                    </div>
+                    </div> */}
 				</div>
 			</div>
 		);
