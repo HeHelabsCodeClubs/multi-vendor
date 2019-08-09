@@ -21,6 +21,7 @@ import {
     redirectUserToAfterLoginPage
 } from '../../../helpers/auth';
 import Breadcrumb from '../../reusable/Breadcrumb';
+import { ENGINE_METHOD_ALL } from 'constants';
 
 class SignupForm extends Component {
     constructor(props) {
@@ -261,7 +262,7 @@ class SignupForm extends Component {
                 this.setState({
                     registerStatus: 'initial',
                     inputIsInvalid: true,
-                    errorMessage: USER_NOT_CREATED
+                    errorMessage: UNKNOWN_ERROR
                 });
                 notify.show(UNKNOWN_ERROR, 'error', 2000);
 
@@ -468,3 +469,4 @@ class SignupForm extends Component {
 }
 
 export default SignupForm;
+

@@ -3,10 +3,22 @@ import Global from '../components/reusable/Global';
 import '../assets/styles/layouts/invoice.scss';
 
 class Invoice extends Component {
+    constructor(props) {
+        super(props);
+        this.PrintInvoice = this.PrintInvoice.bind(this);
+    };
+
+    PrintInvoice () {
+        window.print();
+    }
+
     render () {
         return (
             <Global>
-                <div className='maximum-width'>
+                <div className="invoice-header">
+                    <button onClick={this.PrintInvoice} className="print-btn">Print Invoice</button>
+                </div>
+                <div ref = "PrintMe" className='maximum-width'>
                     <div className="invoice-wrapper">
                         <div className="main-title">
                             <h5>Invoice #0015</h5>
@@ -165,8 +177,12 @@ class Invoice extends Component {
                             <p>Subtotal: Rwf 21050</p>
                             <p>Shipping cost: Rwf 1050</p>
                             <h5>Grand Total: Rwf 21050</h5>
+
                         </div>
                     </div>
+                    <div className="invoice-footer">
+                    <button onClick={this.PrintInvoice} className="print-btn">Print Invoice</button>
+                </div>
                 </div>
             </Global>
         );
@@ -174,3 +190,20 @@ class Invoice extends Component {
 }
 
 export default Invoice;
+
+// class PrintInvoice extends Component {
+//     render() {
+//       return (
+//         <div>
+//           <ReactToPrint
+//             trigger={() => <a href="#">Print this out!</a>}
+//             content={() => this.componentRef}
+//             copyStyles={true}
+//           />
+//           <Invoice ref={el => (this.componentRef = el)} />
+//         </div>
+//       );
+//     }
+//   }
+
+// export default PrintInvoice;

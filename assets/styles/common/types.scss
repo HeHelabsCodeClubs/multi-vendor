@@ -1089,9 +1089,7 @@ html {
                 .footer-card {
                     h3 {
                         font-family: $font-bold;
-                        @media screen and (min-width: $mobile-lg) and (max-width: $tablet-md) {
-                            font-size: 1.2rem;
-                        }
+                        font-size: 1.2rem;
                         @media screen and (max-width: $mobile-lg) {
                             font-size: 1.1rem;
                         }
@@ -1332,4 +1330,11 @@ select {
             font-size: 1rem;
         }
     }
+}
+
+
+// Print button
+.print-btn {
+    font-family: $font-regular !important;
+    font-size: 1.2rem; 
 }

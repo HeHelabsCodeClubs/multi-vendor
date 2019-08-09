@@ -36,9 +36,7 @@ export default class SingleStoreDeliveryItem extends Component {
 
     componentWillReceiveProps(nextProps) {
         const { triggerValidation } = nextProps;
-        //console.log('i am called', triggerValidation);
         if (triggerValidation) {
-            //console.log('i am called');
             const { store } = this.state;
             retrieveShipmentDataPerStoreSlug(store.slug, (existingMethod) => {
                 this.validatedShipment(existingMethod); 
@@ -48,7 +46,6 @@ export default class SingleStoreDeliveryItem extends Component {
 
     validatedShipment(shipment_method) {
         //const { shipmentMethod } = this.state;
-        console.log('shipment is', shipment_method);
         if (shipment_method === '') {
             this.props.isShipmentValid(false);
         } else {
