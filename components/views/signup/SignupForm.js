@@ -10,7 +10,8 @@ import {
     SUCCESSFULLY_CREATED_USER,
     UNKNOWN_ERROR,
     PLATFORM_CLIENT_ID,
-    PLATFORM_CLIENT_SECRET
+    PLATFORM_CLIENT_SECRET,
+    ALERT_TIMEOUT
 } from '../../../config';
 import InputField from '../../reusable/InputField';
 import MessageDisplayer from '../../reusable/MessageDisplayer';
@@ -264,7 +265,7 @@ class SignupForm extends Component {
                     inputIsInvalid: true,
                     errorMessage: UNKNOWN_ERROR
                 });
-                notify.show(UNKNOWN_ERROR, 'error', 2000);
+                notify.show(UNKNOWN_ERROR, 'error', ALERT_TIMEOUT);
 
         }
     }

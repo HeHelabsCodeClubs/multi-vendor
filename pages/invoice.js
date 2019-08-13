@@ -49,7 +49,7 @@ class Invoice extends Component {
                                 </div>
                             </div>
 
-                            <div className="col-lg-3 col-md-3 col-sm-6 col-6 head-card empty-offset">
+                            <div className="col-lg-3 col-md-3 col-sm-6 col-6 head-card empty-offset mobile-invisible">
                               
                             </div>
 
