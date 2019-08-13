@@ -203,7 +203,7 @@ class Delivery extends Component {
 					{this.renderPlaceOrderButton()}
 				</div>
 				{this.renderItems()}
-				<div className='shipping-btn'>
+				<div className='shipping-btn continue-check place-check'>
 					{this.renderPlaceOrderButton()}
 				</div>
             </div>

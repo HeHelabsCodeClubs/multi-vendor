@@ -1,5 +1,67 @@
 @import "../main";
 
+.checkout-content  {
+    position: relative;
+    .checkouot__left-block {
+        position: initial;
+        .auth-button {
+            @media screen and (max-width: $mobile-lg) {
+                &.continue-check {
+                    &:before {
+                        content: "continue";
+                        position: absolute;
+                        bottom: 1rem;
+                        left: 2rem;
+                        margin: 0 1rem 0 0;
+                        background: #f6921e;
+                        color: #ffffff;
+                        -webkit-transition: 0.5s;
+                        -moz-transition: 0.5s;
+                        -ms-transition: 0.5s;
+                        transition: 0.5s;
+                        border: 0.5px solid #f6921e;
+                        border-radius: 0.35rem;
+                        outline: none !important;
+                        padding: 0.7rem 0;
+                        min-width: 11rem;
+                        z-index: 1000;
+                    }
+                }
+                &.submit-order {
+                    &:before {
+                        content: "Submit My Order" !important;
+                    }
+                }
+            }
+        } 
+        .place-check {
+            .shipping-btn {
+                .auth-button {
+                    &:before {
+                        content: "Place Order" !important;
+                        position: absolute;
+                        bottom: 1rem;
+                        left: 2rem;
+                        margin: 0 1rem 0 0;
+                        background: #f6921e;
+                        color: #ffffff;
+                        -webkit-transition: 0.5s;
+                        -moz-transition: 0.5s;
+                        -ms-transition: 0.5s;
+                        transition: 0.5s;
+                        border: 0.5px solid #f6921e;
+                        border-radius: 0.35rem;
+                        outline: none !important;
+                        padding: 0.7rem 0;
+                        min-width: 11rem;
+                        z-index: 1000;
+                    }
+                }
+            }
+        }   
+    }    
+}
+
 .checkout-process {
     position: relative;
     width: 100%;
@@ -470,6 +532,8 @@
 
 .order-summary-grid {
     background: $gray-color-2;
+    padding-bottom: 3rem;
+
     .order-summary-wrapper {
         margin: 3rem 1rem;
 

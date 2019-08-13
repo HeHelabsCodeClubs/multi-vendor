@@ -425,14 +425,19 @@ select {
     @extend .default-button-styles;
     position: fixed;
     bottom: 20vh;
-    right: 2rem;
-    padding: 1rem .2rem !important;
+    right: 0rem;
     margin: 0 !important;
     box-shadow: 0 -3px 6px 0 rgba(0, 0, 0, 0.2);
-    background-color: $orange-color-1;
-    border: 0.5px solid $orange-color-1 !important;
-    border-radius: .4rem !important;
-    min-width: 3rem !important;
+    background-color: #f6921e;
+    border: 0.5px solid #f6921e !important;
+    border-radius: .4rem 0 0 .4rem !important;
+    min-width: 3rem  !important;
+    width: 3rem !important;
+    height: 3rem !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 !important;
 
     @media screen and (max-width: $mobile-lg) {
         bottom: 6rem;
@@ -445,7 +450,6 @@ select {
 
         &.icon-Arrow_solid {
             transform: rotate(-90deg);
-            padding-left: .5rem;
         }
     }
 }
