@@ -4,148 +4,178 @@ import { LOCAL_SHIPMENTS_KEY } from '../config';
  * Handles shipment methods local functionalitys
  */
 
- /**
-  * 
-  * @param {object} shipmentData // e.g: { slug: 'mart', method: 'title,description,rate,cart_shipping_id' }
-  * @param {function} callback
-  * 
-  * @return {void} 
-  */
+/**
+ * 
+ * @param {object} shipmentData // e.g: { slug: 'mart', method: 'title,description,rate,cart_shipping_id' }
+ * @param {function} callback
+ * 
+ * @return {void} 
+ */
 
- export const storeShipmentInLocal = (shipmentData, callback) => {
-    // check if there's no data in the local storage first
-    localforage.getItem(LOCAL_SHIPMENTS_KEY).then((items) => {
-        if (items === null) {
-            // save shipment info
-            saveShipmentInfo(shipmentData, callback);
-        } else {
-            // update items
-            updateShipmentInfo(items, shipmentData, callback);
-        }
-    }).catch((err) => {
-        if (err) {
-            console.log(err)
-        }
-    });
- }
+export const storeShipmentInLocal = (shipmentData, callback) => {
+	// check if there's no data in the local storage first
+	localforage.getItem(LOCAL_SHIPMENTS_KEY).then((items) => {
+		if (items === null) {
+			// save shipment info
+			saveShipmentInfo(shipmentData, callback);
+		} else {
+			// update items
+			updateShipmentInfo(items, shipmentData, callback);
+		}
+	}).catch((err) => {
+		if (err) {
+			console.log(err)
+		}
+	});
+}
 
- /**
-  * Saves shipment info in local storage when it is initially empty
-  * @param {object} shipmentData 
-  * @param {function} callback 
-  * 
-  * @return {void}
-  */
+/**
+ * Saves shipment info in local storage when it is initially empty
+ * @param {object} shipmentData 
+ * @param {function} callback 
+ * 
+ * @return {void}
+ */
 
- const saveShipmentInfo = (shipmentData, callback) => {
-     const data = {};
-     const { slug, method } = shipmentData;
-     data[slug] = {
-         method: method
-     };
-     localforage.setItem(LOCAL_SHIPMENTS_KEY, data).then(() => {
-        if (callback !== undefined) {
-            callback();
-        }
-     }).catch((err) => {
-        if(err) {
-            console.log(err);
-        }
-     });
- }
+const saveShipmentInfo = (shipmentData, callback) => {
+	const data = {};
+	const { slug, method } = shipmentData;
+	data[slug] = {
+		method: method
+	};
+	localforage.setItem(LOCAL_SHIPMENTS_KEY, data).then(() => {
+		if (callback !== undefined) {
+			callback();
+		}
+	}).catch((err) => {
+		if(err) {
+			console.log(err);
+		}
+	});
+}
 
+/**
+ * Updates shipment methods local data
+ * 
+ * @param {object} existingShipmentData 
+ * @param {object} shipmentData 
+ * @param {function} callback 
+ * 
+ * @return {void}
+ */
 
- /**
-  * Updates shipment methods local data
-  * 
-  * @param {object} existingShipmentData 
-  * @param {object} shipmentData 
-  * @param {function} callback 
-  * 
-  * @return {void}
-  */
+const updateShipmentInfo = (existingShipmentData, shipmentData, callback) => {
+	const updatedShipmentData = existingShipmentData;
+	const { slug, method } = shipmentData;
+	if (updatedShipmentData[slug] !== undefined) {
+		updatedShipmentData[slug].method = method;
+	} else {
+		updatedShipmentData[slug] = { method };
+	}
 
- const updateShipmentInfo = (existingShipmentData, shipmentData, callback) => {
-     const updatedShipmentData = existingShipmentData;
-     const { slug, method } = shipmentData;
-     if (updatedShipmentData[slug] !== undefined) {
-         updatedShipmentData[slug].method = method;
-     } else {
-         updatedShipmentData[slug] = { method };
-     }
+	localforage.setItem(LOCAL_SHIPMENTS_KEY, updatedShipmentData).then(() => {
+		if (callback !== undefined) {
+			callback();
+		}
+	}).catch((err) => {
+		if (err) {
+			console.log(err);
+		}
+	});
+}
 
-     localforage.setItem(LOCAL_SHIPMENTS_KEY, updatedShipmentData).then(() => {
-        if (callback !== undefined) {
-            callback();
-        }
-     }).catch((err) => {
-         if (err) {
-             console.log(err);
-         }
-     });
- }
+/**
+ * 
+ * @param {object} shipmentData // e.g: { slug: 'mart', method: 'title,description,rate,cart_shipping_id' }
+ * @param {function} callback
+ * 
+ * @return {void} 
+ */
 
- /**
-  * Retrieves the shipment info data for a particular store
-  * 
-  * @param {string} storeSlug 
-  * @param {function} callback 
-  * 
-  * @return {void}
-  */
+export const removeShipmentInLocal = (shipmentData, callback) => {
+	// check if there's no data in the local storage first
+	localforage.getItem(LOCAL_SHIPMENTS_KEY).then((items) => {
+		if (items !== null) {
+			const { slug } = shipmentData;
+			delete items[slug];
+			localforage.setItem(LOCAL_SHIPMENTS_KEY, items).then(() => {
+				if (callback !== undefined) {
+					callback();
+				}
+			}).catch((err) => {
+				if (err) {
+					console.log(err);
+				}
+			});
+		}
+	}).catch((err) => {
+		if (err) {
+			console.log(err)
+		}
+	});
+}
 
- export const retrieveShipmentDataPerStoreSlug = (storeSlug, callback) => {
-     localforage.getItem(LOCAL_SHIPMENTS_KEY).then((items) => {
-        if (items === null) {
-            if (callback !== undefined) {
-                callback('');
-            }
-        } else {
-            if (callback !== undefined) {
-                if (items[storeSlug] !== undefined) {
-                    callback(items[storeSlug].method);
-                } else {
-                    callback('');
-                }
-            }
-        }
-     }).catch((err) => {
-        if (err) {
-            console.log(err);
-        }
-     });
- }
+/**
+ * Retrieves the shipment info data for a particular store
+ * 
+ * @param {string} storeSlug 
+ * @param {function} callback 
+ * 
+ * @return {void}
+ */
 
- /**
-  * Provides a shipment rate for a particular store
-  * 
-  * @param {string} storeSlug 
-  * @param {function} callback 
-  * 
-  * @return {void}
-  */
+export const retrieveShipmentDataPerStoreSlug = (storeSlug, callback) => {
+	localforage.getItem(LOCAL_SHIPMENTS_KEY).then((items) => {
+	if (items === null) {
+		if (callback !== undefined) {
+			callback('');
+		}
+	} else {
+		if (callback !== undefined) {
+			if (items[storeSlug] !== undefined) {
+				callback(items[storeSlug].method);
+			} else {
+				callback('');
+			}
+		}
+	}
+	}).catch((err) => {
+		if (err) {
+			console.log(err);
+		}
+	});
+}
 
- export const retrieveShipmentPricePerStoreSlug = (storeSlug, callback) => {
-    localforage.getItem(LOCAL_SHIPMENTS_KEY).then((items) => {
-       if (items === null) {
-           if (callback !== undefined) {
-               callback(0);
-           }
-       } else {
-           if (callback !== undefined) {
-               if (items[storeSlug] !== undefined) {
-                   const shipmentData = items[storeSlug].method.split(',');
-                   callback(Number(shipmentData[2]));
-               } else {
-                   callback(0);
-               }
-           }
-       }
-    }).catch((err) => {
-       if (err) {
-           console.log(err);
-       }
-    });
+/**
+ * Provides a shipment rate for a particular store
+ * 
+ * @param {string} storeSlug 
+ * @param {function} callback 
+ * 
+ * @return {void}
+ */
+
+export const retrieveShipmentPricePerStoreSlug = (storeSlug, callback) => {
+	localforage.getItem(LOCAL_SHIPMENTS_KEY).then((items) => {
+		if (items === null) {
+			if (callback !== undefined) {
+				callback(0);
+			}
+		} else {
+			if (callback !== undefined) {
+				if (items[storeSlug] !== undefined) {
+					const shipmentData = items[storeSlug].method.split(',');
+					callback(Number(shipmentData[2]));
+				} else {
+					callback(0);
+				}
+			}
+		}
+	}).catch((err) => {
+		if (err) {
+			console.log(err);
+		}
+	});
 }
 /**
  * Get all the shipment data

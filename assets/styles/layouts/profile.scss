@@ -80,7 +80,7 @@
                 
                 td {
                     color: $black-color-3;
-                    padding: 1rem 0 0;
+                    padding: 1rem 0.5rem;
 
                     &.mobile-invisible {
                         display: table-cell !important;
@@ -119,6 +119,11 @@
                 }
                 tr {
                     border-bottom: 1.5px solid $light-gray;
+
+                    &:hover {
+                        background: $gray-color-2;
+                        cursor: pointer;
+                    }
                 }
             }
         }

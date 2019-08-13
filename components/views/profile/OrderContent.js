@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import currencyDisplay from '../../../helpers/currency_display';
 
 class OrderContent extends Component {
     constructor(props) {
@@ -101,6 +102,8 @@ class OrderContent extends Component {
 
     renderOrderProducts(products) {
         const productsLayout = products.map((product) => {
+            // const subTotal = sum([product.total]);
+            // console.log(subTotal);
             const productImg = product.image !== null ? product.product_info.data.cart_image_url : null;
             return (  
                 <tbody>
@@ -111,9 +114,9 @@ class OrderContent extends Component {
                                 <td>{product.name}<span>{product.type}</span></td>
                             </tr>
                         </td>                                            
-                        <td>Rwf {product.price}</td>
+                        <td>Rwf {currencyDisplay(product.price)}</td>
                         <td>{product.qty_ordered}</td>                                            
-                        <td>Rwf {product.total}</td>
+                        <td>Rwf {currencyDisplay(product.total)}</td>
                     </tr>
                 </tbody>
             );
