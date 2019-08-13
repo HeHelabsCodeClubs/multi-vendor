@@ -260,7 +260,7 @@ export default class CardPayment extends Component {
     renderSubmitButton() {
 		const { buttonStatus } = this.state;
 		const buttonText  = buttonStatus === 'initial' ? 'Submit My Order' : 'Submitting';
-		const buttonClass = buttonStatus === 'initial' ? 'auth-button' : 'auth-button is-submitting';
+		const buttonClass = buttonStatus === 'initial' ? 'auth-button continue-check submit-order' : 'auth-button is-submitting';
 
 		return (
 			<div className='shipping-btn'>
