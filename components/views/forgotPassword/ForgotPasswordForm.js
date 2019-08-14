@@ -8,7 +8,8 @@ import InputField from '../../reusable/InputField';
 import MessageDisplayer from '../../reusable/MessageDisplayer';
 import { getValidatedInputErrorMessage } from '../../../helpers/validation';
 import { 
-    API_URL
+    API_URL,
+    ALERT_TIMEOUT
 } from '../../../config';
 
 
@@ -113,7 +114,7 @@ class SignInForm extends Component {
                         this.setState({
                             loginStatus: 'submitted'
                         });
-                        notify.show(response.data.message, 'success', 5000);
+                        notify.show(response.data.message, 'success', ALERT_TIMEOUT);
                         setTimeout(() => {
                             window.location.href = '/signin';
                         }, 5000);
@@ -121,7 +122,7 @@ class SignInForm extends Component {
                         this.setState({
                             loginStatus: 'initial'
                         });
-                        notify.show(`We couldn\'t send you a password recovery email, Please try again later`, 'error', 2000);
+                        notify.show(`We couldn\'t send you a password recovery email, Please try again later`, 'error', ALERT_TIMEOUT);
                     }
                     
                 } catch (err) {

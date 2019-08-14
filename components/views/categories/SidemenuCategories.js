@@ -151,7 +151,7 @@ class SidemenuCategories extends Component {
                         {this.renderActiveParentCategory()}
                     <div>
                         {this.renderMenuItems()}
-                    </div>                    
+                    </div>                
                 </div>
 
                 <div className="mobile-visible dropdown side-menu__item Side-menu Side-menu-default  children active">

@@ -267,23 +267,26 @@
             border-bottom: .5px solid $gray-color-6;
             padding: 0 1rem;
             overflow: hidden;
+            @include flexbox;
+            @include flexalignitems(center);
 
             @media screen and (max-width: $mobile-lg) {
                 display: none;
             }
         
             .line-display {
-                display: inline-block;
+                @include flexbox;
+                @include flexalignitems(center);
                 vertical-align: top;
                 margin: 0;
-                padding: 20px 0 0 10px;
 
                 .more-link a{
                     color: $orange-color-4 !important;
                 }
             }
             .stores-wrapper {
-                display: inline-block;
+                @include flexbox;
+                //@include flexalignitems(center);
 
                 .slick-prev:before {
                     content: '\E91A';
@@ -299,10 +302,10 @@
             }
             .single-store {
                 border: .5px solid $gray-color-6;
-                margin: 1rem;
+                margin: 1rem 0.5rem;
                 padding: 0.5rem;
                 border-radius: 0.5rem;
-                width: 94%;
+                min-width: 10rem;
                 height: 4rem;
                 @include flexbox;
                 @include flexalignitems(center);

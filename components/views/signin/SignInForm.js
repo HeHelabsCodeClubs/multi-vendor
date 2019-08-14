@@ -20,7 +20,8 @@ import {
     UNKNOWN_ERROR,
     PLATFORM_CLIENT_ID,
     PLATFORM_CLIENT_SECRET,
-    USER_FORBIDDEN
+    USER_FORBIDDEN,
+    ALERT_TIMEOUT
 } from '../../../config';
 
 
@@ -175,7 +176,7 @@ class SignInForm extends Component {
                 break;
             default:
                 this.performOnUserAuthFailure();
-                notify.show(UNKNOWN_ERROR, 'error', 2000);
+                notify.show(UNKNOWN_ERROR, 'error', ALERT_TIMEOUT);
 
         }
     }

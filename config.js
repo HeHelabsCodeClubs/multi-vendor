@@ -26,3 +26,5 @@ export const SUCCESSFULLY_CREATED_USER = 'Your account has been successfully cre
 export const UNKNOWN_ERROR = 'OOPS! Looks like our shop is failing, please try again later';
 export const USER_FORBIDDEN = 'We do not have an account with the email and password you have provided. Please check that both are correct and try again. Thanks!';
 export const USER_AUTHENTICATED = 'You have successfully logged in. You will be redirected to the homepage in a few. Enjoy shopping with us!';
+
+export const ALERT_TIMEOUT= 10000;

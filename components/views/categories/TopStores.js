@@ -1,120 +1,51 @@
-import Link from 'next/link';
-import Slider from "react-slick";
+import React, { Component } from "react";
+import StoreItem from "./StoreItem";
 
-class TopStores extends React.Component {
+class TopStores extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			sellers: []
+		}
+		this.renderSellers = this.renderSellers.bind(this);
+	}
 
+	componentDidMount() {
+		const { sellers } = this.props;
+        this.setState({
+            sellers
+        });
+	}
+
+	renderSellers() {
+		const { sellers } = this.state;
+		const { parentCategorySlug, displayLoader, updateProducts, sellersIds } = this.props;
+		if (sellers) {
+			const sellersLayout = sellers.map((seller) => {
+				return (
+					<StoreItem 
+					seller={seller}
+					ids={sellersIds}
+					parentCategorySlug={parentCategorySlug}
+					displayLoader={displayLoader}
+					updateProducts={updateProducts}
+					/>
+				);
+			});
+			return sellersLayout;
+		}
+	}
+	
 	render() {
-		var settings = {
-			infinite: false,
-            speed: 1000,
-			slidesToShow: 6,
-			slidesToScroll: 2,
-			swipeToSlide: true,
-            responsive: [
-				{
-					breakpoint: 1440,
-					settings: {
-						slidesToShow: 5,
-						infinite: false,
-					}
-			   	},
-				{
-				 	breakpoint: 1024,
-					settings: {
-						slidesToShow: 5,
-						infinite: false,
-					}
-                },
-                {
-                    breakpoint: 979,
-					settings: {
-						slidesToShow: 4,
-						infinite: false,
-					}
-               }
-			]
-		};
 		return (
 			<div className='multi-vendor-stores-wrapper'>
-				<div className='col-lg-1 col-md-2 col-sm-2 line-display stores-title'>Stores: </div>
-				<div className="col-lg-10 col-md-9 col-sm-9 stores-wrapper">
-					<Slider {...settings}>
-						<Link href='#'>
-							<a>
-								<div className='line-display single-store'>
-									<img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556532890/multi-vendor/NoPath_-_Copy.png' />
-								</div>
-							</a>
-						</Link>
-						<Link href='#'>
-							<a>
-								<div className='line-display single-store'>
-									<img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556532890/multi-vendor/LOGO_copy_2.png' />
-								</div>
-							</a>
-						</Link>
-						<Link href='#'>
-							<a>
-								<div className='line-display single-store'>
-									<img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556532890/multi-vendor/NoPath.png' />
-								</div>
-							</a>
-						</Link>
-						<Link href='#'>
-							<a>
-								<div className='line-display single-store'>
-									<img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556532890/multi-vendor/Group_7.png' />
-								</div>
-							</a>
-						</Link>
-						<Link href='#'>
-							<a>
-								<div className='line-display single-store'>
-									<img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556532890/multi-vendor/NoPath_-_Copy_5.png' />
-								</div>
-							</a>
-						</Link>
-						<Link href='#'>
-							<a>
-								<div className='line-display single-store'>
-									<img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556532890/multi-vendor/NoPath_-_Copy.png' />
-								</div>
-							</a>
-						</Link>
-						<Link href='#'>
-							<a>
-								<div className='line-display single-store'>
-									<img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556532890/multi-vendor/LOGO_copy_2.png' />
-								</div>
-							</a>
-						</Link>
-						<Link href='#'>
-							<a>
-								<div className='line-display single-store'>
-									<img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556532890/multi-vendor/NoPath.png' />
-								</div>
-							</a>
-						</Link>
-						<Link href='#'>
-							<a>
-								<div className='line-display single-store'>
-									<img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556532890/multi-vendor/Group_7.png' />
-								</div>
-							</a>
-						</Link>
-						<Link href='#'>
-							<a>
-								<div className='line-display single-store'>
-									<img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1556532890/multi-vendor/NoPath_-_Copy_5.png' />
-								</div>
-							</a>
-						</Link>
-					</Slider>
+				<div className='col-lg-1 col-md-2 col-sm-2 col-reset line-display stores-title'>Stores: </div>
+				<div className="col-lg-10 col-md-9 col-sm-9 col-reset stores-wrapper">
+					{this.renderSellers()}
 				</div>
 		  	</div>
 		);
-	  }
-
+	}
 }
 
 export default TopStores;

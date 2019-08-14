@@ -5,7 +5,7 @@ import Slider from "react-slick";
 import { notify } from 'react-notify-toast';
 import Product from '../components/reusable/Product';
 import Global from '../components/reusable/Global';
-import { API_URL } from '../config';
+import { API_URL, ALERT_TIMEOUT } from '../config';
 import renderProductIdentifier from '../helpers/render_product_identifier';
 import renderProductPrice from '../helpers/render_product_price';
 import getFormattedStoreUrl from '../helpers/get_formatted_store_url';
@@ -398,7 +398,7 @@ class ProductPage extends React.Component {
             const errors = this.validateAttributeOptions(product.attributes.options);
             console.log('ERRORS', errors);
             if (errors.length !== 0) {
-                notify.show(errors[0], 'error', 2000);
+                notify.show(errors[0], 'error', ALERT_TIMEOUT);
                 return;
             }
         }
@@ -429,7 +429,7 @@ class ProductPage extends React.Component {
 
         // Display message to user
         const successMessage = `${product.name} was added to your shopping cart. Visit your shopping cart to checkout`;
-        notify.show(successMessage, 'success', 2000);
+        notify.show(successMessage, 'success', ALERT_TIMEOUT);
 
         setTimeout(() => {
             this.setState({
