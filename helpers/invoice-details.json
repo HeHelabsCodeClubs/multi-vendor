@@ -1,0 +1,24 @@
+{
+    "status": "success",
+    "status_code_identifier": "success",
+    "status_code": 200,
+    "data": {
+        "addresses": {
+            "billing_address": {
+                "address1": "Kibagabaga Kurwibutso",
+                "address2": "32",
+                "address_context": "B",
+                "city": "kigali",
+                "country": "rw",
+                "customer_id": 99,
+                "first_name": "Christophe",
+                "id": 32,
+                "last_name": "Mutabazi",
+                "name": "main",
+                "phone": "0788439355",
+                "postcode": 6,
+                "state": "02"
+            }
+        }
+    }
+}
