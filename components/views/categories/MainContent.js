@@ -104,10 +104,6 @@ class MainContent extends React.Component {
         
     }
 
-    handlePagesClick () {
-
-    }
-
     async loadMoreProducts() {
         const { currentPage, ids } = this.state;
         const { sellersIds } = this.props;
@@ -116,7 +112,6 @@ class MainContent extends React.Component {
         this.setState({
             ids: sellersIds
         })
-        console.log(this.state.ids);
         const { category_slug, sub_cat_slug, sub_last_cat_slug } = query;
         
         let remoteUrl = `${API_URL}/categories/${category_slug}/parent_page`;
@@ -129,11 +124,9 @@ class MainContent extends React.Component {
             remoteUrl = `${API_URL}/categories/${sub_last_cat_slug}/products`;
         }
 
-        if (ids.length !== 0) {
+        if (category_slug !== undefined && ids.length !== 0) {
             remoteUrl = `${API_URL}/categories/${category_slug}/products/sellers?filter=${ids}`;
         }
-
-        console.log(remoteUrl);
 
         // const remoteUrl = `${API_URL}`
         const newPage = Number(currentPage) + 1;
@@ -181,7 +174,6 @@ class MainContent extends React.Component {
  
 	render() {
         const { lastPage, currentPage, products, showLoader } = this.state;
-        // const { sellers, parentCategorySlug, displayLoader, updateProducts } = this.props;
         const hasMore = ((Number(currentPage) < Number(lastPage)) && !showLoader) ? true : false;
 		return (
 			<InfiniteScroll
@@ -190,13 +182,6 @@ class MainContent extends React.Component {
             hasMore={hasMore}
             loader={<Loader />}
             >
-                {/* <TopStores 
-                sellers={sellers} 
-                parentCategorySlug={parentCategorySlug}
-                displayLoader={displayLoader}
-                updateProducts={updateProducts}
-                /> */}
-                
                 <div className='main-content'>
                     {this.renderBreadCrumb()}
                     {this.renderProducts()}

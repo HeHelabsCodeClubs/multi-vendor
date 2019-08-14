@@ -279,13 +279,9 @@
                 @include flexalignitems(center);
                 vertical-align: top;
                 margin: 0;
-
-                .more-link a{
-                    color: $orange-color-4 !important;
-                }
             }
             .stores-wrapper {
-                @include flexbox;
+                //@include flexbox;
                 //@include flexalignitems(center);
 
                 .slick-prev:before {
@@ -298,22 +294,42 @@
                     font-family: "Harmonia Sans Pro Regular";
                     color: #dc7c02;
                     font-size: 1.28rem;
-                }
+                } 
+            }
+            .load-more {
+                color: $orange-color-4 !important;
+                background: none;
+                border: none;
             }
             .single-store {
+                position: relative;
                 border: .5px solid $gray-color-6;
-                margin: 1rem 0.5rem;
+                margin: 0.5rem;
                 padding: 0.5rem;
                 border-radius: 0.5rem;
                 min-width: 10rem;
+                width: 10rem;
                 height: 4rem;
-                @include flexbox;
+                @include inlineFlex;
                 @include flexalignitems(center);
     
                 img {
                     max-height: 3rem;
                     margin: 0 auto;
                     max-width: 100%;
+                }
+                .close-store-filter {
+                    height: 4rem;
+                    position: absolute;
+                    width: 100%;
+                    left: 0;
+                    background: rgba(0, 0, 0, 0.13);
+                    border-radius: 0.5rem;
+
+                    .icon-Path-58:before {
+                        float: right;
+                        margin: -0.3rem -0.3rem 0 0;
+                    }
                 }
             }
             .stores-title {
