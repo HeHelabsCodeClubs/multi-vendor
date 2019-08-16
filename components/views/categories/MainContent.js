@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Router from 'next/router';
 import Product from '../../reusable/Product';
@@ -13,8 +14,7 @@ class MainContent extends React.Component {
             firstTimeLoad: true,
             showLoader: false,
             currentPage: 1,
-            lastPage: 1,
-            ids: []
+            lastPage: 1
         };
         this.renderProducts = this.renderProducts.bind(this);
         this.loadMoreProducts = this.loadMoreProducts.bind(this);
@@ -22,13 +22,23 @@ class MainContent extends React.Component {
     }
 
     componentDidMount() {
-        const { products, metaProductsData } = this.props;
-        this.setState({
-            products,
-            firstTimeLoad: false,
-            lastPage: metaProductsData.last_page,
-            currentPage: metaProductsData.current_page
-        });
+        const { products, metaProductsData, paginationData } = this.props;
+        if (_.isEmpty(paginationData)) {
+            this.setState({
+                products,
+                firstTimeLoad: false,
+                lastPage: metaProductsData.last_page,
+                currentPage: metaProductsData.current_page
+            });
+        } else {
+            this.setState({
+                products,
+                firstTimeLoad: false,
+                lastPage: paginationData.last_page,
+                currentPage: paginationData.current_page
+            });
+        }
+        
     }
 
     componentWillReceiveProps(nextProps) {
@@ -46,7 +56,6 @@ class MainContent extends React.Component {
                 showLoader: showLoader
             });
         }
-
         if (metaProductsData) {
             const { current_page, last_page } = metaProductsData;
             if (current_page && last_page) {
@@ -105,13 +114,12 @@ class MainContent extends React.Component {
     }
 
     async loadMoreProducts() {
-        const { currentPage, ids } = this.state;
+        const { currentPage } = this.state;
         const { sellersIds } = this.props;
         const { router: { query } } = Router;
-        
-        this.setState({
-            ids: sellersIds
-        })
+
+        const ids = sellersIds.toString();
+
         const { category_slug, sub_cat_slug, sub_last_cat_slug } = query;
         
         let remoteUrl = `${API_URL}/categories/${category_slug}/parent_page`;
@@ -124,16 +132,19 @@ class MainContent extends React.Component {
             remoteUrl = `${API_URL}/categories/${sub_last_cat_slug}/products`;
         }
 
-        if (category_slug !== undefined && ids.length !== 0) {
+        if (category_slug !== undefined && sellersIds.length !== 0) {
             remoteUrl = `${API_URL}/categories/${category_slug}/products/sellers?filter=${ids}`;
         }
 
         // const remoteUrl = `${API_URL}`
         const newPage = Number(currentPage) + 1;
-        remoteUrl = ids.length !== 0 ? `${API_URL}/categories/${category_slug}/products/sellers?filter=${ids}&page=${newPage}` : `${remoteUrl}?page=${newPage}`
+        remoteUrl = sellersIds.length !== 0 ?
+        `${API_URL}/categories/${category_slug}/products/sellers?filter=${ids}&page=${newPage}` : 
+        `${remoteUrl}?page=${newPage}`
         const res = await fetch(remoteUrl);
         const response = await res.json();
         const { data, meta } = response;
+        
         if (data.products) {
             this.updateProductsOnPagination(data.products, meta);
             return;
@@ -174,7 +185,10 @@ class MainContent extends React.Component {
  
 	render() {
         const { lastPage, currentPage, products, showLoader } = this.state;
-        const hasMore = ((Number(currentPage) < Number(lastPage)) && !showLoader) ? true : false;
+        const { paginationData } = this.props;
+        const lPage = (_.isEmpty(paginationData)) ? lastPage : paginationData.last_page;
+        const cPage = (_.isEmpty(paginationData)) ? currentPage : paginationData.current_page;
+        const hasMore = ((Number(cPage) < Number(lPage)) && !showLoader ) ? true : false;
 		return (
 			<InfiniteScroll
             dataLength={products.length}

@@ -57,7 +57,6 @@ class TopStores extends Component {
 				{visible < sellers.length &&
 					<button onClick={this.loadMore} type="button" className="load-more">More +</button>
 				}
-				
 		  	</div>
 		);
 	}

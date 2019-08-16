@@ -27,6 +27,7 @@ class Categories extends React.Component {
     }
     static async getInitialProps({ query }) {
         const { category_slug, sub_cat_slug, sub_last_cat_slug } = query;
+        
         let remoteUrl = `${API_URL}/categories/${category_slug}/parent_page`;
         if (category_slug !== undefined && sub_cat_slug !== undefined && sub_last_cat_slug === undefined) {
             remoteUrl = `${remoteUrl}?sub_cats=${sub_cat_slug}`
@@ -163,6 +164,7 @@ class Categories extends React.Component {
                                 displayLoader={this.handleDisplayLoader}
                                 updateProducts={this.updateProductsData}
                                 sellersIds={ids}
+                                paginationData={paginationData}
                                 />
                                 <MainContent 
                                 products={products}

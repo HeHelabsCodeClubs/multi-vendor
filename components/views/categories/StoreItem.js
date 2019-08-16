@@ -59,11 +59,13 @@ class StoreItem extends Component {
 
 	async getSellerProducts(callback) {
         const { ids } = this.state;
-        const remoteUrl = `${API_URL}/categories/${this.props.parentCategorySlug}/products/sellers?filter=${ids}`;
+        const remoteUrl = ids !== '' ? 
+            `${API_URL}/categories/${this.props.parentCategorySlug}/products/sellers?filter=${ids}` :
+            `${API_URL}/categories/${this.props.parentCategorySlug}/parent_page`;
         const res = await fetch(remoteUrl);
         const response = await res.json();
         const data = {
-            products: response.data,
+            products: ids !== '' ? response.data :  response.data.products,
             meta: response.meta.pagination_data
 		};
         callback(data);
@@ -74,6 +76,7 @@ class StoreItem extends Component {
             showCloseBtn: false
         });
         const { seller } = this.state;
+        
         const { ids } = this.props;
 
         for(let i = 0; i < ids.length; i++){ 
@@ -109,15 +112,17 @@ class StoreItem extends Component {
 		const { seller } = this.state;
 		if (seller) {
             return (
-                <a 
-                href={`/categories/${this.props.parentCategorySlug}`} 
-                onClick={this.handleSellerClick}
-                >
-                    <div className='line-display single-store'>
-                        <img src={seller.logo_url} />
-                        {this.closeBtnLayout()}
-                    </div>
-                </a>
+                <span className='seller-wrapper'>
+                    <a 
+                    href={`/categories/${this.props.parentCategorySlug}`} 
+                    onClick={this.handleSellerClick}
+                    >
+                        <div className='line-display single-store'>
+                            <img src={seller.logo_url} />
+                        </div>
+                    </a>
+                    {this.closeBtnLayout()}
+                </span>
             );
 		}
 	}
