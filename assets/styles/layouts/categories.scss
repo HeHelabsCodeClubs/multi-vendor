@@ -281,8 +281,7 @@
                 margin: 0;
             }
             .stores-wrapper {
-                //@include flexbox;
-                //@include flexalignitems(center);
+                margin: 0.5rem;
 
                 .slick-prev:before {
                     content: '\E91A';
@@ -295,6 +294,27 @@
                     color: #dc7c02;
                     font-size: 1.28rem;
                 } 
+                .seller-wrapper {
+                    position: relative;
+                    margin: 0.5rem;
+                    height: 4rem !important;
+                    display: inline-block;
+
+                    .close-store-filter {
+                        height: 4rem;
+                        position: absolute;
+                        width: 100%;
+                        left: 0;
+                        top: 0;
+                        background: rgba(0, 0, 0, 0.13);
+                        border-radius: 0.5rem;
+    
+                        .icon-Path-58:before {
+                            float: right;
+                            margin: -0.3rem -0.3rem 0 0;
+                        }
+                    }
+                }
             }
             .load-more {
                 color: $orange-color-4 !important;
@@ -302,9 +322,7 @@
                 border: none;
             }
             .single-store {
-                position: relative;
                 border: .5px solid $gray-color-6;
-                margin: 0.5rem;
                 padding: 0.5rem;
                 border-radius: 0.5rem;
                 min-width: 10rem;
@@ -317,19 +335,6 @@
                     max-height: 3rem;
                     margin: 0 auto;
                     max-width: 100%;
-                }
-                .close-store-filter {
-                    height: 4rem;
-                    position: absolute;
-                    width: 100%;
-                    left: 0;
-                    background: rgba(0, 0, 0, 0.13);
-                    border-radius: 0.5rem;
-
-                    .icon-Path-58:before {
-                        float: right;
-                        margin: -0.3rem -0.3rem 0 0;
-                    }
                 }
             }
             .stores-title {
