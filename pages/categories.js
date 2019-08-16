@@ -19,11 +19,8 @@ class Categories extends React.Component {
             activeParentCategory: '',
             activeSubCategory: '',
             activeSubLastCategory: '',
-<<<<<<< HEAD
-            openCartContent: false
-=======
+            openCartContent: false,
             ids: []
->>>>>>> d29b028e05e19ff2cf79f0feccffcc00bae8e299
         };
         this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
         this.updateProductsData = this.updateProductsData.bind(this);
@@ -151,11 +148,8 @@ class Categories extends React.Component {
             activeSubCategory,
             products,
             paginationData,
-<<<<<<< HEAD
-            openCartContent
-=======
+            openCartContent,
             ids
->>>>>>> d29b028e05e19ff2cf79f0feccffcc00bae8e299
         } = this.state;
         
 		return (
