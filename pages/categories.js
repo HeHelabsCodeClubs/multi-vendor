@@ -190,6 +190,7 @@ class Categories extends React.Component {
                                 sellersIds={ids}
                                 activeParentCategory={activeParentCategory}
                                 activeSubCategory={activeSubCategory}
+                                updateProducts={this.updateProductsData}
                                 paginationData={paginationData}
                                 showLoader={showLoader}
                                 cartShouldUpdate={this.cartShouldUpdate}

@@ -14,7 +14,8 @@ class MainContent extends React.Component {
             firstTimeLoad: true,
             showLoader: false,
             currentPage: 1,
-            lastPage: 1
+            lastPage: 1,
+            pData: {}
         };
         this.renderProducts = this.renderProducts.bind(this);
         this.loadMoreProducts = this.loadMoreProducts.bind(this);
@@ -136,7 +137,6 @@ class MainContent extends React.Component {
         const res = await fetch(remoteUrl);
         const response = await res.json();
         const { data, meta } = response;
-        
         if (data.products) {
             this.updateProductsOnPagination(data.products, meta);
             return;
@@ -147,6 +147,10 @@ class MainContent extends React.Component {
 
     updateProductsOnPagination(data, meta) {
         const { products, currentPage } = this.state;
+        //const { paginationData } = this.props;
+        this.setState({
+            pData: meta.pagination_data
+        });
         const newProducts = products;
         const newPage = Number(currentPage) + 1;
         data.map((product) => {
@@ -176,10 +180,12 @@ class MainContent extends React.Component {
     }
  
 	render() {
-        const { lastPage, currentPage, products, showLoader } = this.state;
+        const { lastPage, currentPage, products, showLoader, pData } = this.state;
         const { paginationData } = this.props;
-        const lPage = (_.isEmpty(paginationData)) ? lastPage : paginationData.last_page;
-        const cPage = (_.isEmpty(paginationData)) ? currentPage : paginationData.current_page;
+        const emptyPaginationDataOnScroll = (_.isEmpty(pData)) ? true : false;
+        const pagData = emptyPaginationDataOnScroll === true ? paginationData : pData;
+        const lPage = (_.isEmpty(pagData)) ? lastPage : pagData.last_page;
+        const cPage = (_.isEmpty(pagData)) ? currentPage : pagData.current_page;
         const hasMore = ((Number(cPage) < Number(lPage)) && !showLoader ) ? true : false;
 		return (
 			<InfiniteScroll
