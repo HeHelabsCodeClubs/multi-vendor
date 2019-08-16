@@ -5,7 +5,6 @@ import Loader from '../../reusable/Loader';
 import { API_URL } from '../../../config';
 import Breadcrumb from '../../reusable/Breadcrumb';
 
-
 class MainContent extends React.Component {
     constructor(props) {
         super(props);
@@ -14,7 +13,8 @@ class MainContent extends React.Component {
             firstTimeLoad: true,
             showLoader: false,
             currentPage: 1,
-            lastPage: 1
+            lastPage: 1,
+            ids: []
         };
         this.renderProducts = this.renderProducts.bind(this);
         this.loadMoreProducts = this.loadMoreProducts.bind(this);
@@ -106,13 +106,14 @@ class MainContent extends React.Component {
         
     }
 
-    handlePagesClick () {
-
-    }
-
     async loadMoreProducts() {
-        const { currentPage } = this.state;
+        const { currentPage, ids } = this.state;
+        const { sellersIds } = this.props;
         const { router: { query } } = Router;
+        
+        this.setState({
+            ids: sellersIds
+        })
         const { category_slug, sub_cat_slug, sub_last_cat_slug } = query;
         
         let remoteUrl = `${API_URL}/categories/${category_slug}/parent_page`;
@@ -125,9 +126,13 @@ class MainContent extends React.Component {
             remoteUrl = `${API_URL}/categories/${sub_last_cat_slug}/products`;
         }
 
+        if (category_slug !== undefined && ids.length !== 0) {
+            remoteUrl = `${API_URL}/categories/${category_slug}/products/sellers?filter=${ids}`;
+        }
+
         // const remoteUrl = `${API_URL}`
         const newPage = Number(currentPage) + 1;
-        remoteUrl = `${remoteUrl}?page=${newPage}`
+        remoteUrl = ids.length !== 0 ? `${API_URL}/categories/${category_slug}/products/sellers?filter=${ids}&page=${newPage}` : `${remoteUrl}?page=${newPage}`
         const res = await fetch(remoteUrl);
         const response = await res.json();
         const { data, meta } = response;
@@ -179,10 +184,6 @@ class MainContent extends React.Component {
             hasMore={hasMore}
             loader={<Loader />}
             >
-                {/* <div>
-                    <TopStores />
-                </div> */}
-                
                 <div className='main-content'>
                     {this.renderBreadCrumb()}
                     {this.renderProducts()}

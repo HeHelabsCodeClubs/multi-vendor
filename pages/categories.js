@@ -5,6 +5,7 @@ import TopCategories from '../components/views/categories/TopCategories';
 import SidemenuCategories from '../components/views/categories/SidemenuCategories';
 import MainContent from '../components/views/categories/MainContent';
 import { API_URL } from '../config';
+import TopStores from '../components/views/categories/TopStores';
 
 class Categories extends React.Component {
     constructor(props) {
@@ -18,7 +19,11 @@ class Categories extends React.Component {
             activeParentCategory: '',
             activeSubCategory: '',
             activeSubLastCategory: '',
+<<<<<<< HEAD
             openCartContent: false
+=======
+            ids: []
+>>>>>>> d29b028e05e19ff2cf79f0feccffcc00bae8e299
         };
         this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
         this.updateProductsData = this.updateProductsData.bind(this);
@@ -35,6 +40,7 @@ class Categories extends React.Component {
         if (category_slug !== undefined && sub_cat_slug !== undefined && sub_last_cat_slug !== undefined) {
             remoteUrl = `${remoteUrl}?sub_cats=${sub_cat_slug},${sub_last_cat_slug}`;
         }
+
 		const res = await fetch(remoteUrl);
         const response = await res.json()
 		const { 
@@ -46,6 +52,7 @@ class Categories extends React.Component {
             categoriesData: data.parent_categories,
             subCategoriesData: data.sub_categories,
             productsData: data.products,
+            sellersData: data.sellers,
             metaProductsData: meta.pagination_data,
             activeParentCategory: category_slug,
             activeSubCategory: sub_cat_slug,
@@ -133,7 +140,8 @@ class Categories extends React.Component {
             subCategoriesData,
             productsData,
             parentCategorySlug,
-            metaProductsData
+            metaProductsData,
+            sellersData
         } = this.props;
         const { 
             updatedProducts,
@@ -143,7 +151,11 @@ class Categories extends React.Component {
             activeSubCategory,
             products,
             paginationData,
+<<<<<<< HEAD
             openCartContent
+=======
+            ids
+>>>>>>> d29b028e05e19ff2cf79f0feccffcc00bae8e299
         } = this.state;
         
 		return (
@@ -170,11 +182,18 @@ class Categories extends React.Component {
                                 />
                             </div>
                             <div className='col-lg-9 col-md-8 col-sm-8 col-12 col-reset main-content-wrapper'>
+                                <TopStores 
+                                sellers={sellersData} 
+                                parentCategorySlug={parentCategorySlug}
+                                displayLoader={this.handleDisplayLoader}
+                                updateProducts={this.updateProductsData}
+                                sellersIds={ids}
+                                />
                                 <MainContent 
                                 products={products}
+                                sellersIds={ids}
                                 activeParentCategory={activeParentCategory}
                                 activeSubCategory={activeSubCategory}
-                                //updatedProducts={updatedProducts}
                                 paginationData={paginationData}
                                 showLoader={showLoader}
                                 cartShouldUpdate={this.cartShouldUpdate}
