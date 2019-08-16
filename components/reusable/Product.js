@@ -16,7 +16,8 @@ class Product extends React.Component {
         this.state = {
             displayQuantityIncrementor: false,
             selectedQuantity: 1,
-            incrementInitial: false
+            incrementInitial: false,
+            openCart: false
         };
         this.renderProduct = this.renderProduct.bind(this);
         this.renderProductClickAction = this.renderProductClickAction.bind(this);
@@ -70,6 +71,13 @@ class Product extends React.Component {
                 addProductToCart(product, () => {
                     this.props.cartShouldUpdate();
                     this.props.openCart();
+                    
+                    setTimeout(
+                        () => {
+                            this.props.openCart();
+                        },
+                        500
+                    );
                 });
             });
             if (!displayQuantityIncrementor) {

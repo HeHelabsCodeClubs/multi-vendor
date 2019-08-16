@@ -55,9 +55,9 @@ class Cart extends Component {
         this.state = {
             isOpen: props.isOpen,
             cartItems: {},
-            openCart: false,
             shipmentMethod: '',
-            shipmentHasBeenSelected: false
+            shipmentHasBeenSelected: false,
+            openOnProductAddedToCart: false
         };
         this.openSidebar = this.openSidebar.bind(this);
         this.renderCartContent = this.renderCartContent.bind(this);
@@ -76,12 +76,11 @@ class Cart extends Component {
         if (updateCart) {
             this.updateCartItems();
         }
-        // if (openCart) {
-        //     this.setState({
-        //         openCart: true
-        //     })
-        //     this.openSidebar();
-        // }
+        if (openCart) {
+            this.setState({
+                openOnProductAddedToCart: true
+            });
+        }
     }
 
     updateLocalShipment(cartItems) {
@@ -126,11 +125,12 @@ class Cart extends Component {
     }
 
     openSidebar() {
-        const { isOpen } = this.state;
+        const { isOpen, openOnProductAddedToCart } = this.state;
         this.updateCartItems();
-        if (isOpen) {
+        if (isOpen || openOnProductAddedToCart) {
             this.setState({ 
-                isOpen: false 
+                isOpen: false,
+                openOnProductAddedToCart: false 
             });
             //enableBodyScroll(this.targetElement);
         } else {
@@ -214,27 +214,27 @@ class Cart extends Component {
         );
     }
 
-    // renderNotificationInCartSidebar() {
-    //     const { openCart } = this.props;
-    //     if (openCart) {
-    //         return (
-    //             <div className='cart-notify'>
-    //                 <span className='notify-text'><span className='icon-check-circle'></span>A new item has been added to your shopping cart. </span>
-    //                 <span className='notify-btn'><button onClick={() => this.openSidebar(false)}>Add more products</button></span>
-    //             </div>
-    //         )
-    //     } 
-    //     return null;
-    // }
+    renderNotificationInCartSidebar() {
+        const { openOnProductAddedToCart } = this.state;
+        if (openOnProductAddedToCart) {
+            return (
+                <div className='cart-notify'>
+                    <span className='notify-text'><span className='icon-check-circle'></span>A new item has been added to your shopping cart. </span>
+                    <span className='notify-btn'><button onClick={() => this.openSidebar()}>Add more products</button></span>
+                </div>
+            )
+        } 
+        return null;
+    }
 
     render() {
-        const { isOpen, cartItems } = this.state;
+        const { isOpen, cartItems, openOnProductAddedToCart } = this.state;
         const { isRight } = this.props;
         const counter = countCartItems(cartItems);
         const cartCounterDisplay = counter !== 0 ? `(${counter} Items Total)` : null;
         return (
             <div className='col-lg-6 col-md-6 col-sm-6 col-6 cart-grid'>
-                <SidebarUI isOpen={isOpen}>
+                <SidebarUI isOpen={isOpen || openOnProductAddedToCart}>
                     <div>
                         {this.renderCartIcon(counter)}
                         <SidebarUI.Content isRight={isRight}>
@@ -252,12 +252,12 @@ class Cart extends Component {
                                         <span className="icon-Path-58" />
                                     </button>
                                 </div>
-                                {/* {this.renderNotificationInCartSidebar()} */}
+                                {this.renderNotificationInCartSidebar()}
                                 {this.renderCartContent()}
                             </div>
                         </SidebarUI.Content>
                     </div>
-                    {isOpen ? <SidebarUI.Overlay onClick={() => this.openSidebar(false)} /> : false}
+                    {isOpen || openOnProductAddedToCart ? <SidebarUI.Overlay onClick={() => this.openSidebar(false)} /> : false}
                 </SidebarUI>
             </div>
         );

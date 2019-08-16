@@ -22,22 +22,13 @@ class MainContent extends React.Component {
     }
 
     componentDidMount() {
-        const { products, metaProductsData, paginationData } = this.props;
-        if (_.isEmpty(paginationData)) {
-            this.setState({
-                products,
-                firstTimeLoad: false,
-                lastPage: metaProductsData.last_page,
-                currentPage: metaProductsData.current_page
-            });
-        } else {
-            this.setState({
-                products,
-                firstTimeLoad: false,
-                lastPage: paginationData.last_page,
-                currentPage: paginationData.current_page
-            });
-        }
+        const { products, metaProductsData, openCart } = this.props;
+        this.setState({
+            products,
+            firstTimeLoad: false,
+            lastPage: metaProductsData.last_page,
+            currentPage: metaProductsData.current_page
+        });
         
     }
 
@@ -88,6 +79,7 @@ class MainContent extends React.Component {
                         <Product 
                         product={product} 
                         cartShouldUpdate={cartShouldUpdate}
+                        openCart={this.props.openCart}
                         />
                     </div>
                 );
