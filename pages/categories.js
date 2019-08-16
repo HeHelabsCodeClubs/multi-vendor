@@ -17,11 +17,13 @@ class Categories extends React.Component {
             updateCart: false,
             activeParentCategory: '',
             activeSubCategory: '',
-            activeSubLastCategory: ''
+            activeSubLastCategory: '',
+            openCartContent: false
         };
         this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
         this.updateProductsData = this.updateProductsData.bind(this);
         this.handleDisplayLoader = this.handleDisplayLoader.bind(this);
+        this.HandleCartContentOpening = this.HandleCartContentOpening.bind(this);
     }
     static async getInitialProps({ query }) {
         const { category_slug, sub_cat_slug, sub_last_cat_slug } = query;
@@ -110,7 +112,21 @@ class Categories extends React.Component {
             });
         }
     }
- 
+    
+    HandleCartContentOpening() {
+        const { openCartContent } = this.state;
+        
+        if (openCartContent) {
+            this.setState ({
+                openCartContent: false
+            });
+        } else {
+            this.setState ({
+                openCartContent: true
+            })
+        }
+    }
+    
 	render() {
         const { 
             categoriesData,
@@ -126,11 +142,14 @@ class Categories extends React.Component {
             activeParentCategory,
             activeSubCategory,
             products,
-            paginationData
+            paginationData,
+            openCartContent
         } = this.state;
+        
 		return (
 			<Global
             updateCart={this.state.updateCart}
+            openCart={openCartContent}
             >
 				<div className='multi-vendor-categories'>
                     <TopCategories 
@@ -160,6 +179,7 @@ class Categories extends React.Component {
                                 showLoader={showLoader}
                                 cartShouldUpdate={this.cartShouldUpdate}
                                 metaProductsData={metaProductsData}
+                                openCart={this.HandleCartContentOpening}
                                 />
                             </div>
                         </div>

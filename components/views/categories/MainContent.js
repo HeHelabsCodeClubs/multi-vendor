@@ -22,13 +22,14 @@ class MainContent extends React.Component {
     }
 
     componentDidMount() {
-        const { products, metaProductsData } = this.props;
+        const { products, metaProductsData, openCart } = this.props;
         this.setState({
             products,
             firstTimeLoad: false,
             lastPage: metaProductsData.last_page,
             currentPage: metaProductsData.current_page
         });
+        
     }
 
     componentWillReceiveProps(nextProps) {
@@ -79,6 +80,7 @@ class MainContent extends React.Component {
                         <Product 
                         product={product} 
                         cartShouldUpdate={cartShouldUpdate}
+                        openCart={this.props.openCart}
                         />
                     </div>
                 );

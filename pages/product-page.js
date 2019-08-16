@@ -29,7 +29,8 @@ class ProductPage extends React.Component {
             selectedAttributes: {},
             resetSelectedAttribute: false,
             addToCartSubmitStatus: 'initial',
-            cartItemsAvailable: false
+            cartItemsAvailable: false,
+            openCartContent: false
         };
         this.renderProductMetaData = this.renderProductMetaData.bind(this);
         this.renderProductAttributes = this.renderProductAttributes.bind(this);
@@ -51,6 +52,7 @@ class ProductPage extends React.Component {
         this.performAfterAddingProductToCart = this.performAfterAddingProductToCart.bind(this);
         this.handleDirectBuy = this.handleDirectBuy.bind(this);
         this.getDirectBuyButton = this.getDirectBuyButton.bind(this);
+        this.HandleCartContentOpening = this.HandleCartContentOpening.bind(this);
     }
 
     static async getInitialProps({ query }) {
@@ -421,7 +423,22 @@ class ProductPage extends React.Component {
         }
     }
 
+    HandleCartContentOpening() {
+        const { openCartContent } = this.state;
+        
+        if (openCartContent) {
+            this.setState ({
+                openCartContent: false
+            });
+        } else {
+            this.setState ({
+                openCartContent: true
+            })
+        }
+    }
+
     performAfterAddingProductToCart(product) {
+
         this.setState({
             updateCart: true,
             addToCartSubmitStatus: 'submitted'
@@ -430,6 +447,15 @@ class ProductPage extends React.Component {
         // Display message to user
         const successMessage = `${product.name} was added to your shopping cart. Visit your shopping cart to checkout`;
         notify.show(successMessage, 'success', ALERT_TIMEOUT);
+
+        // open cart content sidebar 
+        this.HandleCartContentOpening();
+        setTimeout(
+            () => {
+                this.HandleCartContentOpening();
+            },
+            500
+        );
 
         setTimeout(() => {
             this.setState({
@@ -512,8 +538,12 @@ class ProductPage extends React.Component {
 
 	render() {
         const { productData } = this.props;
+        const { openCartContent} = this.state;
 		return (
-            <Global updateCart={this.state.updateCart}>
+            <Global 
+            updateCart={this.state.updateCart}
+            openCart = {openCartContent}
+            >
                 <div className='maximum-width'>
                     <div className='single-product-page'>
                         <div className='popup-wrapper'>
