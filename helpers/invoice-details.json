@@ -3,6 +3,7 @@
     "status_code_identifier": "success",
     "status_code": 200,
     "data": {
+        "id": 15,
         "addresses": {
             "billing_address": {
                 "address1": "Kibagabaga Kurwibutso",
@@ -18,7 +19,54 @@
                 "phone": "0788439355",
                 "postcode": 6,
                 "state": "02"
+            },
+            "shipping_address": {
+                "address1": "Kibagabaga Kurwibutso",
+                "address2": "32",
+                "address_context": "B",
+                "city": "kigali",
+                "country": "rw",
+                "customer_id": 99,
+                "first_name": "Christophe",
+                "id": 32,
+                "last_name": "Mutabazi",
+                "name": "main",
+                "phone": "0788439355",
+                "postcode": 6,
+                "state": "02"
             }
-        }
+        },
+        "products": [
+            {
+                "name": "Zara",
+                "price": 6800,
+                "total_price": 89000,
+                "quantity": 12,
+                "seller": "Uzuri",
+                "attributes": [
+                    {
+                     "name": "Size",
+                     "option": "L"
+                    },
+                    {
+                     "name": "Color",
+                     "option": "Green"
+                    }
+                ]
+                    
+            },
+            {
+                "name": "Gist",
+                "price": 6800,
+                "total_price": 89000,
+                "quantity": 18,
+                "seller": "Uzuri",
+                "attributes": []
+            }
+        ],
+        "shipment_method": "WHS NEXT DAY",
+        "tracking_number": "WHS89609",
+        "payment_status": "paid",
+        "total_paid": 678000
     }
 }
