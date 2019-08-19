@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Router from 'next/router';
 import Product from '../../reusable/Product';
@@ -14,7 +15,7 @@ class MainContent extends React.Component {
             showLoader: false,
             currentPage: 1,
             lastPage: 1,
-            ids: []
+            pData: {}
         };
         this.renderProducts = this.renderProducts.bind(this);
         this.loadMoreProducts = this.loadMoreProducts.bind(this);
@@ -22,13 +23,14 @@ class MainContent extends React.Component {
     }
 
     componentDidMount() {
-        const { products, metaProductsData } = this.props;
+        const { products, metaProductsData, openCart } = this.props;
         this.setState({
             products,
             firstTimeLoad: false,
             lastPage: metaProductsData.last_page,
             currentPage: metaProductsData.current_page
         });
+        
     }
 
     componentWillReceiveProps(nextProps) {
@@ -46,7 +48,6 @@ class MainContent extends React.Component {
                 showLoader: showLoader
             });
         }
-
         if (metaProductsData) {
             const { current_page, last_page } = metaProductsData;
             if (current_page && last_page) {
@@ -79,6 +80,7 @@ class MainContent extends React.Component {
                         <Product 
                         product={product} 
                         cartShouldUpdate={cartShouldUpdate}
+                        openCart={this.props.openCart}
                         />
                     </div>
                 );
@@ -104,19 +106,13 @@ class MainContent extends React.Component {
         
     }
 
-    handlePagesClick () {
-
-    }
-
     async loadMoreProducts() {
-        const { currentPage, ids } = this.state;
+        const { currentPage } = this.state;
         const { sellersIds } = this.props;
         const { router: { query } } = Router;
-        
-        this.setState({
-            ids: sellersIds
-        })
-        console.log(this.state.ids);
+
+        const ids = sellersIds.toString();
+
         const { category_slug, sub_cat_slug, sub_last_cat_slug } = query;
         
         let remoteUrl = `${API_URL}/categories/${category_slug}/parent_page`;
@@ -129,15 +125,15 @@ class MainContent extends React.Component {
             remoteUrl = `${API_URL}/categories/${sub_last_cat_slug}/products`;
         }
 
-        if (ids.length !== 0) {
+        if (category_slug !== undefined && sellersIds.length !== 0) {
             remoteUrl = `${API_URL}/categories/${category_slug}/products/sellers?filter=${ids}`;
         }
 
-        console.log(remoteUrl);
-
         // const remoteUrl = `${API_URL}`
         const newPage = Number(currentPage) + 1;
-        remoteUrl = ids.length !== 0 ? `${API_URL}/categories/${category_slug}/products/sellers?filter=${ids}&page=${newPage}` : `${remoteUrl}?page=${newPage}`
+        remoteUrl = sellersIds.length !== 0 ?
+        `${API_URL}/categories/${category_slug}/products/sellers?filter=${ids}&page=${newPage}` : 
+        `${remoteUrl}?page=${newPage}`
         const res = await fetch(remoteUrl);
         const response = await res.json();
         const { data, meta } = response;
@@ -151,6 +147,10 @@ class MainContent extends React.Component {
 
     updateProductsOnPagination(data, meta) {
         const { products, currentPage } = this.state;
+        //const { paginationData } = this.props;
+        this.setState({
+            pData: meta.pagination_data
+        });
         const newProducts = products;
         const newPage = Number(currentPage) + 1;
         data.map((product) => {
@@ -180,9 +180,13 @@ class MainContent extends React.Component {
     }
  
 	render() {
-        const { lastPage, currentPage, products, showLoader } = this.state;
-        // const { sellers, parentCategorySlug, displayLoader, updateProducts } = this.props;
-        const hasMore = ((Number(currentPage) < Number(lastPage)) && !showLoader) ? true : false;
+        const { lastPage, currentPage, products, showLoader, pData } = this.state;
+        const { paginationData } = this.props;
+        const emptyPaginationDataOnScroll = (_.isEmpty(pData)) ? true : false;
+        const pagData = emptyPaginationDataOnScroll === true ? paginationData : pData;
+        const lPage = (_.isEmpty(pagData)) ? lastPage : pagData.last_page;
+        const cPage = (_.isEmpty(pagData)) ? currentPage : pagData.current_page;
+        const hasMore = ((Number(cPage) < Number(lPage)) && !showLoader ) ? true : false;
 		return (
 			<InfiniteScroll
             dataLength={products.length}
@@ -190,13 +194,6 @@ class MainContent extends React.Component {
             hasMore={hasMore}
             loader={<Loader />}
             >
-                {/* <TopStores 
-                sellers={sellers} 
-                parentCategorySlug={parentCategorySlug}
-                displayLoader={displayLoader}
-                updateProducts={updateProducts}
-                /> */}
-                
                 <div className='main-content'>
                     {this.renderBreadCrumb()}
                     {this.renderProducts()}

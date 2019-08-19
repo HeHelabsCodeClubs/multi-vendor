@@ -17,10 +17,12 @@ class Index extends React.Component {
 		super(props);
 		this.state = {
 			updateCart: false,
-			openCart: false
+			openCart: false,
+			openCartContent: false
 		};
 		this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
 		this.cartShouldOpen = this.cartShouldOpen.bind(this);
+		this.HandleCartContentOpening = this.HandleCartContentOpening.bind(this);
 	}
 	cartShouldUpdate() {
 		this.setState({
@@ -56,6 +58,20 @@ class Index extends React.Component {
         };
 	}
 
+	HandleCartContentOpening() {
+        const { openCartContent } = this.state;
+        
+        if (openCartContent) {
+            this.setState ({
+                openCartContent: false
+            });
+        } else {
+            this.setState ({
+                openCartContent: true
+            })
+        }
+    }
+
 	render() {
 		const { 
 			promoAds, 
@@ -69,10 +85,14 @@ class Index extends React.Component {
 			eventsAds,
 			specialOffers
 		} = this.props;
+		const {
+			openCartContent
+		} = this.state;
+
 		return (
 			<Global 
 			updateCart={this.state.updateCart}
-			openCart={this.state.openCart}
+			openCart={openCartContent}
 			>
 				<div className='main-banners'>
 					<Ad type={type} data={promoAds}/>
@@ -95,7 +115,8 @@ class Index extends React.Component {
 					<MadeInRwanda 
 					stores={stores} products={products} 
 					cartShouldUpdate={this.cartShouldUpdate}
-					openCart={this.cartShouldOpen}
+					// openCart={this.cartShouldOpen}
+					openCart={this.HandleCartContentOpening}
 					/>
 				</div>
 				<div className='special-offers featured-sellers mobile-visible'>

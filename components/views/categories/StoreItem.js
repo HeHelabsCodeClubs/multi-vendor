@@ -8,12 +8,15 @@ class StoreItem extends Component {
 		super(props);
 		this.state = {
             seller: {},
-            ids: ''
+            ids: '',
+            showCloseBtn: false
 		}
 		this.renderStore = this.renderStore.bind(this);
 		this.handleSellerClick = this.handleSellerClick.bind(this);
 		this.handleUpdateProductsPerFilteredSeller = this.handleUpdateProductsPerFilteredSeller.bind(this);
-		this.getSellerProducts = this.getSellerProducts.bind(this);
+        this.getSellerProducts = this.getSellerProducts.bind(this);
+        this.closeStoreFilter = this.closeStoreFilter.bind(this);
+        this.closeBtnLayout = this.closeBtnLayout.bind(this);
 	}
 
 	componentDidMount() {
@@ -27,7 +30,9 @@ class StoreItem extends Component {
 		if (e !== undefined) {
             e.preventDefault();
         }
-        
+        this.setState({
+            showCloseBtn: true
+        });
         const { seller } = this.state;
         const { ids } = this.props;
         ids.push(seller.seller_id);
@@ -54,28 +59,70 @@ class StoreItem extends Component {
 
 	async getSellerProducts(callback) {
         const { ids } = this.state;
-        const remoteUrl = `${API_URL}/categories/${this.props.parentCategorySlug}/products/sellers?filter=${ids}`;
+        const remoteUrl = ids !== '' ? 
+            `${API_URL}/categories/${this.props.parentCategorySlug}/products/sellers?filter=${ids}` :
+            `${API_URL}/categories/${this.props.parentCategorySlug}/parent_page`;
         const res = await fetch(remoteUrl);
         const response = await res.json();
         const data = {
-            products: response.data,
+            products: ids !== '' ? response.data :  response.data.products,
             meta: response.meta.pagination_data
 		};
         callback(data);
+    }
+
+    closeStoreFilter() {
+        this.setState({
+            showCloseBtn: false
+        });
+        const { seller } = this.state;
+        
+        const { ids } = this.props;
+
+        for(let i = 0; i < ids.length; i++){ 
+            if ( ids[i] === seller.seller_id) {
+                ids.splice(i, 1); 
+                const sellersIds = ids.toString();
+                this.setState({
+                    ids: sellersIds
+                })
+            }
+        }
+        
+        this.handleUpdateProductsPerFilteredSeller();
+        const actionUrl = `/categories?category_slug=${this.props.parentCategorySlug}`;
+        const asUrl = `/categories/${this.props.parentCategorySlug}`;
+        Router.push(actionUrl, asUrl);
+    }
+
+    closeBtnLayout() {
+        const { showCloseBtn } = this.state;
+
+        if (showCloseBtn) {
+            return (
+                <div className='close-store-filter'>
+                    <span className='icon-Path-58' onClick={this.closeStoreFilter} />
+                </div> 
+            );
+        }
+        return null;
     }
 
 	renderStore() {
 		const { seller } = this.state;
 		if (seller) {
             return (
-                <a 
-                href={`/categories/${this.props.parentCategorySlug}`} 
-                onClick={this.handleSellerClick}
-                >
-                    <div className='line-display single-store'>
-                        <img src={seller.logo_url} />
-                    </div>
-                </a>
+                <span className='seller-wrapper'>
+                    <a 
+                    href={`/categories/${this.props.parentCategorySlug}`} 
+                    onClick={this.handleSellerClick}
+                    >
+                        <div className='line-display single-store'>
+                            <img src={seller.logo_url} />
+                        </div>
+                    </a>
+                    {this.closeBtnLayout()}
+                </span>
             );
 		}
 	}
