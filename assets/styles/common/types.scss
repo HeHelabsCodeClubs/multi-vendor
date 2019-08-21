@@ -247,7 +247,7 @@ html {
         }
     }
     .cat-name {
-        font-size: 1.28rem;
+        font-size: 1.1rem;
         font-family: $font-semi-bold;
 
         @media screen and (max-width: $mobile-lg) {
@@ -270,6 +270,19 @@ html {
 
         @media screen and (max-width: $mobile-lg) {
             font-size: 1.2rem;
+        }
+    }
+    .top-stores {
+        .top-stores-wrapper  {
+            .top-stores-content {
+            .stores-wrapper {
+                .category {
+                    h4 {
+                       font-family: $font-semi-bold; 
+                    }
+                }
+            }
+            }
         }
     }
     .made-in-rwanda-title {
@@ -468,7 +481,7 @@ html {
                 .cart-item {
                     .name-incremenet {
                         .product-name {
-                            font-size: 1.28rem;
+                            font-size: 1.1rem;
                             font-family: $font-regular;
 
                             @media screen and (max-width: $mobile-lg) {
@@ -536,7 +549,7 @@ html {
                 }
                 .proceed-button {
                     button {
-                        font-size: 1.4rem;
+                        font-size: 1.28rem;
                         font-family: $font-bold;
 
                         @media screen and (max-width: $mobile-lg) {
@@ -564,7 +577,7 @@ html {
         }
         .total-grid {
             .total {
-                font-size: 1.28rem;
+                font-size: 1.1rem;
                 font-family: $font-regular;
             }
         }
@@ -599,22 +612,22 @@ html {
     .categories-content {
         .side-category__grid {
             .divider {
-                font-size: 1.7rem !important;
+                font-size: 1.3rem !important;
                 font-family: $font-semi-bold;
-                padding: 1rem;
+                padding: 0;
                 height: auto;
                 text-transform: capitalize;
 
                 &.divider-level-1 {
                     .icon-Angle_down {
-                        font-size: 1rem !important;
+                        font-size: .6rem !important;
                     }
                 }
             }
             .item-level-1 {
                 .item-label {
                     font-size: 1.28rem !important;
-                    font-family: $font-bold;
+                    font-family: $font-semi-bold;
                 }
             }
             .item-level-2 {
@@ -820,6 +833,9 @@ html {
             font-family: $font-semi-bold;
             span {
                 font-size: .8rem !important;
+                @media screen and (max-width: $mobile-lg) {
+                    font-size: .5rem !important;
+                }
             }
         }
     }

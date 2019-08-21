@@ -29,6 +29,8 @@ $gray-color-11: #7f7f7f;
 $gray-color-12: #eeeeee;
 $gray-color-13: #f4f6f7;
 $gray-color-14: #e6eaec;
+$gray-color-15: #e6e6e65e;
+$gray-color-16: #bcbcbc57;
 $green-color-1: #c6fff6;
 $green-color-2: #169889;
 $green-color-3: #deecea;
@@ -51,6 +53,7 @@ $font-black: 'Harmonia Sans Pro Black';
 
 // screens
 
+$largeScreen-min: 1600px;
 $desktopHd-min: 1440px;
 $container-desktopHd: 1240px;
 $desktop-min: 1024px;
