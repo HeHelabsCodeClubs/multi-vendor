@@ -215,7 +215,7 @@
     border-radius: 5px;
 
     @media (max-width: $mobile-lg) {
-        margin: 2rem 0;
+        margin: 0;
     }
     @media (min-width: $mobile-md-lg) and (max-width: $mobile-lg) {
         margin: -3px -4.5%;
@@ -329,6 +329,7 @@
 
     @media (max-width: $mobile-lg) {
         width: 100%;
+        padding: 0;
     }
 }
 .slide-nav {

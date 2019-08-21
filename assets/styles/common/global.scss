@@ -289,6 +289,9 @@ a {
 input, select {
     color: $black-color-3 !important;
 }
+input:focus {
+    outline: 0.5px solid #169889 !important;
+}
 label {
     padding-left: 1rem;
 }

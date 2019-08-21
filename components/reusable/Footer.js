@@ -105,7 +105,7 @@ class Footer extends Component {
                         <div className="col-lg-3 col-md-3 col-sm-3 col-6 footer-card-wrapper">
                             <div className="footer-card">
                                 <img src="https://res.cloudinary.com/hehe/image/upload/v1565080905/multi-vendor/icons/footer-info/Return_Arrow.svg" />
-                                <h3>Hussle-Free Returns</h3>
+                                <h3>Hassle-Free Returns</h3>
                                 <p>We offer returns, refunds and replacements if need be. Terms & Conditions apply.</p>
                             </div>
                         </div>
