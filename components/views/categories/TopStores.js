@@ -29,8 +29,24 @@ class TopStores extends Component {
 
 	renderSellers() {
 		const { sellers, visible } = this.state;
+		const { updateSellers } = this.props;
 		const { parentCategorySlug, displayLoader, updateProducts, sellersIds } = this.props;
+		
 		if (sellers) {
+			if (updateSellers === false) {
+				const sellersLayout = sellers.slice(0, visible).map((seller) => {
+					return (
+						<StoreItem 
+						seller={seller}
+						ids={sellersIds}
+						parentCategorySlug={parentCategorySlug}
+						displayLoader={displayLoader}
+						updateProducts={updateProducts}
+						/>
+					);
+				});
+				return sellersLayout;
+			}
 			const sellersLayout = sellers.slice(0, visible).map((seller) => {
 				return (
 					<StoreItem 
@@ -39,6 +55,7 @@ class TopStores extends Component {
 					parentCategorySlug={parentCategorySlug}
 					displayLoader={displayLoader}
 					updateProducts={updateProducts}
+					updateSellers={updateSellers}
 					/>
 				);
 			});

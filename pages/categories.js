@@ -20,12 +20,15 @@ class Categories extends React.Component {
             activeSubCategory: '',
             activeSubLastCategory: '',
             openCartContent: false,
-            ids: []
+            ids: [],
+            showCloseBtn: false,
+            updateSellers: false
         };
         this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
         this.updateProductsData = this.updateProductsData.bind(this);
         this.handleDisplayLoader = this.handleDisplayLoader.bind(this);
         this.HandleCartContentOpening = this.HandleCartContentOpening.bind(this);
+        this.updateSellersData = this.updateSellersData.bind(this);
     }
     static async getInitialProps({ query }) {
         const { category_slug, sub_cat_slug, sub_last_cat_slug } = query;
@@ -88,13 +91,24 @@ class Categories extends React.Component {
 		this.setState({
 			updateCart: true
 		});
-	}
-
+    }
+    
     updateProductsData(data) {
         this.setState({
             products: data.products,
             paginationData: data.meta
         });
+    }
+
+    updateSellersData(data) {
+        this.setState({
+            updateSellers: true
+        })
+        setTimeout(() => {
+            this.setState({
+                updateSellers: false
+            });
+        }, 500)
     }
 
     handleDisplayLoader(callback) {
@@ -136,18 +150,16 @@ class Categories extends React.Component {
         const { 
             categoriesData,
             subCategoriesData,
-            productsData,
             parentCategorySlug,
             metaProductsData,
             sellersData
         } = this.props;
         const { 
-            updatedProducts,
             showLoader,
-            updateCart,
             activeParentCategory,
             activeSubCategory,
             products,
+            updateSellers,
             paginationData,
             openCartContent,
             ids
@@ -174,6 +186,7 @@ class Categories extends React.Component {
                                 displayLoader={this.handleDisplayLoader}
                                 activeParentCategory={activeParentCategory}
                                 activeSubCategory={activeSubCategory}
+                                updateSellers={this.updateSellersData}
                                 />
                             </div>
                             <div className='col-lg-9 col-md-8 col-sm-8 col-12 col-reset main-content-wrapper'>
@@ -184,6 +197,7 @@ class Categories extends React.Component {
                                 updateProducts={this.updateProductsData}
                                 sellersIds={ids}
                                 paginationData={paginationData}
+                                updateSellers={updateSellers}
                                 />
                                 <MainContent 
                                 products={products}

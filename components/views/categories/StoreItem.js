@@ -20,11 +20,31 @@ class StoreItem extends Component {
 	}
 
 	componentDidMount() {
-		const { seller } = this.props;
+        const { seller } = this.props;
         this.setState({
             seller
         });
-	}
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { updateSellers, ids } = nextProps;
+        if (updateSellers) {
+            this.setState({
+                showCloseBtn: false
+            });
+            const { seller } = this.state;
+
+            for(let i = 0; i < ids.length; i++) { 
+                if ( ids[i] === seller.seller_id) {
+                    ids.splice(i, 1); 
+                    const sellersIds = ids.toString();
+                    this.setState({
+                        ids: sellersIds
+                    })
+                }
+            }
+        }
+    }
 
 	handleSellerClick(e) {
 		if (e !== undefined) {
@@ -49,16 +69,17 @@ class StoreItem extends Component {
 	handleUpdateProductsPerFilteredSeller() {
 		this.props.displayLoader(() => {
 			// update products
-		   this.getSellerProducts((newProducts) => {
-			   this.props.displayLoader(() => {
-				   this.props.updateProducts(newProducts);
-			   });
-		   });
-	   });
+            this.getSellerProducts((newProducts) => {
+                this.props.displayLoader(() => {
+                    this.props.updateProducts(newProducts);
+                });
+            });
+	    });
 	}
 
 	async getSellerProducts(callback) {
         const { ids } = this.state;
+        console.log(ids);
         const remoteUrl = ids !== '' ? 
             `${API_URL}/categories/${this.props.parentCategorySlug}/products/sellers?filter=${ids}` :
             `${API_URL}/categories/${this.props.parentCategorySlug}/parent_page`;
@@ -79,7 +100,7 @@ class StoreItem extends Component {
         
         const { ids } = this.props;
 
-        for(let i = 0; i < ids.length; i++){ 
+        for(let i = 0; i < ids.length; i++) { 
             if ( ids[i] === seller.seller_id) {
                 ids.splice(i, 1); 
                 const sellersIds = ids.toString();
@@ -97,11 +118,10 @@ class StoreItem extends Component {
 
     closeBtnLayout() {
         const { showCloseBtn } = this.state;
-
         if (showCloseBtn) {
             return (
-                <div className='close-store-filter'>
-                    <span className='icon-Path-58' onClick={this.closeStoreFilter} />
+                <div className='close-store-filter' onClick={this.closeStoreFilter}>
+                    <span className='icon-Path-58'/>
                 </div> 
             );
         }
