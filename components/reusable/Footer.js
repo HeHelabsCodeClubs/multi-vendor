@@ -122,8 +122,8 @@ class Footer extends Component {
                             <div className='col-lg-2 col-md-2 col-sm-3 col-6'>
                                 <div className='footer-title'>Extras</div>
                                 <div className='footer-content'>
-                                    <div className='content'><a href="https://hehe.rw/" target="_blank">About us</a></div>
-                                    <div className='content'><a href="https://hehe.rw/#contactUs" target="_blank">Become a seller</a></div>
+                                    <div className='content'><a href="https://seller.hehe.rw/" target="_blank">About us</a></div>
+                                    <div className='content'><a href="https://seller.hehe.rw/#contactUs" target="_blank">Become a seller</a></div>
                                 </div>
                             </div>
                             <div className='col-lg-2 col-md-2 col-sm-3 col-6'>
@@ -131,7 +131,7 @@ class Footer extends Component {
                                 <div className='footer-content'>
                                     <div className='content'><a href="/privacy">Privacy policies</a></div>
                                     <div className='content'><a href="/terms">Terms &amp; Conditions</a></div>
-                                    <div className='content'><a href="https://hehe.rw/#contactUs" target="_blank">Contact us</a></div>
+                                    <div className='content'><a href="https://seller.hehe.rw/#contactUs" target="_blank">Contact us</a></div>
                                 </div>
                             </div>
                             <div className='col-lg-3 col-md-3 col-sm-3 col-6'>
@@ -142,7 +142,7 @@ class Footer extends Component {
                                 <div className='contact-content'>order@hehe.rw</div>
 
                                 <div className='footer-title'>Sell with HeHe</div>
-                                <div><a href="https://hehe.rw/#contactUs" target="_blank"><button>Become a seller</button></a></div>
+                                <div><a href="https://seller.hehe.rw/#contactUs" target="_blank"><button>Become a seller</button></a></div>
                             </div>
                             <div className='col-lg-3 col-md-3 col-sm-6 col-12 subscribe-grid'>
                                 <div className='footer-title'>Get more from Hehe</div>
