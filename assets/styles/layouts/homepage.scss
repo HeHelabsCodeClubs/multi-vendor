@@ -227,12 +227,13 @@
             .featured-seller-product-price {
                 border-radius: 0.3rem;
                 position: absolute;
-                color: $white-color;
+                color: $red-color-3;
                 bottom: -0.5rem;
                 width: 80%;
                 margin: 0 12% 0 8%;
-                background: $red-color-3;
+                background: $white-color;
                 text-align: center;
+                border: 1px solid;
             }
         } 
         .featured-header {
@@ -312,7 +313,7 @@
                 }
                 .category-wrapper {
                     @include flexbox;
-                    @include flexjustifycontent(start);
+                    @include flexjustifycontent(center);
                 }
                 .category {
                     text-align: center;

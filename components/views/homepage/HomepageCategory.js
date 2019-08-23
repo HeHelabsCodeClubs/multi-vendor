@@ -14,7 +14,7 @@ class HomepageCategory extends Component {
                 //let singleCategoryPageUrl = category.slug !== 'categories' ? `/categories/${category.slug}` : 'categories';
                 const IconClassName = icon_class_name !== '' ? icon_class_name : 'icon-KITCHENWARE-ICO';
                 return (
-                  <a href={`/categories/${slug}`}>
+                  <a href={`/categories/${slug}`} key={slug}>
                     <img src={IconClassName} className={`cat-icon`} />
                     <div className='cat-name'>{name}</div>
                   </a>

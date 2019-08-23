@@ -21,7 +21,6 @@ export default class CheckoutPageSection extends Component {
         this.getLinkClass();
     }
     updateToVistedSectionClass(isVisited) {
-        console.log('isvisited', isVisited);
         if (isVisited === 1) {
             this.setState({
                 sectionClass: 'single-process done'
@@ -44,7 +43,6 @@ export default class CheckoutPageSection extends Component {
 
         // update to visited class if the section was visited
         isPageVisited(page, (isVisited) => {
-            console.log('page', page);
             this.updateToVistedSectionClass(isVisited);
         });
     }

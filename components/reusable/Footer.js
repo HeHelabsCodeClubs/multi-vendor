@@ -34,15 +34,13 @@ class Footer extends Component {
 
     }
 
-    componentWillUnmount () {
-
-    }
-
     renderFooterCategories(categories) {
         if (categories) {
             const categoryLayout = categories.slice(0, 5).map((category) => {
                 return (
-                    <div className='content'><a href={`/categories/${category.slug}`}>{category.name}</a></div>
+                    <div className='content' key={category.slug}>
+                        <a href={`/categories/${category.slug}`}>{category.name}</a>
+                    </div>
                 );
             });
             return categoryLayout;

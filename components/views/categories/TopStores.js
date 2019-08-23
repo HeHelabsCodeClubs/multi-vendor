@@ -35,8 +35,10 @@ class TopStores extends Component {
 		if (sellers) {
 			if (updateSellers === false) {
 				const sellersLayout = sellers.slice(0, visible).map((seller) => {
+					const { seller_id } = seller;
 					return (
 						<StoreItem 
+						Key={seller_id}
 						seller={seller}
 						ids={sellersIds}
 						parentCategorySlug={parentCategorySlug}
@@ -50,6 +52,7 @@ class TopStores extends Component {
 			const sellersLayout = sellers.slice(0, visible).map((seller) => {
 				return (
 					<StoreItem 
+					Key={seller.seller_id}
 					seller={seller}
 					ids={sellersIds}
 					parentCategorySlug={parentCategorySlug}

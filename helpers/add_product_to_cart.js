@@ -293,9 +293,6 @@ function isProductInStorage(options, selectedOptions) {
     if (counter === optionsLen) {
         return true;
     }
-
-    console.log('i am reaching here');
-
     return false;
 }
 

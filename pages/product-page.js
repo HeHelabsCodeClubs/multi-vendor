@@ -410,8 +410,6 @@ class ProductPage extends React.Component {
                 addToCartSubmitStatus: 'submitting'
             });
             setTimeout(() => {
-                // console.log('selected product quantity', selectedProductQuantity);
-                // console.log('product', product);
                 product.quantity = selectedProductQuantity;
                 if (Number(product.has_attributes) === 1) {
                     product.selected_options = selectedAttributes;
@@ -525,7 +523,6 @@ class ProductPage extends React.Component {
 
     renderBreadCrumb() {
         const { activeParentCategory, activeSubCategory, productData } = this.props;
-        console.log(productData);
 
         return (
             <Breadcrumb>

@@ -79,7 +79,6 @@ class StoreItem extends Component {
 
 	async getSellerProducts(callback) {
         const { ids } = this.state;
-        console.log(ids);
         const remoteUrl = ids !== '' ? 
             `${API_URL}/categories/${this.props.parentCategorySlug}/products/sellers?filter=${ids}` :
             `${API_URL}/categories/${this.props.parentCategorySlug}/parent_page`;
