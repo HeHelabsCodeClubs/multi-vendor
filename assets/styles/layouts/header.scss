@@ -381,13 +381,14 @@
                 left: -3rem;
                 transition-duration: 0.3s;
                 min-width: 10rem;
+                transition: all .5s ease-in-out;
             
                 .profile-dropdown {
                     margin: 1rem 0 0 0;
                     background: $white-color;
-                    box-shadow: 3px -6px 16px 0 rgba(0, 0, 0, 0.2);
-                    border-radius: 0.2rem;
-                    border: 1px solid $gray-color-6;
+                    box-shadow: 3px -6px 16px 0 rgba(0, 0, 0, 0.12);
+                    border-radius: 0 0 0.4rem 0.4rem;
+                    display: block;
 
                     ul {
                         padding: 1rem;
@@ -404,7 +405,7 @@
                     .logout {
                         padding: 0.5rem;
                         text-align: center;
-                        border-top: 1px solid $gray-color-6;
+                        border-top: 1px solid $gray-color-15;
 
                         a {
                             color: $orange-color-1 !important;
@@ -629,7 +630,7 @@
                 .nav__submenu {
                     position: relative;
                     width: 100%;
-                    z-index: 99999999999 !important;
+                    z-index: 1000000 !important;
                     box-shadow: none;
                 }
                 .main-menu__item-a {
@@ -658,6 +659,12 @@
             .mobo-menu-title {
                 .sidebar-title {
                     padding: 1rem;
+                    position: fixed;
+                    top: 0;
+                    width: 70%;
+                    max-width: 300px;
+                    background: $gray-color-2;
+                    z-index: 1000000000000 !important;
                     .icon-Path-71 {
                         margin: 0 1rem 0 0;
                     }
@@ -675,9 +682,10 @@
         background-color: $white-color;
         width: 100%;
         height: 1rem;
-        z-index: 99999999999 !important;
+        z-index: 100000 !important;
         translate: 0.3s;
         width: 22rem;
+        top: 4.5rem;
 
         @media screen and (min-width: $mobile-lg) and (max-width: $tablet-md) {
             width: 20rem;
@@ -767,11 +775,12 @@
 		top: 0;
 		box-shadow: .0rem 3.6rem 3.6rem rgba(0, 0, 0, 0.25098039215686274);
 		background-color: $gray-color-2;
-		transition: 300ms ease-in-out;
+		transition: 500ms ease-in-out;
 		transition-property: left, right, top, bottom;
 		overflow-x: hidden;
 		overflow-y: auto;
-		scroll-behavior: smooth;
+        scroll-behavior: smooth;
+        max-width: 47rem;
     }
     
     &.is-open {
@@ -917,7 +926,7 @@
                         @media screen and (max-width: $mobile-lg) {
                             height: 6rem;
                             @include flexbox;
-                            @include flexalignitems(center);
+                            @include flexalignitems(flex-start);
                             @include flexjustifycontent(center);
                             @include flexdirection(column);
                         }
@@ -1063,7 +1072,7 @@
                     background: $orange-color-1;
                     color: $white-color;
                     border: none;
-                    padding: 1rem;
+                    padding: 0.7rem 1.5rem;
                     outline: none !important;
                 }
                 a {
@@ -1105,7 +1114,7 @@
     }
     a {
         line-height: 1.3;
-        margin: 0;
+        margin: .5rem 0 0 0;
         display: block;
         color: $black-color-3 !important;
     }

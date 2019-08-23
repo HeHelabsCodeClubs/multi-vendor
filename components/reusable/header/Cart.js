@@ -26,7 +26,7 @@ const SidebarUI = ({ isOpen, ...rest }) => {
   
 SidebarUI.Overlay = props => <div className="SidebarOverlay" {...props} />;
 
-SidebarUI.Content = ({ width = '40%', isRight = true, ...rest }) => {
+SidebarUI.Content = ({ width = '30%', isRight = true, ...rest }) => {
     const classes = [
         'SidebarContent',
         isRight ? 'is-right' : '',

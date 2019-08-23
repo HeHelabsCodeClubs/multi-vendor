@@ -58,12 +58,9 @@ class Delivery extends Component {
 	}
 
 	updateShipmentValid(validity) {
-		console.log('validity', validity);
-		//if (!validity) {
-			this.setState({
-				shipmentValid: validity
-			});
-		//}
+		this.setState({
+			shipmentValid: validity
+		});
 	}
 
 	renderItems() {

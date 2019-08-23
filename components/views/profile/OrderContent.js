@@ -102,8 +102,6 @@ class OrderContent extends Component {
 
     renderOrderProducts(products) {
         const productsLayout = products.map((product) => {
-            // const subTotal = sum([product.total]);
-            // console.log(subTotal);
             const productImg = product.image !== null ? product.product_info.data.cart_image_url : null;
             return (  
                 <tbody>
@@ -132,7 +130,6 @@ class OrderContent extends Component {
         const sellerLayout = sellers.map((seller) => {
             const products = seller[1].products;
             const store = seller[1].store_info;
-            console.log('seller', seller);
             return (
                 <div className='delivery-content'>
                     <div className='store-logo'>

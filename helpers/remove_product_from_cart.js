@@ -43,7 +43,6 @@ function removeProductFromStore(cartItems, product, productIndex) {
     
     // if all products have been removed
     if (isObjectEmpty(cartItems[slug].products)) {
-        console.log(cartItems);
         delete cartItems[slug];
         if (slug !== undefined) {
             retrieveShipmentDataPerStoreSlug(slug, (existingMethod) => {

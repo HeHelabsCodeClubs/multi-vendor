@@ -128,7 +128,7 @@
             }
             input {
                 padding: 0.4rem 1rem;
-                border-radius: .4rem 0 0 .4rem;
+                border-radius: .3rem 0 0 .3rem;
                 border: none;
                 width: 66%;
                 height: 2.5rem;
@@ -146,7 +146,7 @@
             }
             button {
                 width: 34%;
-                border-radius: 0 .4rem .4rem 0;
+                border-radius: 0 .3rem .3rem 0;
                 height: 2.5rem;
 
                 @media screen and (min-width: $tablet-min) and (max-width: $desktop-min) {

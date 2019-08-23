@@ -358,9 +358,21 @@
         .store-logo {
             background: $gray-color-6;
             padding: 0.7rem 1rem;
+            position: relative;
             @include flexbox;
             @include flexalignitems(center);
             @include flexjustifycontent(space-between);
+
+            .left-block {
+                @media screen and (max-width: $mobile-lg) {
+                    flex: 0 0 100%;
+                }
+            }
+            .items-in-cart {
+                @media screen and (max-width: $mobile-lg) {
+                    display: block;
+                }
+            }
 
             .store-logo-wrapper {
                 height: 3rem;
@@ -371,6 +383,10 @@
                 @include flexalignitems(center);
                 @include flexjustifycontent(center);
 
+                @media screen and (max-width: $mobile-lg) {
+                    display: inline-flex !important;
+                }
+
                 img.store-img {
                     max-width: 2rem;
                     max-height: 2rem;
@@ -380,6 +396,11 @@
             
             .store-name {
                 color: $white-color;
+
+                @media screen and (max-width: $mobile-lg) {
+                    display: inline-block;
+                }
+
                 .name {
                     padding: 0 2rem 0 0.5rem;
                 }
@@ -390,6 +411,15 @@
                 padding: 0.3rem 0;
                 background: transparent !important;
                 border: none !important;
+                
+                @media screen and (max-width: $mobile-lg) {
+                    position: absolute;
+                    right: 0;
+                    top: .5rem;
+                    background: rgba(0, 0, 0, 0.09) !important;
+                    padding: .2rem 1rem;
+                }
+
                 span {
                     padding-right: .5rem;
                 }

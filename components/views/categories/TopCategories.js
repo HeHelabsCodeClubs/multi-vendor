@@ -25,16 +25,20 @@ class TopCategories extends React.Component {
                 const { slug } = category;
                 const activeClassName = (Router.router.query.category_slug === slug) ? 'is-active' : '';
                 return (
-                    <a 
-                    key={slug}
-                    href={`/categories/${slug}`}
-                    title={category.name}
-                    className={`single-category ${activeClassName}`}>
-                        <img src={category.icon_url} />
-                        <span
+                    // <Link
+                    // href={`/categories/${slug}`}
+                    // >
+                        <a
+                        key={slug}
                         title={category.name}
-                        >{LimitString(category.name, 20)}</span>
-                    </a>
+                        href={`/categories/${slug}`}
+                        className={`single-category ${activeClassName}`}>
+                            <img src={category.icon_url} />
+                            <span
+                            title={category.name}
+                            >{LimitString(category.name, 20)}</span>
+                        </a>
+                    // </Link>
                 );
             });
             return categoriesLayout;

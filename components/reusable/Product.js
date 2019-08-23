@@ -93,7 +93,6 @@ class Product extends React.Component {
                 console.log('an error happened');
             }
         }
-        
     }
 
     updateSelectedQuantity(quantity) {
