@@ -143,7 +143,12 @@
                     @include flexbox;
                     @include flexalignitems(center);
                     @include flexjustifycontent(center);
-                    @include transition(0.2s);              
+                    @include transition(0.2s);
+                    
+                    &:focus {
+                        outline: none;
+                        background: $orange-color-7;
+                    }
 
                     .icon-Path-63:before {
                         color: $orange-color-1;
