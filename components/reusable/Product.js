@@ -69,7 +69,6 @@ class Product extends React.Component {
                 console.log('an error happened');
             }
         }
-        
     }
 
     productIsAllowedToGoInCart(product) {

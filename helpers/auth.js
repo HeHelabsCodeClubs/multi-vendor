@@ -106,18 +106,11 @@ export const getTokenValue = (tokenString, key) => {
     const identifier = (key == undefined) ? TOKEN_KEY : key;
 
     const cookiesData = tokenString.split(';');
-    //console.log('cookies', cookiesData);
     for(let i = 0; i < cookiesData.length; i++) {
         let singleCookieData = cookiesData[i].split('=');
         if (singleCookieData[0].trim() === identifier) {
             return singleCookieData[1];
         }
     }
-
-    // const tokenArray = ;
-    // if (tokenArray[1]) {
-    //     return tokenArray[1];
-    // }
-    
     return undefined;
 }

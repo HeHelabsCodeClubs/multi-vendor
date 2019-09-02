@@ -338,7 +338,6 @@ class DeliveryCustomerDetailForm extends Component {
 
 	handleToggleOfAddressType(fieldStateName, newValue) {
 		if (fieldStateName === 'residentialAddressType') {
-			console.log('hereeee');
 			if (newValue === true) {
 				this.setState({
 					commercialAddressType: false
@@ -347,7 +346,6 @@ class DeliveryCustomerDetailForm extends Component {
 		}
 
 		if (fieldStateName === 'commercialAddressType') {
-			console.log('here but', newValue);
 			if (newValue === true) {
 				this.setState({
 					residentialAddressType: false

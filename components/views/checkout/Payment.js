@@ -30,9 +30,7 @@ export default class Payment extends Component {
          * If no cart items redirect user to homepage
          */
         // getCartItems((items) => {
-        //     console.log('i am called from checkout', typeof items);
         //     if (!items ){
-		// 		console.log('i am heere')
 		// 		Router.push('/');
 		// 		return;
 		// 	} 
@@ -69,7 +67,6 @@ export default class Payment extends Component {
 				try {
 					const response = await res.json();
 					this.handleResponse(response);
-					//console.log('payments', response);
 				} catch (err) {
 					console.log('error');
 					console.log(err);

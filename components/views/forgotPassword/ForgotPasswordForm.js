@@ -108,7 +108,6 @@ class SignInForm extends Component {
             }).then(async (res) => {
                 try {
                     const response = await res.json();
-                    console.log('response', response);
 
                     if(response.status === 'success') {
                         this.setState({

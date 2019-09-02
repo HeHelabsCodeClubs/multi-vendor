@@ -145,6 +145,19 @@ export default class  MenuItemCategory extends Component {
                 });
             });
         });
+        this.getSellers(slug, (sellers) => {
+            this.props.updateSellers(sellers);
+        });
+    }
+
+    async getSellers(categorySlug, callback) {
+        const remoteUrl = `${API_URL}/categories/${categorySlug}/parent_page`;
+        const res = await fetch(remoteUrl);
+        const response = await res.json();
+        const data = {
+            sellers: response.data.sellers
+        };
+        callback(data);
     }
 
     async getCategoryProducts(categorySlug, callback) {

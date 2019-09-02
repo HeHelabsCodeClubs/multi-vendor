@@ -30,7 +30,6 @@ export default class OrderFeedback extends Component {
 
     renderLayout() {
         const { displayedLayout, message } = this.state;
-        console.log('i am here')
         if (displayedLayout === 'success') {
             return(
                 <OrderSuccess message={message}/>

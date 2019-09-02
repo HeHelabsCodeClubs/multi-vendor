@@ -47,7 +47,6 @@ class OrderComplete extends Component {
                 payment_method: `${req.params.payment}`,
                 payment_url: `${APP_DOMAIN}${mainPath}`
             };
-            //console.log('data', data);
             const res = await fetch(`${API_URL}/payments/validate`, {
                 method: 'POST',
                 headers: {
@@ -59,7 +58,6 @@ class OrderComplete extends Component {
             });
 
             const response = await res.json();
-            console.log('response', response);
             if (response.status_code) {
                 if(Number(response.status_code) == 200) {
                     if (response.data) {

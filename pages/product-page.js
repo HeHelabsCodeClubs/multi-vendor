@@ -416,8 +416,6 @@ class ProductPage extends React.Component {
             });
 
             setTimeout(() => {
-                // console.log('selected product quantity', selectedProductQuantity);
-                // console.log('product', product);
                 product.quantity = selectedProductQuantity;
                 if (Number(product.has_attributes) === 1) {
                     product.selected_options = selectedAttributes;

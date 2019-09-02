@@ -60,18 +60,19 @@ class SidemenuCategories extends Component {
             return null;
         }
 
-        const { parentCategorySlug, updateProducts, displayLoader } = this.props;
+        const { parentCategorySlug, updateProducts, displayLoader, updateSellers } = this.props;
 
         const menuItemsLayout = categories.map((category) => {
            return (
                 <MenuItemCategory 
                 key={category.slug}
                 category={category}
-                parentCategorySlug={parentCategorySlug}
+                parentCategorySlug={parentCategorySlug} 
                 updateProducts={updateProducts}
                 displayLoader={displayLoader}
                 triggerUpdateOfActiveSubCat={this.updateActiveParentSubCat}
                 subParentCatHasToBeUpdated={subParentCatHasToBeUpdated}
+                updateSellers={updateSellers}
                 />
            );
         });

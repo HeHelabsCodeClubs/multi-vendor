@@ -76,8 +76,6 @@ export const isPageVisited = (page, callback) => {
             }
         } else {
             if (callback !== undefined) {
-                console.log('page is', page);
-                console.log('from local', visits);
                 callback(visits[page]);
             }
         }

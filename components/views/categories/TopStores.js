@@ -29,16 +29,36 @@ class TopStores extends Component {
 
 	renderSellers() {
 		const { sellers, visible } = this.state;
+		const { updateSellers } = this.props;
 		const { parentCategorySlug, displayLoader, updateProducts, sellersIds } = this.props;
+		
 		if (sellers) {
+			if (updateSellers === false) {
+				const sellersLayout = sellers.slice(0, visible).map((seller) => {
+					const { seller_id } = seller;
+					return (
+						<StoreItem 
+						Key={seller_id}
+						seller={seller}
+						ids={sellersIds}
+						parentCategorySlug={parentCategorySlug}
+						displayLoader={displayLoader}
+						updateProducts={updateProducts}
+						/>
+					);
+				});
+				return sellersLayout;
+			}
 			const sellersLayout = sellers.slice(0, visible).map((seller) => {
 				return (
 					<StoreItem 
+					Key={seller.seller_id}
 					seller={seller}
 					ids={sellersIds}
 					parentCategorySlug={parentCategorySlug}
 					displayLoader={displayLoader}
 					updateProducts={updateProducts}
+					updateSellers={updateSellers}
 					/>
 				);
 			});
