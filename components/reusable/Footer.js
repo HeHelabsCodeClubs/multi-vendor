@@ -122,8 +122,8 @@ class Footer extends Component {
                             <div className='col-lg-2 col-md-2 col-sm-3 col-6'>
                                 <div className='footer-title'>Extras</div>
                                 <div className='footer-content'>
-                                    <div className='content'><a href="https://seller.hehe.rw/" target="_blank">About us</a></div>
-                                    <div className='content'><a href="https://seller.hehe.rw/#contactUs" target="_blank">Become a seller</a></div>
+                                    <div className='content'><a href="https://dmmhehe.com/" target="_blank">About us</a></div>
+                                    <div className='content'><a href="https://forms.gle/U3TKe1apATkw1qQQA" target="_blank">Become an Affiliate</a></div>
                                 </div>
                             </div>
                             <div className='col-lg-2 col-md-2 col-sm-3 col-6'>

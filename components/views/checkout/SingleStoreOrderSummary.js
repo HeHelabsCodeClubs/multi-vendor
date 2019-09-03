@@ -117,17 +117,16 @@ export default class SingleStoreOrderSummary extends Component {
                 className='white-background'
                 key={`${slug}`}
                 >
-                    <div 
-                    className='checkout-cart-header'
-                    >
+                    <div className='checkout-cart-header'>
                         <div className='store-cart-content'>
                             <span className="store-logo-wrapper"><img className='store-logo' src={store.info.icon}/></span>
                             <span className='store-name'>{store.info.name}</span>
                         </div>
-                        <span className='store-items'>{productsCountText}</span>
-                        
+                        <span className='store-items'>{productsCountText}</span>                        
                     </div>
-                    {productsLayout}
+                    <div className="store-products">
+                        {productsLayout}
+                    </div>
                 
                 {/* <div className='gift-block'>
                     <div>

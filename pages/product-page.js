@@ -18,6 +18,7 @@ import { getClientAuthToken } from '../helpers/auth';
 import { getCartItems } from '../helpers/cart_functionality_helpers';
 import Breadcrumb from '../components/reusable/Breadcrumb';
 import {isProductOutOfStock } from '../helpers/cart_functionality_helpers';
+import Head from 'next/head';
  
 class ProductPage extends React.Component {
     constructor(props) {
@@ -69,8 +70,6 @@ class ProductPage extends React.Component {
         };
     }
 
-    
-
     componentDidMount() {
         this.setState({
           nav1: this.slider1,
@@ -102,6 +101,11 @@ class ProductPage extends React.Component {
                         {this.renderProductUnitDescription(product.attributes)}
                         {this.renderProductDiscountedPrice(product)}
                     </div>
+                    <Head>
+                        <title>{product.attributes.meta_title}</title>
+                        <meta name="description" content={`${product.attributes.meta_description}`} />
+                        <meta name="keywords" content={`${product.attributes.meta_keywords}`} />
+                    </Head>
                 </div>
             )
         }
@@ -570,50 +574,53 @@ class ProductPage extends React.Component {
         const { productData } = this.props;
         const { openCartContent} = this.state;
 		return (
-            <Global 
-            updateCart={this.state.updateCart}
-            openCart = {openCartContent}
-            >
-                <div className='maximum-width'>
-                    <div className='single-product-page'>
-                        <div className='popup-wrapper'>
-                            <div className='product-details-wrapper'>
-                                {this.renderBreadCrumb()}
-                                <div className='row reset-row'>
-                                    <div className='col-lg-5 col-md-5 col-sm-5 col-12 images-wrapper'>
-                                        {this.renderProductImages(productData)}
-                                    </div>
-                                    <div className='col-lg-7 col-md-7 col-sm-7 col-12 description-wrapper'>
-                                        <div className='details'>
-                                            {this.renderProductMetaData(productData)}
-                                            {this.renderProductAttributes(productData.attributes)}
-                                            <StockIncrementor 
-                                            stock={productData.stock}
-                                            getSelectedQuantity={this.updateSelectedProductQuantity} 
-                                            />
-                                            <div className='product-detail'>
-                                                <button
-                                                type='button'
-                                                className='orange-btn'
-                                                onClick={() => this.saveProductToCart(productData)}
-                                                >
-                                                {this.getAddToCartButtonText()}
-                                                </button>
-                                                {this.getDirectBuyButton()}
-                                                {/* <button className='white-btn'>Add to Wishlist</button> */}
-                                            </div>
-                                            {this.renderProductStore(productData.belongs_to_exclusive_store, productData.store)}
+            <div>
+                <Global 
+                updateCart={this.state.updateCart}
+                openCart = {openCartContent}
+                >
+                    <div className='maximum-width'>
+                        <div className='single-product-page'>
+                            <div className='popup-wrapper'>
+                                <div className='product-details-wrapper'>
+                                    {this.renderBreadCrumb()}
+                                    <div className='row reset-row'>
+                                        <div className='col-lg-5 col-md-5 col-sm-5 col-12 images-wrapper'>
+                                            {this.renderProductImages(productData)}
                                         </div>
-                                    {this.renderProductDescription(productData)}
-                                    </div>
-                                </div>  
+                                        <div className='col-lg-7 col-md-7 col-sm-7 col-12 description-wrapper'>
+                                            <div className='details'>
+                                                {this.renderProductMetaData(productData)}
+                                                
+                                                {this.renderProductAttributes(productData.attributes)}
+                                                <StockIncrementor 
+                                                stock={productData.stock}
+                                                getSelectedQuantity={this.updateSelectedProductQuantity} 
+                                                />
+                                                <div className='product-detail'>
+                                                    <button
+                                                    type='button'
+                                                    className='orange-btn'
+                                                    onClick={() => this.saveProductToCart(productData)}
+                                                    >
+                                                    {this.getAddToCartButtonText()}
+                                                    </button>
+                                                    {this.getDirectBuyButton()}
+                                                    {/* <button className='white-btn'>Add to Wishlist</button> */}
+                                                </div>
+                                                {this.renderProductStore(productData.belongs_to_exclusive_store, productData.store)}
+                                            </div>
+                                        {this.renderProductDescription(productData)}
+                                        </div>
+                                    </div>  
+                                </div>
                             </div>
+                            {this.renderSimilarProducts(productData.related_products, 'related')}
+                            {this.renderSimilarProducts(productData.cross_sell_products, 'often_bought_with')}
                         </div>
-                        {this.renderSimilarProducts(productData.related_products, 'related')}
-                        {this.renderSimilarProducts(productData.cross_sell_products, 'often_bought_with')}
                     </div>
-                </div>
-            </Global>
+                </Global>                
+            </div>
 		);
 	}
 }

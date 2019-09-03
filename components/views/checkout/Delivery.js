@@ -6,6 +6,7 @@ import { getCartItems } from '../../../helpers/cart_functionality_helpers';
 import isObjectEmpty from '../../../helpers/is_object_empty';
 import MessageDisplayer from '../../reusable/MessageDisplayer';
 import Breadcrumb from "../../reusable/Breadcrumb";
+import {ALERT_TIMEOUT} from "../../../config";
 
 class Delivery extends Component {
 	constructor(props) {
@@ -106,7 +107,7 @@ class Delivery extends Component {
 				this.setState({
 					displayMessage: false
 				});
-			}, 1000);
+			}, ALERT_TIMEOUT);
 			// return;
 		} else {
 			const actionUrl = '/checkout?page=payment';
