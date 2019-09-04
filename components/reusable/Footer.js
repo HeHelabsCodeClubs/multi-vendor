@@ -168,7 +168,6 @@ class Footer extends Component {
                     className="back-to-top"
                     >
                         <span className="icon-Arrow_solid"></span>
-                        {/* <span className="mobile-invisible">Back on top</span> */}
                     </button>
                     : null}
                 </div>

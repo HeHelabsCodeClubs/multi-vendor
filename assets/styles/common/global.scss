@@ -383,6 +383,12 @@ select {
     z-index: 9999;
     padding-top: 1rem;
 
+    &.alert-top {
+        bottom: auto;
+        top: 0;
+        background-color: $orange-color-1;
+    }
+
     p {
         color: $white-color;
         text-align: center;
