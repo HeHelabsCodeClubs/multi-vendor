@@ -150,7 +150,7 @@ class Header extends React.Component {
             <div className="header-panel">
                 <Head>
                     <link rel="shortcut icon" href="https://res.cloudinary.com/hehe/image/upload/v1563286307/multi-vendor/HeHe_Favicon.png" />
-                    <title>Hehe Marketplace</title>
+                    <title>HeHe Marketplace</title>
                 </Head>
 
                 <div className={classnames("nav__bar", {
