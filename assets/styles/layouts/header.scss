@@ -304,10 +304,9 @@
 
                 @media (max-width: $mobile-lg) {
                     width: auto;
-                    background: transparent;
                     position: absolute;
                     right: 0;
-                    top: .2rem;           
+                    top: 0;           
                 }
 
                 .icon-Path-64:before {
@@ -315,7 +314,7 @@
 
                     @media (max-width: $mobile-lg) {
                         color: $gray-color-4;
-                        font-size: 2.3rem;
+                        font-size: 1.5rem;
                         
                     }
                 }
@@ -548,7 +547,7 @@
         ul {
             list-style: none;
             padding-left: 0;
-            margin-top: -0.1rem;
+            margin-top: -0.25rem;
             margin-bottom: 0;
             border-radius: 0 0 0 0.3rem !important;    
             border-top: 1px solid $box-shadow-color;

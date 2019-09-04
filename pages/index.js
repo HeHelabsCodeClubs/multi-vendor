@@ -125,7 +125,7 @@ class Index extends React.Component {
 				<div className='made-in-rwanda special-offers'>
 					<Ad type={eventAddType} data={eventsAds}/>
 				</div>
-				<div className='made-in-rwanda special-offers'>
+				<div className='made-in-rwanda special-offers bottom-moreProducts'>
 					<MoreProduct categories={categories} />
 				</div>
 			</Global>

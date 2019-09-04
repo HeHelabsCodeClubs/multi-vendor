@@ -343,6 +343,8 @@
                     max-height: 3rem;
                     margin: 0 auto;
                     max-width: 100%;
+                    position: relative;
+                    z-index: 3;
                 }
             }
             .stores-title {

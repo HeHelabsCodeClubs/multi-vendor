@@ -7,6 +7,7 @@ import isObjectEmpty from '../../../helpers/is_object_empty';
 import SearchDropdown from './SearchDropdown';
 import classnames from "classnames";
 import Head from 'next/head';
+import AlertBetaVersion from './AlertBetaVersion';
 
 class Header extends React.Component {
     constructor(props) {
@@ -150,7 +151,7 @@ class Header extends React.Component {
             <div className="header-panel">
                 <Head>
                     <link rel="shortcut icon" href="https://res.cloudinary.com/hehe/image/upload/v1563286307/multi-vendor/HeHe_Favicon.png" />
-                    <title>Hehe Marketplace</title>
+                    <title>HeHe Marketplace</title>
                 </Head>
 
                 <div className={classnames("nav__bar", {
@@ -167,9 +168,10 @@ class Header extends React.Component {
                             </div>
                             <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
                                 <div className='top-panel-right'>
+                                    <a href="https://seller.hehe.rw/#contactUs" target="_blank"><span className="top-content">Become a Setter</span></a>
                                     <a href="https://tracking.wherehouseshipping.com/" target="_blank"><span className='top-content'>Track your order</span></a>
-                                    <a href="https://hehe.rw/" target="_blank"><span className='top-content'>about</span></a>
-                                    <a href="https://hehe.rw/#contactUs" target="_blank"><span className='top-content'>contact</span></a>
+                                    <a href="https://seller.hehe.rw/" target="_blank"><span className='top-content'>about</span></a>
+                                    <a href="https://seller.hehe.rw/#contactUs" target="_blank"><span className='top-content'>contact</span></a>
                                 </div>
                             </div>
                         </div>
@@ -257,6 +259,9 @@ class Header extends React.Component {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <AlertBetaVersion />
                 </div>
             </div>
         )
