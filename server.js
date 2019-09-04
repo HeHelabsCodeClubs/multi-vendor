@@ -75,7 +75,6 @@ app
 
         server.get('/checkout/:page', (req, res) => {
             const token = getTokenValue(req.headers.cookie, 'VENDOR_TOKEN');
-            console.log('token', token);
             if (token && req.params.page === 'account') {
                 res.redirect('/checkout/addresses');
             }
