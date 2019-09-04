@@ -209,7 +209,7 @@ class Header extends React.Component {
                             </div>
                             <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
                                 <div className='top-panel-right'>
-                                    <a href="https://seller.hehe.rw/#contactUs" target="_blank"><span className="top-content">Become a Setter</span></a>
+                                    <a href="https://seller.hehe.rw/#contactUs" target="_blank"><span className="top-content">Become a Seller</span></a>
                                     <a href="https://tracking.wherehouseshipping.com/" target="_blank"><span className='top-content'>Track your order</span></a>
                                     <a href="https://seller.hehe.rw/" target="_blank"><span className='top-content'>about</span></a>
                                     <a href="https://seller.hehe.rw/#contactUs" target="_blank"><span className='top-content'>contact</span></a>
