@@ -5,7 +5,7 @@ import Slider from "react-slick";
 import { notify } from 'react-notify-toast';
 import Product from '../components/reusable/Product';
 import Global from '../components/reusable/Global';
-import { API_URL, ALERT_TIMEOUT } from '../config';
+import { API_URL, ALERT_TIMEOUT, NOT_ALLOWED_TO_GO_IN_CART } from '../config';
 import renderProductIdentifier from '../helpers/render_product_identifier';
 import renderProductPrice from '../helpers/render_product_price';
 import getFormattedStoreUrl from '../helpers/get_formatted_store_url';
@@ -17,6 +17,8 @@ import isObjectEmpty from '../helpers/is_object_empty';
 import { getClientAuthToken } from '../helpers/auth';
 import { getCartItems } from '../helpers/cart_functionality_helpers';
 import Breadcrumb from '../components/reusable/Breadcrumb';
+import {isProductOutOfStock } from '../helpers/cart_functionality_helpers';
+import Head from 'next/head';
  
 class ProductPage extends React.Component {
     constructor(props) {
@@ -53,6 +55,8 @@ class ProductPage extends React.Component {
         this.handleDirectBuy = this.handleDirectBuy.bind(this);
         this.getDirectBuyButton = this.getDirectBuyButton.bind(this);
         this.HandleCartContentOpening = this.HandleCartContentOpening.bind(this);
+        this.productIsAllowedToGoInCart = this.productIsAllowedToGoInCart.bind(this);
+        this.productIsNotAllowedToGoInCart = this.productIsNotAllowedToGoInCart.bind(this);
     }
 
     static async getInitialProps({ query }) {
@@ -65,8 +69,6 @@ class ProductPage extends React.Component {
             productData: data
         };
     }
-
-    
 
     componentDidMount() {
         this.setState({
@@ -99,6 +101,11 @@ class ProductPage extends React.Component {
                         {this.renderProductUnitDescription(product.attributes)}
                         {this.renderProductDiscountedPrice(product)}
                     </div>
+                    <Head>
+                        <title>{product.attributes.meta_title}</title>
+                        <meta name="description" content={`${product.attributes.meta_description}`} />
+                        <meta name="keywords" content={`${product.attributes.meta_keywords}`} />
+                    </Head>
                 </div>
             )
         }
@@ -393,32 +400,62 @@ class ProductPage extends React.Component {
 
     saveProductToCart(product) {
         const { selectedProductQuantity, selectedAttributes, addToCartSubmitStatus } = this.state;
+        
+
         if (Number(product.has_attributes) === 1) {
             /**
              * Validate selected attributes if they require validation
              */
             const errors = this.validateAttributeOptions(product.attributes.options);
-            console.log('ERRORS', errors);
             if (errors.length !== 0) {
                 notify.show(errors[0], 'error', ALERT_TIMEOUT);
                 return;
             }
         }
-        
+
+
         if (addToCartSubmitStatus === 'initial') {
             this.setState({
                 addToCartSubmitStatus: 'submitting'
             });
+
             setTimeout(() => {
                 product.quantity = selectedProductQuantity;
                 if (Number(product.has_attributes) === 1) {
                     product.selected_options = selectedAttributes;
                 }
-                addProductToCart(product, () => {
-                    this.performAfterAddingProductToCart(product)
-                });
+                const productOptions = [];
+                if (Number(product.has_attributes) === 1) {
+                    Object.keys(product.selected_options).forEach((key) => {
+                        productOptions.push({
+                            attribute_id: product.selected_options[key].attribute_id,
+                            option_id: product.selected_options[key].option_id
+                        });
+                    });
+                }
+
+                const { name } = product;
+
+                /**
+                 * First check if product is out of stock or not
+                 */
+                isProductOutOfStock(product.slug, productOptions, () => this.productIsAllowedToGoInCart(product), () => { this.productIsNotAllowedToGoInCart(name) });
             }, 2000);
         }
+    }
+
+    productIsAllowedToGoInCart(product) {
+        addProductToCart(product, () => {
+            this.performAfterAddingProductToCart(product)
+        });
+    }
+
+    productIsNotAllowedToGoInCart(product_name) {
+        this.setState({
+            addToCartSubmitStatus: 'initial'
+        });
+        const errorMessage = `${product_name} ${NOT_ALLOWED_TO_GO_IN_CART}`;
+        notify.show(errorMessage, 'error', ALERT_TIMEOUT);
     }
 
     HandleCartContentOpening() {
@@ -537,50 +574,53 @@ class ProductPage extends React.Component {
         const { productData } = this.props;
         const { openCartContent} = this.state;
 		return (
-            <Global 
-            updateCart={this.state.updateCart}
-            openCart = {openCartContent}
-            >
-                <div className='maximum-width'>
-                    <div className='single-product-page'>
-                        <div className='popup-wrapper'>
-                            <div className='product-details-wrapper'>
-                                {this.renderBreadCrumb()}
-                                <div className='row reset-row'>
-                                    <div className='col-lg-5 col-md-5 col-sm-5 col-12 images-wrapper'>
-                                        {this.renderProductImages(productData)}
-                                    </div>
-                                    <div className='col-lg-7 col-md-7 col-sm-7 col-12 description-wrapper'>
-                                        <div className='details'>
-                                            {this.renderProductMetaData(productData)}
-                                            {this.renderProductAttributes(productData.attributes)}
-                                            <StockIncrementor 
-                                            stock={productData.stock}
-                                            getSelectedQuantity={this.updateSelectedProductQuantity} 
-                                            />
-                                            <div className='product-detail'>
-                                                <button
-                                                type='button'
-                                                className='orange-btn'
-                                                onClick={() => this.saveProductToCart(productData)}
-                                                >
-                                                {this.getAddToCartButtonText()}
-                                                </button>
-                                                {this.getDirectBuyButton()}
-                                                {/* <button className='white-btn'>Add to Wishlist</button> */}
-                                            </div>
-                                            {this.renderProductStore(productData.belongs_to_exclusive_store, productData.store)}
+            <div>
+                <Global 
+                updateCart={this.state.updateCart}
+                openCart = {openCartContent}
+                >
+                    <div className='maximum-width'>
+                        <div className='single-product-page'>
+                            <div className='popup-wrapper'>
+                                <div className='product-details-wrapper'>
+                                    {this.renderBreadCrumb()}
+                                    <div className='row reset-row'>
+                                        <div className='col-lg-5 col-md-5 col-sm-5 col-12 images-wrapper'>
+                                            {this.renderProductImages(productData)}
                                         </div>
-                                    {this.renderProductDescription(productData)}
-                                    </div>
-                                </div>  
+                                        <div className='col-lg-7 col-md-7 col-sm-7 col-12 description-wrapper'>
+                                            <div className='details'>
+                                                {this.renderProductMetaData(productData)}
+                                                
+                                                {this.renderProductAttributes(productData.attributes)}
+                                                <StockIncrementor 
+                                                stock={productData.stock}
+                                                getSelectedQuantity={this.updateSelectedProductQuantity} 
+                                                />
+                                                <div className='product-detail'>
+                                                    <button
+                                                    type='button'
+                                                    className='orange-btn'
+                                                    onClick={() => this.saveProductToCart(productData)}
+                                                    >
+                                                    {this.getAddToCartButtonText()}
+                                                    </button>
+                                                    {this.getDirectBuyButton()}
+                                                    {/* <button className='white-btn'>Add to Wishlist</button> */}
+                                                </div>
+                                                {this.renderProductStore(productData.belongs_to_exclusive_store, productData.store)}
+                                            </div>
+                                        {this.renderProductDescription(productData)}
+                                        </div>
+                                    </div>  
+                                </div>
                             </div>
+                            {this.renderSimilarProducts(productData.related_products, 'related')}
+                            {this.renderSimilarProducts(productData.cross_sell_products, 'often_bought_with')}
                         </div>
-                        {this.renderSimilarProducts(productData.related_products, 'related')}
-                        {this.renderSimilarProducts(productData.cross_sell_products, 'often_bought_with')}
                     </div>
-                </div>
-            </Global>
+                </Global>                
+            </div>
 		);
 	}
 }

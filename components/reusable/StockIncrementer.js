@@ -219,7 +219,7 @@ class StockIncrementor extends Component {
                     <div className={wrapperClass}>
                         <span className='details-title'>Quantity:</span>
                         {this.renderIncrementor(initialStockIncrement)}
-                        <span className='details-title'>{`(${stock} peaces available)`}</span>
+                        <span className='details-title'>{`(${stock} pieces available)`}</span>
                     </div>
                 );
         }

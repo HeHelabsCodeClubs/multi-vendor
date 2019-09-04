@@ -6,8 +6,9 @@ import renderProductPrice from '../../helpers/render_product_price';
 import limitString from '../../helpers/limit_string';
 import StockIncrementor from './StockIncrementer';
 import addProductToCart from '../../helpers/add_product_to_cart';
-import { performActionIfProductNotInCart } from '../../helpers/cart_functionality_helpers';
-import { API_URL } from '../../config';
+import {NOT_ALLOWED_TO_GO_IN_CART, ALERT_TIMEOUT } from '../../config';
+import {isProductOutOfStock } from '../../helpers/cart_functionality_helpers';
+import { notify } from 'react-notify-toast';
 
 
 class Product extends React.Component {
@@ -25,6 +26,8 @@ class Product extends React.Component {
         this.renderProductToCartButton = this.renderProductToCartButton.bind(this);
         this.updateSelectedQuantity = this.updateSelectedQuantity.bind(this);
         this.incrementCartItemProduct = this.incrementCartItemProduct.bind(this);
+        this.productIsAllowedToGoInCart = this.productIsAllowedToGoInCart.bind(this);
+        this.productIsNotAllowedToGoInCart = this.productIsNotAllowedToGoInCart.bind(this);
     }
 
     incrementCartItemProduct(product) {
@@ -48,43 +51,16 @@ class Product extends React.Component {
          */
     
         try {
-            performActionIfProductNotInCart(product.store.slug, product.slug, () => {
-                fetch(`${API_URL}/products/inventory/check`, {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-						'Accept': 'application/json'
-					},
-					body: JSON.stringify({
-                        product_slug: product.slug
-                    })
-				}).then(async (res) => {
-					try {
-						const response = await res.json();
-                        this.handleResponse(response);
-						
-					} catch (err) {
-						console.log('error');
-						console.log(err);
-                    }
-				});
-                addProductToCart(product, () => {
-                    this.props.cartShouldUpdate();
-                    this.props.openCart();
-                    
-                    setTimeout(
-                        () => {
-                            this.props.openCart();
-                        },
-                        500
-                    );
-                });
-            });
-            if (!displayQuantityIncrementor) {
-                this.setState({
-                    displayQuantityIncrementor: true
-                });
-            }
+            const productOptions = [];
+            const { name } = product;
+
+            isProductOutOfStock(
+                product.slug,
+                productOptions,
+                () => this.productIsAllowedToGoInCart(product),
+                () => {this.productIsNotAllowedToGoInCart(name)}
+            );
+
         } catch(err) {
             /**
              * Console error
@@ -93,6 +69,31 @@ class Product extends React.Component {
                 console.log('an error happened');
             }
         }
+    }
+
+    productIsAllowedToGoInCart(product) {
+        const { displayQuantityIncrementor } = this.state;
+        addProductToCart(product, () => {
+            this.props.cartShouldUpdate();
+            this.props.openCart();
+            
+            setTimeout(
+                () => {
+                    this.props.openCart();
+                },
+                500
+            );
+        });
+        if (!displayQuantityIncrementor) {
+            this.setState({
+                displayQuantityIncrementor: true
+            });
+        }
+    }
+
+    productIsNotAllowedToGoInCart(product_name) {
+        const errorMessage = `${product_name} ${NOT_ALLOWED_TO_GO_IN_CART}`;
+        notify.show(errorMessage, 'error', ALERT_TIMEOUT);
     }
 
     updateSelectedQuantity(quantity) {

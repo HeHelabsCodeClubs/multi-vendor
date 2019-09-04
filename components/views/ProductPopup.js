@@ -100,7 +100,7 @@ class ProductPopup extends React.Component {
                                             <span className='number'>12</span>
                                             <span className='increment'>+</span>
                                         </span>
-                                        <span className='details-title'>(28 peaces available)</span>
+                                        <span className='details-title'>(28 pieces available)</span>
                                     </div>
                                     <div className='product-detail'>
                                         <span className='orange-btn'>

@@ -1,7 +1,8 @@
 import localforage from 'localforage';
 import { 
     CART_ITEMS_KEY,
-    UNABLE_TO_GET_CART_ITEMS_ERROR
+    UNABLE_TO_GET_CART_ITEMS_ERROR,
+    API_URL
 } from '../config';
 
 
@@ -221,3 +222,45 @@ export const countCartItems = (cartItems) => {
     }
     return totalPrice;
  }
+
+  /**
+   * 
+   * @param {string} product_slug 
+   * @param {array} product_options 
+   * @param {function} func 
+   */
+  export function isProductOutOfStock(product_slug, product_options, onSuccessFunc, onFailureFunc) {
+    fetch(`${API_URL}/products/inventory/check`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            product_slug: product_slug,
+            options: product_options
+        })
+        
+    }).then(async (res) => {
+        try {
+            const response = await res.json();
+            if (response.status === 'success') {
+                onSuccessFunc();
+                return;
+            }
+
+            if (response.status === 'failure') {
+                onFailureFunc();
+                return;
+            }
+            
+        } catch (err) {
+            console.log('error', err);
+            onFailureFunc();
+            // do something with the error
+        }
+    }).catch((err) => {
+        console.log('error', err);
+        onFailureFunc();
+    });
+  }
