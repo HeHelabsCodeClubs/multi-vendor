@@ -7,7 +7,7 @@ import isObjectEmpty from '../../../helpers/is_object_empty';
 import SearchDropdown from './SearchDropdown';
 import classnames from "classnames";
 import Head from 'next/head';
-import AlertBetaVersion from './AlertBetaVersion';
+// import AlertBetaVersion from './AlertBetaVersion';
 
 class Header extends React.Component {
     constructor(props) {
@@ -17,7 +17,8 @@ class Header extends React.Component {
             authUser: {},
             prevScrollpos: 0,//window.pageYOffset,
             visible: true,
-            searchedValue: ''
+            searchedValue: '',
+            alertVisibility: true
         };
         this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
         this.renderUserProfile = this.renderUserProfile.bind(this);
@@ -25,6 +26,8 @@ class Header extends React.Component {
         this.logOut = this.logOut.bind(this);
         this.updateSearchValue = this.updateSearchValue.bind(this);
         this.handleSearchValueSubmission = this.handleSearchValueSubmission.bind(this);
+        this.closeAlertPopup = this.closeAlertPopup.bind(this);
+        this.renderAlertContent = this.renderAlertContent.bind(this);
     }
     componentDidMount() {
         this.setState({
@@ -97,7 +100,35 @@ class Header extends React.Component {
         });
     };
 
-   
+    // Alert Beta version warning
+    closeAlertPopup() {
+        this.setState({
+            alertVisibility: false
+        });
+    }
+
+    renderAlertContent() {
+        const { alertVisibility } = this.state;
+        if (alertVisibility) {
+            return (
+                <div className="cookies-wrapper alert-top">
+                    <p>This is a beta version of <a href="/">hehe.rw</a>. We're still working on this new-look site, we apologize for any inconvenience this may cause.
+                        <button className="close-popup" onClick={this.closeAlertPopup}><span class="icon-Times"></span></button>
+                    </p>
+                </div>
+            );
+        }
+        return null;
+    }
+
+    // handleDismissalOfAlert() {
+    //     const {alertVisibility} = this.state;
+    //     if (alertVisibility) {
+    //         return (
+
+    //         );
+    //     }
+    // }
 
     // test deploy
 
@@ -146,9 +177,15 @@ class Header extends React.Component {
         );
     }
 
+
     render() {
+        const { alertVisibility } = this.state;
+        let className = "header-panel";
+        if (alertVisibility) {
+            className += " top-alert";
+        }
         return (
-            <div className="header-panel">
+            <div className={className}>
                 <Head>
                     <link rel="shortcut icon" href="https://res.cloudinary.com/hehe/image/upload/v1563286307/multi-vendor/HeHe_Favicon.png" />
                     <title>HeHe Marketplace</title>
@@ -158,6 +195,10 @@ class Header extends React.Component {
                     "navbar__hidden": !this.state.visible
                 })}
                 >
+                    <div>
+                        {this.renderAlertContent()}
+                    </div>
+
                     <div className='top-panel'>
                         <div className='row maximum-width'>
                             <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
@@ -259,9 +300,6 @@ class Header extends React.Component {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <AlertBetaVersion />
                 </div>
             </div>
         )

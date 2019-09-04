@@ -1152,11 +1152,22 @@
 .navbar__hidden {
     top: -8rem;
 }
+
 .header-panel {
     height: 7rem;
 
     @media screen and (max-width: $mobile-lg) {
         height: 6rem;
+    }
+
+    &.top-alert { 
+        .nav__bar {
+            top: 42px;
+            
+            &.navbar__hidden {
+                top: -8rem;
+            }
+        }
     }
 }
 
