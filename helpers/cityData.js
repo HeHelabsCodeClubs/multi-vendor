@@ -64,21 +64,21 @@ const CityData = {
             city: "Bugesera District",
             region: "Eastern Province",
             country: "rw",
-            "latitude": "-2.23456001",
+            latitude: "-2.23456001",
             longitude: "30.14825058"
         },
         {
             city: "Gatsibo District",
             region: "Eastern Province",
             country: "rw",
-            "latitude": "-1.59185004",
+            latitude: "-1.59185004",
             longitude: "30.45535088"
         },
         {
             city: "Kayonza District",
             region: "Eastern Province",
             country: "rw",
-            "latitude": "-1.85100996",
+            latitude: "-1.85100996",
             longitude: "30.65102005"
         },
         {

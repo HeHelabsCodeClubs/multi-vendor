@@ -36,23 +36,24 @@ export default class SingleCartProductItem extends Component {
     }
 
     removeProductFromCart(product, productIndex) {
-        const { updateCartData } = this.props;
+        const { updateCartData, removeShipment } = this.props;
         if (product) {
-            
             RemoveProductFromCart(product, () => {
-                this.performOnProductRemovalFromCart();
+                this.performOnProductRemovalFromCart(removeShipment, updateCartData);
             }, productIndex);
         }
     }
 
-    performOnProductRemovalFromCart() {
+    performOnProductRemovalFromCart(callbackOne, callbackTwo) {
         const { router: { pathname } } = Router;
+        //console.log('this', this);
         if (pathname === '/checkout') {
-            this.props.removeShipment();
             location.reload();
             return;
         }
-        this.props.updateCartData();
+        callbackOne();
+        callbackTwo();
+        // this.props.updateCartData();
         //this.props.removeShipment();
     }
  

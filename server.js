@@ -64,7 +64,7 @@ app
         })
 
         server.get('/profile/:page', (req, res) => {
-            const token = getTokenValue(req.headers.cookie);
+            const token = getTokenValue(req.headers.cookie, 'VENDOR_TOKEN');
             if (!token && req.params.page === 'orders') {
                 res.redirect('/signin');
             }
@@ -74,7 +74,7 @@ app
         })
 
         server.get('/checkout/:page', (req, res) => {
-            const token = getTokenValue(req.headers.cookie);
+            const token = getTokenValue(req.headers.cookie, 'VENDOR_TOKEN');
             if (token && req.params.page === 'account') {
                 res.redirect('/checkout/addresses');
             }
