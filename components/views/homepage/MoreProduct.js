@@ -25,6 +25,8 @@ export default class MoreProduct extends Component {
         this.renderSectionTitle = this.renderSectionTitle.bind(this);
         this.renderLoadMoreButton = this.renderLoadMoreButton.bind(this);
         this.renderLoaderWrapper =  this.renderLoaderWrapper.bind(this);
+        this.perfomAfterProductsLoad = this.perfomAfterProductsLoad.bind(this);
+        this.triggerProductLoadMore = this.triggerProductLoadMore.bind(this);
     }
     componentDidMount() {
         const { categories } = this.props;
@@ -41,16 +43,19 @@ export default class MoreProduct extends Component {
             this.setState({
                 activeCategorySlug: categorySlug,
                 activeCategoryName: categories[catIndex].name
-            }, () => this.getCategoryProducts());
+            }, () => this.triggerProductLoadMore());
         }
     }
 
-    async getCategoryProducts() {
-        const { activeCategorySlug, currentPage, products} = this.state;
+    async getCategoryProducts(callback) {
+        const { activeCategorySlug, currentPage } = this.state;
         if (activeCategorySlug !== '') {
             const remoteUrl = `${API_URL}/categories/${activeCategorySlug}/products/?page=${currentPage}&per_page=${12}`;
             const res = await fetch(remoteUrl);
             const response = await res.json();
+            //console.log('call', callback);
+            //callback(response);
+            const { products } = this.state;
             let newProducts = [];
             if (products.length !== 0) {
                 newProducts = products;
@@ -63,7 +68,8 @@ export default class MoreProduct extends Component {
             this.setState({
                 products: newProducts,
                 currentPage: (Number(response.meta.pagination_data.current_page) + 1),
-                lastPage: response.meta.pagination_data.last_page
+                lastPage: response.meta.pagination_data.last_page,
+                loadingMoreProducts: false
             });
         }
     }
@@ -79,7 +85,27 @@ export default class MoreProduct extends Component {
         /**
          * Request products
          */
+        this.getCategoryProducts();
         
+    }
+
+    perfomAfterProductsLoad(response) {
+        const { products } = this.state;
+        let newProducts = [];
+        if (products.length !== 0) {
+            newProducts = products;
+            response.data.map((product) => {
+                newProducts.push(product);
+            });
+        } else {
+            newProducts = response.data;
+        }
+        this.setState({
+            products: newProducts,
+            currentPage: (Number(response.meta.pagination_data.current_page) + 1),
+            lastPage: response.meta.pagination_data.last_page,
+            loadingMoreProducts: false
+        });
     }
 
     renderSpecialProducts() {
@@ -129,14 +155,14 @@ export default class MoreProduct extends Component {
         return null;
     }
     renderLoadMoreButton() {
-        const { currentPage, lastPage } = this.state;
-        if (Number(currentPage) < Number(lastPage)) {
+        const { currentPage, lastPage, loadingMoreProducts } = this.state;
+        if ((Number(currentPage) < Number(lastPage)) && !loadingMoreProducts) {
             return (
                 <div className='row load-more-wrapper'>
                     <button
                     type='button'
                     className='load-more-btn'
-                    onClick={this.getCategoryProducts}
+                    onClick={this.triggerProductLoadMore}
                     >
                         View More
                     </button>
