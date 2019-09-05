@@ -16,12 +16,17 @@ export default class MoreProduct extends Component {
             catIndex: 0,
             activeCategorySlug: '',
             activeCategoryName: '',
+            loadingMoreProducts: false
         };
         this.performAfterCategoriesLoad = this.performAfterCategoriesLoad.bind(this);
         this.getCategoryProducts = this.getCategoryProducts.bind(this);
         this.renderSpecialProducts = this.renderSpecialProducts.bind(this);
         this.shuffleProducts = this.shuffleProducts.bind(this);
         this.renderSectionTitle = this.renderSectionTitle.bind(this);
+        this.renderLoadMoreButton = this.renderLoadMoreButton.bind(this);
+        this.renderLoaderWrapper =  this.renderLoaderWrapper.bind(this);
+        this.perfomAfterProductsLoad = this.perfomAfterProductsLoad.bind(this);
+        this.triggerProductLoadMore = this.triggerProductLoadMore.bind(this);
     }
     componentDidMount() {
         const { categories } = this.props;
@@ -38,16 +43,19 @@ export default class MoreProduct extends Component {
             this.setState({
                 activeCategorySlug: categorySlug,
                 activeCategoryName: categories[catIndex].name
-            }, () => this.getCategoryProducts());
+            }, () => this.triggerProductLoadMore());
         }
     }
 
-    async getCategoryProducts() {
-        const { activeCategorySlug, currentPage, products} = this.state;
+    async getCategoryProducts(callback) {
+        const { activeCategorySlug, currentPage } = this.state;
         if (activeCategorySlug !== '') {
             const remoteUrl = `${API_URL}/categories/${activeCategorySlug}/products/?page=${currentPage}&per_page=${12}`;
             const res = await fetch(remoteUrl);
             const response = await res.json();
+            //console.log('call', callback);
+            //callback(response);
+            const { products } = this.state;
             let newProducts = [];
             if (products.length !== 0) {
                 newProducts = products;
@@ -60,9 +68,44 @@ export default class MoreProduct extends Component {
             this.setState({
                 products: newProducts,
                 currentPage: (Number(response.meta.pagination_data.current_page) + 1),
-                lastPage: response.meta.pagination_data.last_page
+                lastPage: response.meta.pagination_data.last_page,
+                loadingMoreProducts: false
             });
         }
+    }
+
+    triggerProductLoadMore() {
+        /**
+         * Display Loader
+         */
+        this.setState({
+            loadingMoreProducts: true
+        });
+
+        /**
+         * Request products
+         */
+        this.getCategoryProducts();
+        
+    }
+
+    perfomAfterProductsLoad(response) {
+        const { products } = this.state;
+        let newProducts = [];
+        if (products.length !== 0) {
+            newProducts = products;
+            response.data.map((product) => {
+                newProducts.push(product);
+            });
+        } else {
+            newProducts = response.data;
+        }
+        this.setState({
+            products: newProducts,
+            currentPage: (Number(response.meta.pagination_data.current_page) + 1),
+            lastPage: response.meta.pagination_data.last_page,
+            loadingMoreProducts: false
+        });
     }
 
     renderSpecialProducts() {
@@ -103,32 +146,62 @@ export default class MoreProduct extends Component {
         if (activeCategoryName !== '') {
             return (
                 <div className='made-in-rwanda-title maximum-width'>
-                    {`${activeCategoryName} Products`}
+                    {/* {`${activeCategoryName} Products`} */}
+                    You May Also Like
                 </div>
             );
         }
 
         return null;
     }
+    renderLoadMoreButton() {
+        const { currentPage, lastPage, loadingMoreProducts } = this.state;
+        if ((Number(currentPage) < Number(lastPage)) && !loadingMoreProducts) {
+            return (
+                <div className='row load-more-wrapper'>
+                    <button
+                    type='button'
+                    className='load-more-btn'
+                    onClick={this.triggerProductLoadMore}
+                    >
+                        View More
+                    </button>
+                </div>
+            );
+        }
+
+        return null;
+    }
+
+    renderLoaderWrapper() {
+        const { loadingMoreProducts } = this.state;
+        if (loadingMoreProducts) {
+            return <Loader />;
+        }
+        return null;
+    }
 	render() {
         const { products, currentPage, lastPage } = this.state;
         const hasMore = Number(currentPage) < Number(lastPage) ? true : false;
+
 		return (
             <div className='made-in-rwanda-wrapper'>
                 {this.renderSectionTitle()}
                 <div className='made-in-rwanda-content maximum-width'>
                     <div className='made-in-rwanda-wrapper'>
-                    <InfiniteScroll
+                    {/* <InfiniteScroll
                     dataLength={products.length}
                     next={this.getCategoryProducts}
                     hasMore={hasMore}
                     loader={<Loader />}
-                    >
+                    > */}
                         <div className='row rwanda-wrapper'>
                             {this.renderSpecialProducts()}
                         </div>
-                    </InfiniteScroll>
+                    {/* </InfiniteScroll> */}
                     </div>
+                    {this.renderLoaderWrapper()}
+                    {this.renderLoadMoreButton()}
                 </div>
             </div>
 		);

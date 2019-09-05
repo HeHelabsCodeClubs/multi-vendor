@@ -46,15 +46,12 @@ export default class SingleCartProductItem extends Component {
 
     performOnProductRemovalFromCart(callbackOne, callbackTwo) {
         const { router: { pathname } } = Router;
-        //console.log('this', this);
         if (pathname === '/checkout') {
             location.reload();
             return;
         }
         callbackOne();
         callbackTwo();
-        // this.props.updateCartData();
-        //this.props.removeShipment();
     }
  
     renderProductPrice(product, productIndex) {

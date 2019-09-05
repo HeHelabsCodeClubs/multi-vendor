@@ -632,3 +632,16 @@ h4 {
     margin: 0.5rem 0 0 0 !important;
 }
 
+.load-more-wrapper {
+    margin: 0;
+    padding: 1rem 0;
+    @include flexbox;
+    @include flexjustifycontent(center);
+    @include flexalignitems(center);
+
+    .load-more-btn {
+        @extend .default-button-styles;
+    }
+
+}
+

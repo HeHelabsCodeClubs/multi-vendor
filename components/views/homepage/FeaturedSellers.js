@@ -72,7 +72,7 @@ class FeaturedSellers extends Component {
                                         className='store-name'
                                         title={seller.name}
                                         >
-                                            {seller.name}
+                                            {LimitString(seller.name, 10)}
                                         </h5>
                                         <div className='store-category'>{seller.category.name}</div>
                                     </span>
