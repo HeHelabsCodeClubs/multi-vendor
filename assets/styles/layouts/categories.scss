@@ -106,6 +106,13 @@
                 padding-bottom: .6rem;
                 @include flexbox;
                 @include flexjustifycontent(space-between);
+                border-bottom: 1px solid #ccc;
+                font-size: 1.5rem !important;
+                margin: 0 0.5rem;
+                font-family: "Harmonia Sans Pro Bold";
+                padding: 1.85rem 0.5rem !important;
+                height: auto;
+                text-transform: capitalize;
 
                 .icon-Angle_down {
                     display: flex !important;
@@ -126,6 +133,7 @@
                 }
                 .item-label {
                     color: $black-color-3;
+                    margin: 0 !important;
                 }
                 .category-drop-icon {
                     float: right;
@@ -141,6 +149,11 @@
             }
             &.active {
                 border: none !important;
+
+                .item-label {
+                    color: $green-color-2;
+                }
+
                 .item-title {
                     background: transparent !important;
                     color: $green-color-2 !important;

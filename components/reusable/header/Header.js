@@ -217,7 +217,7 @@ class Header extends React.Component {
                                 <div className='top-panel-right'>
                                     <a href="https://seller.hehe.rw/#contactUs" target="_blank"><span className="top-content">Become a Seller</span></a>
                                     <a href="https://tracking.wherehouseshipping.com/" target="_blank"><span className='top-content'>Track your order</span></a>
-                                    <a href="https://seller.hehe.rw/" target="_blank"><span className='top-content'>about</span></a>
+                                    <a href="https://dmmhehe.com/" target="_blank"><span className='top-content'>about</span></a>
                                     <a href="https://seller.hehe.rw/#contactUs" target="_blank"><span className='top-content'>contact</span></a>
                                 </div>
                             </div>
@@ -289,7 +289,7 @@ class Header extends React.Component {
                                 <div className='row row-container'>
                                     <div className='col-lg-6 col-md-6 col-sm-6 col-6 account-grid'>
                                         <div className='row'>
-                                            <div className='col-lg-3 col-md-3 col-sm-3 col-12 col-reset'>
+                                            <div className='col-lg-3 col-md-3 col-sm-3 col-12'>
                                                 <span className='icon-Path-62 mobile-invisible'></span>
                                                 <a href="/profile" className="mobile-visible"><span className='icon-Path-62'></span></a>
                                                 <span className="mobile-menu__title mobile-visible">Account</span>

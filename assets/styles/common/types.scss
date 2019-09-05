@@ -612,8 +612,8 @@ html {
     .categories-content {
         .side-category__grid {
             .divider {
-                font-size: 1.3rem !important;
-                font-family: $font-semi-bold;
+                font-size: 1.5rem !important;
+                font-family: $font-bold;
                 padding: 0;
                 height: auto;
                 text-transform: capitalize;
@@ -632,7 +632,7 @@ html {
             }
             .item-level-2 {
                 .item-label, .item-title {
-                    font-size: 1.28rem !important;
+                    font-size: 1.1rem !important;
                     font-family: $font-regular;
 
                     @media screen and (max-width: $mobile-lg) {
