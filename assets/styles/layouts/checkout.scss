@@ -37,24 +37,26 @@
         .place-check {
             .shipping-btn {
                 .auth-button {
-                    &:before {
-                        content: "Place Order" !important;
-                        position: absolute;
-                        bottom: 1rem;
-                        left: 2rem;
-                        margin: 0 1rem 0 0;
-                        background: #f6921e;
-                        color: #ffffff;
-                        -webkit-transition: 0.5s;
-                        -moz-transition: 0.5s;
-                        -ms-transition: 0.5s;
-                        transition: 0.5s;
-                        border: 0.5px solid #f6921e;
-                        border-radius: 0.35rem;
-                        outline: none !important;
-                        padding: 0.7rem 0;
-                        min-width: 11rem;
-                        z-index: 1000;
+                    @media screen and (max-width: $mobile-lg) {
+                        &:before {
+                            content: "Place Order" !important;
+                            position: absolute;
+                            bottom: 1rem;
+                            left: 2rem;
+                            margin: 0 1rem 0 0;
+                            background: #f6921e;
+                            color: #ffffff;
+                            -webkit-transition: 0.5s;
+                            -moz-transition: 0.5s;
+                            -ms-transition: 0.5s;
+                            transition: 0.5s;
+                            border: 0.5px solid #f6921e;
+                            border-radius: 0.35rem;
+                            outline: none !important;
+                            padding: 0.7rem 0;
+                            min-width: 11rem;
+                            z-index: 1000;
+                        }                        
                     }
                 }
             }
