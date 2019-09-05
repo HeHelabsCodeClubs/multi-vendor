@@ -104,8 +104,10 @@
 
             &.divider-level-1 {
                 padding-bottom: .6rem;
+                height: 6rem;
                 @include flexbox;
                 @include flexjustifycontent(space-between);
+                @include flexalignitems(center);
 
                 .icon-Angle_down {
                     display: flex !important;
@@ -354,6 +356,16 @@
         .main-content {
             margin: 0 0 2rem 2rem !important;
 
+            .single-product {
+                box-shadow: none !important;
+                &:hover {
+                    box-shadow: -2px -1px 9px 0px rgba(0, 0, 0, 0.05);
+                }
+                .single-product .product-description {
+                    box-shadow: 0 -13px 9px -7px rgba(0, 0, 0, 0.05);
+                }
+            }
+
             @media screen and (max-width: $mobile-lg) {
                 margin: 0 0.5rem 2rem 0.5rem !important;
             }
@@ -370,6 +382,8 @@
                     max-width: 16.6%;
                 }
             }
+
+            
 
             .empty-category, .loader-wrapper {
                 height: calc(55vh - 6rem);
