@@ -63,6 +63,12 @@ app
             });
         })
 
+        server.get('/invoice/:id', (req, res) => {
+            return app.render(req, res, '/invoice', { 
+                id: req.params.id
+            });
+        })
+
         server.get('/profile/:page', (req, res) => {
             const token = getTokenValue(req.headers.cookie, 'VENDOR_TOKEN');
             if (!token && req.params.page === 'orders') {

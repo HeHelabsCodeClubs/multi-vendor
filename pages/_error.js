@@ -36,8 +36,9 @@ class Error extends React.Component {
 	
 	renderCategories(categories) {
 		const categoryLayout = categories.map((category) => {
+			console.log(category);
 			return (
-				<a href=''>
+				<a href={`/categories/${category.slug}`}>
 					<span className='category-item'>
 						<img src={category.icon_url} />
 						{category.name}

@@ -17,7 +17,6 @@ class SearchDropdown extends Component {
         this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
         this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
         this.onChange = this.onChange.bind(this);
-
     }
     
     
@@ -35,36 +34,36 @@ class SearchDropdown extends Component {
         return suggestion.name;
     };
     
-   renderSuggestion(suggestion) {
-       let categoryName = '';
-       const { name, categories } = suggestion;
-       if (categories) {
-            if (categories.length !== 0) {
-                const catLength = categories.length;
-                categoryName = categories[catLength - 1].name;
-            }
-       }
-       
-       let displayName = (categoryName !== '') ? (
-           <span className='wrapper'>
-               <span>{name}</span> in <span>{categoryName}</span>
-           </span>
-           
-       ) : (
-        <span className='wrapper'>
-            <span>{name}</span>
-        </span>
-       );
-       const { value } = this.state;
-       let validValue = name.toLowerCase().split(' ').join('_');
-        validValue = validValue.replace(/[^a-z0-9]+|\s+/gmi, '_');
-        return(
-            <div>
-                {/* links */}
-                <a href={`/search-results/${validValue}`}>{displayName}</a>
-            </div>
+    renderSuggestion(suggestion) {
+        let categoryName = '';
+        const { name, categories } = suggestion;
+        if (categories) {
+                if (categories.length !== 0) {
+                    const catLength = categories.length;
+                    categoryName = categories[catLength - 1].name;
+                }
+        }
+        
+        let displayName = (categoryName !== '') ? (
+            <span className='wrapper'>
+                <span>{name}</span> in <span>{categoryName}</span>
+            </span>
+            
+        ) : (
+            <span className='wrapper'>
+                <span>{name}</span>
+            </span>
         );
-   }
+        const { value } = this.state;
+        let validValue = name.toLowerCase().split(' ').join('_');
+            validValue = validValue.replace(/[^a-z0-9]+|\s+/gmi, '_');
+            return(
+                <div>
+                    {/* links */}
+                    <a href={`/search-results/${validValue}`}>{displayName}</a>
+                </div>
+            );
+    }
    
 
     onChange = (event, { newValue }) => {
@@ -76,6 +75,7 @@ class SearchDropdown extends Component {
     };
 
     async onSuggestionsFetchRequested({ value }){
+        console.log(value);
         if(value.length !== 0) {
             const res = await fetch(`${API_URL}/products/search/${value}`, {
                 method: 'GET',
@@ -95,6 +95,7 @@ class SearchDropdown extends Component {
                 });
             }
         }
+
     };
 
     onSuggestionsClearRequested(){

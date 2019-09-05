@@ -87,7 +87,6 @@ class Invoice extends Component {
         this.PrintInvoice = this.PrintInvoice.bind(this);
         this.renderInvoiceProducts = this.renderInvoiceProducts.bind(this);
         this.renderSubTotal = this.renderSubTotal.bind(this);
-        // this.renderProductOptions = this.renderProductOptions.bind(this);
     };
 
     PrintInvoice() {
@@ -123,17 +122,6 @@ class Invoice extends Component {
         }
         return subTotal;
     };
-
-    // renderProductOptions() {
-    //     const productOptions = invoice.data.products.attributes;
-
-    //     const productOptionsLayout = productOptions.map((option) => {
-    //         return (
-    //             <span>{`${option.name} : ${option.name}`}</span>
-    //         )
-    //     });
-    //     return productOptionsLayout;
-    // };
 
     render () {
         return (
