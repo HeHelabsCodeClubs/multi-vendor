@@ -1,13 +1,16 @@
 import Router from 'next/router';
 import Select2 from 'react-select2-wrapper';
+import cookie from 'js-cookie';
 import Cart from './Cart';
 import HeaderCategoryMenu from './HeaderCategoryMenu';
-import { getUserAuthenticatedInfo, logoutUser } from '../../../helpers/auth';
 import isObjectEmpty from '../../../helpers/is_object_empty';
 import SearchDropdown from './SearchDropdown';
 import classnames from "classnames";
 import Head from 'next/head';
-// import AlertBetaVersion from './AlertBetaVersion';
+import { getUserAuthenticatedInfo, logoutUser } from '../../../helpers/auth';
+import {
+    APP_BETA_NOTIFICATION
+} from '../../../config';
 
 class Header extends React.Component {
     constructor(props) {
@@ -15,7 +18,7 @@ class Header extends React.Component {
         this.state = {
             updateCart: false,
             authUser: {},
-            prevScrollpos: 0,//window.pageYOffset,
+            prevScrollpos: 0,
             visible: true,
             searchedValue: '',
             alertVisibility: true
@@ -28,6 +31,7 @@ class Header extends React.Component {
         this.handleSearchValueSubmission = this.handleSearchValueSubmission.bind(this);
         this.closeAlertPopup = this.closeAlertPopup.bind(this);
         this.renderAlertContent = this.renderAlertContent.bind(this);
+        this.storeBetaPopUpUserClosureAction = this.storeBetaPopUpUserClosureAction.bind(this);
     }
     componentDidMount() {
         this.setState({
@@ -37,6 +41,11 @@ class Header extends React.Component {
             this.updateAuthUser(user);
         });
         window.addEventListener("scroll", this.handleScroll);
+        if(cookie.get(APP_BETA_NOTIFICATION) === '1') {
+            this.setState({
+                alertVisibility: false
+            });
+        }
     }
     componentWillReceiveProps(nextProps) {
         const { updateCart } = nextProps;
@@ -104,12 +113,23 @@ class Header extends React.Component {
     closeAlertPopup() {
         this.setState({
             alertVisibility: false
+        }, () => {
+            /**
+             * Store the user action in session after pop up closure
+             * to avoid seeing the popup on every page load in one single
+             * session
+             */
+            this.storeBetaPopUpUserClosureAction();
         });
+    }
+
+    storeBetaPopUpUserClosureAction() {
+        cookie.set(APP_BETA_NOTIFICATION, 1);
     }
 
     renderAlertContent() {
         const { alertVisibility } = this.state;
-        if (alertVisibility) {
+        if (alertVisibility && cookie.get(APP_BETA_NOTIFICATION) !== '1') {
             return (
                 <div className="cookies-wrapper alert-top">
                     <p>This is a beta version of <a href="/">hehe.rw</a>. We're still working on this new-look site, we apologize for any inconvenience this may cause.
@@ -120,17 +140,6 @@ class Header extends React.Component {
         }
         return null;
     }
-
-    // handleDismissalOfAlert() {
-    //     const {alertVisibility} = this.state;
-    //     if (alertVisibility) {
-    //         return (
-
-    //         );
-    //     }
-    // }
-
-    // test deploy
 
     renderUserProfile() {
         const { authUser } = this.state;
@@ -180,12 +189,9 @@ class Header extends React.Component {
 
     render() {
         const { alertVisibility } = this.state;
-        let className = "header-panel";
-        if (alertVisibility) {
-            className += " top-alert";
-        }
+        let wrapperClassName = (cookie.get(APP_BETA_NOTIFICATION) === '1' && !alertVisibility) ? "header-panel" : "header-panel top-alert";
         return (
-            <div className={className}>
+            <div className={wrapperClassName}>
                 <Head>
                     <link rel="shortcut icon" href="https://res.cloudinary.com/hehe/image/upload/v1563286307/multi-vendor/HeHe_Favicon.png" />
                     <title>HeHe Marketplace</title>
@@ -195,10 +201,10 @@ class Header extends React.Component {
                     "navbar__hidden": !this.state.visible
                 })}
                 >
+                    
                     <div>
                         {this.renderAlertContent()}
                     </div>
-
                     <div className='top-panel'>
                         <div className='row maximum-width'>
                             <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
@@ -209,7 +215,7 @@ class Header extends React.Component {
                             </div>
                             <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
                                 <div className='top-panel-right'>
-                                    <a href="https://seller.hehe.rw/#contactUs" target="_blank"><span className="top-content">Become a Setter</span></a>
+                                    <a href="https://seller.hehe.rw/#contactUs" target="_blank"><span className="top-content">Become a Seller</span></a>
                                     <a href="https://tracking.wherehouseshipping.com/" target="_blank"><span className='top-content'>Track your order</span></a>
                                     <a href="https://seller.hehe.rw/" target="_blank"><span className='top-content'>about</span></a>
                                     <a href="https://seller.hehe.rw/#contactUs" target="_blank"><span className='top-content'>contact</span></a>

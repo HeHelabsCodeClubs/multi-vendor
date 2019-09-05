@@ -19,6 +19,7 @@ export const CART_ITEMS_OBJECT_EMPTY = 'can items object empty';
 export const CAN_NOT_UPDATE_CART_ITEMS_ERROR = 'can not update cart items';
 export const ORDER_CREATION_UNKWOWN_ERROR = 'We are encountering an error! Please try again!';
 export const STORE_USER_ACCEPTANCE_FOR_COOKIE_USER = 'COOKIE_USAGE';
+export const APP_BETA_NOTIFICATION = 'APP_BETA_NOTIFICATION';
 
 //User feedback messages
 export const USER_NOT_CREATED = 'We were not able to create an account for you. An account with the same email might already exist.';
