@@ -479,10 +479,6 @@ class ProductPage extends React.Component {
             addToCartSubmitStatus: 'submitted'
         });
 
-        // Display message to user
-        const successMessage = `${product.name} was added to your shopping cart. Visit your shopping cart to checkout`;
-        notify.show(successMessage, 'success', ALERT_TIMEOUT);
-
         // open cart content sidebar 
         this.HandleCartContentOpening();
         setTimeout(
