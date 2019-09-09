@@ -97,21 +97,13 @@ class Index extends React.Component {
 				<div className='main-banners'>
 					<Ad type={type} data={promoAds}/>
 				</div>
-				<div className='categories-scroller'>
-					<div className='maximum-width'>
-						<HomepageCategory categories={categories} />
-					</div>
-				</div>
-				<div className='special-offers featured-sellers mobile-invisible'>
-					<FeaturedSellers sellers={sellers} />
-				</div>
 				<div className='top-stores'>
 					<TopStores topStores={topStores} />
 				</div>
 				<div className='made-in-rwanda special-offers'>
 					<SpecialOffers offers={specialOffers} />
 				</div>
-				<div className='made-in-rwanda special-offers'>
+				<div className='made-in-rwanda special-offers made-in-rwanda-grid'>
 					<MadeInRwanda 
 					stores={stores} products={products} 
 					cartShouldUpdate={this.cartShouldUpdate}

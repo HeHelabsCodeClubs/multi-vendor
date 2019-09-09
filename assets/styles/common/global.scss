@@ -7,29 +7,15 @@
 // General
 
 html {
-    font-size: 14px;
     font-family: 'Harmonia Sans Pro Black' !important;
-
-    @media screen and (max-width: 1920px) {
-        font-size: 12px !important;
-    }   
-    @media screen and (max-width: 1024px) {
-        font-size: 10px !important;
-    } 
+    font-size: 10px !important;
 }
 body {
     min-height: 100vh;
     position: relative;
     width: 100%;
-    padding-bottom: 37rem !important;
     overflow-x: hidden !important;
-
-    @media screen and (max-width: $mobile-md-lg) {
-        padding-bottom: 86rem !important;
-    }
-    @media screen and (min-width: $mobile-md-lg) and (max-width: $mobile-lg) {
-        padding-bottom: 58rem !important;
-    }
+    padding-bottom: 23rem !important;
 }
 .maximum-width {
     max-width: 1920px;
@@ -37,7 +23,6 @@ body {
 }
 a {
     color: $black-color-1 !important;
-
     &:hover {
         text-decoration: none !important;
     }
@@ -45,13 +30,11 @@ a {
 .light-title {
     font-family: $font-regular !important;
 }
-
 .total-price {
     border-top: 2px solid $gray-color-2;
     background: $white-color;
     margin: 0 1rem;
     padding-bottom: 1.5rem;
-
     .subtotal {
         text-align: right;
         font-size: 1.28rem;
@@ -177,8 +160,8 @@ a {
                 position: absolute;
                 min-width: 2rem;
                 height: 2rem;
-                right: 1.2rem;
-                top: .2rem;
+                right: 1.5rem;
+                top: 1rem;
                 border-radius: 50%;
                 border: 1px solid $red-color-1;
                 background: $red-color-1;

@@ -76,80 +76,17 @@ class Footer extends Component {
         const { categories} = this.state;
         return (
             <div className='footer-wrapper'>
-                
-                <div className="store-info">
-                    <div className='row reset-row'>
-                        <div className="col-lg-3 col-md-3 col-sm-3 col-6 footer-card-wrapper">
-                            <div className="footer-card">
-                                <img src="https://res.cloudinary.com/hehe/image/upload/v1565080905/multi-vendor/icons/footer-info/Card_payment.svg" />
-                                <h3>Secure Payment</h3>
-                                <p>Pay with the world’s most popular and secure payment methods.</p>
-                            </div>
-                        </div>
-                        <div className="col-lg-3 col-md-3 col-sm-3 col-6 footer-card-wrapper">
-                            <div className="footer-card">
-                                <img src="https://res.cloudinary.com/hehe/image/upload/v1565080905/multi-vendor/icons/footer-info/Car_Truck.svg" />
-                                <h3>Fast Delivery</h3>
-                                <p>Think, click and pick up! Delivery from your chosen store to your door.</p>
-                            </div>
-                        </div>
-                        <div className="col-lg-3 col-md-3 col-sm-3 col-6 footer-card-wrapper">
-                            <div className="footer-card">
-                                <img src="https://res.cloudinary.com/hehe/image/upload/v1565080905/multi-vendor/icons/footer-info/Ptice_Tag.svg" />
-                                <h3>Great Value</h3>
-                                <p>We offer competitive prices on all products.</p>
-                            </div>
-                        </div>
-                        <div className="col-lg-3 col-md-3 col-sm-3 col-6 footer-card-wrapper">
-                            <div className="footer-card">
-                                <img src="https://res.cloudinary.com/hehe/image/upload/v1565080905/multi-vendor/icons/footer-info/Return_Arrow.svg" />
-                                <h3>Hassle-Free Returns</h3>
-                                <p>We offer returns, refunds and replacements if need be. Terms & Conditions apply.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className='maximum-width'>
+                <div className='maximum-width footer-wrapper-box'>
                     <div className='footer-wrapper-content'>
                         <div className='row reset-row'>
-                            <div className='col-lg-2 col-md-2 col-sm-3 col-6'>
-                                <div className='footer-title'>Way to shop</div>
-                                <div className='footer-content'>
-                                    {this.renderFooterCategories(categories)}
-                                </div>
-                            </div>
-                            <div className='col-lg-2 col-md-2 col-sm-3 col-6'>
-                                <div className='footer-title'>Extras</div>
-                                <div className='footer-content'>
-                                    <div className='content'><a href="https://dmmhehe.com/" target="_blank">About us</a></div>
-                                    <div className='content'><a href="https://forms.gle/U3TKe1apATkw1qQQA" target="_blank">Become an Affiliate</a></div>
-                                </div>
-                            </div>
-                            <div className='col-lg-2 col-md-2 col-sm-3 col-6'>
-                                <div className='footer-title'>Quick Links</div>
-                                <div className='footer-content'>
-                                    <div className='content'><a href="/privacy">Privacy policies</a></div>
-                                    <div className='content'><a href="/terms">Terms &amp; Conditions</a></div>
-                                    <div className='content'><a href="https://seller.hehe.rw/#contactUs" target="_blank">Contact us</a></div>
-                                </div>
-                            </div>
-                            <div className='col-lg-3 col-md-3 col-sm-3 col-6'>
-                                <div className='footer-title'>Call us</div>
-                                <div className='contact-content'>+250 786 456 686</div>
-
-                                <div className='footer-title'>Email us</div>
-                                <div className='contact-content'>order@hehe.rw</div>
-
-                                <div className='footer-title'>Sell with HeHe</div>
-                                <div><a href="https://seller.hehe.rw/#contactUs" target="_blank"><button>Become a seller</button></a></div>
-                            </div>
-                            <div className='col-lg-3 col-md-3 col-sm-6 col-12 subscribe-grid'>
+                            <div className='col-12 subscribe-grid'>
                                 <div className='footer-title'>Get more from Hehe</div>
                                 <div className='subscribe'>
                                     <input type='text' name='email' placeholder='Email' />
                                     <button>Subscribe</button>
                                 </div>
+                            </div>
+                            <div className="col-6">
                                 <div className='footer-title'>Pay with</div>
                                 <div className='footer-payment-mode'>
                                     <span className='payment'><img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1559309603/multi-vendor/Visa-icon.png' /></span>
@@ -157,8 +94,14 @@ class Footer extends Component {
                                     <span className='payment'><img src='https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1559309603/multi-vendor/MoMo-icon.png' /></span>
                                 </div>
                             </div>
+                            <div className="col-6 footer-links">
+                                <ul>
+                                    <li><a>Privacy</a></li>
+                                    <li><a>Terms &amp; cond.</a></li>
+                                </ul>
+                            </div>
                         </div>
-                   ` </div>
+                    </div>
                 </div>
 
                 {/* <div>

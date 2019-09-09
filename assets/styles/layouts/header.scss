@@ -18,10 +18,13 @@
                 @include flexjustifycontent(center);
                 @include flexalignitems(flex-end);
                 .cart-grid {
-                    width: 100%; 
+                    width: 100%;
+                    .SidebarOverlay {
+                        background: none;
+                    } 
                 }
                 .mobile-menu-link {
-                    height: 5rem;
+                    height: 6rem;
                     width: 100%;
                     display: flex;
                     flex-direction: column;
@@ -205,7 +208,7 @@
             bottom: 6rem !important;
             height: calc(100vh - 6rem) !important;
             overflow: hidden;
-        }
+        }      
     }
 
     .main-menu__wrapper {
@@ -233,12 +236,12 @@
         .SidebarContent {
             top: 3.05rem !important;
             box-shadow: 1.2rem 1.3rem 2rem $gray-color-5;
+            height: calc(100vh - 6rem) !important;
         }
         .Sidebar.is-open .SidebarContent {
             left: 0 !important;
             bottom: 6rem;
             top: auto !important;
-            height: calc(100vh - 6rem) !important;
         }
         .nav__submenu {
             position: relative;
@@ -272,8 +275,7 @@
             padding: 1rem;
             position: fixed;
             top: 0;
-            width: 70%;
-            max-width: 300px;
+            width: 100%;
             background: $gray-color-2;
             z-index: 1000000000000 !important;
             .icon-Path-71 {
@@ -390,8 +392,14 @@
                 right: 0 !important;
                 background: $white-color;
                 width: 100% !important;
+                height: calc(100% - 6rem) !important;
 			}
-		}
+        }
+        .mobile-menu-link {
+            span {
+                color: $green-color-2 !important;
+            }
+        }
     }
 }
 .cart-sidebar {

@@ -61,142 +61,6 @@
         }
     }
 }
-
-.categories-scroller {
-    background: $gray-color-2;
-
-    @media screen and (max-width: $mobile-lg) {
-        display: none;
-    }
-
-    .slick-slider {
-        width: 90%;
-        margin: 0 auto !important;
-        padding: 1.5rem 0;
-        background: $white-color;
-        top: -4rem;
-        border-radius: 20px;
-        @include boxshadow(0 3px 36px 0 rgba(0, 0, 0, 0.16));
-
-        @media screen and (max-width: $mobile-lg) {
-            width: 100%;
-            padding: 0.5rem 0;
-            top: 1rem;
-            background: transparent;
-            box-shadow: none;
-            padding-bottom: 25px;
-            border-bottom: .5px solid $gray-color-7;
-            border-radius: 0;
-        }
-
-        .slick-track {
-            @media screen and (max-width: $mobile-lg) {
-                transform: translate3d(0, 0px, 0px) !important;
-                width: 100vw !important;
-            }            
-        }
-    
-        .slick-prev {
-            z-index: 999;
-            height: 100%;
-            left: 0;
-            width: 3.14rem;
-            @include boxshadow(8px 0 6px 0 rgba(0, 0, 0, 0.05));
-
-            @media screen and (max-width: $mobile-lg) {
-                display: none !important;
-            }
-
-            &:before {
-                content: '\E91a';
-                color: $gray-color-10 !important;
-            }
-        }
-        .slick-next {
-            z-index: 999;
-            height: 100%;
-            right: 0;
-            width: 3.14rem;
-            @include boxshadow(-8px 0 6px 0 rgba(0, 0, 0, 0.05));
-
-            @media screen and (max-width: $mobile-lg) {
-                display: none !important;
-            }
-
-            &:before {
-                content: '\e919';
-                color: $gray-color-10 !important;
-            }
-        }
-        .slick-slide img {
-            width: 100%;
-        }
-        .slick-dots {
-            display: none !important;
-        }
-        .slick-slide {
-            text-align: center;
-            padding: 0 2rem;
-
-            @media screen and (max-width: $mobile-lg) {
-                padding: 1rem;
-                width: 20% !important;
-                float: none !important;
-                display: inline-block;
-            }
-
-            div {
-                a {
-                    // @include flexbox;
-                    display: flex !important;
-                    @include flexalignitems(center);
-                    @include flexjustifycontent(center);
-                    @include flexdirection(column);
-
-                    img {
-                        width: 3rem;
-                        height: 3rem;
-                    }
-                    .cat-icon {
-                        color: $gray-color-11 !important;
-
-                        @media screen and (max-width: $mobile-lg) {
-                            background: $white-color;
-                            height: 3.5rem;
-                            width: 3.5rem;
-                            border-radius: 50%;
-                            margin: 0 auto;
-                            box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.06);
-                            @include flexbox;
-                            @include flexalignitems(center);
-                            @include flexjustifycontent(center);                            
-                        }
-                    }
-                }
-            }
-        }
-        .cat-name {
-            min-width: 9rem;
-            margin: 1rem 0 0 0;
-            line-height: 1;
-            color: $black-color-3;
-
-            @media screen and (max-width: $tablet-min) {
-                min-width: 100%;
-            }
-        }
-        .slick-list {
-            width: 90%;
-            margin: 0 auto;
-
-            @media screen and (max-width: $mobile-lg) {
-                width: calc(100% - 1rem);
-                padding: 0 !important;
-            }
-        }
-    }
-}
-
 .featured-sellers {
 
     @media screen and (max-width: $mobile-lg){
@@ -286,12 +150,8 @@
 }
 .top-stores {
     background: $gray-color-2;
-    padding: 0 0 2rem 0;
-
-    @media screen and (max-width: $mobile-lg) {
-        border-bottom: .5px solid #e4e4e4;
-        padding: 0 0 1rem 0;
-    }
+    border-bottom: .5px solid #e4e4e4;
+    padding: 0 0 1rem 0;
 
     .top-stores-wrapper {
         .top-stores-title {
@@ -314,7 +174,7 @@
                 }
                 .category-wrapper {
                     @include flexbox;
-                    @include flexjustifycontent(center);
+                    @include flexjustifycontent(start);
                 }
                 .category {
                     text-align: center;
@@ -477,6 +337,13 @@
         padding-top: 4rem !important;
     }
 }
+.made-in-rwanda-grid {
+    padding-top: 0 !important;
+    .made-in-rwanda-title {
+        padding: 2rem 0 0 0 !important;
+        background-color: $white-color;
+    }
+}
 .made-in-rwanda {
     background: $gray-color-2;
     padding: 1rem 0 3rem 0;
@@ -539,15 +406,10 @@
 
         .made-in-rwanda-content {
             .special-offers-row {
-                border-radius: 1rem;
                 background-color: $green-color-3;
-                width: 90%;
+                width: 100%;
                 margin:auto;
-                padding: 1rem 2rem 1rem 1rem;
-                
-                @media screen and (max-width: $mobile-lg) {
-                    padding: 0 0 0 0.5rem;
-                }
+                padding: 0 0 0 0.5rem;
 
                 &.prices-offers {
                     background-color: $green-color-3;

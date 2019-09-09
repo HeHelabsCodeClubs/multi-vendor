@@ -170,12 +170,12 @@ class Header extends React.Component {
 
     render() {
         const { alertVisibility } = this.state;
-        let className = "header-panel";
-        if (alertVisibility) {
-            className += " top-alert";
-        }
+        // let className = "header-panel";
+        // if (alertVisibility) {
+        //     className += " top-alert";
+        // }
         return (
-            <div className={className}>
+            <div className="header-panel">
                 <Head>
                     <link rel="shortcut icon" href="https://res.cloudinary.com/hehe/image/upload/v1563286307/multi-vendor/HeHe_Favicon.png" />
                     <title>HeHe Marketplace</title>
@@ -186,7 +186,7 @@ class Header extends React.Component {
                 })}
                 >
                     <div>
-                        {this.renderAlertContent()}
+                        {/* {this.renderAlertContent()} */}
                     </div>
                     <div className='header'>
                         <div className='row maximum-width'>

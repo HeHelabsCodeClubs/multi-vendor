@@ -107,7 +107,7 @@ class HeaderCategoryMenu extends React.Component {
                 return (
                     <span className="nav__submenu-item " key={category.id} >
                         <a href={`/categories/${slug}`} className='sub-menu__item-a'>
-                            <span className={`${IconClassName} menu-item-icon`} />
+                            <img src={IconClassName} className={`cat-icon`} />
                             {category.name}
                         </a>
                     </span>
@@ -144,6 +144,28 @@ class HeaderCategoryMenu extends React.Component {
                                                     <li>
                                                         {this.renderMoboCategory(categories)}
                                                     </li>
+                                                    
+                                                    <div className="row footer-category">
+                                                        <div className='col-6'>
+                                                            <h5>Information</h5>
+                                                            <div className='footer-content'>
+                                                                <a href="https://dmmhehe.com/" target="_blank">About us</a>
+                                                                <a href="https://forms.gle/U3TKe1apATkw1qQQA" target="_blank">Become an Affiliate</a>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className='col-6'>
+                                                            <h5 className='footer-title'>Help</h5>
+                                                            <div className='footer-content'>
+                                                                <p>+250 786 456 686</p>
+                                                                <p>order@hehe.rw</p>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-12">
+                                                            <h5 className='footer-title'>Information</h5>
+                                                            <div><a href="https://seller.hehe.rw/#contactUs" target="_blank"><button>Become a seller</button></a></div>
+                                                        </div>
+                                                    </div>
                                                 </ul>
                                             </div>
                                         </div>

@@ -1,16 +1,11 @@
-
 html {
     h4 {
         font-size: 1.28rem !important;
         font-family: $font-regular;
-
-        @media screen and (max-width: $mobile-lg) {
-            font-size: 0.9rem !important;
-        }
     }
     h5 {
-        font-size: 1rem; //!important;
-        font-family: $font-bold; //!important;
+        font-size: 1rem;
+        font-family: $font-bold;
     }
     h6 {
         font-family: $font-regular;
@@ -27,21 +22,17 @@ html {
         font-size: 1.1rem;
         font-family: $font-regular;
     }
-
     .empty-cart-items {
         font-size: 2.5rem !important;
         font-family: "Harmonia Sans Pro light" !important;
     }
-
     .cart-wrapper {
         .cart-title {
             font-family: $font-regular;
             font-size: 1.2rem;
         }
     }
-
     // landing page
-
     .landing-title {
         font-size: 1.78rem;
         font-family: $font-bold;
@@ -87,7 +78,7 @@ html {
             font-size: 1.7rem;            
         }
         .mobile-menu__title {
-            font-size: .8rem !important;
+            font-size: 1rem !important;
         }
     }
 
@@ -247,10 +238,6 @@ html {
     .cat-name {
         font-size: 1.1rem;
         font-family: $font-semi-bold;
-
-        @media screen and (max-width: $mobile-lg) {
-            font-size: .7rem;
-        }
     }
     .slick-next {
         &:before {
@@ -263,12 +250,8 @@ html {
         }
     }
     .top-stores-title, .special-offers-title {
-        font-size: 2.14rem;
+        font-size: 1.7rem;
         font-family: $font-bold;
-
-        @media screen and (max-width: $mobile-lg) {
-            font-size: 1.5rem;
-        }
     }
     .top-stores {
         .top-stores-wrapper  {
@@ -284,13 +267,8 @@ html {
         }
     }
     .made-in-rwanda-title {
-        font-size: 2.14rem;
+        font-size: 1.7rem;
         font-family: $font-bold;
-
-        @media screen and (max-width: $mobile-lg) {
-            font-size: 1.5rem;
-        }
-
         span {
             font-family: $font-regular;
         }
@@ -307,24 +285,10 @@ html {
                 .price {
                     font-size: 1.2rem;
                     font-family: $font-bold;
-    
-                    @media screen and (min-width: $tablet-min) and (max-width: $tablet-md) {
-                        font-size: 1rem;
-                    }
-    
-                    @media screen and (max-width: $mobile-lg) {
-                        font-size: 0.8rem;
-                    }
                 }
                 .initial-price {
                     font-size: 1.14rem;
                     font-family: $font-semi-bold;
-                    @media screen and (min-width: $tablet-min) and (max-width: $tablet-md) {
-                        font-size: 0.8rem;
-                    }
-                    @media screen and (max-width: $mobile-lg) {
-                        font-size: 0.7rem;
-                    }
                 }
             }
         }
@@ -341,10 +305,7 @@ html {
                 font-family: $font-regular;
 
                 .items-in-cart {
-                    
-                    @media screen and (max-width: $mobile-lg) {
-                        font-size: 1rem;
-                    }
+                    font-size: 1rem;
                 }
             }
         }
@@ -356,24 +317,10 @@ html {
             .price {
                 font-size: 1.2rem;
                 font-family: $font-bold;
-
-                @media screen and (min-width: $tablet-min) and (max-width: $tablet-md) {
-                    font-size: 1rem;
-                }
-
-                @media screen and (max-width: $mobile-lg) {
-                    font-size: 0.8rem;
-                }
             }
             .initial-price {
                 font-size: 1.14rem;
                 font-family: $font-semi-bold;
-                @media screen and (min-width: $tablet-min) and (max-width: $tablet-md) {
-                    font-size: 0.8rem;
-                }
-                @media screen and (max-width: $mobile-lg) {
-                    font-size: 0.7rem;
-                }
             }
             .add-to-cart {
                 button {
@@ -417,18 +364,10 @@ html {
         .hot {
             font-size: 1rem;
             font-family: $font-regular;
-
-            @media screen and (max-width: $mobile-lg) {
-                font-size: 0.6rem;
-            }
         }
         .discount {
             font-size: 1rem;
             font-family: $font-regular;
-
-            @media screen and (max-width: $mobile-lg) {
-                font-size: 0.6rem;
-            }
         }
     }
     .made-in-rwanda-wrapper {
@@ -481,10 +420,6 @@ html {
                         .product-name {
                             font-size: 1.1rem;
                             font-family: $font-regular;
-
-                            @media screen and (max-width: $mobile-lg) {
-                                font-size: 1rem;
-                            }
                         }
                         .qty-measurement {
                             font-size: 1rem;
@@ -501,10 +436,6 @@ html {
                             
                             .discount {
                                 font-size: 0.9rem;
-
-                                @media screen and (max-width: $mobile-lg) {
-                                    font-size: 0.6rem;
-                                }
                             }
                             .edit {
                                 font-size: 1rem;
@@ -515,9 +446,6 @@ html {
                             }
                             .initial-price {
                                 font-size: 1rem;
-                                @media screen and (max-width: $mobile-lg) {
-                                    font-size: 0.7rem;
-                                }
                             }
                             .remove {
                                 font-size: 1rem;
@@ -528,10 +456,6 @@ html {
                             }
                             .price {
                                 font-size: 1.1rem;
-
-                                @media screen and (max-width: $mobile-lg) {
-                                    font-size: 0.8rem;
-                                }
                             }
                         }
                     }
@@ -541,18 +465,11 @@ html {
                 .grand-total {
                     font-size: 1.4rem;
                     font-family: $font-regular;
-                    @media screen and (max-width: $mobile-lg) {
-                        font-size: 1.2rem;
-                    }
                 }
                 .proceed-button {
                     button {
                         font-size: 1.28rem;
                         font-family: $font-bold;
-
-                        @media screen and (max-width: $mobile-lg) {
-                            font-size: 1.2rem;
-                        }
                     }
                 }
             }
@@ -632,10 +549,6 @@ html {
                 .item-label, .item-title {
                     font-size: 1.28rem !important;
                     font-family: $font-regular;
-
-                    @media screen and (max-width: $mobile-lg) {
-                        font-size: 1.1rem !important;
-                    }
                 }
             }
 
@@ -673,8 +586,6 @@ html {
                 font-size: 2rem;
             }            
         }
-
-
     }
     .filter-title {
         font-size: 1.7rem;
@@ -708,21 +619,12 @@ html {
             }
         }
     }
-
     // Checkout
-
     .checkout-process {
         .single-process {
-            .process-point {
-                
-            }
             .process-name {
                 font-size: 1.28rem;
                 font-family: $font-bold;
-
-                @media screen and (max-width: $mobile-lg) {
-                    font-size: .8rem;
-                }
             }
         }
     }
@@ -831,9 +733,6 @@ html {
             font-family: $font-semi-bold;
             span {
                 font-size: .8rem !important;
-                @media screen and (max-width: $mobile-lg) {
-                    font-size: .5rem !important;
-                }
             }
         }
     }
@@ -922,9 +821,7 @@ html {
         font-size: 1.28rem;
         font-family: $font-semi-bold;
     }
-
     // Product details
-
     .popup-wrapper {
         .description-wrapper {
             .product-name {
@@ -969,9 +866,6 @@ html {
                     font-size: 1.3rem;
                     font-family: $font-semi-bold;
                     line-height: 1.5rem;
-                    @media screen and (max-width: $mobile-lg) {
-                        margin: 0 1rem 1rem 0;
-                    }
                 }
                 .product-store {
                     .store-content {
@@ -1010,9 +904,7 @@ html {
             font-family: 'icomoon'; 
         }
     }
-
     // seller
-
     .line-display {
         display: inline-grid;
         margin: 1rem 6rem 1rem 0;
@@ -1020,10 +912,6 @@ html {
         .store-name {
             font-family: $font-regular;
             font-size: 1.4rem;
-
-            @media screen and (max-width: $mobile-lg) {
-                font-size: 1rem;
-            }
             title {
                 font-family: $font-regular;
             }
@@ -1049,9 +937,7 @@ html {
             }
         }
     }
-
     // Register and Login
-
     .auth-content {
         .auth-title {
             font-size: 1.28rem;
@@ -1062,10 +948,6 @@ html {
                 input {
                     font-size: 1.28rem;
                     font-family: $font-regular;
-
-                    @media screen and (max-width: $mobile-lg) {
-                        font-size: 1rem !important;
-                    }
                 }
             }
             .checkbox-field {
@@ -1094,9 +976,7 @@ html {
             }
         }
     }
-
     // Footer
-
     .footer-wrapper {
         .store-info {    
             .footer-card-wrapper {
@@ -1104,9 +984,6 @@ html {
                     h3 {
                         font-family: $font-bold;
                         font-size: 1.2rem;
-                        @media screen and (max-width: $mobile-lg) {
-                            font-size: 1.1rem;
-                        }
                     }
                     p {
                         font-family: $font-regular; 
@@ -1119,10 +996,7 @@ html {
     
             .footer-title {
                 font-family: $font-semi-bold;
-                font-size: 1.4rem;
-                @media screen and (min-width: $tablet-min) and (max-width: $desktop-min) {
-                    font-size: 1.3rem;
-                }
+                font-size: 1.2rem;
             }
             .footer-content {
                 .content {
@@ -1132,19 +1006,11 @@ html {
                     &:hover {
                         font-family: $font-regular;
                     }
-
-                    @media (max-width: $tablet-md) {
-                        font-size: 1rem;
-                    }
                 }
             }
             .contact-content {
                 font-family: $font-light;
                 font-size: 1.2rem;
-                
-                @media (max-width: $tablet-md) {
-                    font-size: 1rem;
-                }
             }
             button {
                 font-family: $font-semi-bold;
@@ -1306,17 +1172,10 @@ html {
 label {
     font-family: $font-regular;
     font-size: 1.28rem;
-
-    @media screen and (max-width: $mobile-lg) {
-        font-size: 1rem;
-    }
 }
 select {
     font-family: $font-regular !important;
     font-size: 1.28rem !important;
-    @media screen and (max-width: $mobile-lg) {
-        font-size: 1rem !important;
-    }
 }
 // Cookies popup
 .cookies-wrapper {
@@ -1334,18 +1193,6 @@ select {
         }
     }
 }
-
-// back on top button
-.back-to-top {    
-    [class^="icon-"] {
-        font-size: 1.2rem;
-
-        @media screen and (max-width: $mobile-lg) {
-            font-size: 1rem;
-        }
-    }
-}
-
 
 // Print button
 .print-btn {

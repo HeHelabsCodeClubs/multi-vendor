@@ -1,107 +1,38 @@
 @import "../main";
 
 .footer-wrapper {
-    background: $black-color-2;
+    background: #f4f6f6;
     position: absolute;
     width: 100%;
-    bottom: 0;
-    height: 37rem;
+    bottom: 6rem;
+    padding-top: 1rem;
+    height: 17rem;
     z-index: 10;
-
-    @media screen and (max-width: $mobile-lg) {
-        height: 80rem;
-        bottom: 6rem;
-    }
-    @media screen and (min-width: $mobile-md-lg) and (max-width: $mobile-lg) {
-        height: 52rem;
-    }
-
-    .store-info {
-        background: $white-color;
-        text-align: center;
-        border-top: .4rem solid $gray-color-13;
-
-        .footer-card-wrapper {
-            border-right: .4rem solid $gray-color-13;
-            @media screen and (max-width: $mobile-lg) {
-                border: .4rem solid $gray-color-13;    
-            }
-            &:nth-last-child(1) {
-                border-right: none;
-
-                .footer-card {
-                    max-width: 85%;
-                }
-            }
-            .footer-card {
-                height: 12rem;
-                max-width: 70%;
-                margin: auto;
-                padding: 1rem 0;
-
-                @media screen and (max-width: $mobile-lg) {
-                    min-width: 100% !important;
-                    height: 12.5rem;
-                }
-
-                img {
-                    height: 2rem;
-                    margin-bottom: .6rem;
-                }
-
-                h3 {
-                    color: $black-color-3;
-                    margin-bottom: 1rem;
-                }
-                p {
-                    color: $black-color-3;
-                }
-            }
-        }
-    }
     
-    .footer-wrapper-content {
+    .footer-wrapper-box {
+        background: #deecea;
         width: 90%;
-        margin: 0 auto;
-        padding: 2rem 0 3rem 0;
-
-        @media (max-width: $mobile-lg) {
-            width: 100%;
-        }
-
-        @media screen and (max-width: $mobile-lg) {
-            .subscribe-grid {
-                margin-top: 40px;
-            }  
-        }
-
+        border-radius: 5px;
+    }
+    .footer-wrapper-content {
         .footer-title {
-            color: $gray-color-6;
+            color: $black-color-2;
             text-transform: uppercase;
             margin-bottom: 7px;
-
-            @media screen and (max-width: $mobile-lg) {
-                margin-top: 10px;
-            }
+            margin-top: 10px;
         }
         .payment img {
-            height: 3.5rem;
+            height: 2.5rem;
             margin: 0 1rem 0 0;
-
-            @media screen and (min-width: $tablet-min) and (max-width: $desktop-min) {
-                height: 3rem;
-            }
         }
         .footer-content {
             margin: 1rem 0 0 0;
             .content {
                 color: $gray-color-6;
                 padding: 0.3rem 0;
-
                 &:hover {
                     color: $white-color;
                 }
-                
                 a {
                     color: $gray-color-6 !important;
                 }
@@ -123,11 +54,8 @@
             background: transparent !important;
             border-radius: 4px;
             margin: 0 0 1rem 0;
-            @media screen and (min-width: $tablet-min) and (max-width: $desktop-min) {
-                min-width: 170px;
-            }
             input {
-                padding: 0.4rem 1rem;
+                padding: 0.7rem 1rem;
                 border-radius: .3rem 0 0 .3rem;
                 border: none;
                 width: 66%;
@@ -136,21 +64,22 @@
                 &::placeholder {
                     color: $gray-color-6;
                 }
-                @media screen and (min-width: $tablet-min) and (max-width: $desktop-min) {
-                    width: 60%;
-                }
-
-                @media screen and (max-width: $mobile-lg) {
-                    padding: 0.7rem 1rem;
-                }
             }
             button {
                 width: 34%;
                 border-radius: 0 .3rem .3rem 0;
                 height: 2.5rem;
-
-                @media screen and (min-width: $tablet-min) and (max-width: $desktop-min) {
-                    width: 40%;
+                vertical-align: top;
+            }
+        }
+        .footer-links {
+            padding-right: 0;
+            ul {
+                padding: 0;
+                margin-top: 3rem;
+                li {
+                    display: inline-block;
+                    padding: .5rem;
                 }
             }
         }
