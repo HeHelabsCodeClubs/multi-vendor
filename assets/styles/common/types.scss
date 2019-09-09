@@ -83,14 +83,12 @@ html {
     // Header
 
     .main-menu__wrapper {
-        .home-link {
-            span {
-                font-size: 2rem;
-            }
+        .mobile-menu-icon {
+            font-size: 1.7rem;            
         }
-    }
-    .mobile-menu__title {
-        font-size: .8rem !important;
+        .mobile-menu__title {
+            font-size: .8rem !important;
+        }
     }
 
     .top-content {
@@ -612,8 +610,8 @@ html {
     .categories-content {
         .side-category__grid {
             .divider {
-                font-size: 1.5rem !important;
-                font-family: $font-bold;
+                font-size: 1.3rem !important;
+                font-family: $font-semi-bold;
                 padding: 0;
                 height: auto;
                 text-transform: capitalize;
@@ -626,13 +624,13 @@ html {
             }
             .item-level-1 {
                 .item-label {
-                    font-size: 1.15rem !important;
+                    font-size: 1.28rem !important;
                     font-family: $font-semi-bold;
                 }
             }
             .item-level-2 {
                 .item-label, .item-title {
-                    font-size: 1.1rem !important;
+                    font-size: 1.28rem !important;
                     font-family: $font-regular;
 
                     @media screen and (max-width: $mobile-lg) {

@@ -1,16 +1,12 @@
 import Router from 'next/router';
 import Select2 from 'react-select2-wrapper';
-import cookie from 'js-cookie';
 import Cart from './Cart';
 import HeaderCategoryMenu from './HeaderCategoryMenu';
+import { getUserAuthenticatedInfo, logoutUser } from '../../../helpers/auth';
 import isObjectEmpty from '../../../helpers/is_object_empty';
 import SearchDropdown from './SearchDropdown';
 import classnames from "classnames";
 import Head from 'next/head';
-import { getUserAuthenticatedInfo, logoutUser } from '../../../helpers/auth';
-import {
-    APP_BETA_NOTIFICATION
-} from '../../../config';
 
 class Header extends React.Component {
     constructor(props) {
@@ -18,7 +14,7 @@ class Header extends React.Component {
         this.state = {
             updateCart: false,
             authUser: {},
-            prevScrollpos: 0,
+            prevScrollpos: 0,//window.pageYOffset,
             visible: true,
             searchedValue: '',
             alertVisibility: true
@@ -31,7 +27,6 @@ class Header extends React.Component {
         this.handleSearchValueSubmission = this.handleSearchValueSubmission.bind(this);
         this.closeAlertPopup = this.closeAlertPopup.bind(this);
         this.renderAlertContent = this.renderAlertContent.bind(this);
-        this.storeBetaPopUpUserClosureAction = this.storeBetaPopUpUserClosureAction.bind(this);
     }
     componentDidMount() {
         this.setState({
@@ -41,11 +36,6 @@ class Header extends React.Component {
             this.updateAuthUser(user);
         });
         window.addEventListener("scroll", this.handleScroll);
-        if(cookie.get(APP_BETA_NOTIFICATION) === '1') {
-            this.setState({
-                alertVisibility: false
-            });
-        }
     }
     componentWillReceiveProps(nextProps) {
         const { updateCart } = nextProps;
@@ -113,23 +103,12 @@ class Header extends React.Component {
     closeAlertPopup() {
         this.setState({
             alertVisibility: false
-        }, () => {
-            /**
-             * Store the user action in session after pop up closure
-             * to avoid seeing the popup on every page load in one single
-             * session
-             */
-            this.storeBetaPopUpUserClosureAction();
         });
-    }
-
-    storeBetaPopUpUserClosureAction() {
-        cookie.set(APP_BETA_NOTIFICATION, 1);
     }
 
     renderAlertContent() {
         const { alertVisibility } = this.state;
-        if (alertVisibility && cookie.get(APP_BETA_NOTIFICATION) !== '1') {
+        if (alertVisibility) {
             return (
                 <div className="cookies-wrapper alert-top">
                     <p>This is a beta version of <a href="/">hehe.rw</a>. We're still working on this new-look site, we apologize for any inconvenience this may cause.
@@ -140,6 +119,9 @@ class Header extends React.Component {
         }
         return null;
     }
+
+
+    // test deploy
 
     renderUserProfile() {
         const { authUser } = this.state;
@@ -180,8 +162,7 @@ class Header extends React.Component {
         }
         return (
             <div className='col-lg-9 col-md-9 col-sm-9 col-9 col-reset account-links'>
-                <div className='header-content'>My account</div>
-                <div className='header-content'><a href='/signin'>Sign in</a> / <a href='/register'>Register</a></div>                 
+                <div className='header-content'>My account</div>                
             </div>
         );
     }
@@ -189,9 +170,12 @@ class Header extends React.Component {
 
     render() {
         const { alertVisibility } = this.state;
-        let wrapperClassName = (cookie.get(APP_BETA_NOTIFICATION) === '1' && !alertVisibility) ? "header-panel" : "header-panel top-alert";
+        let className = "header-panel";
+        if (alertVisibility) {
+            className += " top-alert";
+        }
         return (
-            <div className={wrapperClassName}>
+            <div className={className}>
                 <Head>
                     <link rel="shortcut icon" href="https://res.cloudinary.com/hehe/image/upload/v1563286307/multi-vendor/HeHe_Favicon.png" />
                     <title>HeHe Marketplace</title>
@@ -201,62 +185,20 @@ class Header extends React.Component {
                     "navbar__hidden": !this.state.visible
                 })}
                 >
-                    
                     <div>
                         {this.renderAlertContent()}
-                    </div>
-                    <div className='top-panel'>
-                        <div className='row maximum-width'>
-                            <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
-                                <div className='top-panel-left'>
-                                    <span className='top-content'>+(250) 786 456 686</span>
-                                    <span className='top-content'>order@hehe.rw</span>
-                                </div>
-                            </div>
-                            <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
-                                <div className='top-panel-right'>
-                                    <a href="https://seller.hehe.rw/#contactUs" target="_blank"><span className="top-content">Become a Seller</span></a>
-                                    <a href="https://tracking.wherehouseshipping.com/" target="_blank"><span className='top-content'>Track your order</span></a>
-                                    <a href="https://dmmhehe.com/" target="_blank"><span className='top-content'>about</span></a>
-                                    <a href="https://seller.hehe.rw/#contactUs" target="_blank"><span className='top-content'>contact</span></a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div className='header'>
                         <div className='row maximum-width'>
                             <div className='col-lg-4 col-md-4 col-sm-6 col-1 header-left'>
-                                <div className="main-menu__wrapper mobile-visible">
-                                    <div className="home-link">
-                                        <a href="/"><span className='icon-Home'></span>
-                                        <span className="mobile-menu__title mobile-visible">Home</span></a>
-                                    </div>
-                                </div>
-                                
                                 <span className='site-logo'>
-                                    <a href='/' className="mobile-invisible">
-                                        <img src='https://res.cloudinary.com/hehe/image/upload/v1564428498/multi-vendor/NEW_HEHE_LOGOS-Final_logos_LANDSCAPE_B2C_BETA_LANDSCAPE_B2C_BETA_2.svg' />
-                                    </a>
-                                    <a href='/' className="mobile-visible">
+                                    <a href='/'>
                                         <img src='https://res.cloudinary.com/hehe/image/upload/v1563286307/multi-vendor/HeHe_Favicon.png' />
                                     </a>
-                                </span>
-                                <span className='location-dropdown'>
-                                    <Select2
-                                        defaultValue={2}
-                                        data={[
-                                            { text: 'Kigali, Kacyiru', id: 1 },
-                                            { text: 'Kigali, Kimironko', id: 2 },
-                                            { text: 'Kigali, Kanombe', id: 3},
-                                            { text: 'Kigali, Town', id: 4 }
-                                        ]}
-                                    />
-                                </span>
-                                <HeaderCategoryMenu />
+                                </span>                                
                             </div>
                             <div className='col-lg-5 col-md-5 col-sm-2 col-11 search-container'>
                                 <form className='main-search' onSubmit={this.handleSearchValueSubmission}>
-
                                     <div className={classnames("search-suggestion", {
                                     "dismiss-onscroll": !this.state.visible
                                     })}
@@ -264,48 +206,43 @@ class Header extends React.Component {
                                         <SearchDropdown 
                                         updateParentSearchTerm={this.updateSearchValue}
                                         />
-
                                     </div>
 
-                                    {/* <input type="text" placeholder="Search store or product" /> */}
-                                    {/* <span className='categories-dropdown'>
-                                        <Select2
-                                            defaultValue={2}
-                                            data={[
-                                                { text: 'Shoes', id: 1 },
-                                                { text: 'Groceries', id: 2 },
-                                                { text: 'Clothes', id: 3},
-                                                { text: 'Electronics', id: 4 }
-                                            ]}
-                                        />
-                                    </span>
-                                    <button type="submit"><span className="icon-Path-64"></span></button> */}
                                     <button type="submit">
                                         <span className="icon-Path-64"></span>
                                     </button>
                                 </form>
                             </div>
-                            <div className='col-lg-3 col-md-3 col-sm-4 col-6 account-container'>
-                                <div className='row row-container'>
-                                    <div className='col-lg-6 col-md-6 col-sm-6 col-6 account-grid'>
-                                        <div className='row'>
-                                            <div className='col-lg-3 col-md-3 col-sm-3 col-12'>
-                                                <span className='icon-Path-62 mobile-invisible'></span>
-                                                <a href="/profile" className="mobile-visible"><span className='icon-Path-62'></span></a>
-                                                <span className="mobile-menu__title mobile-visible">Account</span>
-                                            </div>
-                                            {/* user profile goes here */}
-                                            {this.renderUserProfile()}
-                                        </div>
-                                    </div>
-                                    <Cart 
-                                    updateCart={this.state.updateCart}
-                                    openCart={this.props.openCart}
-                                    />
-                                </div>
-                            </div>
                         </div>
                     </div>
+                </div>
+
+                <div className="bottom-mainMenu">
+                    <div className="main-menu__wrapper row row-reset">
+                        <div className="mob-menu-item col-3">
+                            <a href="/" className="mobile-menu-link">
+                                <span className='icon-Home mobile-menu-icon'></span>
+                                <span className="mobile-menu__title">Home</span>
+                            </a>
+                        </div>
+                        <div className="mob-menu-item col-3">
+                            <HeaderCategoryMenu />
+                        </div>
+                        <div className="mob-menu-item col-3">
+                            <a href="/profile" className="mobile-menu-link">
+                                <span className='icon-Path-62 mobile-menu-icon'></span>
+                                <span className="mobile-menu__title">Account</span>
+                            </a>
+                        </div>
+                        <div className="mob-menu-item col-3">
+                            <Cart 
+                            updateCart={this.state.updateCart}
+                            openCart={this.props.openCart}
+                            />
+                        </div>                      
+
+                    </div>
+                    
                 </div>
             </div>
         )

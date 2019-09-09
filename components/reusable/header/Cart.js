@@ -184,15 +184,12 @@ class Cart extends Component {
                 className='row cart-wrapper'
                 onClick={this.openSidebar}
                 >
-                    <span className='header-content'>
-                        <span className='icon-Path-63'></span>
-                        <span className="mobile-menu__title mobile-visible">Cart</span>
+                    <span className='header-content mobile-menu-link'>
+                        <span className='icon-Path-63 mobile-menu-icon'></span>
+                        <span className="mobile-menu__title">Cart</span>
                         <span className='cart-items-counter'>
                             {cartItemsCounter}
                         </span>
-                    </span>
-                    <span>
-                        <h5 className="cart-title">My Cart</h5>
                     </span>
                 </a>
             );
@@ -203,12 +200,9 @@ class Cart extends Component {
             className='row cart-wrapper'
             onClick={this.openSidebar}
             >
-                <span className='header-content'>
-                    <span className='icon-Path-63'></span>
+                <span className='header-content mobile-menu-link'>
+                    <span className='icon-Path-63 mobile-menu-icon'></span>
                     <span className="mobile-menu__title mobile-visible">Cart</span>
-                </span>
-                <span>
-                    <h5 className="cart-title">My Cart</h5>
                 </span>
             </a>
         );
@@ -233,7 +227,7 @@ class Cart extends Component {
         const counter = countCartItems(cartItems);
         const cartCounterDisplay = counter !== 0 ? `(${counter} Items Total)` : null;
         return (
-            <div className='col-lg-6 col-md-6 col-sm-6 col-6 cart-grid'>
+            <div className='cart-grid'>
                 <SidebarUI isOpen={isOpen || openOnProductAddedToCart}>
                     <div>
                         {this.renderCartIcon(counter)}

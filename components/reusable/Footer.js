@@ -161,7 +161,7 @@ class Footer extends Component {
                    ` </div>
                 </div>
 
-                <div>
+                {/* <div>
                     {this.state.displayToTopButton?
                     <button
                     onClick={this.handleScrollToTop}
@@ -170,7 +170,8 @@ class Footer extends Component {
                         <span className="icon-Arrow_solid"></span>
                     </button>
                     : null}
-                </div>
+                </div> */}
+                
                 <div>
 					<CookiesPopup />
                     <LiveChat />

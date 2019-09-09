@@ -104,17 +104,8 @@
 
             &.divider-level-1 {
                 padding-bottom: .6rem;
-                height: 6rem;
                 @include flexbox;
                 @include flexjustifycontent(space-between);
-                @include flexalignitems(center);
-                border-bottom: 1px solid #ccc;
-                font-size: 1.5rem !important;
-                margin: 0 0.5rem;
-                font-family: "Harmonia Sans Pro Bold";
-                padding: 1.85rem 0.5rem !important;
-                height: auto;
-                text-transform: capitalize;
 
                 .icon-Angle_down {
                     display: flex !important;
@@ -135,7 +126,6 @@
                 }
                 .item-label {
                     color: $black-color-3;
-                    margin: 0 !important;
                 }
                 .category-drop-icon {
                     float: right;
@@ -151,11 +141,6 @@
             }
             &.active {
                 border: none !important;
-
-                .item-label {
-                    color: $green-color-2;
-                }
-
                 .item-title {
                     background: transparent !important;
                     color: $green-color-2 !important;
@@ -369,16 +354,6 @@
         .main-content {
             margin: 0 0 2rem 2rem !important;
 
-            .single-product {
-                box-shadow: none !important;
-                &:hover {
-                    box-shadow: -2px -1px 9px 0px rgba(0, 0, 0, 0.05);
-                }
-                .single-product .product-description {
-                    box-shadow: 0 -13px 9px -7px rgba(0, 0, 0, 0.05);
-                }
-            }
-
             @media screen and (max-width: $mobile-lg) {
                 margin: 0 0.5rem 2rem 0.5rem !important;
             }
@@ -395,8 +370,6 @@
                     max-width: 16.6%;
                 }
             }
-
-            
 
             .empty-category, .loader-wrapper {
                 height: calc(55vh - 6rem);
@@ -477,4 +450,3 @@
     @include flexalignitems(center);
     @include flexdirection(column);
 }
-

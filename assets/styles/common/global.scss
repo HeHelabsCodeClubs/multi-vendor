@@ -177,18 +177,13 @@ a {
                 position: absolute;
                 min-width: 2rem;
                 height: 2rem;
-                right: 0rem;
-                top: -1rem;
+                right: 1.2rem;
+                top: .2rem;
                 border-radius: 50%;
                 border: 1px solid $red-color-1;
                 background: $red-color-1;
                 text-align: center;
-                //padding: 0.1rem 0.3rem;
                 color: $white-color;
-
-                @media screen and (max-width: $mobile-lg) {
-                    top: -2rem;
-                }
             }
         }
     }

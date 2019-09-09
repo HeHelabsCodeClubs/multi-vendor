@@ -14,14 +14,13 @@ const SidebarUI = ({ isOpen, ...rest }) => {
   
 SidebarUI.Overlay = props => <div className="SidebarOverlay" {...props} />;
 
-SidebarUI.Content = ({ width = '70%', isRight = false, ...rest }) => {
+SidebarUI.Content = ({ width = '100%', isRight = false, ...rest }) => {
     const classes = [
         'SidebarContent',
         isRight ? 'is-right' : '',
     ];
     const style = {
         width,
-        maxWidth: 300,
         height: '100%',
         top: 0,
         boxShadow: 'none',
@@ -47,10 +46,8 @@ class HeaderCategoryMenu extends React.Component {
             categories: [],
             isOpen: props.isOpen
         };
-        this.renderCategory = this.renderCategory.bind(this);
         this.openSidebar = this.openSidebar.bind(this);
         this.renderMoboCategory = this.renderMoboCategory.bind(this);
-        this.renderCategorySubCategories = this.renderCategorySubCategories.bind(this);
     };
     //targetElement = null;
 
@@ -102,97 +99,6 @@ class HeaderCategoryMenu extends React.Component {
         }
     }
 
-    renderCategorySubCategories(parent_category_slug, category_children) {
-        if (category_children.length > 0) {
-            const parentCategoryLayout = category_children.map((parentCat) => {
-                let categoryChildLayout = null;
-                const { children } = parentCat;
-                if (children.length > 0) {
-                    categoryChildLayout = children.map((childCat) => {
-                        return (
-                            <a 
-                            href={`/categories/${parent_category_slug}/${parentCat.slug}/${childCat.slug}`}
-                            key={childCat.slug}
-                            className='sub-cat-item'
-                            >
-                            {childCat.name}
-                            </a>
-                        );
-                    });
-                }
-                return (
-                    <div 
-                    key={parentCat.slug}
-                    className='sub-wrapper'>
-                        <a
-                        href={`/categories/${parent_category_slug}/${parentCat.slug}`}
-                        className='sub-cat-title'
-                        >
-                            {parentCat.name}
-                        </a>
-                        <div
-                        className='sub-cat-wrapper'
-                        >
-                            {categoryChildLayout}
-                        </div>
-                    </div>
-                );
-            })
-            return parentCategoryLayout;
-        }
-        return null;
-    }
-
-    renderCategory(categories) {
-        if (categories) {
-            const categoryLayout = categories.map((category) => {
-                const {
-                    id,
-                    slug,
-                    name,
-                    icon_class_name,
-                    icon_url,
-                    children
-                } = category;
-                const IconUrl = icon_url !== '' ? icon_url : 'icon-KITCHENWARE-ICO';
-                //const links = icon_class_name.split(',');
-                    return (
-                        <span className="nav__submenu-item " key={id} >
-                            <a 
-                            href={`/categories/${slug}`} 
-                            className='sub-menu__item-a'>
-                            {/* <span className={`${IconClassName} menu-item-icon`} /> */}
-                            <img src={IconUrl} className={`cat-icon`} />
-                            <h5>{name}</h5>
-                            </a>
-                            <div className='sub-category'>
-                                <div className='row'>
-                                    <div className='col-lg-8 col-md-9 col-sm-8 col-12'>
-                                        {this.renderCategorySubCategories(slug, children)}
-                                    </div>
-                                    <div className='col-lg-4 col-md-4 col-sm-4 col-12'>
-                                        <div className='menu-img'>
-                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1564149056/multi-vendor/Group_1284_2x.png' />
-                                        </div>
-                                        <div className='menu-img'>
-                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1564149055/multi-vendor/Group_1281_2x.png' />
-                                        </div>
-                                        <div className='menu-img'>
-                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1564149055/multi-vendor/Group_1282_2x.png' />
-                                        </div>
-                                        <div className='menu-img'>
-                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1565166464/multi-vendor/Group_1283_2x_2.png' />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </span>
-                    )
-            });
-            return categoryLayout;
-        }
-    }
-
     renderMoboCategory(categories) {
         if (categories) {
             const categoryLayout = categories.map((category) => {
@@ -218,49 +124,18 @@ class HeaderCategoryMenu extends React.Component {
             <span className="main-menu">
                 <nav className="nav nav-container">
                     <ul className="nav__menu">
-                        <li className="nav__menu-item">
-                            <a
-                                onClick={this.customerHandleHover} 
-                                className='main-menu__item-a'
-                            >
-                                <span className='icon-Path-61'></span>
-                                <span className='icon-Path-73'></span>
-                                <span className={this.state.showCustomerMenu ? 'icon-icon_up-arrow-small' : 'icon-icon_down-arrow-small'}></span>
-                            </a>
-                            {this.state.showCustomerMenu && 
-                                <div>
-                                    <div className='menu-overlay' onClick={this.customerHandleHover}></div>
-                                    <div className='menu-wrapper'>
-                                        <ul className="nav__submenu">
-                                            <li>
-                                                {this.renderCategory(categories)}
-                                                <div className='menu-btn'>
-                                                    <button>Shop by Seller</button>
-                                                </div>
-                                            </li>
-                                            
-                                        </ul>
-                                    </div>
-                                </div>
-                            }
-                        </li>
                         <li className="nav__menu-item-mobo">
                             <SidebarUI isOpen={isOpen}>
                                 <div>
-                                    <a
-                                        className='main-menu__item-a'
-                                        onClick={this.openSidebar}
-                                    >
-                                        <span className='icon-Path-61'></span>
-                                        <span className="mobile-menu__title mobile-visible">Categories</span>
-                                        <span className='icon-Path-73'></span>
-                                        <span className={this.state.showCustomerMenu ? 'icon-icon_up-arrow-small' : 'icon-icon_down-arrow-small'}></span>
+                                    <a className='main-menu__item-a mobile-menu-link' onClick={this.openSidebar} >
+                                        <span className='icon-Path-61 mobile-menu-icon'></span>
+                                        <span className="mobile-menu__title">Categories</span>
                                     </a>
                                     <SidebarUI.Content isRight={isRight}>
                                         <div className="cart-sidebar">
                                             <div className='mobo-menu-title'>
                                                 <div className='sidebar-title'>
-                                                    <a className='icon-Path-71' onClick={() => this.openSidebar(false)}></a>
+                                                    <a className='icon-Path-71 mobile-menu-icon' onClick={() => this.openSidebar(false)}></a>
                                                     <h4 className='title'>Categories</h4>
                                                 </div>
                                             </div>
