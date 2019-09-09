@@ -2,56 +2,13 @@
 
 .main-banners {
     background: $gray-color-2;
-
     .slick-slider {
         width: 100%;
-    
         .slick-prev {
-            left: 1.5rem;
-            z-index: 999;
-            width: 5rem;
-            height: 5rem;
-            border-radius: 50%;
-            opacity: 1;
-            background-color: rgba(240, 244, 245, 0.15);
-            &:before {
-                content: '\E91a';
-                color: $white-color !important;
-                @include flexbox;
-                @include flexalignitems(center);
-                @include flexjustifycontent(center);
-                width: 5rem;
-                height: 5rem;
-                border: 1px solid rgba(255, 255, 255, 0.4);
-                border-radius: 50%;
-            }
-
-            @media screen and (max-width: $mobile-lg) {
-                display: none !important;
-            }
+            display: none !important;
         }
         .slick-next {
-            right: 1.5rem;
-            z-index: 999;
-            width: 5rem;
-            height: 5rem;
-            border-radius: 50%;
-            opacity: 1;
-            background-color: rgba(240, 244, 245, 0.15);
-            &:before {
-                content: '\e919';
-                color: $white-color !important;
-                @include flexbox;
-                @include flexalignitems(center);
-                @include flexjustifycontent(center);
-                width: 5rem;
-                height: 5rem;
-                border: 1px solid rgba(255, 255, 255, 0.4);
-                border-radius: 50%;
-            }
-            @media screen and (max-width: $mobile-lg) {
-                display: none !important;
-            }
+            display: none !important;
         }
         .slick-slide img {
             width: 100%;
@@ -62,11 +19,6 @@
     }
 }
 .featured-sellers {
-
-    @media screen and (max-width: $mobile-lg){
-       display: none; 
-    }
-
     .featured-wrapper {
         background: $white-color;
         box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.05);
@@ -114,18 +66,10 @@
             }
         }
         .margin-reset {
-            margin: 0 7px !important;
-
-            @media screen and (max-width: $mobile-lg) {
-                margin: 0 !important;
-            }
-
+            margin: 0 !important;
             .store-category {
                 font-family: "Harmonia Sans Pro Regular";
-                font-size: 0.9rem;
-                @media screen {
-                    font-size: 0.8rem;
-                }
+                font-size: 0.8rem;
             }
             .store-name {
                 text-transform: uppercase;
@@ -133,7 +77,6 @@
         }
         .seller-link {
             display: none;
-        
             a {
                 color: $green-color-2 !important;
                 @include flexbox;
@@ -156,12 +99,8 @@
     .top-stores-wrapper {
         .top-stores-title {
             text-align: center;
-            padding: 0 0 2rem 0;
             color: $black-color-4;
-
-            @media screen and (max-width: $mobile-lg) {
-                padding: 1rem 0 1rem 0;
-            }
+            padding: 1rem 0 1rem 0;
         }
         .top-stores-content {
             .stores-wrapper {
@@ -191,11 +130,7 @@
                         width: 80%;
                     }
                     h4 {
-                        margin: 1.5rem 2.5rem 0 2.5rem !important;
-                        @media screen and (max-width: $mobile-lg) {
-                            margin: .5rem !important;
-                            display: none;
-                        }
+                        display: none;
                     }
                 }
                 .view-more-btn {
@@ -253,29 +188,10 @@
                         z-index: 9;
                     }
                     .slick-next {
-                        border-radius: 0 1rem 1rem 0;
-                        @include boxshadow(-8px 0 6px 0 rgba(0, 0, 0, 0.05));
-                        &:before {
-                            content: '\e919';
-                            color: $black-color-2;
-                        }
-
-                        @media screen and (max-width: $mobile-lg) {
-                            display: none !important;
-                        }
+                        display: none !important;
                     }
                     .slick-prev {
-                        border-radius: 1rem 0 0 1rem;
-                        @include boxshadow(8px 0 6px 0 rgba(0, 0, 0, 0.05));
-                        &:before {
-                            content: '\e91a';
-                            color: $black-color-2;
-                        }
-
-                        @media screen and (max-width: $mobile-lg) {
-                            display: none !important;
-                        }
-
+                        display: none !important;
                     }
                 }
             }
@@ -358,42 +274,6 @@
             padding: 0 0 2rem 0;
             color: $black-color-4;
         }
-        .stores-logos {
-            padding: 2rem 0;
-            background: $white-color;
-            margin: 1rem 0 0 0;
-
-            @media screen and (max-width: $mobile-lg){
-                display: none;
-            }  
-
-            .slick-list {
-                width: 90%;
-                margin: 0 5%;
-                padding: 2rem 0;
-                border: 1px solid $gray-color-13;
-                border-radius: .5rem;
-            }
-            .slick-slide img {
-                height: 2.3rem;
-                object-fit: contain;
-                width: 100%;
-            }
-            .slick-next {
-                right: 1rem;
-                &:before {
-                    content: '\e919';
-                    color: $black-color-2;
-                }
-            }
-            .slick-prev {
-                left: 1rem;
-                &:before {
-                    content: '\e91a';
-                    color: $black-color-2;
-                }
-            }
-        }
         .made-in-rwanda_products {
             background-color: $white-color;
             padding-top: 2rem;
@@ -428,16 +308,7 @@
                 }
 
                 .slick-arrow {
-                    background: $white-color;
-                    height: 10rem;
-                    width: 2.2rem;
-                    z-index: 9;
-                    margin-right: -1rem;
-
-                    @media screen and (max-width: $mobile-lg) {
-                        display: none !important;
-                    }
-                
+                    display: none !important;                
                     &.slick-next {
                         border-radius: 0 1rem 1rem 0;
                         box-shadow: -8px 0 6px 0 $box-shadow-color-2;
