@@ -147,25 +147,16 @@ class SidemenuCategories extends Component {
 
     render() {
         return (
-            <div>
-                <div className="mobile-invisible side-menu__item Side-menu Side-menu-default  children active">
-                        {this.renderActiveParentCategory()}
-                    <div>
-                        {this.renderMenuItems()}
-                    </div>                
-                </div>
-
-                <div className="mobile-visible dropdown side-menu__item Side-menu Side-menu-default  children active">
-                    <div className="side-menu__item">
-                        <div onClick={this.openDropdownMenu} className="divider divider-level-1">
-                            <span>{this.renderActiveParentCategory()}</span> 
-                            <span className="icon-Angle_down mobile-visible"></span>
-                        </div>
+            <div className="dropdown side-menu__item Side-menu Side-menu-default  children active">
+                <div className="side-menu__item">
+                    <div onClick={this.openDropdownMenu} className="divider divider-level-1">
+                        <span>{this.renderActiveParentCategory()}</span> 
+                        <span className="icon-Angle_down"></span>
                     </div>
-                    <div className="item-menu-dropdown-content">
-                        {this.renderMenuItemsMobile()}
-                    </div>                    
                 </div>
+                <div className="item-menu-dropdown-content">
+                    {this.renderMenuItemsMobile()}
+                </div>                    
             </div>
         );
     }

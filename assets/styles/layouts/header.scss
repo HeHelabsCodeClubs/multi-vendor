@@ -10,6 +10,7 @@
 
         .main-menu__wrapper {
             width: 100vw;
+            max-width: $mobile-lg;
             margin: 0 !important;
             .mob-menu-item {
                 height: 6rem;
@@ -193,6 +194,9 @@
             margin: 0;
             .header-content {
                 @include flexdirection(column);
+                .cart-icon-counter-wrapper {
+                    position: relative;
+                }
             }     
             .icon-Path-63 {
                 margin-top: -1rem;
@@ -687,6 +691,7 @@
 // hide menu onscroll
 .nav__bar {
     width: 100%;
+    max-width: $mobile-lg;
     background-color:$white-color;
     box-shadow: 0 -2px 8px 0 rgba(0, 0, 0, 0.05);
     position: fixed;

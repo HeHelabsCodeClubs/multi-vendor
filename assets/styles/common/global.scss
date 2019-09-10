@@ -9,6 +9,8 @@
 html {
     font-family: 'Harmonia Sans Pro Black' !important;
     font-size: 10px !important;
+    max-width: $mobile-lg;
+    margin: auto;
 }
 body {
     min-height: 100vh;

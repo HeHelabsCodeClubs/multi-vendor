@@ -8,7 +8,6 @@ class TopStores extends Component {
                 <div className='category' key={topStore.image_url}>
                         <a href={`/categories/${topStore.category_slug}`}>
                             <img src={topStore.image_url} />
-                            <h4>{topStore.tag_name}</h4>
                         </a>
                 </div>
 			);
@@ -24,9 +23,6 @@ class TopStores extends Component {
                         <div className='row reset-row category-wrapper'>
                             {this.renderTopStores(this.props.topStores)}
                         </div>
-                        {/* <div className='view-more-btn'>
-                            <button>View more</button>
-                        </div> */}
                     </div>
                 </div>
             </div>

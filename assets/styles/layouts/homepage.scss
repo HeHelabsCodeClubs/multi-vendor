@@ -4,16 +4,13 @@
     background: $gray-color-2;
     .slick-slider {
         width: 100%;
-        .slick-prev {
-            display: none !important;
+        .slick-slide {
+            img {
+                width: 100%;
+                padding: 1rem;
+            }
         }
-        .slick-next {
-            display: none !important;
-        }
-        .slick-slide img {
-            width: 100%;
-        }
-        .slick-dots {
+        .slick-prev, .slick-next, .slick-dots {
             display: none !important;
         }
     }
@@ -106,26 +103,17 @@
             .stores-wrapper {
                 width: 90%;
                 margin: 0 auto;
-                border-bottom: 0.5px solid $gray-color-6;
+                border-bottom: none;
 
-                @media screen and (max-width: $mobile-lg) {
-                    border-bottom: none;
-                }
                 .category-wrapper {
                     @include flexbox;
                     @include flexjustifycontent(start);
                 }
                 .category {
                     text-align: center;
-                    margin: 0 0 3rem 0;
-                    width: 12.5%;
-                    
-                    @media screen and (max-width: $mobile-lg) {
-                        width: 25%;
-                        margin: 0;
-                        // margin-bottom: 20px;
-                        padding: 4px 4px 10px;
-                    }
+                    width: 25%;
+                    margin: 0;
+                    padding: 4px 4px 10px;
                     img {
                         width: 80%;
                     }
@@ -158,12 +146,7 @@
 }
 .special-offers {
     background: $gray-color-2;
-    padding: 1rem 0 2rem 0;
-
-    @media screen and (max-width: $mobile-lg){
-        padding: 1.5rem 0 0 0;
-    }
-
+    padding: 1.5rem 0 0 0;
     .special-offers-wrapper {
         .special-offers-title {
             text-align: center;
@@ -172,13 +155,8 @@
         }
         .special-offers-content {
             .special-wrapper {
-                width: 90%;
                 margin: 0 auto;
-
-                @media screen and (max-width: $mobile-lg){
-                    width: 100%;
-                }
-        
+                width: 100%;        
                 .slick-slider {
                     .slick-arrow {
                         width: 3.14rem;
@@ -199,18 +177,9 @@
     }
 }
 .special-single-product {
-    width: 20%;
-
-    @media screen and (min-width: $desktopHd-min) {
-        width: 16.66%;
-    }
-
-    @media screen and (min-width: $mobile-lg) and (max-width: $tablet-md) {
-        width: 25%;
-    }
-
-    @media screen and (max-width: $mobile-lg) {
-        width: 50%;
+    width: 50%;
+    @media (min-width: $mobile-md-lg) and (max-width: $mobile-lg) {
+        width: 33.33%;
     }
 }
 .special-single-product-wrapper {
@@ -224,34 +193,17 @@
     }
     .price-cart {
         border-top: none !important;
-        padding: 1.5rem 1rem !important;
-
-        @media screen and (max-width: $mobile-lg){
-            padding: 10px 5px 10px 5px !important;
-        }
-        .price {
-
-            @media (min-width: $tablet-min) and (max-width: $tablet-md) {
-                font-size: 1rem;
-            }
-        }
-
+        padding: 1rem .5rem 1rem .5rem !important;
         .initial-price {
             position: relative !important;
             bottom: 0 !important;
             margin: 0 !important;
             padding:0 !important;
-
-            @media (min-width: $tablet-min) and (max-width: $tablet-md) {
-                font-size: 0.9rem;
-            }
         }
     }
 }
 .bottom-moreProducts {
-    @media screen and (max-width: $mobile-lg) {
-        padding-top: 4rem !important;
-    }
+    padding-top: 4rem !important;
 }
 .made-in-rwanda-grid {
     padding-top: 0 !important;
@@ -262,13 +214,8 @@
 }
 .made-in-rwanda {
     background: $gray-color-2;
-    padding: 1rem 0 3rem 0;
-
-    @media screen and (max-width: $mobile-lg) {
-        padding: 1rem 0 0 0;
-    }
+    padding: 1rem 0 0 0;
     .made-in-rwanda-wrapper {
-
         .made-in-rwanda-title {
             text-align: center;
             padding: 0 0 2rem 0;
@@ -278,12 +225,10 @@
             background-color: $white-color;
             padding-top: 2rem;
             padding-bottom: 2rem;
-
             .slick-arrow {
                 background: $gray-color-13 !important;
             }
         }
-
         .made-in-rwanda-content {
             .special-offers-row {
                 background-color: $green-color-3;
@@ -337,18 +282,12 @@
                     }
                 }
             }
-            
             .made-in-rwanda-wrapper {
                 display: inline-flex;
                 width: 100%;
                 .rwanda-wrapper {
-                    width: 90%;
                     margin: 0 auto;
-                    //justify-content: center;
-
-                    @media screen and (max-width: $mobile-lg){
-                        width: 94%;
-                    }
+                    width: 94%;
                 }
             }
         }

@@ -95,15 +95,13 @@ export default class  MenuItemCategory extends Component {
         if (renderPlusIcon === true) {
             return (
                 <span className="category-drop-icon">
-                    <i className="fa fa-chevron-left mobile-invisible"></i>
-                    <i className="icon-Angle_right mobile-visible"></i>
+                    <i className="icon-Angle_right"></i>
                 </span>
             );
         } else {
             return (
                 <span className="category-drop-icon">
-                    <i className="fa fa-chevron-right mobile-invisible"></i>
-                    <i className="icon-Angle_right mobile-visible"></i>
+                    <i className="icon-Angle_right"></i>
                 </span>
             );
         }

@@ -27,40 +27,12 @@ class Promotion extends Component {
 			speed: 500,
 			autoplay: true,
 			autoplaySpeed: 3000,
-			slidesToShow: 4,
+			slidesToShow: 2,
 			slidesToScroll: 1,
 			dots: true,
-			responsive: [
-				{
-					breakpoint: 1440,
-					settings: {
-						slidesToShow: 3,
-						slidesToScroll: 1,
-						infinite: false,
-						dots: true
-					}
-				},
-				{
-					breakpoint: 767,
-					settings: {
-						slidesToShow: 2,
-						centerMode: true,
-						centerPadding: "40px",
-						infinite: false,
-						slidesToScroll: 2
-					}
-				},
-				{
-					breakpoint: 480,
-					settings: {
-						slidesToShow: 1,
-						centerMode: true,
-						centerPadding: "40px",
-						infinite: false,
-						slidesToScroll: 1
-					}
-				}
-			]
+			centerMode: true,
+			centerPadding: "50px",
+			initialSlide: 1,
 		}
 
 		return (

@@ -185,11 +185,12 @@ class Cart extends Component {
                 onClick={this.openSidebar}
                 >
                     <span className='header-content mobile-menu-link'>
-                        <span className='icon-Path-63 mobile-menu-icon'></span>
-                        <span className="mobile-menu__title">Cart</span>
-                        <span className='cart-items-counter'>
-                            {cartItemsCounter}
+                        <span className="cart-icon-counter-wrapper">
+                            <span className='icon-Path-63 mobile-menu-icon'></span>
+                            <span className='cart-items-counter'>{cartItemsCounter}</span>
                         </span>
+                        <span className="mobile-menu__title">Cart</span>
+                        
                     </span>
                 </a>
             );
@@ -202,7 +203,7 @@ class Cart extends Component {
             >
                 <span className='header-content mobile-menu-link'>
                     <span className='icon-Path-63 mobile-menu-icon'></span>
-                    <span className="mobile-menu__title mobile-visible">Cart</span>
+                    <span className="mobile-menu__title">Cart</span>
                 </span>
             </a>
         );

@@ -101,48 +101,11 @@ class FeaturedSellers extends Component {
 		const settings = {
 			infinite: infiniteSetting,
 			speed: 500,
-			slidesToShow: 4,
+			slidesToShow: 1,
             slidesToScroll: 1,
             swipeToSlide: true,
-			responsive: [
-
-				{
-					breakpoint: 1440,
-					settings: {
-						slidesToShow: 3,
-						slidesToScroll: 1,
-						infinite: false,
-						dots: true
-					}
-				},
-				{
-					breakpoint: 979,
-					settings: {
-						slidesToShow: 2,
-                        slidesToScroll: 1,
-                        infinite: false,
-					}
-                },
-                {
-					breakpoint: 767,
-					settings: {
-                        slidesToShow: 2,
-                        centerMode: true,
-						centerPadding: "40px",
-                        slidesToScroll: 1,
-                        infinite: false,
-					}
-				},
-				{
-					breakpoint: 480,
-					settings: {
-                        slidesToShow: 1,
-                        centerMode: true,
-						centerPadding: "40px",
-						slidesToScroll: 1
-					}
-				}
-			]
+            centerMode: true,
+            centerPadding: "40px"
         }
         
 		return (
