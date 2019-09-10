@@ -33,6 +33,14 @@ class Promotion extends Component {
 			centerMode: true,
 			centerPadding: "50px",
 			initialSlide: 1,
+			responsive: [
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                    }
+               }
+			]
 		}
 
 		return (

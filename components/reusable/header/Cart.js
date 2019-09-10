@@ -181,7 +181,7 @@ class Cart extends Component {
         if (cartItemsCounter !== 0) {
             return (
                 <a 
-                className='row cart-wrapper'
+                className='cart-wrapper'
                 onClick={this.openSidebar}
                 >
                     <span className='header-content mobile-menu-link'>
@@ -198,7 +198,7 @@ class Cart extends Component {
 
         return (
             <a 
-            className='row cart-wrapper'
+            className='cart-wrapper'
             onClick={this.openSidebar}
             >
                 <span className='header-content mobile-menu-link'>

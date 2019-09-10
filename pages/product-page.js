@@ -16,7 +16,7 @@ import AttributeOptionSelector from '../components/reusable/AttributeOptionSelec
 import isObjectEmpty from '../helpers/is_object_empty';
 import { getClientAuthToken } from '../helpers/auth';
 import { getCartItems } from '../helpers/cart_functionality_helpers';
-import Breadcrumb from '../components/reusable/Breadcrumb';
+// import Breadcrumb from '../components/reusable/Breadcrumb';
 import {isProductOutOfStock } from '../helpers/cart_functionality_helpers';
 import Head from 'next/head';
  
@@ -554,17 +554,17 @@ class ProductPage extends React.Component {
         Router.push('/checkout/account');
     }
 
-    renderBreadCrumb() {
-        const { activeParentCategory, activeSubCategory, productData } = this.props;
+    // renderBreadCrumb() {
+    //     const { activeParentCategory, activeSubCategory, productData } = this.props;
 
-        return (
-            <Breadcrumb>
-                <a href="/" className="breadcrumb-link">Home</a>
-                    <span> / </span>
-                <a href="" className="breadcrumb-link">{productData.name}</a>
-            </Breadcrumb>
-        )
-    }
+    //     return (
+    //         <Breadcrumb>
+    //             <a href="/" className="breadcrumb-link">Home</a>
+    //                 <span> / </span>
+    //             <a href="" className="breadcrumb-link">{productData.name}</a>
+    //         </Breadcrumb>
+    //     )
+    // }
 
 	render() {
         const { productData } = this.props;
@@ -579,12 +579,12 @@ class ProductPage extends React.Component {
                         <div className='single-product-page'>
                             <div className='popup-wrapper'>
                                 <div className='product-details-wrapper'>
-                                    {this.renderBreadCrumb()}
+                                    {/* {this.renderBreadCrumb()} */}
                                     <div className='row reset-row'>
-                                        <div className='col-lg-5 col-md-5 col-sm-5 col-12 images-wrapper'>
+                                        <div className='col-12 images-wrapper'>
                                             {this.renderProductImages(productData)}
                                         </div>
-                                        <div className='col-lg-7 col-md-7 col-sm-7 col-12 description-wrapper'>
+                                        <div className='col-12 description-wrapper'>
                                             <div className='details'>
                                                 {this.renderProductMetaData(productData)}
                                                 

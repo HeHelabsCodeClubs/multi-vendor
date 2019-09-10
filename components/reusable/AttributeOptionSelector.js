@@ -33,7 +33,23 @@ export default class AttributeOptionSelector extends Component {
 
     renderSelector(option) {
         if (option) {
+            // const SelectorData = option.data.map((option_item) => {
+            //     const dataToGet = {
+            //         option_name: option.title,
+            //         data: {
+            //             attribute_id: option_item.attribute_id,
+            //             option_id: option_item.option_id,
+            //             title: option_item.title
+            //         }
+            //     };
+            //     return {
+            //         text: option_item.title,
+            //         id: JSON.stringify(dataToGet)
+            //     };
+            // });
+
             const SelectorData = option.data.map((option_item) => {
+
                 const dataToGet = {
                     option_name: option.title,
                     data: {
@@ -42,20 +58,35 @@ export default class AttributeOptionSelector extends Component {
                         title: option_item.title
                     }
                 };
-                return {
-                    text: option_item.title,
-                    id: JSON.stringify(dataToGet)
-                };
+                // return {
+                //     text: option_item.title,
+                //     id: JSON.stringify(dataToGet)
+                // };
+
+                return (
+                    <option
+                    value={JSON.stringify(dataToGet)}
+                    >{option_item.title}</option>
+                );
+                
             });
             return (
-                <Select2
-                    data={SelectorData}
-                    options={
-                        { placeholder: 'Select' }
-                    }
+                // <Select2
+                //     data={SelectorData}
+                //     options={
+                //         { placeholder: 'Select' }
+                //     }
+                //     value={this.state.selectorValue}
+                //     onChange={this.updateSelectorValue}
+                // />
+                <select 
+                    // data={SelectorData}
                     value={this.state.selectorValue}
                     onChange={this.updateSelectorValue}
-                />
+                >
+                    <option disabled default selected="selected">Select</option>
+                    {SelectorData}
+                </select>
             );
         }
     }

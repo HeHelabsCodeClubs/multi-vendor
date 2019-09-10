@@ -192,6 +192,32 @@ html {
             font-size: 1.28rem !important;
         }
     }
+    .nav__menu {
+        .footer-category {
+            .category-footer-row {
+                h5 {
+                    font-size: 1.28rem;
+                }
+                p {
+                    font-size: 1.1rem;
+                    font-family: $font-regular;
+                }
+                a {
+                    font-size: 1.1rem;
+                    font-family: $font-regular;
+                }
+            }
+            .sell-section {
+                h5 {
+                    font-size: 1.28rem;
+                }
+                a {
+                    font-size: 1.28rem;
+                    font-family: $font-semi-bold;
+                }
+            }
+        }
+    }
     .profile-dropdown {
         ul {
             li {
@@ -825,7 +851,7 @@ html {
     .popup-wrapper {
         .description-wrapper {
             .product-name {
-                font-size: 2.4rem;
+                font-size: 1.2rem;
                 font-family: $font-bold;
             }
             .top-icons {

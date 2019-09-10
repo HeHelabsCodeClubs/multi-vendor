@@ -145,25 +145,31 @@ class HeaderCategoryMenu extends React.Component {
                                                         {this.renderMoboCategory(categories)}
                                                     </li>
                                                     
-                                                    <div className="row footer-category">
-                                                        <div className='col-6'>
-                                                            <h5>Information</h5>
-                                                            <div className='footer-content'>
-                                                                <a href="https://dmmhehe.com/" target="_blank">About us</a>
-                                                                <a href="https://forms.gle/U3TKe1apATkw1qQQA" target="_blank">Become an Affiliate</a>
+                                                    <div className="footer-category">
+                                                        <div className="row category-footer-row">
+                                                            <div className='col-6'>
+                                                                <h5>Information</h5>
+                                                                <div className='footer-content'>
+                                                                    <a href="https://dmmhehe.com/" target="_blank">About us</a>
+                                                                    <a href="https://forms.gle/U3TKe1apATkw1qQQA" target="_blank">Become an Affiliate</a>
+                                                                </div>
                                                             </div>
-                                                        </div>
 
-                                                        <div className='col-6'>
-                                                            <h5 className='footer-title'>Help</h5>
-                                                            <div className='footer-content'>
-                                                                <p>+250 786 456 686</p>
-                                                                <p>order@hehe.rw</p>
+                                                            <div className='col-6'>
+                                                                <h5 className='footer-title'>Help</h5>
+                                                                <div className='footer-content'>
+                                                                    <p>+250 786 456 686</p>
+                                                                    <p>order@hehe.rw</p>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div className="col-12">
-                                                            <h5 className='footer-title'>Information</h5>
-                                                            <div><a href="https://seller.hehe.rw/#contactUs" target="_blank"><button>Become a seller</button></a></div>
+                                                        <div className="row sell-section">
+                                                            <div className="col-12 sell-col">
+                                                                <h5 className='footer-title'>SELL WITH HEHE</h5>
+                                                                <div>
+                                                                    <a href="https://seller.hehe.rw/#contactUs" target="_blank">Become a seller</a>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </ul>

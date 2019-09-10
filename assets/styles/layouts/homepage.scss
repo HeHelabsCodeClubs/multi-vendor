@@ -178,7 +178,7 @@
 }
 .special-single-product {
     width: 50%;
-    @media (min-width: $mobile-md-lg) and (max-width: $mobile-lg) {
+    @media screen and (min-width: $tabletS-min) {
         width: 33.33%;
     }
 }
@@ -225,6 +225,9 @@
             background-color: $white-color;
             padding-top: 2rem;
             padding-bottom: 2rem;
+            .single-product {
+                box-shadow: -2px -1px 9px 0px rgba(0, 0, 0, 0.05);
+            }
             .slick-arrow {
                 background: $gray-color-13 !important;
             }
