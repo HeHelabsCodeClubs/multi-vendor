@@ -30,3 +30,5 @@ export const USER_AUTHENTICATED = 'You have successfully logged in. You will be 
 
 export const ALERT_TIMEOUT= 10000;
 export const NOT_ALLOWED_TO_GO_IN_CART = "has been bought by someone else few seconds ago!!!"
+
+export const SUBSCRIBE_INPUT_VALUE_EMPTY = "Please enter the email"
