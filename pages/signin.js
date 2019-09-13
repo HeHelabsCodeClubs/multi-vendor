@@ -1,13 +1,13 @@
 import '../assets/styles/layouts/landing.scss';
 import '../assets/styles/layouts/auth.scss';
+import '../assets/styles/layouts/header.scss';
 import SignInForm from '../components/views/signin/SignInForm';
-import PopUpWrapper from '../components/reusable/PopUpWrapper';
+import Header from '../components/reusable/header/Header'
 
 export default function Signin() {
-    return (
+    return (   
         <div className='landing-main-wrapper'>
-            <PopUpWrapper/>
-            
+            <Header /> 
             <div className='content-wrapper'>
                 <div className='col-lg-6 col-md-6 col-sm-8 col-xs-10 offset-lg-3 offset-md-3 offset-sm-2 offset-xs-1'>
                     <div className='landing-wrapper'>

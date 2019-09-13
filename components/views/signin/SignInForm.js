@@ -323,7 +323,10 @@ class SignInForm extends Component {
         const { actionTitle } = this.props;
         return (
             <div>
-                {this.renderBreadCrumbs()}
+                <div className="form-header">
+                    {this.renderBreadCrumbs()}
+                    {this.renderRegistrationActionLayout()}
+                </div>                
                 <div className='auth-title'>{actionTitle}</div>
                 <MessageDisplayer 
                 display={inputIsInvalid ? true : false }
@@ -364,7 +367,6 @@ class SignInForm extends Component {
                             {this.getLoginButtonText()}
                         </button>
                     </div>
-                    {this.renderRegistrationActionLayout()}
                     {this.renderForgotPasswordActionLayout()}
                 </form>
             </div>

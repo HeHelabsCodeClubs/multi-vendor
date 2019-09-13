@@ -31,14 +31,10 @@ body {
     &.delivery-address {
         width: 100%;
     }
-
-    @media screen and (max-width: $mobile-lg ) {
-        // width: 80%;
+    .form-header {
+        display: flex;
+        justify-content: space-between;
     }
-    @media screen and (min-width: $mobile-lg ) and (max-width: $tablet-md) {
-        // width: 70%;
-    }
-
     .auth-title {
         color: $black-color-4;
         margin: 2rem 0 1rem 0;
@@ -48,17 +44,14 @@ body {
             position: relative;
             input, select {
                 width: 100%;
+                min-height: 3.2rem;
                 margin: 1rem 0;
                 border: 1px solid $gray-color-2;
                 background: $gray-color-2;
                 padding: 0.3rem 1rem;
                 border-radius: 0.3rem;
                 outline: none;
-
-                @media screen and (max-width: $mobile-lg) {
-                    margin: .2rem 0 1rem;
-                    -webkit-appearance: none;
-                }
+                -webkit-appearance: none;
 
                 &.is-invalid {
                     border: 1px solid $red-color-1 !important;
@@ -88,30 +81,29 @@ body {
                 position: absolute;
                 bottom: -0.5rem;
             }
+            label {
+                display: none;
+            }
         }
         
         .auth-button {
             text-align: center;
             margin: 2rem 0 1rem 0;
-
-            @media screen and (max-width: $mobile-lg) {
-                text-align: left;
-            }
             button {
                 @extend .default-button-styles;
             }
         }
-        .auth-text {
-            color: $black-color-2;
-            text-align: center;
+    }
+    .auth-text {
+        color: $black-color-2;
+        text-align: center;
 
-            @media screen and (max-width: $mobile-lg) {
-                text-align: left;
-            }
+        @media screen and (max-width: $mobile-lg) {
+            text-align: left;
+        }
 
-            a {
-                color: $green-color-2 !important;
-            }
+        a {
+            color: $green-color-2 !important;
         }
     }
 }
@@ -124,7 +116,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 15px;
+    width: 4px;
     height: 5px;
 }
 

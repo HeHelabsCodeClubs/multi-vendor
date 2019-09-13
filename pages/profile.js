@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Router from 'next/router';
-import SideProfile from "../components/views/profile/SideProfile";
+// import SideProfile from "../components/views/profile/SideProfile";
 import Global from '../components/reusable/Global';
 import OrderRow from '../components/views/profile/OrderRow';
 import OrderDetail from "../components/views/profile/OrderDetail";
@@ -89,8 +89,23 @@ class Profile extends Component {
         return (
             <Global>
                 <div className="row reset-row profile-page">
-                    <div className="col-lg-3 col-md-3 col-sm-5 col-12 sidemenu">
-                        <SideProfile changeActivePage={this.changeActivePage} />
+                    <div className="col-12 sidemenu">
+                        <div className="user-profile-wrapper">
+                            <div>
+                                <img src="" />
+                            </div>
+                            <div>
+                                <h5>Jane Doe</h5>
+                                <div>
+                                    <span>3 oders</span>
+                                    <span>2 Awaiting delivery</span>
+                                </div>
+                            </div>
+                            <div>
+                                <a href="#">Logout</a>
+                            </div>
+                        </div>
+                        
                     </div>
 
                     <div className="col-lg-9 col-md-9 col-sm-7 col-12 main-content">

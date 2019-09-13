@@ -376,7 +376,11 @@ class SignupForm extends Component {
         } = this.state;
         return (
             <div>
-                {this.renderBreadCrumbs()}
+                <div className="form-header">
+                    {this.renderBreadCrumbs()}
+                    {this.renderLoginActionLayout()}
+                </div>
+
                 <div className='auth-title'>Register</div>
                 <MessageDisplayer 
                 display={inputIsInvalid ? true : false }
@@ -462,7 +466,6 @@ class SignupForm extends Component {
                             {this.getRegisterButtonText()}
                         </button>
                     </div>
-                    {this.renderLoginActionLayout()}
                 </form>
             </div>
         )

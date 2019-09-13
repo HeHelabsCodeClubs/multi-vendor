@@ -30,11 +30,12 @@
 	max-height: 100vh;
 	height: 100vh;
 	width: 100vw;
+	padding-top: 6rem;
+	padding-bottom: 6rem;
 	overflow: hidden;
 	background: #f4f6f6;
 	
 	.content-wrapper{
-		background: rgba(0, 0, 0, 0.15);
 		width: 100%;
 		height: 100%;
 		overflow: scroll;
@@ -52,8 +53,6 @@
 		@include boxshadow(0 3px 36px 0 rgba(0, 0, 0, 0.1));
 		background-color: $white-color;
 		border-radius: 0.5rem;
-		width: calc(100% + 15px);
-		max-width: 40rem;
     	margin: auto;
 
 		.top-part {
