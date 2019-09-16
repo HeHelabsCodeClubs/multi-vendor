@@ -233,12 +233,12 @@ class Billing extends Component {
 			<div className='account-info-wrapper'>
 				{this.renderBreadCrumbs()}
 				<DeliveryCustomerDetailForm 
-				formTitle='Shipping address'
-				formType='shipping'
-				submitForm={false}
-				customerAddressData={customerAddressData}
-				getSubmittedValues={this.getSubmittedValues}
-				provideCustomerDetails={retrieveCustomerDetails}
+					formTitle='Shipping address'
+					formType='shipping'
+					submitForm={false}
+					customerAddressData={customerAddressData}
+					getSubmittedValues={this.getSubmittedValues}
+					provideCustomerDetails={retrieveCustomerDetails}
 				/>
 				<InputField 
 					typeOfInput='checkbox'
@@ -248,12 +248,12 @@ class Billing extends Component {
 					updateInputFieldValue={this.handleBillingAddressDisplay}
 				/>
 				<DeliveryCustomerDetailForm 
-				formTitle='Billing address'
-				formType='billing'
-				submitForm={false}
-				getSubmittedValues={this.getSubmittedValues}
-				provideCustomerDetails={retrieveCustomerDetails}
-				customerAddressData={customerAddressData}
+					formTitle='Billing address'
+					formType='billing'
+					submitForm={false}
+					getSubmittedValues={this.getSubmittedValues}
+					provideCustomerDetails={retrieveCustomerDetails}
+					customerAddressData={customerAddressData}
 				/>
 				{this.renderSubmitButton()}
 			</div>

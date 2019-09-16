@@ -187,20 +187,6 @@ export default class SingleStoreDeliveryItem extends Component {
             updateInputFieldValue={this.getInputFieldValue}
             defaultInputValue={shipmentMethod}
             />
-
-            // <Select2
-            // id='shipment-method-selector'
-            // name='shipmentMethod'
-            // data={selectorData}
-            // options={{
-            //     placeholder: 'shipment'
-            // }}
-            // value={shipmentMethod}
-            // className='test-select'
-            // onChange={(e) => {
-            //     this.getInputFieldValue('shipmentMethod', e.target.value);
-            // }}
-            ///>
         );
     }
     renderContent() {
