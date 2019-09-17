@@ -1,5 +1,4 @@
 import Router from 'next/router';
-import Select2 from 'react-select2-wrapper';
 import Cart from './Cart';
 import HeaderCategoryMenu from './HeaderCategoryMenu';
 import { getUserAuthenticatedInfo, logoutUser } from '../../../helpers/auth';

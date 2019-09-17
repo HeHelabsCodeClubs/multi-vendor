@@ -7,7 +7,9 @@ import OrderDetail from "../components/views/profile/OrderDetail";
 import '../assets/styles/layouts/profile.scss';
 import fetch from 'isomorphic-unfetch';
 import { API_URL } from '../config';
-import { getClientAuthToken } from '../helpers/auth';
+import { getClientAuthToken, getUserAuthenticatedInfo, logoutUser } from '../helpers/auth';
+import isObjectEmpty from '../helpers/is_object_empty';
+
 
 class Profile extends Component {
     constructor(props) {
@@ -15,16 +17,23 @@ class Profile extends Component {
         this.state = {
             activeContent: 'orders',
             customerOrdersData: [],
-            activeId: 0
+            activeId: 0,
+            authUser: {}
         };
         this.renderContentProfile = this.renderContentProfile.bind(this);
         this.changeActiveContent = this.changeActiveContent.bind(this);
         this.changeActivePage = this.changeActivePage.bind(this);
+        this.updateAuthUser = this.updateAuthUser.bind(this);
+        this.renderUserProfile = this.renderUserProfile.bind(this);
+        this.logOut = this.logOut.bind(this);
     }
     async componentDidMount() {
         const isClient = typeof document !== undefined;
         if (isClient) {
             const token = getClientAuthToken();
+            getUserAuthenticatedInfo((user) => {
+                this.updateAuthUser(user);
+            });
             if (token) {
                 const res = await fetch(`${API_URL}/customers/orders`, {
                     method: 'GET',
@@ -41,6 +50,62 @@ class Profile extends Component {
             } else {
                 Router.push('/signin')
             }
+        }
+    }
+
+    updateAuthUser(user) {
+        this.setState({
+            authUser: user
+        });
+    }
+    logOut(e) {
+        if (e !== undefined) {
+            e.preventDefault();
+        }
+        logoutUser();
+    }
+
+    renderUserProfile() {
+        const { authUser, customerOrdersData} = this.state;
+        const numberOfOrders= customerOrdersData.length;
+        if (!authUser) {
+            logoutUser()
+        }
+        if (!isObjectEmpty(authUser)) {
+            const {
+                last_name,
+                first_name
+            } = authUser;
+            const fullName = `${last_name} ${first_name}`;
+
+            // get initial of the first_name
+            const getInitials = function(name) {
+                const parts = first_name.split(' ');
+                let initial = '';
+                for (var i = 0; i < parts.length; i++ ) {
+                    if (parts[i].length > 0 && parts[i] !== '' ) {
+                        initial += parts[i][0]
+                    }
+                }
+                return initial
+            }
+
+            return (
+                <div className="user-profile-wrapper">
+                    <div className="profile-img-wrapper">
+                        <span>{getInitials(first_name)}</span>
+                    </div>
+                    <div>
+                        <h5>{fullName}</h5>
+                        <div>
+                            <span>{numberOfOrders} oders</span>
+                        </div>
+                    </div>
+                    <div className="logout-btn-wrapper">
+                        <a href="/logout" onClick={this.logOut}>Logout</a>
+                    </div>
+                </div>
+            );
         }
     }
 
@@ -90,25 +155,9 @@ class Profile extends Component {
             <Global>
                 <div className="row reset-row profile-page">
                     <div className="col-12 sidemenu">
-                        <div className="user-profile-wrapper">
-                            <div>
-                                <img src="" />
-                            </div>
-                            <div>
-                                <h5>Jane Doe</h5>
-                                <div>
-                                    <span>3 oders</span>
-                                    <span>2 Awaiting delivery</span>
-                                </div>
-                            </div>
-                            <div>
-                                <a href="#">Logout</a>
-                            </div>
-                        </div>
-                        
+                        {this.renderUserProfile()}                        
                     </div>
-
-                    <div className="col-lg-9 col-md-9 col-sm-7 col-12 main-content">
+                    <div className="col-12 main-content">
                         {this.renderContentProfile()}
                     </div>
                 </div>

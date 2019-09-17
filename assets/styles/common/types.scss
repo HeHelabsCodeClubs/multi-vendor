@@ -1089,6 +1089,21 @@ html {
     // profile page
 
     .profile-page {
+        .sidemenu {
+            .user-profile-wrapper {
+                .profile-img-wrapper {
+                    font-family: $font-bold;
+                    font-size: 2rem;
+                }
+                .logout-btn-wrapper {
+                    a {
+                        font-family: $font-semi-bold;
+                        font-size: 1.3rem;
+                    }
+                }
+            }        
+        }
+
         h5 {
             font-size: 1.5rem !important;
         }

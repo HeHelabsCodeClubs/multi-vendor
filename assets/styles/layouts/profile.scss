@@ -12,11 +12,20 @@
             border-radius: 4px;
             @include flexbox;
             @include flexjustifycontent(space-between);
-            img {
+            .profile-img-wrapper {
                 height: 4rem;
                 width: 4rem;
-                background-color: $gray-color-2;
+                background-color:$gray-color-6;
+                color: $white-color;
                 border-radius: 50%;
+                @include flexbox;
+                @include flexjustifycontent(center);
+                @include flexalignitems(center);
+            }
+            .logout-btn-wrapper {
+                a {
+                    color: $orange-color-1 !important;
+                }
             }
         }        
     }
