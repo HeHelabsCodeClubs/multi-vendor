@@ -8,8 +8,8 @@ class LiveChat extends Component {
     render () {
         return (
             <MessengerCustomerChat
-                pageId="233672900100995"
-                appId="hehe-vendor"
+                pageId="104982337540000"
+                appId="hehe"
             />
         );
     }
