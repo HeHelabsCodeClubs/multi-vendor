@@ -95,7 +95,7 @@ class Profile extends Component {
                     <div className="profile-img-wrapper">
                         <span>{getInitials(first_name)}</span>
                     </div>
-                    <div>
+                    <div className="user-info-section">
                         <h5>{fullName}</h5>
                         <div>
                             <span>{numberOfOrders} oders</span>

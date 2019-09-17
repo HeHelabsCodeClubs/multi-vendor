@@ -1095,6 +1095,11 @@ html {
                     font-family: $font-bold;
                     font-size: 2rem;
                 }
+                .user-info-section {
+                    span {
+                        font-family: $font-regular;
+                    }                    
+                }
                 .logout-btn-wrapper {
                     a {
                         font-family: $font-semi-bold;

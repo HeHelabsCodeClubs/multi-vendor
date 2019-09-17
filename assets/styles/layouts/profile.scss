@@ -12,6 +12,15 @@
             border-radius: 4px;
             @include flexbox;
             @include flexjustifycontent(space-between);
+            
+            .user-info-section {
+                h5 {
+                    color: $black-color-3;
+                }
+                span {
+                    color: $gray-color-6;
+                }
+            }
             .profile-img-wrapper {
                 height: 4rem;
                 width: 4rem;
