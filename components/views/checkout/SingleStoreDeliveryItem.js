@@ -20,7 +20,8 @@ export default class SingleStoreDeliveryItem extends Component {
             shipmentMethod: '',
             shipmentTotalPrice: 0,
             shipmentDescription: '',
-            shipmentHasBeenSelected: false
+            shipmentHasBeenSelected: false,
+            inputWithError: ''
         };
         this.renderContent = this.renderContent.bind(this);
         this.showAllProducts = this.showAllProducts.bind(this);
@@ -163,7 +164,7 @@ export default class SingleStoreDeliveryItem extends Component {
         return <span/>;
     }
     renderShipmentMethodSelector() {
-        const { store, shipmentMethod } = this.state;
+        const { store, shipmentMethod, inputWithError } = this.state;
         const { shipment_methods } = store.info;
         if (shipment_methods.length == 0) {
             return null;
@@ -186,6 +187,7 @@ export default class SingleStoreDeliveryItem extends Component {
             placeholder='Choose shipment'
             updateInputFieldValue={this.getInputFieldValue}
             defaultInputValue={shipmentMethod}
+            inputWithError= {inputWithError}
             />
         );
     }

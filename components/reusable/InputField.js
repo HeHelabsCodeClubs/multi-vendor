@@ -159,6 +159,7 @@ export default class InputField extends Component {
                     id={id}
                     name={name}
                     onChange={this.handleInputChange}
+                    className={inputClassName}
                     >
                         {this.renderSelect(selectorData, placeholder)}
                     </select>
