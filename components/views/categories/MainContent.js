@@ -4,7 +4,7 @@ import Router from 'next/router';
 import Product from '../../reusable/Product';
 import Loader from '../../reusable/Loader';
 import { API_URL } from '../../../config';
-import Breadcrumb from '../../reusable/Breadcrumb';
+// import Breadcrumb from '../../reusable/Breadcrumb';
 
 class MainContent extends React.Component {
     constructor(props) {
@@ -75,7 +75,7 @@ class MainContent extends React.Component {
                 return (
                     <div 
                     key={`${product.slug}-${index}`}
-                    className='col-lg-3 col-md-4 col-sm-6 col-6 col-reset'
+                    className='col-sm-4 col-6 col-reset'
                     >
                         <Product 
                         product={product} 
@@ -108,10 +108,10 @@ class MainContent extends React.Component {
 
     async loadMoreProducts() {
         const { currentPage } = this.state;
-        const { sellersIds } = this.props;
+        // const { sellersIds } = this.props;
         const { router: { query } } = Router;
 
-        const ids = sellersIds.toString();
+        // const ids = sellersIds.toString();
 
         const { category_slug, sub_cat_slug, sub_last_cat_slug } = query;
         
@@ -125,14 +125,14 @@ class MainContent extends React.Component {
             remoteUrl = `${API_URL}/categories/${sub_last_cat_slug}/products`;
         }
 
-        if (category_slug !== undefined && sellersIds.length !== 0) {
-            remoteUrl = `${API_URL}/categories/${category_slug}/products/sellers?filter=${ids}`;
-        }
+        // if (category_slug !== undefined && sellersIds.length !== 0) {
+        //     remoteUrl = `${API_URL}/categories/${category_slug}/products/sellers?filter=${ids}`;
+        // }
 
         // const remoteUrl = `${API_URL}`
         const newPage = Number(currentPage) + 1;
-        remoteUrl = sellersIds.length !== 0 ?
-        `${API_URL}/categories/${category_slug}/products/sellers?filter=${ids}&page=${newPage}` : 
+        // remoteUrl = sellersIds.length !== 0 ?
+        // `${API_URL}/categories/${category_slug}/products/sellers?filter=${ids}&page=${newPage}` : 
         `${remoteUrl}?page=${newPage}`
         const res = await fetch(remoteUrl);
         const response = await res.json();
@@ -163,21 +163,21 @@ class MainContent extends React.Component {
         });
     }
 
-    renderBreadCrumb() {
-        const { activeParentCategory, activeSubCategory } = this.props;
+    // renderBreadCrumb() {
+    //     const { activeParentCategory, activeSubCategory } = this.props;
 
-        return (
-            <Breadcrumb>
-                <a href="/" className="breadcrumb-link">Home</a>
-                    <span> / </span>
-                <a href="/" className="breadcrumb-link">Categories</a>
-                    <span> / </span>
-                <a href="" className="breadcrumb-link">{activeParentCategory}</a>
-                    <span> / </span>
-                <a href="" className="breadcrumb-current">{activeSubCategory}</a>
-            </Breadcrumb>
-        )
-    }
+    //     return (
+    //         <Breadcrumb>
+    //             <a href="/" className="breadcrumb-link">Home</a>
+    //                 <span> / </span>
+    //             <a href="/" className="breadcrumb-link">Categories</a>
+    //                 <span> / </span>
+    //             <a href="" className="breadcrumb-link">{activeParentCategory}</a>
+    //                 <span> / </span>
+    //             <a href="" className="breadcrumb-current">{activeSubCategory}</a>
+    //         </Breadcrumb>
+    //     )
+    // }
  
 	render() {
         const { lastPage, currentPage, products, showLoader, pData } = this.state;
@@ -195,7 +195,7 @@ class MainContent extends React.Component {
             loader={<Loader />}
             >
                 <div className='main-content'>
-                    {this.renderBreadCrumb()}
+                    {/* {this.renderBreadCrumb()} */}
                     {this.renderProducts()}
                 </div>
             </InfiniteScroll>

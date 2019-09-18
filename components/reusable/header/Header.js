@@ -189,14 +189,14 @@ class Header extends React.Component {
                     </div>
                     <div className='header'>
                         <div className='row maximum-width'>
-                            <div className='col-lg-4 col-md-4 col-sm-6 col-1 header-left'>
+                            <div className='col-1 header-left'>
                                 <span className='site-logo'>
                                     <a href='/'>
                                         <img src='https://res.cloudinary.com/hehe/image/upload/v1563286307/multi-vendor/HeHe_Favicon.png' />
                                     </a>
                                 </span>                                
                             </div>
-                            <div className='col-lg-5 col-md-5 col-sm-2 col-11 search-container'>
+                            <div className='col-11 search-container'>
                                 <form className='main-search' onSubmit={this.handleSearchValueSubmission}>
                                     <div className={classnames("search-suggestion", {
                                     "dismiss-onscroll": !this.state.visible

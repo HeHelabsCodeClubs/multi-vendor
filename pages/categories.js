@@ -1,11 +1,11 @@
 import fetch from 'isomorphic-unfetch';
 import Global from '../components/reusable/Global';
 import '../assets/styles/layouts/categories.scss';
-import TopCategories from '../components/views/categories/TopCategories';
+// import TopCategories from '../components/views/categories/TopCategories';
 import SidemenuCategories from '../components/views/categories/SidemenuCategories';
 import MainContent from '../components/views/categories/MainContent';
 import { API_URL } from '../config';
-import TopStores from '../components/views/categories/TopStores';
+// import TopStores from '../components/views/categories/TopStores';
 
 class Categories extends React.Component {
     constructor(props) {
@@ -22,13 +22,13 @@ class Categories extends React.Component {
             openCartContent: false,
             ids: [],
             showCloseBtn: false,
-            updateSellers: false
+            // updateSellers: false
         };
         this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
         this.updateProductsData = this.updateProductsData.bind(this);
         this.handleDisplayLoader = this.handleDisplayLoader.bind(this);
         this.HandleCartContentOpening = this.HandleCartContentOpening.bind(this);
-        this.updateSellersData = this.updateSellersData.bind(this);
+        // this.updateSellersData = this.updateSellersData.bind(this);
     }
     static async getInitialProps({ query }) {
         const { category_slug, sub_cat_slug, sub_last_cat_slug } = query;
@@ -53,7 +53,7 @@ class Categories extends React.Component {
             categoriesData: data.parent_categories,
             subCategoriesData: data.sub_categories,
             productsData: data.products,
-            sellersData: data.sellers,
+            // sellersData: data.sellers,
             metaProductsData: meta.pagination_data,
             activeParentCategory: category_slug,
             activeSubCategory: sub_cat_slug,
@@ -100,16 +100,16 @@ class Categories extends React.Component {
         });
     }
 
-    updateSellersData(data) {
-        this.setState({
-            updateSellers: true
-        })
-        setTimeout(() => {
-            this.setState({
-                updateSellers: false
-            });
-        }, 500)
-    }
+    // updateSellersData(data) {
+    //     this.setState({
+    //         updateSellers: true
+    //     })
+    //     setTimeout(() => {
+    //         this.setState({
+    //             updateSellers: false
+    //         });
+    //     }, 500)
+    // }
 
     handleDisplayLoader(callback) {
         const { showLoader } = this.state;
@@ -148,18 +148,18 @@ class Categories extends React.Component {
     
 	render() {
         const { 
-            categoriesData,
+            // categoriesData,
             subCategoriesData,
             parentCategorySlug,
             metaProductsData,
-            sellersData
+            // sellersData
         } = this.props;
         const { 
             showLoader,
             activeParentCategory,
             activeSubCategory,
             products,
-            updateSellers,
+            // updateSellers,
             paginationData,
             openCartContent,
             ids
@@ -171,14 +171,14 @@ class Categories extends React.Component {
             openCart={openCartContent}
             >
 				<div className='multi-vendor-categories'>
-                    <TopCategories 
+                    {/* <TopCategories 
                     categories={categoriesData}
-                    />
+                    /> */}
 				</div>
                 <div className='categories-content'>
                     <div className='maximum-width'>
                         <div className='row reset-row'>
-                            <div className='col-lg-3 col-md-4 col-sm-4 col-12 side-category__grid'>
+                            <div className='col-12 side-category__grid'>
                                 <SidemenuCategories 
                                 subCategories={subCategoriesData}
                                 parentCategorySlug={parentCategorySlug}
@@ -186,11 +186,11 @@ class Categories extends React.Component {
                                 displayLoader={this.handleDisplayLoader}
                                 activeParentCategory={activeParentCategory}
                                 activeSubCategory={activeSubCategory}
-                                updateSellers={this.updateSellersData}
+                                // updateSellers={this.updateSellersData}
                                 />
                             </div>
-                            <div className='col-lg-9 col-md-8 col-sm-8 col-12 col-reset main-content-wrapper'>
-                                <TopStores 
+                            <div className='col-12 col-reset main-content-wrapper'>
+                                {/* <TopStores 
                                 sellers={sellersData} 
                                 parentCategorySlug={parentCategorySlug}
                                 displayLoader={this.handleDisplayLoader}
@@ -198,10 +198,10 @@ class Categories extends React.Component {
                                 sellersIds={ids}
                                 paginationData={paginationData}
                                 updateSellers={updateSellers}
-                                />
+                                /> */}
                                 <MainContent 
                                 products={products}
-                                sellersIds={ids}
+                                // sellersIds={ids}
                                 activeParentCategory={activeParentCategory}
                                 activeSubCategory={activeSubCategory}
                                 updateProducts={this.updateProductsData}

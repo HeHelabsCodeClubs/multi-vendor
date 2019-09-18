@@ -52,7 +52,8 @@
 		@include boxshadow(0 3px 36px 0 rgba(0, 0, 0, 0.1));
 		background-color: $white-color;
 		border-radius: 0.5rem;
-    	margin: auto;
+		margin: auto;
+		max-width: 350px;
 
 		.top-part {
 			border-bottom: .5px solid $gray-color-1;

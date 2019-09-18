@@ -73,11 +73,6 @@
     .search-container {
         top: 1.7rem;
         right: 0;
-        @media (min-width: $mobile-md-lg) and (max-width: $mobile-lg) {
-            position: relative;
-            top: 3.8rem;
-            right: 0;
-        }
         .main-search {
             width: 100%;
             height: auto;
@@ -92,7 +87,7 @@
                 outline: none;
             }
             .search-suggestion {
-                width: 93%;
+                width: 100%;
                 display: inline-block;
                 &.dismiss-onscroll {
                     .react-autosuggest__suggestions-list {
@@ -411,7 +406,7 @@
 		overflow-x: hidden;
 		overflow-y: auto;
         scroll-behavior: smooth;
-        max-width: 47rem;
+        max-width: 40rem;
     }
     
     &.is-open {
@@ -444,10 +439,16 @@
 .cart-sidebar {
     .main-title {
         background: $green-color-2;
+        padding: 0.5rem 1rem;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        max-width: 40rem;
+        z-index: 1;
         @include flexbox;
         @include flexalignitems(center);
         @include flexjustifycontent(space-between);
-        padding: 0.5rem 1rem;
+        
 
         .sidebar-title {
             @include flexbox;
@@ -483,16 +484,16 @@
     }
     .cart-content {
         background: $gray-color-2;
-        overflow: auto;
         position: relative;
-        height: calc(100vh - 3.3rem);
+        height: calc(100vh - 9.3rem);
         overflow: hidden;
-        padding-top: 2rem;
+        padding-top: 3.2rem;
 
         .cart-content-content {
             overflow-y: scroll;
             height: calc(100vh - 7.6rem);
-            padding-bottom: 8rem;
+            padding-top: 2rem;
+            padding-bottom: 12rem;
             .shipping-grid {
                 display: none !important;
             }
@@ -643,6 +644,7 @@
             position: fixed;
             bottom: 6rem;
             width: 100%;
+            max-width: 40rem;
             @include flexbox;
             @include flexalignitems(center);
             @include flexjustifycontent(space-between);
