@@ -655,6 +655,11 @@ html {
         }
     }
     .account-info-wrapper {
+        .checkout-step-title {
+            h5 {
+                font-size: 1.5rem !important;
+            }
+        }
         .account-info-title {
             font-family: $font-bold;
             font-size: 1.28rem;
@@ -662,13 +667,13 @@ html {
         .signin-form {
             .input-field {
                 input {
-                    font-size: 1rem;
+                    font-size: 1.3rem;
                     font-family: $font-regular;
                 }
             }
             .input-checkbox {
                 .remember {
-                    font-size: 1rem;
+                    font-size: 1.3rem;
                     font-family: $font-regular;
                 }
             }
@@ -721,7 +726,7 @@ html {
                     }
                     .payment-input {
                         input {
-                            font-size: 1.28rem;
+                            font-size: 1.3rem;
                             font-family: $font-regular;
                         }
                     }
@@ -731,7 +736,7 @@ html {
                         font-size: 1.28rem;
                     }
                     input {
-                        font-size: 1.28rem;
+                        font-size: 1.3rem;
                     }
                     
                 }
@@ -755,10 +760,10 @@ html {
             }
         }
         .btn_store-cartProducts {
-            font-size: 1.28rem;
+            font-size: 1.1rem;
             font-family: $font-semi-bold;
             span {
-                font-size: .8rem !important;
+                font-size: .5rem !important;
             }
         }
     }
@@ -783,9 +788,7 @@ html {
         font-family: $font-regular;
     }
     .order-summary-grid {
-        background: $gray-color-2;
         .order-summary-wrapper {
-            margin: 3rem 1rem;
             .order-summary-title {
                 font-size: 1.28rem;
                 font-family: $font-bold;
@@ -807,7 +810,7 @@ html {
                     margin: 1rem 0 1rem 1rem;
                     input {
                         font-family: $font-regular;
-                        font-size: 1rem;
+                        font-size: 1.3rem;
                     }
                     button {
                         font-family: $font-regular;
@@ -959,7 +962,7 @@ html {
         .search-wrapper {
             input {
                 font-family: $font-semi-bold;
-                font-size: 1.28rem;
+                font-size: 1.3rem;
             }
         }
     }
@@ -972,11 +975,11 @@ html {
         .auth-form {
             .input-field {
                 input {
-                    font-size: 1.1rem;
+                    font-size: 1.3rem;
                     font-family: $font-regular;
                 }
                 select {
-                    font-size: 1.1rem;
+                    font-size: 1.3rem;
                     font-family: $font-regular;
                 }
             }
@@ -1056,7 +1059,7 @@ html {
                 background: $white-color;
                 border-radius: 0.2rem;
                 input {
-                    font-size: 1rem;
+                    font-size: 1.3rem;
                 }
             }
         }

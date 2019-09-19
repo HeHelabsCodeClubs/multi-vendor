@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Select2 from 'react-select2-wrapper';
 import InputField from '../../reusable/InputField';
 import isObjectEmpty from '../../../helpers/is_object_empty';
 import { 
@@ -187,20 +186,6 @@ export default class SingleStoreDeliveryItem extends Component {
             updateInputFieldValue={this.getInputFieldValue}
             defaultInputValue={shipmentMethod}
             />
-
-            // <Select2
-            // id='shipment-method-selector'
-            // name='shipmentMethod'
-            // data={selectorData}
-            // options={{
-            //     placeholder: 'shipment'
-            // }}
-            // value={shipmentMethod}
-            // className='test-select'
-            // onChange={(e) => {
-            //     this.getInputFieldValue('shipmentMethod', e.target.value);
-            // }}
-            ///>
         );
     }
     renderContent() {
@@ -277,7 +262,7 @@ export default class SingleStoreDeliveryItem extends Component {
             });
             const storeItems = singleStoreProductsCount(store);
             const storeTotalPrice = singleStoreTotalPrice(store);
-            const itemsText = storeItems === 1 ? `(${storeItems} item from ${name} store)` : `(${storeItems} items from ${name} store)`;
+            const itemsText = storeItems === 1 ? `(${storeItems} items)` : `(${storeItems} items)`;
             const productsWrapperClassName = allProductsDisplayed ? 'store-cartProducts active' : 'store-cartProducts';
             const productsButtonText = allProductsDisplayed ? 'Hide Products' : 'Show Products';
             const finalTotalPrice = storeTotalPrice + shipmentTotalPrice;
@@ -296,9 +281,9 @@ export default class SingleStoreDeliveryItem extends Component {
                             type='button'
                             className="btn_store-cartProducts"
                             onClick={this.showAllProducts}
-                            > 
-                                <span className="icon-Angle_down"></span>
+                            >
                                 {productsButtonText}
+                                <span className="icon-Angle_down"></span>
                             </button>
                         </div>
                     </div>
@@ -311,10 +296,12 @@ export default class SingleStoreDeliveryItem extends Component {
                             <span className='t-content'>{`Rwf ${storeTotalPrice}`}</span>	
                         </div>
                         <div className='shipping-grid'>
-                            <span className='shipping-title'>Shipping method</span>
-                            <span className='shipping-dropdown'>
-                                {this.renderShipmentMethodSelector(store)}
-                            </span>
+                            <span className="choose-method">
+                                <span className='shipping-title'>Shipping method</span>
+                                <span className='shipping-dropdown'>
+                                    {this.renderShipmentMethodSelector(store)}
+                                </span>
+                            </span>                            
                             {this.renderShipmentTotalLayout()}
                         </div>
                         <div className='total-grid checkout-total-grid row reset-row'>

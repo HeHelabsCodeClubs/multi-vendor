@@ -2,6 +2,11 @@
 
 .checkout-content  {
     position: relative;
+    background-color: $gray-color-2;
+    .not-sticky__container {
+        max-width: 65rem;
+        margin: auto;
+    }
     .checkouot__left-block {
         position: initial;
         .auth-button {
@@ -11,7 +16,7 @@
                         content: "continue";
                         position: absolute;
                         bottom: 1rem;
-                        left: 2rem;
+                        left: 3rem;
                         margin: 0 1rem 0 0;
                         background: #f6921e;
                         color: #ffffff;
@@ -37,26 +42,24 @@
         .place-check {
             .shipping-btn {
                 .auth-button {
-                    @media screen and (max-width: $mobile-lg) {
-                        &:before {
-                            content: "Place Order" !important;
-                            position: absolute;
-                            bottom: 1rem;
-                            left: 2rem;
-                            margin: 0 1rem 0 0;
-                            background: #f6921e;
-                            color: #ffffff;
-                            -webkit-transition: 0.5s;
-                            -moz-transition: 0.5s;
-                            -ms-transition: 0.5s;
-                            transition: 0.5s;
-                            border: 0.5px solid #f6921e;
-                            border-radius: 0.35rem;
-                            outline: none !important;
-                            padding: 0.7rem 0;
-                            min-width: 11rem;
-                            z-index: 1000;
-                        }                        
+                    &:before {
+                        content: "Place Order" !important;
+                        position: absolute;
+                        bottom: 1rem;
+                        left: 3rem;
+                        margin: 0 1rem 0 0;
+                        background: #f6921e;
+                        color: #ffffff;
+                        -webkit-transition: 0.5s;
+                        -moz-transition: 0.5s;
+                        -ms-transition: 0.5s;
+                        transition: 0.5s;
+                        border: 0.5px solid #f6921e;
+                        border-radius: 0.35rem;
+                        outline: none !important;
+                        padding: 0.7rem 0;
+                        min-width: 11rem;
+                        z-index: 1000;
                     }
                 }
             }
@@ -67,18 +70,10 @@
 .checkout-process {
     position: relative;
     width: 100%;
-    padding-left: 0;
-    //95%;
-    margin: 3rem;
-    //3rem 0 3rem 5%;
+    margin: 2rem 0 3rem;
+    padding: 0;
     @include flexbox;
     @include flexjustifycontent(space-between);
-
-    @media screen and (max-width: $mobile-lg) {
-        width: 100%;
-        margin: 3rem 0 1em;
-        padding: 0;
-    }
 
     header {
         width: 90% !important;
@@ -97,30 +92,22 @@
         &:after {
             content: '';
             position: absolute;
-            height: 1rem;
-            width: 1rem;
-            top: -2.43rem;
-            left: 44.6%;
+            height: 2.3rem;
+            width: 2.3rem;
+            top: 0;
+            z-index: 2;
             background: $gray-color-6;
             border-radius: 50%;
-
-            @media screen and (max-width: $mobile-lg) {
-                left: 36.6%;
-                top: -1.43rem;
-            }
         }
         &:before {
             content: '';
             position: absolute;
             width: 100%;
-            top: -2rem;
+            top: 1.15rem;
             right: 50%;
+            z-index: 1;
             height: 0.2rem;
             background: $gray-color-6;
-
-            @media screen and (max-width: $mobile-lg) {
-                top: -1rem;
-            }
         }
         &:nth-child(1) {
             &:before {
@@ -132,51 +119,66 @@
                 background: $orange-color-1;
             }
             .process-name {
-                color: $black-color-2;
+                color: $white-color;
             }
         }
         &.done {
             &:after {
-                background: $black-color-2;
+                background: $black-color-3;
             }
             .process-name {
-                color: $black-color-2;
+                color: $white-color;
             }
         }
         .process-name {
-            color: $gray-color-6;
+            color: $white-color;
+            position: relative;
+            z-index: 5;
+            width: 2.3rem;
+            height: 2.3rem;
+            @include flexbox;
+            @include flexjustifycontent(center);
+            @include flexalignitems(center);
         }
     }
 }
 .account-info-wrapper {
-    width: 90%;
-    margin: 0 0 70px 10%;
-    @media screen and (max-width: $mobile-lg) {
-        width: 100%;
-        margin: 0;
+    .checkout-step-title {
+        h5 {
+            padding: 0 1rem 2rem;
+        }
     }
+    .checkout-phase-content-wrapper {
+        border-radius: 1.1rem;
+        box-shadow: 0 3px 6px 0 $box-shadow-color;
+        background-color: $white-color;
+        padding: 2rem;
+    }
+
     .signin-block {
-        border-right: solid 2px $gray-color-12;
-        @media screen and (max-width: $mobile-lg) {
-            border-right: none;
-            padding: 0 !important;
+        padding: 0 !important;
+        .auth-content {
+            padding: 0;
+            .auth-title {
+                margin: 0;
+            }
+            .auth-button {
+                text-align: left !important;
+            }
         }
     }
     .signup-block {
-        @media screen and (max-width: $mobile-lg) {
+        padding: 0 !important;
+        margin: 2rem 0;
+        .auth-content {
             padding: 0 !important;
-            margin: 2rem 0;
         }
     }
     .account-info-title {
         color: $black-color-4;
     }
     .billing-title {
-        margin: 1rem 1.3rem;
-
-        @media screen and (max-width: $mobile-lg) {
-            margin: 1rem 0;
-        }
+        margin: 1rem 0;
     }
     .signin-form {
         .input-field {
@@ -211,18 +213,11 @@
     }
     .shipping-form {
         border-bottom: .5px solid $gray-color-2;
-
-        @media screen and (max-width: $mobile-lg) {
-            margin: 0 -15px !important;
-        }
+        margin: 0 -15px !important;
     }
     .shipping-btn {
         margin: 1rem;
-        text-align: center;
-
-        @media screen and (max-width: $mobile-lg) {
-                text-align: left;
-        }
+        text-align: left;
 
         .auth-button {
             @extend .default-button-styles;
@@ -353,27 +348,25 @@
         }
     }
     .delivery-content {
-        border: .5px solid $gray-color-6;
+        border: .5px solid $gray-color-2;
         border-radius: 0.35rem;
         margin-bottom: 2rem;
-        padding-bottom: 1rem;
+        padding: 1rem;
         .store-logo {
             background: $gray-color-6;
             padding: 0.7rem 1rem;
+            margin: -1rem -1rem 0;
+            border-radius: 3px 3px 0 0;
             position: relative;
             @include flexbox;
             @include flexalignitems(center);
             @include flexjustifycontent(space-between);
 
             .left-block {
-                @media screen and (max-width: $mobile-lg) {
-                    flex: 0 0 100%;
-                }
+                flex: 0 0 100%;
             }
             .items-in-cart {
-                @media screen and (max-width: $mobile-lg) {
-                    display: block;
-                }
+                display: block;
             }
 
             .store-logo-wrapper {
@@ -384,46 +377,33 @@
                 @include flexbox;
                 @include flexalignitems(center);
                 @include flexjustifycontent(center);
-
-                @media screen and (max-width: $mobile-lg) {
-                    display: inline-flex !important;
-                }
+                display: inline-flex !important;
 
                 img.store-img {
                     max-width: 2rem;
                     max-height: 2rem;
                 }
             }
-            
-            
             .store-name {
                 color: $white-color;
-
-                @media screen and (max-width: $mobile-lg) {
-                    display: inline-block;
-                }
+                display: inline-block;
 
                 .name {
                     padding: 0 2rem 0 0.5rem;
                 }
             }
             .btn_store-cartProducts {
-                // color: $white-color !important;
                 @extend .default-button-styles;
-                padding: 0.3rem 0;
-                background: transparent !important;
                 border: none !important;
-                
-                @media screen and (max-width: $mobile-lg) {
-                    position: absolute;
-                    right: 0;
-                    top: .5rem;
-                    background: rgba(0, 0, 0, 0.09) !important;
-                    padding: .2rem 1rem;
-                }
+                position: absolute;
+                right: 0;
+                top: 1rem;
+                background: transparent !important;
+                padding: 0;
+                margin-right: 0;
 
                 span {
-                    padding-right: .5rem;
+                    padding: .5rem;
                 }
             }
         }
@@ -454,8 +434,6 @@
             }
         }
         .cart-product {
-            margin: 0 1rem;
-
             .select2-container--default .select2-selection--single {
                 border: .5px solid $gray-color-6;
             }
@@ -463,8 +441,7 @@
         .checkout-total-grid {
             @include flexbox;
             @include flexalignitems(center);
-            @include flexjustifycontent(space-between);
-            // width: 68%;
+            @include flexjustifycontent(center);
         }        
     }
     .total-price {
@@ -473,14 +450,6 @@
             background: $green-color-3;
             width: 100%;
             margin: 0;
-
-            .shipping-dropdown {
-                width: 33%;
-
-                .select2-selection--single {
-                    min-width: 140px !important;
-                }
-            }
         }
         .subtotal {
             @include flexbox;
@@ -565,13 +534,9 @@
 .order-summary-grid {
     background: $gray-color-2;
     padding-bottom: 3rem;
-
+    margin-top: 1.5rem !important;
     .order-summary-wrapper {
-        margin: 3rem 1rem;
-
-        @media screen and (max-width: $mobile-lg) {
-            margin: 3rem 0 !important;
-        }
+        margin: 0 1rem 3rem;
 
         .order-summary-title {
             color: $orange-color-1;

@@ -183,16 +183,20 @@ export default class Payment extends Component {
 	render() {
 		return (
             <div className='account-info-wrapper'>
-				{this.renderBreadCrumbs()}
-				<div className='payment-section'>
-					<div className='account-info-title'>Payment</div>
+				<div className="checkout-step-title">
+					<h5>4. Payment</h5>
 				</div>
-                {/* <div className='payment-section'>
-					<div className='wallet-title'>User wallet</div>
-					<div className='wallet-content'>Available wallet cash: 0 Rwf</div>
-				</div> */}
-				<div className='payment-section'>
-					{this.renderTabLists()}
+				<div className="checkout-phase-content-wrapper">
+					<div className='payment-section'>
+						<div className='account-info-title'>Payment</div>
+					</div>
+					{/* <div className='payment-section'>
+						<div className='wallet-title'>User wallet</div>
+						<div className='wallet-content'>Available wallet cash: 0 Rwf</div>
+					</div> */}
+					<div className='payment-section'>
+						{this.renderTabLists()}
+					</div>
 				</div>
             </div>
 		);

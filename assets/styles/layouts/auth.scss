@@ -30,6 +30,7 @@ body {
 
     &.delivery-address {
         width: 100%;
+        padding: 0;
     }
     .form-header {
         display: flex;
@@ -44,7 +45,7 @@ body {
             position: relative;
             input, select {
                 width: 100%;
-                min-height: 3.2rem;
+                min-height: 4rem;
                 margin: 1rem 0;
                 border: 1px solid $gray-color-2;
                 background: $gray-color-2;

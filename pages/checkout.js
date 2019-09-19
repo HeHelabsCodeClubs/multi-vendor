@@ -341,31 +341,31 @@ class Checkout extends React.Component {
                 />
                 <div className='maximum-width'>
                     <div className='row reset-row checkout-content'>
-                        <div className='col-lg-8 col-md-8 col-sm-8 col-12 checkouot__left-block not-sticky__container'>
+                        <div className='col-12 checkouot__left-block not-sticky__container'>
                             <ul className='checkout-process'>
                                 <CheckoutPageSectionLink 
                                 pageName='account'
-                                title='1. Account info'
+                                title='1'
                                 />
                                 <CheckoutPageSectionLink 
                                 pageName='addresses'
-                                title='2. Billing and shipping address'
+                                title='2'
                                 />
                                 <CheckoutPageSectionLink 
                                 pageName='delivery'
-                                title='3. Delivery'
+                                title='3'
                                 doOnClick={() => this.handleTabItemClick('delivery')}
                                 />
                                 <CheckoutPageSectionLink 
                                 pageName='payment'
-                                title='4. Payment'
+                                title='4'
                                 doOnClick={() => this.handleTabItemClick('payment')}
                                 />
                             </ul>
 
                             {this.renderContent()}
                         </div> 
-                        <div className='col-lg-4 col-md-4 col-sm-4 col-12 order-summary-grid not-sticky__container'>
+                        <div className='col-12 order-summary-grid not-sticky__container'>
                             <OrderSummary 
                             triggerShipmentMethodUpdate={triggerShipmentMethodUpdate}
                             />

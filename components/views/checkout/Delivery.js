@@ -5,7 +5,6 @@ import Loader from '../../reusable/Loader';
 import { getCartItems } from '../../../helpers/cart_functionality_helpers';
 import isObjectEmpty from '../../../helpers/is_object_empty';
 import MessageDisplayer from '../../reusable/MessageDisplayer';
-import Breadcrumb from "../../reusable/Breadcrumb";
 import {ALERT_TIMEOUT} from "../../../config";
 
 class Delivery extends Component {
@@ -30,7 +29,6 @@ class Delivery extends Component {
 		this.handleScroll = this.handleScroll.bind(this);
         this.checkScroll = this.checkScroll.bind(this);
 		this.handleScrollToTop = this.handleScrollToTop.bind(this);
-		this.renderBreadCrumbs = this.renderBreadCrumbs.bind(this);
 	}
 
 	componentDidMount () {
@@ -168,41 +166,29 @@ class Delivery extends Component {
 		);
 	}
 
-	renderBreadCrumbs() {
-        const { showBreadCrumbs } = this.props;
-        if (showBreadCrumbs) {
-            return (
-                <Breadcrumb>
-                    <a href="/" className="breadcrumb-link">Home</a>
-                        <span> / </span>
-					<a href="/checkout/account" className="breadcrumb-link">Checkout</a>
-						<span> / </span>
-                    <a href="#" className="breadcrumb-current">Delivery</a>
-                </Breadcrumb>
-            );
-        }
-        return null;
-    }
-
 	render() {
 		const { displayMessage, errorMessage, messageType } = this.state;
 		return (
             <div className='account-info-wrapper'>
-				{this.renderBreadCrumbs()}
-				<MessageDisplayer 
-				display={displayMessage}
-				errorMessage={errorMessage}
-				type={messageType}
-				/>
-                <div className='payment-section delivery-section'>
-					<div className='account-info-title'>
-						<h5>Choose delivery methods</h5>
-					</div>
-					{this.renderPlaceOrderButton()}
+				<div className="checkout-step-title">
+					<h5>3. Delivery</h5>
 				</div>
-				{this.renderItems()}
-				<div className='shipping-btn continue-check place-check'>
-					{this.renderPlaceOrderButton()}
+				<div className="checkout-phase-content-wrapper">
+					<MessageDisplayer 
+					display={displayMessage}
+					errorMessage={errorMessage}
+					type={messageType}
+					/>
+					<div className='payment-section delivery-section'>
+						<div className='account-info-title'>
+							<h5>Choose delivery methods</h5>
+						</div>
+						{this.renderPlaceOrderButton()}
+					</div>
+					{this.renderItems()}
+					<div className='shipping-btn continue-check place-check'>
+						{this.renderPlaceOrderButton()}
+					</div>
 				</div>
             </div>
 		);
