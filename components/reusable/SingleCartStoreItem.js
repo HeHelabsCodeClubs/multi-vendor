@@ -46,7 +46,7 @@ class SingleCartStoreItem extends Component {
             return (
                 <div className='store-logo'>
                     <img className='store-img' src={`${info.icon}`} />
-                    <span className='store-name'>{`${info.name} (${storeProductsCount} ${itemsText} from ${info.name} store)`}</span>
+                    <span className='store-name'>{`${info.name} (${storeProductsCount} ${itemsText})`}</span>
                 </div>
             );
         }

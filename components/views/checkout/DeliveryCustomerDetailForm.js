@@ -389,23 +389,25 @@ class DeliveryCustomerDetailForm extends Component {
 				<div className='col-lg-6 col-md-6 col-sm-6 col-12'>
 					<div className='input-checkbox billing-checkbox'>
 						<span className='remember'>Address type:</span>
-						<InputField 
-						typeOfInput='checkbox'
-						type='checkbox'
-						name='residentialAddressType'
-						fieldText='Residential'
-						updateInputFieldValue={this.getInputFieldValue}
-						defaultInputValue={residentialAddressType}
-						/>
-						
-						<InputField 
-						typeOfInput='checkbox'
-						type='checkbox'
-						name='commercialAddressType'
-						fieldText='Commercial'
-						updateInputFieldValue={this.getInputFieldValue}
-						defaultInputValue={commercialAddressType}
-						/>
+						<span>
+							<InputField 
+							typeOfInput='checkbox'
+							type='checkbox'
+							name='residentialAddressType'
+							fieldText='Residential'
+							updateInputFieldValue={this.getInputFieldValue}
+							defaultInputValue={residentialAddressType}
+							/>
+							
+							<InputField 
+							typeOfInput='checkbox'
+							type='checkbox'
+							name='commercialAddressType'
+							fieldText='Commercial'
+							updateInputFieldValue={this.getInputFieldValue}
+							defaultInputValue={commercialAddressType}
+							/>
+						</span>
 
 						{/* <span className='remember'><input type='checkbox' />Residential</span>
 						<span className='remember'><input type='checkbox' />Commercial</span> */}

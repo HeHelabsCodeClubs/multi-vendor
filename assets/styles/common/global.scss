@@ -53,16 +53,12 @@ a {
         } 
         .shipping-title {
             color: $black-color-5;
-            @media screen and (max-width: $mobile-lg) {
-                width: 22%;
-            }
+            width: 22%;
         }
         .shipping {
             color: $black-color-5;
-            @media screen and (max-width: $mobile-lg) {
-                width: 35%;
-                text-align: right;
-            }
+            width: 35%;
+            text-align: right;
         }
         .shipping-dropdown {
             text-align: center;
@@ -99,10 +95,7 @@ a {
     @include flexalignitems(center);
     background-color: $gray-color-2;
     border-radius: 5px 5px 0 0;
-
-    @media screen and (max-width: $mobile-lg) {
-        height: auto !important;
-    }
+    height: auto !important;
 
     img {
         max-width: 100%;
@@ -399,30 +392,24 @@ select {
 .back-to-top {
     @extend .default-button-styles;
     position: fixed;
-    bottom: 20vh;
+    bottom: 6rem;
     right: 0rem;
     margin: 0 !important;
     box-shadow: 0 -3px 6px 0 rgba(0, 0, 0, 0.2);
     background-color: #f6921e;
     border: 0.5px solid #f6921e !important;
     border-radius: .4rem 0 0 .4rem !important;
-    min-width: 3rem  !important;
+    min-width: 1rem !important;
     width: 3rem !important;
     height: 3rem !important;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0 !important;
-
-    @media screen and (max-width: $mobile-lg) {
-        bottom: 6rem;
-        min-width: 1rem !important;
-        padding-bottom: 0.5rem !important;
-    }
+    padding-bottom: 0.5rem !important;
     
     [class^="icon-"] {
         display: block;
-
         &.icon-Arrow_solid {
             transform: rotate(-90deg);
         }

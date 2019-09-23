@@ -6,64 +6,65 @@
     .not-sticky__container {
         max-width: 65rem;
         margin: auto;
+        padding-bottom: 2rem;
     }
     .checkouot__left-block {
         position: initial;
-        .auth-button {
-            @media screen and (max-width: $mobile-lg) {
-                &.continue-check {
-                    &:before {
-                        content: "continue";
-                        position: absolute;
-                        bottom: 1rem;
-                        left: 3rem;
-                        margin: 0 1rem 0 0;
-                        background: #f6921e;
-                        color: #ffffff;
-                        -webkit-transition: 0.5s;
-                        -moz-transition: 0.5s;
-                        -ms-transition: 0.5s;
-                        transition: 0.5s;
-                        border: 0.5px solid #f6921e;
-                        border-radius: 0.35rem;
-                        outline: none !important;
-                        padding: 0.7rem 0;
-                        min-width: 11rem;
-                        z-index: 1000;
-                    }
-                }
-                &.submit-order {
-                    &:before {
-                        content: "Submit My Order" !important;
-                    }
-                }
-            }
-        } 
-        .place-check {
-            .shipping-btn {
-                .auth-button {
-                    &:before {
-                        content: "Place Order" !important;
-                        position: absolute;
-                        bottom: 1rem;
-                        left: 3rem;
-                        margin: 0 1rem 0 0;
-                        background: #f6921e;
-                        color: #ffffff;
-                        -webkit-transition: 0.5s;
-                        -moz-transition: 0.5s;
-                        -ms-transition: 0.5s;
-                        transition: 0.5s;
-                        border: 0.5px solid #f6921e;
-                        border-radius: 0.35rem;
-                        outline: none !important;
-                        padding: 0.7rem 0;
-                        min-width: 11rem;
-                        z-index: 1000;
-                    }
-                }
-            }
-        }   
+        // .auth-button {
+        //     @media screen and (max-width: $mobile-lg) {
+        //         &.continue-check {
+        //             &:before {
+        //                 content: "continue";
+        //                 position: absolute;
+        //                 bottom: 1rem;
+        //                 left: 3rem;
+        //                 margin: 0 1rem 0 0;
+        //                 background: #f6921e;
+        //                 color: #ffffff;
+        //                 -webkit-transition: 0.5s;
+        //                 -moz-transition: 0.5s;
+        //                 -ms-transition: 0.5s;
+        //                 transition: 0.5s;
+        //                 border: 0.5px solid #f6921e;
+        //                 border-radius: 0.35rem;
+        //                 outline: none !important;
+        //                 padding: 0.7rem 0;
+        //                 min-width: 11rem;
+        //                 z-index: 1000;
+        //             }
+        //         }
+        //         &.submit-order {
+        //             &:before {
+        //                 content: "Submit My Order" !important;
+        //             }
+        //         }
+        //     }
+        // } 
+        // .place-check {
+        //     .shipping-btn {
+        //         .auth-button {
+        //             &:before {
+        //                 content: "Place Order" !important;
+        //                 position: absolute;
+        //                 bottom: 1rem;
+        //                 left: 3rem;
+        //                 margin: 0 1rem 0 0;
+        //                 background: #f6921e;
+        //                 color: #ffffff;
+        //                 -webkit-transition: 0.5s;
+        //                 -moz-transition: 0.5s;
+        //                 -ms-transition: 0.5s;
+        //                 transition: 0.5s;
+        //                 border: 0.5px solid #f6921e;
+        //                 border-radius: 0.35rem;
+        //                 outline: none !important;
+        //                 padding: 0.7rem 0;
+        //                 min-width: 11rem;
+        //                 z-index: 1000;
+        //             }
+        //         }
+        //     }
+        // }   
     }    
 }
 
@@ -193,7 +194,7 @@
         }
         .input-checkbox {
             @include flexbox;
-            @include flexalignitems(center);
+            // @include flexalignitems(center);
             @include flexjustifycontent(space-between);
             
             .remember {
@@ -244,7 +245,7 @@
     }
     .payment-section {
         padding: 1rem 0;
-        border-bottom: .5px solid $gray-color-2;
+        // border-bottom: .5px solid $gray-color-2;
         &.delivery-section {
             @include flexbox();
             @include flexjustifycontent(space-between);
@@ -425,10 +426,13 @@
                 border-bottom: .5px solid $gray-color-6 !important;
                 margin: 1rem;
                 .react-tabs__tab {
-                    border-bottom: none;
+                    border: .5px solid $orange-color-2;
+                    h5 {
+                        padding-bottom: 0 !important;
+                    }
                 }
                 .react-tabs__tab--selected {
-                    border-bottom: .5px solid $orange-color-2;
+                    border: .5px solid $orange-color-2;
                     outline: none;
                 }
             }
@@ -452,8 +456,7 @@
             margin: 0;
         }
         .subtotal {
-            @include flexbox;
-            @include flexjustifycontent(space-between);
+            text-align: center;
         }
     }
 }
@@ -461,18 +464,17 @@
     border-bottom: none !important;
     .react-tabs__tab {
         padding: 0 0.5rem;
-        border-bottom: .5px solid $gray-color-2;
-        margin: 0 1rem 0 0;
+        border: .5px solid $gray-color-2;
+        width: 48%;
+        margin: 1%;
         color: $gray-color-6;
-
-        @media screen and (max-width: $mobile-lg) {
-            width: 50%;
-            margin: 0;
-        }
+        padding: 1rem 0;
+        border-radius: 4px;
+        text-align: center;
     }
     .react-tabs__tab--selected {
         border-color: transparent;
-        border-bottom: .5px solid $orange-color-2;
+        border: .5px solid $orange-color-2;
         color: $black-color-2;
     }
 }

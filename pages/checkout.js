@@ -3,7 +3,7 @@ import Global from '../components/reusable/Global';
 import '../assets/styles/layouts/checkout.scss';
 import '../assets/styles/layouts/auth.scss';
 import AccountInfo from '../components/views/checkout/AccountInfo';
-import OrderSummary from '../components/views/checkout/OrderSummary';
+// import OrderSummary from '../components/views/checkout/OrderSummary';
 import Billing from '../components/views/checkout/Billing';
 import Delivery from '../components/views/checkout/Delivery';
 import Payment from '../components/views/checkout/Payment';
@@ -365,11 +365,11 @@ class Checkout extends React.Component {
 
                             {this.renderContent()}
                         </div> 
-                        <div className='col-12 order-summary-grid not-sticky__container'>
+                        {/* <div className='col-12 order-summary-grid not-sticky__container'>
                             <OrderSummary 
                             triggerShipmentMethodUpdate={triggerShipmentMethodUpdate}
                             />
-                        </div> 
+                        </div>  */}
                     </div>
                 </div>
 			</Global>
