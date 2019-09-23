@@ -19,7 +19,8 @@ class Delivery extends Component {
 			shipmentValid: true,
 			validateShipment: false,
 			displayToTopButton: false,
-            scrollPosition: 0,
+			scrollPosition: 0,
+			shippingMethodClass: 'input-field'
 		};
 		this.updateCartItems = this.updateCartItems.bind(this);
 		this.renderItems = this.renderItems.bind(this);
@@ -65,7 +66,7 @@ class Delivery extends Component {
 	}
 
 	renderItems() {
-		const { cartItems, validateShipment } = this.state;
+		const { cartItems, validateShipment, shippingMethodClass } = this.state;
 		const { updateShipmentInfo } = this.props;
 		if (!isObjectEmpty(cartItems)) {
 			const itemsLayout = [];
@@ -81,6 +82,7 @@ class Delivery extends Component {
 					updateShipmentInfo={updateShipmentInfo}
 					isShipmentValid={this.updateShipmentValid}
 					triggerValidation={validateShipment}
+					inputClass={shippingMethodClass}
 					/>
 				);
 			});
@@ -100,7 +102,8 @@ class Delivery extends Component {
 			// display message
 			this.setState({
 				errorMessage: 'Please choose a delivery method for all the stores. Thanks!',
-				displayMessage: true
+				displayMessage: true,
+				shippingMethodClass: 'input-field is-invalid'
 			});
 
 			setTimeout(() => {

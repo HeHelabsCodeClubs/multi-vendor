@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Select2 from 'react-select2-wrapper';
 import Switch from 'react-switch';
 
 // testing deployment

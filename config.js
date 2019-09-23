@@ -29,6 +29,6 @@ export const USER_FORBIDDEN = 'We do not have an account with the email and pass
 export const USER_AUTHENTICATED = 'You have successfully logged in. You will be redirected to the homepage in a few. Enjoy shopping with us!';
 
 export const ALERT_TIMEOUT= 10000;
-export const NOT_ALLOWED_TO_GO_IN_CART = "has been bought by someone else few seconds ago!!!"
+export const NOT_ALLOWED_TO_GO_IN_CART = "is out of stock, someone else bought the last one few seconds ago"
 
 export const SUBSCRIBE_INPUT_VALUE_EMPTY = "Please enter the email"

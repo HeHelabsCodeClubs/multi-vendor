@@ -164,12 +164,11 @@ export default class SingleStoreDeliveryItem extends Component {
         return <span/>;
     }
     renderShipmentMethodSelector() {
-        const { store, shipmentMethod, inputWithError } = this.state;
+        const { store, shipmentMethod } = this.state;
         const { shipment_methods } = store.info;
         if (shipment_methods.length == 0) {
             return null;
         }
-
         const selectorData = shipment_methods.map((shipment_method, index) => {
             const { title, description, cart_shipping_id, rate, code } = shipment_method;
             return {
@@ -187,7 +186,6 @@ export default class SingleStoreDeliveryItem extends Component {
             placeholder='Choose shipment'
             updateInputFieldValue={this.getInputFieldValue}
             defaultInputValue={shipmentMethod}
-            inputWithError= {inputWithError}
             />
         );
     }
