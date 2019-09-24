@@ -40,41 +40,17 @@
         position: relative;
         box-shadow: 0 -6px 12px 0 rgba(0, 0, 0, 0.05);
         border-radius: 0 0 5px 5px;
-
-        &:before {
-            content: "\e920";
-            color: $white-color;
-            top: -6.6rem;
-            left: -2rem;
-            position: absolute;
-        }
+        text-align: center;
         .store-logo {
-            height: 3rem;
-            .store-img {
-                position: absolute;
-                top: -1.3rem;
-                left: 2.24rem;
-                object-fit: contain;
-                height: 3rem;
-                width: 3rem;
-                padding: 4px;
-                background: $green-color-3;
-                border-radius: 50%;
-            }
             .store-name {
                 color: $gray-color-6;
-                left: 5.6rem;
-                top: 0.3rem;
-                position: absolute;
-                line-height: 1.35;
             }
         }
         .product-name {
             line-height: 1.33;
             letter-spacing: 0.06rem;
-            text-align: left;
             color: $black-color-2;
-            margin: 0.5rem 1rem;
+            padding: 0.5rem 1rem;
             min-height: 1.8rem;
             text-overflow: ellipsis;
             overflow: hidden;
@@ -83,13 +59,11 @@
         .price-cart {
             border-top: 1px solid $gray-color-2;
             padding: 0.5rem 1rem;
-            @include flexbox;
-            @include flexalignitems(center);
-            @include flexjustifycontent(space-between);
+            display: block;
 
             &.single-price-cart {
                 padding: 1rem;
-                min-height: 5.2rem;
+                min-height: 3rem;
                 .price-cart {
                     border-top: none !important;
                     padding: 0 !important;

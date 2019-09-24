@@ -21,9 +21,9 @@ class Product extends React.Component {
             openCart: false
         };
         this.renderProduct = this.renderProduct.bind(this);
-        this.renderProductClickAction = this.renderProductClickAction.bind(this);
+        // this.renderProductClickAction = this.renderProductClickAction.bind(this);
         this.renderQuantityIncrementor = this.renderQuantityIncrementor.bind(this);
-        this.renderProductToCartButton = this.renderProductToCartButton.bind(this);
+        // this.renderProductToCartButton = this.renderProductToCartButton.bind(this);
         this.updateSelectedQuantity = this.updateSelectedQuantity.bind(this);
         this.incrementCartItemProduct = this.incrementCartItemProduct.bind(this);
         this.productIsAllowedToGoInCart = this.productIsAllowedToGoInCart.bind(this);
@@ -102,48 +102,49 @@ class Product extends React.Component {
         });
     }
 
-    renderProductToCartButton(product) {
-        const { incrementInitial, displayQuantityIncrementor } = this.state;
-        if (!displayQuantityIncrementor) {
-            return (
-                <span className='add-to-cart'>
-                    <button 
-                    type='button'
-                    onClick={() => this.incrementCartItemProduct(product)}>
-                        <span className='icon-Path-63'></span>
-                    </button>
-                </span>
-            );
-        }
+    // renderProductToCartButton(product) {
+    //     const { incrementInitial, displayQuantityIncrementor } = this.state;
+    //     if (!displayQuantityIncrementor) {
+    //         return (
+    //             <span className='add-to-cart'>
+    //                 <button 
+    //                 type='button'
+    //                 onClick={() => this.incrementCartItemProduct(product)}>
+    //                     <span className='icon-Path-63'></span>
+    //                 </button>
+    //             </span>
+    //         );
+    //     }
 
-        return (
-            <StockIncrementor 
-            stock={product.stock}
-            layout='incrementor'
-            getSelectedQuantity={this.updateSelectedQuantity}
-            updateCartOnChange={true}
-            product={product}
-            incrementInitial={incrementInitial}
-            runOnCartChange={this.props.cartShouldUpdate}
-            />
-        );
-    }
+    //     return (
+    //         <StockIncrementor 
+    //         stock={product.stock}
+    //         layout='incrementor'
+    //         getSelectedQuantity={this.updateSelectedQuantity}
+    //         updateCartOnChange={true}
+    //         product={product}
+    //         incrementInitial={incrementInitial}
+    //         runOnCartChange={this.props.cartShouldUpdate}
+    //         />
+    //     );
+    // }
 
-    renderProductClickAction(product) {
-        if (product) {
-            const { has_attributes, store, slug } = product;
-            if (Number(has_attributes) == 0) {
-                return this.renderProductToCartButton(product);
-            }
-            return (
-                <span className='add-to-cart select-options'>
-                    <a href={`/sellers/${store.slug}/products/${slug}`}>
-                        <button><span className="select-btn__icon icon-Ellipsis_vertical"></span><span className="select-btn__txt">Select options</span></button>
-                    </a>
-                </span>
-            );
-        }
-    }
+    // renderProductClickAction(product) {
+    //     if (product) {
+    //         const { has_attributes, store, slug } = product;
+    //         if (Number(has_attributes) == 0) {
+    //             return this.renderProductToCartButton(product);
+    //         }
+    //         return (
+    //             <span className='add-to-cart select-options'>
+    //                 <a href={`/sellers/${store.slug}/products/${slug}`}>
+    //                     <button><span className="select-btn__icon icon-Ellipsis_vertical"></span><span className="select-btn__txt">Select options</span></button>
+    //                 </a>
+    //             </span>
+    //         );
+    //     }
+    // }
+
     renderProduct(product) {
         if (product) {
             const { description, name } = product;
@@ -161,14 +162,14 @@ class Product extends React.Component {
                     </a>
                     {renderProductIdentifier(product)}
                     <div className='product-description'>
+                        <div className='product-name'>{displayedProductTitle}</div>
                         <div className='store-logo'>
-                            <img className='store-img' src={product.store.icon} />
+                            {/* <img className='store-img' src={product.store.icon} /> */}
                             <span className='store-name'>{product.store.name}</span>
                         </div>
-                        <div className='product-name'>{displayedProductTitle}</div>
                         <div className='price-cart single-price-cart'>
                             {renderProductPrice(product)}
-                            {this.renderProductClickAction(product)}
+                            {/* {this.renderProductClickAction(product)} */}
                         </div>
                     </div>
                 </div>            

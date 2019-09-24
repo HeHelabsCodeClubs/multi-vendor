@@ -22,7 +22,10 @@
                     width: 100%;
                     .SidebarOverlay {
                         background: none;
-                    } 
+                    }
+                    .total-price .total-grid {
+                        display: none !important;
+                    }
                 }
                 .mobile-menu-link {
                     height: 6rem;
