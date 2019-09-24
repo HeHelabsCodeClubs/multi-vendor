@@ -11,6 +11,7 @@ import fetch from 'isomorphic-unfetch';
 import { API_URL } from '../config';
 import FeaturedSellers from "../components/views/homepage/FeaturedSellers";
 import MoreProduct from "../components/views/homepage/MoreProduct";
+import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
 
 class Index extends React.Component {
 	constructor(props) {
@@ -90,45 +91,47 @@ class Index extends React.Component {
 		} = this.state;
 
 		return (
-			<Global 
-			updateCart={this.state.updateCart}
-			openCart={openCartContent}
-			>
-				<div className='main-banners'>
-					<Ad type={type} data={promoAds}/>
-				</div>
-				<div className='categories-scroller'>
-					<div className='maximum-width'>
-						<HomepageCategory categories={categories} />
+			<GoogleAnalyticsLogger>
+				<Global 
+				updateCart={this.state.updateCart}
+				openCart={openCartContent}
+				>
+					<div className='main-banners'>
+						<Ad type={type} data={promoAds}/>
 					</div>
-				</div>
-				<div className='special-offers featured-sellers mobile-invisible'>
-					<FeaturedSellers sellers={sellers} />
-				</div>
-				<div className='top-stores'>
-					<TopStores topStores={topStores} />
-				</div>
-				<div className='made-in-rwanda special-offers'>
-					<SpecialOffers offers={specialOffers} />
-				</div>
-				<div className='made-in-rwanda special-offers'>
-					<MadeInRwanda 
-					stores={stores} products={products} 
-					cartShouldUpdate={this.cartShouldUpdate}
-					// openCart={this.cartShouldOpen}
-					openCart={this.HandleCartContentOpening}
-					/>
-				</div>
-				<div className='special-offers featured-sellers mobile-visible'>
-					<FeaturedSellers sellers={sellers} />
-				</div>
-				<div className='made-in-rwanda special-offers'>
-					<Ad type={eventAddType} data={eventsAds}/>
-				</div>
-				<div className='made-in-rwanda special-offers bottom-moreProducts'>
-					<MoreProduct categories={categories} />
-				</div>
-			</Global>
+					<div className='categories-scroller'>
+						<div className='maximum-width'>
+							<HomepageCategory categories={categories} />
+						</div>
+					</div>
+					<div className='special-offers featured-sellers mobile-invisible'>
+						<FeaturedSellers sellers={sellers} />
+					</div>
+					<div className='top-stores'>
+						<TopStores topStores={topStores} />
+					</div>
+					<div className='made-in-rwanda special-offers'>
+						<SpecialOffers offers={specialOffers} />
+					</div>
+					<div className='made-in-rwanda special-offers'>
+						<MadeInRwanda 
+						stores={stores} products={products} 
+						cartShouldUpdate={this.cartShouldUpdate}
+						// openCart={this.cartShouldOpen}
+						openCart={this.HandleCartContentOpening}
+						/>
+					</div>
+					<div className='special-offers featured-sellers mobile-visible'>
+						<FeaturedSellers sellers={sellers} />
+					</div>
+					<div className='made-in-rwanda special-offers'>
+						<Ad type={eventAddType} data={eventsAds}/>
+					</div>
+					<div className='made-in-rwanda special-offers bottom-moreProducts'>
+						<MoreProduct categories={categories} />
+					</div>
+				</Global>
+			</GoogleAnalyticsLogger>
 		);
 	}
 }

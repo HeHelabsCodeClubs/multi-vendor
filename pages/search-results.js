@@ -8,6 +8,7 @@ import Product from '../components/reusable/Product';
 import { API_URL } from '../config';
 import Breadcrumb from '../components/reusable/Breadcrumb';
 import Loader from '../components/reusable/Loader';
+import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
 
 class SearchResults extends React.Component {
     constructor(props) {
@@ -177,6 +178,7 @@ class SearchResults extends React.Component {
         const { products, currentPage, lastPage } = this.state;
         const hasMore = (currentPage < lastPage) ? true : false;
 		return (
+            <GoogleAnalyticsLogger>
 			<Global
             updateCart={this.state.updateCart}
             >
@@ -217,6 +219,7 @@ class SearchResults extends React.Component {
                     </div>
                 </div>
 			</Global>
+            </GoogleAnalyticsLogger>
 		);
 	}
 }
