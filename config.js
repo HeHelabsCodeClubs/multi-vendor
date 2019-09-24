@@ -8,7 +8,7 @@ export const COUNTRY_API_URL = 'http://battuta.medunes.net/api';
 export const COUNTRY_API_KEY = '46545b12aaa7048c8390dfe80c396937';
 export const ORDER_DATA_TOKEN = 'ORDER_DATA';
 export const APP_DOMAIN='https://hehe.rw';
-export const SITE_GOOGLE_ANALYTICS_ID = 'UA-148530757-1';
+export const SITE_GOOGLE_ANALYTICS_ID = 'UA-111662450-3';
 
 // local storage variables
 export const CART_ITEMS_KEY = 'CART_ITEMS';
