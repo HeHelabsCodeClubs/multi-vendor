@@ -9,6 +9,7 @@ import fetch from 'isomorphic-unfetch';
 import { API_URL } from '../config';
 import { getClientAuthToken, getUserAuthenticatedInfo, logoutUser } from '../helpers/auth';
 import isObjectEmpty from '../helpers/is_object_empty';
+import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
 
 
 class Profile extends Component {
@@ -152,16 +153,18 @@ class Profile extends Component {
 
     render () {
         return (
-            <Global>
-                <div className="row reset-row profile-page">
-                    <div className="col-12 sidemenu">
-                        {this.renderUserProfile()}                        
+            <GoogleAnalyticsLogger>
+                <Global>
+                    <div className="row reset-row profile-page">
+                        <div className="col-12 sidemenu">
+                            {this.renderUserProfile()}                        
+                        </div>
+                        <div className="col-12 main-content">
+                            {this.renderContentProfile()}
+                        </div>
                     </div>
-                    <div className="col-12 main-content">
-                        {this.renderContentProfile()}
-                    </div>
-                </div>
-            </Global>
+                </Global>
+            </GoogleAnalyticsLogger>
         );
     }
 }

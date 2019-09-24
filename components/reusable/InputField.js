@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Select2 from 'react-select2-wrapper';
 import Switch from 'react-switch';
 
 // testing deployment
@@ -153,23 +152,13 @@ export default class InputField extends Component {
             
             return (
                 <div className ={inputClassName}>
-                     {this.renderInputLabel()}
-                    {/* <Select2
-                    id={id}
-                    name={name}
-                    data={selectorData}
-                    options={{
-                        placeholder: placeholder
-                    }}
-                    value={inputValue}
-                    className='test-select'
-                    onChange={this.handleInputChange}
-                    /> */}
+                    {this.renderInputLabel()}
                     <select 
                     value={inputValue}
                     id={id}
                     name={name}
                     onChange={this.handleInputChange}
+                    className={inputClassName}
                     >
                         {this.renderSelect(selectorData, placeholder)}
                     </select>

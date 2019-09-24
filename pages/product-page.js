@@ -19,6 +19,7 @@ import { getCartItems } from '../helpers/cart_functionality_helpers';
 // import Breadcrumb from '../components/reusable/Breadcrumb';
 import {isProductOutOfStock } from '../helpers/cart_functionality_helpers';
 import Head from 'next/head';
+import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
  
 class ProductPage extends React.Component {
     constructor(props) {
@@ -570,6 +571,7 @@ class ProductPage extends React.Component {
         const { productData } = this.props;
         const { openCartContent} = this.state;
 		return (
+            <GoogleAnalyticsLogger>
             <div>
                 <Global 
                 updateCart={this.state.updateCart}
@@ -617,6 +619,7 @@ class ProductPage extends React.Component {
                     </div>
                 </Global>                
             </div>
+            </GoogleAnalyticsLogger>
 		);
 	}
 }

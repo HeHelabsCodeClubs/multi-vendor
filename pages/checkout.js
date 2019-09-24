@@ -14,6 +14,7 @@ import { getClientAuthToken, getTokenValue } from '../helpers/auth';
 import { API_URL, CART_ITEMS_KEY } from '../config';
 import { getCartItems } from '../helpers/cart_functionality_helpers';
 import IsObjectEmpty from '../helpers/is_object_empty';
+import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
 
 class Checkout extends React.Component {
     constructor(props) {
@@ -335,6 +336,7 @@ class Checkout extends React.Component {
 	render() {
         const { triggerShipmentMethodUpdate, showOverlay } = this.state;
 		return (
+            <GoogleAnalyticsLogger>
 			<Global>
                 <Overlay 
                 show={showOverlay}
@@ -373,6 +375,7 @@ class Checkout extends React.Component {
                     </div>
                 </div>
 			</Global>
+            </GoogleAnalyticsLogger>
 		);
 	}
 }
