@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import OrderFeedback from '../components/views/orderResponse/OrderFeeback';
 import PopUpWrapper from '../components/reusable/PopUpWrapper';
+import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
 import '../assets/styles/layouts/landing.scss';
 import '../assets/styles/layouts/auth.scss';
 import '../assets/styles/layouts/orderResponse.scss';
@@ -99,18 +100,20 @@ class OrderComplete extends Component {
     render() {
         const { message, displayedLayout } = this.props;
         return (
-            <div className='landing-main-wrapper'>
-                <PopUpWrapper/>
-                <div className='content-wrapper'>
-                    <div className='order-response__content col-lg-6 col-md-6 col-sm-8 col-xs-10 offset-lg-3 offset-md-3 offset-sm-2 offset-xs-1'>
-                        {/* <OrderSuccess/> */}
-                        <OrderFeedback
-                        message={message}
-                        displayedLayout={displayedLayout}
-                        />
+            <GoogleAnalyticsLogger>
+                 <div className='landing-main-wrapper'>
+                    <PopUpWrapper/>
+                    <div className='content-wrapper'>
+                        <div className='order-response__content col-lg-6 col-md-6 col-sm-8 col-xs-10 offset-lg-3 offset-md-3 offset-sm-2 offset-xs-1'>
+                            {/* <OrderSuccess/> */}
+                            <OrderFeedback
+                            message={message}
+                            displayedLayout={displayedLayout}
+                            />
+                        </div>
                     </div>
                 </div>
-            </div>
+            </GoogleAnalyticsLogger>
         );
     }
 }

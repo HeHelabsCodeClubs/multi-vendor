@@ -11,6 +11,7 @@ import fetch from 'isomorphic-unfetch';
 import { API_URL } from '../config';
 import FeaturedSellers from "../components/views/homepage/FeaturedSellers";
 import MoreProduct from "../components/views/homepage/MoreProduct";
+import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
 
 class Index extends React.Component {
 	constructor(props) {
@@ -90,6 +91,7 @@ class Index extends React.Component {
 		} = this.state;
 
 		return (
+			<GoogleAnalyticsLogger>
 			<Global 
 			updateCart={this.state.updateCart}
 			openCart={openCartContent}
@@ -121,6 +123,7 @@ class Index extends React.Component {
 					<MoreProduct categories={categories} />
 				</div>
 			</Global>
+			</GoogleAnalyticsLogger>
 		);
 	}
 }

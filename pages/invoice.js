@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Router from 'next/router';
 import fetch from 'isomorphic-unfetch';
 import Global from '../components/reusable/Global';
+import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
 import '../assets/styles/layouts/invoice.scss';
 import { getClientAuthToken } from '../helpers/auth';
 import { API_URL } from '../config';
@@ -199,9 +200,11 @@ class Invoice extends Component {
 
     render () {
         return (
-            <Global>
-                {this.invoiceContent()}
-            </Global>
+            <GoogleAnalyticsLogger>
+                 <Global>
+                    {this.invoiceContent()}
+                </Global>
+            </GoogleAnalyticsLogger>
         );
     }
 }

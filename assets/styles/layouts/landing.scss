@@ -9,7 +9,10 @@
 	height: calc(100vh - 12rem);
 	overflow: hidden;
 	background: #f4f6f6;
-	
+	&.register{
+		height: auto;
+		max-height: none;
+	}
 	.content-wrapper{
 		width: 100%;
 		height: 100%;
@@ -25,7 +28,7 @@
 	}
 	.landing-wrapper {
 		@include backdropfilter(blur(30px));
-		@include boxshadow(0 3px 36px 0 rgba(0, 0, 0, 0.1));
+		// @include boxshadow(0 3px 36px 0 rgba(0, 0, 0, 0.1));
 		background-color: $white-color;
 		border-radius: 0.5rem;
 		margin: auto;

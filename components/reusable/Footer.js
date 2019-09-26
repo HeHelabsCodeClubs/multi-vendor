@@ -3,6 +3,8 @@ import '../../assets/styles/layouts/footer.scss';
 import { API_URL } from '../../config';
 import CookiesPopup from './CookiesPopup';
 // import LiveChat from './LiveChat';
+import Notifications, {notify} from 'react-notify-toast';
+import { SUBSCRIBE_INPUT_VALUE_EMPTY, ALERT_TIMEOUT } from '../../config';
 
 class Footer extends Component {
     constructor(props) {
@@ -11,10 +13,16 @@ class Footer extends Component {
             categories: [],
             displayToTopButton: false,
             scrollPosition: 0,
+            subscribeInputValue: '',
+            buttonSubmitting: false,
+            subscribeResponse: {}
         }
         this.handleScroll = this.handleScroll.bind(this);
         this.checkScroll = this.checkScroll.bind(this);
         this.handleScrollToTop = this.handleScrollToTop.bind(this);
+        this.handleSubscribeInputValue = this.handleSubscribeInputValue.bind(this);
+        this.submitSubscriberInfo = this.submitSubscriberInfo.bind(this);
+        this.handleSubscribeApiResponse = this.handleSubscribeApiResponse.bind(this);
     };
 
 
@@ -72,8 +80,65 @@ class Footer extends Component {
         })
    }
 
+   handleSubscribeInputValue(e) {
+       this.setState({
+           subscribeInputValue: e.target.value
+       });
+   }
+
+   submitSubscriberInfo(e) {
+       e.preventDefault();
+       const { subscribeInputValue } = this.state;
+
+        //check if the input value is not empty
+        if (subscribeInputValue === '') {
+            notify.show(SUBSCRIBE_INPUT_VALUE_EMPTY, "error", ALERT_TIMEOUT);
+        } else {
+            // hange the button text
+            this.setState({
+                buttonSubmitting: true
+            });
+
+            // ready to send a request
+            fetch(`${API_URL}/customers/subscribe`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: subscribeInputValue
+                })           
+            }).then(async(res) => {
+                try {
+                    const response = await res.json();
+                    this.handleSubscribeApiResponse(response);
+                    this.setState({
+                        buttonSubmitting: false,
+                        subscribeInputValue: '',
+                        subscribeResponse: response.data
+                    });
+                    
+                } catch (err) {
+                    console.log("err");
+                    console.log(err);
+                }
+            });
+        }
+   }
+   handleSubscribeApiResponse(response) {
+       switch(response.status_code) {
+           case 200:
+                notify.show(`${response.data.message}`, "success", ALERT_TIMEOUT);
+               break;
+            case 401:
+                notify.show(`${response.data.message}`, "error", ALERT_TIMEOUT);
+       }
+   }
+
     render() {
-        const { categories} = this.state;
+        const { categories, subscribeInputValue, buttonSubmitting} = this.state;
+        const subscribeButtonText = buttonSubmitting ? 'Submitting' : 'Submit'
+
         return (
             <div className='footer-wrapper'>
                 <div className='maximum-width footer-wrapper-box'>
@@ -82,8 +147,15 @@ class Footer extends Component {
                             <div className='col-12 subscribe-grid'>
                                 <div className='footer-title'>Get more from Hehe</div>
                                 <div className='subscribe'>
-                                    <input type='text' name='email' placeholder='Email' />
-                                    <button>Subscribe</button>
+                                    <form onSubmit={this.submitSubscriberInfo}>
+                                        <input 
+                                        type='email'
+                                        placeholder='Email'
+                                        value={subscribeInputValue}
+                                        onChange={this.handleSubscribeInputValue} 
+                                        />
+                                        <button type="submit">{subscribeButtonText}</button>
+                                    </form>
                                 </div>
                             </div>
                             <div className="col-6">

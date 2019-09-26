@@ -19,7 +19,8 @@ export default class SingleStoreDeliveryItem extends Component {
             shipmentMethod: '',
             shipmentTotalPrice: 0,
             shipmentDescription: '',
-            shipmentHasBeenSelected: false
+            shipmentHasBeenSelected: false,
+            inputWithError: ''
         };
         this.renderContent = this.renderContent.bind(this);
         this.showAllProducts = this.showAllProducts.bind(this);
@@ -167,7 +168,6 @@ export default class SingleStoreDeliveryItem extends Component {
         if (shipment_methods.length == 0) {
             return null;
         }
-
         const selectorData = shipment_methods.map((shipment_method, index) => {
             const { title, description, cart_shipping_id, rate, code } = shipment_method;
             return {

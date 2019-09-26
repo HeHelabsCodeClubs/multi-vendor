@@ -1,5 +1,5 @@
-export const API_URL = 'https://staging.vendor.hehe.rw/api';
-export const API_ROOT_URL = 'https://staging.vendor.hehe.rw';
+export const API_URL = 'https://vendor-dashboard.hehe.rw/api';
+export const API_ROOT_URL = 'https://vendor-dashboard.hehe.rw';
 export const TOKEN_KEY = 'VENDOR_TOKEN';
 export const AUTH_USER_LOCAL_STORAGE_INFO = 'AUTH_USER_LOCAL_INFO';
 export const PLATFORM_CLIENT_ID = 2;
@@ -7,7 +7,8 @@ export const PLATFORM_CLIENT_SECRET = 'sy71st8Eg4PjgCpHGq25kmC5EbrRvdrF30DSemgL'
 export const COUNTRY_API_URL = 'http://battuta.medunes.net/api';
 export const COUNTRY_API_KEY = '46545b12aaa7048c8390dfe80c396937';
 export const ORDER_DATA_TOKEN = 'ORDER_DATA';
-export const APP_DOMAIN='https://release.vendor.hehe.rw';
+export const APP_DOMAIN='https://m.hehe.rw';
+export const SITE_GOOGLE_ANALYTICS_ID = 'UA-111662450-4';
 
 // local storage variables
 export const CART_ITEMS_KEY = 'CART_ITEMS';
@@ -29,4 +30,6 @@ export const USER_FORBIDDEN = 'We do not have an account with the email and pass
 export const USER_AUTHENTICATED = 'You have successfully logged in. You will be redirected to the homepage in a few. Enjoy shopping with us!';
 
 export const ALERT_TIMEOUT= 10000;
-export const NOT_ALLOWED_TO_GO_IN_CART = "has been bought by someone else few seconds ago!!!"
+export const NOT_ALLOWED_TO_GO_IN_CART = "is out of stock, someone else bought the last one few seconds ago"
+
+export const SUBSCRIBE_INPUT_VALUE_EMPTY = "Please enter the email"
