@@ -180,19 +180,19 @@ export default class InputField extends Component {
         if (typeOfInput === 'checkbox') {
             return (
                 <div className='checkbox-field'>
-                    {/* <input 
+                    <input 
                         type={type} 
                         id={id}
                         name={name}
                         checked={inputValue}
                         onChange={this.handleInputChange} 
-                    /> */}
-                    <Switch 
+                    />
+                    {/* <Switch 
                     id={id}
                     name={name}
                     checked={inputValue}
                     onChange={this.handleInputChange}
-                    />
+                    /> */}
                     <a
                     className={inputClassName}
                     // onClick={(e) => {

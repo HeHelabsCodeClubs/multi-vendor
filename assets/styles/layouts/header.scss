@@ -74,7 +74,7 @@
     }
 
     .search-container {
-        top: 1.7rem;
+        top: 1.2rem;
         right: 0;
         .main-search {
             width: 100%;
@@ -104,7 +104,7 @@
 
                 input {
                     width: 100%;
-                    height: 3rem;
+                    height: 4rem;
                     background: $gray-color-2;
                     border-right: .1rem solid $white-color !important;
                     border: none;
@@ -154,8 +154,8 @@
                 position: absolute;
                 right: 0;
                 top: 0;
-                width: auto;
-                height: 3rem;
+                width: 4rem;
+                height: 4rem;
                 float: right;
                 background: $gray-color-2;
                 border: none;
@@ -327,9 +327,8 @@
     .nav__submenu {
         position: absolute;
         right: 0;
-        background-color: $white-color;
         width: 100%;
-        height: 1rem;
+        min-height: calc(100vh - 3.3rem);
         z-index: 100000 !important;
         translate: 0.3s;
         width: 22rem;
@@ -339,7 +338,7 @@
         li {
             background-color: $white-color;
             border-radius: 0 0 0 0.3rem !important;
-            min-height: calc(100vh - 3.3rem);
+            padding-bottom: 3rem;
         }
         .nav__submenu-item {
             cursor: pointer;
@@ -447,6 +446,7 @@
         top: 0;
         width: 100%;
         max-width: 40rem;
+        min-height: 5rem;
         z-index: 1;
         @include flexbox;
         @include flexalignitems(center);
@@ -476,6 +476,7 @@
             background: none;
             border: 0;
             outline: none !important;
+            min-height: 4rem;
             .close-cart {
                 color: $white-color;
                 padding: 0 0.5rem;
@@ -648,6 +649,7 @@
             bottom: 6rem;
             width: 100%;
             max-width: 40rem;
+            min-height: 5rem;
             @include flexbox;
             @include flexalignitems(center);
             @include flexjustifycontent(space-between);
@@ -662,6 +664,7 @@
                     border: none;
                     padding: 0.7rem 1.5rem;
                     outline: none !important;
+                    min-height: 5rem;
                 }
                 a {
                     color: $white-color !important;

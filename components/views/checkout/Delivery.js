@@ -160,7 +160,7 @@ class Delivery extends Component {
 				className='auth-button'
 				onClick={this.validateShipment}
 				>
-				Place Order
+				Next
 				</button>
 			</div>
 		);
@@ -183,7 +183,7 @@ class Delivery extends Component {
 						<div className='account-info-title'>
 							<h5>Choose delivery methods</h5>
 						</div>
-						{this.renderPlaceOrderButton()}
+						{/* {this.renderPlaceOrderButton()} */}
 					</div>
 					{this.renderItems()}
 					<div className='shipping-btn continue-check place-check'>

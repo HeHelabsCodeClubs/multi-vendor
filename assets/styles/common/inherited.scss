@@ -13,8 +13,9 @@
     border: .5px solid $orange-color-1;
     border-radius: 0.35rem;
     outline: none !important;
-    padding: 0.7rem 0;
-    min-width: 11rem;
+    padding: 0.7rem 3rem;
+    min-width: 15rem;
+    min-height: 4rem;
 
     &:hover {
         background: $orange-color-6;

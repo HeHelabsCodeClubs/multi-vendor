@@ -5,26 +5,28 @@ import Header from '../components/reusable/header/Header';
 import '../assets/styles/layouts/landing.scss';
 import '../assets/styles/layouts/auth.scss';
 import '../assets/styles/layouts/header.scss';
+import Global from '../components/reusable/Global';
 
 class Register extends Component {
     render () {
         return (
-            <div className='landing-main-wrapper'>
-                <Header />
-                <Notifications />
-                <div className='content-wrapper dont-center'>
-                    <div className='col-12'>
-                        <div className='landing-wrapper'>
-                            <div className='auth-content'>
-                                <SignupForm 
-                                showBreadCrumbs={true}
-                                displayLoginLayout={true}
-                                />
+            <Global>
+                <div className='landing-main-wrapper'>
+                    <Notifications />
+                    <div className='content-wrapper dont-center'>
+                        <div className='col-12'>
+                            <div className='landing-wrapper'>
+                                <div className='auth-content'>
+                                    <SignupForm 
+                                    showBreadCrumbs={true}
+                                    displayLoginLayout={true}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </Global>
         )
     }
 }

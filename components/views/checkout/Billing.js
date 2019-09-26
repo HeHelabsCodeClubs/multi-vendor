@@ -166,7 +166,7 @@ class Billing extends Component {
 
 	renderSubmitButton() {
 		const { buttonStatus } = this.state;
-		const buttonText  = buttonStatus === 'initial' ? 'Continue' : 'Saving';
+		const buttonText  = buttonStatus === 'initial' ? 'Next' : 'Saving';
 		const buttonClass = buttonStatus === 'initial' ? 'auth-button continue-check' : 'auth-button is-submitting';
 
 		return (

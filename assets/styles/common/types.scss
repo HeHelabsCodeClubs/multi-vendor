@@ -494,7 +494,7 @@ html {
                 }
                 .proceed-button {
                     button {
-                        font-size: 1.28rem;
+                        font-size: 1.6rem;
                         font-family: $font-bold;
                     }
                 }
@@ -683,7 +683,7 @@ html {
             font-family: $font-regular;
         }
         button.auth-button {
-            font-size: 1rem;
+            font-size: 1.3rem;
             font-family: $font-regular;
         }
         .payment-section {
@@ -705,6 +705,9 @@ html {
                     font-size: 1.28rem;
                     font-family: $font-semi-bold;
                 }
+            }
+            .input-field {
+                font-family: $font-regular;
             }
             .single-payment {
                 .single-payment-title {
@@ -746,6 +749,13 @@ html {
                         font-family: $font-regular;
                     }
                 }
+            }
+        }
+    }
+    .delivery-section {
+        .account-info-title {
+            h5 {
+                font-size: 1.5rem;
             }
         }
     }
@@ -974,6 +984,7 @@ html {
         }
         .auth-form {
             .input-field {
+                font-family: $font-regular;
                 input {
                     font-size: 1.3rem;
                     font-family: $font-regular;
@@ -985,14 +996,14 @@ html {
             }
             .checkbox-field {
                 span {
-                    font-size: 1.1rem;
+                    font-size: 1.2rem;
                     font-family: $font-regular;
                 }
                 .input-field {
                     font-family: $font-regular;
-                    font-size: .9rem;
+                    font-size: 1.2rem;
                     a {
-                        font-size: .9rem;
+                        font-size: 1.2rem;
                     }
                 }
                 .react-switch-bg svg {
@@ -1011,7 +1022,7 @@ html {
             }
         }
         .auth-text {
-            font-size: 1rem;
+            font-size: 1.3rem;
             font-family: $font-regular;
         }
     }
@@ -1053,7 +1064,7 @@ html {
             }
             button {
                 font-family: $font-semi-bold;
-                font-size: 1.1rem;
+                font-size: 1.3rem;
             }
             .subscribe {
                 background: $white-color;

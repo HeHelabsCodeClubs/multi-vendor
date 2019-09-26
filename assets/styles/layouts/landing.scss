@@ -1,36 +1,12 @@
 @import "../main";
 
-.background-images {
-	position: absolute;
-	animation: moveSlideshow 60s linear;
-	height: 100vh;
-	transform: translate3d(0, 0, 0);
-	z-index: -1;
-
-	div {
-		img {
-			width: 80%;
-			margin: 3rem auto !important;
-			display: block;
-		}
-	}
-}
-@keyframes moveSlideshow {
-	100% { 
-	  transform: translateY(-66%);  
-	}
-}
-
-
 .landing-main-wrapper {
 	// position: fixed;
 	@include flexbox;
 	@include flexalignitems(center);
 	transform: translate3d(0, 0, 0);
 	max-height: 100vh;
-	height: 100vh;
-	padding-top: 6rem;
-	padding-bottom: 6rem;
+	height: calc(100vh - 12rem);
 	overflow: hidden;
 	background: #f4f6f6;
 	

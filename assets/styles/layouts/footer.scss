@@ -60,7 +60,7 @@
                 border-radius: .3rem 0 0 .3rem;
                 border: none;
                 width: 66%;
-                height: 2.5rem;
+                height: 4rem;
 
                 &::placeholder {
                     color: $gray-color-6;
@@ -69,7 +69,7 @@
             button {
                 width: 34%;
                 border-radius: 0 .3rem .3rem 0;
-                height: 2.5rem;
+                height: 4rem;
                 vertical-align: top;
             }
         }

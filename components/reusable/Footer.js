@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../../assets/styles/layouts/footer.scss';
 import { API_URL } from '../../config';
 import CookiesPopup from './CookiesPopup';
-import LiveChat from './LiveChat';
+// import LiveChat from './LiveChat';
 
 class Footer extends Component {
     constructor(props) {
@@ -117,7 +117,7 @@ class Footer extends Component {
                 
                 <div>
 					<CookiesPopup />
-                    <LiveChat />
+                    {/* <LiveChat /> */}
 				</div>
             </div>
         )

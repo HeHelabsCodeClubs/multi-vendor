@@ -188,7 +188,7 @@ export default class Payment extends Component {
 				</div>
 				<div className="checkout-phase-content-wrapper">
 					<div className='payment-section'>
-						<div className='account-info-title'>Payment</div>
+						<div className='account-info-title'>Choose payment method</div>
 					</div>
 					{/* <div className='payment-section'>
 						<div className='wallet-title'>User wallet</div>
