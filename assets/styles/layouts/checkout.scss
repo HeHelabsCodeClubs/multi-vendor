@@ -557,6 +557,10 @@
     .t-price {
         color: $black-color-2;
     }
+
+    &.top-margin {
+        margin-top: 1rem;
+    }
 }
 .product-att {
     color: $gray-color-6;
