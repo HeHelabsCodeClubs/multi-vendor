@@ -13,7 +13,10 @@ import {
 } from '../../../helpers/shipment_method_functionality_helpers';
 import { 
     storeCouponCodeInLocalStorage,
-    getCouponCodeInLocalStorage
+    getCouponCodeInLocalStorage,
+    calculateDiscount,
+    getDiscountAmount,
+    getCouponDataFromApi
 } from '../../../helpers/coupon_code_functionality';
 import { 
     API_URL,
@@ -37,7 +40,7 @@ class OrderSummary extends Component {
             boxMessageType: 'success',
             boxMessage: '',
             submittingCouponCode: false,
-            orderDiscount: 0
+            orderDiscount: {}
         };
         this.updateCartItems = this.updateCartItems.bind(this);
         this.renderCartItemsTotal = this.renderCartItemsTotal.bind(this);
@@ -78,11 +81,10 @@ class OrderSummary extends Component {
         /**
          * Check if there's no discount
          */
-        getCouponCodeInLocalStorage((discount) => {
-            console.log('discount amount is ', discount);
-            if (discount !== 0) {
+        getCouponCodeInLocalStorage((discountData) => {
+            if (Object.keys(discountData).length !== 0) {
                 this.setState({
-                    orderDiscount: discount
+                    orderDiscount: discountData
                 });
             }
         });
@@ -136,31 +138,34 @@ class OrderSummary extends Component {
             submittingCouponCode: true
         });
 
-        const data = {
-            coupon_code: couponCode
-        };
+        // const data = {
+        //     coupon_code: couponCode
+        // };
 
-        fetch(`${API_URL}/coupons/discount`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(data)
-        }).then(async (res) => {
-            try {
-                const response = await res.json();
-                this.handleCouponDisountResponse(response)
-                // console.log('response', response.status_code);
-            } catch (err) {
-                if (err) {
-                    console.log(err);
-                } 
-            }
-        }).catch((err) => {
-            if (err) {
-                console.log('err', err);
-            }
+        // fetch(`${API_URL}/coupons/discount`, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Accept': 'application/json'
+        //     },
+        //     body: JSON.stringify(data)
+        // }).then(async (res) => {
+        //     try {
+        //         const response = await res.json();
+        //         this.handleCouponDisountResponse(response);
+        //         // console.log('response', response.status_code);
+        //     } catch (err) {
+        //         if (err) {
+        //             console.log(err);
+        //         } 
+        //     }
+        // }).catch((err) => {
+        //     if (err) {
+        //         console.log('err', err);
+        //     }
+        // });
+        getCouponDataFromApi(couponCode, (response) => {
+            this.handleCouponDisountResponse(response);
         });
     }
 
@@ -175,10 +180,10 @@ class OrderSummary extends Component {
                 this.setState({
                     submittingCouponCode: false
                 });
-                const { data: { coupon_code, discount } } = response;
-                storeCouponCodeInLocalStorage(coupon_code, discount, () => {
+                const { data } = response;
+                storeCouponCodeInLocalStorage(data, () => {
                     this.setState({
-                        orderDiscount: discount
+                        orderDiscount: data
                     }, () => {
                         this.displayMessageBox("success", PROMO_CODE_SUCCESSFULLY_APPLIED);
                     });
@@ -205,14 +210,14 @@ class OrderSummary extends Component {
         }
     }
 
-    displayDiscountAmount() {
+    displayDiscountAmount(totalItemsPrice, totalShippingPrice) {
         const { orderDiscount } = this.state;
-        if (orderDiscount !== 0) {
+        if (Object.keys(orderDiscount).length !== 0) {
             return (
                 <div className='line total'>
                     <span className="row total-t discount-container">
                         <span className='title'>Discount:</span>
-                        <span className='t-price'>{`Rwf ${orderDiscount}`}</span>
+                        <span className='t-price'>{`Rwf ${getDiscountAmount(totalItemsPrice, totalShippingPrice, orderDiscount)}`}</span>
                     </span>
                 </div>
             );
@@ -236,7 +241,7 @@ class OrderSummary extends Component {
 
     renderPromoCodeInputField() {
         const { submittingCouponCode, orderDiscount } = this.state;
-        if (orderDiscount === 0) {
+        if (Object.keys(orderDiscount).length === 0) {
             const couponCodeSubmitButton = submittingCouponCode ? (
                 <img 
                 src='https://res.cloudinary.com/hehe/image/upload/v1560444707/multi-vendor/Shop_loader.gif' 
@@ -283,7 +288,7 @@ class OrderSummary extends Component {
             const totalItems = countCartItems(cartItems);
             const totalItemsText = totalItems === 1 ? `${totalItems} item` : `${totalItems} item(s)`;
             const totalItemsPrice = storeProductsTotalPrice(cartItems);
-            const overallTotal = (totalItemsPrice + totalShippingPrice) - orderDiscount;
+            const overallTotal = calculateDiscount(totalItemsPrice, totalShippingPrice, orderDiscount);
             return (
                 <div className='white-background'>
                     <div className='line'>
@@ -294,7 +299,7 @@ class OrderSummary extends Component {
                         <span className='title'>Total shipping:</span>
                         <span className='s-price'>{`Rwf ${totalShippingPrice}`}</span>
                     </div>
-                    {this.displayDiscountAmount()}
+                    {this.displayDiscountAmount(totalItemsPrice, totalShippingPrice)}
                     <div className='line'>
                         <span className='title'>Total:</span>
                         <span className='t-price'>{`Rwf ${overallTotal}`}</span>

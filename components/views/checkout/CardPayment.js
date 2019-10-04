@@ -152,11 +152,7 @@ export default class CardPayment extends Component {
          * Add the discount info if there was a discount given
          */
         if (Object.keys(discountData).length !== 0) {
-            const { coupon_code, discount } = discountData;
-            data.discount = {
-                coupon_code,
-                discount
-            };
+            data.discount = discountData;
         }
 
         fetch(`${API_URL}/payments/process`, {

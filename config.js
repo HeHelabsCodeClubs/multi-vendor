@@ -10,6 +10,7 @@ export const ORDER_DATA_TOKEN = 'ORDER_DATA';
 export const APP_DOMAIN='http://release.vendor.hehe.rw';
 export const APP_CARD_PAYMENT_RETURN_URL='http://localhost:3000/order-complete/card'
 export const SITE_GOOGLE_ANALYTICS_ID = 'UA-148530757-1';
+export const FIRST_USER_PURCHASE_PROMO_CODE = 'dmmpromo';
 
 // local storage variables
 export const CART_ITEMS_KEY = 'CART_ITEMS';

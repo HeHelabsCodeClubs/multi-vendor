@@ -13,6 +13,9 @@ import {
     storeAuthUserInfoInLocalStorage,
     redirectUserToAfterLoginPage
 } from '../../../helpers/auth';
+import {
+    setDiscountForCustomerFirstPurchase
+} from '../../../helpers/coupon_code_functionality';
 import { 
     API_URL, 
     API_ROOT_URL,
@@ -227,6 +230,7 @@ class SignInForm extends Component {
                      */
                     storeTokenInLocalStorage(access_token, expires_in);
                     storeAuthUserInfoInLocalStorage(user);
+                    setDiscountForCustomerFirstPurchase(user);
                     setPageAsVisited('account'); // set checkout page account as visited
                     redirectUserToAfterLoginPage(redirectPageAfterLogin);
                 } else {

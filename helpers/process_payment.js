@@ -1,6 +1,6 @@
 import localforage from 'localforage';
 import cookie from 'js-cookie';
-import { ORDER_DATA_TOKEN, CART_ITEMS_KEY, LOCAL_SHIPMENTS_KEY } from '../config';
+import { ORDER_DATA_TOKEN, CART_ITEMS_KEY, LOCAL_SHIPMENTS_KEY, DISCOUNT_DATA } from '../config';
 /**
  * This helper contains all the functionalities to create and proccess an order
  * 
@@ -16,11 +16,6 @@ export const createPaymentSubmissionData = (payment_method, cartItems, shipmentD
 }
 
 export const storeOrderDATACookie = (order_id) => {
-    // const data = {
-    //     payment_method: payment_method,
-    //     order_data: order_data
-    // };
-    // data.push(order_data);
     cookie.set(ORDER_DATA_TOKEN, order_id);
 }
 
@@ -31,6 +26,7 @@ export const removeOrderDATACookie = () => {
 export const perfomOnPaymentSuccess = () => {
     localforage.removeItem(CART_ITEMS_KEY);
     localforage.removeItem(LOCAL_SHIPMENTS_KEY);
+    localforage.removeItem(DISCOUNT_DATA);
     removeOrderDATACookie();
 }
 
