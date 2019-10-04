@@ -13,6 +13,7 @@ import {
  import { API_URL } from '../../../config';
  import { getClientAuthToken, getOrderCookie } from '../../../helpers/auth';
  import { ORDER_CREATION_UNKWOWN_ERROR } from '../../../config';
+ import { getDiscountDataInLocalStorage } from '../../../helpers/coupon_code_functionality';
 
 export default class CardPayment extends Component {
     constructor(props) {
@@ -26,6 +27,7 @@ export default class CardPayment extends Component {
             buttonStatus: 'initial',
             cartItems: {},
             shipmentData: {},
+            discountData: {}
         };
         this.getInputFieldValue = this.getInputFieldValue.bind(this);
         this.handleOrderSubmission = this.handleOrderSubmission.bind(this);
@@ -50,6 +52,15 @@ export default class CardPayment extends Component {
         // get shipment data on component load
         retrieveShipmentData((items) => {
             this.updateShipmentData(items);
+        });
+
+        //get discount data
+        getDiscountDataInLocalStorage((discountData) => {
+            if (Object.keys(discountData).length !== 0) {
+                this.setState({
+                    discountData
+                });
+            }
         });
     }
 
@@ -131,10 +142,18 @@ export default class CardPayment extends Component {
     }
 
     createOrderOnTheApi(dataToSubmit, token) {
+        const { discountData } = this.state;
         const data = {
             payment_type: 'card',
             order_data: dataToSubmit
         };
+
+        /**
+         * Add the discount info if there was a discount given
+         */
+        if (Object.keys(discountData).length !== 0) {
+            data.discount = discountData;
+        }
 
         fetch(`${API_URL}/payments/process`, {
             method: 'POST',

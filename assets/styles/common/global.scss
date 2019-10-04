@@ -474,3 +474,68 @@ select {
 .direct-buy__btn {
     display: none !important;
 }
+
+
+/**
+* Coupon code field styles
+*/
+.has-button-attached {
+    input {
+        background: $gray-color-13;
+        border: 1px solid $gray-color-13;
+
+        &:focus {
+            border-color: $gray-color-13;
+            box-shadow: none;
+        }
+
+        @include inputPlaceholder() {
+            color: $black-color-3;
+            font-family: $font-regular;
+            font-size: 1.14rem;
+        }
+    }
+
+    .input-group-append {
+        button {
+            background: $white-color;
+            border: 1px solid $gray-color-13;
+            font-family: $font-regular;
+            font-size: 1.14rem;
+            line-height: 1.35rem;
+            color: $black-color-3;
+
+            &.is-loading {
+                padding: 0 3rem;
+
+                img {
+                    width: 1.4rem; 
+                }
+            }
+
+            &:focus,
+            &:hover {
+                outline: none !important;
+            }
+        }
+    }
+}
+
+/**
+* Discount display styles
+*/
+
+.discount-container {
+    margin: 0;
+    width: 100%;
+    background-color: $orange-color-3;
+    @include flexbox;
+    @include flexjustifycontent(space-between);
+    @include flexalignitems(center);
+    color: $orange-color-1;
+    span,
+    a,
+    button {
+        color: $orange-color-1;
+    }
+}
