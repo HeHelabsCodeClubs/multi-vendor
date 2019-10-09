@@ -338,9 +338,9 @@ select {
     width: 100vw;
     background: rgba(250,250, 250, 0);
     display: none;
-    
+    transition: .3s ease-in opacity;
     &.show {
-        display: block !important;
+        display: flex !important;
         //visibility: visible;
         position: fixed !important;
         height: 100vh !important;
@@ -349,6 +349,20 @@ select {
         top: 0 !important;
         z-index: 10000000000;
         cursor: not-allowed;
+        background: rgba(255, 255, 255, 0.8);
+        @include flexjustifycontent(center);
+        @include flexalignitems(center);
+
+        h5,
+        p {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            text-align: center;
+            span {
+                font-weight: 700;
+            }
+        }
     }
     
 }
