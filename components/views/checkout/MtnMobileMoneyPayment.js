@@ -10,11 +10,14 @@ import {
     storeOrderDATACookie,
     removeOrderDATACookie
  } from '../../../helpers/process_payment';
- import { API_URL, APP_CARD_PAYMENT_RETURN_URL } from '../../../config';
- import { ORDER_CREATION_UNKWOWN_ERROR } from '../../../config';
- import { getDiscountDataInLocalStorage } from '../../../helpers/coupon_code_functionality';
- import isObjectEmpty from '../../../helpers/is_object_empty';
+import { API_URL, APP_CARD_PAYMENT_RETURN_URL } from '../../../config';
+import { ORDER_CREATION_UNKWOWN_ERROR } from '../../../config';
+import { getDiscountDataInLocalStorage } from '../../../helpers/coupon_code_functionality';
+import isObjectEmpty from '../../../helpers/is_object_empty';
 import MoMoWaitingUserMessage from './MoMoWaitingUserMessage';
+import MoMoPendingUserMessage from './MoMoPendingUserMessage';
+import MoMoProcessedUserMessage from './MoMoProcessedUserMessage';
+
 
 var Stomp = require('stompjs');
 
@@ -46,6 +49,8 @@ export default class MtnMobileMoneyPayment extends Component {
         this.onOrderCreationSuccess = this.onOrderCreationSuccess.bind(this);
         this.onOrderCreationRetry = this.onOrderCreationRetry.bind(this);
         this.onOrderCreationKnownFailure = this.onOrderCreationKnownFailure.bind(this);
+        this.connectToStomp = this.connectToStomp.bind(this);
+        this.handleQueueMessage = this.handleQueueMessage.bind(this);
     }
     componentDidMount() {
         // get cart data on component load
@@ -234,6 +239,65 @@ export default class MtnMobileMoneyPayment extends Component {
         this.onOrderCreationSuccess(orderID);
     }
 
+    connectToStomp(channelCredentials, orderID) {
+        const {
+            ws_url,
+            mq_queue,
+            mq_user,
+            mq_password
+        } = channelCredentials;
+        const url = new WebSocket(ws_url);
+        const client = Stomp.over(url);
+        const queueName = `${mq_queue}${orderID}`;
+        client.connect(
+            mq_user,
+            mq_password,
+            (frame) => {
+                //this.onConnectionSuccess(client, queueName);
+                client.subscribe(queueName, (message) => {
+                    if (message.body) {
+                        console.log('message', typeof(message.body));
+                        this.handleQueueMessage(message);
+                    }
+                }, 
+                {'x-expires': 2700000}
+                );
+            },
+
+            (err) => {
+                console.log('err', err);
+                console.log('retry connection here...');
+                this.connectToStomp(channelCredentials, orderID);
+            }
+        );
+    }
+
+    handleQueueMessage(message) {
+        if (message.body) {
+            const { body } = message;
+            const data = JSON.parse(body);
+            if (data.Status) {
+                const { Status } = data;
+                switch(Status) {
+                    case 'Pending':
+                        // handle pending state;
+                        console.log('i am pending now...');
+                        this.props.toogleDisplayOverlay(true, <MoMoPendingUserMessage />);
+                        return;
+                    case 'Processed':
+                        // User has successfully paid
+                        console.log('i am processed now');
+                        this.props.toogleDisplayOverlay(true, <MoMoProcessedUserMessage />);
+                        return;
+                    default:
+                        // display error to the user
+
+                }
+            }
+        }
+    }
+
+
     onOrderCreationSuccess(orderID) {
         removeOrderDATACookie();
         storeOrderDATACookie(orderID, 'momo');
@@ -243,10 +307,6 @@ export default class MtnMobileMoneyPayment extends Component {
         console.log('start listening...');
         const { phone } = this.state;
         const token = getClientAuthToken();
-
-        console.log('token', token);
-        console.log('order id', orderID);
-        console.log('phone ', phone);
 
         if (token && orderID && phone) {
             const data = {
@@ -267,29 +327,13 @@ export default class MtnMobileMoneyPayment extends Component {
             }).then(async (res) => {
                 const response = await res.json();
                 console.log('response', response);
-                const { data: { mq: {
-                    ws_url,
-                    mq_queue,
-                    mq_user,
-                    mq_vhost,
-                    mq_password
-                } } } =  response;
-                const url = new WebSocket(ws_url);
-                var client = Stomp.over(url);
-                client.connect(
-                    mq_user,
-                    mq_password,
-                    (frame) => {
-                        client.subscribe(`${mq_queue}${orderID}`, (message) => {
-                            if (message.body) {
-                                console.log('message is', message.body);
-                            }
-                        });
-                    },
-                );
+                const { data: { mq } } =  response;
+                this.props.toogleDisplayOverlay(true, <MoMoPendingUserMessage />);
+                this.connectToStomp(mq, orderID);
             }).catch ((err) => {
                 if (err) {
                     console.log('err', err);
+                    this.onOrderCreationSuccess(orderID);
                 }
             });
         }
