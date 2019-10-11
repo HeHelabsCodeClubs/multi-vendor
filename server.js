@@ -45,7 +45,7 @@ app
             const ua = req.header('user-agent');
             if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(ua)) {
                 res.writeHead(302, {
-                    Location: mobileSiteUrl + '/sellers/' + req.params.seller + '/' + req.params.slug
+                    Location: mobileSiteUrl + '/sellers/' + req.params.seller + '/products/' + req.params.slug
                 });
                 res.end();
             }
