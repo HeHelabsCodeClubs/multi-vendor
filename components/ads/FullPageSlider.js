@@ -33,6 +33,7 @@ const settings = {
     
 // }
 
+// testing deployment
 const FullPageSlider  = ({ adds }) => {
     return (
         <Slider {...settings}>
