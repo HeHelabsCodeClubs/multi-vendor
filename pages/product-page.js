@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import ReactHtmlParser from 'react-html-parser';
 import fetch from 'isomorphic-unfetch';
 import Router from 'next/router';
 import Slider from "react-slick";
@@ -249,7 +250,7 @@ class ProductPage extends React.Component {
                             <div className='description-details'>
                                 <div className='desc-title'>Product Details</div>
                                 <p className='desc-content'>
-                                    {displayedDescription}
+                                    { ReactHtmlParser(displayedDescription) }
                                 </p>
                             </div>
                         );
@@ -259,7 +260,7 @@ class ProductPage extends React.Component {
                         <div className='description-details'>
                             <div className='desc-title'>Product Details</div>
                             <p className='desc-content'>
-                                {displayedDescription}
+                                {ReactHtmlParser(displayedDescription)}
                             </p>
                         </div>
                     );
