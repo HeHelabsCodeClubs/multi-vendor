@@ -202,9 +202,9 @@ class Header extends React.Component {
                 })}
                 >
                     
-                    <div>
+                    {/* <div>
                         {this.renderAlertContent()}
-                    </div>
+                    </div> */}
                     <div className='top-panel'>
                         <div className='row maximum-width'>
                             <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
