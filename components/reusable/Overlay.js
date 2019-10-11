@@ -17,9 +17,17 @@ class Overlay extends Component {
     }
     render () {
         const { show } = this.state;
+        const { overlayContent } = this.props;
         const overlayClass = show ? 'overlay show' : 'overlay';
+        if (overlayContent === null) {
+            return (
+                <div className={overlayClass}></div>
+            );
+        }
         return (
-            <div className={overlayClass}></div>
+            <div className={overlayClass}>
+                {overlayContent}
+            </div>
         );
     }
 }

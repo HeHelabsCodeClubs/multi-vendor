@@ -297,9 +297,9 @@ select {
     width: 100vw;
     background: rgba(250,250, 250, 0);
     display: none;
-    
+    transition: .3s ease-in opacity;
     &.show {
-        display: block !important;
+        display: flex !important;
         //visibility: visible;
         position: fixed !important;
         height: 100vh !important;
@@ -308,6 +308,20 @@ select {
         top: 0 !important;
         z-index: 10000000000;
         cursor: not-allowed;
+        background: rgba(255, 255, 255, 0.8);
+        @include flexjustifycontent(center);
+        @include flexalignitems(center);
+
+        h5,
+        p {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            text-align: center;
+            span {
+                font-weight: 700;
+            }
+        }
     }
     
 }
@@ -426,4 +440,69 @@ select {
 // hide direct buy button
 .direct-buy__btn {
     display: none !important;
+}
+
+
+/**
+* Coupon code field styles
+*/
+.has-button-attached {
+    input {
+        background: $gray-color-13;
+        border: 1px solid $gray-color-13;
+
+        &:focus {
+            border-color: $gray-color-13;
+            box-shadow: none;
+        }
+
+        @include inputPlaceholder() {
+            color: $black-color-3;
+            font-family: $font-regular;
+            font-size: 1.14rem;
+        }
+    }
+
+    .input-group-append {
+        button {
+            background: $white-color;
+            border: 1px solid $gray-color-13;
+            font-family: $font-regular;
+            font-size: 1.14rem;
+            line-height: 1.35rem;
+            color: $black-color-3;
+
+            &.is-loading {
+                padding: 0 3rem;
+
+                img {
+                    width: 1.4rem; 
+                }
+            }
+
+            &:focus,
+            &:hover {
+                outline: none !important;
+            }
+        }
+    }
+}
+
+/**
+* Discount display styles
+*/
+
+.discount-container {
+    margin: 0;
+    width: 100%;
+    background-color: $orange-color-3;
+    @include flexbox;
+    @include flexjustifycontent(space-between);
+    @include flexalignitems(center);
+    color: $orange-color-1;
+    span,
+    a,
+    button {
+        color: $orange-color-1;
+    }
 }

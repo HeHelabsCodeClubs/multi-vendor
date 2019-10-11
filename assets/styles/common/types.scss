@@ -32,6 +32,19 @@ html {
             font-size: 1.2rem;
         }
     }
+
+    .overlay {
+        &.show {
+            h5 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+            }
+        }
+    }
+
     // landing page
     .landing-title {
         font-size: 1.78rem;
