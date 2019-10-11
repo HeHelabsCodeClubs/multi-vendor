@@ -288,6 +288,12 @@ export default class MtnMobileMoneyPayment extends Component {
                         // User has successfully paid
                         console.log('i am processed now');
                         this.props.toogleDisplayOverlay(true, <MoMoProcessedUserMessage />);
+                        /**
+                         * TO DO
+                         * 
+                         * 1. validate payment on api
+                         * 2. 
+                         */
                         return;
                     default:
                         // display error to the user
