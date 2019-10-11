@@ -191,7 +191,7 @@ class Header extends React.Component {
         const { alertVisibility } = this.state;
         let wrapperClassName = (cookie.get(APP_BETA_NOTIFICATION) === '1' && !alertVisibility) ? "header-panel" : "header-panel top-alert";
         return (
-            <div className={wrapperClassName}>
+            <div className="header-panel">
                 <Head>
                     <link rel="shortcut icon" href="https://res.cloudinary.com/hehe/image/upload/v1563286307/multi-vendor/HeHe_Favicon.png" />
                     <title>HeHe Marketplace</title>
@@ -202,9 +202,9 @@ class Header extends React.Component {
                 })}
                 >
                     
-                    <div>
+                    {/* <div>
                         {this.renderAlertContent()}
-                    </div>
+                    </div> */}
                     <div className='top-panel'>
                         <div className='row maximum-width'>
                             <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
