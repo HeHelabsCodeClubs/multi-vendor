@@ -28,6 +28,11 @@ export const getValidatedInputErrorMessage = (validationContext, context, value,
                 return getInvalidEmailErrorMessage(context);
             }
             return '';
+        case 'phone':
+            if (!mtnPhoneNumberHasRightLength(value)) {
+                return getInvalidMtnPhoneNumberErrorMessage(context);
+            }
+            return '';
         case 'password_confirmation':
             /**
              * Validations for password confirmation
@@ -113,6 +118,10 @@ const getInvalidEmailErrorMessage = (context) => {
     }
  }
 
+ const getInvalidMtnPhoneNumberErrorMessage = (context) => {
+     return `Your ${context} is not valid. Please check and try again.`;
+ }
+
  /**
   * Check if two strings are equal
   * 
@@ -126,5 +135,19 @@ const getInvalidEmailErrorMessage = (context) => {
         return true;
     }
     return false;
+ }
+
+ /**
+  * Checks if an mtn phone number has the right length with "250" included
+  * 
+  * @param {string} phoneNumber 
+  * 
+  * @return {boolean}
+  */
+ function mtnPhoneNumberHasRightLength(phoneNumber) {
+    if (phoneNumber.length !== 12) {
+        return false;
+    }
+    return true;
  }
 

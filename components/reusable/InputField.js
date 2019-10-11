@@ -67,8 +67,9 @@ export default class InputField extends Component {
         if (e.preventDefault !== undefined) {
             e.preventDefault();
         }
+        const { inputValue } = this.state;
         const { name, updateInputFieldValue } = this.props;
-        const newInputFieldValue = e.target === undefined ? e : e.target.value;
+        const newInputFieldValue = (e.target === undefined) ? e : ((name === 'phone' && !inputValue.includes('250')) ? `250${e.target.value}` : e.target.value);
         updateInputFieldValue(name, newInputFieldValue);
         this.setState({
             inputValue: newInputFieldValue

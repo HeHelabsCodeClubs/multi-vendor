@@ -10,6 +10,8 @@ export const createPaymentSubmissionData = (payment_method, cartItems, shipmentD
     switch (payment_method) {
         case 'card':
             return createCardPaymentSubmissionData(cartItems, shipmentData);
+        case 'momo':
+            return createCardPaymentSubmissionData(cartItems, shipmentData);
         default:
             return {};
     }
