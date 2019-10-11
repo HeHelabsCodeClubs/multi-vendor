@@ -262,6 +262,8 @@
                 }
             }
             .description-details {
+                max-width: 100%;
+                overflow: auto;
                 .desc-title {
                     color: $black-color-4;
                     margin: 0 0 1rem 0;
