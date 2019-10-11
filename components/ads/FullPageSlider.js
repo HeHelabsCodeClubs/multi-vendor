@@ -38,16 +38,16 @@ const FullPageSlider  = ({ adds }) => {
         <Slider {...settings}>
             {/* {renderAdds(adds)} */}
             <div>
-                <a href="https://hehe.rw/categories/home-garden-appliances">
+                <a href="https://m.hehe.rw/sellers/all-in-one/products/visit-rwanda-gift-pack">
                     <ImageLoader 
-                    imageUrl="https://res.cloudinary.com/hehe/image/upload/v1564395458/multi-vendor/slider_images/Default/Banner_mobile_2x.png"
+                    imageUrl="https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1570806633/hehe/Artboard_1.jpg"
                     hasPlaceholder={false}
                     placeholderHeight={300}
                     />
                 </a>
             </div>
 
-            <div>
+            {/* <div>
                 <a href="https://hehe.rw/categories/clothing-fashion">
                     <ImageLoader 
                     imageUrl="https://res.cloudinary.com/hehe/image/upload/v1564395458/multi-vendor/slider_images/Default/Banner-1_mobile_2x.png"
@@ -55,7 +55,7 @@ const FullPageSlider  = ({ adds }) => {
                     placeholderHeight={300}
                     />
                 </a>
-            </div>
+            </div> */}
         </Slider>
     );
 }
