@@ -29,16 +29,17 @@ class SpecialOffers extends Component {
         };
 		return (
 			<div className='made-in-rwanda-wrapper'>
-				<div className='made-in-rwanda-title maximum-width'>Special Offers</div>
+				<div className='made-in-rwanda-title maximum-width'>Combo Baskets</div>
 				<div className='made-in-rwanda-content maximum-width'>
-            <div className="special-offers-row prices-offers">
-                <Slider {...settings}>
-                    <div className="offers-banner">
-                        <img src="https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1564491392/multi-vendor/prices-offers.png" />
+                    <div className="special-offers-row on-sale-offers">
+                        <Slider {...settings}>
+                            <div className="offers-banner">
+                                <img src="https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1570790772/hehe/Mask_Group_27_2x.png" />
+                            </div>
+                            {this.renderSpecialProducts(offers)}
+                        </Slider>
                     </div>
                     {this.renderSpecialProducts(offers)}
-                </Slider>
-            </div>
 				</div>
 			</div>
 		);

@@ -67,8 +67,9 @@ export default class InputField extends Component {
         if (e.preventDefault !== undefined) {
             e.preventDefault();
         }
+        const { inputValue } = this.state;
         const { name, updateInputFieldValue } = this.props;
-        const newInputFieldValue = e.target === undefined ? e : e.target.value;
+        const newInputFieldValue = (e.target === undefined) ? e : ((name === 'phone' && !inputValue.includes('250')) ? `250${e.target.value}` : e.target.value);
         updateInputFieldValue(name, newInputFieldValue);
         this.setState({
             inputValue: newInputFieldValue
@@ -120,7 +121,10 @@ export default class InputField extends Component {
             placeholder,
             typeOfInput,
             selectorData,
-            fieldText
+            fieldText,
+            hasLabel,
+            InnerContent,
+            inputWrapperClassName
         } = this.props;
         const { inputValue, hasError } = this.state;
         //const inputClassName = hasError ? `${classN} is-invalid`: classN;
@@ -130,20 +134,21 @@ export default class InputField extends Component {
                 inputClassName = 'input-field is-invalid';
             }
         }
-
+        const renderLabel = (hasLabel || hasLabel === undefined) ? this.renderInputLabel : null;
         if (typeOfInput === 'text_field') {
             return (
-                <div className='input-field'>
-                    {this.renderInputLabel()}
+                <div className={`input-field ${inputWrapperClassName}`}>
+                    {renderLabel ? renderLabel() : renderLabel}
                     <input 
                     type={type}
                     id={id}
                     name={name}
                     placeholder={placeholder} 
                     value={inputValue}
-                    className={inputClassName}
+                    className={`${inputClassName} ${classN}`}
                     onChange={this.handleInputChange}
                     />
+                    {InnerContent ? InnerContent : null}
                 </div>
             );
         }
@@ -152,7 +157,7 @@ export default class InputField extends Component {
             
             return (
                 <div className ={inputClassName}>
-                    {this.renderInputLabel()}
+                    {renderLabel ? renderLabel() : renderLabel}
                     <select 
                     value={inputValue}
                     id={id}
@@ -162,6 +167,7 @@ export default class InputField extends Component {
                     >
                         {this.renderSelect(selectorData, placeholder)}
                     </select>
+                    {InnerContent ? InnerContent : null}
                 </div> 
             );
         }
