@@ -75,7 +75,6 @@ class SearchDropdown extends Component {
     };
 
     async onSuggestionsFetchRequested({ value }){
-        console.log(value);
         if(value.length !== 0) {
             const res = await fetch(`${API_URL}/products/search/${value}`, {
                 method: 'GET',

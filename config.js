@@ -10,8 +10,6 @@ export const ORDER_DATA_TOKEN = 'ORDER_DATA';
 export const APP_DOMAIN='https://hehe.rw';
 export const APP_CARD_PAYMENT_RETURN_URL='https://hehe.rw/order-complete/card'
 export const PAYMENT_STATUS_TOKEN = 'PAYMENT_STATUS';
-export const APP_DOMAIN='http://hehe.rw';
-export const APP_CARD_PAYMENT_RETURN_URL='https://hehe.rw/order-complete/card'
 export const SITE_GOOGLE_ANALYTICS_ID = 'UA-148530757-1';
 export const FIRST_USER_PURCHASE_PROMO_CODE = 'dmmpromo';
 
