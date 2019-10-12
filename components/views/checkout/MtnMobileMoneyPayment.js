@@ -5,11 +5,6 @@ import { getValidatedInputErrorMessage } from '../../../helpers/validation';
 import { getClientAuthToken, getOrderCookie } from '../../../helpers/auth';
 import { getCartItems } from '../../../helpers/cart_functionality_helpers';
 import { retrieveShipmentData } from '../../../helpers/shipment_method_functionality_helpers';
-import { 
-    createPaymentSubmissionData,
-    storeOrderDATACookie,
-    removeOrderDATACookie
- } from '../../../helpers/process_payment';
 import { API_URL, APP_CARD_PAYMENT_RETURN_URL } from '../../../config';
 import { ORDER_CREATION_UNKWOWN_ERROR } from '../../../config';
 import { getDiscountDataInLocalStorage } from '../../../helpers/coupon_code_functionality';
@@ -17,9 +12,20 @@ import isObjectEmpty from '../../../helpers/is_object_empty';
 import MoMoWaitingUserMessage from './MoMoWaitingUserMessage';
 import MoMoPendingUserMessage from './MoMoPendingUserMessage';
 import MoMoProcessedUserMessage from './MoMoProcessedUserMessage';
+import { 
+    createPaymentSubmissionData,
+    storeOrderDATACookie,
+    removeOrderDATACookie,
+    getMoMoErrorMessage,
+    storeMoMoPaymentStatusCookie
+ } from '../../../helpers/process_payment';
+import MoMoUserErrorMessage from './MoMoUserErrorMessage';
 
 
 var Stomp = require('stompjs');
+
+let MOMO_PAYMENT_UNRESPONSIVENESS_TIMEOUT = 0;
+let timeoutInterval = undefined;
 
 export default class MtnMobileMoneyPayment extends Component {
     constructor(props) {
@@ -44,13 +50,16 @@ export default class MtnMobileMoneyPayment extends Component {
         this.updateCartItems = this.updateCartItems.bind(this);
         this.updateShipmentData = this.updateShipmentData.bind(this);
         this.createOrderOnTheApi = this.createOrderOnTheApi.bind(this);
-        this.handleResponse = this.handleResponse.bind(this);
+        this.handleOrderCreationResponse = this.handleOrderCreationResponse.bind(this);
         this.onOrderCreationUnknownFailure = this.onOrderCreationUnknownFailure.bind(this);
         this.onOrderCreationSuccess = this.onOrderCreationSuccess.bind(this);
         this.onOrderCreationRetry = this.onOrderCreationRetry.bind(this);
         this.onOrderCreationKnownFailure = this.onOrderCreationKnownFailure.bind(this);
         this.connectToStomp = this.connectToStomp.bind(this);
         this.handleQueueMessage = this.handleQueueMessage.bind(this);
+        this.handlePaymentProcessingResponse = this.handlePaymentProcessingResponse.bind(this);
+        this.handleMoMoApiErrors = this.handleMoMoApiErrors.bind(this);
+        this.retryTransactionCallback = this.retryTransactionCallback.bind(this);
     }
     componentDidMount() {
         // get cart data on component load
@@ -155,7 +164,6 @@ export default class MtnMobileMoneyPayment extends Component {
         if (!isObjectEmpty(cartItems) && !isObjectEmpty(shipmentData)) {
             // handle redirection to migs
             const dataToSubmit = createPaymentSubmissionData('momo', cartItems, shipmentData);
-            console.log('data', dataToSubmit);
             const token = getClientAuthToken();
             if (!isObjectEmpty(dataToSubmit) && token) {
                 // check if there's no pending order
@@ -196,7 +204,7 @@ export default class MtnMobileMoneyPayment extends Component {
         }).then(async (res) => {
             try {
                 const response = await res.json();
-                this.handleResponse(response);
+                this.handleOrderCreationResponse(response);
             } catch (err) {
                 if (err) {
                     console.log(err);
@@ -211,7 +219,7 @@ export default class MtnMobileMoneyPayment extends Component {
         });
     }
 
-    handleResponse(response) {
+    handleOrderCreationResponse(response) {
         switch(Number(response.status_code)) {
             case 200:
                 /**
@@ -253,11 +261,10 @@ export default class MtnMobileMoneyPayment extends Component {
             mq_user,
             mq_password,
             (frame) => {
-                //this.onConnectionSuccess(client, queueName);
+                this.setTimerForUnResponsiveQueue(client);
                 client.subscribe(queueName, (message) => {
                     if (message.body) {
-                        console.log('message', typeof(message.body));
-                        this.handleQueueMessage(message);
+                        this.handleQueueMessage(message, client);
                     }
                 }, 
                 {'x-expires': 2700000}
@@ -272,7 +279,7 @@ export default class MtnMobileMoneyPayment extends Component {
         );
     }
 
-    handleQueueMessage(message) {
+    handleQueueMessage(message, client) {
         if (message.body) {
             const { body } = message;
             const data = JSON.parse(body);
@@ -281,22 +288,34 @@ export default class MtnMobileMoneyPayment extends Component {
                 switch(Status) {
                     case 'Pending':
                         // handle pending state;
-                        console.log('i am pending now...');
                         this.props.toogleDisplayOverlay(true, <MoMoPendingUserMessage />);
                         return;
                     case 'Processed':
                         // User has successfully paid
-                        console.log('i am processed now');
-                        this.props.toogleDisplayOverlay(true, <MoMoProcessedUserMessage />);
                         /**
-                         * TO DO
-                         * 
-                         * 1. validate payment on api
-                         * 2. 
+                         * Close socket connection
                          */
+                        client.disconnect(() => null);
+                        this.props.toogleDisplayOverlay(true, <MoMoProcessedUserMessage />);
+                        storeMoMoPaymentStatusCookie('Processed');
+                        setTimeout(() => {
+                            window.location = '/order-complete/momo';
+                        }, 500);
                         return;
                     default:
-                        // display error to the user
+                        const errorMessage = getMoMoErrorMessage("UNKOWN_ERROR");
+                        this.props.toogleDisplayOverlay(
+                            true, 
+                            <MoMoUserErrorMessage 
+                            message={errorMessage}
+                            shouldRetry={true}
+                            onActionCallback={this.retryTransactionCallback}
+                            />
+                        );
+                        /**
+                         * Close socket connection
+                         */
+                        client.disconnect(() => null);
 
                 }
             }
@@ -310,7 +329,6 @@ export default class MtnMobileMoneyPayment extends Component {
         /**
          * Start listening in the queue for order updates
          */
-        console.log('start listening...');
         const { phone } = this.state;
         const token = getClientAuthToken();
 
@@ -332,18 +350,90 @@ export default class MtnMobileMoneyPayment extends Component {
                 body: JSON.stringify(data)
             }).then(async (res) => {
                 const response = await res.json();
-                console.log('response', response);
-                const { data: { mq } } =  response;
-                this.props.toogleDisplayOverlay(true, <MoMoPendingUserMessage />);
-                this.connectToStomp(mq, orderID);
+                this.handlePaymentProcessingResponse(response, orderID);
             }).catch ((err) => {
                 if (err) {
                     console.log('err', err);
-                    this.onOrderCreationSuccess(orderID);
                 }
             });
         }
          
+    }
+
+    setTimerForUnResponsiveQueue(client) {
+        timeoutInterval = setInterval(() => {
+            if (MOMO_PAYMENT_UNRESPONSIVENESS_TIMEOUT < 60) {
+                MOMO_PAYMENT_UNRESPONSIVENESS_TIMEOUT = MOMO_PAYMENT_UNRESPONSIVENESS_TIMEOUT + 1;
+            } else {
+                const errorMessage = getMoMoErrorMessage("UNKOWN_ERROR");
+                this.props.toogleDisplayOverlay(
+                    true, 
+                    <MoMoUserErrorMessage 
+                    message={errorMessage}
+                    shouldRetry={true}
+                    onActionCallback={this.retryTransactionCallback}
+                    />
+                );
+                MOMO_PAYMENT_UNRESPONSIVENESS_TIMEOUT = 0;
+                clearInterval(timeoutInterval);
+                /**
+                 * Close socket connection
+                 */
+                client.disconnect(() => null);
+            }
+            
+        }, 1000);
+    }
+
+    handlePaymentProcessingResponse(response, orderID) {
+        const { status } = response;
+        switch(status) {
+            case 'success':
+                /**
+                 * We have all the required params to process the payment
+                 */
+                const { data: { mq } } =  response;
+                this.props.toogleDisplayOverlay(true, <MoMoPendingUserMessage />);
+                this.connectToStomp(mq, orderID);
+                break;
+            case 'failure':
+                /**
+                 * Some errors happened
+                 */
+                const { errors } = response;
+                if (errors) {
+                    this.handleMoMoApiErrors(errors);
+                } else  {
+                    this.handleMoMoApiErrors([]);
+                }
+                break;
+            default:
+            /**
+             * Unexpected error happened
+             */
+            this.handleMoMoApiErrors([]);
+        }
+    }
+
+    handleMoMoApiErrors(errors) {
+        const errorMessage = errors.length !== 0 ?  getMoMoErrorMessage(errors[0]) : getMoMoErrorMessage("UNEXPECTED_ERROR");
+        this.props.toogleDisplayOverlay(
+            true, 
+            <MoMoUserErrorMessage 
+            message={errorMessage}
+            shouldRetry={true}
+            onActionCallback={this.retryTransactionCallback}
+            />
+        );
+        return;
+    }
+
+    retryTransactionCallback() {
+        this.props.toogleDisplayOverlay(false);
+        this.setState({
+            buttonStatus: 'initial'
+        });
+        return;
     }
 
     onOrderCreationUnknownFailure(errorMessage) {
@@ -410,12 +500,8 @@ export default class MtnMobileMoneyPayment extends Component {
             inputWithError,
             inputIsInvalid,
             errorMessage,
-            messageType,
-            cartItems,
-            shipmentData
+            messageType
         } = this.state;
-        // console.log('cart items', cartItems);
-        // console.log('shipment data', shipmentData);
         return (
             <div>
                 <MessageDisplayer 

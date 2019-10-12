@@ -28,13 +28,18 @@ class Header extends React.Component {
         this.renderAlertContent = this.renderAlertContent.bind(this);
     }
     componentDidMount() {
-        this.setState({
-            prevScrollpos: window.pageYOffset,
-        })
+        // this.setState({
+        //     prevScrollpos: window.pageYOffset,
+        // })
         getUserAuthenticatedInfo((user) => {
             this.updateAuthUser(user);
         });
-        window.addEventListener("scroll", this.handleScroll);
+        // window.addEventListener("scroll", this.handleScroll);
+        // if(cookie.get(APP_BETA_NOTIFICATION) === '1') {
+        //     this.setState({
+        //         alertVisibility: false
+        //     });
+        // }
     }
     componentWillReceiveProps(nextProps) {
         const { updateCart } = nextProps;
@@ -83,7 +88,7 @@ class Header extends React.Component {
 
     // Hide menu on scroll      
     componentWillUnmount() {
-        window.removeEventListener("scroll", this.handleScroll);
+        //window.removeEventListener("scroll", this.handleScroll);
     }
     
     handleScroll = () => {
@@ -184,8 +189,27 @@ class Header extends React.Component {
                     "navbar__hidden": !this.state.visible
                 })}
                 >
-                    <div>
-                        {/* {this.renderAlertContent()} */}
+                    
+                    {/* <div>
+                        {this.renderAlertContent()}
+                    </div> */}
+                    <div className='top-panel'>
+                        <div className='row maximum-width'>
+                            <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
+                                <div className='top-panel-left'>
+                                    <span className='top-content'>+(250) 786 456 686</span>
+                                    <span className='top-content'>order@hehe.rw</span>
+                                </div>
+                            </div>
+                            <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
+                                <div className='top-panel-right'>
+                                    <a href="https://seller.hehe.rw/#contactUs" target="_blank"><span className="top-content">Become a Seller</span></a>
+                                    <a href="https://tracking.wherehouseshipping.com/" target="_blank"><span className='top-content'>Track your order</span></a>
+                                    <a href="https://dmmhehe.com/" target="_blank"><span className='top-content'>about</span></a>
+                                    <a href="https://seller.hehe.rw/#contactUs" target="_blank"><span className='top-content'>contact</span></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div className='header'>
                         <div className='row maximum-width'>
