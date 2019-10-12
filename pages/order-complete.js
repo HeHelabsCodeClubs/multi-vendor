@@ -22,7 +22,7 @@ class OrderComplete extends Component {
                 }
             }
 
-            if (req.params.payment !== 'card') {
+            if (req.params.payment !== 'card' && req.params.payment !== 'momo') {
                 if (redirect) {
                     redirect.writeHead(302, {
                         Location: '/'
@@ -41,13 +41,37 @@ class OrderComplete extends Component {
                 }
             }
 
+            const orderID = getTokenValue(req.headers.cookie, 'ORDER_DATA');
+            const paymentStatus = getTokenValue(req.headers.cookie, 'PAYMENT_STATUS');
+
             /**
              * Send Url to server to decide on the direction
              */
-            const data = {
-                payment_method: `${req.params.payment}`,
-                payment_url: `${APP_DOMAIN}${mainPath}`
-            };
+            let data = {};
+
+            if (req.params.payment === 'card') {
+                data = {
+                    payment_method: `${req.params.payment}`,
+                    payment_url: `${APP_DOMAIN}${mainPath}`
+                };
+            }
+
+            if (req.params.payment === 'momo') {
+                if (!orderID || !paymentStatus) {
+                    if (redirect) {
+                        redirect.writeHead(302, {
+                            Location: '/'
+                        })
+                        redirect.end();
+                    }
+                }
+                data = {
+                    payment_method: `${req.params.payment}`,
+                    payment_status: paymentStatus,
+                    order_id: orderID
+                };
+            }
+            
             const res = await fetch(`${API_URL}/payments/validate`, {
                 method: 'POST',
                 headers: {
