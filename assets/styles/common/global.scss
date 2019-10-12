@@ -355,13 +355,28 @@ select {
 
         h5,
         p {
-            margin: 0;
+            width: 60%;
+            margin: 0 auto;
             padding: 0;
             width: 100%;
             text-align: center;
             span {
                 font-weight: 700;
             }
+        }
+
+        h5 {
+            &.has-error {
+                color: $red-color-1;
+            }
+        }
+
+        .action-button {
+            position: absolute;
+            transform: translate(-50%, 0);
+            left: 50%;
+            margin-top: 1rem;
+            @extend .default-button-styles
         }
     }
     

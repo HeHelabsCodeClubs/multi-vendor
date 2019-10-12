@@ -7,10 +7,10 @@ export default class MoMoPendingUserMessage extends Component {
    render() {
         return (
             <div>
-                <p>
+                <h5>
                     Please confirm your payment on your phone by responding to a popup message <br /> or dial
                     <span>*182*7#</span>
-                </p>
+                </h5>
             </div>
         );
    }

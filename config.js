@@ -9,6 +9,9 @@ export const COUNTRY_API_KEY = '46545b12aaa7048c8390dfe80c396937';
 export const ORDER_DATA_TOKEN = 'ORDER_DATA';
 export const APP_DOMAIN='https://hehe.rw';
 export const APP_CARD_PAYMENT_RETURN_URL='https://hehe.rw/order-complete/card'
+export const PAYMENT_STATUS_TOKEN = 'PAYMENT_STATUS';
+export const APP_DOMAIN='http://hehe.rw';
+export const APP_CARD_PAYMENT_RETURN_URL='https://hehe.rw/order-complete/card'
 export const SITE_GOOGLE_ANALYTICS_ID = 'UA-148530757-1';
 export const FIRST_USER_PURCHASE_PROMO_CODE = 'dmmpromo';
 
@@ -50,3 +53,14 @@ export const ALERT_TIMEOUT= 10000;
 export const NOT_ALLOWED_TO_GO_IN_CART = "is out of stock, someone else bought the last one few seconds ago"
 
 export const SUBSCRIBE_INPUT_VALUE_EMPTY = "Please enter the email"
+
+/**
+ * MOMO USER FEEDBACK MESSAGES
+ */
+
+export const TRANSACTION_FAILED_MESSAGE = "We're sorry! Looks like our MOMO payment service is not working well. If you have already confirmed the transaction on your mobile please call our support team on +250786456686. We're sorry for the incovenience.";
+export const NON_ACTIVE_USER_ACCOUNT_MESSAGE = "OOPS! Looks like your phone number is not active on MOMO. Please contact your nearest MTN Service branch to active your number. In case you need further help call our support team on +250786456686.";
+export const USER_EXCEEDED_AMOUNT_TO_SEND_MESSAGE = "OOPS! Looks like you have exceeded the amount to send via MOMO on a daily basis. Please try again in a few hours or tomorrow. If the error persist please call our support team on +250786456686.";
+export const USER_INSUFFICIENT_FUNDS_MESSAGE = "OOPS! You do not have enough funds on your MOMO account. Please top up your MOMO account and try again.";
+export const USER_NOT_REGISTERED_MESSAGE = "OOPS! Your phone number is not registered on MOMO. Visit your MTN nearest service branch to register.";
+export const MINIMUM_FUNDS_TO_SEND_MESSAGE = "OOPS! Your total order amount is too low. You can only pay a minimum of 10 RWF via MOMO";

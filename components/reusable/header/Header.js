@@ -34,13 +34,13 @@ class Header extends React.Component {
         this.storeBetaPopUpUserClosureAction = this.storeBetaPopUpUserClosureAction.bind(this);
     }
     componentDidMount() {
-        this.setState({
-            prevScrollpos: window.pageYOffset,
-        })
+        // this.setState({
+        //     prevScrollpos: window.pageYOffset,
+        // })
         getUserAuthenticatedInfo((user) => {
             this.updateAuthUser(user);
         });
-        window.addEventListener("scroll", this.handleScroll);
+        // window.addEventListener("scroll", this.handleScroll);
         if(cookie.get(APP_BETA_NOTIFICATION) === '1') {
             this.setState({
                 alertVisibility: false
@@ -94,7 +94,7 @@ class Header extends React.Component {
 
     // Hide menu on scroll      
     componentWillUnmount() {
-        window.removeEventListener("scroll", this.handleScroll);
+        //window.removeEventListener("scroll", this.handleScroll);
     }
     
     handleScroll = () => {
