@@ -568,3 +568,23 @@ select {
         color: $orange-color-1;
     }
 }
+
+.services-title-container {
+    width: 100%;
+    @include flexbox;
+    flex-direction: row; 
+
+    h2 { 
+        margin: 0;
+        padding: 0;
+        color: $green-color-2;
+        font-family: $font-bold;
+    }
+
+    h5 {
+        padding: 0;
+        margin: 1rem 0 0 0.5rem !important;
+        color: $orange-color-1;
+        font-family: $font-regular;
+    }
+}

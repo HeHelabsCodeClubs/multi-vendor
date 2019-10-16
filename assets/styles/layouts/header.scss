@@ -1135,6 +1135,51 @@
         width: 33.3% !important;
         float: left;
 
+        &.services {
+            width: 100% !important;
+            .sub-cat-wrapper {
+                width: 100%;
+                .services-content-container {
+                    // @include flexbox;
+                    // width: 100%;
+                    // flex-direction: column;
+                    h5 {
+                        margin: 2rem auto 1rem auto !important;
+                        width: 10rem;
+                    }
+                    p {
+                        color: $black-color-2;
+                        font-family: $font-semi-bold;
+                        width: 80%;
+                    }
+
+                    ul {
+                        
+                        li {
+                            width: 17rem;
+                            height: 13rem;
+                            max-width: 20rem;
+                            margin-right: 1rem;
+                            border: 1px solid $green-color-3;
+                            border-radius: 0.7rem !important;
+                            margin-top: 1rem;
+                            float: left;
+                            text-align: center;
+                            &:last-child {
+                                margin-right: 0;
+                            }
+
+                            a {
+                                img {
+                                    width: 5rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         .sub-cat-title {
             margin: 2rem 0 1rem 0 !important; 
         }
