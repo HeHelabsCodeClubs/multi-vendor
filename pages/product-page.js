@@ -594,6 +594,7 @@ class ProductPage extends React.Component {
                                                 {this.renderProductAttributes(productData.attributes)}
                                                 <StockIncrementor 
                                                 stock={productData.stock}
+                                                layout='incrementor'
                                                 getSelectedQuantity={this.updateSelectedProductQuantity} 
                                                 />
                                                 <div className='product-detail'>

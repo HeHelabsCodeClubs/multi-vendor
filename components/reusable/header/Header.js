@@ -180,8 +180,15 @@ class Header extends React.Component {
         }
         return (
             <div className='col-lg-9 col-md-9 col-sm-9 col-9 col-reset account-links'>
-                <div className='header-content'>My account</div>
-                <div className='header-content'><a href='/signin'>Sign in</a> / <a href='/register'>Register</a></div>                 
+                <a href="/signin" className="auth-redirection-link">
+                    <img src="https://res.cloudinary.com/hehe/image/upload/v1571155428/logistics-platform/images/Group_1391.svg" />
+                    <span className="link-txt">
+                        <span>Sign In</span>
+                        <span>With HeHe</span>
+                    </span>
+                </a>
+                {/* <div className='header-content'>My account</div>
+                <div className='header-content'><a href='/signin'>Sign in</a> / <a href='/register'>Register</a></div> */}
             </div>
         );
     }
@@ -290,7 +297,6 @@ class Header extends React.Component {
                                     <div className='col-lg-6 col-md-6 col-sm-6 col-6 account-grid'>
                                         <div className='row'>
                                             <div className='col-lg-3 col-md-3 col-sm-3 col-12'>
-                                                <span className='icon-Path-62 mobile-invisible'></span>
                                                 <a href="/profile" className="mobile-visible"><span className='icon-Path-62'></span></a>
                                                 <span className="mobile-menu__title mobile-visible">Account</span>
                                             </div>

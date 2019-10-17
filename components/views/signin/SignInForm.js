@@ -329,6 +329,11 @@ class SignInForm extends Component {
             <div>
                 {this.renderBreadCrumbs()}
                 <div className='auth-title'>{actionTitle}</div>
+                {/* auth title codes */}
+                <div className="auth-title">
+                    <img src="https://res.cloudinary.com/hehe/image/upload/v1571155428/logistics-platform/images/Group_1005.svg" />
+                    <h5>Sign In with HeHe</h5>
+                </div>
                 <MessageDisplayer 
                 display={inputIsInvalid ? true : false }
                 errorMessage={errorMessage}
@@ -364,7 +369,9 @@ class SignInForm extends Component {
                         inputWithError={inputWithError}
                     />
                     <div className='auth-button'>
-                        <button type='submit'>
+                        {/* Auth button hehe */}
+                        <button type="submit" className="auth-default-btn">
+                            <img src="https://res.cloudinary.com/hehe/image/upload/v1571155428/logistics-platform/images/Group_1391.svg" />
                             {this.getLoginButtonText()}
                         </button>
                     </div>

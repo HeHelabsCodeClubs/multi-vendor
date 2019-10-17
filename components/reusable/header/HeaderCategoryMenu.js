@@ -229,17 +229,19 @@ class HeaderCategoryMenu extends React.Component {
                                         {this.renderCategorySubCategories(slug, children)}
                                     </div>
                                     <div className='col-lg-4 col-md-4 col-sm-4 col-12'>
-                                        <div className='menu-img'>
-                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1564149056/multi-vendor/Group_1284_2x.png' />
-                                        </div>
-                                        <div className='menu-img'>
-                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1564149055/multi-vendor/Group_1281_2x.png' />
-                                        </div>
-                                        <div className='menu-img'>
-                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1564149055/multi-vendor/Group_1282_2x.png' />
-                                        </div>
-                                        <div className='menu-img'>
-                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1565166464/multi-vendor/Group_1283_2x_2.png' />
+                                        <div className="menu-banners">
+                                            <div className='menu-img'>
+                                                <img src='https://res.cloudinary.com/hehe/image/upload/v1564149056/multi-vendor/Group_1284_2x.png' />
+                                            </div>
+                                            <div className='menu-img'>
+                                                <img src='https://res.cloudinary.com/hehe/image/upload/v1564149055/multi-vendor/Group_1281_2x.png' />
+                                            </div>
+                                            <div className='menu-img'>
+                                                <img src='https://res.cloudinary.com/hehe/image/upload/v1564149055/multi-vendor/Group_1282_2x.png' />
+                                            </div>
+                                            <div className='menu-img'>
+                                                <img src='https://res.cloudinary.com/hehe/image/upload/v1565166464/multi-vendor/Group_1283_2x_2.png' />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -251,7 +253,7 @@ class HeaderCategoryMenu extends React.Component {
             categoryLayout.unshift(
                 <span className="nav__submenu-item " key="hehe-services" >
                     <a href="#" className='sub-menu__item-a'>
-                        <img src="https://res.cloudinary.com/hehe/image/upload/v1571155428/logistics-platform/images/Group_1391.svg" className={`cat-icon`} />
+                        <img src="https://res.cloudinary.com/hehe/image/upload/v1571155428/logistics-platform/images/Group_1005.svg" className={`cat-icon`} />
                         <h5> Request other services</h5>
                     </a>
                     <div className='sub-category'>
@@ -314,17 +316,19 @@ class HeaderCategoryMenu extends React.Component {
                                 </div>
                             </div>
                             <div className='col-lg-4 col-md-4 col-sm-4 col-12'>
-                                <div className='menu-img'>
-                                    <img src='https://res.cloudinary.com/hehe/image/upload/v1564149056/multi-vendor/Group_1284_2x.png' />
-                                </div>
-                                <div className='menu-img'>
-                                    <img src='https://res.cloudinary.com/hehe/image/upload/v1564149055/multi-vendor/Group_1281_2x.png' />
-                                </div>
-                                <div className='menu-img'>
-                                    <img src='https://res.cloudinary.com/hehe/image/upload/v1564149055/multi-vendor/Group_1282_2x.png' />
-                                </div>
-                                <div className='menu-img'>
-                                    <img src='https://res.cloudinary.com/hehe/image/upload/v1565166464/multi-vendor/Group_1283_2x_2.png' />
+                                <div className="menu-banners">
+                                    <div className='menu-img'>
+                                        <img src='https://res.cloudinary.com/hehe/image/upload/v1564149056/multi-vendor/Group_1284_2x.png' />
+                                    </div>
+                                    <div className='menu-img'>
+                                        <img src='https://res.cloudinary.com/hehe/image/upload/v1564149055/multi-vendor/Group_1281_2x.png' />
+                                    </div>
+                                    <div className='menu-img'>
+                                        <img src='https://res.cloudinary.com/hehe/image/upload/v1564149055/multi-vendor/Group_1282_2x.png' />
+                                    </div>
+                                    <div className='menu-img'>
+                                        <img src='https://res.cloudinary.com/hehe/image/upload/v1565166464/multi-vendor/Group_1283_2x_2.png' />
+                                    </div>
                                 </div>
                             </div>
                         </div>

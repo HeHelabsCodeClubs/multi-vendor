@@ -588,3 +588,76 @@ select {
         font-family: $font-regular;
     }
 }
+
+    /*
+    ** Auth hehe default styles **
+    */
+
+    // Default auth  button 
+    .auth-default-btn {
+        @include flexbox;
+        @include flexjustifycontent(center);
+        @include flexalignitems(center);
+        background: $orange-color-1;
+        color: $white-color !important;
+        border-style: initial;
+        border-radius: 5px;
+        width: 160px;
+        height: 40px;
+        padding: 0 !important;
+        outline: none !important;
+        text-align: center;
+        margin: auto !important;
+        font-family: 'Harmonia Sans Pro Regular';
+        font-size: 15px;
+        img, span {
+            max-height: 30px;
+            margin-right: 7px;
+        }
+    }
+    
+    // Default auth title
+    .auth-title {
+        margin: 20px 0;
+        img {
+            max-height: 40px;
+            margin-right: 10px;
+        }
+        h5 {
+            display: inline-block;
+            font-family: 'Harmonia Sans Pro Bold';
+            font-size: 18px;
+            font-weight: bold;
+            color: #555555;
+        }
+    }
+
+    // Auth Redirection link
+    .auth-redirection-link {
+        @include flexbox;
+        @include flexjustifycontent(center);
+        @include flexalignitems(center);
+        background: $orange-color-1;
+        color: $white-color !important;
+        border-style: initial;
+        height: 60px;
+        padding: 7px 15px;
+        outline: none !important;
+        font-family: 'Harmonia Sans Pro SemiBd';
+        font-size: 15px;
+        img {
+            max-height: 30px;
+            margin-right: 7px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .link-txt {
+            display: inline-block;
+            vertical-align: top;
+            span {
+                display: block;
+                padding: 0 !important;
+            }
+        }
+        
+    }

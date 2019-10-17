@@ -357,8 +357,6 @@
 
         .account-grid {
             position: relative;
-            padding-top: 1rem;
-            padding-bottom: 1rem;
             border-left: 1px solid $gray-color-13;
 
             @media screen and (max-width: $mobile-lg) {
@@ -450,8 +448,7 @@
         //height: 3rem;
         //padding: 0 0 0 4rem;
         border-left: 1px solid $gray-color-13;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
+        padding: 1rem 0 1rem 2rem;
 
         @media screen and (max-width: $mobile-lg) {
             padding: .2rem 0 0 1.7rem;
@@ -1126,7 +1123,29 @@
         display: block;
         color: $black-color-3 !important;
     }
+    .menu-banners {
+        height: 100%;
+        @include flexbox;
+        @include flexdirection(column);
+        @include flexjustifycontent(center);
+
+    }
     .menu-img {
+        min-height: 25%;
+        &:nth-child(1) {
+            background: $green-color-2;
+            border-radius: 5px 5px 0 0;
+        }
+        &:nth-child(2) {
+            background: $black-color-2;
+        }
+        &:nth-child(3) {
+            background: $orange-color-1;
+        }
+        &:nth-child(4) {
+            background: $blue-1;
+            border-radius: 0 0 5px 5px;
+        }
         img {
             width: 100%;
         }
@@ -1140,11 +1159,8 @@
             .sub-cat-wrapper {
                 width: 100%;
                 .services-content-container {
-                    // @include flexbox;
-                    // width: 100%;
-                    // flex-direction: column;
                     h5 {
-                        margin: 2rem auto 1rem auto !important;
+                        margin: 1rem auto 0 auto !important;
                         width: 10rem;
                     }
                     p {
@@ -1154,24 +1170,25 @@
                     }
 
                     ul {
-                        
                         li {
-                            width: 17rem;
-                            height: 13rem;
-                            max-width: 20rem;
+                            display: inline-block;
+                            max-width: 33%;
+                            min-height: 13rem;
                             margin-right: 1rem;
                             border: 1px solid $green-color-3;
                             border-radius: 0.7rem !important;
                             margin-top: 1rem;
-                            float: left;
+                            padding: 1rem;
                             text-align: center;
+                            vertical-align: top;
                             &:last-child {
                                 margin-right: 0;
                             }
 
                             a {
                                 img {
-                                    width: 5rem;
+                                    height: 6rem;
+                                    max-width: 100%;
                                 }
                             }
                         }
