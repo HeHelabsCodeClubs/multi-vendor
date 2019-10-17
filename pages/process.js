@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getTokenValue } from '../helpers/auth';
-import { API_URL } from '../config';
+import { API_URL, APP_CARD_PAYMENT_RETURN_URL } from '../config';
 
 export default class Process extends Component {
     constructor(props) {
@@ -15,7 +15,8 @@ export default class Process extends Component {
                 if (orderData && token) {
                     const data = {
                         payment_type: req.params.payment,
-                        order_id: orderData
+                        order_id: orderData,
+                        return_url: APP_CARD_PAYMENT_RETURN_URL
                     };
                     const res = await fetch(`${API_URL}/payments/process`, {
                         method: 'POST',

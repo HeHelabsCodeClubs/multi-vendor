@@ -13,6 +13,9 @@ import {
     storeAuthUserInfoInLocalStorage,
     redirectUserToAfterLoginPage
 } from '../../../helpers/auth';
+import {
+    setDiscountForCustomerFirstPurchase
+} from '../../../helpers/coupon_code_functionality';
 import { 
     API_URL, 
     API_ROOT_URL,
@@ -227,6 +230,7 @@ class SignInForm extends Component {
                      */
                     storeTokenInLocalStorage(access_token, expires_in);
                     storeAuthUserInfoInLocalStorage(user);
+                    setDiscountForCustomerFirstPurchase(user);
                     setPageAsVisited('account'); // set checkout page account as visited
                     redirectUserToAfterLoginPage(redirectPageAfterLogin);
                 } else {
@@ -325,6 +329,11 @@ class SignInForm extends Component {
             <div>
                 {this.renderBreadCrumbs()}
                 <div className='auth-title'>{actionTitle}</div>
+                {/* auth title codes */}
+                <div className="auth-title">
+                    <img src="https://res.cloudinary.com/hehe/image/upload/v1571155428/logistics-platform/images/Group_1005.svg" />
+                    <h5>Sign In with HeHe</h5>
+                </div>
                 <MessageDisplayer 
                 display={inputIsInvalid ? true : false }
                 errorMessage={errorMessage}
@@ -360,7 +369,9 @@ class SignInForm extends Component {
                         inputWithError={inputWithError}
                     />
                     <div className='auth-button'>
-                        <button type='submit'>
+                        {/* Auth button hehe */}
+                        <button type="submit" className="auth-default-btn">
+                            <img src="https://res.cloudinary.com/hehe/image/upload/v1571155428/logistics-platform/images/Group_1391.svg" />
                             {this.getLoginButtonText()}
                         </button>
                     </div>

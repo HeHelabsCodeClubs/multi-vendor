@@ -338,9 +338,9 @@ select {
     width: 100vw;
     background: rgba(250,250, 250, 0);
     display: none;
-    
+    transition: .3s ease-in opacity;
     &.show {
-        display: block !important;
+        display: flex !important;
         //visibility: visible;
         position: fixed !important;
         height: 100vh !important;
@@ -349,6 +349,35 @@ select {
         top: 0 !important;
         z-index: 10000000000;
         cursor: not-allowed;
+        background: rgba(255, 255, 255, 0.8);
+        @include flexjustifycontent(center);
+        @include flexalignitems(center);
+
+        h5,
+        p {
+            width: 60%;
+            margin: 0 auto;
+            padding: 0;
+            width: 100%;
+            text-align: center;
+            span {
+                font-weight: 700;
+            }
+        }
+
+        h5 {
+            &.has-error {
+                color: $red-color-1;
+            }
+        }
+
+        .action-button {
+            position: absolute;
+            transform: translate(-50%, 0);
+            left: 50%;
+            margin-top: 1rem;
+            @extend .default-button-styles
+        }
     }
     
 }
@@ -474,3 +503,161 @@ select {
 .direct-buy__btn {
     display: none !important;
 }
+
+
+/**
+* Coupon code field styles
+*/
+.has-button-attached {
+    input {
+        background: $gray-color-13;
+        border: 1px solid $gray-color-13;
+
+        &:focus {
+            border-color: $gray-color-13;
+            box-shadow: none;
+        }
+
+        @include inputPlaceholder() {
+            color: $black-color-3;
+            font-family: $font-regular;
+            font-size: 1.14rem;
+        }
+    }
+
+    .input-group-append {
+        button {
+            background: $white-color;
+            border: 1px solid $gray-color-13;
+            font-family: $font-regular;
+            font-size: 1.14rem;
+            line-height: 1.35rem;
+            color: $black-color-3;
+
+            &.is-loading {
+                padding: 0 3rem;
+
+                img {
+                    width: 1.4rem; 
+                }
+            }
+
+            &:focus,
+            &:hover {
+                outline: none !important;
+            }
+        }
+    }
+}
+
+/**
+* Discount display styles
+*/
+
+.discount-container {
+    margin: 0;
+    width: 100%;
+    background-color: $orange-color-3;
+    @include flexbox;
+    @include flexjustifycontent(space-between);
+    @include flexalignitems(center);
+    color: $orange-color-1;
+    span,
+    a,
+    button {
+        color: $orange-color-1;
+    }
+}
+
+.services-title-container {
+    width: 100%;
+    @include flexbox;
+    flex-direction: row; 
+
+    h2 { 
+        margin: 0;
+        padding: 0;
+        color: $green-color-2;
+        font-family: $font-bold;
+    }
+
+    h5 {
+        padding: 0;
+        margin: 1rem 0 0 0.5rem !important;
+        color: $orange-color-1;
+        font-family: $font-regular;
+    }
+}
+
+    /*
+    ** Auth hehe default styles **
+    */
+
+    // Default auth  button 
+    .auth-default-btn {
+        @include flexbox;
+        @include flexjustifycontent(center);
+        @include flexalignitems(center);
+        background: $orange-color-1;
+        color: $white-color !important;
+        border-style: initial;
+        border-radius: 5px;
+        width: 160px;
+        height: 40px;
+        padding: 0 !important;
+        outline: none !important;
+        text-align: center;
+        margin: auto !important;
+        font-family: 'Harmonia Sans Pro Regular';
+        font-size: 15px;
+        img, span {
+            max-height: 30px;
+            margin-right: 7px;
+        }
+    }
+    
+    // Default auth title
+    .auth-title {
+        margin: 20px 0;
+        img {
+            max-height: 40px;
+            margin-right: 10px;
+        }
+        h5 {
+            display: inline-block;
+            font-family: 'Harmonia Sans Pro Bold';
+            font-size: 18px;
+            font-weight: bold;
+            color: #555555;
+        }
+    }
+
+    // Auth Redirection link
+    .auth-redirection-link {
+        @include flexbox;
+        @include flexjustifycontent(center);
+        @include flexalignitems(center);
+        background: $orange-color-1;
+        color: $white-color !important;
+        border-style: initial;
+        height: 60px;
+        padding: 7px 15px;
+        outline: none !important;
+        font-family: 'Harmonia Sans Pro SemiBd';
+        font-size: 15px;
+        img {
+            max-height: 30px;
+            margin-right: 7px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .link-txt {
+            display: inline-block;
+            vertical-align: top;
+            span {
+                display: block;
+                padding: 0 !important;
+            }
+        }
+        
+    }

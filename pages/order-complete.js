@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import OrderFeedback from '../components/views/orderResponse/OrderFeeback';
 import PopUpWrapper from '../components/reusable/PopUpWrapper';
+import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
 import '../assets/styles/layouts/landing.scss';
 import '../assets/styles/layouts/auth.scss';
 import '../assets/styles/layouts/orderResponse.scss';
@@ -21,7 +22,7 @@ class OrderComplete extends Component {
                 }
             }
 
-            if (req.params.payment !== 'card') {
+            if (req.params.payment !== 'card' && req.params.payment !== 'momo') {
                 if (redirect) {
                     redirect.writeHead(302, {
                         Location: '/'
@@ -40,13 +41,37 @@ class OrderComplete extends Component {
                 }
             }
 
+            const orderID = getTokenValue(req.headers.cookie, 'ORDER_DATA');
+            const paymentStatus = getTokenValue(req.headers.cookie, 'PAYMENT_STATUS');
+
             /**
              * Send Url to server to decide on the direction
              */
-            const data = {
-                payment_method: `${req.params.payment}`,
-                payment_url: `${APP_DOMAIN}${mainPath}`
-            };
+            let data = {};
+
+            if (req.params.payment === 'card') {
+                data = {
+                    payment_method: `${req.params.payment}`,
+                    payment_url: `${APP_DOMAIN}${mainPath}`
+                };
+            }
+
+            if (req.params.payment === 'momo') {
+                if (!orderID || !paymentStatus) {
+                    if (redirect) {
+                        redirect.writeHead(302, {
+                            Location: '/'
+                        })
+                        redirect.end();
+                    }
+                }
+                data = {
+                    payment_method: `${req.params.payment}`,
+                    payment_status: paymentStatus,
+                    order_id: orderID
+                };
+            }
+            
             const res = await fetch(`${API_URL}/payments/validate`, {
                 method: 'POST',
                 headers: {
@@ -99,18 +124,20 @@ class OrderComplete extends Component {
     render() {
         const { message, displayedLayout } = this.props;
         return (
-            <div className='landing-main-wrapper'>
-                <PopUpWrapper/>
-                <div className='content-wrapper'>
-                    <div className='order-response__content col-lg-6 col-md-6 col-sm-8 col-xs-10 offset-lg-3 offset-md-3 offset-sm-2 offset-xs-1'>
-                        {/* <OrderSuccess/> */}
-                        <OrderFeedback
-                        message={message}
-                        displayedLayout={displayedLayout}
-                        />
+            <GoogleAnalyticsLogger>
+                 <div className='landing-main-wrapper'>
+                    <PopUpWrapper/>
+                    <div className='content-wrapper'>
+                        <div className='order-response__content col-lg-6 col-md-6 col-sm-8 col-xs-10 offset-lg-3 offset-md-3 offset-sm-2 offset-xs-1'>
+                            {/* <OrderSuccess/> */}
+                            <OrderFeedback
+                            message={message}
+                            displayedLayout={displayedLayout}
+                            />
+                        </div>
                     </div>
                 </div>
-            </div>
+            </GoogleAnalyticsLogger>
         );
     }
 }

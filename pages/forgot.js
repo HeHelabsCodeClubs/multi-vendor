@@ -3,9 +3,11 @@ import '../assets/styles/layouts/landing.scss';
 import '../assets/styles/layouts/auth.scss';
 import ForgotPasswordForm from '../components/views/forgotPassword/ForgotPasswordForm';
 import PopUpWrapper from '../components/reusable/PopUpWrapper';
+import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
 
 export default function Forgot() {
     return (
+        <GoogleAnalyticsLogger>
         <div className='landing-main-wrapper'>
             <Notifications />
             <PopUpWrapper/>
@@ -25,5 +27,6 @@ export default function Forgot() {
                 </div>
             </div>
         </div>
+        </GoogleAnalyticsLogger>
     );
 }

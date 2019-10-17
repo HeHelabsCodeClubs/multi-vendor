@@ -6,6 +6,7 @@ import SidemenuCategories from '../components/views/categories/SidemenuCategorie
 import MainContent from '../components/views/categories/MainContent';
 import { API_URL } from '../config';
 import TopStores from '../components/views/categories/TopStores';
+import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
 
 class Categories extends React.Component {
     constructor(props) {
@@ -166,6 +167,7 @@ class Categories extends React.Component {
         } = this.state;
         
 		return (
+            <GoogleAnalyticsLogger>
 			<Global
             updateCart={this.state.updateCart}
             openCart={openCartContent}
@@ -216,6 +218,7 @@ class Categories extends React.Component {
                     </div>
                 </div>
 			</Global>
+            </GoogleAnalyticsLogger>
 		);
 	}
 }

@@ -377,7 +377,13 @@ class SignupForm extends Component {
         return (
             <div>
                 {this.renderBreadCrumbs()}
-                <div className='auth-title'>Register</div>
+
+                {/* auth title codes */}
+                <div className="auth-title">
+                    <img src="https://res.cloudinary.com/hehe/image/upload/v1571155428/logistics-platform/images/Group_1005.svg" />
+                    <h5>Create HeHe Account</h5>
+                </div>
+
                 <MessageDisplayer 
                 display={inputIsInvalid ? true : false }
                 errorMessage={errorMessage}
@@ -458,7 +464,9 @@ class SignupForm extends Component {
                         inputWithError={inputWithError}
                     />
                     <div className='auth-button'>
-                        <button type='submit'>
+                        {/* Auth button hehe */}
+                        <button type="submit" className="auth-default-btn">
+                            <img src="https://res.cloudinary.com/hehe/image/upload/v1571155428/logistics-platform/images/Group_1391.svg" />
                             {this.getRegisterButtonText()}
                         </button>
                     </div>

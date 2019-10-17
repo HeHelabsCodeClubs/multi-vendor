@@ -8,6 +8,7 @@ import '../assets/styles/layouts/profile.scss';
 import fetch from 'isomorphic-unfetch';
 import { API_URL } from '../config';
 import { getClientAuthToken } from '../helpers/auth';
+import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
 
 class Profile extends Component {
     constructor(props) {
@@ -87,17 +88,19 @@ class Profile extends Component {
 
     render () {
         return (
-            <Global>
-                <div className="row reset-row profile-page">
-                    <div className="col-lg-3 col-md-3 col-sm-5 col-12 sidemenu">
-                        <SideProfile changeActivePage={this.changeActivePage} />
-                    </div>
+            <GoogleAnalyticsLogger>
+                <Global>
+                    <div className="row reset-row profile-page">
+                        <div className="col-lg-3 col-md-3 col-sm-5 col-12 sidemenu">
+                            <SideProfile changeActivePage={this.changeActivePage} />
+                        </div>
 
-                    <div className="col-lg-9 col-md-9 col-sm-7 col-12 main-content">
-                        {this.renderContentProfile()}
+                        <div className="col-lg-9 col-md-9 col-sm-7 col-12 main-content">
+                            {this.renderContentProfile()}
+                        </div>
                     </div>
-                </div>
-            </Global>
+                </Global>
+            </GoogleAnalyticsLogger>
         );
     }
 }
