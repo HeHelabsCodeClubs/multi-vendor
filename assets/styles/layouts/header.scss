@@ -374,9 +374,15 @@
                 }
             }
             .profile-name {
-                height: 3rem;
+                height: 5rem;
                 @include flexbox;
                 @include flexalignitems(center);
+                span {
+                    padding-right: .5rem;
+                    &:before {
+                        color: $orange-color-1;
+                    }
+                }
             }
             .profile-dropdown-wrapper {
                 position: absolute;
@@ -387,7 +393,7 @@
                 transition: all .5s ease-in-out;
             
                 .profile-dropdown {
-                    margin: 1rem 0 0 0;
+                    margin: 0;
                     background: $white-color;
                     box-shadow: 3px -6px 16px 0 rgba(0, 0, 0, 0.12);
                     border-radius: 0 0 0.4rem 0.4rem;
