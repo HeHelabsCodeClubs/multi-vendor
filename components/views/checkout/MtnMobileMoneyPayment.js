@@ -265,7 +265,6 @@ export default class MtnMobileMoneyPayment extends Component {
         }).then(async (res) => {
             try {
                 const response = await res.json();
-                console.log('response', response);
                 const { status, data, errors } = response;
                 if (status === 'success') {
                     const message = {
@@ -273,13 +272,16 @@ export default class MtnMobileMoneyPayment extends Component {
                     };
                     this.handleQueueMessage(message)
                 } else if (status === 'failure') {
-                    this.handleMoMoApiErrors(errors);
+                    this.handleMoMoApiErrors(errors, 'cleartimeout');
                 }
             } catch (err) {
                 if (err) {
                     console.log(err);
                     if (momoTransactionRequestStatus !== undefined) {
                         clearInterval(momoTransactionRequestStatus);
+                    }
+                    if (timeoutInterval !== undefined) {
+                        clearInterval(timeoutInterval);
                     }
                     this.onOrderCreationUnknownFailure(ORDER_CREATION_UNKWOWN_ERROR);
                 } 
@@ -289,6 +291,9 @@ export default class MtnMobileMoneyPayment extends Component {
                 console.log('err', err);
                 if (momoTransactionRequestStatus !== undefined) {
                     clearInterval(momoTransactionRequestStatus);
+                }
+                if (timeoutInterval !== undefined) {
+                    clearInterval(timeoutInterval);
                 }
                 onOrderCreationUnknownFailure(ORDER_CREATION_UNKWOWN_ERROR);
             }
@@ -332,8 +337,8 @@ export default class MtnMobileMoneyPayment extends Component {
         //     const { body } = message;
         //     const data = JSON.parse(body);
         //     if (data.Status) {
+            if (momoTransactionRequestStatus !== undefined) {
                 const { Status } = message;
-                console.log('listening with status', Status);
                 switch(Status) {
                     case 'Pending':
                         // handle pending state;
@@ -358,6 +363,10 @@ export default class MtnMobileMoneyPayment extends Component {
                         if (momoTransactionRequestStatus !== undefined) {
                             clearInterval(momoTransactionRequestStatus);
                         }
+
+                        if (timeoutInterval !== undefined) {
+                            clearInterval(timeoutInterval);
+                        }
                         const errorMessage = getMoMoErrorMessage("UNKOWN_ERROR");
                         this.props.toogleDisplayOverlay(
                             true, 
@@ -373,6 +382,8 @@ export default class MtnMobileMoneyPayment extends Component {
                         //client.disconnect(() => null);
 
                 }
+            } 
+               
         //     }
         // }
     }
@@ -430,11 +441,19 @@ export default class MtnMobileMoneyPayment extends Component {
                     />
                 );
                 MOMO_PAYMENT_UNRESPONSIVENESS_TIMEOUT = 0;
-                clearInterval(timeoutInterval);
+                if (timeoutInterval !== undefined) {
+                    clearInterval(timeoutInterval);
+                }
+
+                if (momoTransactionRequestStatus !== undefined) {
+                    clearInterval(momoTransactionRequestStatus);
+                    momoTransactionRequestStatus = undefined;
+                }
+                
                 /**
                  * Close socket connection
                  */
-                client.disconnect(() => null);
+                //client.disconnect(() => null);
             }
             
         }, 1000);
@@ -450,6 +469,7 @@ export default class MtnMobileMoneyPayment extends Component {
                 const { data: { mq } } =  response;
                 this.props.toogleDisplayOverlay(true, <MoMoPendingUserMessage />);
                 // this.connectToStomp(mq, orderID); // stopping the listening in socket for now
+                this.setTimerForUnResponsiveQueue();
                 momoTransactionRequestStatus = setInterval(() => {
                     this.getMoMoStatus(orderID, token);
                 }, 3000);
@@ -473,10 +493,15 @@ export default class MtnMobileMoneyPayment extends Component {
         }
     }
 
-    handleMoMoApiErrors(errors) {
+    handleMoMoApiErrors(errors, cl) {
         const errorMessage = errors.length !== 0 ?  getMoMoErrorMessage(errors[0]) : getMoMoErrorMessage("UNEXPECTED_ERROR");
         if (momoTransactionRequestStatus !== undefined) {
             clearInterval(momoTransactionRequestStatus);
+        }
+        if (cl !== undefined) {
+            if (timeoutInterval !== undefined) {
+                clearInterval(timeoutInterval);
+            }
         }
         this.props.toogleDisplayOverlay(
             true, 
