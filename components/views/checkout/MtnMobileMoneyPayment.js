@@ -26,6 +26,7 @@ var Stomp = require('stompjs');
 
 let MOMO_PAYMENT_UNRESPONSIVENESS_TIMEOUT = 0;
 let timeoutInterval = undefined;
+let momoTransactionRequestStatus = undefined;
 
 export default class MtnMobileMoneyPayment extends Component {
     constructor(props) {
@@ -60,6 +61,7 @@ export default class MtnMobileMoneyPayment extends Component {
         this.handlePaymentProcessingResponse = this.handlePaymentProcessingResponse.bind(this);
         this.handleMoMoApiErrors = this.handleMoMoApiErrors.bind(this);
         this.retryTransactionCallback = this.retryTransactionCallback.bind(this);
+        this.getMoMoStatus = this.getMoMoStatus.bind(this);
     }
     componentDidMount() {
         // get cart data on component load
@@ -170,8 +172,9 @@ export default class MtnMobileMoneyPayment extends Component {
                 const orderID = getOrderCookie();
                 if (orderID) {
                     // use already existing order
-                    this.onOrderCreationRetry(orderID);
-                    return;
+                    //this.onOrderCreationRetry(orderID);
+                    removeOrderDATACookie();
+                    //return;
                 }
 
                 this.createOrderOnTheApi(dataToSubmit, token);
@@ -247,6 +250,51 @@ export default class MtnMobileMoneyPayment extends Component {
         this.onOrderCreationSuccess(orderID);
     }
 
+    getMoMoStatus(orderId, token) {
+        const data = {
+            order_id: orderId
+        };
+        fetch(`${API_URL}/payments/momo/transaction`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(data)
+        }).then(async (res) => {
+            try {
+                const response = await res.json();
+                console.log('response', response);
+                const { status, data, errors } = response;
+                if (status === 'success') {
+                    const message = {
+                        Status: data.status
+                    };
+                    this.handleQueueMessage(message)
+                } else if (status === 'failure') {
+                    this.handleMoMoApiErrors(errors);
+                }
+            } catch (err) {
+                if (err) {
+                    console.log(err);
+                    if (momoTransactionRequestStatus !== undefined) {
+                        clearInterval(momoTransactionRequestStatus);
+                    }
+                    this.onOrderCreationUnknownFailure(ORDER_CREATION_UNKWOWN_ERROR);
+                } 
+            }
+        }).catch((err) => {
+            if (err) {
+                console.log('err', err);
+                if (momoTransactionRequestStatus !== undefined) {
+                    clearInterval(momoTransactionRequestStatus);
+                }
+                onOrderCreationUnknownFailure(ORDER_CREATION_UNKWOWN_ERROR);
+            }
+        });
+    }
+
     connectToStomp(channelCredentials, orderID) {
         const {
             ws_url,
@@ -280,11 +328,12 @@ export default class MtnMobileMoneyPayment extends Component {
     }
 
     handleQueueMessage(message, client) {
-        if (message.body) {
-            const { body } = message;
-            const data = JSON.parse(body);
-            if (data.Status) {
-                const { Status } = data;
+        // if (message.body) {
+        //     const { body } = message;
+        //     const data = JSON.parse(body);
+        //     if (data.Status) {
+                const { Status } = message;
+                console.log('listening with status', Status);
                 switch(Status) {
                     case 'Pending':
                         // handle pending state;
@@ -295,7 +344,10 @@ export default class MtnMobileMoneyPayment extends Component {
                         /**
                          * Close socket connection
                          */
-                        client.disconnect(() => null);
+                        //client.disconnect(() => null);
+                        if (momoTransactionRequestStatus !== undefined) {
+                            clearInterval(momoTransactionRequestStatus);
+                        }
                         this.props.toogleDisplayOverlay(true, <MoMoProcessedUserMessage />);
                         storeMoMoPaymentStatusCookie('Processed');
                         setTimeout(() => {
@@ -303,6 +355,9 @@ export default class MtnMobileMoneyPayment extends Component {
                         }, 500);
                         return;
                     default:
+                        if (momoTransactionRequestStatus !== undefined) {
+                            clearInterval(momoTransactionRequestStatus);
+                        }
                         const errorMessage = getMoMoErrorMessage("UNKOWN_ERROR");
                         this.props.toogleDisplayOverlay(
                             true, 
@@ -315,11 +370,11 @@ export default class MtnMobileMoneyPayment extends Component {
                         /**
                          * Close socket connection
                          */
-                        client.disconnect(() => null);
+                        //client.disconnect(() => null);
 
                 }
-            }
-        }
+        //     }
+        // }
     }
 
 
@@ -350,7 +405,7 @@ export default class MtnMobileMoneyPayment extends Component {
                 body: JSON.stringify(data)
             }).then(async (res) => {
                 const response = await res.json();
-                this.handlePaymentProcessingResponse(response, orderID);
+                this.handlePaymentProcessingResponse(response, orderID, token);
             }).catch ((err) => {
                 if (err) {
                     console.log('err', err);
@@ -385,7 +440,7 @@ export default class MtnMobileMoneyPayment extends Component {
         }, 1000);
     }
 
-    handlePaymentProcessingResponse(response, orderID) {
+    handlePaymentProcessingResponse(response, orderID, token) {
         const { status } = response;
         switch(status) {
             case 'success':
@@ -394,7 +449,10 @@ export default class MtnMobileMoneyPayment extends Component {
                  */
                 const { data: { mq } } =  response;
                 this.props.toogleDisplayOverlay(true, <MoMoPendingUserMessage />);
-                this.connectToStomp(mq, orderID);
+                // this.connectToStomp(mq, orderID); // stopping the listening in socket for now
+                momoTransactionRequestStatus = setInterval(() => {
+                    this.getMoMoStatus(orderID, token);
+                }, 3000);
                 break;
             case 'failure':
                 /**
@@ -417,6 +475,9 @@ export default class MtnMobileMoneyPayment extends Component {
 
     handleMoMoApiErrors(errors) {
         const errorMessage = errors.length !== 0 ?  getMoMoErrorMessage(errors[0]) : getMoMoErrorMessage("UNEXPECTED_ERROR");
+        if (momoTransactionRequestStatus !== undefined) {
+            clearInterval(momoTransactionRequestStatus);
+        }
         this.props.toogleDisplayOverlay(
             true, 
             <MoMoUserErrorMessage 
