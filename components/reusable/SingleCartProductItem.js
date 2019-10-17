@@ -50,8 +50,13 @@ export default class SingleCartProductItem extends Component {
             location.reload();
             return;
         }
-        callbackOne();
-        callbackTwo();
+        if (callbackOne !== undefined && typeof(callbackOne) == 'function') {
+            callbackOne();
+        }
+
+        if (callbackTwo !== undefined && typeof(callbackTwo) == 'function') {
+            callbackTwo();
+        }
     }
  
     renderProductPrice(product, productIndex) {
