@@ -17,7 +17,7 @@ app
 
         server.get('/order-complete/:payment', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(ua)) {
+            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(302, {
                     Location: mobileSiteUrl + '/order-complete/' + req.params.payment
                 });
@@ -30,7 +30,7 @@ app
 
         server.get('/process/:payment', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(ua)) {
+            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(302, {
                     Location: mobileSiteUrl + '/process/' + req.params.payment
                 });
@@ -43,7 +43,7 @@ app
 
         server.get('/sellers/:seller/products/:slug', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(ua)) {
+            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(302, {
                     Location: mobileSiteUrl + '/sellers/' + req.params.seller + '/products/' + req.params.slug
                 });
@@ -57,7 +57,7 @@ app
 
         server.get('/search-results/:search_term', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(ua)) {
+            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(302, {
                     Location: mobileSiteUrl + '/search-results/' + req.params.search_term
                 });
@@ -73,7 +73,7 @@ app
 
         server.get('/categories/:category_slug', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(ua)) {
+            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(302, {
                     Location: mobileSiteUrl + '/categories/' + req.params.category_slug
                 });
@@ -86,7 +86,7 @@ app
 
         server.get('/categories/:category_slug/:sub_cat_slug', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(ua)) {
+            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(302, {
                     Location: mobileSiteUrl + '/categories/' + req.params.category_slug + '/' + req.params.sub_cat_slug
                 });
@@ -100,7 +100,7 @@ app
 
         server.get('/categories/:category_slug/:sub_cat_slug/:sub_last_cat_slug', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(ua)) {
+            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(302, {
                     Location: mobileSiteUrl + '/categories/' + req.params.category_slug + '/' + req.params.sub_cat_slug + '/' + req.params.sub_last_cat_slug
                 });
@@ -115,7 +115,7 @@ app
 
         server.get('/invoice/:id', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(ua)) {
+            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(302, {
                     Location: mobileSiteUrl + '/invoice/' + req.params.id
                 });
@@ -128,7 +128,7 @@ app
 
         server.get('/profile/:page', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(ua)) {
+            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(302, {
                     Location: mobileSiteUrl + '/profile/' + req.params.page
                 });
@@ -145,7 +145,7 @@ app
 
         server.get('/checkout/:page', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(ua)) {
+            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(302, {
                     Location: mobileSiteUrl + '/checkout/' + req.params.page
                 });
@@ -167,7 +167,7 @@ app
 
         server.get('/p/:id', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(ua)) {
+            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(302, {
                     Location: mobileSiteUrl + '/p/' + req.params.id
                 });
@@ -180,7 +180,7 @@ app
 
         server.get('*', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(ua)) {
+            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(302, {
                     Location: mobileSiteUrl
                 });
