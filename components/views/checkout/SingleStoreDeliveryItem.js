@@ -87,8 +87,10 @@ export default class SingleStoreDeliveryItem extends Component {
                             }
                         }
                     } 
+                    const shipmentMethodsData = methodData !== '' ? methodData.split(',') : existingMethod.split(',');
                     this.setState({
                         shipmentMethod: methodData !== '' ? methodData : existingMethod,
+                        shipmentTotalPrice: Number(shipmentMethodsData[2]),
                         shipmentHasBeenSelected: true
                     });
                 }
