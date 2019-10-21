@@ -35,6 +35,15 @@ export default class SingleStoreDeliveryItem extends Component {
         this.validatedShipment = this.validatedShipment.bind(this);
     }
 
+    componentDidMount() {
+        const { storeData } = this.props;
+        this.setState({
+            store: storeData
+        }, () => {
+            this.setDefaultShipmentMethodIfInLocalStorage();
+        });
+    }
+
     componentWillReceiveProps(nextProps) {
         const { triggerValidation } = nextProps;
         if (triggerValidation) {
@@ -54,26 +63,36 @@ export default class SingleStoreDeliveryItem extends Component {
         }
     }
 
-    componentDidMount() {
-        const { storeData } = this.props;
-        this.setState({
-            store: storeData
-        }, () => {
-            this.setDefaultShipmentMethodIfInLocalStorage();
-        });
-    }
-
     setDefaultShipmentMethodIfInLocalStorage() {
         const { store: { slug } } = this.state;
+        const { updatedShipmentData } = this.props;
         if (slug !== undefined) {
             retrieveShipmentDataPerStoreSlug(slug, (existingMethod) => {
                 if (existingMethod !== '') {
+                    let methodData = '';
+                    if (updatedShipmentData.length !== 0) {
+                        for(let i = 0; i < updatedShipmentData.length; i++) {
+                            const methodData = existingMethod.split(',');
+                            if (methodData[4].trim() === updatedShipmentData[i].code.trim()) {
+                                const {
+                                    title,
+                                    description,
+                                    rate,
+                                    cart_shipping_id,
+                                    code
+                                } = updatedShipmentData[i];
+                                methodData = `${title},${description},${rate},${cart_shipping_id},${code}`;
+                                this.updateLocalShipmentData(methodData);
+                                break;
+                            }
+                        }
+                    } 
                     this.setState({
-                        shipmentMethod: existingMethod,
+                        shipmentMethod: methodData !== '' ? methodData : existingMethod,
                         shipmentHasBeenSelected: true
                     });
                 }
-            })
+            });
         }
     }
     showAllProducts() {
@@ -98,11 +117,11 @@ export default class SingleStoreDeliveryItem extends Component {
         });
     }
 
-    updateLocalShipmentData() {
+    updateLocalShipmentData(newUpdatedShipmentMethod) {
         const { store, shipmentMethod } = this.state;
         const data = {
             slug: store.slug,
-            method: shipmentMethod
+            method: newUpdatedShipmentMethod !== undefined ? newUpdatedShipmentMethod : shipmentMethod
         };
         storeShipmentInLocal(data, () => {
             // trigger update of shipment info in other components
@@ -165,11 +184,13 @@ export default class SingleStoreDeliveryItem extends Component {
     }
     renderShipmentMethodSelector() {
         const { store, shipmentMethod } = this.state;
+        const { updatedShipmentData } = this.props;
         const { shipment_methods } = store.info;
         if (shipment_methods.length == 0) {
             return null;
         }
-        const selectorData = shipment_methods.map((shipment_method, index) => {
+        const shipmentMethods = updatedShipmentData.length !== 0 ? updatedShipmentData : shipment_methods;
+        const selectorData = shipmentMethods.map((shipment_method, index) => {
             const { title, description, cart_shipping_id, rate, code } = shipment_method;
             return {
                 text: title,
