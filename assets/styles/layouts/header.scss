@@ -561,8 +561,7 @@
             padding-left: 0;
             margin-top: -0.25rem;
             margin-bottom: 0;
-            border-radius: 0 0 0 0.3rem !important;    
-            border-top: 1px solid $box-shadow-color;
+            border-radius: 0 0 0 0.3rem !important;
 
             &.nav__menu {
                 border-top: none;
@@ -1108,18 +1107,22 @@
 }
 .sub-category {
     position: absolute;
-    top: -0.05rem;
+    top: 0;
+    left: 100%;
     padding: 1rem 1rem 1rem 2rem;
-    margin-left: 21rem;
     height: auto;
     min-height: 100%;
     background: $white-color;
     z-index: 9;
-    min-width: 71rem;
+    width: 100vh;
+    max-width: calc(100vw - 20rem);
     visibility: hidden;
     border-left: 1px solid rgba(0, 0, 0, 0.16);
     border-top: 1px solid rgba(0, 0, 0, 0.16);
     border-radius: 0 0 0.3rem 0;
+    @media screen and (min-width: $tablet-min) and (max-width: $desktop-min) {
+        max-width: 57rem;
+    }
     h5 {
         margin: 2rem 0 1rem 0 !important; 
     }
@@ -1129,29 +1132,28 @@
         display: block;
         color: $black-color-3 !important;
     }
-    .menu-banners {
-        height: 100%;
-        @include flexbox;
-        @include flexdirection(column);
-        @include flexjustifycontent(center);
-
-    }
+    // .menu-banners {
+    //     height: 100%;
+    //     @include flexbox;
+    //     @include flexdirection(column);
+    //     @include flexjustifycontent(center);
+    // }
     .menu-img {
-        min-height: 25%;
-        &:nth-child(1) {
-            background: $green-color-2;
-            border-radius: 5px 5px 0 0;
-        }
-        &:nth-child(2) {
-            background: $black-color-2;
-        }
-        &:nth-child(3) {
-            background: $orange-color-1;
-        }
-        &:nth-child(4) {
-            background: $blue-1;
-            border-radius: 0 0 5px 5px;
-        }
+        // min-height: 25%;
+        // &:nth-child(1) {
+        //     background: $green-color-2;
+        //     border-radius: 5px 5px 0 0;
+        // }
+        // &:nth-child(2) {
+        //     background: $black-color-2;
+        // }
+        // &:nth-child(3) {
+        //     background: $orange-color-1;
+        // }
+        // &:nth-child(4) {
+        //     background: $blue-1;
+        //     border-radius: 0 0 5px 5px;
+        // }
         img {
             width: 100%;
         }
@@ -1159,6 +1161,12 @@
     .sub-wrapper {
         width: 33.3% !important;
         float: left;
+        @media screen and (min-width: $tablet-min) and (max-width: $desktop-min) {
+            width: 50% !important;
+            float: none;
+            display: inline-block;
+            vertical-align: top;
+        }
 
         &.services {
             width: 100% !important;
@@ -1179,22 +1187,32 @@
                         li {
                             display: inline-block;
                             max-width: 33%;
-                            min-height: 13rem;
-                            margin-right: 1rem;
-                            border: 1px solid $green-color-3;
-                            border-radius: 0.7rem !important;
-                            margin-top: 1rem;
-                            padding: 1rem;
+                            padding-right: 1rem;
+                            padding-top: 1rem;
                             text-align: center;
                             vertical-align: top;
+                            @media screen and (min-width: $tablet-min) and (max-width: $desktop-min) {
+                                max-width: 50%;
+                            }
                             &:last-child {
                                 margin-right: 0;
                             }
 
                             a {
+                                display: block;
+                                border: 1px solid $green-color-3;
+                                border-radius: 0.7rem !important;
+                                padding: 1rem;
+                                min-height: 13rem;
+                                @media screen and (min-width: $tablet-min) and (max-width: $desktop-min) {
+                                    min-height: 11rem;
+                                }
                                 img {
                                     height: 6rem;
                                     max-width: 100%;
+                                    @media screen and (min-width: $tablet-min) and (max-width: $desktop-min) {
+                                        height: 4rem;
+                                    }
                                 }
                             }
                         }

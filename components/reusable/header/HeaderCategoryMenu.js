@@ -138,63 +138,6 @@ class HeaderCategoryMenu extends React.Component {
                     </div>
                 );
             });
-
-            // const servicesLayout = (<div 
-            //     key="services-request"
-            //     className='sub-wrapper'>
-            //         <div
-            //         className='sub-cat-wrapper'
-            //         >
-            //             <div className="services-title-container">
-            //                 <h2>SHYPT</h2>
-            //                 <h5>We deliver!</h5>
-            //             </div>
-            //             <div className="services-content-container">
-            //                 <p>
-            //                 Have a long to-do list? Focus on your priorities and let us go miles for you on the rest of the activities.
-            //                 </p>
-            //                 <ul>
-            //                     <li>
-            //                         <a>
-            //                             <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/cart_shop_ico.svg"/>
-            //                             <h5>Online shopping</h5>
-            //                         </a>
-            //                     </li>
-            //                     <li>
-            //                         <a>
-            //                             <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/dry_cleaning_ico.svg"/>
-            //                             <h5>Dry-cleaning pickup & drop-off/Laundry</h5>
-            //                         </a>
-            //                     </li>
-            //                     <li>
-            //                         <a>
-            //                             <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/Gift_ico.svg"/>
-            //                             <h5>Gift shopping/wrapping delivery</h5>
-            //                         </a>
-            //                     </li>
-            //                     <li>
-            //                         <a>
-            //                             <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/package_ico.svg"/>
-            //                             <h5>package delivery</h5>
-            //                         </a>
-            //                     </li>
-            //                     <li>
-            //                         <a>
-            //                             <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/envelope_ico.svg"/>
-            //                             <h5>Parcel delivery/pickup</h5>
-            //                         </a>
-            //                     </li>
-            //                     <li>
-            //                         <a>
-            //                             <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/Truck_other_ico.svg"/>
-            //                             <h5>Others</h5>
-            //                         </a>
-            //                     </li>
-            //                 </ul>
-            //             </div>
-            //         </div>
-            //     </div>)
-            //     parentCategoryLayout.push(servicesLayout);
            
             return parentCategoryLayout;
         }
@@ -225,10 +168,10 @@ class HeaderCategoryMenu extends React.Component {
                             </a>
                             <div className='sub-category'>
                                 <div className='row'>
-                                    <div className='col-lg-8 col-md-9 col-sm-8 col-12'>
+                                    <div className='col-lg-8 col-md-7 col-sm-8 col-12'>
                                         {this.renderCategorySubCategories(slug, children)}
                                     </div>
-                                    <div className='col-lg-4 col-md-4 col-sm-4 col-12'>
+                                    <div className='col-lg-4 col-md-5 col-sm-4 col-12'>
                                         <div className="menu-banners">
                                             <div className='menu-img'>
                                                 <img src='https://res.cloudinary.com/hehe/image/upload/v1564149056/multi-vendor/Group_1284_2x.png' />
@@ -250,91 +193,91 @@ class HeaderCategoryMenu extends React.Component {
                     )
             });
 
-            // categoryLayout.unshift(
-            //     <span className="nav__submenu-item " key="hehe-services" >
-            //         <a href="#" className='sub-menu__item-a'>
-            //             <img src="https://res.cloudinary.com/hehe/image/upload/v1571155428/logistics-platform/images/Group_1005.svg" className={`cat-icon`} />
-            //             <h5> Request other services</h5>
-            //         </a>
-            //         <div className='sub-category'>
-            //             <div className='row'>
-            //                 <div className='col-lg-8 col-md-9 col-sm-8 col-12'>
-            //                 <div 
-            //                     key="services-request"
-            //                     className='sub-wrapper services'>
-            //                         <div
-            //                         className='sub-cat-wrapper'
-            //                         >
-            //                             <div className="services-title-container">
-            //                                 <h2>SHYPT</h2>
-            //                                 <h5>We deliver!</h5>
-            //                             </div>
-            //                             <div className="services-content-container">
-            //                                 <p>
-            //                                 Have a long to-do list? Focus on your priorities and let us go miles for you on the rest of the activities.
-            //                                 </p>
-            //                                 <ul>
-            //                                     <li>
-            //                                         <a>
-            //                                             <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/cart_shop_ico.svg"/>
-            //                                             <h5>Online shopping</h5>
-            //                                         </a>
-            //                                     </li>
-            //                                     <li>
-            //                                         <a>
-            //                                             <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/dry_cleaning_ico.svg"/>
-            //                                             <h5>Dry-cleaning pickup & drop-off/Laundry</h5>
-            //                                         </a>
-            //                                     </li>
-            //                                     <li>
-            //                                         <a>
-            //                                             <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/Gift_ico.svg"/>
-            //                                             <h5>Gift shopping/wrapping delivery</h5>
-            //                                         </a>
-            //                                     </li>
-            //                                     <li>
-            //                                         <a>
-            //                                             <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/package_ico.svg"/>
-            //                                             <h5>package delivery</h5>
-            //                                         </a>
-            //                                     </li>
-            //                                     <li>
-            //                                         <a>
-            //                                             <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/envelope_ico.svg"/>
-            //                                             <h5>Parcel delivery/pickup</h5>
-            //                                         </a>
-            //                                     </li>
-            //                                     <li>
-            //                                         <a>
-            //                                             <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/Truck_other_ico.svg"/>
-            //                                             <h5>Others</h5>
-            //                                         </a>
-            //                                     </li>
-            //                                 </ul>
-            //                             </div>
-            //                         </div>
-            //                     </div>
-            //                 </div>
-            //                 <div className='col-lg-4 col-md-4 col-sm-4 col-12'>
-            //                     <div className="menu-banners">
-            //                         <div className='menu-img'>
-            //                             <img src='https://res.cloudinary.com/hehe/image/upload/v1564149056/multi-vendor/Group_1284_2x.png' />
-            //                         </div>
-            //                         <div className='menu-img'>
-            //                             <img src='https://res.cloudinary.com/hehe/image/upload/v1564149055/multi-vendor/Group_1281_2x.png' />
-            //                         </div>
-            //                         <div className='menu-img'>
-            //                             <img src='https://res.cloudinary.com/hehe/image/upload/v1564149055/multi-vendor/Group_1282_2x.png' />
-            //                         </div>
-            //                         <div className='menu-img'>
-            //                             <img src='https://res.cloudinary.com/hehe/image/upload/v1565166464/multi-vendor/Group_1283_2x_2.png' />
-            //                         </div>
-            //                     </div>
-            //                 </div>
-            //             </div>
-            //         </div>
-            //     </span>
-            // );
+            categoryLayout.unshift(
+                <span className="nav__submenu-item " key="hehe-services" >
+                    <a href="#" className='sub-menu__item-a'>
+                        <img src="https://res.cloudinary.com/hehe/image/upload/v1571155428/logistics-platform/images/Group_1005.svg" className={`cat-icon`} />
+                        <h5> Request other services</h5>
+                    </a>
+                    <div className='sub-category'>
+                        <div className='row'>
+                            <div className='col-lg-8 col-md-7 col-sm-8 col-12'>
+                            <div 
+                                key="services-request"
+                                className='sub-wrapper services'>
+                                    <div
+                                    className='sub-cat-wrapper'
+                                    >
+                                        <div className="services-title-container">
+                                            <h2>SHYPT</h2>
+                                            <h5>We deliver!</h5>
+                                        </div>
+                                        <div className="services-content-container">
+                                            <p>
+                                            Have a long to-do list? Focus on your priorities and let us go miles for you on the rest of the activities.
+                                            </p>
+                                            <ul>
+                                                <li>
+                                                    <a>
+                                                        <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/cart_shop_ico.svg"/>
+                                                        <h5>Online shopping</h5>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a>
+                                                        <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/dry_cleaning_ico.svg"/>
+                                                        <h5>Dry-cleaning pickup & drop-off/Laundry</h5>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a>
+                                                        <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/Gift_ico.svg"/>
+                                                        <h5>Gift shopping/wrapping delivery</h5>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a>
+                                                        <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/package_ico.svg"/>
+                                                        <h5>package delivery</h5>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a>
+                                                        <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/envelope_ico.svg"/>
+                                                        <h5>Parcel delivery/pickup</h5>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a>
+                                                        <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/Truck_other_ico.svg"/>
+                                                        <h5>Others</h5>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='col-lg-4 col-md-5 col-sm-4 col-12'>
+                                <div className="menu-banners">
+                                    <div className='menu-img'>
+                                        <img src='https://res.cloudinary.com/hehe/image/upload/v1564149056/multi-vendor/Group_1284_2x.png' />
+                                    </div>
+                                    <div className='menu-img'>
+                                        <img src='https://res.cloudinary.com/hehe/image/upload/v1564149055/multi-vendor/Group_1281_2x.png' />
+                                    </div>
+                                    <div className='menu-img'>
+                                        <img src='https://res.cloudinary.com/hehe/image/upload/v1564149055/multi-vendor/Group_1282_2x.png' />
+                                    </div>
+                                    <div className='menu-img'>
+                                        <img src='https://res.cloudinary.com/hehe/image/upload/v1565166464/multi-vendor/Group_1283_2x_2.png' />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </span>
+            );
             
             return categoryLayout;
         }
