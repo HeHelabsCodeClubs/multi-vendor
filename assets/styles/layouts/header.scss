@@ -727,7 +727,7 @@
             @include flexbox;
             @include flexalignitems(center);
             @include flexjustifycontent(flex-start);
-            padding: 1rem;
+            padding: 0 1rem;
             border-bottom: .1rem solid $gray-color-2;
             min-height: 4rem;
 
@@ -740,6 +740,15 @@
                         content: '';
                         border: 0.5rem solid $orange-color-1;
                         border-right: 1.1rem solid $white-color;
+                        height: 1px;
+                        position: absolute;
+                        right: -1px;
+                        z-index: 10;
+                    }
+                    &:before {
+                        content: '';
+                        min-height: 6rem;
+                        background: $gray-color-13;
                     }
                     .cat-name-menu {
                         color: $white-color !important;
@@ -747,6 +756,10 @@
                 }
                 .cat-name-menu {
                     color: $white-color !important;
+                }
+                .cat-img-menu {
+                    max-width: 2rem;
+                    min-height: 3rem;
                 }
                 
             }
@@ -757,25 +770,35 @@
             .sub-menu__item-a {
                 color: $black-color-3 !important;
                 @include flexbox;
-                @include flexjustifycontent(center);
+                @include flexjustifycontent(flex-start);
                 @include flexalignitems(center);
                 h5 {
                     margin: 0;
                     padding: 0;
+                    min-width: fit-content;
                 }
                 img {
-                    width: 1.3rem;
-                    height: 1.3rem;
+                    max-width: 1.5rem;
+                    min-height: 2.5rem;
                     margin-right: .7rem;
                 }
             }
             &:hover {
                 background: $gray-color-13;
-                &:after {
+                // &:after {
+                //     content: '';
+                //     height: 1px;
+                //     border: 0.5rem solid $gray-color-13;
+                //     border-right: 1.1rem solid $white-color;
+                //     position: absolute;
+                //     right: -1px;
+                //     z-index: 10;
+                // }
+                &:before {
                     content: '';
-                    height: 1px;
-                    border: 0.5rem solid $gray-color-13;
-                    border-right: 1.1rem solid $white-color;
+                    min-height: 4rem;
+                    width: 1px;
+                    background: $gray-color-13;
                     position: absolute;
                     right: -1px;
                     z-index: 10;
