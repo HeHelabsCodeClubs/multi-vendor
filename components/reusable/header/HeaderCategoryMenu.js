@@ -164,7 +164,7 @@ class HeaderCategoryMenu extends React.Component {
                             className='sub-menu__item-a'>
                             {/* <span className={`${IconClassName} menu-item-icon`} /> */}
                             <img src={IconUrl} className={`cat-icon`} />
-                            <h5>{name}</h5>
+                            <h5 className="cat-name-menu">{name}</h5>
                             </a>
                             <div className='sub-category'>
                                 <div className='row'>
@@ -194,10 +194,10 @@ class HeaderCategoryMenu extends React.Component {
             });
 
             categoryLayout.unshift(
-                <span className="nav__submenu-item " key="hehe-services" >
+                <span className="nav__submenu-item shypt-item" key="hehe-services" >
                     <a href="#" className='sub-menu__item-a'>
-                        <img src="https://res.cloudinary.com/hehe/image/upload/v1571155428/logistics-platform/images/Group_1005.svg" className={`cat-icon`} />
-                        <h5> Request other services</h5>
+                        <img src="https://res.cloudinary.com/hehe/image/upload/v1571155428/logistics-platform/images/Group_1391.svg" className={`cat-icon`} />
+                        <h5 className="cat-name-menu"> Request other services</h5>
                     </a>
                     <div className='sub-category'>
                         <div className='row'>

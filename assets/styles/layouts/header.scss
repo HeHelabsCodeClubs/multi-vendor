@@ -725,15 +725,35 @@
         .nav__submenu-item {
             cursor: pointer;
             @include flexbox;
-            @include flexalignitems(left);
+            @include flexalignitems(center);
             @include flexjustifycontent(flex-start);
             padding: 1rem;
             border-bottom: .1rem solid $gray-color-2;
+            min-height: 4rem;
+
+            &.shypt-item {
+                min-height: 6rem;
+                background: $orange-color-1;
+                &:hover {
+                    background-color: $orange-color-1;
+                    &:after {
+                        content: '';
+                        border: 0.5rem solid $orange-color-1;
+                        border-right: 1.1rem solid $white-color;
+                    }
+                    .cat-name-menu {
+                        color: $white-color !important;
+                    }
+                }
+                .cat-name-menu {
+                    color: $white-color !important;
+                }
+                
+            }
 
             &:nth-last-child(1) {
                 border-bottom: none !important;
             }
-
             .sub-menu__item-a {
                 color: $black-color-3 !important;
                 @include flexbox;
@@ -741,7 +761,7 @@
                 @include flexalignitems(center);
                 h5 {
                     margin: 0;
-                    padding: 0.5rem 0 0 0;
+                    padding: 0;
                 }
                 img {
                     width: 1.3rem;
@@ -750,7 +770,19 @@
                 }
             }
             &:hover {
-                background: $gray-color-2;
+                background: $gray-color-13;
+                &:after {
+                    content: '';
+                    height: 1px;
+                    border: 0.5rem solid $gray-color-13;
+                    border-right: 1.1rem solid $white-color;
+                    position: absolute;
+                    right: -1px;
+                    z-index: 10;
+                }
+                .cat-name-menu {
+                    color: $green-color-2 !important;
+                }
                 .sub-category {
                     visibility: visible;
                 }
@@ -1166,6 +1198,15 @@
             float: none;
             display: inline-block;
             vertical-align: top;
+        }
+
+        a {
+            margin: 0;
+            padding: .2rem .7rem;
+            border-radius: 3px;
+            &:hover {
+                background: $green-color-3;
+            }
         }
 
         &.services {
