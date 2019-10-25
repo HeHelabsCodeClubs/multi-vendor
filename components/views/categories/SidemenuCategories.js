@@ -147,7 +147,7 @@ class SidemenuCategories extends Component {
 
     render() {
         return (
-            <div>
+            <div className='side-categories-wrapper'>
                 <div className="mobile-invisible side-menu__item Side-menu Side-menu-default  children active">
                         {this.renderActiveParentCategory()}
                     <div>
