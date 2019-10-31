@@ -85,7 +85,7 @@ class TopCategories extends React.Component {
 			]
 		};
 		return (
-			<div className='maximum-width'>
+			<div className='maximum-width cats'>
                 <div className='multi-vendor-categories-wrapper'>
                     <Slider {...settings}>
                        {this.renderCategories()}

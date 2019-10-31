@@ -70,13 +70,15 @@ class TopStores extends Component {
 		const { visible, sellers } = this.state;
 		return (
 			<div className='multi-vendor-stores-wrapper'>
-				<div className='col-lg-1 col-md-2 col-sm-2 col-reset line-display stores-title'>Stores: </div>
-				<div className="col-lg-10 col-md-9 col-sm-9 col-reset stores-wrapper">
-					{this.renderSellers()}
+				<div className='stores-wrapper-wrapper'>
+					<div className='col-lg-1 col-md-2 col-sm-2 col-reset line-display stores-title'>Stores: </div>
+					<div className="col-lg-10 col-md-9 col-sm-9 col-reset stores-wrapper">
+						{this.renderSellers()}
+					</div>
+					{visible < sellers.length &&
+						<button onClick={this.loadMore} type="button" className="load-more">More +</button>
+					}
 				</div>
-				{visible < sellers.length &&
-					<button onClick={this.loadMore} type="button" className="load-more">More +</button>
-				}
 		  	</div>
 		);
 	}
