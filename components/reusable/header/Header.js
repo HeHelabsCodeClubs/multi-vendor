@@ -12,6 +12,13 @@ import {
     APP_BETA_NOTIFICATION
 } from '../../../config';
 
+function validate(searchedValue) {
+    // true means invalid, so our conditions got reversed
+    return {
+        searchedValue: searchedValue.length === 0
+    };
+}
+
 class Header extends React.Component {
     constructor(props) {
         super(props);
@@ -21,6 +28,9 @@ class Header extends React.Component {
             prevScrollpos: 0,
             visible: true,
             searchedValue: '',
+            touched: {
+                searchedValue: false
+            },
             alertVisibility: true
         };
         this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
@@ -53,6 +63,12 @@ class Header extends React.Component {
             this.cartShouldUpdate();
         }
     }
+
+    handleBlur = field => evt => {
+        this.setState({
+            touched: { ...this.state.touched, [field]: true }
+        });
+    };
 
     cartShouldUpdate() {
         this.setState({
@@ -195,8 +211,17 @@ class Header extends React.Component {
 
 
     render() {
-        const { alertVisibility } = this.state;
+        const { alertVisibility, searchedValue } = this.state;
         let wrapperClassName = (cookie.get(APP_BETA_NOTIFICATION) === '1' && !alertVisibility) ? "header-panel" : "header-panel top-alert";
+        
+        const errors = validate(searchedValue);
+
+        const shouldMarkError = field => {
+            const hasError = errors[field];
+            const shouldShow = this.state.touched[field];
+            return hasError ? shouldShow : false;
+        };
+
         return (
             <div className="header-panel">
                 <Head>
@@ -262,16 +287,20 @@ class Header extends React.Component {
                                 <HeaderCategoryMenu />
                             </div>
                             <div className='col-lg-5 col-md-5 col-sm-2 col-11 search-container'>
-                                <form className='main-search' onSubmit={this.handleSearchValueSubmission}>
+                                <form 
+                                    className='main-search' 
+                                    onSubmit={this.handleSearchValueSubmission}
+                                >
 
                                     <div className={classnames("search-suggestion", {
                                     "dismiss-onscroll": !this.state.visible
                                     })}
                                     >
                                         <SearchDropdown 
-                                        updateParentSearchTerm={this.updateSearchValue}
+                                            className={shouldMarkError("searchedValue") ? "has-error" : ""}
+                                            handleBlur={this.handleBlur}
+                                            updateParentSearchTerm={this.updateSearchValue}
                                         />
-
                                     </div>
 
                                     {/* <input type="text" placeholder="Search store or product" /> */}
@@ -305,8 +334,8 @@ class Header extends React.Component {
                                         </div>
                                     </div>
                                     <Cart 
-                                    updateCart={this.state.updateCart}
-                                    openCart={this.props.openCart}
+                                        updateCart={this.state.updateCart}
+                                        openCart={this.props.openCart}
                                     />
                                 </div>
                             </div>
