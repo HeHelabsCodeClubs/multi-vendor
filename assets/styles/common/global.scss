@@ -661,3 +661,34 @@ select {
         }
         
     }
+
+// Statuses
+.badge-txt {
+    // text-align: center;
+    // border-radius: 1rem;
+    // padding: 0.3rem 1rem;
+    // display: inline;
+    &.delivered {
+        background: $green-color-4 !important;
+        color: $green-color-2 !important;
+    }
+    &.canceled {
+        background: $order-status-canceled-bac-color !important;
+        color: $order-status-canceled-color !important;
+    }
+
+    &.pending {
+        background: $order-status-pending-bac-color !important;
+        color: $order-status-pending-color !important;
+    }
+    
+    &.pending-payment {
+        background: $order-status-pending-payment-bac-color !important;
+        color: $order-status-pending-payment-color !important;
+    }
+}
+
+// default primary button styles
+.primry-btn {
+    @extend .default-button-styles;
+}

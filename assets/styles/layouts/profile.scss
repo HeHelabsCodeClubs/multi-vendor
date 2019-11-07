@@ -67,6 +67,7 @@
                     padding-bottom: 1rem;
                     th {
                         color: $black-color-3;
+                        padding: 1rem 0.5rem;
 
                         &.mobile-invisible {
                             display: table-cell !important;
@@ -105,8 +106,8 @@
                     }
 
                     .badge-txt {
-                        color: $orange-color-1;
-                        background-color: $orange-color-3;
+                        // color: $orange-color-1;
+                        // background-color: $orange-color-3;
                         display: inline;
                         border-radius: 5px;
                         padding: 0 .7rem .1rem;
@@ -129,6 +130,10 @@
         }
 
         .order-detail {
+            .content-header {
+                @include flexbox;
+                @include flexjustifycontent(space-between);
+            }
             .card-content {
                 background-color: $white-color;
                 padding: 1rem;

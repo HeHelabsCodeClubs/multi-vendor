@@ -165,17 +165,41 @@ app
             });
         })
 
-        server.get('/p/:id', (req, res) => {
+        // server.get('/p/:id', (req, res) => {
+        //     const ua = req.header('user-agent');
+        //     if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(ua)) {
+        //         res.writeHead(302, {
+        //             Location: mobileSiteUrl + '/p/' + req.params.id
+        //         });
+        //         res.end();
+        //     }
+        //     const actualPage = '/post'
+        //     const queryParams = { title: req.params.id }
+        //     app.render(req, res, actualPage, queryParams)
+        // })
+
+        server.get('/profile/orders', (req, res) => {
             const ua = req.header('user-agent');
             if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(ua)) {
                 res.writeHead(302, {
-                    Location: mobileSiteUrl + '/p/' + req.params.id
+                    Location: mobileSiteUrl + '/profile/orders'
                 });
                 res.end();
             }
-            const actualPage = '/post'
-            const queryParams = { title: req.params.id }
-            app.render(req, res, actualPage, queryParams)
+            return app.render(req, res, '/profile');
+        })
+
+        server.get('/profile/orders/:id', (req, res) => {
+            const ua = req.header('user-agent');
+            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(ua)) {
+                res.writeHead(302, {
+                    Location: mobileSiteUrl + '/profile/orders/' + req.params.id
+                });
+                res.end();
+            }
+            return app.render(req, res, '/order-detail', { 
+                id: req.params.id
+            });
         })
 
         server.get('*', (req, res) => {
@@ -193,6 +217,8 @@ app
             if (err) throw err
             console.log('> Ready on http://localhost:' + port)
         })
+
+        
     })
     .catch(ex => {
         console.error(ex.stack)

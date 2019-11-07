@@ -45,6 +45,7 @@ class Index extends React.Component {
 		const { 
 			data
 		} = response;
+		console.log('response is', JSON.stringify(response));
         return {
 		   promoAds: data.adds.promo.data,
 		   type: data.adds.promo.type,
