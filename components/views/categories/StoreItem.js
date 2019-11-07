@@ -50,26 +50,40 @@ class StoreItem extends Component {
 		if (e !== undefined) {
             e.preventDefault();
         }
+        const { showCloseBtn, seller } = this.state;
+
+        if (!showCloseBtn) {
+            this.setState({
+                showCloseBtn: true
+            }, () => {
+                this.props.updateActiveSellerRecord(seller.seller_id, 'add');
+            });
+            return;
+        }
+
         this.setState({
-            showCloseBtn: true
+            showCloseBtn: false
+        }, () => {
+            this.props.updateActiveSellerRecord(seller.seller_id, 'remove');
         });
-        const { seller } = this.state;
-        const { ids } = this.props;
-        ids.push(seller.seller_id);
-        const sellersIds = ids.toString();
-        this.setState({
-            ids: sellersIds
-        })
-        this.handleUpdateProductsPerFilteredSeller();
-        const actionUrl = `/categories?category_slug=${this.props.parentCategorySlug}`;
-        const asUrl = `/categories/${this.props.parentCategorySlug}`;
-        Router.push(actionUrl, asUrl);
+       
+        // const { ids } = this.props;
+        // ids.push(seller.seller_id);
+        // const sellersIds = ids.toString();
+        // this.setState({
+        //     ids: sellersIds
+        // })
+        // this.handleUpdateProductsPerFilteredSeller();
+        // const actionUrl = `/categories?category_slug=${this.props.parentCategorySlug}`;
+        // const asUrl = `/categories/${this.props.parentCategorySlug}`;
+        // Router.push(actionUrl, asUrl);
 	}
 	
 	handleUpdateProductsPerFilteredSeller() {
 		this.props.displayLoader(() => {
 			// update products
             this.getSellerProducts((newProducts) => {
+                console.log('seller filtered products ', newProducts);
                 this.props.displayLoader(() => {
                     this.props.updateProducts(newProducts);
                 });
@@ -119,7 +133,10 @@ class StoreItem extends Component {
         const { showCloseBtn } = this.state;
         if (showCloseBtn) {
             return (
-                <div className='close-store-filter' onClick={this.closeStoreFilter}>
+                <div 
+                className='close-store-filter' 
+                onClick={this.handleSellerClick}
+                >
                     <span className='icon-Path-58'/>
                 </div> 
             );
@@ -132,8 +149,9 @@ class StoreItem extends Component {
 		if (seller) {
             return (
                 <span className='seller-wrapper'>
-                    <a 
-                    href={`/categories/${this.props.parentCategorySlug}`} 
+                    <a
+                    href="#"
+                    //href={`/categories/${this.props.parentCategorySlug}`} 
                     onClick={this.handleSellerClick}
                     >
                         <div className='line-display single-store'>

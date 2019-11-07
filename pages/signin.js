@@ -1,8 +1,7 @@
-import '../assets/styles/layouts/landing.scss';
-import '../assets/styles/layouts/auth.scss';
 import SignInForm from '../components/views/signin/SignInForm';
 import PopUpWrapper from '../components/reusable/PopUpWrapper';
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
+import '../assets/styles/main.scss';
 
 export default function Signin() {
     return (

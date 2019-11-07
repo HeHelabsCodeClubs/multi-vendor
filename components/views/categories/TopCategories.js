@@ -18,6 +18,15 @@ class TopCategories extends React.Component {
         });
     }
 
+    componentWillReceiveProps(nextProps) {
+        const { categories } = nextProps;
+        if (categories) {
+            this.setState({
+                categories
+            });
+        }
+    }
+
     renderCategories() {
         const { categories } = this.state;
         if (categories) {
@@ -25,20 +34,20 @@ class TopCategories extends React.Component {
                 const { slug } = category;
                 const activeClassName = (Router.router.query.category_slug === slug) ? 'is-active' : '';
                 return (
-                    // <Link
-                    // href={`/categories/${slug}`}
-                    // >
+                    <Link
+                    href={`/categories?category_slug=${slug}`}
+                    as={`/categories/${slug}`}
+                    >
                         <a
                         key={slug}
                         title={category.name}
-                        href={`/categories/${slug}`}
                         className={`single-category ${activeClassName}`}>
                             <img src={category.icon_url} />
                             <span
                             title={category.name}
                             >{LimitString(category.name, 20)}</span>
                         </a>
-                    // </Link>
+                    </Link>
                 );
             });
             return categoriesLayout;

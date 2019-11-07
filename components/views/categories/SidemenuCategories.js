@@ -22,7 +22,7 @@ class SidemenuCategories extends Component {
         this.openDropdownMenu = this.openDropdownMenu.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const { subCategories } = this.props;
         this.setState({
             categories: subCategories
@@ -31,9 +31,11 @@ class SidemenuCategories extends Component {
 
     componentWillReceiveProps(nextProps) {
         const { subCategories } = nextProps;
-        this.setState({
-            categories: subCategories
-        });
+        if (subCategories) {
+            this.setState({
+                categories: subCategories
+            }); 
+        }
     }
 
     openSidebar(isOpen = true) {

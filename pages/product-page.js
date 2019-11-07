@@ -21,6 +21,7 @@ import Breadcrumb from '../components/reusable/Breadcrumb';
 import {isProductOutOfStock } from '../helpers/cart_functionality_helpers';
 import Head from 'next/head';
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
+import '../assets/styles/main.scss';
  
 class ProductPage extends React.Component {
     constructor(props) {

@@ -1,12 +1,12 @@
 import fetch from 'isomorphic-unfetch';
 import Global from '../components/reusable/Global';
-import '../assets/styles/layouts/categories.scss';
 import TopCategories from '../components/views/categories/TopCategories';
 import SidemenuCategories from '../components/views/categories/SidemenuCategories';
 import MainContent from '../components/views/categories/MainContent';
 import { API_URL } from '../config';
 import TopStores from '../components/views/categories/TopStores';
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
+import '../assets/styles/main.scss';
 
 class Categories extends React.Component {
     constructor(props) {
@@ -23,7 +23,9 @@ class Categories extends React.Component {
             openCartContent: false,
             ids: [],
             showCloseBtn: false,
-            updateSellers: false
+            updateSellers: false,
+            subCategoriesData: [],
+            sellersData: []
         };
         this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
         this.updateProductsData = this.updateProductsData.bind(this);
@@ -63,7 +65,15 @@ class Categories extends React.Component {
     }
 
     componentDidMount() {
-        const { activeParentCategory, activeSubCategory, activeSubLastCategory, categoriesData, subCategoriesData, productsData } = this.props;
+        const { 
+            activeParentCategory, 
+            activeSubCategory, 
+            activeSubLastCategory, 
+            categoriesData, 
+            subCategoriesData, 
+            productsData,
+            sellersData
+        } = this.props;
         if (activeParentCategory !== '') {
             let parentCategoryName = '';
             let subCategoryName = '';
@@ -84,8 +94,42 @@ class Categories extends React.Component {
         }
 
         this.setState({
-            products: productsData
+            products: productsData,
+            subCategoriesData,
+            sellersData
         });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { 
+            productsData, 
+            subCategoriesData,
+            activeParentCategory,
+            sellersData
+        } = nextProps;
+        if (productsData !== this.state.productsData) {
+            this.setState({
+                products: productsData
+            });
+        }
+
+        if (subCategoriesData !== this.state.subCategoriesData) {
+            this.setState({
+                subCategoriesData
+            });
+        }
+
+        if (activeParentCategory !== this.state.activeParentCategory) {
+            this.setState({
+                activeParentCategory
+            });
+        }
+
+        if (sellersData !== this.state.sellersData) {
+            this.setState({
+                sellersData
+            });
+        }
     }
 
     cartShouldUpdate() {
@@ -95,10 +139,17 @@ class Categories extends React.Component {
     }
     
     updateProductsData(data) {
-        this.setState({
-            products: data.products,
-            paginationData: data.meta
-        });
+        if (this.state.products !== data.products) {
+            this.setState({
+                products: data.products
+            });
+        }
+
+        if (this.state.paginationData !== data.meta) {
+            this.setState({
+                paginationData: data.meta
+            });
+        }
     }
 
     updateSellersData(data) {
@@ -150,10 +201,8 @@ class Categories extends React.Component {
 	render() {
         const { 
             categoriesData,
-            subCategoriesData,
             parentCategorySlug,
-            metaProductsData,
-            sellersData
+            metaProductsData
         } = this.props;
         const { 
             showLoader,
@@ -163,9 +212,10 @@ class Categories extends React.Component {
             updateSellers,
             paginationData,
             openCartContent,
-            ids
+            ids,
+            subCategoriesData,
+            sellersData
         } = this.state;
-        
 		return (
             <GoogleAnalyticsLogger>
 			<Global
@@ -192,7 +242,7 @@ class Categories extends React.Component {
                                 />
                             </div>
                             <div className='col-lg-9 col-md-8 col-sm-8 col-12 col-reset main-content-wrapper'>
-                                <TopStores 
+                                {/* <TopStores 
                                 sellers={sellersData} 
                                 parentCategorySlug={parentCategorySlug}
                                 displayLoader={this.handleDisplayLoader}
@@ -200,7 +250,7 @@ class Categories extends React.Component {
                                 sellersIds={ids}
                                 paginationData={paginationData}
                                 updateSellers={updateSellers}
-                                />
+                                /> */}
                                 <MainContent 
                                 products={products}
                                 sellersIds={ids}
@@ -212,6 +262,7 @@ class Categories extends React.Component {
                                 cartShouldUpdate={this.cartShouldUpdate}
                                 metaProductsData={metaProductsData}
                                 openCart={this.HandleCartContentOpening}
+                                sellers={sellersData}
                                 />
                             </div>
                         </div>

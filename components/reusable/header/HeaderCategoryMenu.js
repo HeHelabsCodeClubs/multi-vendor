@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-unfetch';
+import Link from 'next/link';
 import { API_URL } from '../../../config';
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
@@ -110,13 +111,19 @@ class HeaderCategoryMenu extends React.Component {
                 if (children.length > 0) {
                     categoryChildLayout = children.map((childCat) => {
                         return (
-                            <a 
-                            href={`/categories/${parent_category_slug}/${parentCat.slug}/${childCat.slug}`}
-                            key={childCat.slug}
-                            className='sub-cat-item'
+                            <Link
+                            href={`/categories/?category_slug=${parent_category_slug}&sub_cat_slug=${parentCat.slug}&sub_last_cat_slug=${childCat.slug}`}
+                            as={`/categories/${parent_category_slug}/${parentCat.slug}/${childCat.slug}`}
                             >
-                            {childCat.name}
-                            </a>
+                                <a 
+                                //href={`/categories/${parent_category_slug}/${parentCat.slug}/${childCat.slug}`}
+                                key={childCat.slug}
+                                className='sub-cat-item'
+                                >
+                                {childCat.name}
+                                </a>
+                            </Link>
+                            
                         );
                     });
                 }
@@ -124,12 +131,17 @@ class HeaderCategoryMenu extends React.Component {
                     <div 
                     key={parentCat.slug}
                     className='sub-wrapper'>
-                        <a
-                        href={`/categories/${parent_category_slug}/${parentCat.slug}`}
-                        className='sub-cat-title'
+                        <Link
+                        href={`/categories/?category_slug=${parent_category_slug}&sub_cat_slug=${parentCat.slug}`}
+                        as={`/categories/${parent_category_slug}/${parentCat.slug}`}
                         >
-                            {parentCat.name}
-                        </a>
+                            <a
+                            //href={`/categories/${parent_category_slug}/${parentCat.slug}`}
+                            className='sub-cat-title'
+                            >
+                                {parentCat.name}
+                            </a>
+                        </Link>
                         <div
                         className='sub-cat-wrapper'
                         >
@@ -159,13 +171,17 @@ class HeaderCategoryMenu extends React.Component {
                 //const links = icon_class_name.split(',');
                     return (
                         <span className="nav__submenu-item " key={id} >
-                            <a 
-                            href={`/categories/${slug}`} 
-                            className='sub-menu__item-a'>
-                            {/* <span className={`${IconClassName} menu-item-icon`} /> */}
-                            <img src={IconUrl} className={`cat-icon`} />
-                            <h5 className="cat-name-menu">{name}</h5>
-                            </a>
+                            <Link
+                            href={`/categories?category_slug=${slug}`}
+                            as={`/categories/${slug}`}
+                            >
+                                <a  
+                                className='sub-menu__item-a'>
+                                {/* <span className={`${IconClassName} menu-item-icon`} /> */}
+                                <img src={IconUrl} className={`cat-icon`} />
+                                <h5 className="cat-name-menu">{name}</h5>
+                                </a>
+                            </Link>
                             <div className='sub-category'>
                                 <div className='row'>
                                     <div className='col-lg-8 col-md-7 col-sm-8 col-12'>
@@ -290,10 +306,16 @@ class HeaderCategoryMenu extends React.Component {
                 const IconClassName = icon_class_name !== '' ? icon_class_name : 'icon-KITCHENWARE-ICO';
                 return (
                     <span className="nav__submenu-item " key={category.id} >
-                        <a href={`/categories/${slug}`} className='sub-menu__item-a'>
-                            <span className={`${IconClassName} menu-item-icon`} />
-                            {category.name}
-                        </a>
+                        <Link
+                        href={`/categories?category_slug=${slug}`}
+                        as={`/categories/${slug}`}
+                        >
+                            <a className='sub-menu__item-a'>
+                                <span className={`${IconClassName} menu-item-icon`} />
+                                {category.name}
+                            </a>
+                        </Link>
+                        
                     </span>
                 )
             });

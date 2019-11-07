@@ -19,6 +19,13 @@ class TopStores extends Component {
         });
 	}
 
+	componentWillReceiveProps(nextProps) {
+		const { sellers } = nextProps;
+        this.setState({
+            sellers
+        });
+	}
+
 	loadMore() {
 		this.setState((prev) => {
 		  return {
@@ -40,10 +47,10 @@ class TopStores extends Component {
 						<StoreItem 
 						Key={seller_id}
 						seller={seller}
-						ids={sellersIds}
-						parentCategorySlug={parentCategorySlug}
-						displayLoader={displayLoader}
-						updateProducts={updateProducts}
+						//ids={sellersIds}
+						//parentCategorySlug={parentCategorySlug}
+						//displayLoader={displayLoader}
+						//updateProducts={updateProducts}
 						/>
 					);
 				});
@@ -54,11 +61,11 @@ class TopStores extends Component {
 					<StoreItem 
 					Key={seller.seller_id}
 					seller={seller}
-					ids={sellersIds}
-					parentCategorySlug={parentCategorySlug}
-					displayLoader={displayLoader}
-					updateProducts={updateProducts}
-					updateSellers={updateSellers}
+					//ids={sellersIds}
+					//parentCategorySlug={parentCategorySlug}
+					//displayLoader={displayLoader}
+					//updateProducts={updateProducts}
+					//updateSellers={updateSellers}
 					/>
 				);
 			});

@@ -8,7 +8,7 @@ import {
 } from '../../../helpers/cart_functionality_helpers';
 import { LOCAL_SHIPMENTS_KEY } from '../../../config';
 import isObjectEmpty from '../../../helpers/is_object_empty';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+// import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import { 
     retrieveShipmentDataPerStoreSlug, 
     removeShipmentInLocal 
