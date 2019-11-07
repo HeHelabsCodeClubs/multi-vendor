@@ -18,7 +18,7 @@ class TopStores extends Component {
 	render() {
 		return (
 			<div className='top-stores-wrapper'>
-                <div className='top-stores-title maximum-width'>Shop on Kigali's Top Stores</div>
+                <div className='top-stores-title maximum-width'>Shop At Kigali's Top Stores</div>
                 <div className='top-stores-content maximum-width'>
                     <div className='stores-wrapper'>
                         <div className='row reset-row category-wrapper'>
