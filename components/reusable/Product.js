@@ -1,5 +1,5 @@
 
-import '../../assets/styles/layouts/product.scss';
+import Router from 'next/router';
 import ImageLoader from './ImageLoader';
 import renderProductIdentifier from '../../helpers/render_product_identifier';
 import renderProductPrice from '../../helpers/render_product_price';
@@ -28,6 +28,7 @@ class Product extends React.Component {
         this.incrementCartItemProduct = this.incrementCartItemProduct.bind(this);
         this.productIsAllowedToGoInCart = this.productIsAllowedToGoInCart.bind(this);
         this.productIsNotAllowedToGoInCart = this.productIsNotAllowedToGoInCart.bind(this);
+        this.handlePageProductRedirection = this.handlePageProductRedirection.bind(this);
     }
 
     incrementCartItemProduct(product) {
@@ -144,6 +145,19 @@ class Product extends React.Component {
             );
         }
     }
+
+    handlePageProductRedirection(e) {
+        if (e) {
+            e.preventDefault();
+        }
+        console.log('i am getting here');
+        const { product } = this.props;
+        Router.push(
+            `/sellers?seller=${product.store.slug}&static=products&slug=${product.slug}`,
+            `/sellers/${product.store.slug}/products/${product.slug}`
+        );
+    }
+
     renderProduct(product) {
         if (product) {
             const { description, name } = product;
@@ -151,7 +165,10 @@ class Product extends React.Component {
             const displayedProductTitle = (productDescription !== '') ? `${name} - ${productDescription}` : name;
             return (
                 <div>
-                    <a href={`/sellers/${product.store.slug}/products/${product.slug}`}>
+                    <a 
+                    href={`/sellers/${product.store.slug}/products/${product.slug}`}
+                    onClick={this.handlePageProductRedirection}
+                    >
                         <ImageLoader 
                             imageClassName='product-img' 
                             imageUrl={product.image_url}

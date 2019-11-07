@@ -41,16 +41,17 @@ app
             });
         })
 
-        server.get('/sellers/:seller/products/:slug', (req, res) => {
+        server.get('/sellers/:seller/:static/:slug', (req, res) => {
             const ua = req.header('user-agent');
             if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(301, {
-                    Location: mobileSiteUrl + '/sellers/' + req.params.seller + '/products/' + req.params.slug
+                    Location: mobileSiteUrl + '/sellers/' + req.params.seller + '/' + req.params.static + '/' + req.params.slug
                 });
                 res.end();
             }
             return app.render(req, res, '/product-page', { 
                 seller: req.params.seller,
+                static: req.params.static,
                 slug: req.params.slug
             });
         })

@@ -1,4 +1,3 @@
-import InfiniteScroll from 'react-infinite-scroll-component';
 import _ from 'lodash';
 import React, { Component } from 'react';
 import SpecialProduct from '../../reusable/SpecialProduct';

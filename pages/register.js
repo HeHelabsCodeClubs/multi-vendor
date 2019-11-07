@@ -3,8 +3,7 @@ import Notifications from 'react-notify-toast';
 import SignupForm from '../components/views/signup/SignupForm';
 import PopUpWrapper from '../components/reusable/PopUpWrapper';
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
-import '../assets/styles/layouts/landing.scss';
-import '../assets/styles/layouts/auth.scss';
+import '../assets/styles/main.scss';
 
 class Register extends Component {
     render () {

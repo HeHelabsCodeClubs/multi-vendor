@@ -1,9 +1,9 @@
-@import './common/fonts';
-@import './common/variables';
-@import './common/global';
-@import './common/inherited';
-@import './common/mixins';
-@import './common/types';
+@import 'common/fonts';
+@import 'common/variables';
+@import 'common/global';
+@import 'common/inherited';
+@import 'common/mixins';
+@import 'common/types';
 
 @import '~bootstrap/scss/bootstrap';
 @import '~slick-carousel/slick/slick.css';
@@ -12,3 +12,20 @@
 @import '~react-sidemenu/dist/side-menu.css';
 @import '~react-tabs/style/react-tabs.css';
 @import '~react-responsive-select/dist/ReactResponsiveSelect.css';
+
+// layouts
+
+@import 'layouts/header.scss';
+@import 'layouts/auth.scss';
+@import 'layouts/footer.scss';
+@import 'layouts/homepage';
+@import 'layouts/landing';
+@import 'layouts/categories';
+@import 'layouts/product';
+@import 'layouts/seller';
+@import 'layouts/checkout';
+@import 'layouts/profile';
+@import 'layouts/orderResponse';
+@import 'layouts/searchResults';
+@import 'layouts/invoice';
+@import 'layouts/error';

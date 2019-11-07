@@ -1,4 +1,5 @@
 import Router from 'next/router';
+import Link from 'next/Link';
 import Select2 from 'react-select2-wrapper';
 import cookie from 'js-cookie';
 import Cart from './Cart';
@@ -12,6 +13,13 @@ import {
     APP_BETA_NOTIFICATION
 } from '../../../config';
 
+function validate(searchedValue) {
+    // true means invalid, so our conditions got reversed
+    return {
+        searchedValue: searchedValue.length === 0
+    };
+}
+
 class Header extends React.Component {
     constructor(props) {
         super(props);
@@ -21,6 +29,9 @@ class Header extends React.Component {
             prevScrollpos: 0,
             visible: true,
             searchedValue: '',
+            touched: {
+                searchedValue: false
+            },
             alertVisibility: true
         };
         this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
@@ -53,6 +64,12 @@ class Header extends React.Component {
             this.cartShouldUpdate();
         }
     }
+
+    handleBlur = field => evt => {
+        this.setState({
+            touched: { ...this.state.touched, [field]: true }
+        });
+    };
 
     cartShouldUpdate() {
         this.setState({
@@ -195,8 +212,17 @@ class Header extends React.Component {
 
 
     render() {
-        const { alertVisibility } = this.state;
+        const { alertVisibility, searchedValue } = this.state;
         let wrapperClassName = (cookie.get(APP_BETA_NOTIFICATION) === '1' && !alertVisibility) ? "header-panel" : "header-panel top-alert";
+        
+        const errors = validate(searchedValue);
+
+        const shouldMarkError = field => {
+            const hasError = errors[field];
+            const shouldShow = this.state.touched[field];
+            return hasError ? shouldShow : false;
+        };
+
         return (
             <div className="header-panel">
                 <Head>
@@ -241,12 +267,16 @@ class Header extends React.Component {
                                 </div>
                                 
                                 <span className='site-logo'>
-                                    <a href='/' className="mobile-invisible">
-                                        <img src='https://res.cloudinary.com/hehe/image/upload/v1564428498/multi-vendor/NEW_HEHE_LOGOS-Final_logos_LANDSCAPE_B2C_BETA_LANDSCAPE_B2C_BETA_2.svg' />
-                                    </a>
-                                    <a href='/' className="mobile-visible">
-                                        <img src='https://res.cloudinary.com/hehe/image/upload/v1563286307/multi-vendor/HeHe_Favicon.png' />
-                                    </a>
+                                    <Link href='/'>
+                                        <a className="mobile-invisible">
+                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1564428498/multi-vendor/NEW_HEHE_LOGOS-Final_logos_LANDSCAPE_B2C_BETA_LANDSCAPE_B2C_BETA_2.svg' />
+                                        </a>
+                                    </Link>
+                                    <Link href='/'>
+                                        <a className="mobile-visible">
+                                            <img src='https://res.cloudinary.com/hehe/image/upload/v1563286307/multi-vendor/HeHe_Favicon.png' />
+                                        </a>
+                                    </Link>
                                 </span>
                                 <span className='location-dropdown'>
                                     <Select2
@@ -262,16 +292,20 @@ class Header extends React.Component {
                                 <HeaderCategoryMenu />
                             </div>
                             <div className='col-lg-5 col-md-5 col-sm-2 col-11 search-container'>
-                                <form className='main-search' onSubmit={this.handleSearchValueSubmission}>
+                                <form 
+                                    className='main-search' 
+                                    onSubmit={this.handleSearchValueSubmission}
+                                >
 
                                     <div className={classnames("search-suggestion", {
                                     "dismiss-onscroll": !this.state.visible
                                     })}
                                     >
                                         <SearchDropdown 
-                                        updateParentSearchTerm={this.updateSearchValue}
+                                            className={shouldMarkError("searchedValue") ? "has-error" : ""}
+                                            handleBlur={this.handleBlur}
+                                            updateParentSearchTerm={this.updateSearchValue}
                                         />
-
                                     </div>
 
                                     {/* <input type="text" placeholder="Search store or product" /> */}
@@ -305,8 +339,8 @@ class Header extends React.Component {
                                         </div>
                                     </div>
                                     <Cart 
-                                    updateCart={this.state.updateCart}
-                                    openCart={this.props.openCart}
+                                        updateCart={this.state.updateCart}
+                                        openCart={this.props.openCart}
                                     />
                                 </div>
                             </div>

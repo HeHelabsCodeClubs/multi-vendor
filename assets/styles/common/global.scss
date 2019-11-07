@@ -21,14 +21,14 @@ body {
     min-height: 100vh;
     position: relative;
     width: 100%;
-    padding-bottom: 37rem !important;
-    overflow-x: hidden !important;
+    padding-bottom: 37rem;
+    overflow-x: hidden;
 
     @media screen and (max-width: $mobile-md-lg) {
-        padding-bottom: 86rem !important;
+        padding-bottom: 86rem;
     }
     @media screen and (min-width: $mobile-md-lg) and (max-width: $mobile-lg) {
-        padding-bottom: 58rem !important;
+        padding-bottom: 58rem;
     }
 }
 .maximum-width {
@@ -641,7 +641,7 @@ select {
         color: $white-color !important;
         border-style: initial;
         height: 60px;
-        padding: 7px 15px;
+        // padding: 7px 15px;
         outline: none !important;
         font-family: 'Harmonia Sans Pro SemiBd';
         font-size: 15px;
