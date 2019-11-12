@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Router from 'next/router';
+import localforage from 'localforage';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import OrderContent from '../components/views/profile/OrderContent';
 import SideProfile from "../components/views/profile/SideProfile";
 import Global from '../components/reusable/Global';
 import '../assets/styles/layouts/profile.scss';
 import fetch from 'isomorphic-unfetch';
-import { API_URL } from '../config';
+import { API_URL, CART_ITEMS_KEY } from '../config';
 import { getClientAuthToken, getTokenValue } from '../helpers/auth';
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
 
@@ -20,11 +21,8 @@ class OrderDetailPage extends Component {
             orderShippingAddress: {},
             orderBillingAddress: {},
             orderItems: [],
-            newcartItem: {},
-            newCartContent: {}
         };
         this.handleReorder = this.handleReorder.bind(this);
-        this.updateNewCartItems = this.updateNewCartItems.bind(this);
     }
     static async getInitialProps({ req, res }) {
         const token = req ? getTokenValue(req.headers.cookie) : getClientAuthToken();
@@ -57,7 +55,6 @@ class OrderDetailPage extends Component {
 
     componentDidMount() {
         const { customerOrdersData, orderDetailsInfo, orderPayments, orderShippingAddress, orderBillingAddress, orderItems } = this.props;
-        
         if (customerOrdersData) {
             this.setState({
                 customerOrdersData,
@@ -70,36 +67,69 @@ class OrderDetailPage extends Component {
         }
     }
 
-    updateNewCartItems() {
-        const {customerOrdersData, newCartContent} = this.state;
-        if (Object.keys(customerOrdersData).length !== 0) {
-            const cartContent = customerOrdersData.items;
-            var newCart = {};
-            Object.values(cartContent).forEach(value =>{
-                const storeName =  value.store_info.store.name;
-                const products =  value.products;
-                newCart[storeName] = products;  
-                
-            })
-            this.setState({
-                newCartContent: newCart
-            })
-            console.log('new cart items are', newCartContent);
-            window.localStorage.setItem('CART_ITEMS', JSON.stringify(newCartContent));
-        }
-    }
-
     handleReorder() {
         // clear cart
-        window.localStorage.removeItem('CART_ITEMS');
+        localforage.removeItem(CART_ITEMS_KEY).then((data) => {
+            const {customerOrdersData} = this.state;
 
-        // clear shipping methods
+            var newCart = {};
+            if (Object.keys(customerOrdersData).length !== 0) {
+                const cartContent = customerOrdersData.items;
 
-        // update new cart
-        this.updateNewCartItems();
-        
-    
-        // Update shipping methods
+                Object.values(cartContent).forEach(value =>{
+                    const { name, url, icon } = value.store_info.store;
+                    const orderProducts = value.products;
+
+                    var products = {};
+                    
+                    for ( let i = 0; i < orderProducts.length; i++ ) {
+                        const {name, price, qty_ordered, } = orderProducts[i];
+                        const product_name = {
+                            name,
+                            cart_image_url: '',
+                            has_attributes: 0,
+                            price,
+                            quantity: qty_ordered,
+                            stock: 100,
+                            has_discount: 0,
+                            special_price: 0,
+                            discount_percent: 0,
+                            attributes: 
+                                {
+                                    short_description: "<p>Amazing Kid’s Scooter</p>",
+                                    description: "<p>Amazing Kid’s Scooter</p>",
+                                    meta_title: "",
+                                    meta_keywords: "",
+                                    meta_description: "Amazing Kid’s Scooter",
+                                    weight: "12"
+                                }
+                        }
+                        products[name] = product_name;
+                    }
+
+                    const info = {
+                        name,
+                        url,
+                        icon,
+                        shipment_methods: []
+                    }
+                    const storeDetails = {
+                        info,
+                        products
+                    }
+                    newCart[name] = storeDetails;  
+                })
+            }
+            console.log('items are', newCart);
+            console.log('order items are', customerOrdersData.items);
+
+            localforage.setItem(CART_ITEMS_KEY, newCart).then((data) => {
+                Router.replace('/checkout/addresses');
+            })
+
+        }).catch((err) => {
+            console.log(err);
+        });
 
     }
 
