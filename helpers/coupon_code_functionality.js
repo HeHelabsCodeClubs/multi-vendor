@@ -1,4 +1,5 @@
 import localforage from 'localforage';
+import { updatedCartItemOnApi } from './sync';
 import { 
     DISCOUNT_DATA,
     UNABLE_TO_GET_DISCOUNT_DATA,
@@ -19,6 +20,11 @@ export const storeCouponCodeInLocalStorage = (couponData, callback) => {
         if (callback !== undefined) {
             callback();
         }
+        /**
+		 * Update cart items on API
+		 */
+        updatedCartItemOnApi();
+        
     }).catch((err) => {
         if(err) {
             throw UNABLE_TO_SAVE_DISCOUNT_DATA;
@@ -94,32 +100,29 @@ export const calculateDiscount = (totalItemsPrice, totalShippingPrice, discountD
                 discount_percent
             }
         } = discountData;
-    
-        //if (Number(used_on_order) === 1) {
-            if (Number(is_fixed_amount) === 1) {
-                if (Number(on_order) === 1) {
-                    productsTotalAmount = productsTotalAmount - discount;
-                }
-    
-                if (Number(on_shipping) === 1) {
-                    totalShippingAmount = totalShippingAmount - discount;
-                } 
-    
-                return productsTotalAmount + totalShippingAmount;
+        if (Number(is_fixed_amount) === 1) {
+            if (Number(on_order) === 1) {
+                productsTotalAmount = productsTotalAmount - discount;
             }
-    
-            if (Number(is_configurable) === 1) {
-                if (Number(on_order) === 1) {
-                    productsTotalAmount = Math.floor((productsTotalAmount * Number(discount_percent)) / 100);
-                }
-    
-                if (Number(on_shipping) === 1) {
-                    totalShippingAmount = Math.floor((totalShippingAmount * Number(discount_percent)) / 100);
-                } 
-    
-                return productsTotalAmount + totalShippingAmount;
+
+            if (Number(on_shipping) === 1) {
+                totalShippingAmount = totalShippingAmount - discount;
+            } 
+
+            return productsTotalAmount + totalShippingAmount;
+        }
+
+        if (Number(is_configurable) === 1) {
+            if (Number(on_order) === 1) {
+                productsTotalAmount = Math.floor((productsTotalAmount * Number(discount_percent)) / 100);
             }
-        //}
+
+            if (Number(on_shipping) === 1) {
+                totalShippingAmount = Math.floor((totalShippingAmount * Number(discount_percent)) / 100);
+            } 
+
+            return productsTotalAmount + totalShippingAmount;
+        }
     }
 
     return productsTotalAmount + totalShippingAmount;
@@ -147,21 +150,19 @@ export const getDiscountAmount = (totalItemsPrice, totalShippingPrice, discountD
             }
         } = discountData;
     
-        //if (Number(used_on_order) === 1) {
-            if (Number(is_fixed_amount) === 1) {
-                return discount;
+        if (Number(is_fixed_amount) === 1) {
+            return discount;
+        }
+
+        if (Number(is_configurable) === 1) {
+            if (Number(on_order) === 1) {
+                return Math.floor((totalItemsPrice * Number(discount_percent)) / 100);
             }
-    
-            if (Number(is_configurable) === 1) {
-                if (Number(on_order) === 1) {
-                    return Math.floor((totalItemsPrice * Number(discount_percent)) / 100);
-                }
-    
-                if (Number(on_shipping) === 1) {
-                    return Math.floor((totalShippingPrice * Number(discount_percent)) / 100);
-                } 
-            }
-        //}
+
+            if (Number(on_shipping) === 1) {
+                return Math.floor((totalShippingPrice * Number(discount_percent)) / 100);
+            } 
+        }
     }
 
     return 0;
@@ -185,7 +186,6 @@ export const getCouponDataFromApi = (coupon_code, callback) => {
             if (callback !== undefined) {
                 callback(response);
             }
-            // console.log('response', response.status_code);
         } catch (err) {
             if (err) {
                 console.log(err);

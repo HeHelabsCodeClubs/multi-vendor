@@ -8,10 +8,11 @@ import InputField from '../../reusable/InputField';
 import MessageDisplayer from '../../reusable/MessageDisplayer';
 import { getValidatedInputErrorMessage } from '../../../helpers/validation';
 import { setPageAsVisited } from '../../../helpers/checkout_page_visits';
+import { getUpdatedCartItemFromApi } from '../../../helpers/sync';
 import { 
     storeTokenInLocalStorage, 
     storeAuthUserInfoInLocalStorage,
-    redirectUserToAfterLoginPage
+    redirectUserToAfterLoginPage,
 } from '../../../helpers/auth';
 import {
     setDiscountForCustomerFirstPurchase
@@ -231,8 +232,10 @@ class SignInForm extends Component {
                     storeTokenInLocalStorage(access_token, expires_in);
                     storeAuthUserInfoInLocalStorage(user);
                     setDiscountForCustomerFirstPurchase(user);
-                    setPageAsVisited('account'); // set checkout page account as visited
-                    redirectUserToAfterLoginPage(redirectPageAfterLogin);
+                    getUpdatedCartItemFromApi(() => {
+                        setPageAsVisited('account'); // set checkout page account as visited
+                        redirectUserToAfterLoginPage(redirectPageAfterLogin);
+                    });
                 } else {
                     this.performOnUserAuthFailure();
                 }

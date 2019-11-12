@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import isObjectEmpty from '../../../helpers/is_object_empty';
-import { 
-    singleStoreProductsCount,
-    singleStoreTotalPrice
-} from '../../../helpers/cart_functionality_helpers';
 import {
     retrieveShipmentPricePerStoreSlug
 } from '../../../helpers/shipment_method_functionality_helpers';
+import { 
+    singleStoreProductsCount,
+    singleStoreTotalPrice,
+    countSingleStoreCartItems,
+    calculateMartStorePackagingFee
+} from '../../../helpers/cart_functionality_helpers';
 
 export default class SingleStoreOrderSummary extends Component {
     constructor(props) {
@@ -17,6 +19,7 @@ export default class SingleStoreOrderSummary extends Component {
         };
         this.renderContent = this.renderContent.bind(this);
         this.updateTotalShipmentPrice = this.updateTotalShipmentPrice.bind(this);
+        this.renderPackagingFee = this.renderPackagingFee.bind(this);
     }
     componentWillReceiveProps(nextProps) {
         const { triggerUpdateForSingleStoreShippingPrice } = nextProps;
@@ -45,6 +48,22 @@ export default class SingleStoreOrderSummary extends Component {
                 totalShipmentPrice: totalPrice
             });
         }
+    }
+
+    renderPackagingFee(store) {
+        const { slug, products } = store;
+        if (slug === 'mart') {
+            const storeItemsQuantity = countSingleStoreCartItems(products);
+            const packagingFee = calculateMartStorePackagingFee(Number(storeItemsQuantity));
+            return (
+                <div 
+                className='shipping'>
+                    <span className='light-title'>Packaging Fee: </span>{`Rwf ${packagingFee}`}
+                </div>
+            );
+        }
+
+        return null;
     }
     renderContent() {
         const { store, totalShipmentPrice } = this.state;
@@ -110,7 +129,9 @@ export default class SingleStoreOrderSummary extends Component {
             const storeProductsCount = singleStoreProductsCount(store);
             const productsCountText = storeProductsCount === 1 ? `(${storeProductsCount} Item from ${store.info.name} store)` : `(${storeProductsCount} Items from ${store.info.name} store)`;
             const storeTotalPrice = singleStoreTotalPrice(store);
-            const finalTotalPrice = storeTotalPrice + totalShipmentPrice;
+            const storeItemsQuantity = slug === 'mart' ? countSingleStoreCartItems(storeProducts) : 0;
+            const packagingFee = slug === 'mart' ? calculateMartStorePackagingFee(Number(storeItemsQuantity)) : 0;
+            const finalTotalPrice = storeTotalPrice + totalShipmentPrice + packagingFee;
             storeLayout.push(
 
                 <div 
@@ -127,16 +148,10 @@ export default class SingleStoreOrderSummary extends Component {
                     <div className="store-products">
                         {productsLayout}
                     </div>
-                
-                {/* <div className='gift-block'>
-                    <div>
-                        <input type='text' placeholder='Gift certificate or promo code' />
-                        <button>Apply</button>
-                    </div>
-                </div> */}
                 <div>
                     <div className='subtotal'><span className='light-title'>Subtotal:</span> {`Rwf ${storeTotalPrice}`}</div>
                     <div className='shipping'><span className='light-title'>Shipping:</span>  {`Rwf ${totalShipmentPrice}`}</div>
+                    {this.renderPackagingFee(store)}
                     <div className='total'><span className='total-t'><span className='light-title'>Total:</span>  {`Rwf ${finalTotalPrice}`}</span></div>
                 </div>
             </div>

@@ -7,10 +7,10 @@ export const PLATFORM_CLIENT_SECRET = 'sy71st8Eg4PjgCpHGq25kmC5EbrRvdrF30DSemgL'
 export const COUNTRY_API_URL = 'http://battuta.medunes.net/api';
 export const COUNTRY_API_KEY = '46545b12aaa7048c8390dfe80c396937';
 export const ORDER_DATA_TOKEN = 'ORDER_DATA';
-export const APP_DOMAIN='https://hehe.rw';
-export const APP_CARD_PAYMENT_RETURN_URL='https://hehe.rw/order-complete/card'
+export const APP_DOMAIN='http://hehe.rw';
+export const APP_CARD_PAYMENT_RETURN_URL='http://hehe.rw/order-complete/card'
 export const PAYMENT_STATUS_TOKEN = 'PAYMENT_STATUS';
-export const SITE_GOOGLE_ANALYTICS_ID = 'UA-148530757-1';
+export const SITE_GOOGLE_ANALYTICS_ID = 'UA-111662450-3';
 export const FIRST_USER_PURCHASE_PROMO_CODE = 'dmmpromo';
 
 // local storage variables
