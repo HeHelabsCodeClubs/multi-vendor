@@ -3,12 +3,11 @@ import Router from 'next/router';
 import SideProfile from "../components/views/profile/SideProfile";
 import Global from '../components/reusable/Global';
 import OrderRow from '../components/views/profile/OrderRow';
-// import OrderDetail from "../components/views/profile/OrderDetail";
-import '../assets/styles/layouts/profile.scss';
 import fetch from 'isomorphic-unfetch';
 import { API_URL } from '../config';
 import { getClientAuthToken, getTokenValue } from '../helpers/auth';
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
+import '../assets/styles/main.scss';
 
 class Profile extends Component {
     constructor(props) {

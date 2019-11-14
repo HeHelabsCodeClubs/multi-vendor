@@ -5,11 +5,11 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import OrderContent from '../components/views/profile/OrderContent';
 import SideProfile from "../components/views/profile/SideProfile";
 import Global from '../components/reusable/Global';
-import '../assets/styles/layouts/profile.scss';
 import fetch from 'isomorphic-unfetch';
 import { API_URL, CART_ITEMS_KEY } from '../config';
-import { getClientAuthToken, getTokenValue } from '../helpers/auth';
+import { getClientAuthToken, getTokenValue, getUserAuthenticatedInfo } from '../helpers/auth';
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
+import '../assets/styles/main.scss';
 
 class OrderDetailPage extends Component {
     constructor(props) {
@@ -21,6 +21,7 @@ class OrderDetailPage extends Component {
             orderShippingAddress: {},
             orderBillingAddress: {},
             orderItems: [],
+            authuser: {}
         };
         this.handleReorder = this.handleReorder.bind(this);
     }
@@ -68,10 +69,8 @@ class OrderDetailPage extends Component {
     }
 
     handleReorder() {
-        // clear cart
+        const { customerOrdersData} = this.state
         localforage.removeItem(CART_ITEMS_KEY).then((data) => {
-            const {customerOrdersData} = this.state;
-
             var newCart = {};
             if (Object.keys(customerOrdersData).length !== 0) {
                 const cartContent = customerOrdersData.items;
@@ -84,27 +83,96 @@ class OrderDetailPage extends Component {
                     
                     for ( let i = 0; i < orderProducts.length; i++ ) {
                         const {name, price, qty_ordered, } = orderProducts[i];
-                        const product_name = {
-                            name,
-                            cart_image_url: '',
-                            has_attributes: 0,
-                            price,
-                            quantity: qty_ordered,
-                            stock: 100,
-                            has_discount: 0,
-                            special_price: 0,
-                            discount_percent: 0,
-                            attributes: 
+
+                        const has_attributes = 0;
+                        
+                        if (has_attributes === 0 ) {
+                            const attributes = {
+                                short_description: "<p>Amazing Kid’s Scooter</p>",
+                                description: "<p>Amazing Kid’s Scooter</p>",
+                                meta_title: "",
+                                meta_keywords: "",
+                                meta_description: "Amazing Kid’s Scooter",
+                                weight: "12"
+                            }
+                            const product_name = {
+                                name,
+                                cart_image_url: '',
+                                has_attributes: 0,
+                                price,
+                                quantity: qty_ordered,
+                                stock: 100,
+                                has_discount: 0,
+                                special_price: 0,
+                                discount_percent: 0,
+                                attributes                                
+                            };
+                            products[name] = product_name;
+
+                        } else {
+                            const meta = [
                                 {
-                                    short_description: "<p>Amazing Kid’s Scooter</p>",
-                                    description: "<p>Amazing Kid’s Scooter</p>",
-                                    meta_title: "",
-                                    meta_keywords: "",
-                                    meta_description: "Amazing Kid’s Scooter",
-                                    weight: "12"
+                                    quantity: 1,
+                                    stock: 10,
+                                    options: {
+                                        Sizes: {
+                                            attribute_id: 273,
+                                            option_id: 595,
+                                            title: "Khaki (42)"
+                                        }
+                                    },
+                                    price: 15000,
+                                    has_discount: 0,
+                                    special_price: 0,
+                                    discount_percent: 0
                                 }
-                        }
-                        products[name] = product_name;
+                            ];
+
+                            const attributes = {
+                                short_description: "<p class=\"MsoNormal\" style=\"box-sizing: border-box; margin: 5px 0px 15px; line-height: 1.6em; border: none; background: none; box-shadow: none; color: #333333; font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif;\">Color: Beige-Khaki</p>\r\n<p class=\"MsoNormal\" style=\"box-sizing: border-box; margin: 5px 0px 15px; line-height: 1.6em; border: none; background: none; box-shadow: none; color: #333333; font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif;\"> </p>\r\n<p style=\"box-sizing: border-box; margin: 5px 0px 15px; line-height: 1.6em; border: none; background: none; box-shadow: none; color: #333333; font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif;\">Size: Beige (38) ,Khaki (38)-(42</p>",
+                                description: "<p class=\"MsoNormal\" style=\"box-sizing: border-box; margin: 5px 0px 15px; line-height: 1.6em; border: none; background: none; box-shadow: none; color: #333333; font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif;\">Color: Beige-Khaki</p>\r\n<p class=\"MsoNormal\" style=\"box-sizing: border-box; margin: 5px 0px 15px; line-height: 1.6em; border: none; background: none; box-shadow: none; color: #333333; font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif;\"> </p>\r\n<p style=\"box-sizing: border-box; margin: 5px 0px 15px; line-height: 1.6em; border: none; background: none; box-shadow: none; color: #333333; font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif;\">Size: Beige (38) ,Khaki (38)-(42</p>",
+                                options: [
+                                    {
+                                        type: "select",
+                                        code: "4893-25-844",
+                                        title: "Sizes",
+                                        is_required: 1,
+                                        data: [
+                                            {
+                                                attribute_id: 273,
+                                                attribute_sort: 2412,
+                                                option_id: 594,
+                                                title: "Beige (38) "
+                                            },
+                                            {
+                                                attribute_id: 273,
+                                                attribute_sort: 2413,
+                                                option_id: 595,
+                                                title: "Khaki (42)"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                meta_title: "",
+                                meta_keywords: "",
+                                meta_description: "Color: Beige-Khaki\r\n\r\n\r\nSize: Beige (38) ,Khaki (38)-(42",
+                                weight: "12"
+                            };
+
+                            const product_name = {
+                                name,
+                                cart_image_url: '',
+                                has_attributes,
+                                meta,
+                                attributes,
+                                price,
+                                has_discount: 0,
+                                special_price: 0,
+                                discount_percent: 0
+                            }
+
+                            products[name] = product_name;
+                        };
                     }
 
                     const info = {
@@ -120,11 +188,10 @@ class OrderDetailPage extends Component {
                     newCart[name] = storeDetails;  
                 })
             }
-            console.log('items are', newCart);
-            console.log('order items are', customerOrdersData.items);
+
 
             localforage.setItem(CART_ITEMS_KEY, newCart).then((data) => {
-                Router.replace('/checkout/addresses');
+                Router.replace('/checkout/addresses');         
             })
 
         }).catch((err) => {
