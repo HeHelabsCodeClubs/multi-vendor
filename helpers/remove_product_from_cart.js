@@ -1,7 +1,7 @@
 import localforage from 'localforage';
 import isObjectEmpty from './is_object_empty';
 import { retrieveShipmentDataPerStoreSlug, removeShipmentInLocal} from './shipment_method_functionality_helpers';
-
+import { updatedCartItemOnApi } from './sync';
 import { 
     CART_ITEMS_KEY,
     UNABLE_TO_GET_CART_ITEMS_ERROR,
@@ -13,18 +13,24 @@ export default (product, callback, productIndex) => {
         if (items !== null) {
             const updatedCartItems = removeProductFromStore(items, product, productIndex);
             localforage.setItem(CART_ITEMS_KEY, updatedCartItems).then(() => {
-                callback();
+                if (callback) {
+                    callback();
+                }
+                /**
+                 * Update checkout data on api
+                 */
+                updatedCartItemOnApi();
             }).catch((err) => {
                 if (err) {
                     console.log(err);
-                    throw UNABLE_TO_SAVE_LOCAL_DATA_ERROR;
+                    console.log('error', UNABLE_TO_SAVE_LOCAL_DATA_ERROR);
                 }
             });
         }
     }).catch((err) => {
         if (err) {
             console.log(err);
-            throw UNABLE_TO_GET_CART_ITEMS_ERROR;
+            console.log('error', UNABLE_TO_GET_CART_ITEMS_ERROR);
         }
     })
 }
@@ -51,9 +57,7 @@ function removeProductFromStore(cartItems, product, productIndex) {
                     method: existingMethod
                 };
                 if (existingMethod !== '') {
-                    removeShipmentInLocal(data, () => {
-                        //console.log('data', data);
-                    });
+                    removeShipmentInLocal(data, () => null);
                 }
             })
         }

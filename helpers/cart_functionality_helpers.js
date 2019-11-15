@@ -137,7 +137,7 @@ export const countCartItems = (cartItems) => {
  * count single store cart items
  * @param {object} singleStoreProduct 
  */
- const countSingleStoreCartItems = (singleStoreProducts) => {
+ export const countSingleStoreCartItems = (singleStoreProducts) => {
     let counter = 0;
     Object.keys(singleStoreProducts).forEach((key, index) => {
         const { has_attributes } = singleStoreProducts[key];
@@ -263,4 +263,37 @@ export const countCartItems = (cartItems) => {
         console.log('error', err);
         onFailureFunc();
     });
+  }
+
+  /**
+   * Calculates the Mart store packaging fees
+   * 
+   * =>For basket with less than 6 items,packaging fees is 0
+   * =>For basket between 6 and 15 items,packaging fees is 500
+   * =>For basket between 16 and 20 items,packaging fees is 800
+   * =>For basket more than 20 items,packaging fees is 1000
+   * 
+   * @param {integer} storeItemsQuantity 
+   * 
+   * @return {integer}
+   */
+
+  export const calculateMartStorePackagingFee = (storeItemsQuantity) => {
+      if (storeItemsQuantity < 6) {
+          return 0;
+      }
+
+      if ((storeItemsQuantity >= 6) && (storeItemsQuantity <= 15)) {
+          return 500;
+      }
+
+      if ((storeItemsQuantity >= 16) && (storeItemsQuantity <= 20)) {
+          return 800;
+      }
+
+      if (storeItemsQuantity > 20) {
+          return 1000;
+      }
+
+      return 0;
   }

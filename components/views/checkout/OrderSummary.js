@@ -138,32 +138,6 @@ class OrderSummary extends Component {
             submittingCouponCode: true
         });
 
-        // const data = {
-        //     coupon_code: couponCode
-        // };
-
-        // fetch(`${API_URL}/coupons/discount`, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Accept': 'application/json'
-        //     },
-        //     body: JSON.stringify(data)
-        // }).then(async (res) => {
-        //     try {
-        //         const response = await res.json();
-        //         this.handleCouponDisountResponse(response);
-        //         // console.log('response', response.status_code);
-        //     } catch (err) {
-        //         if (err) {
-        //             console.log(err);
-        //         } 
-        //     }
-        // }).catch((err) => {
-        //     if (err) {
-        //         console.log('err', err);
-        //     }
-        // });
         getCouponDataFromApi(couponCode, (response) => {
             this.handleCouponDisountResponse(response);
         });
@@ -176,7 +150,6 @@ class OrderSummary extends Component {
                  * Apply discount on total order amount
                  * Store discount price in localstorage
                  */
-                console.log('response', response);
                 this.setState({
                     submittingCouponCode: false
                 });

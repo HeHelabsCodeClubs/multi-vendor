@@ -1,6 +1,10 @@
 import localforage from 'localforage';
 import cookie from 'js-cookie';
 import { 
+    countSingleStoreCartItems,
+    calculateMartStorePackagingFee 
+} from './cart_functionality_helpers';
+import { 
     ORDER_DATA_TOKEN, 
     CART_ITEMS_KEY, 
     LOCAL_SHIPMENTS_KEY, 
@@ -66,6 +70,14 @@ const createCardPaymentSubmissionData = (cartItems, shipmentData) => {
                 code: shipment[4] ? shipment[4] : 'sales.carriers.whs-nextday.active'
             };
             cartItems[store_slug].shipment_method = data;
+            if (store_slug === 'mart') {
+                const storeQuantity = countSingleStoreCartItems(cartItems[store_slug].products);
+                const packagingFee = calculateMartStorePackagingFee(Number(storeQuantity));
+                cartItems[store_slug].packaging_fee = packagingFee;
+                
+            } else {
+                cartItems[store_slug].packaging_fee = 0; 
+            }
         }
     });
 

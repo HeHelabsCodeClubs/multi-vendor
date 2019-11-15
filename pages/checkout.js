@@ -11,7 +11,7 @@ import Loader from '../components/reusable/Loader';
 import Overlay from '../components/reusable/Overlay';
 import CheckoutPageSectionLink from '../components/views/checkout/CheckoutPageSectionLink';
 import { getClientAuthToken, getTokenValue } from '../helpers/auth';
-import { API_URL, CART_ITEMS_KEY } from '../config';
+import { API_URL } from '../config';
 import { getCartItems } from '../helpers/cart_functionality_helpers';
 import IsObjectEmpty from '../helpers/is_object_empty';
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';

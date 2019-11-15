@@ -31,7 +31,18 @@ export default class SingleStoreDeliveryItem extends Component {
         this.renderShipmentTotalLayout = this.renderShipmentTotalLayout.bind(this);
         this.updateLocalShipmentData = this.updateLocalShipmentData.bind(this);
         this.setDefaultShipmentMethodIfInLocalStorage = this.setDefaultShipmentMethodIfInLocalStorage.bind(this);
+        this.getFormattedDeliveryMethod = this.getFormattedDeliveryMethod.bind(this);
+        this.updateLocalMissingDelivery = this.updateLocalMissingDelivery.bind(this);
         this.validatedShipment = this.validatedShipment.bind(this);
+    }
+
+    componentDidMount() {
+        const { storeData } = this.props;
+        this.setState({
+            store: storeData
+        }, () => {
+            this.setDefaultShipmentMethodIfInLocalStorage();
+        });
     }
 
     componentWillReceiveProps(nextProps) {
@@ -53,28 +64,44 @@ export default class SingleStoreDeliveryItem extends Component {
         }
     }
 
-    componentDidMount() {
-        const { storeData } = this.props;
-        this.setState({
-            store: storeData
-        }, () => {
-            this.setDefaultShipmentMethodIfInLocalStorage();
-        });
-    }
-
     setDefaultShipmentMethodIfInLocalStorage() {
         const { store: { slug } } = this.state;
+        const { updatedShipmentData } = this.props;
         if (slug !== undefined) {
             retrieveShipmentDataPerStoreSlug(slug, (existingMethod) => {
                 if (existingMethod !== '') {
+                    const shipmentMethodsData = existingMethod.split(',');
                     this.setState({
                         shipmentMethod: existingMethod,
+                        shipmentTotalPrice: Number(shipmentMethodsData[2]),
                         shipmentHasBeenSelected: true
                     });
                 }
-            })
+            });
         }
     }
+
+    updateLocalMissingDelivery(methodData, defaultDeliveryMethod) {
+        if (methodData === '') {
+            this.updateLocalShipmentData(defaultDeliveryMethod);
+        }
+    }
+
+    getFormattedDeliveryMethod(deliveryMethodData) {
+        let methodData = '';
+        if (Object.keys(deliveryMethodData).length !== 0) {
+            const {
+                title,
+                description,
+                rate,
+                cart_shipping_id,
+                code
+            } = deliveryMethodData;
+            methodData = `${title},${description},${rate},${cart_shipping_id},${code}`;
+        }
+        return methodData;
+    }
+
     showAllProducts() {
         const { allProductsDisplayed } = this.state;
         if (allProductsDisplayed) {
@@ -97,11 +124,11 @@ export default class SingleStoreDeliveryItem extends Component {
         });
     }
 
-    updateLocalShipmentData() {
+    updateLocalShipmentData(newUpdatedShipmentMethod) {
         const { store, shipmentMethod } = this.state;
         const data = {
             slug: store.slug,
-            method: shipmentMethod
+            method: newUpdatedShipmentMethod !== undefined ? newUpdatedShipmentMethod : shipmentMethod
         };
         storeShipmentInLocal(data, () => {
             // trigger update of shipment info in other components
@@ -151,8 +178,6 @@ export default class SingleStoreDeliveryItem extends Component {
         if (shipmentDescription !== '') {
             return (
                 <span>
-                    {/* <span className='dur-title'>Estimated duration </span> 
-                    <span className='dur-content'>2days</span> */}
                     <p>
                         {shipmentDescription}
                     </p>
@@ -164,15 +189,17 @@ export default class SingleStoreDeliveryItem extends Component {
     }
     renderShipmentMethodSelector() {
         const { store, shipmentMethod } = this.state;
+        const { updatedShipmentData } = this.props;
         const { shipment_methods } = store.info;
         if (shipment_methods.length == 0) {
             return null;
         }
-        const selectorData = shipment_methods.map((shipment_method, index) => {
-            const { title, description, cart_shipping_id, rate, code } = shipment_method;
+        const shipmentMethods = updatedShipmentData.length !== 0 ? updatedShipmentData : shipment_methods;
+        const selectorData = shipmentMethods.map((shipment_method, index) => {
+            const { title } = shipment_method;
             return {
                 text: title,
-                id: `${title},${description},${rate},${cart_shipping_id}, ${code}`
+                id: this.getFormattedDeliveryMethod(shipment_method)
             };
         });
         return (

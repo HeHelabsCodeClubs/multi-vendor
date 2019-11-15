@@ -128,14 +128,7 @@ export default class CardPayment extends Component {
             const dataToSubmit = createPaymentSubmissionData('card', cartItems, shipmentData);
             const token = getClientAuthToken();
             if (!isObjectEmpty(dataToSubmit) && token) {
-                // check if there's no pending order
-                const orderID = getOrderCookie();
-                if (orderID) {
-                    // use already existing order
-                    this.onOrderCreationRetry(orderID);
-                    return;
-                }
-
+                removeOrderDATACookie();
                 this.createOrderOnTheApi(dataToSubmit, token);
             }
         }

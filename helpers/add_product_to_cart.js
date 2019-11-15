@@ -1,67 +1,50 @@
 import localforage from 'localforage';
-import { isEqual } from 'lodash.isequal';
+import { updatedCartItemOnApi } from './sync';
 import { 
     CART_ITEMS_KEY,
     UNABLE_TO_GET_CART_ITEMS_ERROR,
-    UNABLE_TO_SAVE_LOCAL_DATA_ERROR,
-    CART_ITEMS_OBJECT_EMPTY,
-    CAN_NOT_UPDATE_CART_ITEMS_ERROR
+    UNABLE_TO_SAVE_LOCAL_DATA_ERROR
 }  from '../config';
 
 
 
 export default (product, callback) => {
-    /**
-     * TO DO:
-     * 1.Check if the cart has data
-     * 2.If cart has data retrieve data
-     * 3.Check if store exist
-     * 4.If store does not exist create
-     * 5.If store exist
-     * 6.Check if product exit
-     */
-
     localforage.getItem(CART_ITEMS_KEY).then((items) => {
-        if (items === null) {
-            const cartItems = createCartItems(product);
-            localforage.setItem(CART_ITEMS_KEY, cartItems).then(() => {
-                // run callback
-                if (callback !== undefined) {
-                    callback();
-                }
-                return;
-            }).catch((err) => {
-                if (err) {
-                    throw UNABLE_TO_SAVE_LOCAL_DATA_ERROR;
-                }
-            });
-        } else {
-            try {
-                updateCartItems(items, product, callback);
-                return;
-            } catch (err) {
-                if (err) {
-                    console.log(err);
-                    throw CAN_NOT_UPDATE_CART_ITEMS_ERROR;
-                }
+        const cartItems =  items === null ? createCartItems(product) : updateCartItems(items, product);
+        localforage.setItem(CART_ITEMS_KEY, cartItems).then(() => {
+            // run callback
+            if (callback !== undefined) {
+                callback();
             }
-        }
+
+            /**
+             * Update cart items on API
+             */
+            updatedCartItemOnApi();
+
+        }).catch((err) => {
+            if (err) {
+                console.log(err);
+                console.log('error', UNABLE_TO_SAVE_LOCAL_DATA_ERROR);
+            }
+        });
     }).catch((err) => {
         if (err) {
             console.log(err);
-            console.log('throwing error here');
-            throw UNABLE_TO_GET_CART_ITEMS_ERROR;
+            console.log('error', UNABLE_TO_GET_CART_ITEMS_ERROR);
         }
     });
 }
 
 /**
- * Update Stored Cart items
+ * Updates cart items
  * 
- * @param {object} product 
- * @return {void}
+ * @param {object} cartItems 
+ * @param {object} newProduct 
+ * 
+ * @return {object}
  */
-function updateCartItems(cartItems, newProduct, callback) {
+function updateCartItems(cartItems, newProduct) {
     const {
         store: { slug },
     } = newProduct;
@@ -85,25 +68,10 @@ function updateCartItems(cartItems, newProduct, callback) {
 
     if (Object.keys(updated_cart_items).length === 0 && updated_cart_items.constructor === Object) {
         // don't save empty object
-        throw CART_ITEMS_OBJECT_EMPTY;
+        return {};
     }
 
-    /**
-     * Save updated data in the cart
-    */
-    
-    localforage.setItem(CART_ITEMS_KEY, updated_cart_items).then(() => {
-        if (callback !== undefined) {
-            callback();
-        }
-        return;
-    }).catch((err) => {
-        if (err) {
-            console.log(err);
-            throw UNABLE_TO_SAVE_LOCAL_DATA_ERROR
-        }
-        
-    });
+    return updated_cart_items;
 }
 
 /**

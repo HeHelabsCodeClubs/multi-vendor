@@ -1,7 +1,9 @@
 import localforage from 'localforage';
+import { updatedCartItemOnApi } from './sync';
 import { LOCAL_SHIPMENTS_KEY } from '../config';
+
 /**
- * Handles shipment methods local functionalitys
+ * Handles shipment methods local functionalities
  */
 
 /**
@@ -47,6 +49,12 @@ const saveShipmentInfo = (shipmentData, callback) => {
 		if (callback !== undefined) {
 			callback();
 		}
+
+		/**
+		 * Update cart items on API
+		 */
+		updatedCartItemOnApi();
+
 	}).catch((err) => {
 		if(err) {
 			console.log(err);
@@ -77,6 +85,12 @@ const updateShipmentInfo = (existingShipmentData, shipmentData, callback) => {
 		if (callback !== undefined) {
 			callback();
 		}
+
+		/**
+		 * Update cart items on API
+		 */
+		updatedCartItemOnApi();
+
 	}).catch((err) => {
 		if (err) {
 			console.log(err);
@@ -226,4 +240,58 @@ export const getTotalShippingPrice = (callback) => {
             console.log(err);
         }
      });
+}
+
+/**
+ * Updates local storage shipments data
+ * 
+ * @param {array} storeSlugs 
+ * @param {array} updatedShipments 
+ * @param {function} callback 
+ */
+export const updateLocalShipmentWithApiShipmentData = (storeSlugs, updatedShipments, callback) => {
+	retrieveShipmentData((existingLocalShipments) => {
+		if (Object.keys(existingLocalShipments).length !== 0) {
+			const newLocalShipments = {};
+			for(let i = 0; i < storeSlugs.length; i++) {
+				for(let m = 0; m < updatedShipments.length; m++) {
+					if (updatedShipments[m].store === storeSlugs[i] && (existingLocalShipments[storeSlugs[i]] !== undefined)) {
+						const updatedStoreShipmentMethods = updatedShipments[m].methods;
+						for(let y = 0; y < updatedStoreShipmentMethods.length; y++) {
+							if (updatedStoreShipmentMethods[y].code.trim() === existingLocalShipments[storeSlugs[i]].method.split(',')[4]) {
+								newLocalShipments[storeSlugs[i]] = {
+									method: getFormattedLocalShipmentStringFromObject(updatedStoreShipmentMethods[y])
+								};
+								break;
+							}
+						}
+						break;
+					}
+				}
+			}
+
+			localforage.setItem(LOCAL_SHIPMENTS_KEY, newLocalShipments).then(() => {
+				if (callback) {
+					callback();
+				}
+			}).catch((err) => {
+				if (err) {
+					console.log('error', err);
+				}
+			});
+		}
+
+		if (callback) {
+			callback();
+		}
+	});
+}
+
+function getFormattedLocalShipmentStringFromObject(shipmentData) {
+	const shipmentValues = [];
+	Object.keys(shipmentData).forEach((shipmentItem) => {
+		shipmentValues.push(shipmentData[shipmentItem]);
+	});
+
+	return shipmentValues.join(',');
 }

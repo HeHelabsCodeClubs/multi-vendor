@@ -1,10 +1,9 @@
-import Router from 'next/router';
 import localforage from 'localforage';
 import cookie from 'js-cookie';
 import { 
     TOKEN_KEY, 
     AUTH_USER_LOCAL_STORAGE_INFO, 
-    ORDER_DATA_TOKEN
+    ORDER_DATA_TOKEN,
 } from '../config';
 
 /**
@@ -114,3 +113,4 @@ export const getTokenValue = (tokenString, key) => {
     }
     return undefined;
 }
+

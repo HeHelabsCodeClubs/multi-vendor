@@ -3,9 +3,10 @@ import isObjectEmpty from '../../helpers/is_object_empty';
 import SingleCartProductItem from './SingleCartProductItem';
 import { 
     singleStoreProductsCount,
-    singleStoreTotalPrice 
+    singleStoreTotalPrice,
+    countSingleStoreCartItems,
+    calculateMartStorePackagingFee
 } from '../../helpers/cart_functionality_helpers';
-import InputField from '../reusable/InputField';
 
 
 class SingleCartStoreItem extends Component {
@@ -19,7 +20,7 @@ class SingleCartStoreItem extends Component {
         this.renderStoreProducts = this.renderStoreProducts.bind(this);
         this.renderStoreTotalPrice = this.renderStoreTotalPrice.bind(this);
         this.getInputFieldValue = this.getInputFieldValue.bind(this);
-        this.renderShipmentMethodSelector = this.renderShipmentMethodSelector.bind(this);
+        this.renderPackagingFee = this.renderPackagingFee.bind(this);
     }
     componentDidMount() {
         const { store } = this.props;
@@ -83,49 +84,30 @@ class SingleCartStoreItem extends Component {
         });
     }
 
-    renderShipmentMethodSelector(storeData) {
-        const { shipment_methods } = storeData.info;
-        if (shipment_methods.length == 0) {
-            return null;
+    renderPackagingFee(store) {
+        const { slug, products } = store;
+        if (slug === 'mart') {
+            const storeItemsQuantity = countSingleStoreCartItems(products);
+            const packagingFee = calculateMartStorePackagingFee(Number(storeItemsQuantity));
+            return (
+                <div className='subtotal'>{`Packaging Fee: Rwf ${packagingFee}`}</div>
+            );
         }
 
-        const selectorData = shipment_methods.map((shipment_method, index) => {
-            const { title, description, cart_shipment_id } = shipment_method;
-            return {
-                text: title,
-                id: `${title},${description},${cart_shipment_id}`
-            };
-        });
-        return (
-            <InputField 
-            typeOfInput='selector'
-            id='shipment-method-selector'
-            name='shipmentMethod'
-            selectorData={[
-                { text: 'Female', id: 'female' },
-                { text: 'Male', id: 'male' },
-            ]}
-            hideLabel={true}
-            placeholder='shipment'
-            updateInputFieldValue={this.getInputFieldValue}
-            />
-        );
+        return null;
     }
 
     renderStoreTotalPrice() {
         const { storeData } = this.state;
         if (!isObjectEmpty(storeData)) {
-            const totalPrice = singleStoreTotalPrice(storeData);
+            const storeItemsQuantity = (storeData.slug === 'mart') ? countSingleStoreCartItems(storeData.products) : 0;
+            const packagingFee = (storeData.slug === 'mart') ? calculateMartStorePackagingFee(Number(storeItemsQuantity)) : 0;
+            const subTotalPrice = singleStoreTotalPrice(storeData);
+            const totalPrice = subTotalPrice + packagingFee;
             return (
                 <div className='total-price'>
-                    <div className='subtotal'>{`Sutotal: Rwf ${totalPrice}`}</div>
-                    {/* <div className='shipping-grid'>
-                        <span className='shipping-title'>Shipping <span className="hidden-xs">method</span></span>
-                        <span className='auth-form'>
-                            {this.renderShipmentMethodSelector(storeData)}
-                        </span>
-                        <span className='shipping'>{`Total: Rwf ${totalPrice}`}</span>
-                    </div> */}
+                    <div className='subtotal'>{`Sutotal: Rwf ${subTotalPrice}`}</div>
+                    {this.renderPackagingFee(storeData)}
                     <div className='total-grid'>
                         <span className='total'>{`Total: Rwf ${totalPrice}`}</span>
                     </div>
