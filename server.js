@@ -17,39 +17,39 @@ app
 
         server.get('/order-complete/:payment', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
+            if (/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(301, {
                     Location: mobileSiteUrl + '/order-complete/' + req.params.payment
                 });
                 res.end();
             }
-            return app.render(req, res, '/order-complete', { 
+            return app.render(req, res, '/order-complete', {
                 payment: req.params.payment
             });
         })
 
         server.get('/process/:payment', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
+            if (/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(301, {
                     Location: mobileSiteUrl + '/process/' + req.params.payment
                 });
                 res.end();
             }
-            return app.render(req, res, '/process', { 
+            return app.render(req, res, '/process', {
                 payment: req.params.payment
             });
         })
 
         server.get('/sellers/:seller/products/:slug', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
+            if (/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(301, {
                     Location: mobileSiteUrl + '/sellers/' + req.params.seller + '/products/' + req.params.slug
                 });
                 res.end();
             }
-            return app.render(req, res, '/product-page', { 
+            return app.render(req, res, '/product-page', {
                 seller: req.params.seller,
                 slug: req.params.slug
             });
@@ -57,7 +57,7 @@ app
 
         server.get('/search-results/:search_term', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
+            if (/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(301, {
                     Location: mobileSiteUrl + '/search-results/' + req.params.search_term
                 });
@@ -66,33 +66,33 @@ app
             if (!req.params.search_term || (req.params.search_term === '')) {
                 res.redirect('/');
             }
-            return app.render(req, res, '/search-results', { 
+            return app.render(req, res, '/search-results', {
                 search_term: req.params.search_term
             });
         })
 
         server.get('/categories/:category_slug', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
+            if (/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(301, {
                     Location: mobileSiteUrl + '/categories/' + req.params.category_slug
                 });
                 res.end();
             }
-            return app.render(req, res, '/categories', { 
+            return app.render(req, res, '/categories', {
                 category_slug: req.params.category_slug
             });
         })
 
         server.get('/categories/:category_slug/:sub_cat_slug', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
+            if (/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(301, {
                     Location: mobileSiteUrl + '/categories/' + req.params.category_slug + '/' + req.params.sub_cat_slug
                 });
                 res.end();
             }
-            return app.render(req, res, '/categories', { 
+            return app.render(req, res, '/categories', {
                 category_slug: req.params.category_slug,
                 sub_cat_slug: req.params.sub_cat_slug
             });
@@ -100,13 +100,13 @@ app
 
         server.get('/categories/:category_slug/:sub_cat_slug/:sub_last_cat_slug', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
+            if (/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(301, {
                     Location: mobileSiteUrl + '/categories/' + req.params.category_slug + '/' + req.params.sub_cat_slug + '/' + req.params.sub_last_cat_slug
                 });
                 res.end();
             }
-            return app.render(req, res, '/categories', { 
+            return app.render(req, res, '/categories', {
                 category_slug: req.params.category_slug,
                 sub_cat_slug: req.params.sub_cat_slug,
                 sub_last_cat_slug: req.params.sub_last_cat_slug
@@ -115,20 +115,20 @@ app
 
         server.get('/invoice/:id', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
+            if (/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(301, {
                     Location: mobileSiteUrl + '/invoice/' + req.params.id
                 });
                 res.end();
             }
-            return app.render(req, res, '/invoice', { 
+            return app.render(req, res, '/invoice', {
                 id: req.params.id
             });
         })
 
         server.get('/profile/:page', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
+            if (/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(301, {
                     Location: mobileSiteUrl + '/profile/' + req.params.page
                 });
@@ -138,14 +138,14 @@ app
             if (!token && req.params.page === 'orders') {
                 res.redirect('/signin');
             }
-            return app.render(req, res, '/profile', { 
+            return app.render(req, res, '/profile', {
                 page: req.params.page
             });
         })
 
         server.get('/checkout/:page', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
+            if (/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(301, {
                     Location: mobileSiteUrl + '/checkout/' + req.params.page
                 });
@@ -159,15 +159,19 @@ app
             if (!token && req.params.page !== 'account') {
                 res.redirect('/checkout/account');
             }
-            
-            return app.render(req, res, '/checkout', { 
+
+            return app.render(req, res, '/checkout', {
                 page: req.params.page
             });
         })
+        //I had to do this
+        server.get('/googlee333e508d5cde85d.html', (req, res) => {
+            res.end("google-site-verification: googlee333e508d5cde85d.html");
+        });
 
         server.get('/p/:id', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
+            if (/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(301, {
                     Location: mobileSiteUrl + '/p/' + req.params.id
                 });
@@ -180,7 +184,7 @@ app
 
         server.get('*', (req, res) => {
             const ua = req.header('user-agent');
-            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
+            if (/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(301, {
                     Location: mobileSiteUrl
                 });
