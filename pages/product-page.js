@@ -6,7 +6,6 @@ import Slider from "react-slick";
 import { notify } from 'react-notify-toast';
 import Product from '../components/reusable/Product';
 import Global from '../components/reusable/Global';
-import { API_URL, ALERT_TIMEOUT, NOT_ALLOWED_TO_GO_IN_CART } from '../config';
 import renderProductIdentifier from '../helpers/render_product_identifier';
 import renderProductPrice from '../helpers/render_product_price';
 import getFormattedStoreUrl from '../helpers/get_formatted_store_url';
@@ -21,6 +20,12 @@ import Breadcrumb from '../components/reusable/Breadcrumb';
 import {isProductOutOfStock } from '../helpers/cart_functionality_helpers';
 import Head from 'next/head';
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
+import { 
+    API_URL, 
+    ALERT_TIMEOUT, 
+    NOT_ALLOWED_TO_GO_IN_CART,
+    API_GATEWAY_URL
+} from '../config';
  
 class ProductPage extends React.Component {
     constructor(props) {
@@ -62,7 +67,7 @@ class ProductPage extends React.Component {
     }
 
     static async getInitialProps({ query }) {
-		const res = await fetch(`${API_URL}/sellers/${query.seller}/products/${query.slug}`)
+		const res = await fetch(`${API_GATEWAY_URL}/sellers/${query.seller}/products/${query.slug}`)
         const response = await res.json()
 		const { 
 			data

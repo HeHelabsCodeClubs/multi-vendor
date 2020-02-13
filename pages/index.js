@@ -8,7 +8,7 @@ import MadeInRwanda from "../components/views/homepage/MadeInRwanda";
 import Ad from "../components/views/homepage/Ad";
 import HomepageCategory from "../components/views/homepage/HomepageCategory";
 import fetch from 'isomorphic-unfetch';
-import { API_URL } from '../config';
+import { API_URL, API_GATEWAY_URL } from '../config';
 import FeaturedSellers from "../components/views/homepage/FeaturedSellers";
 import MoreProduct from "../components/views/homepage/MoreProduct";
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
@@ -24,6 +24,7 @@ class Index extends React.Component {
 		this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
 		this.cartShouldOpen = this.cartShouldOpen.bind(this);
 		this.HandleCartContentOpening = this.HandleCartContentOpening.bind(this);
+		this.getFeaturedSellers = this.getFeaturedSellers.bind(this);
 	}
 	cartShouldUpdate() {
 		this.setState({
@@ -40,10 +41,11 @@ class Index extends React.Component {
 	 * This function is better for server side rendering
 	 */
 	static async getInitialProps() {
-		const res = await fetch(`${API_URL}/pages/homepage`)
+		const res = await fetch(`${API_GATEWAY_URL}/pages/homepage`)
         const response = await res.json()
 		const { 
-			data
+			data,
+			global_featured_seller
 		} = response;
         return {
 		   promoAds: data.adds.promo.data,
@@ -55,8 +57,28 @@ class Index extends React.Component {
 		   products: data.made_in_rwanda_brands.products,
 		   topStores: data.top_stores,
 		   sellers: data.featured_sellers,
-		   specialOffers: data.special_offers
+		   specialOffers: data.special_offers,
+		   globalSeller: global_featured_seller
         };
+	}
+
+	getFeaturedSellers() {
+		const { sellers, globalSeller } = this.props;
+		if (sellers && sellers.length !== 0 && globalSeller) {
+			const localFeaturedSellers = sellers;
+			localFeaturedSellers.push(globalSeller);
+			return localFeaturedSellers;
+		}
+
+		if (sellers) {
+			return sellers;
+		}
+
+		if (globalSeller) {
+			return [globalSeller];
+		}
+
+		return [];
 	}
 
 	HandleCartContentOpening() {
@@ -81,14 +103,15 @@ class Index extends React.Component {
 			stores, 
 			products,
 			topStores, 
-			sellers,
 			eventAddType,
 			eventsAds,
-			specialOffers
+			specialOffers,
 		} = this.props;
 		const {
 			openCartContent
 		} = this.state;
+
+		const sellers = this.getFeaturedSellers();
 
 		return (
 			<GoogleAnalyticsLogger>
