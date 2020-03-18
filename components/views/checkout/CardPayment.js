@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import InputField from '../../reusable/InputField';
+import Notifications, { notify } from 'react-notify-toast';
 import MessageDisplayer from '../../reusable/MessageDisplayer';
 import { getValidatedInputErrorMessage } from '../../../helpers/validation';
-import { getCartItems } from '../../../helpers/cart_functionality_helpers';
+import { getCartItems, singleStoreTotalPrice } from '../../../helpers/cart_functionality_helpers';
 import { retrieveShipmentData } from '../../../helpers/shipment_method_functionality_helpers';
 import isObjectEmpty from '../../../helpers/is_object_empty';
 import { 
@@ -70,7 +71,7 @@ export default class CardPayment extends Component {
         });
     }
     handleOrderSubmission() {
-        const { terms, buttonStatus } = this.state;
+        const { terms, buttonStatus, cartItems } = this.state;
         /**
          * Hide display box if it was displayed due to api errors
          */
@@ -97,13 +98,6 @@ export default class CardPayment extends Component {
             return;
         }
 
-        this.setState({
-            buttonStatus: 'submitting'
-        });
-
-        const { toogleDisplayOverlay } = this.props;
-        toogleDisplayOverlay(true);
-
         // proceed to migs
         this.proceedToMigs();
     }
@@ -122,13 +116,46 @@ export default class CardPayment extends Component {
 
     proceedToMigs() {
         const { cartItems, shipmentData } = this.state;
-        
+
         if (!isObjectEmpty(cartItems) && !isObjectEmpty(shipmentData)) {
             // handle redirection to migs
             const dataToSubmit = createPaymentSubmissionData('card', cartItems, shipmentData);
             const token = getClientAuthToken();
+            let doNotSubmit = false;
             if (!isObjectEmpty(dataToSubmit) && token) {
+                // Check if the order has a minimum total of Rwf 3000 per store 
+
+                Object.keys(dataToSubmit).forEach((storeSlug, index) => {
+                    const data = {
+                        slug: storeSlug,
+                        ...cartItems[storeSlug]
+                    };
+                    const storeTotalPrice = singleStoreTotalPrice(data);
+
+                    if (storeTotalPrice < 3000) {
+                        doNotSubmit = true
+                    }
+                });
+
+                if (doNotSubmit === true) {
+                    notify.show("Your order should have a minimum total amount of Rwf 3000 per store", 'error', 10000);
+                    setTimeout(() => {
+                        this.setState({
+                            buttonStatus: 'Submit My Order'
+                        });
+                    }, 2000);
+                    return;
+                }
+
+                this.setState({
+                    buttonStatus: 'Submitting'
+                });
+
+                const { toogleDisplayOverlay } = this.props;
+                toogleDisplayOverlay(true);
+
                 // check if there's no pending order
+
                 const orderID = getOrderCookie();
                 if (orderID) {
                     // use already existing order
@@ -305,6 +332,7 @@ export default class CardPayment extends Component {
         } = this.state;
         return (
             <div>
+                <Notifications />
                 <MessageDisplayer 
                 display={inputIsInvalid ? true : false }
                 errorMessage={errorMessage}
