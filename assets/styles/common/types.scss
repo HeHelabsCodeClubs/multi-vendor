@@ -174,6 +174,9 @@ html {
         font-family: $font-regular;
         font-size: 1rem;
     }
+    .profile-name {
+        font-size: 1.3rem;
+    }
     .nav__submenu-item {
         a {
             font-family: $font-semi-bold;
@@ -196,6 +199,11 @@ html {
             a {
                 font-family: $font-regular !important;
                 font-size: 1rem !important;
+            }
+        }
+        .sub-menu__item-a {
+            h5 {
+                font-size: 1.2rem;
             }
         }
     }
@@ -1365,4 +1373,10 @@ select {
 .print-btn {
     font-family: $font-regular !important;
     font-size: 1.2rem; 
+}
+
+// default primary button styles
+.primry-btn {
+    font-family: $font-regular;
+    font-size: 1.2rem;
 }

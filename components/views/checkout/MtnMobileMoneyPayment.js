@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import Notifications, { notify } from 'react-notify-toast';
 import InputField from '../../reusable/InputField';
 import MessageDisplayer from '../../reusable/MessageDisplayer';
 import { getValidatedInputErrorMessage } from '../../../helpers/validation';
 import { getClientAuthToken, getOrderCookie } from '../../../helpers/auth';
-import { getCartItems } from '../../../helpers/cart_functionality_helpers';
+import { getCartItems, singleStoreTotalPrice } from '../../../helpers/cart_functionality_helpers';
 import { retrieveShipmentData } from '../../../helpers/shipment_method_functionality_helpers';
 import { API_URL, APP_CARD_PAYMENT_RETURN_URL } from '../../../config';
 import { ORDER_CREATION_UNKWOWN_ERROR } from '../../../config';
@@ -157,17 +158,36 @@ export default class MtnMobileMoneyPayment extends Component {
             return;
         }
 
-        this.setState({
-            buttonStatus: 'submitting'
-        });
-
-        this.props.toogleDisplayOverlay(true, <MoMoWaitingUserMessage />);
-
         if (!isObjectEmpty(cartItems) && !isObjectEmpty(shipmentData)) {
             // handle redirection to migs
             const dataToSubmit = createPaymentSubmissionData('momo', cartItems, shipmentData);
             const token = getClientAuthToken();
+            let doNotSubmit = false;
             if (!isObjectEmpty(dataToSubmit) && token) {
+                // Check if the order has a minimum total of Rwf 3000 per store 
+                Object.keys(dataToSubmit).forEach((storeSlug, index) => {
+                    const data = {
+                        slug: storeSlug,
+                        ...cartItems[storeSlug]
+                    };
+                    const storeTotalPrice = singleStoreTotalPrice(data);
+
+                    if (storeTotalPrice < 3000) {
+                        doNotSubmit = true
+                    }
+                });
+
+                if (doNotSubmit === true) {
+                    notify.show("Your order should have a minimum total amount of Rwf 3000 per store", 'error', 10000);
+                    return;
+                }
+
+                this.setState({
+                    buttonStatus: 'submitting'
+                });
+
+                this.props.toogleDisplayOverlay(true, <MoMoWaitingUserMessage />);
+
                 // check if there's no pending order
                 const orderID = getOrderCookie();
                 if (orderID) {
@@ -590,6 +610,7 @@ export default class MtnMobileMoneyPayment extends Component {
         } = this.state;
         return (
             <div>
+                <Notifications />
                 <MessageDisplayer 
                     display={inputIsInvalid ? true : false }
                     errorMessage={errorMessage}

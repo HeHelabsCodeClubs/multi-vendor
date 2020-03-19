@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Link from 'next/link';
 
 class SideProfile extends Component {
     render () {
@@ -12,7 +13,9 @@ class SideProfile extends Component {
                         <a className="item-title" href="#">Profile details</a>
                     </div> */}
                     <div className="item-menu active">
-                        <a className="item-title" href="#" onClick={this.props.changeActivePage}>All Orders</a>
+                        <Link href="/profile/orders">
+                            <a className="item-title">All Orders</a>
+                        </Link>
                     </div>
                     {/* <div className="item-menu">
                         <a className="item-title" href="#">Refund &amp; Disputes</a>

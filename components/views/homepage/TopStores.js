@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Link from 'next/link';
 
 class TopStores extends Component {
     renderTopStores(topStores) {

@@ -1,8 +1,6 @@
-@import "../main";
-
-body {
-    padding: 0;
-}
+// body {
+//     padding: 0;
+// }
 
 .checkbox-field {
     @include flexbox;
@@ -136,4 +134,88 @@ body {
 
 ::-webkit-scrollbar-track {
     border-radius: 10px;
+}
+
+.suggest-form {
+    .greeting {
+        text-align: center;
+        font-family: $font-bold;
+        font-size: 1.2rem;
+
+        .name {
+            color: #f6911d;
+        }
+    }
+    .question {
+        text-align: center;
+        font-family: $font-regular;
+    }
+    .input {
+        background: #f4f6f6;
+        border-radius: 0.3rem;
+        margin: 2rem 0;
+
+        .input-field {
+            display: inline-block;
+            width: 68%;
+            label {
+                display: none;
+            }
+            input {
+                width: 100%;
+                margin: 0 !important;
+                border: 1px solid #f4f6f6;
+                background: #f4f6f6;
+                padding: 0.7rem 1rem;
+                height: 3.5rem !important;
+                border-radius: 0.3rem 0 0 0.3rem;
+                outline: none;
+                font-style: italic;
+                font-size: 1rem !important;
+                outline: none !important;
+            }
+        }
+        .auth-button {
+            display: inline-block;
+            width: 30%;
+            margin: 0 !important;
+            .auth-default-btn {
+                width: 100%;
+                border: 1px solid #f4f6f6;
+                background: #f4f6f6;
+                padding: 0rem 1rem !important;
+                border-radius: 0 0.3rem 0.3rem 0;
+                color: #f6911d !important;
+                height: 3.5rem !important;
+
+                &:hover {
+                    background: transparent !important;
+
+                }
+            }
+        }
+    }
+    .later-button {
+        text-align: center;
+        outline: none !important;
+        button {
+            border: none !important;
+            background: transparent !important;
+            font-family: $font-bold;
+            font-size: 1rem;
+
+        }
+    }
+}
+.bottom-section {
+    text-align: center;
+    padding: 1rem 0;
+    background: #f6911d;
+    border-radius: 0 0 0.5rem 0.5rem;
+    color: #fff;
+
+    span {
+        text-transform: uppercase;
+        font-family: $font-bold;
+    }
 }

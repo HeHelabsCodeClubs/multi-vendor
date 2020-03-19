@@ -80,7 +80,7 @@ class Invoice extends Component {
                 subTotal += products[i].total_price;
             }
             return subTotal;
-        } else null        
+        } else null
     };
 
     invoiceContent() {

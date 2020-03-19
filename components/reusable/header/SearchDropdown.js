@@ -7,9 +7,9 @@ class SearchDropdown extends Component {
     constructor() {
         super();
         this.state = {
-          value: '',
-          suggestions: [],
-          products: []
+            value: '',
+            suggestions: [],
+            products: []
         };
         this.getSuggestions = this.getSuggestions.bind(this);
         this.getSuggestionValue = this.getSuggestionValue.bind(this);
@@ -18,7 +18,6 @@ class SearchDropdown extends Component {
         this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
         this.onChange = this.onChange.bind(this);
     }
-    
     
     getSuggestions(value) {
         const inputValue = value.trim().toLowerCase();
@@ -106,10 +105,13 @@ class SearchDropdown extends Component {
 
     render () {
         const { value, suggestions } = this.state;
+
         const inputProps = {
+            className: this.props.className,
             placeholder: 'Search for product',
             value,
-            onChange: this.onChange
+            onChange: this.onChange,
+            onBlur: this.props.handleBlur("value")
         };
 
         return (

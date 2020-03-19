@@ -22,7 +22,7 @@ class SidemenuCategories extends Component {
         this.openDropdownMenu = this.openDropdownMenu.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const { subCategories } = this.props;
         this.setState({
             categories: subCategories
@@ -31,9 +31,11 @@ class SidemenuCategories extends Component {
 
     componentWillReceiveProps(nextProps) {
         const { subCategories } = nextProps;
-        this.setState({
-            categories: subCategories
-        });
+        if (subCategories) {
+            this.setState({
+                categories: subCategories
+            }); 
+        }
     }
 
     openSidebar(isOpen = true) {
@@ -147,7 +149,7 @@ class SidemenuCategories extends Component {
 
     render() {
         return (
-            <div>
+            <div className='side-categories-wrapper'>
                 <div className="mobile-invisible side-menu__item Side-menu Side-menu-default  children active">
                         {this.renderActiveParentCategory()}
                     <div>

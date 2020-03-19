@@ -1,17 +1,18 @@
 import React from "react";
 import Global from '../components/reusable/Global';
-import '../assets/styles/layouts/homepage.scss';
-import '../assets/styles/layouts/seller.scss';
 import TopStores from '../components/views/homepage/TopStores';
 import SpecialOffers from "../components/views/homepage/SpecialOffers";
 import MadeInRwanda from "../components/views/homepage/MadeInRwanda";
 import Ad from "../components/views/homepage/Ad";
 import HomepageCategory from "../components/views/homepage/HomepageCategory";
 import fetch from 'isomorphic-unfetch';
-import { API_URL, API_GATEWAY_URL } from '../config';
+import { API_URL, TOKEN_KEY } from '../config';
 import FeaturedSellers from "../components/views/homepage/FeaturedSellers";
 import MoreProduct from "../components/views/homepage/MoreProduct";
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
+import '../assets/styles/main.scss';
+import Suggest from '../components/views/homepage/suggest';
+import Modal from 'react-responsive-modal';
 
 class Index extends React.Component {
 	constructor(props) {
@@ -19,13 +20,17 @@ class Index extends React.Component {
 		this.state = {
 			updateCart: false,
 			openCart: false,
-			openCartContent: false
+			openCartContent: false,
+			open: false
 		};
+		this.onOpenModal = this.onOpenModal.bind(this);
+        this.onCloseModal = this.onCloseModal.bind(this);
 		this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
 		this.cartShouldOpen = this.cartShouldOpen.bind(this);
 		this.HandleCartContentOpening = this.HandleCartContentOpening.bind(this);
 		this.getFeaturedSellers = this.getFeaturedSellers.bind(this);
 	}
+
 	cartShouldUpdate() {
 		this.setState({
 			updateCart: true
@@ -57,9 +62,16 @@ class Index extends React.Component {
 		   products: data.made_in_rwanda_brands.products,
 		   topStores: data.top_stores,
 		   sellers: data.featured_sellers,
-		   specialOffers: data.special_offers,
-		   globalSeller: global_featured_seller
-        };
+		   specialOffers: data.special_offers
+		};
+	}
+	componentDidMount() {
+		const { open } = this.state;
+		if (!open) {
+			this.setState({
+				open: true
+			});
+		}
 	}
 
 	getFeaturedSellers() {
@@ -93,7 +105,15 @@ class Index extends React.Component {
                 openCartContent: true
             })
         }
-    }
+	}
+	
+	onOpenModal = () => {
+		this.setState({ open: true });
+	};
+	 
+	onCloseModal = () => {
+		this.setState({ open: false });
+	};
 
 	render() {
 		const { 
@@ -108,7 +128,8 @@ class Index extends React.Component {
 			specialOffers,
 		} = this.props;
 		const {
-			openCartContent
+			openCartContent,
+			open
 		} = this.state;
 
 		const sellers = this.getFeaturedSellers();
@@ -119,6 +140,9 @@ class Index extends React.Component {
 				updateCart={this.state.updateCart}
 				openCart={openCartContent}
 				>
+					<Modal open={open} onClose={this.onCloseModal} center>
+						<Suggest closeModal={this.onCloseModal} />
+					</Modal>
 					<div className='main-banners'>
 						<Ad type={type} data={promoAds}/>
 					</div>

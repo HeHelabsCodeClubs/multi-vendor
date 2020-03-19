@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../../assets/styles/layouts/footer.scss';
 import { API_URL } from '../../config';
 import CookiesPopup from './CookiesPopup';
 import LiveChat from './LiveChat';

@@ -26,6 +26,7 @@ import {
     NOT_ALLOWED_TO_GO_IN_CART,
     API_GATEWAY_URL
 } from '../config';
+import '../assets/styles/main.scss';
  
 class ProductPage extends React.Component {
     constructor(props) {

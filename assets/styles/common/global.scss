@@ -21,14 +21,14 @@ body {
     min-height: 100vh;
     position: relative;
     width: 100%;
-    padding-bottom: 37rem !important;
-    overflow-x: hidden !important;
+    padding-bottom: 37rem;
+    overflow-x: hidden;
 
     @media screen and (max-width: $mobile-md-lg) {
-        padding-bottom: 86rem !important;
+        padding-bottom: 86rem;
     }
     @media screen and (min-width: $mobile-md-lg) and (max-width: $mobile-lg) {
-        padding-bottom: 58rem !important;
+        padding-bottom: 58rem;
     }
 }
 .maximum-width {
@@ -641,7 +641,7 @@ select {
         color: $white-color !important;
         border-style: initial;
         height: 60px;
-        padding: 7px 15px;
+        // padding: 7px 15px;
         outline: none !important;
         font-family: 'Harmonia Sans Pro SemiBd';
         font-size: 15px;
@@ -661,3 +661,34 @@ select {
         }
         
     }
+
+// Statuses
+.badge-txt {
+    // text-align: center;
+    // border-radius: 1rem;
+    // padding: 0.3rem 1rem;
+    // display: inline;
+    &.delivered {
+        background: $green-color-4 !important;
+        color: $green-color-2 !important;
+    }
+    &.canceled {
+        background: $order-status-canceled-bac-color !important;
+        color: $order-status-canceled-color !important;
+    }
+
+    &.pending {
+        background: $order-status-pending-bac-color !important;
+        color: $order-status-pending-color !important;
+    }
+    
+    &.pending-payment {
+        background: $order-status-pending-payment-bac-color !important;
+        color: $order-status-pending-payment-color !important;
+    }
+}
+
+// default primary button styles
+.primry-btn {
+    @extend .default-button-styles;
+}

@@ -41,16 +41,17 @@ app
             });
         })
 
-        server.get('/sellers/:seller/products/:slug', (req, res) => {
+        server.get('/sellers/:seller/:static/:slug', (req, res) => {
             const ua = req.header('user-agent');
             if (/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(301, {
-                    Location: mobileSiteUrl + '/sellers/' + req.params.seller + '/products/' + req.params.slug
+                    Location: mobileSiteUrl + '/sellers/' + req.params.seller + '/' + req.params.static + '/' + req.params.slug
                 });
                 res.end();
             }
             return app.render(req, res, '/product-page', {
                 seller: req.params.seller,
+                static: req.params.static,
                 slug: req.params.slug
             });
         })
@@ -169,7 +170,20 @@ app
             res.end("google-site-verification: googlee333e508d5cde85d.html");
         });
 
-        server.get('/p/:id', (req, res) => {
+        // server.get('/p/:id', (req, res) => {
+        //     const ua = req.header('user-agent');
+        //     if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(ua)) {
+        //         res.writeHead(302, {
+        //             Location: mobileSiteUrl + '/p/' + req.params.id
+        //         });
+        //         res.end();
+        //     }
+        //     const actualPage = '/post'
+        //     const queryParams = { title: req.params.id }
+        //     app.render(req, res, actualPage, queryParams)
+        // })
+
+        server.get('/profile/orders', (req, res) => {
             const ua = req.header('user-agent');
             if (/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|android|android 3.0|xoom|sch-i800|playbook|kindle/i.test(ua)) {
                 res.writeHead(301, {
@@ -177,9 +191,20 @@ app
                 });
                 res.end();
             }
-            const actualPage = '/post'
-            const queryParams = { title: req.params.id }
-            app.render(req, res, actualPage, queryParams)
+            return app.render(req, res, '/profile');
+        })
+
+        server.get('/profile/orders/:id', (req, res) => {
+            const ua = req.header('user-agent');
+            if(/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(ua)) {
+                res.writeHead(302, {
+                    Location: mobileSiteUrl + '/profile/orders/' + req.params.id
+                });
+                res.end();
+            }
+            return app.render(req, res, '/order-detail', { 
+                id: req.params.id
+            });
         })
 
         server.get('*', (req, res) => {
@@ -197,6 +222,8 @@ app
             if (err) throw err
             console.log('> Ready on http://localhost:' + port)
         })
+
+        
     })
     .catch(ex => {
         console.error(ex.stack)
