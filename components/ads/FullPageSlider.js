@@ -41,7 +41,8 @@ const FullPageSlider  = ({ adds }) => {
             <div>
                 <a href="https://m.hehe.rw/sellers/all-in-one/products/visit-rwanda-gift-pack">
                     <ImageLoader 
-                    imageUrl="https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1570810058/hehe/Artboard_7.jpg"
+                    imageUrl="https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1575628360/multi-vendor/slider_images/Default/qxvqbphumkk5slcdq5vg.jpg"
+                    //"https://res.cloudinary.com/hehe/image/upload/q_auto,f_auto,fl_lossy/v1570810058/hehe/Artboard_7.jpg"
                     hasPlaceholder={false}
                     placeholderHeight={300}
                     />
