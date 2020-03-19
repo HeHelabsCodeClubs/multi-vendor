@@ -11,6 +11,8 @@ import FeaturedSellers from "../components/views/homepage/FeaturedSellers";
 import MoreProduct from "../components/views/homepage/MoreProduct";
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
 import '../assets/styles/main.scss';
+import Suggest from '../components/views/homepage/suggest';
+import Modal from 'react-responsive-modal';
 
 class Index extends React.Component {
 	constructor(props) {
@@ -18,12 +20,16 @@ class Index extends React.Component {
 		this.state = {
 			updateCart: false,
 			openCart: false,
-			openCartContent: false
+			openCartContent: false,
+			open: false
 		};
+		this.onOpenModal = this.onOpenModal.bind(this);
+        this.onCloseModal = this.onCloseModal.bind(this);
 		this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
 		this.cartShouldOpen = this.cartShouldOpen.bind(this);
 		this.HandleCartContentOpening = this.HandleCartContentOpening.bind(this);
 	}
+
 	cartShouldUpdate() {
 		this.setState({
 			updateCart: true
@@ -56,7 +62,7 @@ class Index extends React.Component {
 		   topStores: data.top_stores,
 		   sellers: data.featured_sellers,
 		   specialOffers: data.special_offers
-        };
+		};
 	}
 
 	HandleCartContentOpening() {
@@ -71,7 +77,15 @@ class Index extends React.Component {
                 openCartContent: true
             })
         }
-    }
+	}
+	
+	onOpenModal = () => {
+		this.setState({ open: true });
+	};
+	 
+	onCloseModal = () => {
+		this.setState({ open: false });
+	};
 
 	render() {
 		const { 
@@ -87,7 +101,8 @@ class Index extends React.Component {
 			specialOffers
 		} = this.props;
 		const {
-			openCartContent
+			openCartContent,
+			open
 		} = this.state;
 
 		return (
@@ -96,7 +111,10 @@ class Index extends React.Component {
 				updateCart={this.state.updateCart}
 				openCart={openCartContent}
 				>
-					<div className='main-banners'>
+					<Modal open={open} onClose={this.onCloseModal} center>
+						<Suggest />
+					</Modal>
+					<div className='main-banners' onClick={this.onOpenModal}>
 						<Ad type={type} data={promoAds}/>
 					</div>
 					<div className='categories-scroller'>
