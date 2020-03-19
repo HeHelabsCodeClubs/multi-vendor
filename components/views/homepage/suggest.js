@@ -125,7 +125,7 @@ class Suggest extends React.Component {
                                             </div>
                                         </div>
                                         <div className='later-button'>
-                                            <button type="submit" className="">
+                                            <button type="submit" className="" onClick={this.props.closeModal}>
                                                Later
                                             </button>
                                         </div>

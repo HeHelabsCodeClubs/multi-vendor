@@ -6,7 +6,7 @@ import MadeInRwanda from "../components/views/homepage/MadeInRwanda";
 import Ad from "../components/views/homepage/Ad";
 import HomepageCategory from "../components/views/homepage/HomepageCategory";
 import fetch from 'isomorphic-unfetch';
-import { API_URL } from '../config';
+import { API_URL, TOKEN_KEY } from '../config';
 import FeaturedSellers from "../components/views/homepage/FeaturedSellers";
 import MoreProduct from "../components/views/homepage/MoreProduct";
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
@@ -119,7 +119,7 @@ class Index extends React.Component {
 				openCart={openCartContent}
 				>
 					<Modal open={open} onClose={this.onCloseModal} center>
-						<Suggest />
+						<Suggest closeModal={this.onCloseModal} />
 					</Modal>
 					<div className='main-banners'>
 						<Ad type={type} data={promoAds}/>
