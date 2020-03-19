@@ -2,8 +2,8 @@ import Global from '../components/reusable/Global';
 import TopInfo from '../components/views/seller/TopInfo';
 import SellerCategories from '../components/views/seller/SellerCategories';
 import MainContent from '../components/views/seller/MainContent';
-import '../assets/styles/layouts/categories.scss';
-import '../assets/styles/layouts/seller.scss';
+// import '../assets/styles/layouts/categories.scss';
+// import '../assets/styles/layouts/seller.scss';
 
 class Seller extends React.Component {
 	render() {

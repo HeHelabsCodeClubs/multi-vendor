@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Select2 from 'react-select2-wrapper';
 import PopUpWrapper from '../components/reusable/PopUpWrapper';
-import '../assets/styles/layouts/landing.scss';
+// import '../assets/styles/layouts/landing.scss';
 
 export default function Landing() {
     return (

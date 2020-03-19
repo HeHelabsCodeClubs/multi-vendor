@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import fetch from 'isomorphic-unfetch';
 import { notify } from 'react-notify-toast';
-import '../../../assets/styles/layouts/landing.scss';
-import '../../../assets/styles/layouts/auth.scss';
+// import '../../../assets/styles/layouts/landing.scss';
+// import '../../../assets/styles/layouts/auth.scss';
 import Breadcrumb from '../../reusable/Breadcrumb';
 import InputField from '../../reusable/InputField';
 import MessageDisplayer from '../../reusable/MessageDisplayer';
