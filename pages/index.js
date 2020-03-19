@@ -50,7 +50,6 @@ class Index extends React.Component {
 		const { 
 			data
 		} = response;
-		console.log('response is', JSON.stringify(response));
         return {
 		   promoAds: data.adds.promo.data,
 		   type: data.adds.promo.type,
@@ -63,6 +62,14 @@ class Index extends React.Component {
 		   sellers: data.featured_sellers,
 		   specialOffers: data.special_offers
 		};
+	}
+	componentDidMount() {
+		const { open } = this.state;
+		if (!open) {
+			this.setState({
+				open: true
+			});
+		}
 	}
 
 	HandleCartContentOpening() {
@@ -114,7 +121,7 @@ class Index extends React.Component {
 					<Modal open={open} onClose={this.onCloseModal} center>
 						<Suggest />
 					</Modal>
-					<div className='main-banners' onClick={this.onOpenModal}>
+					<div className='main-banners'>
 						<Ad type={type} data={promoAds}/>
 					</div>
 					<div className='categories-scroller'>

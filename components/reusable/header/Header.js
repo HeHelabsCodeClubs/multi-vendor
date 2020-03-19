@@ -1,5 +1,5 @@
 import Router from 'next/router';
-import Link from 'next/Link';
+import Link from 'next/link';
 import Select2 from 'react-select2-wrapper';
 import cookie from 'js-cookie';
 import Cart from './Cart';
