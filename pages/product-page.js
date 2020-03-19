@@ -67,7 +67,7 @@ class ProductPage extends React.Component {
     }
 
     static async getInitialProps({ query }) {
-		const res = await fetch(`${API_GATEWAY_URL}/sellers/${query.seller}/products/${query.slug}`)
+		const res = await fetch(`${API_URL}/sellers/${query.seller}/products/${query.slug}`)
         const response = await res.json()
 		const { 
 			data

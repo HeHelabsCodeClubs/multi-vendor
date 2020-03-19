@@ -41,7 +41,7 @@ class Index extends React.Component {
 	 * This function is better for server side rendering
 	 */
 	static async getInitialProps() {
-		const res = await fetch(`${API_GATEWAY_URL}/pages/homepage`)
+		const res = await fetch(`${API_URL}/pages/homepage`)
         const response = await res.json()
 		const { 
 			data,

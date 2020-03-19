@@ -1,6 +1,6 @@
-export const API_URL = 'https://vendor-dashboard.hehe.rw/api';
+export const API_URL = 'https://staging.vendor.hehe.rw/api';
 export const API_GATEWAY_URL = 'http://localhost:8080/api';
-export const API_ROOT_URL = 'https://vendor-dashboard.hehe.rw';
+export const API_ROOT_URL = 'https://staging.vendor.hehe.rw';
 export const TOKEN_KEY = 'VENDOR_TOKEN';
 export const AUTH_USER_LOCAL_STORAGE_INFO = 'AUTH_USER_LOCAL_INFO';
 export const PLATFORM_CLIENT_ID = 2;
