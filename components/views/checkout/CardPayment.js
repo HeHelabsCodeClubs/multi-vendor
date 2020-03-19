@@ -156,12 +156,12 @@ export default class CardPayment extends Component {
 
                 // check if there's no pending order
 
-                const orderID = getOrderCookie();
-                if (orderID) {
-                    // use already existing order
-                    this.onOrderCreationRetry(orderID);
-                    return;
-                }
+                // const orderID = getOrderCookie();
+                // if (orderID) {
+                //     // use already existing order
+                //     this.onOrderCreationRetry(orderID);
+                //     return;
+                // }
 
                 this.createOrderOnTheApi(dataToSubmit, token);
             }

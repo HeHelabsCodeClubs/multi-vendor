@@ -1,6 +1,7 @@
-import SignInForm from '../../../components/views/signin/SignInForm';
-import PopUpWrapper from '../../../components/reusable/PopUpWrapper';
+import MessageDisplayer from '../../reusable/MessageDisplayer';
 import InputField from '../../../components/reusable/InputField';
+import { getUserAuthenticatedInfo } from '../../../helpers/auth';
+import { API_URL } from '../../../config';
 import GoogleAnalyticsLogger from '../../../components/google-analytics/GoogleAnalyticsLogger';
 import '../../../assets/styles/main.scss';
 
@@ -9,16 +10,29 @@ class Suggest extends React.Component {
         super(props);
         this.state = {
             suggestion: '',
-            suggestStatus: 'initial'
+            suggestStatus: 'initial',
+            authUser: {},
+            errorMessage: '',
+            messageType: 'error'
         };
         this.getInputFieldValue = this.getInputFieldValue.bind(this);
         this.handleFormSubmission = this.handleFormSubmission.bind(this);
         this.getSuggestButtonText = this.getSuggestButtonText.bind(this);
+        this.renderPopUpSuggestTitle = this.renderPopUpSuggestTitle.bind(this);
+    }
+    componentDidMount() {
+        getUserAuthenticatedInfo((user) => {
+            if (user !== null) {
+                this.setState({
+                    authUser: user
+                });
+            }
+        });
     }
 
     getSuggestButtonText() {
-        const { loginStatus } = this.state;
-        switch(loginStatus) {
+        const { suggestStatus } = this.state;
+        switch(suggestStatus) {
             case 'suggesting':
                 return 'Suggesting...';
             case 'submitted':
@@ -38,9 +52,8 @@ class Suggest extends React.Component {
         e.preventDefault();
         const {
             suggestion,
-            suggestStatus
+            authUser
         } = this.state;
-
         /**
          * Hide display box if it was displayed due to api errors
          */
@@ -48,54 +61,90 @@ class Suggest extends React.Component {
             inputIsInvalid: false
         });
 
-        /**
-         * Validation
-         */
-        
-        // const customerValidationRules = [
-        //     [
-        //         {
-        //             type: 'empty',
-        //             context: 'Suggestion',
-        //             inputStateValue: suggestion,
-        //             inputStateName: 'suggestion'
-        //         }
-        //     ]
-        // ];
-
-        // if (!this.validateInputFields(customerValidationRules)) {
-        //     return;
-        // }
-
-        if (suggestStatus === 'initial') {
+        if (suggestion === '' || !suggestion) {
             this.setState({
-                suggestStatus: 'Suggesting'
+                errorMessage: 'Please fill in your suggestion',
+                messageType: 'error',
+                inputIsInvalid: true
+            }, () => {
+                setTimeout(() => {
+                    this.setState({
+                        inputIsInvalid: false
+                    })
+                }, 1000);
             });
-
-            fetch(`https://vendor-dashboard.hehe.rw/api/customers/email/suggest`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    suggestion: suggestion,
-                    customer_name: ''
-                })
-            }).then(async (res) => {
-                try {
-                    const response = await res.json();
-                    this.handleResponse(response);
-                    
-                } catch (err) {
-                    console.log('error');
-                    console.log(err);
-                }
-            });
+            return;
         }
+
+        
+        this.setState({
+            suggestStatus: 'suggesting'
+        });
+            
+
+        const requestData = {
+            suggestion: suggestion
+        };
+
+        if (Object.keys(authUser).length !== 0) {
+            requestData.customer_name = `${authUser.first_name} ${authUser.last_name}`;
+            requestData.customer_email = authUser.email;
+        }
+
+        fetch(`${API_URL}/customers/email/suggest`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(requestData)
+        }).then(async (res) => {
+            try {
+                const response = await res.json();
+                if (response.status === 'success') {
+                    this.setState({
+                        suggestStatus: 'submitted',
+                        errorMessage: 'Your suggestion was successfully received!',
+                        messageType: 'success',
+                        inputIsInvalid: true
+                    }, () => {
+                        setTimeout(() => {
+                            this.props.closeModal();
+                        }, 5000);
+                    });
+                }
+                
+            } catch (err) {
+                console.log('error');
+                console.log(err);
+                this.props.closeModal();
+            }
+        });
+        
+    }
+
+    renderPopUpSuggestTitle() {
+        const { authUser } = this.state;
+
+        if (Object.keys(authUser).length !== 0) {
+            return (
+            <div className='greeting'>Hello, <span className='name'>{authUser.first_name}</span></div>
+            );
+        }
+       
+        return (
+            <div className='greeting'>Hello</div>
+        );
     }
 
     render() {
+
+        const {
+            inputIsInvalid,
+            errorMessage,
+            messageType
+        } = this.state;
+
         return (
             <GoogleAnalyticsLogger>
                 <div className=''>
@@ -105,8 +154,13 @@ class Suggest extends React.Component {
                         <div className=''>
                             <div className='landing-wrapper'>
                                 <div className='auth-content'>
+                                <MessageDisplayer 
+                display={inputIsInvalid ? true : false }
+                errorMessage={errorMessage}
+                type={messageType}
+                />
                                     <form className='auth-form suggest-form' onSubmit={this.handleFormSubmission}>
-                                        <div className='greeting'>Hello, <span className='name'>Jenny</span></div>
+                                        {this.renderPopUpSuggestTitle()}
                                         <div className='question'>Any Store or Service you would like to reach through us?</div>
                                         <div className='input'>
                                             <InputField 
@@ -125,7 +179,7 @@ class Suggest extends React.Component {
                                             </div>
                                         </div>
                                         <div className='later-button'>
-                                            <button type="submit" className="" onClick={this.props.closeModal}>
+                                            <button type="button" className="" onClick={this.props.closeModal}>
                                                Later
                                             </button>
                                         </div>

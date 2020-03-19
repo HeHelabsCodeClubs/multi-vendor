@@ -49,7 +49,10 @@ class Header extends React.Component {
         //     prevScrollpos: window.pageYOffset,
         // })
         getUserAuthenticatedInfo((user) => {
-            this.updateAuthUser(user);
+            if (user !== null) {
+                this.updateAuthUser(user);
+            }
+            
         });
         // window.addEventListener("scroll", this.handleScroll);
         if(cookie.get(APP_BETA_NOTIFICATION) === '1') {
@@ -160,10 +163,10 @@ class Header extends React.Component {
 
     renderUserProfile() {
         const { authUser } = this.state;
-        if (!authUser) {
-            // logout client
-            logoutUser()
-        }
+        // if (!authUser) {
+        //     // logout client
+        //     logoutUser()
+        // }
         if (!isObjectEmpty(authUser)) {
             const {
                 last_name,

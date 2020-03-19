@@ -52,11 +52,17 @@ export const getUserAuthenticatedInfo = (callback) => {
     const token = getClientAuthToken();
     if (token) {
         localforage.getItem(AUTH_USER_LOCAL_STORAGE_INFO).then((authUser) => {
-            callback(authUser);
+            if(authUser) {
+                callback(authUser);
+            } else {
+                callback(null);
+            }
         }).catch((err) => {
             console.log('error');
             console.log(err);
         });
+    } else {
+        callback(null);
     }
 }
 
