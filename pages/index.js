@@ -11,6 +11,8 @@ import fetch from 'isomorphic-unfetch';
 import { API_URL } from '../config';
 import FeaturedSellers from "../components/views/homepage/FeaturedSellers";
 import MoreProduct from "../components/views/homepage/MoreProduct";
+import Suggest from '../components/views/homepage/suggest';
+import Modal from 'react-responsive-modal';
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
 
 class Index extends React.Component {
@@ -19,7 +21,8 @@ class Index extends React.Component {
 		this.state = {
 			updateCart: false,
 			openCart: false,
-			openCartContent: false
+			openCartContent: false,
+			open: false
 		};
 		this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
 		this.cartShouldOpen = this.cartShouldOpen.bind(this);
@@ -59,6 +62,15 @@ class Index extends React.Component {
         };
 	}
 
+	componentDidMount() {
+		const { open } = this.state;
+		if (!open) {
+			this.setState({
+				open: true
+			});
+		}
+	}
+
 	HandleCartContentOpening() {
         const { openCartContent } = this.state;
         
@@ -71,7 +83,14 @@ class Index extends React.Component {
                 openCartContent: true
             })
         }
-    }
+	}
+	onOpenModal = () => {
+		this.setState({ open: true });
+	};
+	 
+	onCloseModal = () => {
+		this.setState({ open: false });
+	};
 
 	render() {
 		const { 
@@ -87,7 +106,8 @@ class Index extends React.Component {
 			specialOffers
 		} = this.props;
 		const {
-			openCartContent
+			openCartContent,
+			open
 		} = this.state;
 
 		return (
@@ -96,6 +116,9 @@ class Index extends React.Component {
 			updateCart={this.state.updateCart}
 			openCart={openCartContent}
 			>
+				<Modal open={open} onClose={this.onCloseModal} center>
+					<Suggest closeModal={this.onCloseModal} />
+				</Modal>
 				<div className='main-banners'>
 					<Ad type={type} data={promoAds}/>
 				</div>
