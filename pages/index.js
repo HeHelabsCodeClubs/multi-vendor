@@ -2,6 +2,7 @@ import React from "react";
 import Global from '../components/reusable/Global';
 import '../assets/styles/layouts/homepage.scss';
 import '../assets/styles/layouts/seller.scss';
+import '../assets/styles/layouts/auth.scss';
 import TopStores from '../components/views/homepage/TopStores';
 import SpecialOffers from "../components/views/homepage/SpecialOffers";
 import MadeInRwanda from "../components/views/homepage/MadeInRwanda";
@@ -116,9 +117,9 @@ class Index extends React.Component {
 			updateCart={this.state.updateCart}
 			openCart={openCartContent}
 			>
-				<Modal open={open} onClose={this.onCloseModal} center>
+				{/* <Modal open={open} onClose={this.onCloseModal} center>
 					<Suggest closeModal={this.onCloseModal} />
-				</Modal>
+				</Modal> */}
 				<div className='main-banners'>
 					<Ad type={type} data={promoAds}/>
 				</div>

@@ -95,6 +95,8 @@ body {
                 @extend .default-button-styles;
             }
         }
+
+        
     }
     .auth-text {
         color: $black-color-2;
@@ -109,6 +111,7 @@ body {
         }
     }
 }
+
 .terms-link {
     color: #169889 !important
 }
