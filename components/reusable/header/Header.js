@@ -270,16 +270,20 @@ class Header extends React.Component {
                                 </div>
                                 
                                 <span className='site-logo'>
-                                    <Link href='/'>
-                                        <a className="mobile-invisible">
+                                    {/* <Link href='/'> */}
+                                        <a 
+                                        href='/'
+                                        className="mobile-invisible">
                                             <img src='https://res.cloudinary.com/hehe/image/upload/v1564428498/multi-vendor/NEW_HEHE_LOGOS-Final_logos_LANDSCAPE_B2C_BETA_LANDSCAPE_B2C_BETA_2.svg' />
                                         </a>
-                                    </Link>
-                                    <Link href='/'>
-                                        <a className="mobile-visible">
+                                    {/* </Link> */}
+                                    {/* <Link href='/'> */}
+                                        <a 
+                                        href='/'
+                                        className="mobile-visible">
                                             <img src='https://res.cloudinary.com/hehe/image/upload/v1563286307/multi-vendor/HeHe_Favicon.png' />
                                         </a>
-                                    </Link>
+                                    {/* </Link> */}
                                 </span>
                                 <span className='location-dropdown'>
                                     <Select2
