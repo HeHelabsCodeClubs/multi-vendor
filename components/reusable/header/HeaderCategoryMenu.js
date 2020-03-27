@@ -111,18 +111,13 @@ class HeaderCategoryMenu extends React.Component {
                 if (children.length > 0) {
                     categoryChildLayout = children.map((childCat) => {
                         return (
-                            <Link
-                            href={`/categories/?category_slug=${parent_category_slug}&sub_cat_slug=${parentCat.slug}&sub_last_cat_slug=${childCat.slug}`}
-                            as={`/categories/${parent_category_slug}/${parentCat.slug}/${childCat.slug}`}
-                            >
-                                <a 
-                                //href={`/categories/${parent_category_slug}/${parentCat.slug}/${childCat.slug}`}
+                            <a 
+                                href={`/categories/${parent_category_slug}/${parentCat.slug}/${childCat.slug}`}
                                 key={childCat.slug}
                                 className='sub-cat-item'
                                 >
                                 {childCat.name}
-                                </a>
-                            </Link>
+                            </a>
                             
                         );
                     });
@@ -131,17 +126,17 @@ class HeaderCategoryMenu extends React.Component {
                     <div 
                     key={parentCat.slug}
                     className='sub-wrapper'>
-                        <Link
+                        {/* <Link
                         href={`/categories/?category_slug=${parent_category_slug}&sub_cat_slug=${parentCat.slug}`}
                         as={`/categories/${parent_category_slug}/${parentCat.slug}`}
-                        >
+                        > */}
                             <a
-                            //href={`/categories/${parent_category_slug}/${parentCat.slug}`}
+                            href={`/categories/${parent_category_slug}/${parentCat.slug}`}
                             className='sub-cat-title'
                             >
                                 {parentCat.name}
                             </a>
-                        </Link>
+                        {/* </Link> */}
                         <div
                         className='sub-cat-wrapper'
                         >
@@ -171,17 +166,20 @@ class HeaderCategoryMenu extends React.Component {
                 //const links = icon_class_name.split(',');
                     return (
                         <span className="nav__submenu-item " key={id} >
-                            <Link
+                            {/* <Link
                             href={`/categories?category_slug=${slug}`}
                             as={`/categories/${slug}`}
-                            >
+                            > */}
                                 <a  
-                                className='sub-menu__item-a'>
+                                className='sub-menu__item-a'
+                                href={`/categories/${slug}`}
+                                >
+                                
                                 {/* <span className={`${IconClassName} menu-item-icon`} /> */}
                                 <img src={IconUrl} className={`cat-icon`} />
                                 <h5 className="cat-name-menu">{name}</h5>
                                 </a>
-                            </Link>
+                            {/* </Link> */}
                             <div className='sub-category'>
                                 <div className='row'>
                                     <div className='col-lg-8 col-md-7 col-sm-8 col-12'>
@@ -234,37 +232,37 @@ class HeaderCategoryMenu extends React.Component {
                                             </p>
                                             <ul>
                                                 <li>
-                                                    <a>
+                                                    <a href="https://shypt.rw" target="_blank">
                                                         <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/cart_shop_ico.svg"/>
                                                         <h5>Online shopping</h5>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a>
+                                                    <a href="https://shypt.rw" target="_blank">
                                                         <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/dry_cleaning_ico.svg"/>
                                                         <h5>Dry-cleaning pickup & drop-off/Laundry</h5>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a>
+                                                    <a href="https://shypt.rw" target="_blank">
                                                         <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/Gift_ico.svg"/>
                                                         <h5>Gift shopping/wrapping delivery</h5>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a>
+                                                    <a href="https://shypt.rw" target="_blank">
                                                         <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/package_ico.svg"/>
                                                         <h5>package delivery</h5>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a>
+                                                    <a href="https://shypt.rw" target="_blank">
                                                         <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/envelope_ico.svg"/>
                                                         <h5>Parcel delivery/pickup</h5>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a>
+                                                    <a href="https://shypt.rw" target="_blank">
                                                         <img src="https://res.cloudinary.com/hehe/image/upload/v1571218588/multi-vendor/category/category-icons/shypt-icons/Truck_other_ico.svg"/>
                                                         <h5>Others</h5>
                                                     </a>
