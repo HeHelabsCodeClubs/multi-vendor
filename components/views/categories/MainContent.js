@@ -129,12 +129,6 @@ class MainContent extends React.Component {
             loadInitiatedBySellerFilter 
         } = this.state;
 
-        if (!showLoader && !hasMore) {
-            this.setState({
-                showLoader: true
-            });
-        }
-        //const { sellersIds } = this.props;
         const { router: { query } } = Router;
 
         const ids = sellersIds.toString();
@@ -152,7 +146,6 @@ class MainContent extends React.Component {
         }
 
         if (category_slug !== undefined && sellersIds.length !== 0) {
-            // const activeCategorySlug = sub_last_cat_slug ? sub_last_cat_slug : (sub_cat_slug ? sub_cat_slug : category_slug);
             remoteUrl = `${API_URL}/categories/${category_slug}/products/sellers?filter=${ids}`;
         }
 
@@ -163,7 +156,6 @@ class MainContent extends React.Component {
         `${remoteUrl}?page=${newPage}`
         const res = await fetch(remoteUrl);
         const response = await res.json();
-        console.log('response', response);
         const { data, meta } = response;
         if (data.products) {
             this.updateProductsOnPagination(data.products, meta);
@@ -175,13 +167,11 @@ class MainContent extends React.Component {
 
     updateProductsOnPagination(data, meta) {
         const { products, currentPage, showLoader, hasMore, loadInitiatedBySellerFilter } = this.state;
-        //const { paginationData } = this.props;
-        // this.setState({
-        //     pData: meta.pagination_data
-        // });
-      const newPage = Number(currentPage) + 1;
-       let newProducts = products;
+        const newPage = Number(currentPage) + 1;
+        let newProducts = products;
         if (!loadInitiatedBySellerFilter) {
+            console.log('np', newProducts);
+            console.log('response', data);
             data.map((product) => {
                 newProducts.push(product);
             });
@@ -193,8 +183,6 @@ class MainContent extends React.Component {
             products: newProducts,
             currentPage: newPage,
             lastPage: Number(meta.pagination_data.last_page),
-            showLoader: !showLoader && !hasMore ? true : false,
-            loadInitiatedBySellerFilter: loadInitiatedBySellerFilter ? false : true
         });
     }
 
@@ -304,11 +292,10 @@ class MainContent extends React.Component {
                 dataLength={products.length}
                 next={this.loadMoreProducts}
                 hasMore={hasMore}
-                //scrollThreshold={0.4}
+                scrollThreshold={0.4}
                 loader={<Loader />}
                 >
                     <div className='main-content'>
-                        {/* {this.renderBreadCrumb()} */}
                         {this.renderProducts()}
                     </div>
                 </InfiniteScroll>
