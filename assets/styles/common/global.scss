@@ -406,11 +406,10 @@ select {
     backdrop-filter: blur(30px);
     box-shadow: 0 -6px 12px 0 rgba(0, 0, 0, 0.16);
     background-color: $dark-blue-transparent;
-    position: fixed;
     bottom: 0;
     width: 100%;
     z-index: 9999;
-    padding-top: 1rem;
+    padding: 1rem 0;
 
     &.alert-top {
         bottom: auto;
@@ -421,7 +420,8 @@ select {
     p {
         color: $white-color;
         text-align: center;
-        letter-spacing: .12rem;
+        letter-spacing: .08rem;
+        margin: 0 !important;
 
         a {
             color: $white-color !important;
