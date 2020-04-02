@@ -3,18 +3,42 @@ import InputField from '../../reusable/InputField';
 import Notifications, { notify } from 'react-notify-toast';
 import MessageDisplayer from '../../reusable/MessageDisplayer';
 import { getValidatedInputErrorMessage } from '../../../helpers/validation';
-import { getCartItems, singleStoreTotalPrice } from '../../../helpers/cart_functionality_helpers';
+import { getCartItems, singleStoreTotalPrice, storeProductsTotalPrice, singleStoreName } from '../../../helpers/cart_functionality_helpers';
 import { retrieveShipmentData } from '../../../helpers/shipment_method_functionality_helpers';
 import isObjectEmpty from '../../../helpers/is_object_empty';
 import { 
     createPaymentSubmissionData,
     storeOrderDATACookie,
-    removeOrderDATACookie
+    removeOrderDATACookie,
+    removeMoMoPaymentStatusCookie
  } from '../../../helpers/process_payment';
  import { API_URL } from '../../../config';
  import { getClientAuthToken, getOrderCookie } from '../../../helpers/auth';
  import { ORDER_CREATION_UNKWOWN_ERROR } from '../../../config';
  import { getDiscountDataInLocalStorage } from '../../../helpers/coupon_code_functionality';
+import SearchDropdown from '../../reusable/header/SearchDropdown';
+
+const channels = [
+    {code: 'toddle-care'},
+    {code: 'azzi-cosmetics'},
+    {code: 'a-f-l-i-m-b-a'},
+    {code: 'kigali-pottery'},
+    {code: 'ki-pepeokids'},
+    {code: 'k-dreamy'},
+    {code: 'jewel-rock'},
+    {code: 'je-te-promets'},
+    {code: 'iwawe-tech'},
+    {code: 'hope-line-sports'},
+    {code: 'shema-shop'},
+    {code: 'posh-creative'},
+    {code: 'nk-clothing'},
+    {code: 'new-ma-maison'},
+    {code: 'mode-lingeries'},
+    {code: 'kukiranguzo'},
+    {code: 'smart-pillow-rwanda'},
+    {code: 'uzi-collections'},
+    {code: 'tomorrow-accessories'}
+]
 
 export default class CardPayment extends Component {
     constructor(props) {
@@ -121,11 +145,23 @@ export default class CardPayment extends Component {
             // handle redirection to migs
             const dataToSubmit = createPaymentSubmissionData('card', cartItems, shipmentData);
             const token = getClientAuthToken();
+            console.log('datatosubmit', dataToSubmit);
             let doNotSubmit = false;
+            let storeClosed = false;
+            let storeName = '';
             if (!isObjectEmpty(dataToSubmit) && token) {
                 // Check if the order has a minimum total of Rwf 3000 per store 
-
                 Object.keys(dataToSubmit).forEach((storeSlug, index) => {
+                    for (let i = 0; i < channels.length; i++) {
+                        if (channels[i].code === storeSlug) {
+                            const data = {
+                                slug: storeSlug,
+                                ...cartItems[storeSlug]
+                            };
+                            storeName = singleStoreName(data);
+                            storeClosed = true;
+                        }
+                    }
                     const data = {
                         slug: storeSlug,
                         ...cartItems[storeSlug]
@@ -137,13 +173,13 @@ export default class CardPayment extends Component {
                     }
                 });
 
+                if (storeClosed === true) {
+                    notify.show(`${storeName} is currently closed`, 'error', 10000);
+                    return;
+                }
+
                 if (doNotSubmit === true) {
                     notify.show("Your order should have a minimum total amount of Rwf 3000 per store", 'error', 10000);
-                    setTimeout(() => {
-                        this.setState({
-                            buttonStatus: 'Submit My Order'
-                        });
-                    }, 2000);
                     return;
                 }
 
@@ -154,14 +190,14 @@ export default class CardPayment extends Component {
                 const { toogleDisplayOverlay } = this.props;
                 toogleDisplayOverlay(true);
 
-                // check if there's no pending order
+                //check if there's no pending order
 
-                // const orderID = getOrderCookie();
-                // if (orderID) {
-                //     // use already existing order
-                //     this.onOrderCreationRetry(orderID);
-                //     return;
-                // }
+                const orderID = getOrderCookie();
+                if (orderID) {
+                    // use already existing order
+                    this.onOrderCreationRetry(orderID);
+                    return;
+                }
 
                 this.createOrderOnTheApi(dataToSubmit, token);
             }

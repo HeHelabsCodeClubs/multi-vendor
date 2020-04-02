@@ -4,7 +4,7 @@ import InputField from '../../reusable/InputField';
 import MessageDisplayer from '../../reusable/MessageDisplayer';
 import { getValidatedInputErrorMessage } from '../../../helpers/validation';
 import { getClientAuthToken, getOrderCookie } from '../../../helpers/auth';
-import { getCartItems, singleStoreTotalPrice } from '../../../helpers/cart_functionality_helpers';
+import { getCartItems, singleStoreTotalPrice, singleStoreName } from '../../../helpers/cart_functionality_helpers';
 import { retrieveShipmentData } from '../../../helpers/shipment_method_functionality_helpers';
 import { API_URL, APP_CARD_PAYMENT_RETURN_URL } from '../../../config';
 import { ORDER_CREATION_UNKWOWN_ERROR } from '../../../config';
@@ -163,9 +163,21 @@ export default class MtnMobileMoneyPayment extends Component {
             const dataToSubmit = createPaymentSubmissionData('momo', cartItems, shipmentData);
             const token = getClientAuthToken();
             let doNotSubmit = false;
+            let storeClosed = false;
+            let storeName = '';
             if (!isObjectEmpty(dataToSubmit) && token) {
                 // Check if the order has a minimum total of Rwf 3000 per store 
                 Object.keys(dataToSubmit).forEach((storeSlug, index) => {
+                    for (let i = 0; i < channels.length; i++) {
+                        if (channels[i].code === storeSlug) {
+                            const data = {
+                                slug: storeSlug,
+                                ...cartItems[storeSlug]
+                            };
+                            storeName = singleStoreName(data);
+                            storeClosed = true;
+                        }
+                    }
                     const data = {
                         slug: storeSlug,
                         ...cartItems[storeSlug]
@@ -176,6 +188,11 @@ export default class MtnMobileMoneyPayment extends Component {
                         doNotSubmit = true
                     }
                 });
+
+                if (storeClosed === true) {
+                    notify.show(`${storeName} is currently closed`, 'error', 10000);
+                    return;
+                }
 
                 if (doNotSubmit === true) {
                     notify.show("Your order should have a minimum total amount of Rwf 3000 per store", 'error', 10000);
