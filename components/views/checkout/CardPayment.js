@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import InputField from '../../reusable/InputField';
+import Notifications, { notify } from 'react-notify-toast';
 import MessageDisplayer from '../../reusable/MessageDisplayer';
 import { getValidatedInputErrorMessage } from '../../../helpers/validation';
-import { getCartItems } from '../../../helpers/cart_functionality_helpers';
+import { getCartItems, singleStoreTotalPrice, singleStoreName } from '../../../helpers/cart_functionality_helpers';
 import { retrieveShipmentData } from '../../../helpers/shipment_method_functionality_helpers';
 import isObjectEmpty from '../../../helpers/is_object_empty';
 import { 
@@ -14,6 +15,27 @@ import {
  import { getClientAuthToken, getOrderCookie } from '../../../helpers/auth';
  import { ORDER_CREATION_UNKWOWN_ERROR } from '../../../config';
  import { getDiscountDataInLocalStorage } from '../../../helpers/coupon_code_functionality';
+
+ const channels = [
+    {code: 'azzi-cosmetics'},
+    {code: 'a-f-l-i-m-b-a'},
+    {code: 'kigali-pottery'},
+    {code: 'ki-pepeokids'},
+    {code: 'k-dreamy'},
+    {code: 'jewel-rock'},
+    {code: 'je-te-promets'},
+    {code: 'iwawe-tech'},
+    {code: 'hope-line-sports'},
+    {code: 'shema-shop'},
+    {code: 'posh-creative'},
+    {code: 'nk-clothing'},
+    {code: 'new-ma-maison'},
+    {code: 'mode-lingeries'},
+    {code: 'kukiranguzo'},
+    {code: 'smart-pillow-rwanda'},
+    {code: 'uzi-collections'},
+    {code: 'tomorrow-accessories'}
+]
 
 export default class CardPayment extends Component {
     constructor(props) {
@@ -97,12 +119,12 @@ export default class CardPayment extends Component {
             return;
         }
 
-        this.setState({
-            buttonStatus: 'submitting'
-        });
+        // this.setState({
+        //     buttonStatus: 'submitting'
+        // });
 
-        const { toogleDisplayOverlay } = this.props;
-        toogleDisplayOverlay(true);
+        // const { toogleDisplayOverlay } = this.props;
+        // toogleDisplayOverlay(true);
 
         // proceed to migs
         this.proceedToMigs();
@@ -127,7 +149,50 @@ export default class CardPayment extends Component {
             // handle redirection to migs
             const dataToSubmit = createPaymentSubmissionData('card', cartItems, shipmentData);
             const token = getClientAuthToken();
+            let doNotSubmit = false;
+            let storeClosed = false;
+            let storeName = '';
             if (!isObjectEmpty(dataToSubmit) && token) {
+
+                Object.keys(dataToSubmit).forEach((storeSlug, index) => {
+                    for (let i = 0; i < channels.length; i++) {
+                        if (channels[i].code === storeSlug) {
+                            const data = {
+                                slug: storeSlug,
+                                ...cartItems[storeSlug]
+                            };
+                            storeName = singleStoreName(data);
+                            storeClosed = true;
+                        }
+                    }
+                    const data = {
+                        slug: storeSlug,
+                        ...cartItems[storeSlug]
+                    };
+                    const storeTotalPrice = singleStoreTotalPrice(data);
+
+                    if (storeTotalPrice < 3000) {
+                        doNotSubmit = true
+                    }
+                });
+
+                if (storeClosed === true) {
+                    notify.show(`${storeName} is currently closed`, 'error', 10000);
+                    return;
+                }
+
+                if (doNotSubmit === true) {
+                    notify.show("Your order should have a minimum total amount of Rwf 3000 per store", 'error', 10000);
+                    return;
+                }
+
+                this.setState({
+                    buttonStatus: 'Submitting'
+                });
+
+                const { toogleDisplayOverlay } = this.props;
+                toogleDisplayOverlay(true);
+
                 removeOrderDATACookie();
                 this.createOrderOnTheApi(dataToSubmit, token);
             }
@@ -298,6 +363,7 @@ export default class CardPayment extends Component {
         } = this.state;
         return (
             <div>
+                <Notifications />
                 <MessageDisplayer 
                 display={inputIsInvalid ? true : false }
                 errorMessage={errorMessage}
