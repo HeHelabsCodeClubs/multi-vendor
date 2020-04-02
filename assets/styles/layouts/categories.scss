@@ -510,4 +510,12 @@
     @include flexalignitems(center);
     @include flexdirection(column);
 }
+.no-store-message {
+    text-align: center;
+    p {
+        color: #ccc;
+        font-size: 1.5rem;
+        margin: 1.4rem 0 !important;
+    }
+}
 

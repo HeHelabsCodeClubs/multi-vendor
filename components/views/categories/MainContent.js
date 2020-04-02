@@ -19,7 +19,7 @@ class MainContent extends React.Component {
             lastPage: 1,
             loadInitiatedBySellerFilter: false,
             pData: {},
-            sellers: [],
+            sellers: 'empty',
             sellersIds: []
         };
         this.renderProducts = this.renderProducts.bind(this);
@@ -68,11 +68,11 @@ class MainContent extends React.Component {
             }
         }
 
-        if (sellers.length !== 0) {
+        //if (sellers.length !== 0) {
             this.setState({
                 sellers
             });
-        }
+        //}
     }
 
     renderProducts() {
@@ -248,7 +248,8 @@ class MainContent extends React.Component {
 
     renderSellers() {
         const { sellers } = this.state;
-        if (sellers.length !== 0) {
+        console.log(sellers);
+        if (sellers.length !== 0 && sellers !== 'empty') {
             const sellersList = sellers.map((seller) => {
                 return (
                     <StoreItem 
@@ -260,8 +261,13 @@ class MainContent extends React.Component {
             });
 
             return sellersList;
+        } else if (sellers.length === 0 && sellers !== 'empty') {
+            return (
+                <div className='no-store-message'>
+                    <p>No store with this category</p>
+                </div>
+            )
         }
-
         return <Loader />;
     }
 
