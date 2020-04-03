@@ -177,7 +177,7 @@ export default class CardPayment extends Component {
                 });
 
                 if (storeClosed === true) {
-                    notify.show(`${storeName} is currently closed`, 'error', 10000);
+                    notify.show(`We're sorry ${storeName} is currently closed in this season`, 'error', 10000);
                     return;
                 }
 
