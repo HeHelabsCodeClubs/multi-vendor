@@ -144,7 +144,6 @@ export default class CardPayment extends Component {
             // handle redirection to migs
             const dataToSubmit = createPaymentSubmissionData('card', cartItems, shipmentData);
             const token = getClientAuthToken();
-            console.log('datatosubmit', dataToSubmit);
             let doNotSubmit = false;
             let storeClosed = false;
             let storeName = '';
