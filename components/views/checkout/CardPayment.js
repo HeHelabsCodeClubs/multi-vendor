@@ -19,7 +19,6 @@ import {
 import SearchDropdown from '../../reusable/header/SearchDropdown';
 
 const channels = [
-    {code: 'toddle-care'},
     {code: 'azzi-cosmetics'},
     {code: 'a-f-l-i-m-b-a'},
     {code: 'kigali-pottery'},

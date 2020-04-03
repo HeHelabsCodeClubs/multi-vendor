@@ -29,6 +29,27 @@ let MOMO_PAYMENT_UNRESPONSIVENESS_TIMEOUT = 0;
 let timeoutInterval = undefined;
 let momoTransactionRequestStatus = undefined;
 
+const channels = [
+    {code: 'azzi-cosmetics'},
+    {code: 'a-f-l-i-m-b-a'},
+    {code: 'kigali-pottery'},
+    {code: 'ki-pepeokids'},
+    {code: 'k-dreamy'},
+    {code: 'jewel-rock'},
+    {code: 'je-te-promets'},
+    {code: 'iwawe-tech'},
+    {code: 'hope-line-sports'},
+    {code: 'shema-shop'},
+    {code: 'posh-creative'},
+    {code: 'nk-clothing'},
+    {code: 'new-ma-maison'},
+    {code: 'mode-lingeries'},
+    {code: 'kukiranguzo'},
+    {code: 'smart-pillow-rwanda'},
+    {code: 'uzi-collections'},
+    {code: 'tomorrow-accessories'}
+]
+
 export default class MtnMobileMoneyPayment extends Component {
     constructor(props) {
         super(props);
