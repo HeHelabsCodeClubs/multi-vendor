@@ -196,6 +196,21 @@ export const countCartItems = (cartItems) => {
  }
 
  /**
+  * Get single store name
+  * 
+  * @param {object} store
+  * @return {integer}
+  */
+ export const singleStoreName = (store) => {
+    let storeName = '';
+    if (store !== null) {
+        const { info } = store;
+        storeName = info.name;
+    }
+    return storeName;
+}
+
+ /**
   * Get all store products total price
   * 
   * @param {object}

@@ -55,11 +55,11 @@ class Header extends React.Component {
             
         });
         // window.addEventListener("scroll", this.handleScroll);
-        if(cookie.get(APP_BETA_NOTIFICATION) === '1') {
-            this.setState({
-                alertVisibility: false
-            });
-        }
+        // if(cookie.get(APP_BETA_NOTIFICATION) === '1') {
+        //     this.setState({
+        //         alertVisibility: false
+        //     });
+        // }
     }
     componentWillReceiveProps(nextProps) {
         const { updateCart } = nextProps;
@@ -149,10 +149,14 @@ class Header extends React.Component {
 
     renderAlertContent() {
         const { alertVisibility } = this.state;
-        if (alertVisibility && cookie.get(APP_BETA_NOTIFICATION) !== '1') {
+        if (alertVisibility
+            // && cookie.get(APP_BETA_NOTIFICATION) !== '1'
+            ) {
             return (
                 <div className="cookies-wrapper alert-top">
-                    <p>This is a beta version of <a href="/">hehe.rw</a>. We're still working on this new-look site, we apologize for any inconvenience this may cause.
+                    <p>
+                        {/* This is a beta version of <a href="/">hehe.rw</a>. We're still working on this new-look site, we apologize for any inconvenience this may cause. */}
+                        During this season, there will be shortage of products from some of your favorite stores, currently closed. If you can't find an alternative product reach out to our support team on WhatsApp +250786456686 for further inquiry.
                         <button className="close-popup" onClick={this.closeAlertPopup}><span class="icon-Times"></span></button>
                     </p>
                 </div>
@@ -238,9 +242,9 @@ class Header extends React.Component {
                 })}
                 >
                     
-                    {/* <div>
+                    <div>
                         {this.renderAlertContent()}
-                    </div> */}
+                    </div>
                     <div className='top-panel'>
                         <div className='row maximum-width'>
                             <div className='col-lg-6 col-md-6 col-sm-6 col-12'>
