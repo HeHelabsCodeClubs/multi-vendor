@@ -1,9 +1,8 @@
 import React from 'react';
 import Notifications from 'react-notify-toast';
 import Header from '../components/reusable/header/Header';
-import '../assets/styles/layouts/header.scss';
-import '../assets/styles/layouts/error.scss';
 import { API_URL } from '../config';
+import '../assets/styles/main.scss';
 
 class Error extends React.Component {
 	constructor(props) {

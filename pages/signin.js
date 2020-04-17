@@ -1,9 +1,7 @@
-import '../assets/styles/layouts/landing.scss';
-import '../assets/styles/layouts/auth.scss';
-import '../assets/styles/layouts/header.scss';
 import SignInForm from '../components/views/signin/SignInForm';
 import Global from '../components/reusable/Global';
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
+import '../assets/styles/main.scss';
 
 export default function Signin() {
     return (

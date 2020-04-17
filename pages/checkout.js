@@ -1,7 +1,5 @@
 import Router from 'next/router';
 import Global from '../components/reusable/Global';
-import '../assets/styles/layouts/checkout.scss';
-import '../assets/styles/layouts/auth.scss';
 import AccountInfo from '../components/views/checkout/AccountInfo';
 // import OrderSummary from '../components/views/checkout/OrderSummary';
 import Billing from '../components/views/checkout/Billing';
@@ -15,6 +13,7 @@ import { API_URL } from '../config';
 import { getCartItems } from '../helpers/cart_functionality_helpers';
 import IsObjectEmpty from '../helpers/is_object_empty';
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
+import '../assets/styles/main.scss';
 
 class Checkout extends React.Component {
     constructor(props) {

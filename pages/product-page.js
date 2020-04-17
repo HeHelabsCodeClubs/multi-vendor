@@ -21,6 +21,7 @@ import { getCartItems } from '../helpers/cart_functionality_helpers';
 import {isProductOutOfStock } from '../helpers/cart_functionality_helpers';
 import Head from 'next/head';
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
+import '../assets/styles/main.scss';
  
 class ProductPage extends React.Component {
     constructor(props) {
@@ -92,25 +93,30 @@ class ProductPage extends React.Component {
     }
     
     renderProductMetaData(product) {
-        if (product) {
-            return (
-                <div>
-                    <div className='product-name'>{product.name}</div>
-                    {renderProductIdentifier(product)}
-                    <div className='product-detail'>
-                        <span className='details-title'>Price:</span>
-                        {renderProductPrice(product)}
-                        {this.renderProductUnitDescription(product.attributes)}
-                        {this.renderProductDiscountedPrice(product)}
+        try {
+            if (product) {
+                return (
+                    <div>
+                        <div className='product-name'>{product.name}</div>
+                        {renderProductIdentifier(product)}
+                        <div className='product-detail'>
+                            <span className='details-title'>Price:</span>
+                            {renderProductPrice(product)}
+                            {this.renderProductUnitDescription(product.attributes)}
+                            {this.renderProductDiscountedPrice(product)}
+                        </div>
+                        <Head>
+                            <title>{product.attributes.meta_title}</title>
+                            <meta name="description" content={`${product.attributes.meta_description}`} />
+                            <meta name="keywords" content={`${product.attributes.meta_keywords}`} />
+                        </Head>
                     </div>
-                    <Head>
-                        <title>{product.attributes.meta_title}</title>
-                        <meta name="description" content={`${product.attributes.meta_description}`} />
-                        <meta name="keywords" content={`${product.attributes.meta_keywords}`} />
-                    </Head>
-                </div>
-            )
+                );
+            }
+        } catch(e) {
+            console.log('an error happened when rendering product meta data', e);
         }
+        return null;
     }
 
     renderProductDiscountedPrice(product) {

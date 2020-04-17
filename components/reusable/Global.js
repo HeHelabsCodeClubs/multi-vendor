@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import Notifications from 'react-notify-toast';
 import Header from './header/Header';
 import Footer from './Footer';
-import '../../assets/styles/layouts/header.scss';
 
 class Global extends Component {
     constructor(props) {

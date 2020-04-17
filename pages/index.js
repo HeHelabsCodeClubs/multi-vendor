@@ -1,20 +1,15 @@
 import React from "react";
 import Global from '../components/reusable/Global';
-import '../assets/styles/layouts/homepage.scss';
-import '../assets/styles/layouts/seller.scss';
-import '../assets/styles/layouts/auth.scss';
 import TopStores from '../components/views/homepage/TopStores';
 import SpecialOffers from "../components/views/homepage/SpecialOffers";
 import MadeInRwanda from "../components/views/homepage/MadeInRwanda";
 import Ad from "../components/views/homepage/Ad";
-import HomepageCategory from "../components/views/homepage/HomepageCategory";
 import fetch from 'isomorphic-unfetch';
 import { API_URL } from '../config';
 import FeaturedSellers from "../components/views/homepage/FeaturedSellers";
 import MoreProduct from "../components/views/homepage/MoreProduct";
-import Suggest from '../components/views/homepage/suggest';
-import Modal from 'react-responsive-modal';
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
+import '../assets/styles/main.scss';
 
 class Index extends React.Component {
 	constructor(props) {

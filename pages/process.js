@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getTokenValue } from '../helpers/auth';
 import { API_URL, APP_CARD_PAYMENT_RETURN_URL } from '../config';
+import '../assets/styles/main.scss';
 
 export default class Process extends Component {
     constructor(props) {

@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import OrderFeedback from '../components/views/orderResponse/OrderFeeback';
 import PopUpWrapper from '../components/reusable/PopUpWrapper';
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
-import '../assets/styles/layouts/landing.scss';
-import '../assets/styles/layouts/auth.scss';
-import '../assets/styles/layouts/orderResponse.scss';
 import { getTokenValue } from '../helpers/auth';
 import { API_URL, APP_DOMAIN } from '../config';
+import '../assets/styles/main.scss';
 
 class OrderComplete extends Component {
     static async getInitialProps({ req, res, asPath }) {

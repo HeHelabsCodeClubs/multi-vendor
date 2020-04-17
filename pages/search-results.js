@@ -2,13 +2,12 @@ import fetch from 'isomorphic-unfetch';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Router from 'next/router';
 import Global from '../components/reusable/Global';
-import '../assets/styles/layouts/categories.scss';
-import '../assets/styles/layouts/searchResults.scss';
 import Product from '../components/reusable/Product';
 import { API_URL } from '../config';
 import Breadcrumb from '../components/reusable/Breadcrumb';
 import Loader from '../components/reusable/Loader';
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
+import '../assets/styles/main.scss';
 
 class SearchResults extends React.Component {
     constructor(props) {

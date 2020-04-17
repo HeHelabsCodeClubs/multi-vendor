@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import fetch from 'isomorphic-unfetch';
 import { notify } from 'react-notify-toast';
-import '../../../assets/styles/layouts/landing.scss';
-import '../../../assets/styles/layouts/auth.scss';
 import { 
     API_URL, 
     API_ROOT_URL,
@@ -22,7 +20,6 @@ import {
     redirectUserToAfterLoginPage
 } from '../../../helpers/auth';
 import Breadcrumb from '../../reusable/Breadcrumb';
-import { ENGINE_METHOD_ALL } from 'constants';
 
 class SignupForm extends Component {
     constructor(props) {

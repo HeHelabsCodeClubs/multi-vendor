@@ -3,10 +3,10 @@ import Router from 'next/router';
 import fetch from 'isomorphic-unfetch';
 import Global from '../components/reusable/Global';
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
-import '../assets/styles/layouts/invoice.scss';
 import { getClientAuthToken } from '../helpers/auth';
 import { API_URL } from '../config';
 import { isArray } from 'util';
+import '../assets/styles/main.scss';
 
 class Invoice extends Component {
     constructor(props) {

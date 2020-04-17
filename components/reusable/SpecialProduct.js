@@ -1,4 +1,3 @@
-import '../../assets/styles/layouts/product.scss';
 import ImageLoader from './ImageLoader';
 import renderProductIdentifier from '../../helpers/render_product_identifier';
 import renderProductPrice from '../../helpers/render_product_price';

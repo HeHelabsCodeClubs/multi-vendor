@@ -3,7 +3,6 @@ import InputField from '../../../components/reusable/InputField';
 import { getUserAuthenticatedInfo } from '../../../helpers/auth';
 import { API_URL } from '../../../config';
 import GoogleAnalyticsLogger from '../../../components/google-analytics/GoogleAnalyticsLogger';
-import '../../../assets/styles/main.scss';
 
 class Suggest extends React.Component {
     constructor(props) {

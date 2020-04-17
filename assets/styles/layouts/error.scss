@@ -1,13 +1,13 @@
 body {
     position: relative;
-    padding-bottom: 0 !important;
+    // padding-bottom: 0 !important;
 
-    @media screen and (max-width: $mobile-md-lg) {
-        padding-bottom: 0 !important;
-    }
-    @media screen and (min-width: $mobile-md-lg) and (max-width: $mobile-lg) {
-        padding-bottom: 0 !important;
-    }
+    // @media screen and (max-width: $mobile-md-lg) {
+    //     padding-bottom: 0 !important;
+    // }
+    // @media screen and (min-width: $mobile-md-lg) and (max-width: $mobile-lg) {
+    //     padding-bottom: 0 !important;
+    // }
 }
 
 .error-page-wrapper {

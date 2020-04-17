@@ -1,8 +1,6 @@
 import Link from 'next/link';
 import SignInForm from '../signin/SignInForm';
 import SignupForm from '../signup/SignupForm';
-import '../../../assets/styles/layouts/landing.scss';
-import '../../../assets/styles/layouts/auth.scss';
 
 class AccountInfo extends React.Component {
     constructor(props) {

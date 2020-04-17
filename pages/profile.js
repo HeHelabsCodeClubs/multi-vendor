@@ -4,12 +4,12 @@ import Router from 'next/router';
 import Global from '../components/reusable/Global';
 import OrderRow from '../components/views/profile/OrderRow';
 import OrderDetail from "../components/views/profile/OrderDetail";
-import '../assets/styles/layouts/profile.scss';
 import fetch from 'isomorphic-unfetch';
 import { API_URL } from '../config';
 import { getClientAuthToken, getUserAuthenticatedInfo, logoutUser } from '../helpers/auth';
 import isObjectEmpty from '../helpers/is_object_empty';
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
+import '../assets/styles/main.scss';
 
 
 class Profile extends Component {
