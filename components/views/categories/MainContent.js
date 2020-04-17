@@ -166,12 +166,10 @@ class MainContent extends React.Component {
     }
 
     updateProductsOnPagination(data, meta) {
-        const { products, currentPage, showLoader, hasMore, loadInitiatedBySellerFilter } = this.state;
+        const { products, currentPage, loadInitiatedBySellerFilter } = this.state;
         const newPage = Number(currentPage) + 1;
         let newProducts = products;
         if (!loadInitiatedBySellerFilter) {
-            console.log('np', newProducts);
-            console.log('response', data);
             data.map((product) => {
                 newProducts.push(product);
             });
