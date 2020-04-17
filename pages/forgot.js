@@ -1,9 +1,8 @@
 import Notifications from 'react-notify-toast';
-// import '../assets/styles/layouts/landing.scss';
-// import '../assets/styles/layouts/auth.scss';
 import ForgotPasswordForm from '../components/views/forgotPassword/ForgotPasswordForm';
 import PopUpWrapper from '../components/reusable/PopUpWrapper';
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
+import '../assets/styles/main.scss';
 
 export default function Forgot() {
     return (

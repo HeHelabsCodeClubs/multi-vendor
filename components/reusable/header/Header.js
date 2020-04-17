@@ -157,7 +157,7 @@ class Header extends React.Component {
                     <p>
                         {/* This is a beta version of <a href="/">hehe.rw</a>. We're still working on this new-look site, we apologize for any inconvenience this may cause. */}
                         During this season, there will be shortage of products from some of your favorite stores, currently closed. If you can't find an alternative product reach out to our support team on WhatsApp +250786456686 for further inquiry.
-                        <button className="close-popup" onClick={this.closeAlertPopup}><span class="icon-Times"></span></button>
+                        <button className="close-popup" onClick={this.closeAlertPopup}><span className="icon-Times"></span></button>
                     </p>
                 </div>
             );
@@ -167,13 +167,8 @@ class Header extends React.Component {
 
     renderUserProfile() {
         const { authUser } = this.state;
-        // if (!authUser) {
-        //     // logout client
-        //     logoutUser()
-        // }
         if (!isObjectEmpty(authUser)) {
             const {
-                last_name,
                 first_name
             } = authUser;
             const userName = `Hi ${first_name}`;

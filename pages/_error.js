@@ -13,7 +13,7 @@ class Error extends React.Component {
 	}
 	
 	static async getInitialProps({ query }) {
-		const { category_slug, sub_cat_slug, sub_last_cat_slug } = query;
+		const { category_slug } = query;
 		const res = await fetch(`${API_URL}/categories/${category_slug}/parent_page`);
         const response = await res.json()
 		const { 
