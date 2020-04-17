@@ -248,7 +248,6 @@ class MainContent extends React.Component {
 
     renderSellers() {
         const { sellers } = this.state;
-        console.log(sellers);
         if (sellers.length !== 0 && sellers !== 'empty') {
             const sellersList = sellers.map((seller) => {
                 return (

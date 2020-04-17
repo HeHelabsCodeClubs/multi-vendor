@@ -150,7 +150,7 @@ class Header extends React.Component {
     renderAlertContent() {
         const { alertVisibility } = this.state;
         if (alertVisibility
-            // && cookie.get(APP_BETA_NOTIFICATION) !== '1'
+            && cookie.get(APP_BETA_NOTIFICATION) !== '1'
             ) {
             return (
                 <div className="cookies-wrapper alert-top">

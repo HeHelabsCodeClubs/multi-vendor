@@ -6,13 +6,11 @@ import MadeInRwanda from "../components/views/homepage/MadeInRwanda";
 import Ad from "../components/views/homepage/Ad";
 import HomepageCategory from "../components/views/homepage/HomepageCategory";
 import fetch from 'isomorphic-unfetch';
-import { API_URL, TOKEN_KEY } from '../config';
+import { API_URL } from '../config';
 import FeaturedSellers from "../components/views/homepage/FeaturedSellers";
 import MoreProduct from "../components/views/homepage/MoreProduct";
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
 import '../assets/styles/main.scss';
-import Suggest from '../components/views/homepage/suggest';
-import Modal from 'react-responsive-modal';
 
 class Index extends React.Component {
 	constructor(props) {
@@ -20,11 +18,8 @@ class Index extends React.Component {
 		this.state = {
 			updateCart: false,
 			openCart: false,
-			openCartContent: false,
-			open: false
+			openCartContent: false
 		};
-		this.onOpenModal = this.onOpenModal.bind(this);
-        this.onCloseModal = this.onCloseModal.bind(this);
 		this.cartShouldUpdate = this.cartShouldUpdate.bind(this);
 		this.cartShouldOpen = this.cartShouldOpen.bind(this);
 		this.HandleCartContentOpening = this.HandleCartContentOpening.bind(this);
@@ -63,14 +58,6 @@ class Index extends React.Component {
 		   specialOffers: data.special_offers
 		};
 	}
-	componentDidMount() {
-		const { open } = this.state;
-		if (!open) {
-			this.setState({
-				open: true
-			});
-		}
-	}
 
 	HandleCartContentOpening() {
         const { openCartContent } = this.state;
@@ -86,14 +73,6 @@ class Index extends React.Component {
         }
 	}
 	
-	onOpenModal = () => {
-		this.setState({ open: true });
-	};
-	 
-	onCloseModal = () => {
-		this.setState({ open: false });
-	};
-
 	render() {
 		const { 
 			promoAds, 
@@ -108,8 +87,7 @@ class Index extends React.Component {
 			specialOffers
 		} = this.props;
 		const {
-			openCartContent,
-			open
+			openCartContent
 		} = this.state;
 
 		return (
@@ -118,9 +96,6 @@ class Index extends React.Component {
 				updateCart={this.state.updateCart}
 				openCart={openCartContent}
 				>
-					<Modal open={open} onClose={this.onCloseModal} center>
-						<Suggest closeModal={this.onCloseModal} />
-					</Modal>
 					<div className='main-banners'>
 						<Ad type={type} data={promoAds}/>
 					</div>
