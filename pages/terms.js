@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TermsConditions from "../components/reusable/TermsConditions";
 import Global from '../components/reusable/Global';
 import GoogleAnalyticsLogger from '../components/google-analytics/GoogleAnalyticsLogger';
+import '../assets/styles/main.scss';
 
 class Profile extends Component {
     render () {
