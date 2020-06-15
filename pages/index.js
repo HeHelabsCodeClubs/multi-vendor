@@ -110,9 +110,9 @@ class Index extends React.Component {
 					<div className='top-stores'>
 						<TopStores topStores={topStores} />
 					</div>
-					<div className='made-in-rwanda special-offers'>
+					{/* <div className='made-in-rwanda special-offers'>
 						<SpecialOffers offers={specialOffers} />
-					</div>
+					</div> */}
 					<div className='made-in-rwanda special-offers'>
 						<MadeInRwanda 
 						stores={stores} products={products} 
